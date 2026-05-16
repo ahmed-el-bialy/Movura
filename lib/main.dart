@@ -22,7 +22,6 @@ final AppRouter appRouter;
         return MaterialApp(
           onGenerateRoute: appRouter.generateRoute,
           debugShowCheckedModeBanner: false,
-          home: child,
         );
       },
     );
