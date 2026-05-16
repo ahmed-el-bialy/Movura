@@ -8,28 +8,25 @@ import '../../features/home_screen/data/repo/posters_repo.dart';
 final sl = GetIt.instance;
 
 Future<void> initDI() async {
-  final String appBaseUrl = ApiConstants.baseUrl;
-  final String apiKey = ApiConstants.apiKey;
-  final String apiToken = ApiConstants.apiToken;
   var headers = {
-    'Authorization': 'Bearer $apiToken',
+    'Authorization': 'Bearer ${ApiConstants.apiToken}',
     'accept': 'application/json',
   };
 
   final dio = Dio(
     BaseOptions(
-      baseUrl: appBaseUrl,
+      baseUrl: ApiConstants.baseUrl,
       connectTimeout: const Duration(seconds: 22),
       receiveTimeout: const Duration(seconds: 22),
       headers: headers,
-      queryParameters: {'api_key': apiKey},
+      queryParameters: {'api_key': ApiConstants.apiKey},
     ),
   );
 
   sl.registerLazySingleton<Dio>(() => dio);
 
   sl.registerLazySingleton<WebServices>(
-    () => WebServices(sl<Dio>(), baseUrl: appBaseUrl),
+    () => WebServices(sl<Dio>(), baseUrl: ApiConstants.baseUrl),
   );
   sl.registerLazySingleton<PostersRepo>(() => PostersRepo(sl<WebServices>()));
 }

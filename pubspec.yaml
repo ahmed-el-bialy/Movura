@@ -55,8 +55,6 @@ dependencies:
   rename: ^3.1.0
   # A tidy utility to handle offline/online connectivity like a Boss.
   flutter_offline: ^6.0.0
-  # Easily configure any flutter application with global variables using a `.env` file.
-  flutter_dotenv: ^6.0.1
   #  Simple direct Service Locator that allows to decouple the interface from a concrete implementation and to access the concrete implementation from everywhere in your App
   get_it: ^9.2.1
 
@@ -91,9 +89,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-assets:
-  - assets/images/
-  - .env
+  assets:
+    - assets/images/
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -107,7 +105,7 @@ assets:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-fonts:
+  fonts:
      - family: Manrope
        fonts:
          - asset: assets/fonts/Manrope-Regular.ttf
