@@ -34,7 +34,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.9
-  # Flutter widgets that make it easy to implement the BLoC (Business Logic Component) design pattern.
+  # Flutter widgets that make it easy to implement the Bloc (Business Logic Component) design pattern.
   flutter_bloc: ^9.1.1
   # networking .
   dio: ^5.9.2
@@ -43,7 +43,7 @@ dependencies:
   pretty_dio_logger: ^1.4.0
   # A flutter plugin for adapting screen and font size.Guaranteed to look good on different model.
   flutter_screenutil: ^5.9.3
-  # Flutter library to load and cache network images. Can also be used with placeholder and error widgets..
+  # Flutter library to load and cache network images. Can also be used with placeholder and error widgets.
   cached_network_image: ^3.4.1
   # Automatically generate code for converting to and from JSON to annotation .
   json_annotation: ^4.12.0
@@ -107,10 +107,10 @@ assets:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+fonts:
+     - family: Manrope
+       fonts:
+         - asset: assets/fonts/Manrope-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
