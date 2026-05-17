@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/colors.dart';
 import 'package:movura/core/theming/styles.dart';
+import 'package:movura/features/home_screen/ui/widgets/poster_list_builder.dart';
+import 'package:movura/features/home_screen/ui/widgets/sub_poster_list_builder.dart';
 
 import '../../../core/helper/spacing.dart';
-import '../../../core/widgets/poster_card.dart';
+import '../../../core/widgets/app_navigation_bar.dart';
+import '../../../core/widgets/section_title.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -36,30 +39,49 @@ class MainScreen extends StatelessWidget {
           actions: [
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.0.w),
-              child: IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.search_outlined,
-                  size: 26.sp,
-                  color: AppColors.slateGray,
+              child: InkWell(
+                splashColor: AppColors.neonCyan.withValues(alpha: .19),
+                borderRadius: BorderRadius.circular(16.r),
+                onTap: () {},
+                child: Padding(
+                  padding: EdgeInsets.all(8.0.r),
+                  child: Icon(
+                    Icons.search_outlined,
+                    size: 26.sp,
+                    color: AppColors.slateGray,
+                  ),
                 ),
               ),
-            ),
+              ),
           ],
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            verticalSpacing(15.h),
-            Text("Trending Now", style: Styles.font20platinumGraySimiBold),
-            verticalSpacing(12.h),
-            PosterCard(),
+        padding: EdgeInsets.symmetric(horizontal: 8),
+        child: CustomScrollView(
+          scrollDirection: Axis.vertical,
+          physics: const BouncingScrollPhysics(),
+          slivers: [
+            SliverToBoxAdapter(child: verticalSpacing(15)),
+            SliverToBoxAdapter(
+              child: SectionTitle(
+                sectionName: "Trending Now",
+                actionName: "View All >> ",
+              ),
+            ),
+            SliverToBoxAdapter(child: PosterListBuilder()),
+            SliverToBoxAdapter(child: verticalSpacing(25)),
+            SliverToBoxAdapter(
+              child: SectionTitle(
+                sectionName: "Top Rated",
+                actionName: "View All >> ",
+              ),
+            ),
+            SliverToBoxAdapter(child: SubPosterListBuilder()),
           ],
         ),)
       ,
+      bottomNavigationBar: AppNavigationBar(),
     );
   }
 }

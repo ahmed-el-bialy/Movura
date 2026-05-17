@@ -8,6 +8,9 @@ class AppColors {
   static const Color trueBlack = Color(0xFF000000);
   static const Color richEerieBlack = Color(0xFF131313);
 
+
+  static const Color gold = Color(0xFFFFB869);
+
   static const Color darkSlateGray = Color(0xFF3A494B);
   static const Color coolGray = Color(0xFF6B7280);
   static const Color platinumGray = Color(0xFFE5E2E1);
