@@ -10,7 +10,7 @@ final class MainContentLoaded extends MainContentState {
 
   MainContentLoaded({required this.posters});
 }
-//
-// final class MainContentLoading extends MainContentState {}
-//
-// final class MainContentFailed extends MainContentState {}
+
+final class MainContentLoading extends MainContentState {}
+
+final class MainContentFailed extends MainContentState {}
