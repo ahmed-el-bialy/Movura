@@ -12,10 +12,10 @@ import '../../../core/widgets/section_title.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       backgroundColor: AppColors.richEerieBlack,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50.h),
@@ -40,7 +40,7 @@ class MainScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.0.w),
               child: InkWell(
-                splashColor: AppColors.neonCyan.withValues(alpha: .19),
+                splashColor: AppColors.neonCyan.withValues(alpha: .2),
                 borderRadius: BorderRadius.circular(16.r),
                 onTap: () {},
                 child: Padding(
@@ -81,7 +81,7 @@ class MainScreen extends StatelessWidget {
           ],
         ),)
       ,
-      bottomNavigationBar: AppNavigationBar(),
+      bottomNavigationBar: AppNavigationBar(activeIndex: 0,),
     );
   }
 }

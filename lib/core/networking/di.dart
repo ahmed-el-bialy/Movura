@@ -16,8 +16,8 @@ Future<void> initDI() async {
   final dio = Dio(
     BaseOptions(
       baseUrl: ApiConstants.baseUrl,
-      connectTimeout: const Duration(seconds: 22),
-      receiveTimeout: const Duration(seconds: 22),
+      connectTimeout: const Duration(seconds: 25),
+      receiveTimeout: const Duration(seconds: 2252),
       headers: headers,
       queryParameters: {'api_key': ApiConstants.apiKey},
     ),
