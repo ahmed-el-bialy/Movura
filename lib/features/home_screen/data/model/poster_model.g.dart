@@ -17,16 +17,18 @@ Map<String, dynamic> _$PosterResponseToJson(PosterResponse instance) =>
     <String, dynamic>{'results': instance.results};
 
 PosterModel _$PosterModelFromJson(Map<String, dynamic> json) => PosterModel(
-  title: json['title'] as String,
+  title: json['title'] as String?,
   posterPath: json['poster_path'] as String,
-  voteAverage: json['vote_average'] as String,
+  voteAverage: (json['vote_average'] as num).toDouble(),
   mediaType: json['media_type'] as String,
   id: (json['id'] as num).toInt(),
+  name: json['name'] as String?,
 );
 
 Map<String, dynamic> _$PosterModelToJson(PosterModel instance) =>
     <String, dynamic>{
       'title': instance.title,
+      'name': instance.name,
       'poster_path': instance.posterPath,
       'vote_average': instance.voteAverage,
       'media_type': instance.mediaType,

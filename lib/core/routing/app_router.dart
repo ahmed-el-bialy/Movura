@@ -10,11 +10,9 @@ import '../networking/di.dart';
 
 class AppRouter {
   late PostersRepo postersRepo;
-  late MainContentCubit contentCubit;
 
   AppRouter() {
     postersRepo = sl<PostersRepo>();
-    contentCubit = MainContentCubit(postersRepo: postersRepo);
   }
 
   Route generateRoute(RouteSettings setting) {
@@ -22,7 +20,9 @@ class AppRouter {
       case Strings.mainScreen:
         return MaterialPageRoute(builder: (_) =>
             BlocProvider(
-              create: (BuildContext context) => contentCubit,
+              create: (BuildContext context) =>
+              MainContentCubit(postersRepo: postersRepo)
+                ..getTrendingPosters(),
               child: MainScreen(),)
         );
       case Strings.detailsScreen:

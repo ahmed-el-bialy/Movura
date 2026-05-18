@@ -48,7 +48,24 @@ class AppNavigationBar extends StatelessWidget {
                 ),
               ),
 
-
+              InkWell(
+                splashColor: AppColors.neonCyan.withValues(alpha: .4),
+                borderRadius: BorderRadius.circular(16.r),
+                onTap: () {
+                  // هنا هتحط الـ Route بتاع شاشة الـ Library
+                  // if (activeIndex != 2) context.pushReplacementNamed(Strings.libraryScreen, null);
+                },
+                child: Padding(
+                  padding: EdgeInsets.all(8.0.r),
+                  child: Icon(
+                    Icons.format_list_bulleted_rounded,
+                    size: 28.sp,
+                    color: activeIndex == 2
+                        ? AppColors.neonCyan
+                        : AppColors.slateGray,
+                  ),
+                ),
+              ),
               // أيقونة Library -> index = 2
               InkWell(
                 splashColor: AppColors.neonCyan.withValues(alpha: .45),
@@ -63,24 +80,6 @@ class AppNavigationBar extends StatelessWidget {
                     Icons.auto_awesome,
                     size: 28.sp,
                     color: activeIndex == 3
-                        ? AppColors.neonCyan
-                        : AppColors.slateGray,
-                  ),
-                ),
-              ),
-              InkWell(
-                splashColor: AppColors.neonCyan.withValues(alpha: .4),
-                borderRadius: BorderRadius.circular(16.r),
-                onTap: () {
-                  // هنا هتحط الـ Route بتاع شاشة الـ Library
-                  // if (activeIndex != 2) context.pushReplacementNamed(Strings.libraryScreen, null);
-                },
-                child: Padding(
-                  padding: EdgeInsets.all(8.0.r),
-                  child: Icon(
-                    Icons.format_list_bulleted_rounded,
-                    size: 28.sp,
-                    color: activeIndex == 2
                         ? AppColors.neonCyan
                         : AppColors.slateGray,
                   ),
@@ -104,8 +103,6 @@ class AppNavigationBar extends StatelessWidget {
                   ),
                 ),
               ),
-
-              // أيقونة Assistant -> index = 3
             ],
           ),
         ),

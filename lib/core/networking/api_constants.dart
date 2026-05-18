@@ -4,6 +4,6 @@ class ApiConstants {
   static const String apiToken =
       'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOWYxYmQzNjBhODNhN2UzMTE1NmE2ODRiZTNmNDM1MCIsIm5iZiI6MTc3NzQ3NzExNi41NjksInN1YiI6IjY5ZjIyNWZjNzYyNmU3MThiMGRjZTA0NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.8URh-ciXG7o8iGzzS7AwY4vjO9JIBJiflPGNS6_otgE';
 
-  static const String imageBaseUrl = "https://image.tmdb.org/t/p/";
+  static const String imageBaseUrl = "https://image.tmdb.org/t/p/w500";
   static const String trendingMedia = "trending/all/day";
 }

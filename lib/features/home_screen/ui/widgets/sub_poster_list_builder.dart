@@ -25,7 +25,7 @@ class SubPosterListBuilder extends StatelessWidget {
               titleStyle: Styles.font14IceBlueBoldMontserrat,
               subCardElevation: 3,
               subTextStyle: Styles.font11IGoldBold,
-              
+
             ),
           );
         },

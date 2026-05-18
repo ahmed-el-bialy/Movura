@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/colors.dart';
 import 'package:movura/core/theming/styles.dart';
@@ -9,6 +10,7 @@ import 'package:movura/features/home_screen/ui/widgets/sub_poster_list_builder.d
 import '../../../core/helper/spacing.dart';
 import '../../../core/widgets/app_navigation_bar.dart';
 import '../../../core/widgets/section_title.dart';
+import '../logic/main_content/main_content_cubit.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -69,7 +71,40 @@ class MainScreen extends StatelessWidget {
                 actionName: "View All >> ",
               ),
             ),
-            SliverToBoxAdapter(child: PosterListBuilder()),
+            BlocBuilder<MainContentCubit, MainContentState>(
+              builder: (context, state) {
+                if (state is MainContentLoading) {
+                  return SliverToBoxAdapter(
+                    child: SizedBox(
+                      height: 340.h,
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          color: AppColors.neonCyan,
+                        ),
+                      ),
+                    ),
+                  );
+                } else if (state is MainContentLoaded) {
+                  return SliverToBoxAdapter(child: PosterListBuilder(
+                    trendingContent: state.posters,));
+                } else if (state is MainContentFailed) {
+                  return SliverToBoxAdapter(
+                    child: Text(
+                      state.errorMessage,
+                      style: Styles.font10NeonCyanMedium,
+                    ),
+                  );
+                } else {
+                  return SliverToBoxAdapter(
+                    child: Text(
+                      state.toString()
+                      ,
+                      style: Styles.font10NeonCyanMedium,
+                    ),
+                  );
+                }
+              },
+            ),
             SliverToBoxAdapter(child: verticalSpacing(25)),
             SliverToBoxAdapter(
               child: SectionTitle(
