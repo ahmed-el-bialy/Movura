@@ -7,7 +7,7 @@ class AppColors {
   static const Color eerieBlack = Color(0xFF0E0E0E);
   static const Color trueBlack = Color(0xFF000000);
   static const Color richEerieBlack = Color(0xFF131313);
-
+  static const Color darkBackground = Color(0xFF161616);
 
   static const Color gold = Color(0xFFFFB869);
 
@@ -17,6 +17,7 @@ class AppColors {
   static const Color slateGray = Color(0xFFB9CACB);
 
   static const Color neonCyan = Color(0xFF00F2FF);
+  static const Color darkNeonCyan = Color(0xFF009191);
   static const Color iceBlue = Color(0xFFE1FDFF);
 
   static const Color pureWhite = Color(0xFFFFFFFF);

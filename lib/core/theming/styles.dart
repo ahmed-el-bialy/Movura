@@ -10,12 +10,29 @@ class Styles {
     fontSize: 24.sp,
     fontFamily: "Manrope",
   );
+  static TextStyle font20NeonCyanSimiBoldManrope = TextStyle(
+    fontWeight: Weights.simiBold,
+    color: AppColors.neonCyan,
+    fontSize: 20.sp,
+    fontFamily: "Manrope",
+  );
+  static TextStyle font12DarkNeonCyanManrope = TextStyle(
+    color: AppColors.darkNeonCyan,
+    fontSize: 14.sp,
+    fontFamily: "Manrope",
+  );
 
   static TextStyle font17IceBlueBoldMontserrat = TextStyle(
     fontWeight: FontWeight.bold,
     color: AppColors.iceBlue,
     fontSize: 17.sp,
     fontFamily: "Montserrat",
+  );
+  static TextStyle font17TrueBlackBoldSora = TextStyle(
+    fontWeight: FontWeight.bold,
+    color: AppColors.trueBlack,
+    fontSize: 17.sp,
+    fontFamily: "Sora",
   );
   static TextStyle font14IceBlueBoldMontserrat = TextStyle(
     fontWeight: FontWeight.bold,
@@ -29,10 +46,22 @@ class Styles {
     fontSize: 11.sp,
   );
 
-  static TextStyle font10NeonCyanMedium = TextStyle(
+  static TextStyle font13NeonCyanMedium = TextStyle(
     fontWeight: Weights.medium,
     color: AppColors.neonCyan,
     fontSize: 13.sp,
+  );
+  static TextStyle font13NeonCyanBoldSora = TextStyle(
+      fontWeight: FontWeight.bold,
+      color: AppColors.neonCyan,
+      fontSize: 12.sp,
+      fontFamily: "Sora"
+  );
+  static TextStyle font1CoolGrayMediumSora = TextStyle(
+      fontWeight: Weights.medium,
+      color: AppColors.coolGray,
+      fontSize: 10.sp,
+      fontFamily: "Sora"
   );
   static TextStyle font20platinumGraySimiBold = TextStyle(
     fontWeight: Weights.simiBold,
@@ -43,5 +72,10 @@ class Styles {
     fontWeight: Weights.simiBold,
     color: AppColors.platinumGray,
     fontSize: 16.sp,
+  );
+  static TextStyle font12platinumGrayMedium = TextStyle(
+    fontWeight: Weights.medium,
+    color: AppColors.platinumGray,
+    fontSize: 12.sp,
   );
 }

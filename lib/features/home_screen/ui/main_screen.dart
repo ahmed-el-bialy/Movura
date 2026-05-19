@@ -7,6 +7,7 @@ import 'package:movura/core/theming/styles.dart';
 import 'package:movura/features/home_screen/ui/widgets/poster_list_builder.dart';
 import 'package:movura/features/home_screen/ui/widgets/sub_poster_list_builder.dart';
 
+import '../../../core/helper/constants/strings.dart';
 import '../../../core/helper/spacing.dart';
 import '../../../core/widgets/app_navigation_bar.dart';
 import '../../../core/widgets/section_title.dart';
@@ -33,9 +34,12 @@ class MainScreen extends StatelessWidget {
                   fit: BoxFit.fill,
                 ),
               ),
-              Text("MOVURA", style: Styles.font24NeonCyanSimiBoldManrope),
-              Spacer(flex: 1),
-              verticalSpacing(60.h),
+              Text(
+                Strings.appName,
+                style: Styles.font24NeonCyanSimiBoldManrope,
+              ),
+              Spacer(flex: 1)
+              , verticalSpacing(60.h),
             ],
           ),
           actions: [
@@ -91,7 +95,7 @@ class MainScreen extends StatelessWidget {
                   return SliverToBoxAdapter(
                     child: Text(
                       state.errorMessage,
-                      style: Styles.font10NeonCyanMedium,
+                      style: Styles.font13NeonCyanMedium,
                     ),
                   );
                 } else {
@@ -99,7 +103,7 @@ class MainScreen extends StatelessWidget {
                     child: Text(
                       state.toString()
                       ,
-                      style: Styles.font10NeonCyanMedium,
+                      style: Styles.font13NeonCyanMedium,
                     ),
                   );
                 }
@@ -120,3 +124,4 @@ class MainScreen extends StatelessWidget {
     );
   }
 }
+  enum MovieTab { media, cast, similar }

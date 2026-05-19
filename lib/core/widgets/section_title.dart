@@ -36,7 +36,7 @@ class SectionTitle extends StatelessWidget {
                 onTap: onTap ?? () {},
                 child: Text(
                   actionName!,
-                  style: actionStyle ?? Styles.font10NeonCyanMedium,
+                  style: actionStyle ?? Styles.font13NeonCyanMedium,
                 ),
               )
             : Spacer(flex: 1),
