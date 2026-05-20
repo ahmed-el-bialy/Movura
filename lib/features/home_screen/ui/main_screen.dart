@@ -7,7 +7,7 @@ import 'package:movura/core/theming/styles.dart';
 import 'package:movura/features/home_screen/ui/widgets/poster_list_builder.dart';
 import 'package:movura/features/home_screen/ui/widgets/sub_poster_list_builder.dart';
 
-import '../../../core/helper/constants/strings.dart';
+import '../../../core/helper/strings.dart';
 import '../../../core/helper/spacing.dart';
 import '../../../core/widgets/app_navigation_bar.dart';
 import '../../../core/widgets/section_title.dart';

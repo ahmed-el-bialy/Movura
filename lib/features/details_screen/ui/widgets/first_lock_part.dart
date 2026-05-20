@@ -1,22 +1,27 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/features/details_screen/data/models/main_details_model.dart';
 import 'package:movura/features/details_screen/ui/widgets/short_review.dart';
 
-class FirstLockPart extends StatelessWidget {
-  const FirstLockPart({super.key, required this.imageUrl});
+import '../../../../core/networking/api_constants.dart';
 
-  final String imageUrl;
+class FirstLockPart extends StatelessWidget {
+  const FirstLockPart({super.key, required this.model});
+
+  final MainDetailsModel model;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 530.h,
       width: double.infinity,
       child: Stack(
         fit: StackFit.expand,
         children: [
-          CachedNetworkImage(imageUrl: imageUrl, fit: BoxFit.cover),
+          CachedNetworkImage(
+              imageUrl: "${ApiConstants.imageBaseUrl}${model.posterPath}",
+              fit: BoxFit.cover),
 
           Container(
             decoration: BoxDecoration(
@@ -31,7 +36,7 @@ class FirstLockPart extends StatelessWidget {
             ),
           ),
 
-          ShortReview(),
+          ShortReview(model: model),
         ],
       ),
     );

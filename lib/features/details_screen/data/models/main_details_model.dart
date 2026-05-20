@@ -17,6 +17,8 @@ class MainDetailsModel {
   final double runtime;
   @JsonKey(name: "vote_average")
   final double rating;
+  @JsonKey(name: "genres")
+  final List<Genre> genres;
 
   MainDetailsModel({
     required this.isForAdults,
@@ -26,6 +28,7 @@ class MainDetailsModel {
     required this.overview,
     required this.runtime,
     required this.rating,
+    required this.genres,
   });
 
   factory MainDetailsModel.fromJson(Map<String, dynamic> json) =>

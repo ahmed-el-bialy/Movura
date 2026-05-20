@@ -15,6 +15,9 @@ MainDetailsModel _$MainDetailsModelFromJson(Map<String, dynamic> json) =>
       overview: json['overview'] as String,
       runtime: (json['runtime'] as num).toDouble(),
       rating: (json['vote_average'] as num).toDouble(),
+      genres: (json['genres'] as List<dynamic>)
+          .map((e) => Genre.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$MainDetailsModelToJson(MainDetailsModel instance) =>
@@ -26,6 +29,7 @@ Map<String, dynamic> _$MainDetailsModelToJson(MainDetailsModel instance) =>
       'overview': instance.overview,
       'runtime': instance.runtime,
       'vote_average': instance.rating,
+      'genres': instance.genres,
     };
 
 GenresList _$GenresListFromJson(Map<String, dynamic> json) => GenresList(

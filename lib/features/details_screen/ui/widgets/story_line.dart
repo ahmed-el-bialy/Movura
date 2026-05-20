@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/features/details_screen/data/models/main_details_model.dart';
 
 import '../../../../core/helper/spacing.dart';
 import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles.dart';
 
 class StoryLine extends StatelessWidget {
-  const StoryLine({super.key});
+  const StoryLine({super.key, required this.model});
+
+  final MainDetailsModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +31,10 @@ class StoryLine extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 6.w),
                 child: Text(
-                  "Deep beneath the shifting sands of Egypt ,an ancient entity awakens from a millennia-long slumber. A team of explorers must race against time to stop the return of a cursed pharaoh whose wrath threatens to plunge the modern world into eternal darkness.",
+                  model.overview,
                   style: Styles.font14IceBlueBoldMontserrat,
+                  maxLines: 6,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
 
@@ -37,7 +42,7 @@ class StoryLine extends StatelessWidget {
                 height: 45.h,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 4,
+                  itemCount: model.genres.length,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -55,7 +60,7 @@ class StoryLine extends StatelessWidget {
                                 horizontal: 10.w,
                               ),
                               child: Text(
-                                "Action",
+                                model.genres[0].name,
                                 style: Styles.font12platinumGrayMedium,
                               ),
                             ),

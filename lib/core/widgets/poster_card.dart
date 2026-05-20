@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/helper/constants/strings.dart';
 import 'package:movura/core/helper/extension.dart';
+import 'package:movura/core/helper/strings.dart';
 import 'package:movura/core/networking/api_constants.dart';
 import 'package:movura/core/theming/styles.dart';
 import 'package:movura/features/home_screen/data/model/poster_model.dart';
@@ -41,7 +41,7 @@ class PosterCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: (){
-        context.pushNamed(Strings.detailsScreen,media?.posterPath);
+        context.pushNamed(Strings.detailsScreen, media?.id);
       },
       child: Card(
         elevation: elevation ?? 10,

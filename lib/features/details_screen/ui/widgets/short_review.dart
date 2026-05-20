@@ -2,13 +2,16 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/features/details_screen/data/models/main_details_model.dart';
 
 import '../../../../core/helper/spacing.dart';
 import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles.dart';
 
 class ShortReview extends StatelessWidget {
-  const ShortReview({super.key});
+  const ShortReview({super.key, required this.model});
+
+  final MainDetailsModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class ShortReview extends StatelessWidget {
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 15.0, sigmaY: 15.0),
             child: Container(
-              height: 140.h,
+              height: 150.h,
               width: double.infinity,
               padding: EdgeInsets.all(16.r),
               decoration: BoxDecoration(
@@ -66,12 +69,12 @@ class ShortReview extends StatelessWidget {
                                   color: AppColors.neonCyan,
                                 ),
                                 Text(
-                                  " 8.9",
+                                  model.rating.toStringAsFixed(1),
                                   style: Styles.font20NeonCyanSimiBoldManrope,
                                 ),
                                 Text(
                                   " /10",
-                                  style: Styles.font12DarkNeonCyanManrope,
+                                  style: Styles.font13NeonCyanBoldSora,
                                 ),
                               ],
                             ),
@@ -81,17 +84,18 @@ class ShortReview extends StatelessWidget {
                     ],
                   ),
                   Text(
-                    "THE MUMMY",
+                    model.title,
                     style: Styles.font17IceBlueBoldMontserrat.copyWith(
-                      color: Colors.white,
-                      fontSize: 22.sp,
+                      fontSize: 25.sp,
                     ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
                   verticalSpacing(6),
                   Text(
-                    "2026 • ACTION / HORROR • 2h 05m",
+                    " 2026 • ${model.language} • ${model.runtime} min",
                     style: Styles.font12platinumGraySimiBold.copyWith(
-                      color: Colors.white70,
+                        fontSize: 15.sp
                     ),
                   ),
                 ],

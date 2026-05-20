@@ -1,34 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/features/home_screen/data/repo/posters_repo.dart';
 
+import '../../features/details_screen/data/repos/main_details_repo.dart';
+import '../../features/details_screen/logic/main_details/main_details_cubit.dart';
 import '../../features/details_screen/ui/details_screen.dart';
+import '../../features/home_screen/data/repo/posters_repo.dart';
 import '../../features/home_screen/logic/main_content/main_content_cubit.dart';
 import '../../features/home_screen/ui/main_screen.dart';
-import '../helper/constants/strings.dart';
+import '../helper/strings.dart';
 import '../networking/di.dart';
 
 class AppRouter {
-  late PostersRepo postersRepo;
-
-  AppRouter() {
-    postersRepo = sl<PostersRepo>();
-  }
-
   Route generateRoute(RouteSettings setting) {
     switch (setting.name) {
       case Strings.mainScreen:
-        return MaterialPageRoute(builder: (_) =>
-            BlocProvider(
-              create: (BuildContext context) =>
-              MainContentCubit(postersRepo: postersRepo)
-                ..getTrendingPosters(),
-              child: MainScreen(),)
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (BuildContext context) =>
+                MainContentCubit(postersRepo: sl<PostersRepo>())
+                  ..getTrendingPosters(),
+            child: const MainScreen(),
+          ),
         );
+
       case Strings.detailsScreen:
-        return MaterialPageRoute(builder: (_) => DetailsScreen());
+        final movieId = setting.arguments as int;
+
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                MainDetailsCubit(repo: sl<MainDetailsRepo>())
+                  ..getMovieMainDetails(id: movieId),
+            child: DetailsScreen(),
+          ),
+        );
+
       default:
-        return MaterialPageRoute(builder: (_) => MainScreen());
+        return MaterialPageRoute(builder: (_) => const MainScreen());
     }
   }
 }

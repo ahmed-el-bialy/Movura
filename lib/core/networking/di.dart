@@ -3,6 +3,8 @@ import 'package:get_it/get_it.dart';
 import 'package:movura/core/networking/api_constants.dart';
 import 'package:movura/features/home_screen/data/web_services/web_services.dart';
 
+import '../../features/details_screen/data/repos/main_details_repo.dart';
+import '../../features/details_screen/data/webs_services/main_details_services.dart';
 import '../../features/home_screen/data/repo/posters_repo.dart';
 
 final sl = GetIt.instance;
@@ -29,4 +31,12 @@ Future<void> initDI() async {
     () => WebServices(sl<Dio>(), baseUrl: ApiConstants.baseUrl),
   );
   sl.registerLazySingleton<PostersRepo>(() => PostersRepo(sl<WebServices>()));
+
+  sl.registerLazySingleton<MainDetailsServices>(
+    () => MainDetailsServices(sl<Dio>()),
+  );
+
+  sl.registerLazySingleton<MainDetailsRepo>(
+    () => MainDetailsRepo(sl<MainDetailsServices>()),
+  );
 }
