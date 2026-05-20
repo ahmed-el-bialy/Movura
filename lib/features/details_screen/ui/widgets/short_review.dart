@@ -36,13 +36,12 @@ class ShortReview extends StatelessWidget {
                   width: 1.5,
                 ),
               ),
-              // حولنا هنا لـ Stack عشان الـ Positioned يشتغل صح وبدون أخطاء
+
               child: Stack(
                 children: [
-                  // 1. النصوص (العنوان والتفاصيل) بنحطها جوه Column عادي جداً
                   Positioned(
                     left: 0,
-                    bottom: 8.h, // مثبتة تحت شوية عشان ما تتدخلش مع التقييم فوق
+                    bottom: 8.h,
                     right: 0,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,15 +50,14 @@ class ShortReview extends StatelessWidget {
                         Text(
                           model.title,
                           style: Styles.font17IceBlueBoldMontserrat.copyWith(
-                            fontSize: 23
-                                .sp, // صغرناه سنة عشان لو الاسم طويل ياخد راحته
+                            fontSize: 23.sp,
                           ),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),
                         verticalSpacing(6),
                         Text(
-                          " 2026 • ${model.language} • ${model.runtime.runtimeFormatter()} ",
+                          " Movie • ${model.language} • ${model.runtime.runtimeFormatter()} ",
                           style: Styles.font12platinumGraySimiBold.copyWith(
                             fontSize: 14.sp,
                           ),
@@ -99,9 +97,7 @@ class ShortReview extends StatelessWidget {
                               Text(
                                 model.rating.toStringAsFixed(1),
                                 style: Styles.font20NeonCyanSimiBoldManrope
-                                    .copyWith(
-                                      fontSize: 15.sp,
-                                    ),
+                                    .copyWith(fontSize: 15.sp),
                               ),
                               Text(
                                 " / 10 ",
