@@ -16,7 +16,7 @@ class StoryLine extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(6.0.r),
       child: SizedBox(
-        height: 210.h,
+        height: 230.h,
         width: 3000.w,
         child: Card(
           elevation: 5,

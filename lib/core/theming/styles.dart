@@ -28,6 +28,12 @@ class Styles {
     fontSize: 17.sp,
     fontFamily: "Montserrat",
   );
+  static TextStyle font10IceBlueBoldMontserrat = TextStyle(
+    fontWeight: FontWeight.bold,
+    color: AppColors.iceBlue,
+    fontSize: 11.sp,
+    fontFamily: "Montserrat",
+  );
   static TextStyle font17TrueBlackBoldSora = TextStyle(
     fontWeight: FontWeight.bold,
     color: AppColors.trueBlack,
@@ -57,7 +63,7 @@ class Styles {
       fontSize: 12.sp,
       fontFamily: "Sora"
   );
-  static TextStyle font1CoolGrayMediumSora = TextStyle(
+  static TextStyle font10CoolGrayMediumSora = TextStyle(
       fontWeight: Weights.medium,
       color: AppColors.coolGray,
       fontSize: 10.sp,

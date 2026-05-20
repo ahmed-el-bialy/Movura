@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/colors.dart';
 import 'package:movura/core/theming/styles.dart';
-import 'package:movura/features/home_screen/ui/widgets/details_loading_skeleton.dart';
+import 'package:movura/features/details_screen/ui/sub_screen/details_loading_skeleton.dart';
+import 'package:movura/features/details_screen/ui/sub_screen/success_build_body.dart';
 
 import '../../../core/helper/extension.dart';
 import '../../../core/helper/strings.dart';
-import '../../home_screen/ui/widgets/success_build_body.dart';
 import '../logic/main_details/main_details_cubit.dart';
 
 class DetailsScreen extends StatelessWidget {
