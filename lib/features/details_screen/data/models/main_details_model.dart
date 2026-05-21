@@ -4,6 +4,8 @@ part 'main_details_model.g.dart';
 
 @JsonSerializable()
 class MainDetailsModel {
+  @JsonKey(name: "id")
+  final int id;
   @JsonKey(name: "adult")
   final bool isForAdults;
   @JsonKey(name: "original_language")
@@ -29,6 +31,7 @@ class MainDetailsModel {
     required this.runtime,
     required this.rating,
     required this.genres,
+    required this.id,
   });
 
   factory MainDetailsModel.fromJson(Map<String, dynamic> json) =>

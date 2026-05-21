@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/features/details_screen/data/models/main_details_model.dart';
+import 'package:movura/features/details_screen/data/repos/about_section_repo.dart';
+import 'package:movura/features/details_screen/logic/about_section/about_section_cubit.dart';
 
 import '../../../../../core/helper/spacing.dart';
 import '../../../../../core/theming/colors.dart';
 import '../../../../../core/theming/styles.dart';
+import '../../../../core/networking/di.dart';
 import '../widgets/action_buttons_part.dart';
 import '../widgets/first_lock_part.dart';
 import '../widgets/story_line.dart';
@@ -62,7 +66,12 @@ class SuccessBuildBody extends StatelessWidget {
                 child: TabBarView(
                   children: [
                     // الـ Tab الأول: Media (جواه العنوان والـ ListView الأفقية)
-                    const AboutTabContent(),
+                    BlocProvider(
+                      create: (context) =>
+                          AboutSectionCubit(repo: sl<AboutSectionRepo>())
+                            ..getAboutSectionData(id: model.id),
+                      child: AboutTabContent(),
+                    ),
 
                     // الـ Tab الثاني
                     const Center(

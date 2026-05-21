@@ -13,6 +13,7 @@ abstract class AboutSectionServices {
 
   @GET(ApiConstants.movieDetails)
   Future<AboutModel> getAboutSectionData({
+    @Query("append_to_response") String additionalData = "credits",
     @Query("language") String language = "en-US",
     @Path("id") required int movieId,
   });

@@ -18,10 +18,12 @@ MainDetailsModel _$MainDetailsModelFromJson(Map<String, dynamic> json) =>
       genres: (json['genres'] as List<dynamic>)
           .map((e) => Genre.fromJson(e as Map<String, dynamic>))
           .toList(),
+      id: (json['id'] as num).toInt(),
     );
 
 Map<String, dynamic> _$MainDetailsModelToJson(MainDetailsModel instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'adult': instance.isForAdults,
       'original_language': instance.language,
       'poster_path': instance.posterPath,
