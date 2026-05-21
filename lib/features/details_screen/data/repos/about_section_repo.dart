@@ -6,7 +6,7 @@ class AboutSectionRepo {
 
   AboutSectionRepo({required this.aboutSectionServices});
 
-  Future<AboutModel> getMovieMainDetails(int movieId) async {
+  Future<AboutModel> getMovieMainDetails({required int movieId}) async {
     var response = aboutSectionServices.getAboutSectionData(movieId: movieId);
 
     return response;
