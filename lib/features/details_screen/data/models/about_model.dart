@@ -4,7 +4,6 @@ part 'about_model.g.dart';
 
 @JsonSerializable()
 class AboutModel {
-
   @JsonKey(name: "id")
   final int id;
 
@@ -27,7 +26,6 @@ class AboutModel {
 
   @JsonKey(name: "genres")
   final List<Genre> genres;
-
 
   @JsonKey(name: "credits")
   final ActorResponse actors;
@@ -69,8 +67,6 @@ class AboutModel {
 
   Map<String, dynamic> toJson() => _$AboutModelToJson(this);
 }
-
-// ======= 3. الكلاسات الفرعية (Sub-Models) بتفضل تحت بعضها عادي جداً =======
 
 @JsonSerializable()
 class ImagesResponse {
@@ -163,5 +159,6 @@ class Genre {
   Genre({required this.id, required this.name});
 
   factory Genre.fromJson(Map<String, dynamic> json) => _$GenreFromJson(json);
+
   Map<String, dynamic> toJson() => _$GenreToJson(this);
 }
