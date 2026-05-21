@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/features/details_screen/data/models/main_details_model.dart';
+import 'package:movura/features/details_screen/data/models/about_model.dart';
 
 import '../../../../core/helper/runtime_formatter.dart';
 import '../../../../core/helper/spacing.dart';
@@ -12,7 +12,7 @@ import '../../../../core/theming/styles.dart';
 class ShortReview extends StatelessWidget {
   const ShortReview({super.key, required this.model});
 
-  final MainDetailsModel model;
+  final AboutModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,7 @@ class ShortReview extends StatelessWidget {
                         verticalSpacing(6),
                         Text(
                           " Movie • ${model.language} • ${model.runtime.runtimeFormatter()} ",
-                          style: Styles.font12platinumGraySimiBold.copyWith(
+                          style: Styles.font16platinumGraySimiBold.copyWith(
                             fontSize: 14.sp,
                           ),
                         ),

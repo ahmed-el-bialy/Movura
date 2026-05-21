@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/weights.dart';
-import 'package:movura/features/details_screen/data/models/main_details_model.dart';
+import 'package:movura/features/details_screen/data/models/about_model.dart';
 
 import '../../../../core/helper/spacing.dart';
 import '../../../../core/theming/colors.dart';
@@ -10,7 +10,7 @@ import '../../../../core/theming/styles.dart';
 class StoryLine extends StatefulWidget {
   const StoryLine({super.key, required this.model});
 
-  final MainDetailsModel model;
+  final AboutModel model;
 
   @override
   State<StoryLine> createState() => _StoryLineState();

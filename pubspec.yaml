@@ -59,6 +59,8 @@ dependencies:
   get_it: ^9.2.1
   # A package provides an easy way to add shimmer effect in Flutter project
   shimmer: ^3.0.0
+  # Contains code to deal with internationalized/localized messages
+  intl: ^0.20.2
 
 
 

@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/features/details_screen/data/models/main_details_model.dart';
-import 'package:movura/features/details_screen/data/repos/about_section_repo.dart';
-import 'package:movura/features/details_screen/logic/about_section/about_section_cubit.dart';
+import 'package:movura/features/details_screen/data/models/about_model.dart';
 
 import '../../../../../core/helper/spacing.dart';
 import '../../../../../core/theming/colors.dart';
 import '../../../../../core/theming/styles.dart';
-import '../../../../core/networking/di.dart';
-import '../widgets/action_buttons_part.dart';
-import '../widgets/first_lock_part.dart';
-import '../widgets/story_line.dart';
-import 'about_tab_content.dart';
+import '../sub_screen/about_tab_section.dart';
+import 'action_buttons_part.dart';
+import 'first_lock_part.dart';
+import 'story_line.dart';
 
 class SuccessBuildBody extends StatelessWidget {
   const SuccessBuildBody({super.key, required this.model});
 
-  final MainDetailsModel model;
+  final AboutModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +46,7 @@ class SuccessBuildBody extends StatelessWidget {
                 unselectedLabelColor: AppColors.slateGray,
                 tabs: [
                   Tab(text: "ABOUT"),
-                  Tab(text: "MEDIA"),
+                  Tab(text: "REVIEWS"),
                   Tab(text: "SIMILAR"),
                 ],
               ),
@@ -61,17 +57,12 @@ class SuccessBuildBody extends StatelessWidget {
               // 2. محتوى الـ Tabs (الـ TabBarView)
               // استخدمنا SizedBox هنا وحددنا ارتفاع ثابت لأنها جزء من شاشة مش الشاشة كلها
               SizedBox(
-                height: 500.h,
+                height: 800.h,
                 // حدد الارتفاع المناسب لمحتويات الـ Tabs بالصور بتاعتها
                 child: TabBarView(
                   children: [
                     // الـ Tab الأول: Media (جواه العنوان والـ ListView الأفقية)
-                    BlocProvider(
-                      create: (context) =>
-                          AboutSectionCubit(repo: sl<AboutSectionRepo>())
-                            ..getAboutSectionData(id: model.id),
-                      child: AboutTabContent(),
-                    ),
+                    AboutTabContent(),
 
                     // الـ Tab الثاني
                     const Center(

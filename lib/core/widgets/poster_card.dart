@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/helper/extension.dart';
+import 'package:movura/core/helper/routing_extension.dart';
 import 'package:movura/core/helper/strings.dart';
 import 'package:movura/core/networking/api_constants.dart';
 import 'package:movura/core/theming/styles.dart';
@@ -75,7 +75,7 @@ class PosterCard extends StatelessWidget {
                                 color: Colors.grey),
                             SizedBox(height: 8.h),
                             Text("No Poster Available",
-                                style: Styles.font12platinumGraySimiBold),
+                                style: Styles.font16platinumGraySimiBold),
                           ],
                         ),
                       ),
@@ -117,7 +117,7 @@ class PosterCard extends StatelessWidget {
                       padding: EdgeInsets.all(5.0.r),
                       child: Text(
                         media?.mediaType ?? "N/A",
-                        style: subTextStyle ?? Styles.font12platinumGraySimiBold,
+                        style: subTextStyle ?? Styles.font16platinumGraySimiBold,
                       ),
                     ),
                   ),
@@ -145,13 +145,13 @@ class PosterCard extends StatelessWidget {
                                 ? media!.voteAverage.toStringAsFixed(1)
                                 : "0.0",
                             style: subTextStyle ??
-                                Styles.font12platinumGraySimiBold,
+                                Styles.font16platinumGraySimiBold,
                           ),
                           Icon(
                             Icons.star_purple500_outlined,
                             size: 18.sp,
                             color: subTextStyle?.color ?? Styles
-                                .font12platinumGraySimiBold.color,
+                                .font16platinumGraySimiBold.color,
                           )
                         ],
                       ),

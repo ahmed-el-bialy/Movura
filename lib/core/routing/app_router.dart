@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../features/details_screen/data/repos/main_details_repo.dart';
-import '../../features/details_screen/logic/main_details/main_details_cubit.dart';
+import '../../features/details_screen/data/repos/about_repo.dart';
+import '../../features/details_screen/logic/main_details/about_cubit.dart';
 import '../../features/details_screen/ui/details_screen.dart';
 import '../../features/home_screen/data/repo/posters_repo.dart';
 import '../../features/home_screen/logic/main_content/main_content_cubit.dart';
@@ -29,7 +29,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) =>
-                MainDetailsCubit(repo: sl<MainDetailsRepo>())
+                AboutCubit(repo: sl<AboutRepo>())
                   ..getMovieMainDetails(id: movieId),
             child: DetailsScreen(),
           ),

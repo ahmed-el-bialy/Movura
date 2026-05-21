@@ -1,12 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:movura/core/networking/api_constants.dart';
-import 'package:movura/features/details_screen/data/repos/about_section_repo.dart';
-import 'package:movura/features/details_screen/data/webs_services/about_section_services.dart';
 import 'package:movura/features/home_screen/data/web_services/web_services.dart';
 
-import '../../features/details_screen/data/repos/main_details_repo.dart';
-import '../../features/details_screen/data/webs_services/main_details_services.dart';
+import '../../features/details_screen/data/repos/about_repo.dart';
+import '../../features/details_screen/data/webs_services/about_services.dart';
 import '../../features/home_screen/data/repo/posters_repo.dart';
 
 final sl = GetIt.instance;
@@ -34,20 +32,7 @@ Future<void> initDI() async {
   );
   sl.registerLazySingleton<PostersRepo>(() => PostersRepo(sl<WebServices>()));
 
-  sl.registerLazySingleton<MainDetailsServices>(
-    () => MainDetailsServices(sl<Dio>()),
-  );
+  sl.registerLazySingleton<AboutServices>(() => AboutServices(sl<Dio>()));
 
-  sl.registerLazySingleton<MainDetailsRepo>(
-    () => MainDetailsRepo(sl<MainDetailsServices>()),
-  );
-
-  sl.registerLazySingleton<AboutSectionServices>(
-        () => AboutSectionServices(sl<Dio>()),
-  );
-
-  sl.registerLazySingleton<AboutSectionRepo>(
-        () =>
-        AboutSectionRepo(aboutSectionServices: sl<AboutSectionServices>(),),
-  );
+  sl.registerLazySingleton<AboutRepo>(() => AboutRepo(sl<AboutServices>()));
 }

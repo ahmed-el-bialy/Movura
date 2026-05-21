@@ -4,11 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/colors.dart';
 import 'package:movura/core/theming/styles.dart';
 import 'package:movura/features/details_screen/ui/sub_screen/details_loading_skeleton.dart';
-import 'package:movura/features/details_screen/ui/sub_screen/success_build_body.dart';
+import 'package:movura/features/details_screen/ui/widgets/more_details_part.dart';
 
-import '../../../core/helper/extension.dart';
+import '../../../core/helper/routing_extension.dart';
 import '../../../core/helper/strings.dart';
-import '../logic/main_details/main_details_cubit.dart';
+import '../logic/main_details/about_cubit.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key});
@@ -65,15 +65,15 @@ class DetailsScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: BlocBuilder<MainDetailsCubit, MainDetailsState>(
+      body: BlocBuilder<AboutCubit, AboutState>(
         builder: (context, state) {
-          if (state is MainDetailsLoading) {
+          if (state is AboutLoading) {
             return DetailsLoadingSkeleton();
           }
-          else if (state is MainDetailsSuccess) {
+          else if (state is AboutSuccess) {
             return SuccessBuildBody(model: state.model,);
           }
-          else if (state is MainDetailsFailed) {
+          else if (state is AboutFailed) {
             return Center(child: Text(state.errorMessage),);
           }
           else{

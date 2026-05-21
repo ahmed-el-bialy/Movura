@@ -4,29 +4,101 @@ part 'about_model.g.dart';
 
 @JsonSerializable()
 class AboutModel {
+
+  @JsonKey(name: "id")
+  final int id;
+
+  @JsonKey(name: "original_language")
+  final String language;
+
+  @JsonKey(name: "poster_path")
+  final String posterPath;
+
+  @JsonKey(name: "title")
+  final String title;
+
+  @JsonKey(name: "overview")
+  final String overview;
+
+  final double runtime;
+
+  @JsonKey(name: "vote_average")
+  final double rating;
+
+  @JsonKey(name: "genres")
+  final List<Genre> genres;
+
+
   @JsonKey(name: "credits")
   final ActorResponse actors;
+
   @JsonKey(name: "production_companies")
   final List<CompanyModel> companies;
+
   @JsonKey(name: "budget")
   final int budget;
+
   @JsonKey(name: "revenue")
   final int revenue;
-  @JsonKey(name: "softcore")
+
+  @JsonKey(name: "adult")
   final bool adultContent;
 
+  @JsonKey(name: "images")
+  final ImagesResponse mediaImages;
+
   AboutModel({
+    required this.id,
+    required this.language,
+    required this.posterPath,
+    required this.title,
+    required this.overview,
+    required this.runtime,
+    required this.rating,
+    required this.genres,
     required this.actors,
     required this.companies,
     required this.budget,
     required this.revenue,
     required this.adultContent,
+    required this.mediaImages,
   });
 
   factory AboutModel.fromJson(Map<String, dynamic> json) =>
       _$AboutModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$AboutModelToJson(this);
+}
+
+// ======= 3. الكلاسات الفرعية (Sub-Models) بتفضل تحت بعضها عادي جداً =======
+
+@JsonSerializable()
+class ImagesResponse {
+  @JsonKey(name: "backdrops")
+  final List<ImageModel> backdropImages;
+
+  @JsonKey(name: "logos")
+  final List<ImageModel> logoImages;
+
+  ImagesResponse({required this.backdropImages, required this.logoImages});
+
+  factory ImagesResponse.fromJson(Map<String, dynamic> json) =>
+      _$ImagesResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ImagesResponseToJson(this);
+}
+
+@JsonSerializable()
+class ImageModel {
+  @JsonKey(name: "file_path")
+  final String? imagePath;
+
+  ImageModel({this.imagePath});
+
+  factory ImageModel.fromJson(Map<String, dynamic> json) =>
+      _$ImageModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ImageModelToJson(this);
 }
 
 @JsonSerializable()
@@ -44,8 +116,6 @@ class ActorResponse {
 
 @JsonSerializable()
 class ActorModel {
-  @JsonKey(name: "gender")
-  final int gender;
   @JsonKey(name: "known_for_department")
   final String job;
   @JsonKey(name: "name")
@@ -56,7 +126,6 @@ class ActorModel {
   final String? actorImage;
 
   ActorModel({
-    required this.gender,
     required this.job,
     required this.name,
     required this.character,
@@ -84,4 +153,15 @@ class CompanyModel {
       _$CompanyModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$CompanyModelToJson(this);
+}
+
+@JsonSerializable()
+class Genre {
+  final int id;
+  final String name;
+
+  Genre({required this.id, required this.name});
+
+  factory Genre.fromJson(Map<String, dynamic> json) => _$GenreFromJson(json);
+  Map<String, dynamic> toJson() => _$GenreToJson(this);
 }

@@ -60,7 +60,7 @@ class Styles {
   static TextStyle font13NeonCyanBoldSora = TextStyle(
       fontWeight: FontWeight.bold,
       color: AppColors.neonCyan,
-      fontSize: 12.sp,
+      fontSize: 13.sp,
       fontFamily: "Sora"
   );
   static TextStyle font10CoolGrayMediumSora = TextStyle(
@@ -74,10 +74,16 @@ class Styles {
     color: AppColors.platinumGray,
     fontSize: 20.sp,
   );
-  static TextStyle font12platinumGraySimiBold = TextStyle(
+  static TextStyle font16platinumGraySimiBold = TextStyle(
     fontWeight: Weights.simiBold,
     color: AppColors.platinumGray,
     fontSize: 16.sp,
+  ); 
+  static TextStyle font14platinumGraySimiBoldSora = TextStyle(
+    fontWeight: Weights.simiBold,
+    color: AppColors.platinumGray,
+    fontSize: 14.sp,
+    fontFamily: "Sora"
   );
   static TextStyle font12platinumGrayMedium = TextStyle(
     fontWeight: Weights.medium,
