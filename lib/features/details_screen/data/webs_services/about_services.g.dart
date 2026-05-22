@@ -21,9 +21,9 @@ class _AboutServices implements AboutServices {
 
   @override
   Future<AboutModel> getMovieMainDetails({
-    String additionalData = "credits,images",
-    String language = "en-US",
     required int movieId,
+    String additionalData = "credits,images,videos",
+    String language = "en-US",
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{

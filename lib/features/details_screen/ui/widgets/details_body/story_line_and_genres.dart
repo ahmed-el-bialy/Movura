@@ -3,20 +3,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/weights.dart';
 import 'package:movura/features/details_screen/data/models/about_model.dart';
 
-import '../../../../core/helper/spacing.dart';
-import '../../../../core/theming/colors.dart';
-import '../../../../core/theming/styles.dart';
+import '../../../../../core/helper/spacing.dart';
+import '../../../../../core/theming/colors.dart';
+import '../../../../../core/theming/styles.dart';
 
-class StoryLine extends StatefulWidget {
-  const StoryLine({super.key, required this.model});
+class StoryLineAndGenres extends StatefulWidget {
+  const StoryLineAndGenres({super.key, required this.model});
 
   final AboutModel model;
 
   @override
-  State<StoryLine> createState() => _StoryLineState();
+  State<StoryLineAndGenres> createState() => _StoryLineAndGenresState();
 }
 
-class _StoryLineState extends State<StoryLine> {
+class _StoryLineAndGenresState extends State<StoryLineAndGenres> {
   bool isExpanded = false;
 
   @override
@@ -41,7 +41,7 @@ class _StoryLineState extends State<StoryLine> {
             children: [
               Text(
                 "STORYLINE",
-                style: Styles.font13NeonCyanBoldSora.copyWith(
+                style: Styles.font13BoldNeonCyanSora.copyWith(
                   letterSpacing: 1.5,
                   fontWeight: FontWeight.w900,
                 ),
@@ -54,7 +54,7 @@ class _StoryLineState extends State<StoryLine> {
                   final textPainter = TextPainter(
                     text: TextSpan(
                       text: widget.model.overview,
-                      style: Styles.font14IceBlueBoldMontserrat.copyWith(
+                      style: Styles.font14BoldIceBlueMontserrat.copyWith(
                         color: Colors.white.withValues(alpha: 0.9),
                         fontWeight: Weights.simiBold,
                         fontSize: 14.sp,
@@ -72,7 +72,7 @@ class _StoryLineState extends State<StoryLine> {
                     children: [
                       Text(
                         widget.model.overview,
-                        style: Styles.font14IceBlueBoldMontserrat.copyWith(
+                        style: Styles.font14BoldIceBlueMontserrat.copyWith(
                           color: Colors.white.withValues(alpha: 0.85),
                           fontWeight: FontWeight.normal,
                           fontSize: 14.sp,
@@ -95,7 +95,7 @@ class _StoryLineState extends State<StoryLine> {
                             padding: EdgeInsets.symmetric(vertical: 4.h),
                             child: Text(
                               isExpanded ? "Read Less" : "Read More",
-                              style: Styles.font13NeonCyanBoldSora.copyWith(
+                              style: Styles.font13BoldNeonCyanSora.copyWith(
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -142,7 +142,7 @@ class _StoryLineState extends State<StoryLine> {
                                 padding: EdgeInsets.symmetric(horizontal: 14.w),
                                 child: Text(
                                   widget.model.genres[index].name,
-                                  style: Styles.font12platinumGrayMedium
+                                  style: Styles.font12MediumPlatinumGray
                                       .copyWith(
                                         fontSize: 13.sp,
                                         color: AppColors.platinumGray,

@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/helper/spacing.dart';
-import 'package:movura/core/networking/api_constants.dart';
+import 'package:movura/core/constants/api_constants.dart';
 import 'package:movura/core/theming/colors.dart';
 import 'package:movura/core/theming/styles.dart';
 import 'package:movura/features/details_screen/data/models/about_model.dart';
@@ -14,7 +14,6 @@ class ActorCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Padding(
       padding: EdgeInsets.all(6.0),
       child: Card(
@@ -24,6 +23,7 @@ class ActorCard extends StatelessWidget {
         elevation: 10,
         color: AppColors.onyxBlack,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             actor.actorImage != null
                 ? Padding(
@@ -39,10 +39,8 @@ class ActorCard extends StatelessWidget {
                         width: 120.w,
                         height: 140.w,
                         alignment: Alignment.topCenter,
-                        errorWidget: (context, url, error) => const Icon(
-                          Icons.person,
-                          color: Colors.white,
-                        ),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.person, color: Colors.white),
                       ),
                     ),
                   )
@@ -71,7 +69,7 @@ class ActorCard extends StatelessWidget {
                 actor.name,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: Styles.font13NeonCyanBoldSora,
+                style: Styles.font13BoldNeonCyanSora,
               ),
             ),
 
@@ -81,7 +79,7 @@ class ActorCard extends StatelessWidget {
                 actor.character,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: Styles.font10IceBlueBoldMontserrat.copyWith(
+                style: Styles.font10BoldIceBlueMontserrat.copyWith(
                   fontWeight: FontWeight.normal,
                   color: AppColors.platinumGray,
                 ),
@@ -95,7 +93,7 @@ class ActorCard extends StatelessWidget {
                 actor.job,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: Styles.font10IceBlueBoldMontserrat,
+                style: Styles.font10BoldIceBlueMontserrat,
               ),
             ),
             verticalSpacing(5),

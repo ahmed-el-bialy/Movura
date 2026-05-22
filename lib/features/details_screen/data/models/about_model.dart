@@ -19,6 +19,7 @@ class AboutModel {
   @JsonKey(name: "overview")
   final String overview;
 
+  // 🔒 بقوا double زي النسخة الأصلية بتاعتك بالظبط بدون أي تغيير
   final double runtime;
 
   @JsonKey(name: "vote_average")
@@ -45,6 +46,9 @@ class AboutModel {
   @JsonKey(name: "images")
   final ImagesResponse mediaImages;
 
+  @JsonKey(name: "videos")
+  final VideoResponse? movieVideos;
+
   AboutModel({
     required this.id,
     required this.language,
@@ -60,12 +64,54 @@ class AboutModel {
     required this.revenue,
     required this.adultContent,
     required this.mediaImages,
+    this.movieVideos,
   });
 
   factory AboutModel.fromJson(Map<String, dynamic> json) =>
       _$AboutModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$AboutModelToJson(this);
+}
+
+// 🔽 كلاسات الفيديوهات الجديدة مضافين تحت بأمان
+
+@JsonSerializable()
+class VideoResponse {
+  @JsonKey(name: "results")
+  final List<VideoModel> videoList;
+
+  VideoResponse({required this.videoList});
+
+  factory VideoResponse.fromJson(Map<String, dynamic> json) =>
+      _$VideoResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$VideoResponseToJson(this);
+}
+
+@JsonSerializable()
+class VideoModel {
+  final String id;
+  final String key;
+  final String name;
+  final String site;
+  final int size;
+  final String type;
+  final bool official;
+
+  VideoModel({
+    required this.id,
+    required this.key,
+    required this.name,
+    required this.site,
+    required this.size,
+    required this.type,
+    required this.official,
+  });
+
+  factory VideoModel.fromJson(Map<String, dynamic> json) =>
+      _$VideoModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$VideoModelToJson(this);
 }
 
 @JsonSerializable()

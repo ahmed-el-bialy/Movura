@@ -9,6 +9,7 @@ class AboutRepo {
   Future<AboutModel> getMovieMainDetails({required int movieId}) async {
     var response = await mainDetailsServices.getMovieMainDetails(
       movieId: movieId,
+      additionalData: "credits,images,videos",
     );
 
     return response;

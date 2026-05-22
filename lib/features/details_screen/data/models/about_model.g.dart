@@ -25,6 +25,9 @@ AboutModel _$AboutModelFromJson(Map<String, dynamic> json) => AboutModel(
   revenue: (json['revenue'] as num).toInt(),
   adultContent: json['adult'] as bool,
   mediaImages: ImagesResponse.fromJson(json['images'] as Map<String, dynamic>),
+  movieVideos: json['videos'] == null
+      ? null
+      : VideoResponse.fromJson(json['videos'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$AboutModelToJson(AboutModel instance) =>
@@ -43,6 +46,38 @@ Map<String, dynamic> _$AboutModelToJson(AboutModel instance) =>
       'revenue': instance.revenue,
       'adult': instance.adultContent,
       'images': instance.mediaImages,
+      'videos': instance.movieVideos,
+    };
+
+VideoResponse _$VideoResponseFromJson(Map<String, dynamic> json) =>
+    VideoResponse(
+      videoList: (json['results'] as List<dynamic>)
+          .map((e) => VideoModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$VideoResponseToJson(VideoResponse instance) =>
+    <String, dynamic>{'results': instance.videoList};
+
+VideoModel _$VideoModelFromJson(Map<String, dynamic> json) => VideoModel(
+  id: json['id'] as String,
+  key: json['key'] as String,
+  name: json['name'] as String,
+  site: json['site'] as String,
+  size: (json['size'] as num).toInt(),
+  type: json['type'] as String,
+  official: json['official'] as bool,
+);
+
+Map<String, dynamic> _$VideoModelToJson(VideoModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'key': instance.key,
+      'name': instance.name,
+      'site': instance.site,
+      'size': instance.size,
+      'type': instance.type,
+      'official': instance.official,
     };
 
 ImagesResponse _$ImagesResponseFromJson(Map<String, dynamic> json) =>

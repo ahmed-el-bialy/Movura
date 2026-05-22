@@ -1,30 +1,17 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:movura/core/networking/api_constants.dart';
+import 'package:movura/core/constants/api_constants.dart';
 import 'package:movura/features/home_screen/data/web_services/web_services.dart';
 
 import '../../features/details_screen/data/repos/about_repo.dart';
 import '../../features/details_screen/data/webs_services/about_services.dart';
 import '../../features/home_screen/data/repo/posters_repo.dart';
+import 'dio_factory.dart';
 
 final sl = GetIt.instance;
 
 Future<void> initDI() async {
-  var headers = {
-    'Authorization': 'Bearer ${ApiConstants.apiToken}',
-    'accept': 'application/json',
-  };
-
-  final dio = Dio(
-    BaseOptions(
-      baseUrl: ApiConstants.baseUrl,
-      connectTimeout: const Duration(seconds: 25),
-      receiveTimeout: const Duration(seconds: 2252),
-      headers: headers,
-      queryParameters: {'api_key': ApiConstants.apiKey},
-    ),
-  );
-
+  final dio = DioFactory.getDio();
   sl.registerLazySingleton<Dio>(() => dio);
 
   sl.registerLazySingleton<WebServices>(
@@ -33,6 +20,5 @@ Future<void> initDI() async {
   sl.registerLazySingleton<PostersRepo>(() => PostersRepo(sl<WebServices>()));
 
   sl.registerLazySingleton<AboutServices>(() => AboutServices(sl<Dio>()));
-
   sl.registerLazySingleton<AboutRepo>(() => AboutRepo(sl<AboutServices>()));
 }

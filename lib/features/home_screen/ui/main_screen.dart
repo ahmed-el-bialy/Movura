@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,14 +6,15 @@ import 'package:movura/core/theming/styles.dart';
 import 'package:movura/features/home_screen/ui/widgets/poster_list_builder.dart';
 import 'package:movura/features/home_screen/ui/widgets/sub_poster_list_builder.dart';
 
-import '../../../core/helper/strings.dart';
 import '../../../core/helper/spacing.dart';
+import '../../../core/constants/strings.dart';
 import '../../../core/widgets/app_navigation_bar.dart';
 import '../../../core/widgets/section_title.dart';
 import '../logic/main_content/main_content_cubit.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,12 +34,15 @@ class MainScreen extends StatelessWidget {
                   fit: BoxFit.fill,
                 ),
               ),
-              Text(
-                Strings.appName,
-                style: Styles.font24NeonCyanSimiBoldManrope,
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 4.h),
+                child: Text(
+                  Strings.appName,
+                  style: Styles.font24SimiBoldNeonCyanManrope,
+                ),
               ),
-              Spacer(flex: 1)
-              , verticalSpacing(60.h),
+              Spacer(flex: 1),
+              verticalSpacing(60.h),
             ],
           ),
           actions: [
@@ -58,7 +61,7 @@ class MainScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              ),
+            ),
           ],
         ),
       ),
@@ -89,21 +92,21 @@ class MainScreen extends StatelessWidget {
                     ),
                   );
                 } else if (state is MainContentLoaded) {
-                  return SliverToBoxAdapter(child: PosterListBuilder(
-                    trendingContent: state.posters,));
+                  return SliverToBoxAdapter(
+                    child: PosterListBuilder(trendingContent: state.posters),
+                  );
                 } else if (state is MainContentFailed) {
                   return SliverToBoxAdapter(
                     child: Text(
                       state.errorMessage,
-                      style: Styles.font13NeonCyanMedium,
+                      style: Styles.font13MediumNeonCyan,
                     ),
                   );
                 } else {
                   return SliverToBoxAdapter(
                     child: Text(
-                      state.toString()
-                      ,
-                      style: Styles.font13NeonCyanMedium,
+                      state.toString(),
+                      style: Styles.font13MediumNeonCyan,
                     ),
                   );
                 }
@@ -118,10 +121,10 @@ class MainScreen extends StatelessWidget {
             ),
             SliverToBoxAdapter(child: SubPosterListBuilder()),
           ],
-        ),)
-      ,
-      bottomNavigationBar: AppNavigationBar(activeIndex: 0,),
+        ),
+      ),
+      bottomNavigationBar: AppNavigationBar(activeIndex: 0),
     );
   }
 }
-  enum MovieTab { media, cast, similar }
+

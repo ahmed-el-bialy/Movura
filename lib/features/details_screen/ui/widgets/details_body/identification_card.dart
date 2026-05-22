@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/features/details_screen/data/models/about_model.dart';
 
-import '../../../../core/helper/runtime_formatter.dart';
-import '../../../../core/helper/spacing.dart';
-import '../../../../core/theming/colors.dart';
-import '../../../../core/theming/styles.dart';
+import '../../../../../core/helper/media_runtime_formatter.dart';
+import '../../../../../core/helper/spacing.dart';
+import '../../../../../core/theming/colors.dart';
+import '../../../../../core/theming/styles.dart';
 
-class ShortReview extends StatelessWidget {
-  const ShortReview({super.key, required this.model});
+class IdentificationCard extends StatelessWidget {
+  const IdentificationCard({super.key, required this.model});
 
   final AboutModel model;
 
@@ -49,7 +49,7 @@ class ShortReview extends StatelessWidget {
                       children: [
                         Text(
                           model.title,
-                          style: Styles.font17IceBlueBoldMontserrat.copyWith(
+                          style: Styles.font17BoldIceBlueMontserrat.copyWith(
                             fontSize: 23.sp,
                           ),
                           maxLines: 2,
@@ -58,7 +58,7 @@ class ShortReview extends StatelessWidget {
                         verticalSpacing(6),
                         Text(
                           " Movie • ${model.language} • ${model.runtime.runtimeFormatter()} ",
-                          style: Styles.font16platinumGraySimiBold.copyWith(
+                          style: Styles.font16SimiBoldPlatinumGray.copyWith(
                             fontSize: 14.sp,
                           ),
                         ),
@@ -96,12 +96,12 @@ class ShortReview extends StatelessWidget {
                               const SizedBox(width: 4),
                               Text(
                                 model.rating.toStringAsFixed(1),
-                                style: Styles.font20NeonCyanSimiBoldManrope
+                                style: Styles.font20SimiBoldNeonCyanManrope
                                     .copyWith(fontSize: 15.sp),
                               ),
                               Text(
                                 " / 10 ",
-                                style: Styles.font13NeonCyanBoldSora.copyWith(
+                                style: Styles.font13BoldNeonCyanSora.copyWith(
                                   fontSize: 11.sp,
                                 ),
                               ),

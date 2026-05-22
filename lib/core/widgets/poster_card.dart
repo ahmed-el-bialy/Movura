@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/helper/routing_extension.dart';
-import 'package:movura/core/helper/strings.dart';
-import 'package:movura/core/networking/api_constants.dart';
+import 'package:movura/core/constants/strings.dart';
+import 'package:movura/core/constants/api_constants.dart';
 import 'package:movura/core/theming/styles.dart';
 import 'package:movura/features/home_screen/data/model/poster_model.dart';
 
@@ -40,7 +40,7 @@ class PosterCard extends StatelessWidget {
     final cardRadius = border ?? 18;
 
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         context.pushNamed(Strings.detailsScreen, media?.id);
       },
       child: Card(
@@ -60,25 +60,30 @@ class PosterCard extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(cardRadius),
                 child: CachedNetworkImage(
-                  imageUrl: (media?.posterPath != null &&
-                      media!.posterPath.isNotEmpty)
+                  imageUrl:
+                      (media?.posterPath != null &&
+                          media!.posterPath.isNotEmpty)
                       ? "${ApiConstants.imageBaseUrl}${media!.posterPath}"
                       : "",
                   fit: BoxFit.fill,
-                  errorWidget: (context, url, error) =>
-                      Container(
-                        color: const Color(0xFF2C2938),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.movie_creation_outlined, size: 40.sp,
-                                color: Colors.grey),
-                            SizedBox(height: 8.h),
-                            Text("No Poster Available",
-                                style: Styles.font16platinumGraySimiBold),
-                          ],
+                  errorWidget: (context, url, error) => Container(
+                    color: const Color(0xFF2C2938),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.movie_creation_outlined,
+                          size: 40.sp,
+                          color: Colors.grey,
                         ),
-                      ),
+                        SizedBox(height: 8.h),
+                        Text(
+                          "No Poster Available",
+                          style: Styles.font16SimiBoldPlatinumGray,
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
               Align(
@@ -87,16 +92,19 @@ class PosterCard extends StatelessWidget {
                   padding: EdgeInsets.all(2.0.r),
                   child: Card(
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(subCardBorder ?? 10)),
+                      borderRadius: BorderRadius.circular(subCardBorder ?? 10),
+                    ),
                     elevation: subCardElevation ?? 8,
-                    color: subCardColor ??
-                        Color(0xFF2C2938).withValues(alpha: .9),
+                    color:
+                        subCardColor ?? Color(0xFF2C2938).withValues(alpha: .9),
                     child: Padding(
                       padding: EdgeInsets.symmetric(
-                          horizontal: 6.w, vertical: 4.w),
+                        horizontal: 6.w,
+                        vertical: 4.w,
+                      ),
                       child: Text(
                         media?.title ?? media?.name ?? "Unknown Title",
-                        style: titleStyle ?? Styles.font17IceBlueBoldMontserrat,
+                        style: titleStyle ?? Styles.font17BoldIceBlueMontserrat,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -110,14 +118,16 @@ class PosterCard extends StatelessWidget {
                   child: Card(
                     elevation: subCardElevation ?? 8,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(subCardBorder ?? 10)),
-                    color: subCardColor ??
-                        Color(0xFF2C2938).withValues(alpha: .9),
+                      borderRadius: BorderRadius.circular(subCardBorder ?? 10),
+                    ),
+                    color:
+                        subCardColor ?? Color(0xFF2C2938).withValues(alpha: .9),
                     child: Padding(
                       padding: EdgeInsets.all(5.0.r),
                       child: Text(
                         media?.mediaType ?? "N/A",
-                        style: subTextStyle ?? Styles.font16platinumGraySimiBold,
+                        style:
+                            subTextStyle ?? Styles.font16SimiBoldPlatinumGray,
                       ),
                     ),
                   ),
@@ -129,9 +139,10 @@ class PosterCard extends StatelessWidget {
                   padding: EdgeInsets.all(2.0.r),
                   child: Card(
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(subCardBorder ?? 10)),
-                    color: subCardColor ??
-                        Color(0xFF2C2938).withValues(alpha: .9),
+                      borderRadius: BorderRadius.circular(subCardBorder ?? 10),
+                    ),
+                    color:
+                        subCardColor ?? Color(0xFF2C2938).withValues(alpha: .9),
                     elevation: subCardElevation ?? 10,
                     child: Padding(
                       padding: EdgeInsets.all(5.0.r),
@@ -144,15 +155,17 @@ class PosterCard extends StatelessWidget {
                             media?.voteAverage != null
                                 ? media!.voteAverage.toStringAsFixed(1)
                                 : "0.0",
-                            style: subTextStyle ??
-                                Styles.font16platinumGraySimiBold,
+                            style:
+                                subTextStyle ??
+                                Styles.font16SimiBoldPlatinumGray,
                           ),
                           Icon(
                             Icons.star_purple500_outlined,
                             size: 18.sp,
-                            color: subTextStyle?.color ?? Styles
-                                .font16platinumGraySimiBold.color,
-                          )
+                            color:
+                                subTextStyle?.color ??
+                                Styles.font16SimiBoldPlatinumGray.color,
+                          ),
                         ],
                       ),
                     ),

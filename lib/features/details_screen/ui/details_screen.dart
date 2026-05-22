@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/colors.dart';
 import 'package:movura/core/theming/styles.dart';
-import 'package:movura/features/details_screen/ui/sub_screen/details_loading_skeleton.dart';
-import 'package:movura/features/details_screen/ui/widgets/more_details_part.dart';
+import 'package:movura/features/details_screen/ui/widgets/details_loading_skeleton.dart';
+import 'package:movura/features/details_screen/ui/widgets/details_body/screen_body.dart';
 
 import '../../../core/helper/routing_extension.dart';
-import '../../../core/helper/strings.dart';
+import '../../../core/constants/strings.dart';
 import '../logic/main_details/about_cubit.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -24,7 +24,7 @@ class DetailsScreen extends StatelessWidget {
         elevation: 0,
         title: Text(
           Strings.appName,
-          style: Styles.font24NeonCyanSimiBoldManrope,
+          style: Styles.font24SimiBoldNeonCyanManrope,
         ),
         centerTitle: true,
         actions: [
@@ -69,15 +69,12 @@ class DetailsScreen extends StatelessWidget {
         builder: (context, state) {
           if (state is AboutLoading) {
             return DetailsLoadingSkeleton();
-          }
-          else if (state is AboutSuccess) {
-            return SuccessBuildBody(model: state.model,);
-          }
-          else if (state is AboutFailed) {
-            return Center(child: Text(state.errorMessage),);
-          }
-          else{
-            return Center(child: Text("There was An Error"),);
+          } else if (state is AboutSuccess) {
+            return MoreDetailsPart(model: state.model);
+          } else if (state is AboutFailed) {
+            return Center(child: Text(state.errorMessage));
+          } else {
+            return Center(child: Text("There was An Error"));
           }
         },
       ),

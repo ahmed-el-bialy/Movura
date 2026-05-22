@@ -1,31 +1,50 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/features/details_screen/data/models/about_model.dart';
 
-import '../../../../../core/helper/spacing.dart';
-import '../../../../../core/theming/colors.dart';
-import '../../../../../core/theming/styles.dart';
-import '../sub_screen/about_tab_section.dart';
-import 'action_buttons_part.dart';
-import 'first_lock_part.dart';
-import 'story_line.dart';
+import '../../../../../../core/helper/spacing.dart';
+import '../../../../../../core/theming/colors.dart';
+import '../../../../../../core/theming/styles.dart';
+import '../about_tab/about_tab_body.dart';
+import 'buttons_part.dart';
+import 'movie_main_details.dart';
+import 'story_line_and_genres.dart';
 
-class SuccessBuildBody extends StatelessWidget {
-  const SuccessBuildBody({super.key, required this.model});
+class MoreDetailsPart extends StatelessWidget {
+  const MoreDetailsPart({super.key, required this.model});
 
   final AboutModel model;
 
   @override
   Widget build(BuildContext context) {
+    String? trailerKey;
+    final videos = model.movieVideos?.videoList;
+
+    if (videos != null && videos.isNotEmpty) {
+      final trailer = videos.firstWhere(
+        (v) => v.type.toLowerCase() == 'trailer',
+        orElse: () => videos.first,
+      );
+      trailerKey = trailer.key;
+      if (kDebugMode) {
+        print("this is the trailer kay: $trailerKey");
+      }
+    } else {
+      if (kDebugMode) {
+        print("trailer not exist");
+      }
+    }
+
     return ListView(
       padding: EdgeInsets.zero,
       children: [
-        FirstLockPart(model: model),
+        MovieMainDetails(model: model),
 
-        ActionButtonsPart(),
+        ButtonsPart(videoKey: trailerKey),
 
         verticalSpacing(20),
-        StoryLine(model: model),
+        StoryLineAndGenres(model: model),
         verticalSpacing(10),
 
         DefaultTabController(
@@ -34,17 +53,17 @@ class SuccessBuildBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TabBar(
-                unselectedLabelStyle: Styles.font10CoolGrayMediumSora.copyWith(
+                unselectedLabelStyle: Styles.font10MediumCoolGraySora.copyWith(
                   fontWeight: FontWeight.bold,
                   fontSize: 13.sp,
                 ),
-                labelStyle: Styles.font13NeonCyanBoldSora,
+                labelStyle: Styles.font13BoldNeonCyanSora,
                 indicatorColor: AppColors.neonCyan,
                 indicatorWeight: 3.0,
                 indicatorSize: TabBarIndicatorSize.tab,
                 labelColor: AppColors.neonCyan,
                 unselectedLabelColor: AppColors.slateGray,
-                tabs: [
+                tabs: const [
                   Tab(text: "ABOUT"),
                   Tab(text: "REVIEWS"),
                   Tab(text: "SIMILAR"),
@@ -52,19 +71,13 @@ class SuccessBuildBody extends StatelessWidget {
               ),
 
               SizedBox(height: 10.h),
-              // مسافة خفيفة بين الـ Tabs والمحتوى
 
-              // 2. محتوى الـ Tabs (الـ TabBarView)
-              // استخدمنا SizedBox هنا وحددنا ارتفاع ثابت لأنها جزء من شاشة مش الشاشة كلها
               SizedBox(
-                height: 800.h,
-                // حدد الارتفاع المناسب لمحتويات الـ Tabs بالصور بتاعتها
+                height: 1700.h,
                 child: TabBarView(
                   children: [
-                    // الـ Tab الأول: Media (جواه العنوان والـ ListView الأفقية)
-                    AboutTabContent(),
+                    AboutTabBody(),
 
-                    // الـ Tab الثاني
                     const Center(
                       child: Text(
                         "Cast Content",
@@ -72,7 +85,6 @@ class SuccessBuildBody extends StatelessWidget {
                       ),
                     ),
 
-                    // الـ Tab الثالث
                     const Center(
                       child: Text(
                         "Similar Content",

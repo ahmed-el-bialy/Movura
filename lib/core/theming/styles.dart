@@ -4,13 +4,15 @@ import 'package:movura/core/theming/colors.dart';
 import 'package:movura/core/theming/weights.dart';
 
 class Styles {
-  static TextStyle font24NeonCyanSimiBoldManrope = TextStyle(
+  // =================== Manrope ====================
+
+  static TextStyle font24SimiBoldNeonCyanManrope = TextStyle(
     fontWeight: Weights.simiBold,
     color: AppColors.neonCyan,
     fontSize: 24.sp,
     fontFamily: "Manrope",
   );
-  static TextStyle font20NeonCyanSimiBoldManrope = TextStyle(
+  static TextStyle font20SimiBoldNeonCyanManrope = TextStyle(
     fontWeight: Weights.simiBold,
     color: AppColors.neonCyan,
     fontSize: 20.sp,
@@ -22,72 +24,80 @@ class Styles {
     fontFamily: "Manrope",
   );
 
-  static TextStyle font17IceBlueBoldMontserrat = TextStyle(
+  // =================== Montserrat ====================
+
+  static TextStyle font17BoldIceBlueMontserrat = TextStyle(
     fontWeight: FontWeight.bold,
     color: AppColors.iceBlue,
     fontSize: 17.sp,
     fontFamily: "Montserrat",
   );
-  static TextStyle font10IceBlueBoldMontserrat = TextStyle(
+  static TextStyle font10BoldIceBlueMontserrat = TextStyle(
     fontWeight: FontWeight.bold,
     color: AppColors.iceBlue,
     fontSize: 11.sp,
     fontFamily: "Montserrat",
   );
-  static TextStyle font17TrueBlackBoldSora = TextStyle(
+  static TextStyle font14BoldIceBlueMontserrat = TextStyle(
+    fontWeight: FontWeight.bold,
+    color: AppColors.iceBlue,
+    fontSize: 14.sp,
+    fontFamily: "Montserrat",
+  );
+
+  // =================== Montserrat ====================
+
+  static TextStyle font17BoldTrueBlackSora = TextStyle(
     fontWeight: FontWeight.bold,
     color: AppColors.trueBlack,
     fontSize: 17.sp,
     fontFamily: "Sora",
   );
-  static TextStyle font14IceBlueBoldMontserrat = TextStyle(
-    fontWeight: FontWeight.bold,
-    color: AppColors.iceBlue,
-    fontSize: 14.sp,
-    fontFamily: "Montserrat",
-  );
-  static TextStyle font11IGoldBold = TextStyle(
-    fontWeight: FontWeight.bold,
-    color: AppColors.gold,
-    fontSize: 11.sp,
-  );
 
-  static TextStyle font13NeonCyanMedium = TextStyle(
-    fontWeight: Weights.medium,
+  static TextStyle font13BoldNeonCyanSora = TextStyle(
+    fontWeight: FontWeight.bold,
     color: AppColors.neonCyan,
     fontSize: 13.sp,
+    fontFamily: "Sora",
   );
-  static TextStyle font13NeonCyanBoldSora = TextStyle(
-      fontWeight: FontWeight.bold,
-      color: AppColors.neonCyan,
-      fontSize: 13.sp,
-      fontFamily: "Sora"
+  static TextStyle font10MediumCoolGraySora = TextStyle(
+    fontWeight: Weights.medium,
+    color: AppColors.coolGray,
+    fontSize: 10.sp,
+    fontFamily: "Sora",
   );
-  static TextStyle font10CoolGrayMediumSora = TextStyle(
-      fontWeight: Weights.medium,
-      color: AppColors.coolGray,
-      fontSize: 10.sp,
-      fontFamily: "Sora"
+  static TextStyle font14SimiBoldPlatinumGraySora = TextStyle(
+    fontWeight: Weights.simiBold,
+    color: AppColors.platinumGray,
+    fontSize: 14.sp,
+    fontFamily: "Sora",
   );
-  static TextStyle font20platinumGraySimiBold = TextStyle(
+
+  // =================== Inter or normal  ====================
+  static TextStyle font20SimiBoldPlatinumGray = TextStyle(
     fontWeight: Weights.simiBold,
     color: AppColors.platinumGray,
     fontSize: 20.sp,
   );
-  static TextStyle font16platinumGraySimiBold = TextStyle(
+
+  static TextStyle font13MediumNeonCyan = TextStyle(
+    fontWeight: Weights.medium,
+    color: AppColors.neonCyan,
+    fontSize: 13.sp,
+  );
+  static TextStyle font16SimiBoldPlatinumGray = TextStyle(
     fontWeight: Weights.simiBold,
     color: AppColors.platinumGray,
     fontSize: 16.sp,
-  ); 
-  static TextStyle font14platinumGraySimiBoldSora = TextStyle(
-    fontWeight: Weights.simiBold,
-    color: AppColors.platinumGray,
-    fontSize: 14.sp,
-    fontFamily: "Sora"
   );
-  static TextStyle font12platinumGrayMedium = TextStyle(
+  static TextStyle font12MediumPlatinumGray = TextStyle(
     fontWeight: Weights.medium,
     color: AppColors.platinumGray,
     fontSize: 12.sp,
+  );
+  static TextStyle font11BoldGold = TextStyle(
+    fontWeight: FontWeight.bold,
+    color: AppColors.gold,
+    fontSize: 11.sp,
   );
 }

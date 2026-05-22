@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/helper/routing_extension.dart';
 
-import '../helper/strings.dart';
+import '../constants/strings.dart';
 import '../theming/colors.dart';
 
 class AppNavigationBar extends StatelessWidget {

@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/features/details_screen/data/models/about_model.dart';
 
-import '../../../../core/helper/spacing.dart';
-import '../../../../core/networking/api_constants.dart';
-import '../../../../core/theming/colors.dart';
-import '../../../../core/theming/styles.dart';
+import '../helper/spacing.dart';
+import '../constants/api_constants.dart';
+import '../theming/colors.dart';
+import '../theming/styles.dart';
 
 class CompanyCard extends StatelessWidget {
   const CompanyCard({super.key, required this.company});
@@ -71,7 +71,7 @@ class CompanyCard extends StatelessWidget {
                 company.name,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: Styles.font13NeonCyanBoldSora,
+                style: Styles.font13BoldNeonCyanSora,
               ),
             ),
 
@@ -82,7 +82,7 @@ class CompanyCard extends StatelessWidget {
                 company.originCountry,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: Styles.font10IceBlueBoldMontserrat,
+                style: Styles.font10BoldIceBlueMontserrat,
               ),
             ),
             verticalSpacing(5),

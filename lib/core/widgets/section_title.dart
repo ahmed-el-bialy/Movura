@@ -27,7 +27,7 @@ class SectionTitle extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 8.0.w),
           child: Text(
             sectionName,
-            style: titleStyle ?? Styles.font20platinumGraySimiBold,
+            style: titleStyle ?? Styles.font20SimiBoldPlatinumGray,
           ),
         ),
         Spacer(flex: 1),
@@ -36,7 +36,7 @@ class SectionTitle extends StatelessWidget {
                 onTap: onTap ?? () {},
                 child: Text(
                   actionName!,
-                  style: actionStyle ?? Styles.font13NeonCyanMedium,
+                  style: actionStyle ?? Styles.font13MediumNeonCyan,
                 ),
               )
             : Spacer(flex: 1),

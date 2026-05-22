@@ -8,6 +8,7 @@ class PosterListBuilder extends StatelessWidget {
   const PosterListBuilder({super.key, required this.trendingContent});
 
   final List<PosterModel> trendingContent;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(

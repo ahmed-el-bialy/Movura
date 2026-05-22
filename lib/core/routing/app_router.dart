@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../features/details_screen/data/repos/about_repo.dart';
 import '../../features/details_screen/logic/main_details/about_cubit.dart';
@@ -7,8 +8,9 @@ import '../../features/details_screen/ui/details_screen.dart';
 import '../../features/home_screen/data/repo/posters_repo.dart';
 import '../../features/home_screen/logic/main_content/main_content_cubit.dart';
 import '../../features/home_screen/ui/main_screen.dart';
-import '../helper/strings.dart';
+import '../constants/strings.dart';
 import '../networking/di.dart';
+import '../../features/shared/video_screen.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings setting) {
@@ -35,6 +37,11 @@ class AppRouter {
           ),
         );
 
+      case Strings.videoPlayScreen:
+        final controller = setting.arguments as YoutubePlayerController;
+        return MaterialPageRoute(
+          builder: (_) => VideoScreen(controller: controller),
+        );
       default:
         return MaterialPageRoute(builder: (_) => const MainScreen());
     }

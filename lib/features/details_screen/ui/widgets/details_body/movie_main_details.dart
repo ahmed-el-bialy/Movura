@@ -2,12 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/features/details_screen/data/models/about_model.dart';
-import 'package:movura/features/details_screen/ui/widgets/short_review.dart';
+import 'package:movura/features/details_screen/ui/widgets/details_body/identification_card.dart';
 
-import '../../../../core/networking/api_constants.dart';
+import '../../../../../core/constants/api_constants.dart';
 
-class FirstLockPart extends StatelessWidget {
-  const FirstLockPart({super.key, required this.model});
+class MovieMainDetails extends StatelessWidget {
+  const MovieMainDetails({super.key, required this.model});
 
   final AboutModel model;
 
@@ -20,8 +20,9 @@ class FirstLockPart extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           CachedNetworkImage(
-              imageUrl: "${ApiConstants.imageBaseUrl}${model.posterPath}",
-              fit: BoxFit.cover),
+            imageUrl: "${ApiConstants.imageBaseUrl}${model.posterPath}",
+            fit: BoxFit.cover,
+          ),
 
           Container(
             decoration: BoxDecoration(
@@ -36,7 +37,7 @@ class FirstLockPart extends StatelessWidget {
             ),
           ),
 
-          ShortReview(model: model),
+          IdentificationCard(model: model),
         ],
       ),
     );
