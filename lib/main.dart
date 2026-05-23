@@ -21,6 +21,7 @@ class Movura extends StatelessWidget {
       designSize: const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
+      ensureScreenSize: true,
       builder: (_, child) {
         return MaterialApp(
           onGenerateRoute: appRouter.generateRoute,

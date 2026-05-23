@@ -41,8 +41,6 @@ class MainScreen extends StatelessWidget {
                   style: Styles.font24SimiBoldNeonCyanManrope,
                 ),
               ),
-              Spacer(flex: 1),
-              verticalSpacing(60.h),
             ],
           ),
           actions: [
