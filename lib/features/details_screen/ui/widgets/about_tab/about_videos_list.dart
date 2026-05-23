@@ -14,7 +14,7 @@ class AboutVideosList extends StatelessWidget {
     if (allVideos.isEmpty) return const SizedBox.shrink();
 
     return SizedBox(
-      height: 140.h,
+      height: 120.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 16.0),

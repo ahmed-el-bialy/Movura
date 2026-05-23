@@ -75,7 +75,7 @@ class MoreDetailsPart extends StatelessWidget {
               SizedBox(height: 10.h),
 
               SizedBox(
-                height: 1700.h,
+                height: 1200.h,
                 child: TabBarView(
                   children: [
                     AboutTabBody(),
