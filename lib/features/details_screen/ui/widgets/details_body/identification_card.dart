@@ -30,13 +30,13 @@ class IdentificationCard extends StatelessWidget {
               padding: EdgeInsets.all(16.r),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(24.r),
-                color: Colors.white.withValues(alpha: 0.07),
+                color: AppColors.pureWhite.withValues(alpha: 0.07),
+
                 border: Border.all(
-                  color: Colors.white.withValues(alpha: 0.15),
+                  color: AppColors.pureWhite.withValues(alpha: 0.15),
                   width: 1.5,
                 ),
               ),
-
               child: Stack(
                 children: [
                   Positioned(
@@ -72,29 +72,25 @@ class IdentificationCard extends StatelessWidget {
                               ),
                               decoration: BoxDecoration(
                                 color: model.adultContent
-                                    ? const Color(
-                                        0xFFE57373,
-                                      ).withValues(alpha: 0.15)
-                                    : const Color(
-                                        0xFF9E9E9E,
-                                      ).withValues(alpha: 0.1),
-                                borderRadius: BorderRadius.circular(4.r),
+                                    ? AppColors.softRed
+                                    : AppColors.coolGray.withValues(alpha: 0.1),
 
+                                borderRadius: BorderRadius.circular(4.r),
                                 border: Border.all(
                                   color: model.adultContent
-                                      ? const Color(0xFFE57373)
-                                      : const Color(
-                                          0xFF9E9E9E,
-                                        ).withValues(alpha: 0.4),
+                                      ? AppColors.softRed
+                                      : AppColors.coolGray.withValues(
+                                          alpha: 0.4,
+                                        ),
+
                                   width: 0.8,
                                 ),
                               ),
                               child: Text(
                                 model.adultContent ? "18+" : "PG",
-
                                 style: TextStyle(
                                   color: model.adultContent
-                                      ? const Color(0xFFE57373)
+                                      ? AppColors.softRed
                                       : AppColors.platinumGray,
                                   fontSize: 10.sp,
                                   fontWeight: FontWeight.bold,
@@ -106,7 +102,6 @@ class IdentificationCard extends StatelessWidget {
                       ],
                     ),
                   ),
-
                   Positioned(
                     top: 0,
                     right: 0,
@@ -119,9 +114,12 @@ class IdentificationCard extends StatelessWidget {
                           width: 85.w,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(24.r),
-                            color: Colors.white.withValues(alpha: 0.07),
+                            color: AppColors.pureWhite.withValues(alpha: 0.07),
+
                             border: Border.all(
-                              color: Colors.white.withValues(alpha: 0.15),
+                              color: AppColors.pureWhite.withValues(
+                                alpha: 0.15,
+                              ),
                               width: 1.5,
                             ),
                           ),

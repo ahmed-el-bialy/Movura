@@ -26,8 +26,7 @@ class AdditionalData extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  (model.budget != 0)
-                      ? Padding(
+                  Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10.w),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -43,21 +42,21 @@ class AdditionalData extends StatelessWidget {
                               .copyWith(fontSize: 12.sp),
                         ),
                         Text(
-                          model.budget.toSmartCurrency(),
+                          model.budget != 0
+                              ? model.budget.toSmartCurrency()
+                              : "Unknown",
                           style: Styles.font15MediumWhite,
                         ),
                       ],
                     ),
-                  )
-                      : verticalSpacing(.5),
+                  ),
                   VerticalDivider(
                     color: AppColors.coolGray,
                     endIndent: 7.h,
                     indent: 7.h,
                   ),
 
-                  model.revenue != 0
-                      ? Padding(
+                  Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10.w),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -73,12 +72,13 @@ class AdditionalData extends StatelessWidget {
                               .copyWith(fontSize: 12.sp),
                         ),
                         Text(
-                          model.revenue.toSmartCurrency(),
+                          model.revenue != 0
+                              ? model.revenue.toSmartCurrency() : "Unknown",
                           style: Styles.font15MediumWhite,
                         ),
                       ],
                     ),
-                  ) : verticalSpacing(.5),
+                  ),
                   VerticalDivider(
                     color: AppColors.coolGray,
                     endIndent: 7.h,
@@ -115,27 +115,6 @@ class AdditionalData extends StatelessWidget {
                 ],
               ),
             ),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(
-            //     horizontal: 12.w,
-            //     vertical: 10.h,
-            //   ),
-            //   child: Card(
-            //     child: Column(
-            //       children: [
-            //         Text(
-            //           "ADULT CONTENT",
-            //           style: Styles.font14SimiBoldPlatinumGraySora,
-            //         ),
-            //         Spacer(flex: 1),
-            //         Text(
-            //           "${model.adultContent}",
-            //           style: Styles.font13BoldNeonCyanSora,
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
           )
         ],
       ),

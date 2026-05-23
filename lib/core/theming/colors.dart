@@ -10,6 +10,7 @@ class AppColors {
   static const Color darkBackground = Color(0xFF161616);
 
   static const Color gold = Color(0xFFFFB869);
+  static const Color softRed = Color(0xFFE57373);
 
   static const Color darkSlateGray = Color(0xFF3A494B);
   static const Color coolGray = Color(0xFF6B7280);
