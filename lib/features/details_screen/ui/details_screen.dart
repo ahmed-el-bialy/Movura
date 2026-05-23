@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/colors.dart';
-import 'package:movura/core/theming/styles.dart';
-import 'package:movura/features/details_screen/ui/widgets/details_loading_skeleton.dart';
 import 'package:movura/features/details_screen/ui/widgets/details_body/screen_body.dart';
+import 'package:movura/features/details_screen/ui/widgets/details_loading_skeleton.dart';
 
 import '../../../core/helper/routing_extension.dart';
-import '../../../core/constants/strings.dart';
 import '../logic/main_details/about_cubit.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -22,11 +20,6 @@ class DetailsScreen extends StatelessWidget {
         automaticallyImplyActions: false,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text(
-          Strings.appName,
-          style: Styles.font24SimiBoldNeonCyanManrope,
-        ),
-        centerTitle: true,
         actions: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 6.w),
@@ -34,7 +27,7 @@ class DetailsScreen extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
-              color: AppColors.slateGray.withValues(alpha: .4),
+              color: AppColors.onyxBlack.withValues(alpha: .9),
               child: InkWell(
                 borderRadius: BorderRadius.circular(20),
                 splashColor: AppColors.neonCyan.withValues(alpha: .4),
@@ -51,16 +44,19 @@ class DetailsScreen extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(25),
           ),
-          color: AppColors.slateGray.withValues(alpha: .4),
-          child: InkWell(
-            borderRadius: BorderRadius.circular(20),
-            splashColor: AppColors.neonCyan.withValues(alpha: .4),
-            onTap: () {
-              context.pop();
-            },
-            child: Padding(
-              padding: EdgeInsets.all(8.r),
-              child: Icon(Icons.arrow_back, color: AppColors.neonCyan),
+          color: AppColors.onyxBlack.withValues(alpha: .9),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: InkWell(
+              borderRadius: BorderRadius.circular(20),
+              splashColor: AppColors.neonCyan.withValues(alpha: .4),
+              onTap: () {
+                context.pop();
+              },
+              child: Padding(
+                padding: EdgeInsets.all(8.r),
+                child: Icon(Icons.arrow_back_ios, color: AppColors.neonCyan),
+              ),
             ),
           ),
         ),

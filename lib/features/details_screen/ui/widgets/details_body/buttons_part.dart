@@ -19,7 +19,7 @@ class ButtonsPart extends StatelessWidget {
           Expanded(
             child: ElevatedButton(
               onPressed: () {
-                playVideo(context, videoKey!);
+                playYoutubeVideo(context, videoKey!);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.neonCyan,
@@ -35,9 +35,9 @@ class ButtonsPart extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Icon(
-                      Icons.play_circle_fill_outlined,
+                      Icons.play_arrow_rounded,
                       color: AppColors.trueBlack,
-                      size: 22.sp,
+                      size: 24.sp,
                     ),
                     SizedBox(width: 6.w),
 
@@ -53,17 +53,18 @@ class ButtonsPart extends StatelessWidget {
 
           SizedBox(width: 12.w),
 
-          ElevatedButton(
+          OutlinedButton(
             onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.neonCyan,
+            style: OutlinedButton.styleFrom(
+              backgroundColor: Colors.transparent,
+              side: BorderSide(width: 1.2, color: AppColors.neonCyan),
               shape: const CircleBorder(),
-              padding: EdgeInsets.all(12.r),
-
-              elevation: 4,
+              padding: EdgeInsets.all(11.r),
+              elevation: 0,
             ),
-            child: Icon(Icons.add, color: AppColors.trueBlack, size: 26.sp),
-          ),
+            child: Icon(
+                Icons.playlist_add, color: AppColors.neonCyan, size: 26.sp),
+          )
         ],
       ),
     );

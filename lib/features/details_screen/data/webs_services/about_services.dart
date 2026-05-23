@@ -11,7 +11,7 @@ part 'about_services.g.dart';
 abstract class AboutServices {
   factory AboutServices(Dio dio, {String? baseUrl}) = _AboutServices;
 
-  @GET(ApiConstants.movieDetails)
+  @GET("${ApiConstants.movieDetails}/{id}")
   Future<AboutModel> getMovieMainDetails({
     @Path("id") required int movieId,
     @Query("append_to_response")

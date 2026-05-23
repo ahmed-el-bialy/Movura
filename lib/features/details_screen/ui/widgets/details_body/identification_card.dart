@@ -56,11 +56,52 @@ class IdentificationCard extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                         verticalSpacing(6),
-                        Text(
-                          " Movie • ${model.language} • ${model.runtime.runtimeFormatter()} ",
-                          style: Styles.font16SimiBoldPlatinumGray.copyWith(
-                            fontSize: 14.sp,
-                          ),
+                        Row(
+                          children: [
+                            Text(
+                              " Movie • ${model.language} • ${model.runtime.runtimeFormatter()} ",
+                              style: Styles.font16SimiBoldPlatinumGray.copyWith(
+                                fontSize: 14.sp,
+                              ),
+                            ),
+                            horizontalSpacing(5.w),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 6.w,
+                                vertical: 2.h,
+                              ),
+                              decoration: BoxDecoration(
+                                color: model.adultContent
+                                    ? const Color(
+                                        0xFFE57373,
+                                      ).withValues(alpha: 0.15)
+                                    : const Color(
+                                        0xFF9E9E9E,
+                                      ).withValues(alpha: 0.1),
+                                borderRadius: BorderRadius.circular(4.r),
+
+                                border: Border.all(
+                                  color: model.adultContent
+                                      ? const Color(0xFFE57373)
+                                      : const Color(
+                                          0xFF9E9E9E,
+                                        ).withValues(alpha: 0.4),
+                                  width: 0.8,
+                                ),
+                              ),
+                              child: Text(
+                                model.adultContent ? "18+" : "PG",
+
+                                style: TextStyle(
+                                  color: model.adultContent
+                                      ? const Color(0xFFE57373)
+                                      : AppColors.platinumGray,
+                                  fontSize: 10.sp,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),

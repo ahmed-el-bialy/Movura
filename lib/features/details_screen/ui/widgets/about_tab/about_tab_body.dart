@@ -7,7 +7,6 @@ import 'package:movura/features/details_screen/data/models/about_model.dart';
 import 'package:movura/features/details_screen/ui/widgets/about_tab/about_videos_list.dart';
 
 import '../../../logic/main_details/about_cubit.dart';
-import '../details_body/additional_data.dart';
 import '../details_loading_skeleton.dart';
 import 'about_actors_list.dart';
 import 'about_companies_list.dart';
@@ -27,9 +26,6 @@ class AboutTabBody extends StatelessWidget {
               state.model.movieVideos?.videoList ?? [];
           return Column(
             children: [
-              AdditionalData(model: state.model),
-              verticalSpacing(15),
-
               (state.model.actors.movieActors.isNotEmpty)
                   ? SectionTitle(
                       sectionName: "CAST",

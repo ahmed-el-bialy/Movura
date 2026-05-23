@@ -7,6 +7,7 @@ import '../../../../../../core/helper/spacing.dart';
 import '../../../../../../core/theming/colors.dart';
 import '../../../../../../core/theming/styles.dart';
 import '../about_tab/about_tab_body.dart';
+import 'additional_data.dart';
 import 'buttons_part.dart';
 import 'movie_main_details.dart';
 import 'story_line_and_genres.dart';
@@ -44,6 +45,7 @@ class MoreDetailsPart extends StatelessWidget {
         ButtonsPart(videoKey: trailerKey),
 
         verticalSpacing(20),
+        AdditionalData(model: model),
         StoryLineAndGenres(model: model),
         verticalSpacing(10),
 

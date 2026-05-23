@@ -85,6 +85,11 @@ class Styles {
     color: AppColors.neonCyan,
     fontSize: 13.sp,
   );
+  static TextStyle font15MediumWhite = TextStyle(
+    fontWeight: Weights.medium,
+    color: AppColors.pureWhite,
+    fontSize: 15.sp,
+  );
   static TextStyle font16SimiBoldPlatinumGray = TextStyle(
     fontWeight: Weights.simiBold,
     color: AppColors.platinumGray,
@@ -95,9 +100,16 @@ class Styles {
     color: AppColors.platinumGray,
     fontSize: 12.sp,
   );
+
   static TextStyle font11BoldGold = TextStyle(
     fontWeight: FontWeight.bold,
     color: AppColors.gold,
     fontSize: 11.sp,
+  );
+    static TextStyle font10BoldCoolGrayS = TextStyle(
+    fontWeight: FontWeight.bold,
+    color: AppColors.coolGray,
+    fontSize: 10.sp,
+
   );
 }

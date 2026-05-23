@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:movura/features/shared/widgets/back_button.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import '../../core/helper/routing_extension.dart';
-import '../../core/theming/colors.dart';
+import '../../../core/helper/routing_extension.dart';
+import '../../../core/theming/colors.dart';
 
 class VideoScreen extends StatefulWidget {
   final YoutubePlayerController controller;
@@ -117,7 +118,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                     Positioned(
                       top: _isLandscape ? 28 : 15,
                       left: _isLandscape ? 20 : 16,
-                      child: _BackButton(onTap: _handleBack),
+                      child: CustomBackButton(onTap: _handleBack),
                     ),
 
                   if (_isLandscape && !_showControls)
@@ -150,43 +151,6 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
           ),
         );
       },
-    );
-  }
-}
-
-class _BackButton extends StatelessWidget {
-  final VoidCallback onTap;
-
-  const _BackButton({required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 46,
-        height: 46,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: AppColors.jetBlack.withValues(alpha: 0.82),
-          border: Border.all(
-            color: AppColors.neonCyan.withValues(alpha: 0.9),
-            width: 2,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.neonCyan..withValues(alpha: 0.35),
-              blurRadius: 12,
-              spreadRadius: 2,
-            ),
-          ],
-        ),
-        child: Icon(
-          Icons.arrow_back_ios_new_rounded,
-          color: AppColors.neonCyan,
-          size: 22,
-        ),
-      ),
     );
   }
 }

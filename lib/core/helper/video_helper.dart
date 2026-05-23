@@ -1,70 +1,93 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter/services.dart';
+
 import 'package:movura/core/helper/routing_extension.dart';
+
 import 'package:movura/core/constants/strings.dart';
+
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-Future<void> playVideo(
+Future<void> playYoutubeVideo(
   BuildContext context,
+
   String videoKey, {
-  String? trailerTitle,
+
+  bool autoPlay = true,
+
+  bool mute = false,
+
+  bool enableCaption = true,
+
+  String? captionLanguage = 'en',
+
+  bool forceHD = true,
+
+  bool loop = false,
 }) async {
-  showDialog(
-    context: context,
-    barrierDismissible: false,
-    builder: (_) => const Center(
-      child: CircularProgressIndicator(color: Color(0xFF00F2FF)),
-    ),
-  );
-
   try {
-    await _prepareForVideo();
+    await _prepareVideoMode();
 
-    final controller = YoutubePlayerController(
+    final YoutubePlayerController controller = YoutubePlayerController(
       initialVideoId: videoKey,
-      flags: const YoutubePlayerFlags(
-        autoPlay: true,
-        mute: false,
-        forceHD: true,
-        enableCaption: true,
-        captionLanguage: 'ar',
+
+      flags: YoutubePlayerFlags(
+        autoPlay: autoPlay,
+
+        mute: mute,
+
+        disableDragSeek: false,
+
+        loop: loop,
+
+        isLive: false,
+
+        forceHD: forceHD,
+
+        enableCaption: enableCaption,
+
+        captionLanguage: captionLanguage!,
+
         hideControls: false,
+
+        hideThumbnail: false,
+
+        showLiveFullscreenButton: true,
       ),
     );
 
-    if (context.mounted) Navigator.pop(context);
+    if (!context.mounted) return;
 
-    if (context.mounted) {
-      await context.pushNamed(Strings.videoPlayScreen, controller);
-    }
+    await context.pushNamed(Strings.videoPlayScreen, controller);
   } catch (e) {
-    if (context.mounted) Navigator.pop(context);
-    if (context.mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('An error occurred while playing the trailer.'),
-        ),
-      );
-    }
-  }
+    debugPrint('Error playing YouTube video: $e');
 
-  _restoreSystemDefaults();
+    _restoreSystemDefaults();
+  }
 }
 
-Future<void> _prepareForVideo() async {
+Future<void> _prepareVideoMode() async {
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
+
     DeviceOrientation.landscapeLeft,
+
     DeviceOrientation.landscapeRight,
   ]);
 
-  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  await SystemChrome.setEnabledSystemUIMode(
+    SystemUiMode.immersiveSticky,
+
+    overlays: [],
+  );
 }
 
 void _restoreSystemDefaults() {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
   SystemChrome.setEnabledSystemUIMode(
     SystemUiMode.edgeToEdge,
+
     overlays: SystemUiOverlay.values,
   );
 }

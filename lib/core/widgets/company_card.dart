@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/features/details_screen/data/models/about_model.dart';
 
-import '../helper/spacing.dart';
 import '../constants/api_constants.dart';
 import '../theming/colors.dart';
 import '../theming/styles.dart';
@@ -26,19 +25,20 @@ class CompanyCard extends StatelessWidget {
         child: Column(
           children: [
             company.logo != null
-                ? Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: 6.h,
-                      horizontal: 4.w,
+                ? Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadiusGeometry.circular(20),
+                      color: Colors.white,
                     ),
-                    child: CircleAvatar(
-                      radius: 65.r,
-                      child: ClipOval(
+                    child: ClipRRect(
+                      borderRadius: BorderRadiusGeometry.circular(20),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: CachedNetworkImage(
                           imageUrl:
                               "${ApiConstants.imageBaseUrl}${company.logo!}",
                           fit: BoxFit.contain,
-                          width: 130.w,
+                          width: 140.w,
                           height: 130.w,
                           errorWidget: (context, url, error) =>
                               const Icon(Icons.person, color: Colors.white),
@@ -46,46 +46,62 @@ class CompanyCard extends StatelessWidget {
                       ),
                     ),
                   )
-                : Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: 6.h,
-                      horizontal: 4.w,
+                : Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadiusGeometry.circular(20),
+                      color: Colors.white,
                     ),
-                    child: ClipOval(
-                      child: CachedNetworkImage(
-                        imageUrl:
-                            "https://imgs.search.brave.com/EJMCxyVRjJtDJDePd6-7kPazT9g-Q5_Xx5cUcKwVmhY/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMjE1/NjQ1MDcwMy92ZWN0/b3IvNDA0LXBhZ2Ut/bm90LWZvdW5kLWlj/b24uanBnP3M9NjEy/eDYxMiZ3PTAmaz0y/MCZjPTlwRVFrbTRt/Y0x1Zmdzb1BhRkRp/cEsxNE1OSkV3aV9Q/QVZ1ZDBkaTV6aDg9",
-                        fit: BoxFit.cover,
-                        width: 130.w,
-                        height: 130.w,
-                        alignment: Alignment.topCenter,
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.villa_sharp, color: Colors.white),
+                    child: ClipRRect(
+                      borderRadius: BorderRadiusGeometry.circular(20),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: CachedNetworkImage(
+                          imageUrl:
+                              ApiConstants.companyImageError,
+                          fit: BoxFit.cover,
+                          width: 140.w,
+                          height: 130.w,
+                          alignment: Alignment.topCenter,
+                          errorWidget: (context, url, error) => const Icon(
+                            Icons.villa_sharp,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ),
                   ),
 
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 10.w),
+              padding: EdgeInsets.only(
+                top: 10.h,
+                left: 10.w,
+                right: 10.w,
+                bottom: 4.w,
+              ),
               child: Text(
                 company.name,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: Styles.font13BoldNeonCyanSora,
+                style: Styles.font13BoldNeonCyanSora.copyWith(fontSize: 14.sp),
               ),
             ),
 
-            verticalSpacing(8),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.w),
+              padding: EdgeInsets.only(
+                top: 5.h,
+                left: 10.w,
+                right: 10.w,
+                bottom: 8.w,
+              ),
               child: Text(
                 company.originCountry,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: Styles.font10BoldIceBlueMontserrat,
+                style: Styles.font10BoldIceBlueMontserrat.copyWith(
+                  fontSize: 12.sp,
+                ),
               ),
             ),
-            verticalSpacing(5),
           ],
         ),
       ),
