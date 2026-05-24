@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:movura/features/shared/widgets/back_button.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import '../../../core/utils/helpers/routing_extension.dart';
+import '../../../core/utils/extensions/routing_extension.dart';
 import '../../../core/theming/colors.dart';
 
 class VideoScreen extends StatefulWidget {

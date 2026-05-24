@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/utils/helpers/routing_extension.dart';
+import 'package:movura/core/utils/extensions/routing_extension.dart';
 
 import '../utils/constants/strings.dart';
 import '../theming/colors.dart';
