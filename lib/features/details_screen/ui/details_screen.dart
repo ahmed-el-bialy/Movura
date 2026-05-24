@@ -66,7 +66,7 @@ class DetailsScreen extends StatelessWidget {
           if (state is AboutLoading) {
             return DetailsLoadingSkeleton();
           } else if (state is AboutSuccess) {
-            return MoreDetailsPart(model: state.model);
+            return ScreenBody(model: state.model);
           } else if (state is AboutFailed) {
             return Center(child: Text(state.errorMessage));
           } else {

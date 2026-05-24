@@ -2,18 +2,19 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/features/details_screen/data/models/about_model.dart';
+import 'package:movura/features/details_screen/ui/widgets/reviews_tab/reviews_tab_body.dart';
 
-import '../../../../../core/utils/helpers/spacing.dart';
 import '../../../../../../core/theming/colors.dart';
 import '../../../../../../core/theming/styles.dart';
+import '../../../../../core/utils/helpers/spacing.dart';
 import '../about_tab/about_tab_body.dart';
 import 'additional_data.dart';
 import 'buttons_part.dart';
 import 'movie_main_details.dart';
 import 'story_line_and_genres.dart';
 
-class MoreDetailsPart extends StatelessWidget {
-  const MoreDetailsPart({super.key, required this.model});
+class ScreenBody extends StatelessWidget {
+  const ScreenBody({super.key, required this.model});
 
   final AboutModel model;
 
@@ -80,12 +81,7 @@ class MoreDetailsPart extends StatelessWidget {
                   children: [
                     AboutTabBody(),
 
-                    const Center(
-                      child: Text(
-                        "Cast Content",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
+                    ReviewsTabBody(),
 
                     const Center(
                       child: Text(

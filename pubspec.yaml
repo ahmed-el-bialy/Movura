@@ -63,6 +63,8 @@ dependencies:
   intl: ^0.20.2
   # Flutter plugin for playing or streaming inline YouTube videos using the official iFrame player API.
   youtube_player_flutter: ^9.1.3
+  # A simple yet fully customizable ratingbar for flutter
+  flutter_rating_bar: ^4.0.1
 
 
 dev_dependencies:
