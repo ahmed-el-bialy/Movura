@@ -53,8 +53,6 @@ dependencies:
   flutter_launcher_icons: ^0.14.4
   # Helps you to change or rename your flutter project BundleId and AppName for Ios, Android, macOS and Linux platforms
   rename: ^3.1.0
-  # A tidy utility to handle offline/online connectivity like a Boss.
-  flutter_offline: ^6.0.0
   #  Simple direct Service Locator that allows to decouple the interface from a concrete implementation and to access the concrete implementation from everywhere in your App
   get_it: ^9.2.1
   # A package provides an easy way to add shimmer effect in Flutter project

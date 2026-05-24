@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/core/theming/styles.dart';
 import 'package:movura/features/details_screen/logic/reviews/reviews_cubit.dart';
+import 'package:movura/features/details_screen/ui/widgets/reviews_tab/review_card.dart';
 
 class ReviewsTabBody extends StatelessWidget {
   const ReviewsTabBody({super.key});
@@ -12,7 +13,7 @@ class ReviewsTabBody extends StatelessWidget {
       builder: (context, state) {
         if (state is ReviewsLoaded) {
           return ListView.builder(itemBuilder: (context, index) {
-            return Text("data",style: Styles.font11BoldGold,);
+            return ReviewCard();
           });
         } else if (state is ReviewsLoading) {
           return Center(child: CircularProgressIndicator());
