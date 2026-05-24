@@ -8,7 +8,7 @@ final class ReviewsInitial extends ReviewsState {}
 final class ReviewsLoading extends ReviewsState {}
 
 final class ReviewsLoaded extends ReviewsState {
-  final ReviewsResponse response;
+  final List<ReviewModel> response;
 
   ReviewsLoaded({required this.response});
 }

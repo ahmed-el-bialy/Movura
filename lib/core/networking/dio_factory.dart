@@ -12,7 +12,7 @@ class DioFactory {
     final dio = Dio(
       BaseOptions(
         baseUrl: ApiConstants.baseUrl,
-        connectTimeout: const Duration(seconds: 25),
+        connectTimeout: const Duration(seconds: 30),
         receiveTimeout: const Duration(seconds: 30),
         headers: headers,
         queryParameters: {'api_key': ApiConstants.apiKey},

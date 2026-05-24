@@ -6,17 +6,10 @@ part of 'review_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-MovieReviews _$MovieReviewsFromJson(Map<String, dynamic> json) => MovieReviews(
-  reviews: ReviewsResponse.fromJson(json['reviews'] as Map<String, dynamic>),
-);
-
-Map<String, dynamic> _$MovieReviewsToJson(MovieReviews instance) =>
-    <String, dynamic>{'reviews': instance.reviews};
-
 ReviewsResponse _$ReviewsResponseFromJson(Map<String, dynamic> json) =>
     ReviewsResponse(
-      reviewsList: (json['results'] as List<dynamic>)
-          .map((e) => ReviewModel.fromJson(e as Map<String, dynamic>))
+      reviewsList: (json['results'] as List<dynamic>?)
+          ?.map((e) => ReviewModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -42,7 +35,7 @@ Map<String, dynamic> _$ReviewModelToJson(ReviewModel instance) =>
 
 UserDetails _$UserDetailsFromJson(Map<String, dynamic> json) => UserDetails(
   avatarPath: json['avatar_path'] as String?,
-  name: json['name'] as String,
+  name: json['name'] as String?,
   rating: (json['rating'] as num?)?.toDouble(),
 );
 

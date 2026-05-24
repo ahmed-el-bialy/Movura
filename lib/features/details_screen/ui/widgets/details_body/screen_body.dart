@@ -1,12 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/features/details_screen/data/models/about_model.dart';
+import 'package:movura/features/details_screen/logic/reviews/reviews_cubit.dart';
 import 'package:movura/features/details_screen/ui/widgets/reviews_tab/reviews_tab_body.dart';
 
 import '../../../../../../core/theming/colors.dart';
 import '../../../../../../core/theming/styles.dart';
+import '../../../../../core/networking/di.dart';
 import '../../../../../core/utils/helpers/spacing.dart';
+import '../../../data/repos/reviews_repo.dart';
 import '../about_tab/about_tab_body.dart';
 import 'additional_data.dart';
 import 'buttons_part.dart';
@@ -81,7 +85,12 @@ class ScreenBody extends StatelessWidget {
                   children: [
                     AboutTabBody(),
 
-                    ReviewsTabBody(),
+                    BlocProvider(
+                      create: (context) =>
+                          ReviewsCubit(repo: sl<ReviewsRepo>())
+                            ..getMovieReviews(id: model.id),
+                      child: ReviewsTabBody(),
+                    ),
 
                     const Center(
                       child: Text(

@@ -1,5 +1,6 @@
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/features/details_screen/data/models/review_model.dart';
 import 'package:movura/features/details_screen/data/repos/reviews_repo.dart';
 
@@ -14,7 +15,7 @@ class ReviewsCubit extends Cubit<ReviewsState> {
   Future<void> getMovieReviews({required int id}) async {
     emit(ReviewsLoading());
     try {
-      var movieReviews = await repo.getMovieReviews(movieId: id);
+      final  movieReviews = await repo.getMovieReviews(movieId: id);
       emit(ReviewsLoaded(response: movieReviews));
     } catch (e) {
       emit(ReviewsFailed(errorMessage: e.toString()));

@@ -6,11 +6,11 @@ import 'package:retrofit/http.dart';
 
 import '../../../../core/utils/constants/api_constants.dart';
 
-part 'about_services.g.dart';
+part 'details_web_services.g.dart';
 
 @RestApi()
-abstract class AboutServices {
-  factory AboutServices(Dio dio, {String? baseUrl}) = _AboutServices;
+abstract class DetailsWebServices {
+  factory DetailsWebServices(Dio dio, {String? baseUrl}) = _DetailsWebServices;
 
   @GET("${ApiConstants.movieDetails}/{id}")
   Future<AboutModel> getMovieMainDetails({
@@ -20,10 +20,9 @@ abstract class AboutServices {
     @Query("language") String language = "en-US",
   });
 
-  @GET("${ApiConstants.movieDetails}/{id}")
+  @GET("${ApiConstants.movieDetails}/{id}/reviews")
   Future<ReviewsResponse> getMovieReviews({
     @Path("id") required int movieId,
-    @Query("append_to_response") String additionalData = "reviews",
     @Query("language") String language = "en-US",
   });
 }
