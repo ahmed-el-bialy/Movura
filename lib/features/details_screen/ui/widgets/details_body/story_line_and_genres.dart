@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/weights.dart';
 import 'package:movura/features/details_screen/data/models/about_model.dart';
 
-import '../../../../../core/helper/spacing.dart';
+import '../../../../../core/utils/helpers/spacing.dart';
 import '../../../../../core/theming/colors.dart';
 import '../../../../../core/theming/styles.dart';
 

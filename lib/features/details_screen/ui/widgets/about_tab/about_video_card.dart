@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/features/details_screen/data/models/about_model.dart';
 
-import '../../../../../core/helper/video_helper.dart';
+import '../../../../../core/utils/helpers/video_helper.dart';
 import '../../../../../core/theming/colors.dart';
 
 class AboutVideoCard extends StatelessWidget {

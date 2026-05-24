@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:movura/core/constants/api_constants.dart';
+import 'package:movura/core/utils/constants/api_constants.dart';
 import 'package:movura/features/home_screen/data/model/poster_model.dart';
 import 'package:retrofit/retrofit.dart';
 

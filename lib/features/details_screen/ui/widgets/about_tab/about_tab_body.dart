@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/core/helper/spacing.dart';
+import 'package:movura/core/utils/helpers/spacing.dart';
 import 'package:movura/core/theming/styles.dart';
 import 'package:movura/core/widgets/section_title.dart';
 import 'package:movura/features/details_screen/data/models/about_model.dart';

@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/features/details_screen/data/models/about_model.dart';
 import 'package:movura/features/details_screen/ui/widgets/details_body/identification_card.dart';
 
-import '../../../../../core/constants/api_constants.dart';
+import '../../../../../core/utils/constants/api_constants.dart';
 
 class MovieMainDetails extends StatelessWidget {
   const MovieMainDetails({super.key, required this.model});

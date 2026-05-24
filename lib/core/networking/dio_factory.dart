@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import '../constants/api_constants.dart';
+import '../utils/constants/api_constants.dart';
 
 class DioFactory {
   static Dio getDio() {

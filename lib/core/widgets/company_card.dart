@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/features/details_screen/data/models/about_model.dart';
 
-import '../constants/api_constants.dart';
+import '../utils/constants/api_constants.dart';
 import '../theming/colors.dart';
 import '../theming/styles.dart';
 

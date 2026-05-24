@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/helper/media_runtime_formatter.dart';
-import 'package:movura/core/helper/spacing.dart';
+import 'package:movura/core/utils/helpers/media_runtime_formatter.dart';
+import 'package:movura/core/utils/helpers/spacing.dart';
 import 'package:movura/core/theming/colors.dart';
 import 'package:movura/core/theming/styles.dart';
 import 'package:movura/features/details_screen/data/models/about_model.dart';
 
-import '../../../../../core/helper/money_formatter.dart';
+import '../../../../../core/utils/helpers/money_formatter.dart';
 
 class AdditionalData extends StatelessWidget {
   const AdditionalData({super.key, required this.model});

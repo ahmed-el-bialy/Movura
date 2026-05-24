@@ -3,7 +3,7 @@ import 'package:movura/features/details_screen/data/models/about_model.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 
-import '../../../../core/constants/api_constants.dart';
+import '../../../../core/utils/constants/api_constants.dart';
 
 part 'about_services.g.dart';
 

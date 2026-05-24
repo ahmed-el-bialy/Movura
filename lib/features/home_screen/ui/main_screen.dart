@@ -6,8 +6,8 @@ import 'package:movura/core/theming/styles.dart';
 import 'package:movura/features/home_screen/ui/widgets/poster_list_builder.dart';
 import 'package:movura/features/home_screen/ui/widgets/sub_poster_list_builder.dart';
 
-import '../../../core/helper/spacing.dart';
-import '../../../core/constants/strings.dart';
+import '../../../core/utils/helpers/spacing.dart';
+import '../../../core/utils/constants/strings.dart';
 import '../../../core/widgets/app_navigation_bar.dart';
 import '../../../core/widgets/section_title.dart';
 import '../logic/main_content/main_content_cubit.dart';

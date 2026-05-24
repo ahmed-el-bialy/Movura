@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/helper/routing_extension.dart';
-import 'package:movura/core/constants/strings.dart';
-import 'package:movura/core/constants/api_constants.dart';
+import 'package:movura/core/utils/helpers/routing_extension.dart';
+import 'package:movura/core/utils/constants/strings.dart';
+import 'package:movura/core/utils/constants/api_constants.dart';
 import 'package:movura/core/theming/styles.dart';
 import 'package:movura/features/home_screen/data/model/poster_model.dart';
 

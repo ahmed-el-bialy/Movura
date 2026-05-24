@@ -8,7 +8,7 @@ import '../../features/details_screen/ui/details_screen.dart';
 import '../../features/home_screen/data/repo/posters_repo.dart';
 import '../../features/home_screen/logic/main_content/main_content_cubit.dart';
 import '../../features/home_screen/ui/main_screen.dart';
-import '../constants/strings.dart';
+import '../utils/constants/strings.dart';
 import '../networking/di.dart';
 import '../../features/shared/screens/video_screen.dart';
 

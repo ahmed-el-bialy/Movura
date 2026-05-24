@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
 
-import 'package:movura/core/helper/routing_extension.dart';
+import 'package:movura/core/utils/helpers/routing_extension.dart';
 
-import 'package:movura/core/constants/strings.dart';
+import 'package:movura/core/utils/constants/strings.dart';
 
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 

@@ -5,7 +5,7 @@ import 'package:movura/core/theming/colors.dart';
 import 'package:movura/features/details_screen/ui/widgets/details_body/screen_body.dart';
 import 'package:movura/features/details_screen/ui/widgets/details_loading_skeleton.dart';
 
-import '../../../core/helper/routing_extension.dart';
+import '../../../core/utils/helpers/routing_extension.dart';
 import '../logic/main_details/about_cubit.dart';
 
 class DetailsScreen extends StatelessWidget {
