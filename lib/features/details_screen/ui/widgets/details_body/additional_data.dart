@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/utils/extensions/runtime_formatter.dart';
-import 'package:movura/core/utils/helpers/spacing.dart';
 import 'package:movura/core/theming/colors.dart';
 import 'package:movura/core/theming/styles.dart';
+import 'package:movura/core/utils/extensions/runtime_formatter.dart';
+import 'package:movura/core/utils/helpers/spacing.dart';
 import 'package:movura/features/details_screen/data/models/about_model.dart';
 
 import '../../../../../core/utils/extensions/money_formatter.dart';
@@ -84,8 +84,7 @@ class AdditionalData extends StatelessWidget {
                     endIndent: 7.h,
                     indent: 7.h,
                   ),
-                  model.runtime != 0
-                      ? Padding(
+                  Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10.w),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -102,12 +101,14 @@ class AdditionalData extends StatelessWidget {
                         ),
 
                         Text(
-                          model.runtime.runtimeFormatter(),
+                          model.runtime != 0
+                              ? model.runtime.runtimeFormatter()
+                              : "Unknown",
                           style: Styles.font15MediumWhite,
                         ),
                       ],
                     ),
-                  ) : horizontalSpacing(.5),
+                  ),
 
                   verticalSpacing(5),
                 ],
