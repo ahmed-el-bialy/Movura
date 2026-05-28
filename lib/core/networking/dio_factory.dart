@@ -12,15 +12,20 @@ class DioFactory {
     final dio = Dio(
       BaseOptions(
         baseUrl: ApiConstants.baseUrl,
-        connectTimeout: const Duration(seconds: 30),
-        receiveTimeout: const Duration(seconds: 30),
+        connectTimeout: const Duration(seconds: 15),
+        receiveTimeout: const Duration(seconds: 15),
         headers: headers,
         queryParameters: {'api_key': ApiConstants.apiKey},
       ),
     );
 
     dio.interceptors.add(
-      LogInterceptor(requestBody: true, responseBody: true, error: true),
+      LogInterceptor(
+        requestHeader: true,
+        requestBody: true,
+        responseHeader: false,
+        responseBody: false,
+      ),
     );
 
     return dio;

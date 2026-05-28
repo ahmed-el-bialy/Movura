@@ -18,9 +18,19 @@ class Styles {
     fontSize: 20.sp,
     fontFamily: "Manrope",
   );
-  static TextStyle font12DarkNeonCyanManrope = TextStyle(
+  static TextStyle font14DarkNeonCyanManrope = TextStyle(
     color: AppColors.darkNeonCyan,
     fontSize: 14.sp,
+    fontFamily: "Manrope",
+  );
+  static TextStyle font14PureWhiteManrope = TextStyle(
+    color: AppColors.pureWhite,
+    fontSize: 14.sp,
+    fontFamily: "Manrope",
+  );
+  static TextStyle font12CoolGrayManrope = TextStyle(
+    color: AppColors.coolGray,
+    fontSize: 12.sp,
     fontFamily: "Manrope",
   );
 

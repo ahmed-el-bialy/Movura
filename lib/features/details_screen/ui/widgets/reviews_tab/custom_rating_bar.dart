@@ -15,7 +15,7 @@ class CustomRatingBar extends StatelessWidget {
     return RatingBarIndicator(
       rating: rating.toFiveStarRating(),
       itemCount: 5,
-      itemSize: 14.r,
+      itemSize: 10.r,
       unratedColor: AppColors.darkSlateGray,
       itemPadding: EdgeInsets.symmetric(horizontal: 1.0.w),
       itemBuilder: (context, index) =>

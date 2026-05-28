@@ -5,7 +5,7 @@ import 'package:movura/core/utils/extensions/routing_extension.dart';
 import 'package:movura/core/utils/constants/strings.dart';
 import 'package:movura/core/utils/constants/api_constants.dart';
 import 'package:movura/core/theming/styles.dart';
-import 'package:movura/features/home_screen/data/model/poster_model.dart';
+import 'package:movura/features/shared/data/models/poster_model.dart';
 
 class PosterCard extends StatelessWidget {
   const PosterCard({

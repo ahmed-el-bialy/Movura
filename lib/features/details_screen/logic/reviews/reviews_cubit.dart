@@ -20,5 +20,5 @@ class ReviewsCubit extends Cubit<ReviewsState> {
     } catch (e) {
       emit(ReviewsFailed(errorMessage: e.toString()));
     }
-  }
+  } 
 }

@@ -13,7 +13,7 @@ class AboutCompaniesList extends StatelessWidget {
     if (company.isEmpty) return const SizedBox.shrink();
 
     return SizedBox(
-      height: 200.h,
+      height: 210.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: company.length,

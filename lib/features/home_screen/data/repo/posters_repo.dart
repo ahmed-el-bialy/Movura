@@ -1,4 +1,4 @@
-import '../model/poster_model.dart';
+import '../../../shared/data/models/poster_model.dart';
 import '../web_services/web_services.dart';
 
 class PostersRepo {

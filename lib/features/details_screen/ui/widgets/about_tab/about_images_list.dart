@@ -11,7 +11,7 @@ class AboutImagesList extends StatelessWidget {
     super.key,
     required this.images,
     this.imageFit = BoxFit.cover,
-    this.height = 220,
+    this.height = 230,
     this.verPadding,
     this.herPadding,
     this.imageWidth,

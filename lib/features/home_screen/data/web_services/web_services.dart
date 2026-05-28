@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:movura/core/utils/constants/api_constants.dart';
-import 'package:movura/features/home_screen/data/model/poster_model.dart';
+import 'package:movura/features/shared/data/models/poster_model.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'web_services.g.dart';

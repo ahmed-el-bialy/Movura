@@ -107,9 +107,7 @@ class AdditionalData extends StatelessWidget {
                         ),
                       ],
                     ),
-                  )
-
-                      : horizontalSpacing(.5),
+                  ) : horizontalSpacing(.5),
 
                   verticalSpacing(5),
                 ],

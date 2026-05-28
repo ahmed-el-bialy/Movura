@@ -13,7 +13,7 @@ class AboutActorsList extends StatelessWidget {
     if (actors.isEmpty) return const SizedBox.shrink();
 
     return SizedBox(
-      height: 240.h,
+      height: 245.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: actors.length,

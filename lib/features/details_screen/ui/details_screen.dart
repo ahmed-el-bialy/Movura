@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/colors.dart';
-import 'package:movura/features/details_screen/ui/widgets/details_body/screen_body.dart';
+import 'package:movura/features/details_screen/ui/widgets/details_body/details_screen_body.dart';
 import 'package:movura/features/details_screen/ui/widgets/details_loading_skeleton.dart';
 
 import '../../../core/utils/extensions/routing_extension.dart';
