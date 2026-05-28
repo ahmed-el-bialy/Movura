@@ -22,11 +22,11 @@ class PosterModel {
   @JsonKey(name: "name")
   final String? name;
   @JsonKey(name: "poster_path")
-  final String posterPath;
+  final String? posterPath;
   @JsonKey(name: "vote_average")
   final double voteAverage;
   @JsonKey(name: "media_type")
-  final String mediaType;
+  final String? mediaType;
   @JsonKey(name: "id")
   final int id;
 

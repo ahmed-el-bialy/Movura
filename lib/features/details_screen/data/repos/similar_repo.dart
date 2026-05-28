@@ -1,0 +1,15 @@
+import 'package:movura/features/details_screen/data/models/similar_model.dart';
+import 'package:movura/features/details_screen/data/webs_services/details_web_services.dart';
+
+class SimilarRepo {
+  final DetailsWebServices detailsWebServices;
+
+  SimilarRepo({required this.detailsWebServices});
+
+  Future<SimilarMovieResponse> getSimilarMovies({required int movieId}) async {
+    final response = await detailsWebServices.getSimilarMovies(
+      movieId: movieId,
+    );
+    return response;
+  }
+}

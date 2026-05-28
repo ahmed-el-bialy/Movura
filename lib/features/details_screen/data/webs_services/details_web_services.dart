@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:movura/features/details_screen/data/models/about_model.dart';
 import 'package:movura/features/details_screen/data/models/review_model.dart';
+import 'package:movura/features/details_screen/data/models/similar_model.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 
@@ -23,6 +24,14 @@ abstract class DetailsWebServices {
   @GET("${ApiConstants.movieDetails}/{id}/reviews")
   Future<ReviewsResponse> getMovieReviews({
     @Path("id") required int movieId,
+    @Query("language") String language = "en-US",
+  });
+
+  @GET("${ApiConstants.movieDetails}/{id}")
+  Future<SimilarMovieResponse> getSimilarMovies({
+    @Path("id") required int movieId,
+    @Query("append_to_response")
+    String additionalData = "similar,recommendations",
     @Query("language") String language = "en-US",
   });
 }

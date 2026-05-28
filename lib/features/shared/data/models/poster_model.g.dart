@@ -18,9 +18,9 @@ Map<String, dynamic> _$PosterResponseToJson(PosterResponse instance) =>
 
 PosterModel _$PosterModelFromJson(Map<String, dynamic> json) => PosterModel(
   title: json['title'] as String?,
-  posterPath: json['poster_path'] as String,
+  posterPath: json['poster_path'] as String?,
   voteAverage: (json['vote_average'] as num).toDouble(),
-  mediaType: json['media_type'] as String,
+  mediaType: json['media_type'] as String?,
   id: (json['id'] as num).toInt(),
   name: json['name'] as String?,
 );

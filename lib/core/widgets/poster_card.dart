@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/utils/extensions/routing_extension.dart';
-import 'package:movura/core/utils/constants/strings.dart';
-import 'package:movura/core/utils/constants/api_constants.dart';
 import 'package:movura/core/theming/styles.dart';
+import 'package:movura/core/utils/constants/api_constants.dart';
+import 'package:movura/core/utils/constants/strings.dart';
+import 'package:movura/core/utils/extensions/routing_extension.dart';
 import 'package:movura/features/shared/data/models/poster_model.dart';
 
 class PosterCard extends StatelessWidget {
@@ -18,7 +18,7 @@ class PosterCard extends StatelessWidget {
     this.subTextStyle,
     this.subCardElevation,
     this.border,
-    this.media,
+    this.mediaModel,
     this.subCardColor,
     this.subCardBorder,
   });
@@ -33,7 +33,7 @@ class PosterCard extends StatelessWidget {
   final Color? subCardColor;
   final double? border;
   final double? subCardBorder;
-  final PosterModel? media;
+  final PosterModel? mediaModel;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class PosterCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        context.pushNamed(Strings.detailsScreen, media?.id);
+        context.pushNamed(Strings.detailsScreen, mediaModel?.id);
       },
       child: Card(
         elevation: elevation ?? 10,
@@ -61,9 +61,9 @@ class PosterCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(cardRadius),
                 child: CachedNetworkImage(
                   imageUrl:
-                      (media?.posterPath != null &&
-                          media!.posterPath.isNotEmpty)
-                      ? "${ApiConstants.imageBaseUrl}${media!.posterPath}"
+                      (mediaModel?.posterPath != null &&
+                          mediaModel!.posterPath!.isNotEmpty)
+                      ? "${ApiConstants.imageBaseUrl}${mediaModel!.posterPath}"
                       : "",
                   fit: BoxFit.fill,
                   errorWidget: (context, url, error) => Container(
@@ -103,7 +103,9 @@ class PosterCard extends StatelessWidget {
                         vertical: 4.w,
                       ),
                       child: Text(
-                        media?.title ?? media?.name ?? "Unknown Title",
+                        mediaModel?.title ??
+                            mediaModel?.name ??
+                            "Unknown Title",
                         style: titleStyle ?? Styles.font17BoldIceBlueMontserrat,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -125,7 +127,7 @@ class PosterCard extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.all(5.0.r),
                       child: Text(
-                        media?.mediaType ?? "N/A",
+                        mediaModel?.mediaType ?? "N/A",
                         style:
                             subTextStyle ?? Styles.font16SimiBoldPlatinumGray,
                       ),
@@ -152,8 +154,8 @@ class PosterCard extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            media?.voteAverage != null
-                                ? media!.voteAverage.toStringAsFixed(1)
+                            mediaModel?.voteAverage != null
+                                ? mediaModel!.voteAverage.toStringAsFixed(1)
                                 : "0.0",
                             style:
                                 subTextStyle ??

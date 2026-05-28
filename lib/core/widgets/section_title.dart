@@ -21,26 +21,26 @@ class SectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8.0.w),
-          child: Text(
+    return Padding(
+      padding:  EdgeInsets.symmetric(horizontal: 8.w,vertical: 6.h),
+      child: Row(
+        children: [
+          Text(
             sectionName,
             style: titleStyle ?? Styles.font20SimiBoldPlatinumGray,
           ),
-        ),
-        Spacer(flex: 1),
-        actionName != null
-            ? GestureDetector(
-                onTap: onTap ?? () {},
-                child: Text(
-                  actionName!,
-                  style: actionStyle ?? Styles.font13MediumNeonCyan,
-                ),
-              )
-            : Spacer(flex: 1),
-      ],
+          Spacer(flex: 1),
+          actionName != null
+              ? GestureDetector(
+                  onTap: onTap ?? () {},
+                  child: Text(
+                    actionName!,
+                    style: actionStyle ?? Styles.font13MediumNeonCyan,
+                  ),
+                )
+              : Spacer(flex: 1),
+        ],
+      ),
     );
   }
 }

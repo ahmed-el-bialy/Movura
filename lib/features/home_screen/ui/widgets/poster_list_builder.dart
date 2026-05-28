@@ -20,7 +20,7 @@ class PosterListBuilder extends StatelessWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.0.w, vertical: 12.h),
-            child: PosterCard(media: trendingContent[index]),
+            child: PosterCard(mediaModel: trendingContent[index]),
           );
         },
       ),

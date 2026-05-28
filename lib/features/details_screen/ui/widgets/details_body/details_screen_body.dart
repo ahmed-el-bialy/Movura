@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/features/details_screen/data/models/about_model.dart';
+import 'package:movura/features/details_screen/data/repos/similar_repo.dart';
 import 'package:movura/features/details_screen/logic/reviews/reviews_cubit.dart';
+import 'package:movura/features/details_screen/logic/similar_content/similar_content_cubit.dart';
 import 'package:movura/features/details_screen/ui/widgets/reviews_tab/reviews_tab_body.dart';
 
 import '../../../../../../core/theming/colors.dart';
@@ -13,6 +15,7 @@ import '../../../../../core/networking/di.dart';
 import '../../../../../core/utils/helpers/spacing.dart';
 import '../../../data/repos/reviews_repo.dart';
 import '../about_tab/about_tab_body.dart';
+import '../similar_tab/similar_tab_body.dart';
 import 'additional_data.dart';
 import 'buttons_part.dart';
 import 'movie_main_details.dart';
@@ -43,10 +46,19 @@ class ScreenBody extends StatelessWidget {
       }
     }
 
-    return BlocProvider(
-      create: (context) =>
-      ReviewsCubit(repo: sl<ReviewsRepo>())
-        ..getMovieReviews(id: model.id),
+    return MultiBlocProvider(
+
+      providers: [
+        BlocProvider<ReviewsCubit>(
+          create: (context) =>
+          ReviewsCubit(repo: sl<ReviewsRepo>())
+            ..getMovieReviews(id: model.id),
+        ),
+
+        BlocProvider<SimilarContentCubit>(create: (context) =>
+        SimilarContentCubit(repo: sl<SimilarRepo>())
+          ..getSimilarMovies(id: model.id)),
+      ],
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
@@ -103,12 +115,7 @@ class ScreenBody extends StatelessWidget {
                       children: [
                         AboutTabBody(),
                         ReviewsTabBody(),
-                        const Center(
-                          child: Text(
-                            "Similar Content",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
+                        SimilarTabBody(),
                       ],
                     ),
                   ],
