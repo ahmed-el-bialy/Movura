@@ -31,7 +31,8 @@ class _ReadMoreTextState extends State<ReadMoreText> {
         final textPainter = TextPainter(
           text: TextSpan(
             text: widget.content,
-            style: widget.style ??
+            style:
+                widget.style ??
                 Styles.font14BoldIceBlueMontserrat.copyWith(
                   color: Colors.white.withValues(alpha: 0.9),
                   fontWeight: Weights.simiBold,
@@ -50,7 +51,8 @@ class _ReadMoreTextState extends State<ReadMoreText> {
           children: [
             Text(
               widget.content,
-              style: widget.style ??
+              style:
+                  widget.style ??
                   Styles.font14BoldIceBlueMontserrat.copyWith(
                     color: Colors.white.withValues(alpha: 0.85),
                     fontWeight: FontWeight.normal,

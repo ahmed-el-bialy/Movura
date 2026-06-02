@@ -116,10 +116,9 @@ class Styles {
     color: AppColors.gold,
     fontSize: 11.sp,
   );
-    static TextStyle font10BoldCoolGrayS = TextStyle(
+  static TextStyle font10BoldCoolGrayS = TextStyle(
     fontWeight: FontWeight.bold,
     color: AppColors.coolGray,
     fontSize: 10.sp,
-
   );
 }

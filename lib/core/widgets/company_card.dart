@@ -1,8 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/features/details_screen/data/models/about_model.dart';
-
+import '../../features/movie_details_screen/data/models/about_model.dart';
 import '../utils/constants/api_constants.dart';
 import '../theming/colors.dart';
 import '../theming/styles.dart';
@@ -56,8 +55,7 @@ class CompanyCard extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: CachedNetworkImage(
-                          imageUrl:
-                              ApiConstants.companyImageError,
+                          imageUrl: ApiConstants.companyImageError,
                           fit: BoxFit.cover,
                           width: 140.w,
                           height: 130.w,

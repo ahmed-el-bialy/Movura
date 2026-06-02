@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/utils/constants/api_constants.dart';
 import 'package:movura/core/theming/colors.dart';
 import 'package:movura/core/theming/styles.dart';
-import 'package:movura/features/details_screen/data/models/about_model.dart';
+import '../../features/movie_details_screen/data/models/about_model.dart';
 
 class ActorCard extends StatelessWidget {
   const ActorCard({super.key, required this.actor});
@@ -41,8 +41,7 @@ class ActorCard extends StatelessWidget {
                 : ClipRRect(
                     borderRadius: BorderRadiusGeometry.circular(20),
                     child: CachedNetworkImage(
-                      imageUrl:
-                          ApiConstants.actorImageError,
+                      imageUrl: ApiConstants.actorImageError,
                       fit: BoxFit.cover,
                       width: 130.w,
                       height: 160.w,
