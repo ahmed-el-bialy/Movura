@@ -1,8 +1,8 @@
 import '../../../shared/data/models/poster_model.dart';
-import '../web_services/web_services.dart';
+import '../movie_web_services/web_services.dart';
 
 class PostersRepo {
-  final WebServices webServices;
+  final MovieWebServices webServices;
 
   PostersRepo(this.webServices);
 

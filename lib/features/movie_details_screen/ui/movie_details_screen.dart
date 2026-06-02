@@ -8,8 +8,8 @@ import 'package:movura/features/movie_details_screen/ui/widgets/details_loading_
 import '../../../core/utils/extensions/routing_extension.dart';
 import '../logic/main_details/about_cubit.dart';
 
-class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({super.key});
+class MovieDetailsScreen extends StatelessWidget {
+  const MovieDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

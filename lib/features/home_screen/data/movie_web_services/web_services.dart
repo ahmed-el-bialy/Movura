@@ -6,8 +6,8 @@ import 'package:retrofit/retrofit.dart';
 part 'web_services.g.dart';
 
 @RestApi()
-abstract class WebServices {
-  factory WebServices(Dio dio, {String? baseUrl}) = _WebServices;
+abstract class MovieWebServices {
+  factory MovieWebServices(Dio dio, {String? baseUrl}) = _WebServices;
 
   @GET(ApiConstants.trendingMedia)
   Future<PosterResponse> getTrendingMedia({

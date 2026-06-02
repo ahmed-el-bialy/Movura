@@ -7,7 +7,7 @@ import '../../features/home_screen/logic/main_content/main_content_cubit.dart';
 import '../../features/home_screen/ui/main_screen.dart';
 import '../../features/movie_details_screen/data/repos/about_repo.dart';
 import '../../features/movie_details_screen/logic/main_details/about_cubit.dart';
-import '../../features/movie_details_screen/ui/details_screen.dart';
+import '../../features/movie_details_screen/ui/movie_details_screen.dart';
 import '../../features/shared/screens/video_screen.dart';
 import '../networking/di.dart';
 import '../utils/constants/strings.dart';
@@ -33,7 +33,7 @@ class AppRouter {
             create: (context) =>
                 AboutCubit(repo: sl<AboutRepo>())
                   ..getMovieMainDetails(id: movieId),
-            child: DetailsScreen(),
+            child: MovieDetailsScreen(),
           ),
         );
 
