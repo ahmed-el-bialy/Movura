@@ -4,10 +4,10 @@ import 'package:movura/core/utils/constants/api_constants.dart';
 
 import '../../features/home_screen/data/movie_web_services/web_services.dart';
 import '../../features/home_screen/data/repo/posters_repo.dart';
-import '../../features/movie_details_screen/data/repos/about_repo.dart';
-import '../../features/movie_details_screen/data/repos/reviews_repo.dart';
-import '../../features/movie_details_screen/data/repos/similar_repo.dart';
-import '../../features/movie_details_screen/data/webs_services/details_web_services.dart';
+import '../../features/details_screen/data/repos/about_repo.dart';
+import '../../features/details_screen/data/repos/reviews_repo.dart';
+import '../../features/details_screen/data/repos/similar_repo.dart';
+import '../../features/details_screen/data/webs_services/details_web_services.dart';
 import 'dio_factory.dart';
 
 final sl = GetIt.instance;

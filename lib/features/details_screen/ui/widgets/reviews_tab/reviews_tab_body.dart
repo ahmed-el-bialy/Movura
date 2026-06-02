@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/core/theming/styles.dart';
 import 'package:movura/core/widgets/section_title.dart';
-import 'package:movura/features/movie_details_screen/ui/widgets/reviews_tab/review_card.dart';
+import 'package:movura/features/details_screen/logic/reviews/reviews_cubit.dart';
+import 'package:movura/features/details_screen/ui/widgets/reviews_tab/review_card.dart';
 
-import '../../../logic/reviews/reviews_cubit.dart';
 
 class ReviewsTabBody extends StatelessWidget {
   const ReviewsTabBody({super.key});

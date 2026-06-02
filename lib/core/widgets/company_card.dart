@@ -1,7 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../features/movie_details_screen/data/models/about_model.dart';
+import 'package:movura/features/details_screen/data/models/about_model.dart';
+
 import '../utils/constants/api_constants.dart';
 import '../theming/colors.dart';
 import '../theming/styles.dart';
