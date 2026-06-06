@@ -6,7 +6,7 @@ import 'package:movura/features/details_screen/ui/screens/tv_details_screen/widg
 
 import '../../../../../core/theming/colors.dart';
 import '../../../../../core/utils/extensions/routing_extension.dart';
-import '../../widgets/details_loading_skeleton.dart';
+import '../../details_loading_skeleton.dart';
 
 class TvSeriesDetailsScreen extends StatelessWidget {
   const TvSeriesDetailsScreen({super.key});

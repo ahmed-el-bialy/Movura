@@ -2,9 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/utils/constants/api_constants.dart';
-import '../../../data/models/movie_models/about_model.dart';
-import 'identification_card.dart';
+import '../../../../../../../core/utils/constants/api_constants.dart';
+import '../../../../../data/models/movie_models/about_model.dart';
+import 'movie_identify_card.dart';
 
 class MovieMainDetails extends StatelessWidget {
   const MovieMainDetails({super.key, required this.model});
@@ -40,7 +40,7 @@ class MovieMainDetails extends StatelessWidget {
             ),
           ),
 
-          IdentificationCard(model: model),
+          MovieIdentifyCard(model: model),
         ],
       ),
     );

@@ -1,6 +1,6 @@
 extension TvSeriesStatusExtension on String {
   String get statusDisplay {
-    switch (this.toLowerCase()) {
+    switch (toLowerCase()) {
       case 'returning series':
         return 'Ongoing';
       case 'ended':

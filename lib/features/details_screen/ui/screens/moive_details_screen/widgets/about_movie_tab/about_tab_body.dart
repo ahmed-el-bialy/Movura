@@ -4,13 +4,13 @@ import 'package:movura/core/theming/styles.dart';
 import 'package:movura/core/utils/helpers/spacing.dart';
 import 'package:movura/core/widgets/section_title.dart';
 
-import '../../../../../core/models/video_model.dart';
-import '../../../logic/movie_screen_cubit/main_details/about_cubit.dart';
-import '../details_loading_skeleton.dart';
-import 'about_actors_list.dart';
-import 'about_companies_list.dart';
-import 'about_images_list.dart';
-import 'about_videos_list.dart';
+import '../../../../../../../core/models/video_model.dart';
+import '../../../../../logic/movie_screen_cubit/main_details/about_cubit.dart';
+import '../../../../details_loading_skeleton.dart';
+import '../../../shared_widgets/about_tab_shared_widgets/about_actors_list.dart';
+import '../../../shared_widgets/about_tab_shared_widgets/about_companies_list.dart';
+import '../../../shared_widgets/about_tab_shared_widgets/about_images_list.dart';
+import '../../../shared_widgets/about_tab_shared_widgets/about_videos_list.dart';
 
 class AboutTabBody extends StatelessWidget {
   const AboutTabBody({super.key});

@@ -8,11 +8,11 @@ import 'package:movura/features/details_screen/ui/screens/tv_details_screen/widg
 import 'package:movura/features/details_screen/ui/screens/tv_details_screen/widgets/about_tv_tab/tv_networks_list.dart';
 
 import '../../../../../../../core/models/video_model.dart';
-import '../../../../widgets/about_tab/about_actors_list.dart';
-import '../../../../widgets/about_tab/about_companies_list.dart';
-import '../../../../widgets/about_tab/about_images_list.dart';
-import '../../../../widgets/about_tab/about_videos_list.dart';
-import '../../../../widgets/details_loading_skeleton.dart';
+import '../../../shared_widgets/about_tab_shared_widgets/about_actors_list.dart';
+import '../../../shared_widgets/about_tab_shared_widgets/about_companies_list.dart';
+import '../../../shared_widgets/about_tab_shared_widgets/about_images_list.dart';
+import '../../../shared_widgets/about_tab_shared_widgets/about_videos_list.dart';
+import '../../../../details_loading_skeleton.dart';
 
 class AboutTvTabBody extends StatelessWidget {
   const AboutTvTabBody({super.key});

@@ -11,7 +11,7 @@ import 'package:movura/features/details_screen/ui/screens/tv_details_screen/widg
 import '../../../../../../../core/theming/colors.dart';
 import '../../../../../../../core/theming/styles.dart';
 import '../../../../../../../core/utils/helpers/spacing.dart';
-import '../../../../widgets/details_body/buttons_row.dart';
+import '../../../shared_widgets/buttons_row.dart';
 
 class TvScreenBody extends StatelessWidget {
   const TvScreenBody({super.key, required this.model});

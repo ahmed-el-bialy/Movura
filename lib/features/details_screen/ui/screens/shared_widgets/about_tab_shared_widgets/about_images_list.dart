@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/utils/constants/api_constants.dart';
 
-import '../../../../../core/models/image_model.dart';
-import '../../../../../core/theming/colors.dart';
+import '../../../../../../core/models/image_model.dart';
+import '../../../../../../core/theming/colors.dart';
 
 class AboutImagesList extends StatelessWidget {
   const AboutImagesList({

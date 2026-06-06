@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/widgets/read_more_text.dart';
 
-import '../../../../../core/theming/colors.dart';
-import '../../../../../core/theming/styles.dart';
-import '../../../../../core/utils/helpers/spacing.dart';
-import '../../../data/models/movie_models/about_model.dart';
+import '../../../../../../../core/theming/colors.dart';
+import '../../../../../../../core/theming/styles.dart';
+import '../../../../../../../core/utils/helpers/spacing.dart';
+import '../../../../../data/models/movie_models/about_model.dart';
 
 class MovieStoryAndGenres extends StatelessWidget {
   const MovieStoryAndGenres({super.key, required this.model});

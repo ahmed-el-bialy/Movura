@@ -3,14 +3,14 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/theming/colors.dart';
-import '../../../../../core/theming/styles.dart';
-import '../../../../../core/utils/extensions/runtime_formatter.dart';
-import '../../../../../core/utils/helpers/spacing.dart';
-import '../../../data/models/movie_models/about_model.dart';
+import '../../../../../../../core/theming/colors.dart';
+import '../../../../../../../core/theming/styles.dart';
+import '../../../../../../../core/utils/extensions/runtime_formatter.dart';
+import '../../../../../../../core/utils/helpers/spacing.dart';
+import '../../../../../data/models/movie_models/about_model.dart';
 
-class IdentificationCard extends StatelessWidget {
-  const IdentificationCard({super.key, required this.model});
+class MovieIdentifyCard extends StatelessWidget {
+  const MovieIdentifyCard({super.key, required this.model});
 
   final AboutModel model;
 
