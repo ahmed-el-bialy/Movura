@@ -12,8 +12,8 @@ class AboutTvCubit extends Cubit<AboutTvState> {
 
   final AboutTvSeriesRepo repo;
 
-  Future<void> getMovieMainDetails({required int id}) async {
-    emit(AboutLoading());
+  Future<void> getTvSeriesMainDetails({required int id}) async {
+    emit(AboutTvLoading());
     try {
       mainDetailsModel = await repo.getTvSeriesMainDetails(movieId: id);
       emit(AboutTvLoaded(model: mainDetailsModel!));

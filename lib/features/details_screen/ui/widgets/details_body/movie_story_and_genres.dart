@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/widgets/expandable_text.dart';
+import 'package:movura/core/widgets/read_more_text.dart';
 
 import '../../../../../core/theming/colors.dart';
 import '../../../../../core/theming/styles.dart';
 import '../../../../../core/utils/helpers/spacing.dart';
 import '../../../data/models/movie_models/about_model.dart';
 
-class StoryLineAndGenres extends StatelessWidget {
-  const StoryLineAndGenres({super.key, required this.model});
+class MovieStoryAndGenres extends StatelessWidget {
+  const MovieStoryAndGenres({super.key, required this.model});
 
   final AboutModel model;
 

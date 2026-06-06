@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/widgets/company_card.dart';
 import 'package:movura/features/details_screen/data/models/tv_models/about_tv_series_model.dart';
+import 'package:movura/features/details_screen/ui/screens/tv_details_screen/widgets/about_tv_tab/tv_network_card.dart';
 
-
-class NetworksList extends StatelessWidget {
-  const NetworksList({super.key, required this.network});
+class TvNetworksList extends StatelessWidget {
+  const TvNetworksList({super.key, required this.network});
 
   final List<TvNetworkModel> network;
 
@@ -19,7 +18,7 @@ class NetworksList extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: network.length,
         itemBuilder: (context, index) {
-          return CompanyCard(company: network[index]);
+          return TvNetworkCard(network: network[index]);
         },
       ),
     );

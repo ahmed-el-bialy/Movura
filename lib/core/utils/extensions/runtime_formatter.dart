@@ -1,4 +1,4 @@
-extension RuntimeFormatterExt on double {
+extension RuntimeFormatterExt on num {
   String runtimeFormatter() {
     int totalMinutes = toInt();
 

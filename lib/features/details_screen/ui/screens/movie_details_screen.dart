@@ -5,7 +5,7 @@ import 'package:movura/core/theming/colors.dart';
 
 import '../../../../core/utils/extensions/routing_extension.dart';
 import '../../logic/movie_screen_cubit/main_details/about_cubit.dart';
-import '../widgets/details_body/details_screen_body.dart';
+import '../widgets/details_body/movie_screen_body.dart';
 import '../widgets/details_loading_skeleton.dart';
 
 class MovieDetailsScreen extends StatelessWidget {
@@ -66,7 +66,7 @@ class MovieDetailsScreen extends StatelessWidget {
           if (state is AboutLoading) {
             return DetailsLoadingSkeleton();
           } else if (state is AboutSuccess) {
-            return ScreenBody(model: state.model);
+            return MovieScreenBody(model: state.model);
           } else if (state is AboutFailed) {
             return Center(child: Text(state.errorMessage));
           } else {

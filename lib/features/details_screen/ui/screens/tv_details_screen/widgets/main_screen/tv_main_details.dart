@@ -2,8 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/features/details_screen/data/models/tv_models/about_tv_series_model.dart';
+import 'package:movura/features/details_screen/ui/screens/tv_details_screen/widgets/main_screen/tv_identify_card.dart';
 
-import '../../../../../../core/utils/constants/api_constants.dart';
+import '../../../../../../../core/utils/constants/api_constants.dart';
 
 class TvMainDetails extends StatelessWidget {
   const TvMainDetails({super.key, required this.model});
@@ -39,7 +40,7 @@ class TvMainDetails extends StatelessWidget {
             ),
           ),
 
-
+          TvIdentifyCard(model: model)
         ],
       ),
     );

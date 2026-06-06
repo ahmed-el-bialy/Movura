@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/colors.dart';
 import 'package:movura/core/theming/styles.dart';
+import 'package:movura/core/utils/extensions/runtime_list_extension.dart';
 import 'package:movura/core/utils/helpers/spacing.dart';
 import 'package:movura/features/details_screen/data/models/tv_models/about_tv_series_model.dart';
 
@@ -29,20 +30,18 @@ class TvAdditionalData extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Icon(
-                          Icons.monetization_on_outlined,
+                          Icons.schedule_rounded,
                           color: AppColors.coolGray,
                           size: 23.sp,
                         ),
                         Text(
-                          "BUDGET",
+                          "Runtime avg",
                           style: Styles.font10MediumCoolGraySora.copyWith(
                             fontSize: 12.sp,
                           ),
                         ),
                         Text(
-                          model.budget != 0
-                              ? model.budget.toSmartCurrency()
-                              : "Unknown",
+                          model.episodeRunTime.formattedAverageRuntime,
                           style: Styles.font15MediumWhite,
                         ),
                       ],
@@ -60,12 +59,12 @@ class TvAdditionalData extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Icon(
-                          Icons.trending_up_rounded,
+                          Icons.tv_rounded,
                           color: AppColors.coolGray,
-                          size: 25.sp,
+                          size: 23.sp,
                         ),
                         Text(
-                          "REVENUE",
+                          "Episodes",
                           style: Styles.font10MediumCoolGraySora.copyWith(
                             fontSize: 12.sp,
                           ),
@@ -90,20 +89,20 @@ class TvAdditionalData extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Icon(
-                          Icons.access_time,
+                          Icons.video_library_rounded,
                           color: AppColors.coolGray,
                           size: 23.sp,
                         ),
                         Text(
-                          "RUNTIME",
+                          "Seasons",
                           style: Styles.font10MediumCoolGraySora.copyWith(
                             fontSize: 12.sp,
                           ),
                         ),
 
                         Text(
-                          model.runtime != 0
-                              ? model.runtime.runtimeFormatter()
+                          model.numberOfSeasons != 0
+                              ? model.numberOfSeasons.toString()
                               : "Unknown",
                           style: Styles.font15MediumWhite,
                         ),

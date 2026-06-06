@@ -5,9 +5,7 @@ sealed class AboutTvState {}
 
 final class AboutTvInitial extends AboutTvState {}
 
-final class AboutInitial extends AboutTvInitial {}
-
-final class AboutLoading extends AboutTvInitial {}
+final class AboutTvLoading extends AboutTvInitial {}
 
 final class AboutTvLoaded extends AboutTvInitial {
   final AboutTvSeriesModel model;

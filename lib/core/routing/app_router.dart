@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movura/features/details_screen/data/repos/tv_repos/about_tv_series_repo.dart';
+import 'package:movura/features/details_screen/logic/tv_series_cubit/about_tv/about_tv_cubit.dart';
 import 'package:movura/features/details_screen/ui/screens/tv_details_screen/tv_series_details_screen.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -43,8 +45,8 @@ class AppRouter {
           return MaterialPageRoute(
             builder: (_) => BlocProvider(
               create: (context) =>
-                  AboutCubit(repo: sl<AboutRepo>())
-                    ..getMovieMainDetails(id: arguments.mediaId),
+                  AboutTvCubit(repo: sl<AboutTvSeriesRepo>())
+                    ..getTvSeriesMainDetails(id: arguments.mediaId),
               child: TvSeriesDetailsScreen(),
             ),
           );

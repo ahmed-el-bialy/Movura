@@ -5,10 +5,10 @@ import 'package:movura/core/utils/helpers/video_player.dart';
 import '../../../../../../../core/theming/colors.dart';
 import '../../../../../../../core/theming/styles.dart';
 
-class ButtonsPart extends StatelessWidget {
+class ButtonsRow extends StatelessWidget {
   final String? videoKey;
 
-  const ButtonsPart({super.key, required this.videoKey});
+  const ButtonsRow({super.key, required this.videoKey});
 
   @override
   Widget build(BuildContext context) {

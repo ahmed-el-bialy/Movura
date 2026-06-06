@@ -17,12 +17,12 @@ import '../about_tab/about_tab_body.dart';
 import '../reviews_tab/reviews_tab_body.dart';
 import '../similar_tab/similar_tab_body.dart';
 import 'additional_data.dart';
-import 'buttons_part.dart';
+import 'buttons_row.dart';
 import 'movie_main_details.dart';
-import 'story_line_and_genres.dart';
+import 'movie_story_and_genres.dart';
 
-class movieScreenBody extends StatelessWidget {
-  const movieScreenBody({super.key, required this.model});
+class MovieScreenBody extends StatelessWidget {
+  const MovieScreenBody({super.key, required this.model});
 
   final AboutModel model;
 
@@ -64,10 +64,10 @@ class movieScreenBody extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           MovieMainDetails(model: model),
-          ButtonsPart(videoKey: trailerKey),
+          ButtonsRow(videoKey: trailerKey),
           verticalSpacing(20),
           AdditionalData(model: model),
-          StoryLineAndGenres(model: model),
+          MovieStoryAndGenres(model: model),
           verticalSpacing(10),
           DefaultTabController(
             length: 3,

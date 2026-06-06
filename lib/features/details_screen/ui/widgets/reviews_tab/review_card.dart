@@ -6,7 +6,7 @@ import 'package:movura/core/theming/styles.dart';
 import 'package:movura/core/utils/constants/api_constants.dart';
 import 'package:movura/core/utils/extensions/date_extension.dart';
 import 'package:movura/core/utils/helpers/spacing.dart';
-import 'package:movura/core/widgets/expandable_text.dart';
+import 'package:movura/core/widgets/read_more_text.dart';
 
 import '../../../data/models/movie_models/review_model.dart';
 import 'custom_rating_bar.dart';

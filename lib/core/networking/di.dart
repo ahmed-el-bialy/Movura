@@ -5,6 +5,7 @@ import 'package:movura/core/utils/constants/api_constants.dart';
 import '../../features/details_screen/data/repos/movie_repos/about_repo.dart';
 import '../../features/details_screen/data/repos/movie_repos/reviews_repo.dart';
 import '../../features/details_screen/data/repos/movie_repos/similar_repo.dart';
+import '../../features/details_screen/data/repos/tv_repos/about_tv_series_repo.dart';
 import '../../features/details_screen/data/webs_services/movie_web_services.dart';
 import '../../features/details_screen/data/webs_services/tv_web_services.dart';
 import '../../features/home_screen/data/repo/posters_repo.dart';
@@ -44,11 +45,7 @@ Future<void> initDI() async {
   sl.registerLazySingleton<SimilarRepo>(
         () => SimilarRepo(detailsWebServices: sl<MovieWebServices>()),
   );
-
-  // 4. الـ Repositories بتاعة الـ TV Series
-  // sl.registerLazySingleton<TvSeriesAboutRepo>(
-  //       () =>
-  //       TvSeriesAboutRepo(
-  //           sl<TvWebServices>()), // تم تعديل الحَقن هنا لـ TvWebServices
-  // );
+  sl.registerLazySingleton<AboutTvSeriesRepo>(
+        () => AboutTvSeriesRepo(sl<TvWebServices>()),
+  );
 }

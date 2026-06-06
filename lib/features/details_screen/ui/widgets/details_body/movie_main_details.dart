@@ -31,7 +31,10 @@ class MovieMainDetails extends StatelessWidget {
                 end: Alignment.bottomCenter,
                 colors: [
                   Colors.transparent,
-                  Colors.black.withValues(alpha: 0.6),
+                  Colors.black.withValues(alpha: 0.05),
+                  Colors.black.withValues(alpha: 0.1),
+                  Colors.black.withValues(alpha: 0.2),
+                  Colors.black,
                 ],
               ),
             ),

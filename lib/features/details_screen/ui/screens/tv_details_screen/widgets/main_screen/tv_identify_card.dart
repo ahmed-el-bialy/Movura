@@ -2,11 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/utils/extensions/status_display_extension.dart';
 import 'package:movura/features/details_screen/data/models/tv_models/about_tv_series_model.dart';
 
 import '../../../../../../../core/theming/colors.dart';
 import '../../../../../../../core/theming/styles.dart';
-import '../../../../../../../core/utils/extensions/runtime_formatter.dart';
 import '../../../../../../../core/utils/helpers/spacing.dart';
 
 class TvIdentifyCard extends StatelessWidget {
@@ -58,7 +58,7 @@ class TvIdentifyCard extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              " ${model.status} • ${model.language} • ${model.episodeRunTime[0].runtimeFormatter()} ",
+                              " TV Series • ${model.language} • ${(model.status.statusDisplay)} ",
                               style: Styles.font16SimiBoldPlatinumGray.copyWith(
                                 fontSize: 14.sp,
                               ),
