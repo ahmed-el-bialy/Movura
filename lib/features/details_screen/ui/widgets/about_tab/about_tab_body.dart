@@ -4,8 +4,8 @@ import 'package:movura/core/theming/styles.dart';
 import 'package:movura/core/utils/helpers/spacing.dart';
 import 'package:movura/core/widgets/section_title.dart';
 
-import '../../../data/models/about_model.dart';
-import '../../../logic/main_details/about_cubit.dart';
+import '../../../../../core/models/video_model.dart';
+import '../../../logic/movie_screen_cubit/main_details/about_cubit.dart';
 import '../details_loading_skeleton.dart';
 import 'about_actors_list.dart';
 import 'about_companies_list.dart';

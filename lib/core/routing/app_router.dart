@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movura/features/details_screen/ui/screens/tv_details_screen/tv_series_details_screen.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import '../../features/details_screen/data/repos/about_repo.dart';
-import '../../features/details_screen/logic/main_details/about_cubit.dart';
+import '../../features/details_screen/data/repos/movie_repos/about_repo.dart';
+import '../../features/details_screen/logic/movie_screen_cubit/main_details/about_cubit.dart';
+import '../../features/details_screen/ui/arguments_model.dart';
 import '../../features/details_screen/ui/screens/movie_details_screen.dart';
 import '../../features/home_screen/data/repo/posters_repo.dart';
 import '../../features/home_screen/logic/main_content/main_content_cubit.dart';
@@ -26,16 +28,27 @@ class AppRouter {
         );
 
       case Strings.detailsScreen:
-        final movieId = setting.arguments as int;
+        final arguments = setting.arguments as ArgumentsModel;
 
-        return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) =>
-                AboutCubit(repo: sl<AboutRepo>())
-                  ..getMovieMainDetails(id: movieId),
-            child: MovieDetailsScreen(),
-          ),
-        );
+        if (arguments.mediaType == "movie") {
+          return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+              create: (context) =>
+                  AboutCubit(repo: sl<AboutRepo>())
+                    ..getMovieMainDetails(id: arguments.mediaId),
+              child: MovieDetailsScreen(),
+            ),
+          );
+        } else {
+          return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+              create: (context) =>
+                  AboutCubit(repo: sl<AboutRepo>())
+                    ..getMovieMainDetails(id: arguments.mediaId),
+              child: TvSeriesDetailsScreen(),
+            ),
+          );
+        }
 
       case Strings.videoPlayScreen:
         final controller = setting.arguments as YoutubePlayerController;

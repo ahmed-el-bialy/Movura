@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/colors.dart';
 
 import '../../../../core/utils/extensions/routing_extension.dart';
-import '../../logic/main_details/about_cubit.dart';
+import '../../logic/movie_screen_cubit/main_details/about_cubit.dart';
 import '../widgets/details_body/details_screen_body.dart';
 import '../widgets/details_loading_skeleton.dart';
 

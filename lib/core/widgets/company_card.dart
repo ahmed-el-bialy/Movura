@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/features/details_screen/data/models/about_model.dart';
 
-import '../utils/constants/api_constants.dart';
+import '../models/company_model.dart';
 import '../theming/colors.dart';
 import '../theming/styles.dart';
+import '../utils/constants/api_constants.dart';
 
 class CompanyCard extends StatelessWidget {
   const CompanyCard({super.key, required this.company});

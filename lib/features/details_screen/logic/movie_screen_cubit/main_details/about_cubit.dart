@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../data/models/about_model.dart';
-import '../../data/repos/about_repo.dart';
+import '../../../data/models/movie_models/about_model.dart';
+import '../../../data/repos/movie_repos/about_repo.dart';
 
 part 'about_state.dart';
 

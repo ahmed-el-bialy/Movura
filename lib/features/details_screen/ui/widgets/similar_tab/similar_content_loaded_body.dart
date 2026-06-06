@@ -5,7 +5,7 @@ import '../../../../../core/theming/colors.dart';
 import '../../../../../core/utils/helpers/spacing.dart';
 import '../../../../../core/widgets/poster_card.dart';
 import '../../../../../core/widgets/section_title.dart';
-import '../../../../shared/data/models/poster_model.dart';
+import '../../../../../core/models/poster_model.dart';
 
 class SimilarContentLoadedBody extends StatelessWidget {
   const SimilarContentLoadedBody({

@@ -15,7 +15,7 @@ AboutModel _$AboutModelFromJson(Map<String, dynamic> json) => AboutModel(
   runtime: (json['runtime'] as num).toDouble(),
   rating: (json['vote_average'] as num).toDouble(),
   genres: (json['genres'] as List<dynamic>)
-      .map((e) => Genre.fromJson(e as Map<String, dynamic>))
+      .map((e) => GenreModel.fromJson(e as Map<String, dynamic>))
       .toList(),
   actors: ActorResponse.fromJson(json['credits'] as Map<String, dynamic>),
   companies: (json['production_companies'] as List<dynamic>)
@@ -59,27 +59,6 @@ VideoResponse _$VideoResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$VideoResponseToJson(VideoResponse instance) =>
     <String, dynamic>{'results': instance.videoList};
 
-VideoModel _$VideoModelFromJson(Map<String, dynamic> json) => VideoModel(
-  id: json['id'] as String,
-  key: json['key'] as String,
-  name: json['name'] as String,
-  site: json['site'] as String,
-  size: (json['size'] as num).toInt(),
-  type: json['type'] as String,
-  official: json['official'] as bool,
-);
-
-Map<String, dynamic> _$VideoModelToJson(VideoModel instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'key': instance.key,
-      'name': instance.name,
-      'site': instance.site,
-      'size': instance.size,
-      'type': instance.type,
-      'official': instance.official,
-    };
-
 ImagesResponse _$ImagesResponseFromJson(Map<String, dynamic> json) =>
     ImagesResponse(
       backdropImages: (json['backdrops'] as List<dynamic>)
@@ -96,12 +75,6 @@ Map<String, dynamic> _$ImagesResponseToJson(ImagesResponse instance) =>
       'logos': instance.logoImages,
     };
 
-ImageModel _$ImageModelFromJson(Map<String, dynamic> json) =>
-    ImageModel(imagePath: json['file_path'] as String?);
-
-Map<String, dynamic> _$ImageModelToJson(ImageModel instance) =>
-    <String, dynamic>{'file_path': instance.imagePath};
-
 ActorResponse _$ActorResponseFromJson(Map<String, dynamic> json) =>
     ActorResponse(
       movieActors: (json['cast'] as List<dynamic>)
@@ -111,39 +84,3 @@ ActorResponse _$ActorResponseFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ActorResponseToJson(ActorResponse instance) =>
     <String, dynamic>{'cast': instance.movieActors};
-
-ActorModel _$ActorModelFromJson(Map<String, dynamic> json) => ActorModel(
-  job: json['known_for_department'] as String,
-  name: json['name'] as String,
-  character: json['character'] as String,
-  actorImage: json['profile_path'] as String?,
-);
-
-Map<String, dynamic> _$ActorModelToJson(ActorModel instance) =>
-    <String, dynamic>{
-      'known_for_department': instance.job,
-      'name': instance.name,
-      'character': instance.character,
-      'profile_path': instance.actorImage,
-    };
-
-CompanyModel _$CompanyModelFromJson(Map<String, dynamic> json) => CompanyModel(
-  name: json['name'] as String,
-  originCountry: json['origin_country'] as String,
-  logo: json['logo_path'] as String?,
-);
-
-Map<String, dynamic> _$CompanyModelToJson(CompanyModel instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'origin_country': instance.originCountry,
-      'logo_path': instance.logo,
-    };
-
-Genre _$GenreFromJson(Map<String, dynamic> json) =>
-    Genre(id: (json['id'] as num).toInt(), name: json['name'] as String);
-
-Map<String, dynamic> _$GenreToJson(Genre instance) => <String, dynamic>{
-  'id': instance.id,
-  'name': instance.name,
-};

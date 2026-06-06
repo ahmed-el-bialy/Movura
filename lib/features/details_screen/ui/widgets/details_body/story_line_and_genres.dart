@@ -5,7 +5,7 @@ import 'package:movura/core/widgets/expandable_text.dart';
 import '../../../../../core/theming/colors.dart';
 import '../../../../../core/theming/styles.dart';
 import '../../../../../core/utils/helpers/spacing.dart';
-import '../../../data/models/about_model.dart';
+import '../../../data/models/movie_models/about_model.dart';
 
 class StoryLineAndGenres extends StatelessWidget {
   const StoryLineAndGenres({super.key, required this.model});

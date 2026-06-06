@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/utils/constants/api_constants.dart';
-import '../../../data/models/about_model.dart';
+import '../../../data/models/movie_models/about_model.dart';
 import 'identification_card.dart';
 
 class MovieMainDetails extends StatelessWidget {

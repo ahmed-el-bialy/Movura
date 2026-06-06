@@ -1,5 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../../../../core/models/actor_model.dart';
+import '../../../../../core/models/company_model.dart';
+import '../../../../../core/models/genre_model.dart';
+import '../../../../../core/models/image_model.dart';
+import '../../../../../core/models/video_model.dart';
+
 part 'about_model.g.dart';
 
 @JsonSerializable()
@@ -19,14 +25,13 @@ class AboutModel {
   @JsonKey(name: "overview")
   final String overview;
 
-  // 🔒 بقوا double زي النسخة الأصلية بتاعتك بالظبط بدون أي تغيير
   final double runtime;
 
   @JsonKey(name: "vote_average")
   final double rating;
 
   @JsonKey(name: "genres")
-  final List<Genre> genres;
+  final List<GenreModel> genres;
 
   @JsonKey(name: "credits")
   final ActorResponse actors;
@@ -73,7 +78,6 @@ class AboutModel {
   Map<String, dynamic> toJson() => _$AboutModelToJson(this);
 }
 
-// 🔽 كلاسات الفيديوهات الجديدة مضافين تحت بأمان
 
 @JsonSerializable()
 class VideoResponse {
@@ -88,31 +92,6 @@ class VideoResponse {
   Map<String, dynamic> toJson() => _$VideoResponseToJson(this);
 }
 
-@JsonSerializable()
-class VideoModel {
-  final String id;
-  final String key;
-  final String name;
-  final String site;
-  final int size;
-  final String type;
-  final bool official;
-
-  VideoModel({
-    required this.id,
-    required this.key,
-    required this.name,
-    required this.site,
-    required this.size,
-    required this.type,
-    required this.official,
-  });
-
-  factory VideoModel.fromJson(Map<String, dynamic> json) =>
-      _$VideoModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$VideoModelToJson(this);
-}
 
 @JsonSerializable()
 class ImagesResponse {
@@ -130,18 +109,6 @@ class ImagesResponse {
   Map<String, dynamic> toJson() => _$ImagesResponseToJson(this);
 }
 
-@JsonSerializable()
-class ImageModel {
-  @JsonKey(name: "file_path")
-  final String? imagePath;
-
-  ImageModel({this.imagePath});
-
-  factory ImageModel.fromJson(Map<String, dynamic> json) =>
-      _$ImageModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ImageModelToJson(this);
-}
 
 @JsonSerializable()
 class ActorResponse {
@@ -154,57 +121,4 @@ class ActorResponse {
       _$ActorResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ActorResponseToJson(this);
-}
-
-@JsonSerializable()
-class ActorModel {
-  @JsonKey(name: "known_for_department")
-  final String job;
-  @JsonKey(name: "name")
-  final String name;
-  @JsonKey(name: "character")
-  final String character;
-  @JsonKey(name: "profile_path")
-  final String? actorImage;
-
-  ActorModel({
-    required this.job,
-    required this.name,
-    required this.character,
-    this.actorImage,
-  });
-
-  factory ActorModel.fromJson(Map<String, dynamic> json) =>
-      _$ActorModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ActorModelToJson(this);
-}
-
-@JsonSerializable()
-class CompanyModel {
-  @JsonKey(name: "name")
-  final String name;
-  @JsonKey(name: "origin_country")
-  final String originCountry;
-  @JsonKey(name: "logo_path")
-  final String? logo;
-
-  CompanyModel({required this.name, required this.originCountry, this.logo});
-
-  factory CompanyModel.fromJson(Map<String, dynamic> json) =>
-      _$CompanyModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CompanyModelToJson(this);
-}
-
-@JsonSerializable()
-class Genre {
-  final int id;
-  final String name;
-
-  Genre({required this.id, required this.name});
-
-  factory Genre.fromJson(Map<String, dynamic> json) => _$GenreFromJson(json);
-
-  Map<String, dynamic> toJson() => _$GenreToJson(this);
 }

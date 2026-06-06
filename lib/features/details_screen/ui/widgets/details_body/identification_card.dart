@@ -7,7 +7,7 @@ import '../../../../../core/theming/colors.dart';
 import '../../../../../core/theming/styles.dart';
 import '../../../../../core/utils/extensions/runtime_formatter.dart';
 import '../../../../../core/utils/helpers/spacing.dart';
-import '../../../data/models/about_model.dart';
+import '../../../data/models/movie_models/about_model.dart';
 
 class IdentificationCard extends StatelessWidget {
   const IdentificationCard({super.key, required this.model});

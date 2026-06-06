@@ -3,15 +3,15 @@ import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 
 import '../../../../core/utils/constants/api_constants.dart';
-import '../models/about_model.dart';
-import '../models/review_model.dart';
-import '../models/similar_model.dart';
+import '../models/movie_models/about_model.dart';
+import '../models/movie_models/review_model.dart';
+import '../models/movie_models/similar_model.dart';
 
-part 'details_web_services.g.dart';
+part 'movie_web_services.g.dart';
 
 @RestApi()
-abstract class DetailsWebServices {
-  factory DetailsWebServices(Dio dio, {String? baseUrl}) = _DetailsWebServices;
+abstract class MovieWebServices {
+  factory MovieWebServices(Dio dio, {String? baseUrl}) = _MovieWebServices;
 
   @GET("${ApiConstants.movieDetails}/{id}")
   Future<AboutModel> getMovieMainDetails({

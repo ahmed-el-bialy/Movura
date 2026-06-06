@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../shared/data/models/poster_model.dart';
+import '../../../../../core/models/poster_model.dart';
 
 part 'similar_model.g.dart';
 

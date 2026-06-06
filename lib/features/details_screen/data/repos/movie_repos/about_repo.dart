@@ -1,8 +1,8 @@
-import '../models/about_model.dart';
-import '../webs_services/details_web_services.dart';
+import '../../models/movie_models/about_model.dart';
+import '../../webs_services/movie_web_services.dart';
 
 class AboutRepo {
-  final DetailsWebServices detailsWebServices;
+  final MovieWebServices detailsWebServices;
 
   AboutRepo(this.detailsWebServices);
 

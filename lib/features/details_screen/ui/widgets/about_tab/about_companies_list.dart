@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/widgets/company_card.dart';
 
-import '../../../data/models/about_model.dart';
+import '../../../../../core/models/company_model.dart';
 
 class AboutCompaniesList extends StatelessWidget {
   const AboutCompaniesList({super.key, required this.company});

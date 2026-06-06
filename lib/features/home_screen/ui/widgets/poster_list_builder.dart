@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/widgets/poster_card.dart';
 
-import '../../../shared/data/models/poster_model.dart';
+import '../../../../core/models/poster_model.dart';
 
 class PosterListBuilder extends StatelessWidget {
   const PosterListBuilder({super.key, required this.trendingContent});

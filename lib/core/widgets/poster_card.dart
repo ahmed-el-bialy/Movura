@@ -5,7 +5,9 @@ import 'package:movura/core/theming/styles.dart';
 import 'package:movura/core/utils/constants/api_constants.dart';
 import 'package:movura/core/utils/constants/strings.dart';
 import 'package:movura/core/utils/extensions/routing_extension.dart';
-import 'package:movura/features/shared/data/models/poster_model.dart';
+import 'package:movura/core/models/poster_model.dart';
+
+import '../../features/details_screen/ui/arguments_model.dart';
 
 class PosterCard extends StatelessWidget {
   const PosterCard({
@@ -41,7 +43,9 @@ class PosterCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        context.pushNamed(Strings.detailsScreen, mediaModel?.id);
+        context.pushNamed(Strings.detailsScreen, ArgumentsModel(
+            mediaType: mediaModel?.mediaType ?? "",
+            mediaId: mediaModel!.id));
       },
       child: Card(
         elevation: elevation ?? 10,

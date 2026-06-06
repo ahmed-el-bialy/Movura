@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../data/models/similar_model.dart';
-import '../../data/repos/similar_repo.dart';
+import '../../../data/models/movie_models/similar_model.dart';
+import '../../../data/repos/movie_repos/similar_repo.dart';
 
 part 'similar_content_state.dart';
 

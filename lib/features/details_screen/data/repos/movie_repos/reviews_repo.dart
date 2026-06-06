@@ -1,9 +1,9 @@
 
-import '../models/review_model.dart';
-import '../webs_services/details_web_services.dart';
+import '../../models/movie_models/review_model.dart';
+import '../../webs_services/movie_web_services.dart';
 
 class ReviewsRepo {
-  final DetailsWebServices detailsWebServices;
+  final MovieWebServices detailsWebServices;
 
   ReviewsRepo({required this.detailsWebServices});
 

@@ -1,8 +1,8 @@
-import '../models/similar_model.dart';
-import '../webs_services/details_web_services.dart';
+import '../../models/movie_models/similar_model.dart';
+import '../../webs_services/movie_web_services.dart';
 
 class SimilarRepo {
-  final DetailsWebServices detailsWebServices;
+  final MovieWebServices detailsWebServices;
 
   SimilarRepo({required this.detailsWebServices});
 
