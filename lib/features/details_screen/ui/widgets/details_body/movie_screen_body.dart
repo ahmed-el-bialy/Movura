@@ -21,8 +21,8 @@ import 'buttons_part.dart';
 import 'movie_main_details.dart';
 import 'story_line_and_genres.dart';
 
-class ScreenBody extends StatelessWidget {
-  const ScreenBody({super.key, required this.model});
+class movieScreenBody extends StatelessWidget {
+  const movieScreenBody({super.key, required this.model});
 
   final AboutModel model;
 
