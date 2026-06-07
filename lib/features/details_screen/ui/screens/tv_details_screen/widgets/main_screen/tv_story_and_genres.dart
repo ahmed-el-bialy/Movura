@@ -29,14 +29,15 @@ class TvStoryAndGenres extends StatelessWidget {
           ),
 
           verticalSpacing(10),
-          Center(
+          model.tagline != null && model.tagline!.isNotEmpty ? Center(
             child: Text(
               ' "${model.tagline!}"',
               style: Styles.font10BoldIceBlueMontserrat.copyWith(fontSize: 12.sp),
             ),
-          ),
+          ) : const SizedBox.shrink(),
 
-          verticalSpacing(6),
+          model.tagline != null && model.tagline!.isNotEmpty ? verticalSpacing(
+              6) : const SizedBox.shrink(),
           ReadMoreText(content: model.overview),
 
           verticalSpacing(14),
