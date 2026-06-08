@@ -8,7 +8,7 @@ final class SimilarContentInitial extends SimilarContentState {}
 final class SimilarContentLoading extends SimilarContentState {}
 
 final class SimilarContentLoaded extends SimilarContentState {
-  final SimilarMovieResponse similarMovieResponse;
+  final SimilarContentResponse similarMovieResponse;
 
   SimilarContentLoaded({required this.similarMovieResponse});
 }

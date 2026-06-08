@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/core/theming/styles.dart';
+import 'package:movura/core/widgets/empty_section_message.dart';
 import 'package:movura/core/widgets/section_title.dart';
 import 'package:movura/features/details_screen/ui/screens/shared_widgets/review_tab_shared_widgets/review_card.dart';
 
-import '../../../../logic/movie_screen_cubit/reviews/reviews_cubit.dart';
-
+import '../../../../logic/tv_series_cubit/reviews/reviews_cubit.dart';
 
 class ReviewsTabBody extends StatelessWidget {
   const ReviewsTabBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ReviewsCubit, ReviewsState>(
+    return BlocBuilder<TvSeriesReviewsCubit, TvSeriesReviewsState>(
       builder: (context, state) {
-        if (state is ReviewsLoaded) {
+        if (state is TvReviewsLoaded) {
           if (state.response.isEmpty) {
-            return const Center(
-              child: Text(
-                "No reviews available for this movie",
-                style: TextStyle(color: Colors.white),
-              ),
+            return EmptySectionMessage(
+              icon: Icons.reviews_outlined,
+              title: "No reviews yet",
+              subTitle: "Stay tuned for upcoming community feedback",
             );
           }
           return Column(
@@ -41,10 +40,10 @@ class ReviewsTabBody extends StatelessWidget {
               ),
             ],
           );
-        } else if (state is ReviewsLoading) {
+        } else if (state is TvReviewsLoading) {
           return Center(child: CircularProgressIndicator());
         }
-        if (state is ReviewsFailed) {
+        if (state is TvReviewsFailed) {
           return Center(
             child: Text(state.errorMessage, style: Styles.font11BoldGold),
           );

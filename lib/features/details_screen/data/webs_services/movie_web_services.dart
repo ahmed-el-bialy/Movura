@@ -4,8 +4,8 @@ import 'package:retrofit/http.dart';
 
 import '../../../../core/utils/constants/api_constants.dart';
 import '../models/movie_models/about_model.dart';
-import '../models/movie_models/review_model.dart';
-import '../models/movie_models/similar_model.dart';
+import '../models/shared_models/review_model.dart';
+import '../models/shared_models/similar_model.dart';
 
 part 'movie_web_services.g.dart';
 
@@ -28,7 +28,7 @@ abstract class MovieWebServices {
   });
 
   @GET("${ApiConstants.movieDetails}/{id}")
-  Future<SimilarMovieResponse> getSimilarMovies({
+  Future<SimilarContentResponse> getSimilarMovies({
     @Path("id") required int movieId,
     @Query("append_to_response")
     String additionalData = "similar,recommendations",

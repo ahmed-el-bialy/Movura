@@ -11,7 +11,7 @@ class AboutTvSeriesRepo {
     required int movieId,
   }) async {
     var response = await tvWebServices.getTvSeriesMainDetails(
-      movieId: movieId,
+      id: movieId,
       additionalData: "credits,images,videos",
     );
 

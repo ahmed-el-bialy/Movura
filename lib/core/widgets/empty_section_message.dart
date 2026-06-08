@@ -1,0 +1,40 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/theming/colors.dart';
+import 'package:movura/core/theming/styles.dart';
+
+class EmptySectionMessage extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String? subTitle;
+  final bool showIcon;
+  final int? heightPage;
+
+  const EmptySectionMessage({
+    super.key,
+    required this.icon,
+    required this.title,
+    this.subTitle,
+    this.showIcon = true,
+    this.heightPage = 200,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: heightPage?.h,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon, color: AppColors.neonCyan, size: 50.sp),
+          SizedBox(height: 16.h),
+          Text(title, style: Styles.font20SimiBoldNeonCyanManrope),
+          SizedBox(height: 8.h),
+          subTitle != null
+              ? Text(subTitle!, style: Styles.font12MediumPlatinumGray)
+              : SizedBox(),
+        ],
+      ),
+    );
+  }
+}

@@ -5,19 +5,19 @@ import '../../../../../core/models/poster_model.dart';
 part 'similar_model.g.dart';
 
 @JsonSerializable()
-class SimilarMovieResponse {
+class SimilarContentResponse {
   @JsonKey(name: "similar")
   final SimilarContainer? similar;
 
   @JsonKey(name: "recommendations")
   final RecommendationsContainer? recommendations;
 
-  SimilarMovieResponse({this.similar, this.recommendations});
+  SimilarContentResponse({this.similar, this.recommendations});
 
-  factory SimilarMovieResponse.fromJson(Map<String, dynamic> json) =>
-      _$SimilarMovieResponseFromJson(json);
+  factory SimilarContentResponse.fromJson(Map<String, dynamic> json) =>
+      _$SimilarContentResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$SimilarMovieResponseToJson(this);
+  Map<String, dynamic> toJson() => _$SimilarContentResponseToJson(this);
 }
 
 @JsonSerializable()

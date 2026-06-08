@@ -1,5 +1,5 @@
 
-import '../../models/movie_models/review_model.dart';
+import '../../models/shared_models/review_model.dart';
 import '../../webs_services/movie_web_services.dart';
 
 class ReviewsRepo {

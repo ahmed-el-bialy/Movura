@@ -21,7 +21,7 @@ class _TvWebServices implements TvWebServices {
 
   @override
   Future<AboutTvSeriesModel> getTvSeriesMainDetails({
-    required int movieId,
+    required int id,
     String additionalData = "credits,images,videos",
     String language = "en-US",
   }) async {
@@ -36,7 +36,7 @@ class _TvWebServices implements TvWebServices {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'tv/${movieId}',
+            'tv/${id}',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -46,6 +46,70 @@ class _TvWebServices implements TvWebServices {
     late AboutTvSeriesModel _value;
     try {
       _value = AboutTvSeriesModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<ReviewsResponse> getTvSeriesReviews({
+    required int id,
+    String language = "en-US",
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'language': language};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<ReviewsResponse>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'tv/${id}/reviews',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ReviewsResponse _value;
+    try {
+      _value = ReviewsResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<SimilarContentResponse> getSimilarTvSeries({
+    required int id,
+    String additionalData = "similar,recommendations",
+    String language = "en-US",
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'append_to_response': additionalData,
+      r'language': language,
+    };
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<SimilarContentResponse>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'tv/${id}',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late SimilarContentResponse _value;
+    try {
+      _value = SimilarContentResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;

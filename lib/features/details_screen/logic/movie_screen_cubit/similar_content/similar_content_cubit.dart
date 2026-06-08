@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../data/models/movie_models/similar_model.dart';
+import '../../../data/models/shared_models/similar_model.dart';
 import '../../../data/repos/movie_repos/similar_repo.dart';
 
 part 'similar_content_state.dart';
@@ -9,7 +9,7 @@ part 'similar_content_state.dart';
 class SimilarContentCubit extends Cubit<SimilarContentState> {
   SimilarContentCubit({required this.repo}) : super(SimilarContentInitial());
 
-  SimilarMovieResponse? reviewResponse;
+  SimilarContentResponse? reviewResponse;
 
   final SimilarRepo repo;
 

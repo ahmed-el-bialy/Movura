@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../data/models/movie_models/review_model.dart';
+import '../../../data/models/shared_models/review_model.dart';
 import '../../../data/repos/movie_repos/reviews_repo.dart';
 
 

@@ -84,7 +84,7 @@ class _MovieWebServices implements MovieWebServices {
   }
 
   @override
-  Future<SimilarMovieResponse> getSimilarMovies({
+  Future<SimilarContentResponse> getSimilarMovies({
     required int movieId,
     String additionalData = "similar,recommendations",
     String language = "en-US",
@@ -96,7 +96,7 @@ class _MovieWebServices implements MovieWebServices {
     };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<SimilarMovieResponse>(
+    final _options = _setStreamType<SimilarContentResponse>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -107,9 +107,9 @@ class _MovieWebServices implements MovieWebServices {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late SimilarMovieResponse _value;
+    late SimilarContentResponse _value;
     try {
-      _value = SimilarMovieResponse.fromJson(_result.data!);
+      _value = SimilarContentResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;

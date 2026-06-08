@@ -1,11 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:movura/core/utils/constants/api_constants.dart';
+import 'package:movura/features/details_screen/data/repos/tv_repos/tv_reviews_repo.dart';
 
 import '../../features/details_screen/data/repos/movie_repos/about_repo.dart';
 import '../../features/details_screen/data/repos/movie_repos/reviews_repo.dart';
 import '../../features/details_screen/data/repos/movie_repos/similar_repo.dart';
 import '../../features/details_screen/data/repos/tv_repos/about_tv_series_repo.dart';
+import '../../features/details_screen/data/repos/tv_repos/tv_similar_repo.dart';
 import '../../features/details_screen/data/webs_services/movie_web_services.dart';
 import '../../features/details_screen/data/webs_services/tv_web_services.dart';
 import '../../features/home_screen/data/repo/posters_repo.dart';
@@ -47,5 +49,11 @@ Future<void> initDI() async {
   );
   sl.registerLazySingleton<AboutTvSeriesRepo>(
         () => AboutTvSeriesRepo(sl<TvWebServices>()),
+  );
+  sl.registerLazySingleton<TvSimilarRepo>(
+        () => TvSimilarRepo(detailsWebServices: sl<TvWebServices>()),
+  );
+  sl.registerLazySingleton<TvReviewsRepo>(
+        () => TvReviewsRepo(detailsWebServices: sl<TvWebServices>()),
   );
 }

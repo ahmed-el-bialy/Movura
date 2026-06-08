@@ -6,9 +6,9 @@ part of 'similar_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SimilarMovieResponse _$SimilarMovieResponseFromJson(
+SimilarContentResponse _$SimilarContentResponseFromJson(
   Map<String, dynamic> json,
-) => SimilarMovieResponse(
+) => SimilarContentResponse(
   similar: json['similar'] == null
       ? null
       : SimilarContainer.fromJson(json['similar'] as Map<String, dynamic>),
@@ -19,8 +19,8 @@ SimilarMovieResponse _$SimilarMovieResponseFromJson(
         ),
 );
 
-Map<String, dynamic> _$SimilarMovieResponseToJson(
-  SimilarMovieResponse instance,
+Map<String, dynamic> _$SimilarContentResponseToJson(
+  SimilarContentResponse instance,
 ) => <String, dynamic>{
   'similar': instance.similar,
   'recommendations': instance.recommendations,

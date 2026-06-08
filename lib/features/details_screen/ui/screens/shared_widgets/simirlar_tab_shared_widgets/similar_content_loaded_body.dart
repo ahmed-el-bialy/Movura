@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../../core/models/poster_model.dart';
 import '../../../../../../core/theming/colors.dart';
 import '../../../../../../core/utils/helpers/spacing.dart';
 import '../../../../../../core/widgets/poster_card.dart';
 import '../../../../../../core/widgets/section_title.dart';
-import '../../../../../../core/models/poster_model.dart';
 
 class SimilarContentLoadedBody extends StatelessWidget {
   const SimilarContentLoadedBody({
@@ -22,9 +22,13 @@ class SimilarContentLoadedBody extends StatelessWidget {
     return Column(
       children: [
         verticalSpacing(10),
-        SectionTitle(sectionName: "RECOMMENDATIONS", actionName: "VIEW ALL"),
+        recommendList.isNotEmpty
+            ? SectionTitle(
+            sectionName: "RECOMMENDATIONS", actionName: "VIEW ALL")
+            : Container(),
         verticalSpacing(10),
-        SizedBox(
+        recommendList.isNotEmpty
+            ? SizedBox(
           height: 250.h,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
@@ -42,11 +46,12 @@ class SimilarContentLoadedBody extends StatelessWidget {
               );
             },
           ),
-        ),
+        ) : SizedBox(),
         verticalSpacing(10),
-        SectionTitle(sectionName: "SIMILAR", actionName: "VIEW ALL"),
+        similarList.isNotEmpty ? SectionTitle(
+            sectionName: "SIMILAR", actionName: "VIEW ALL") : Container(),
         verticalSpacing(10),
-        SizedBox(
+        similarList.isNotEmpty ?SizedBox(
           height: 250.h,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
@@ -64,7 +69,7 @@ class SimilarContentLoadedBody extends StatelessWidget {
               );
             },
           ),
-        ),
+        ): Container(),
         verticalSpacing(20),
       ],
     );
