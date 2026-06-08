@@ -3,21 +3,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/core/models/poster_model.dart';
 import 'package:movura/features/home_screen/data/repo/trending_content_repo.dart';
 
-part 'main_content_state.dart';
+part 'trending_content_state.dart';
 
-class MainContentCubit extends Cubit<MainContentState> {
-  MainContentCubit({required this.postersRepo}) : super(MainContentInitial());
+class TrendingContentCubit extends Cubit<TrendingContentState> {
+  TrendingContentCubit({required this.postersRepo})
+    : super(TrendingContentInitial());
 
   final TrendingContentRepo postersRepo;
   List<PosterModel>? posters;
 
   Future<void> getTrendingPosters() async {
-    emit(MainContentLoading());
+    emit(TrendingContentLoading());
     try {
       posters = await postersRepo.getTrendingMedia();
-      emit(MainContentLoaded(posters: posters ?? []));
+      emit(TrendingContentLoaded(posters: posters ?? []));
     } catch (e) {
-      emit(MainContentFailed(errorMessage: e.toString()));
+      emit(TrendingContentFailed(errorMessage: e.toString()));
     }
   }
 }

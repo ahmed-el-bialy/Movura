@@ -6,11 +6,11 @@ import 'package:movura/core/theming/styles.dart';
 import 'package:movura/features/home_screen/ui/widgets/poster_list_builder.dart';
 import 'package:movura/features/home_screen/ui/widgets/sub_poster_list_builder.dart';
 
-import '../../../core/utils/helpers/spacing.dart';
 import '../../../core/utils/constants/strings.dart';
+import '../../../core/utils/helpers/spacing.dart';
 import '../../../core/widgets/app_navigation_bar.dart';
 import '../../../core/widgets/section_title.dart';
-import '../logic/main_content/main_content_cubit.dart';
+import '../logic/trending_content/trending_content_cubit.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -76,9 +76,9 @@ class MainScreen extends StatelessWidget {
                 actionName: "View All >> ",
               ),
             ),
-            BlocBuilder<MainContentCubit, MainContentState>(
+            BlocBuilder<TrendingContentCubit, TrendingContentState>(
               builder: (context, state) {
-                if (state is MainContentLoading) {
+                if (state is TrendingContentLoading) {
                   return SliverToBoxAdapter(
                     child: SizedBox(
                       height: 340.h,
@@ -89,11 +89,11 @@ class MainScreen extends StatelessWidget {
                       ),
                     ),
                   );
-                } else if (state is MainContentLoaded) {
+                } else if (state is TrendingContentLoaded) {
                   return SliverToBoxAdapter(
                     child: PosterListBuilder(trendingContent: state.posters,),
                   );
-                } else if (state is MainContentFailed) {
+                } else if (state is TrendingContentFailed) {
                   return SliverToBoxAdapter(
                     child: Text(
                       state.errorMessage,

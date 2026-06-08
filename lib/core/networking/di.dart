@@ -11,7 +11,7 @@ import '../../features/details_screen/data/repos/tv_repos/tv_similar_repo.dart';
 import '../../features/details_screen/data/webs_services/movie_web_services.dart';
 import '../../features/details_screen/data/webs_services/tv_web_services.dart';
 import '../../features/home_screen/data/repo/trending_content_repo.dart';
-import '../../features/home_screen/data/web_services/trending_web_services.dart';
+import '../../features/home_screen/data/web_services/home_web_services.dart';
 import 'dio_factory.dart';
 
 final sl = GetIt.instance;
@@ -21,8 +21,8 @@ Future<void> initDI() async {
   final dio = DioFactory.getDio();
   sl.registerLazySingleton<Dio>(() => dio);
 
-  sl.registerLazySingleton<TrendingWebServices>(
-        () => TrendingWebServices(sl<Dio>(), baseUrl: ApiConstants.baseUrl),
+  sl.registerLazySingleton<HomeWebServices>(
+        () => HomeWebServices(sl<Dio>(), baseUrl: ApiConstants.baseUrl),
   );
 
   sl.registerLazySingleton<MovieWebServices>(
@@ -34,7 +34,7 @@ Future<void> initDI() async {
   );
 
   sl.registerLazySingleton<TrendingContentRepo>(
-        () => TrendingContentRepo(sl<TrendingWebServices>()),
+        () => TrendingContentRepo(sl<HomeWebServices>()),
   );
 
   sl.registerLazySingleton<AboutRepo>(() => AboutRepo(sl<MovieWebServices>()),
