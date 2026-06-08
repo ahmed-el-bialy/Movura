@@ -22,7 +22,8 @@ class PosterCard extends StatelessWidget {
     this.border,
     this.mediaModel,
     this.subCardColor,
-    this.subCardBorder, this.mediaType,
+    this.subCardBorder,
+    this.mediaType,
   });
 
   final double? height;
@@ -44,9 +45,13 @@ class PosterCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        context.pushNamed(Strings.detailsScreen, ArgumentsModel(
+        context.pushNamed(
+          Strings.detailsScreen,
+          ArgumentsModel(
             mediaType: mediaModel?.mediaType ?? mediaType ?? "movie",
-            mediaId: mediaModel!.id));
+            mediaId: mediaModel!.id,
+          ),
+        );
       },
       child: Card(
         elevation: elevation ?? 10,
@@ -66,8 +71,8 @@ class PosterCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(cardRadius),
                 child: CachedNetworkImage(
                   imageUrl:
-                  (mediaModel?.posterPath != null &&
-                      mediaModel!.posterPath!.isNotEmpty)
+                      (mediaModel?.posterPath != null &&
+                          mediaModel!.posterPath!.isNotEmpty)
                       ? "${ApiConstants.imageBaseUrl}${mediaModel!.posterPath}"
                       : "",
                   fit: BoxFit.fill,
@@ -101,7 +106,7 @@ class PosterCard extends StatelessWidget {
                     ),
                     elevation: subCardElevation ?? 8,
                     color:
-                    subCardColor ?? Color(0xFF2C2938).withValues(alpha: .9),
+                        subCardColor ?? Color(0xFF2C2938).withValues(alpha: .9),
                     child: Padding(
                       padding: EdgeInsets.symmetric(
                         horizontal: 6.w,
@@ -128,13 +133,13 @@ class PosterCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(subCardBorder ?? 10),
                     ),
                     color:
-                    subCardColor ?? Color(0xFF2C2938).withValues(alpha: .9),
+                        subCardColor ?? Color(0xFF2C2938).withValues(alpha: .9),
                     child: Padding(
                       padding: EdgeInsets.all(5.0.r),
                       child: Text(
-                        mediaModel?.mediaType ?? "N/A",
+                        mediaModel?.mediaType ?? mediaType ?? "N/A",
                         style:
-                        subTextStyle ?? Styles.font16SimiBoldPlatinumGray,
+                            subTextStyle ?? Styles.font16SimiBoldPlatinumGray,
                       ),
                     ),
                   ),
@@ -149,7 +154,7 @@ class PosterCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(subCardBorder ?? 10),
                     ),
                     color:
-                    subCardColor ?? Color(0xFF2C2938).withValues(alpha: .9),
+                        subCardColor ?? Color(0xFF2C2938).withValues(alpha: .9),
                     elevation: subCardElevation ?? 10,
                     child: Padding(
                       padding: EdgeInsets.all(5.0.r),
@@ -160,17 +165,17 @@ class PosterCard extends StatelessWidget {
                         children: [
                           Text(
                             mediaModel?.voteAverage != null
-                                ? mediaModel!.voteAverage!.toStringAsFixed(1)
+                                ? "${mediaModel!.voteAverage!.toStringAsFixed(1)} "
                                 : "0.0",
                             style:
-                            subTextStyle ??
+                                subTextStyle ??
                                 Styles.font16SimiBoldPlatinumGray,
                           ),
                           Icon(
                             Icons.star_purple500_outlined,
                             size: 18.sp,
                             color:
-                            subTextStyle?.color ??
+                                subTextStyle?.color ??
                                 Styles.font16SimiBoldPlatinumGray.color,
                           ),
                         ],

@@ -4,7 +4,7 @@ class ApiConstants {
   static const String apiToken =
       'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzOWYxYmQzNjBhODNhN2UzMTE1NmE2ODRiZTNmNDM1MCIsIm5iZiI6MTc3NzQ3NzExNi41NjksInN1YiI6IjY5ZjIyNWZjNzYyNmU3MThiMGRjZTA0NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.8URh-ciXG7o8iGzzS7AwY4vjO9JIBJiflPGNS6_otgE';
 
-  static const String topRatedMovies = "top_rated?language=en-US&page=1";
+  static const String topRatedMovies = "movie/top_rated";
   static const String trendingMedia = "trending/all/day";
   static const String movieDetails = "movie";
   static const String tvDetails = "tv";

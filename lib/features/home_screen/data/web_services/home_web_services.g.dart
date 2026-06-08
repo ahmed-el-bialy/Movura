@@ -56,7 +56,7 @@ class _HomeWebServices implements HomeWebServices {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'top_rated?language=en-US&page=1',
+            'movie/top_rated',
             queryParameters: queryParameters,
             data: _data,
           )

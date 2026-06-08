@@ -18,7 +18,7 @@ class AppNavigationBar extends StatelessWidget {
         height: 62.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25.r),
-          color: AppColors.jetBlack.withValues(alpha: .82),
+          color: AppColors.jetBlack.withValues(alpha: .6),
         ),
         child: Material(
           color: Colors.transparent,

@@ -5,7 +5,7 @@ import '../../../../core/models/poster_model.dart';
 class TopRatedMoviesRepo {
   final HomeWebServices webServices;
 
-  TopRatedMoviesRepo(this.webServices);
+  TopRatedMoviesRepo({required this.webServices});
 
   Future<List<PosterModel>> getTopRatedMovies() async {
     var response = await webServices.getTopRatedMovies();

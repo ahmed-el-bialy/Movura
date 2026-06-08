@@ -10,7 +10,7 @@ import '../../features/details_screen/logic/movie_screen_cubit/main_details/abou
 import '../../features/details_screen/ui/arguments_model.dart';
 import '../../features/details_screen/ui/screens/moive_details_screen/widgets/main_screen/movie_details_screen.dart';
 import '../../features/details_screen/ui/screens/shared/screens/video_screen.dart';
-import '../../features/home_screen/data/repo/trending_content_repo.dart';
+import '../../features/home_screen/logic/top_rated_movie/top_rated_movie_cubit.dart';
 import '../../features/home_screen/logic/trending_content/trending_content_cubit.dart';
 import '../../features/home_screen/ui/main_screen.dart';
 import '../networking/di.dart';
@@ -21,10 +21,17 @@ class AppRouter {
     switch (setting.name) {
       case Strings.mainScreen:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (BuildContext context) =>
-                TrendingContentCubit(postersRepo: sl<TrendingContentRepo>())
-                  ..getTrendingPosters(),
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) =>
+                    sl<TrendingContentCubit>()..getTrendingPosters(),
+              ),
+              BlocProvider(
+                create: (context) =>
+                    sl<TopRatedMovieCubit>()..getTopRatedMovies(),
+              ),
+            ],
             child: const MainScreen(),
           ),
         );

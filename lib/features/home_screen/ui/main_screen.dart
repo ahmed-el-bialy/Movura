@@ -118,6 +118,8 @@ class MainScreen extends StatelessWidget {
               ),
             ),
             SliverToBoxAdapter(child: SubPosterListBuilder()),
+
+            SliverToBoxAdapter(child: verticalSpacing(50)),
           ],
         ),
       ),
