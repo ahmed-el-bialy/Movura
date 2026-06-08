@@ -46,9 +46,10 @@ class ActorCard extends StatelessWidget {
                   ),
                 ),
 
+
           Padding(
             padding: EdgeInsets.only(
-              top: 10.h,
+              top: 12.h,
               left: 10.w,
               right: 10.w,
               bottom: 4.w,

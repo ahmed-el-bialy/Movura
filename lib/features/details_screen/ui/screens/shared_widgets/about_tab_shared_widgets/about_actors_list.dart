@@ -19,7 +19,10 @@ class AboutActorsList extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: actors.length,
         itemBuilder: (context, index) {
-          return ActorCard(actor: actors[index]);
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.w),
+            child: ActorCard(actor: actors[index]),
+          );
         },
       ),
     );
