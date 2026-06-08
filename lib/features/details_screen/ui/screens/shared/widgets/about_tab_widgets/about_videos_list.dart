@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/utils/constants/api_constants.dart';
 
-import '../../../../../../core/models/video_model.dart';
+import '../../../../../../../core/models/video_model.dart';
 import 'about_video_card.dart';
 
 class AboutVideosList extends StatelessWidget {

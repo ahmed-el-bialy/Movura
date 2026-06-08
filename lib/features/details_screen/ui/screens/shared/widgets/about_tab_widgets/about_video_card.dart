@@ -2,9 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../../core/models/video_model.dart';
-import '../../../../../../core/theming/colors.dart';
-import '../../../../../../core/utils/helpers/video_player.dart';
+import '../../../../../../../core/models/video_model.dart';
+import '../../../../../../../core/theming/colors.dart';
+import '../../../../../../../core/utils/helpers/video_player.dart';
 
 class AboutVideoCard extends StatelessWidget {
   const AboutVideoCard({

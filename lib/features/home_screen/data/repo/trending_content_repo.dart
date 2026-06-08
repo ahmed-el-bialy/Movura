@@ -2,10 +2,10 @@ import 'package:movura/features/home_screen/data/web_services/trending_web_servi
 
 import '../../../../core/models/poster_model.dart';
 
-class PostersRepo {
+class TrendingContentRepo {
   final TrendingWebServices webServices;
 
-  PostersRepo(this.webServices);
+  TrendingContentRepo(this.webServices);
 
   Future<List<PosterModel>> getTrendingMedia() async {
     var response = await webServices.getTrendingMedia();

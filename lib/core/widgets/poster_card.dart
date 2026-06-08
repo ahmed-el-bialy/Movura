@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/models/poster_model.dart';
 import 'package:movura/core/theming/styles.dart';
 import 'package:movura/core/utils/constants/api_constants.dart';
 import 'package:movura/core/utils/constants/strings.dart';
 import 'package:movura/core/utils/extensions/routing_extension.dart';
-import 'package:movura/core/models/poster_model.dart';
 
 import '../../features/details_screen/ui/arguments_model.dart';
 
@@ -22,7 +22,7 @@ class PosterCard extends StatelessWidget {
     this.border,
     this.mediaModel,
     this.subCardColor,
-    this.subCardBorder,
+    this.subCardBorder, this.mediaType,
   });
 
   final double? height;
@@ -36,6 +36,7 @@ class PosterCard extends StatelessWidget {
   final double? border;
   final double? subCardBorder;
   final PosterModel? mediaModel;
+  final String? mediaType;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +45,7 @@ class PosterCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         context.pushNamed(Strings.detailsScreen, ArgumentsModel(
-            mediaType: mediaModel?.mediaType ?? "",
+            mediaType: mediaModel?.mediaType ?? mediaType ?? "movie",
             mediaId: mediaModel!.id));
       },
       child: Card(
@@ -159,7 +160,7 @@ class PosterCard extends StatelessWidget {
                         children: [
                           Text(
                             mediaModel?.voteAverage != null
-                                ? mediaModel!.voteAverage.toStringAsFixed(1)
+                                ? mediaModel!.voteAverage!.toStringAsFixed(1)
                                 : "0.0",
                             style:
                             subTextStyle ??

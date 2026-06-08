@@ -7,13 +7,14 @@ import '../../../../../../core/utils/helpers/spacing.dart';
 import '../../../../../../core/widgets/poster_card.dart';
 import '../../../../../../core/widgets/section_title.dart';
 
-class SimilarContentLoadedBody extends StatelessWidget {
-  const SimilarContentLoadedBody({
+class SimilarContentTabBody extends StatelessWidget {
+  const SimilarContentTabBody({
     super.key,
     required this.recommendList,
-    required this.similarList,
+    required this.similarList, required this.mediaType,
   });
 
+  final String mediaType;
   final List<PosterModel> recommendList;
   final List<PosterModel> similarList;
 
@@ -42,6 +43,7 @@ class SimilarContentLoadedBody extends StatelessWidget {
                   mediaModel: recommendList[index],
                   elevation: 2,
                   shadowColor: AppColors.coolGray,
+                  mediaType: mediaType,
                 ),
               );
             },
@@ -65,6 +67,7 @@ class SimilarContentLoadedBody extends StatelessWidget {
                   mediaModel: similarList[index],
                   elevation: 2,
                   shadowColor: AppColors.coolGray,
+                  mediaType: mediaType,
                 ),
               );
             },

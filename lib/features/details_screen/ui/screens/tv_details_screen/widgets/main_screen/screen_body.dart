@@ -17,9 +17,9 @@ import '../../../../../../../core/theming/colors.dart';
 import '../../../../../../../core/theming/styles.dart';
 import '../../../../../../../core/utils/helpers/spacing.dart';
 import '../../../../../data/repos/tv_repos/tv_reviews_repo.dart';
-import '../../../shared_widgets/buttons_row.dart';
-import '../../../shared_widgets/review_tab_shared_widgets/reviews_tab_body.dart';
-import '../../../shared_widgets/simirlar_tab_shared_widgets/similar_tab_body.dart';
+import '../../../shared/widgets/buttons_row.dart';
+import '../../reviews_tab_body.dart';
+import '../../similar_tab_body.dart';
 
 class TvScreenBody extends StatelessWidget {
   const TvScreenBody({super.key, required this.model});

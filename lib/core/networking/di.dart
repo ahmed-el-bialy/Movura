@@ -10,7 +10,7 @@ import '../../features/details_screen/data/repos/tv_repos/about_tv_series_repo.d
 import '../../features/details_screen/data/repos/tv_repos/tv_similar_repo.dart';
 import '../../features/details_screen/data/webs_services/movie_web_services.dart';
 import '../../features/details_screen/data/webs_services/tv_web_services.dart';
-import '../../features/home_screen/data/repo/posters_repo.dart';
+import '../../features/home_screen/data/repo/trending_content_repo.dart';
 import '../../features/home_screen/data/web_services/trending_web_services.dart';
 import 'dio_factory.dart';
 
@@ -33,8 +33,8 @@ Future<void> initDI() async {
         () => TvWebServices(sl<Dio>(), baseUrl: ApiConstants.baseUrl),
   );
 
-  sl.registerLazySingleton<PostersRepo>(
-        () => PostersRepo(sl<TrendingWebServices>()),
+  sl.registerLazySingleton<TrendingContentRepo>(
+        () => TrendingContentRepo(sl<TrendingWebServices>()),
   );
 
   sl.registerLazySingleton<AboutRepo>(() => AboutRepo(sl<MovieWebServices>()),

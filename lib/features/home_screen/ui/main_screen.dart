@@ -91,7 +91,7 @@ class MainScreen extends StatelessWidget {
                   );
                 } else if (state is MainContentLoaded) {
                   return SliverToBoxAdapter(
-                    child: PosterListBuilder(trendingContent: state.posters),
+                    child: PosterListBuilder(trendingContent: state.posters,),
                   );
                 } else if (state is MainContentFailed) {
                   return SliverToBoxAdapter(

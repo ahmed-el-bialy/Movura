@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/widgets/actor_card.dart';
 
-import '../../../../../../core/models/actor_model.dart';
+import '../../../../../../../core/models/actor_model.dart';
 
 class AboutActorsList extends StatelessWidget {
   const AboutActorsList({super.key, required this.actors});

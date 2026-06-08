@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/core/theming/styles.dart';
-import 'package:movura/features/details_screen/ui/screens/shared_widgets/simirlar_tab_shared_widgets/similar_content_loaded_body.dart';
+import 'package:movura/features/details_screen/ui/screens/shared/widgets/similar_content_tab_body.dart';
 
-import '../../../../logic/tv_series_cubit/similar_content/similar_content_cubit.dart';
+import '../../../logic/tv_series_cubit/similar_content/similar_content_cubit.dart';
 
 class SimilarTabBody extends StatelessWidget {
   const SimilarTabBody({super.key});
@@ -16,7 +16,8 @@ class SimilarTabBody extends StatelessWidget {
     >(
       builder: (context, state) {
         if (state is TvSimilarContentLoaded) {
-          return SimilarContentLoadedBody(
+          return SimilarContentTabBody(
+            mediaType: "tv",
             recommendList:
                 state.similarContentResponse.recommendations!.results!,
             similarList: state.similarContentResponse.similar!.results!,

@@ -13,10 +13,10 @@ import '../../../../../data/repos/movie_repos/reviews_repo.dart';
 import '../../../../../data/repos/movie_repos/similar_repo.dart';
 import '../../../../../logic/movie_screen_cubit/reviews/reviews_cubit.dart';
 import '../../../../../logic/movie_screen_cubit/similar_content/similar_content_cubit.dart';
-import '../../../shared_widgets/buttons_row.dart';
+import '../../../shared/widgets/buttons_row.dart';
 import '../about_movie_tab/about_tab_body.dart';
-import '../../../shared_widgets/review_tab_shared_widgets/reviews_tab_body.dart';
-import '../../../shared_widgets/simirlar_tab_shared_widgets/similar_tab_body.dart';
+import '../movie_reviews_tab_body.dart';
+import '../similar_tab_body.dart';
 import 'movie_additional_data.dart';
 import 'movie_main_details.dart';
 import 'movie_story_and_genres.dart';
@@ -118,8 +118,8 @@ class MovieScreenBody extends StatelessWidget {
                       },
                       children: [
                         AboutTabBody(),
-                        ReviewsTabBody(),
-                        SimilarTabBody(),
+                        MovieReviewsTabBody(),
+                        MovieSimilarTabBody(),
                       ],
                     ),
                   ],

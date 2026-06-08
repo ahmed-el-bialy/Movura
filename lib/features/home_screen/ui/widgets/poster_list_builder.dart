@@ -5,14 +5,19 @@ import 'package:movura/core/widgets/poster_card.dart';
 import '../../../../core/models/poster_model.dart';
 
 class PosterListBuilder extends StatelessWidget {
-  const PosterListBuilder({super.key, required this.trendingContent});
+  const PosterListBuilder({
+    super.key,
+    required this.trendingContent,
+    this.height,
+  });
 
   final List<PosterModel> trendingContent;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 340.h,
+      height: height == null ? 340.h : height!,
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,

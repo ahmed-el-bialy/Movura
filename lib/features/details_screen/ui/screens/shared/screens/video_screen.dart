@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:movura/features/shared/widgets/back_button.dart';
+import 'package:movura/features/details_screen/ui/screens/shared/widgets/back_button.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import '../../../core/utils/extensions/routing_extension.dart';
-import '../../../core/theming/colors.dart';
+import '../../../../../../core/theming/colors.dart';
+import '../../../../../../core/utils/extensions/routing_extension.dart';
 
 class VideoScreen extends StatefulWidget {
   final YoutubePlayerController controller;
@@ -61,7 +61,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
     );
   }
 
-  void _handleBack() {
+  void handleBack() {
     widget.controller.pause();
     _exitVideoMode();
     context.pop();
@@ -110,7 +110,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                         ),
                         backgroundColor: Colors.white24,
                       ),
-                      onEnded: (_) => _handleBack(),
+                      onEnded: (_) => handleBack(),
                     ),
                   ),
 
@@ -118,7 +118,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                     Positioned(
                       top: _isLandscape ? 28 : 15,
                       left: _isLandscape ? 20 : 16,
-                      child: CustomBackButton(onTap: _handleBack),
+                      child: CustomBackButton(onTap: handleBack),
                     ),
 
                   if (_isLandscape && !_showControls)

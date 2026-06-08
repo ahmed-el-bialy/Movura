@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/core/theming/styles.dart';
 import 'package:movura/core/widgets/empty_section_message.dart';
-import 'package:movura/core/widgets/section_title.dart';
-import 'package:movura/features/details_screen/ui/screens/shared_widgets/review_tab_shared_widgets/review_card.dart';
 
-import '../../../../logic/tv_series_cubit/reviews/reviews_cubit.dart';
+import '../../../logic/tv_series_cubit/reviews/reviews_cubit.dart';
+import '../shared/widgets/reviews_tab_widgets/reviews_list.dart';
 
 class ReviewsTabBody extends StatelessWidget {
   const ReviewsTabBody({super.key});
@@ -22,24 +21,7 @@ class ReviewsTabBody extends StatelessWidget {
               subTitle: "Stay tuned for upcoming community feedback",
             );
           }
-          return Column(
-            children: [
-              SectionTitle(
-                sectionName: "REVIEWS",
-                actionName: "VIEW ALL",
-                onTap: () {},
-              ),
-              ListView.builder(
-                padding: EdgeInsets.zero,
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: state.response.length,
-                itemBuilder: (context, index) {
-                  return ReviewCard(model: state.response[index]);
-                },
-              ),
-            ],
-          );
+          return ReviewsList(reviews: state.response,);
         } else if (state is TvReviewsLoading) {
           return Center(child: CircularProgressIndicator());
         }

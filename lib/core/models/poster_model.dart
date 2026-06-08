@@ -17,26 +17,27 @@ class PosterResponse {
 
 @JsonSerializable()
 class PosterModel {
+  @JsonKey(name: "id")
+  final int id;
   @JsonKey(name: "title")
   final String? title;
   @JsonKey(name: "name")
   final String? name;
   @JsonKey(name: "poster_path")
   final String? posterPath;
-  @JsonKey(name: "vote_average")
-  final double voteAverage;
   @JsonKey(name: "media_type")
   final String? mediaType;
-  @JsonKey(name: "id")
-  final int id;
+
+  @JsonKey(name: "vote_average")
+  final double? voteAverage;
 
   PosterModel({
-    this.title,
-    required this.posterPath,
-    required this.voteAverage,
-    required this.mediaType,
     required this.id,
+    this.title,
     this.name,
+    this.posterPath,
+    this.mediaType,
+    this.voteAverage,
   });
 
   factory PosterModel.fromJson(Map<String, dynamic> json) =>
