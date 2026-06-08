@@ -4,7 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/colors.dart';
 import 'package:movura/core/theming/styles.dart';
 import 'package:movura/features/home_screen/ui/widgets/poster_list_builder.dart';
-import 'package:movura/features/home_screen/ui/widgets/sub_poster_list_builder.dart';
+import 'package:movura/features/home_screen/ui/widgets/top_movies_list.dart';
+import 'package:movura/features/home_screen/ui/widgets/top_tv_series_list.dart';
 
 import '../../../core/utils/constants/strings.dart';
 import '../../../core/utils/helpers/spacing.dart';
@@ -113,11 +114,20 @@ class MainScreen extends StatelessWidget {
             SliverToBoxAdapter(child: verticalSpacing(25)),
             SliverToBoxAdapter(
               child: SectionTitle(
-                sectionName: "Top Rated",
+                sectionName: "Top Rated Movies",
                 actionName: "View All >> ",
               ),
             ),
-            SliverToBoxAdapter(child: SubPosterListBuilder()),
+
+            SliverToBoxAdapter(child: TopMoviesList()),
+            SliverToBoxAdapter(child: verticalSpacing(25)),
+            SliverToBoxAdapter(
+              child: SectionTitle(
+                sectionName: "Top Rated TV Series",
+                actionName: "View All >> ",
+              ),
+            ),
+            SliverToBoxAdapter(child: TopTvSeriesList()),
 
             SliverToBoxAdapter(child: verticalSpacing(50)),
           ],

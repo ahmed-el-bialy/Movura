@@ -9,15 +9,18 @@ part 'home_web_services.g.dart';
 abstract class HomeWebServices {
   factory HomeWebServices(Dio dio, {String? baseUrl}) = _HomeWebServices;
 
-  // الـ Request الخاص بالـ Trending Content اللي شغال معاك فوق
   @GET(ApiConstants.trendingMedia)
   Future<PosterResponse> getTrendingMedia({
     @Query("language") String language = "en-US",
   });
 
-  // 🔥 الـ Request الخاص بالـ Top Rated Movies بعد ضبط الـ Path الصافي
   @GET(ApiConstants.topRatedMovies)
   Future<PosterResponse> getTopRatedMovies({
+    @Query("language") String language = "en-US",
+  });
+
+  @GET(ApiConstants.topRatedTvSeries)
+  Future<PosterResponse> getTopRatedTvSeries({
     @Query("language") String language = "en-US",
   });
 }

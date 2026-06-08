@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/features/details_screen/data/repos/tv_repos/about_tv_series_repo.dart';
 import 'package:movura/features/details_screen/logic/tv_series_cubit/about_tv/about_tv_cubit.dart';
 import 'package:movura/features/details_screen/ui/screens/tv_details_screen/tv_series_details_screen.dart';
+import 'package:movura/features/home_screen/logic/tpo_rated_movies/top_rated_tv_series_cubit.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../features/details_screen/data/repos/movie_repos/about_repo.dart';
@@ -30,6 +31,10 @@ class AppRouter {
               BlocProvider(
                 create: (context) =>
                     sl<TopRatedMovieCubit>()..getTopRatedMovies(),
+              ),
+              BlocProvider(
+                create: (context) =>
+                    sl<TopRatedTvSeriesCubit>()..getTopRatedTvSeries(),
               ),
             ],
             child: const MainScreen(),
