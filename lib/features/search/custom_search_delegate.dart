@@ -57,7 +57,6 @@ class CustomSearchDelegate extends SearchDelegate {
     );
   }
 
-
   @override
   Widget buildResults(BuildContext context) {
     if (query.isEmpty) {
@@ -74,7 +73,8 @@ class CustomSearchDelegate extends SearchDelegate {
             child: Container(
               color: AppColors.jetBlack,
               child: Center(
-                  child: CircularProgressIndicator(color: AppColors.neonCyan)),
+                child: CircularProgressIndicator(color: AppColors.neonCyan),
+              ),
             ),
           );
         }
@@ -82,26 +82,32 @@ class CustomSearchDelegate extends SearchDelegate {
         if (state is SearchFounded) {
           if (state.posters.isNotEmpty) {
             return Container(
-                color: AppColors.jetBlack,
-                child: GridView.builder(
-                    itemCount: state.posters.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        childAspectRatio: .6,
-                        mainAxisSpacing: 10.h,
-                        crossAxisSpacing: 10.w,
-                        crossAxisCount: 2
-                    ), itemBuilder: (context, index) {
+              color: AppColors.jetBlack,
+              child: GridView.builder(
+                itemCount: state.posters.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  childAspectRatio: .6,
+                  mainAxisSpacing: 10.h,
+                  crossAxisSpacing: 10.w,
+                  crossAxisCount: 2,
+                ),
+                itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: PosterCard(
-                      mediaModel: state.posters[index], elevation: 5,),
+                      mediaModel: state.posters[index],
+                      elevation: 5,
+                    ),
                   );
-                })
+                },
+              ),
             );
           } else {
             return const Center(
               child: Text(
-                  'No results found.', style: TextStyle(color: Colors.white)),
+                'No results found.',
+                style: TextStyle(color: Colors.white),
+              ),
             );
           }
         }
@@ -109,7 +115,9 @@ class CustomSearchDelegate extends SearchDelegate {
         if (state is SearchFailed) {
           return Center(
             child: Text(
-                state.errorMessage, style: const TextStyle(color: Colors.red)),
+              state.errorMessage,
+              style: const TextStyle(color: Colors.red),
+            ),
           );
         }
 
@@ -117,10 +125,9 @@ class CustomSearchDelegate extends SearchDelegate {
       },
     );
   }
+
   @override
   Widget buildSuggestions(context) {
-    return Container(
-      color: AppColors.jetBlack,
-    );
+    return Container(color: AppColors.jetBlack);
   }
 }
