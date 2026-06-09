@@ -7,7 +7,7 @@ import 'package:movura/core/utils/constants/api_constants.dart';
 import 'package:movura/core/utils/constants/strings.dart';
 import 'package:movura/core/utils/extensions/routing_extension.dart';
 
-import '../../features/details_screen/ui/arguments_model.dart';
+import '../routing/arguments_model.dart';
 
 class PosterCard extends StatelessWidget {
   const PosterCard({
@@ -110,7 +110,7 @@ class PosterCard extends StatelessWidget {
                     ),
                     elevation: subCardElevation ?? 8,
                     color:
-                    subCardColor ?? Color(0xFF2C2938).withValues(alpha: .7),
+                        subCardColor ?? Color(0xFF2C2938).withValues(alpha: .7),
                     child: Padding(
                       padding: EdgeInsets.symmetric(
                         horizontal: 10.w,
@@ -131,62 +131,73 @@ class PosterCard extends StatelessWidget {
                 alignment: AlignmentGeometry.topLeft,
                 child: Padding(
                   padding: EdgeInsets.all(2.0.r),
-                  child: showMediaType == true ? Card(
-                    elevation: subCardElevation ?? 8,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(subCardBorder ?? 10),
-                    ),
-                    color:
-                    subCardColor ?? Color(0xFF2C2938).withValues(alpha: .7),
-                    child: Padding(
-                      padding: EdgeInsets.all(5.0.r),
-                      child: Text(
-                        mediaModel?.mediaType ?? mediaType ?? "N/A",
-                        style:
-                            subTextStyle ?? Styles.font16SimiBoldPlatinumGray,
-                      ),
-                    ),
-                  ) : const SizedBox(),
+                  child: showMediaType == true
+                      ? Card(
+                          elevation: subCardElevation ?? 8,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                              subCardBorder ?? 10,
+                            ),
+                          ),
+                          color:
+                              subCardColor ??
+                              Color(0xFF2C2938).withValues(alpha: .7),
+                          child: Padding(
+                            padding: EdgeInsets.all(5.0.r),
+                            child: Text(
+                              mediaModel?.mediaType ?? mediaType ?? "N/A",
+                              style:
+                                  subTextStyle ??
+                                  Styles.font16SimiBoldPlatinumGray,
+                            ),
+                          ),
+                        )
+                      : const SizedBox(),
                 ),
               ),
               Align(
                 alignment: AlignmentGeometry.topRight,
-                child: showRating == true ? Padding(
-                  padding: EdgeInsets.all(2.0.r),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(subCardBorder ?? 10),
-                    ),
-                    color:
-                    subCardColor ?? Color(0xFF2C2938).withValues(alpha: .7),
-                    elevation: subCardElevation ?? 10,
-                    child: Padding(
-                      padding: EdgeInsets.all(5.0.r),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            mediaModel?.voteAverage != null
-                                ? "${mediaModel!.voteAverage!.toStringAsFixed(1)} "
-                                : "0.0",
-                            style:
-                                subTextStyle ??
-                                Styles.font16SimiBoldPlatinumGray,
+                child: showRating == true
+                    ? Padding(
+                        padding: EdgeInsets.all(2.0.r),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                              subCardBorder ?? 10,
+                            ),
                           ),
-                          Icon(
-                            Icons.star_purple500_outlined,
-                            size: 18.sp,
-                            color:
-                                subTextStyle?.color ??
-                                Styles.font16SimiBoldPlatinumGray.color,
+                          color:
+                              subCardColor ??
+                              Color(0xFF2C2938).withValues(alpha: .7),
+                          elevation: subCardElevation ?? 10,
+                          child: Padding(
+                            padding: EdgeInsets.all(5.0.r),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  mediaModel?.voteAverage != null
+                                      ? "${mediaModel!.voteAverage!.toStringAsFixed(1)} "
+                                      : "0.0",
+                                  style:
+                                      subTextStyle ??
+                                      Styles.font16SimiBoldPlatinumGray,
+                                ),
+                                Icon(
+                                  Icons.star_purple500_outlined,
+                                  size: 18.sp,
+                                  color:
+                                      subTextStyle?.color ??
+                                      Styles.font16SimiBoldPlatinumGray.color,
+                                ),
+                              ],
+                            ),
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ) : const SizedBox(),
+                        ),
+                      )
+                    : const SizedBox(),
               ),
             ],
           ),
