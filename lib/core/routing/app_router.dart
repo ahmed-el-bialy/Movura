@@ -12,7 +12,7 @@ import '../../features/details/ui/screens/video_screen.dart';
 import '../../features/home/logic/top_rated_movies/top_rated_movies_cubit.dart';
 import '../../features/home/logic/tpo_rated_tv_series/top_rated_tv_series_cubit.dart';
 import '../../features/home/logic/trending_content/trending_content_cubit.dart';
-import '../../features/home/ui/main_screen.dart';
+import '../../features/home/ui/home_screen.dart';
 import '../networking/di.dart';
 import '../utils/constants/strings.dart';
 import 'arguments_model.dart';
@@ -37,7 +37,7 @@ class AppRouter {
                     sl<TopRatedTvSeriesCubit>()..getTopRatedTvSeries(),
               ),
             ],
-            child: const MainScreen(),
+            child: const HomeScreen(),
           ),
         );
 
@@ -70,7 +70,7 @@ class AppRouter {
           builder: (_) => VideoScreen(controller: controller),
         );
       default:
-        return MaterialPageRoute(builder: (_) => const MainScreen());
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
     }
   }
 }

@@ -19,6 +19,7 @@ import '../../features/home/data/web_services/home_web_services.dart';
 import '../../features/home/logic/top_rated_movies/top_rated_movies_cubit.dart';
 import '../../features/home/logic/tpo_rated_tv_series/top_rated_tv_series_cubit.dart';
 import '../../features/home/logic/trending_content/trending_content_cubit.dart';
+import '../../features/search/logic/search/search_cubit.dart';
 import 'dio_factory.dart';
 
 final sl = GetIt.instance;
@@ -27,6 +28,9 @@ Future<void> initDI() async {
   final dio = DioFactory.getDio();
   sl.registerLazySingleton<Dio>(() => dio);
 
+  // ==========================================
+  // 2. Web Services (API Clients)
+  // ==========================================
   sl.registerLazySingleton<HomeWebServices>(
     () => HomeWebServices(sl<Dio>(), baseUrl: ApiConstants.baseUrl),
   );
@@ -43,19 +47,27 @@ Future<void> initDI() async {
     () => SearchWebServices(sl<Dio>(), baseUrl: ApiConstants.baseUrl),
   );
 
+  // ==========================================
+  // 3. Repositories
+  // ==========================================
   sl.registerLazySingleton<TrendingContentRepo>(
     () => TrendingContentRepo(sl<HomeWebServices>()),
   );
+  sl.registerLazySingleton<TopRatedMoviesRepo>(
+    () => TopRatedMoviesRepo(webServices: sl<HomeWebServices>()),
+  );
+  sl.registerLazySingleton<TopRatedTvSeriesRepo>(
+    () => TopRatedTvSeriesRepo(webServices: sl<HomeWebServices>()),
+  );
 
   sl.registerLazySingleton<AboutRepo>(() => AboutRepo(sl<MovieWebServices>()));
-
   sl.registerLazySingleton<ReviewsRepo>(
     () => ReviewsRepo(detailsWebServices: sl<MovieWebServices>()),
   );
-
   sl.registerLazySingleton<SimilarRepo>(
     () => SimilarRepo(detailsWebServices: sl<MovieWebServices>()),
   );
+
   sl.registerLazySingleton<AboutTvSeriesRepo>(
     () => AboutTvSeriesRepo(sl<TvWebServices>()),
   );
@@ -66,27 +78,25 @@ Future<void> initDI() async {
     () => TvReviewsRepo(detailsWebServices: sl<TvWebServices>()),
   );
 
-  sl.registerLazySingleton<TopRatedMoviesRepo>(
-    () => TopRatedMoviesRepo(webServices: sl<HomeWebServices>()),
+  sl.registerLazySingleton<SearchRepo>(
+    () => SearchRepo(searchWebServices: sl<SearchWebServices>()),
   );
 
-  sl.registerLazySingleton<TopRatedTvSeriesRepo>(
-    () => TopRatedTvSeriesRepo(webServices: sl<HomeWebServices>()),
-  );
+  // ==========================================
+  // 4. Cubits (State Management) - Factories
+  // ==========================================
 
   sl.registerFactory<TrendingContentCubit>(
     () => TrendingContentCubit(postersRepo: sl<TrendingContentRepo>()),
   );
-
   sl.registerFactory<TopRatedMovieCubit>(
     () => TopRatedMovieCubit(postersRepo: sl<TopRatedMoviesRepo>()),
   );
-
   sl.registerFactory<TopRatedTvSeriesCubit>(
     () => TopRatedTvSeriesCubit(postersRepo: sl<TopRatedTvSeriesRepo>()),
   );
 
-  sl.registerLazySingleton<SearchRepo>(
-    () => SearchRepo(searchWebServices: sl<SearchWebServices>()),
+  sl.registerFactory<SearchCubit>(
+    () => SearchCubit(searchRepo: sl<SearchRepo>()),
   );
 }

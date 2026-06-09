@@ -26,6 +26,7 @@ class PosterCard extends StatelessWidget {
     this.mediaType,
     this.showRating = true,
     this.showMediaType = true,
+    this.maxLines,
   });
 
   final double? height;
@@ -42,6 +43,7 @@ class PosterCard extends StatelessWidget {
   final String? mediaType;
   final bool? showRating;
   final bool? showMediaType;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -122,6 +124,7 @@ class PosterCard extends StatelessWidget {
                             "Unknown Title",
                         style: titleStyle ?? Styles.font17BoldIceBlueMontserrat,
                         overflow: TextOverflow.ellipsis,
+                        maxLines: maxLines ?? 1,
                       ),
                     ),
                   ),

@@ -23,16 +23,15 @@ class _SearchWebServices implements SearchWebServices {
   Future<PosterResponse> getSearchResults({
     String language = "en-US",
     required String query,
-    bool includeAdult = false,
-    int page = 1,
+    int? page = 1,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'language': language,
       r'query': query,
-      r'include_adult': includeAdult,
       r'page': page,
     };
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<PosterResponse>(

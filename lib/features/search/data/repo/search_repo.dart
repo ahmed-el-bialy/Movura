@@ -9,7 +9,7 @@ class SearchRepo {
 
   Future<List<PosterModel>> getSearchResults({
     required String query,
-    required int page,
+    int? page,
   }) async {
     var response = await searchWebServices.getSearchResults(
       query: query,

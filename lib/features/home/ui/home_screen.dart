@@ -7,15 +7,17 @@ import 'package:movura/features/home/ui/widgets/top_movies_list.dart';
 import 'package:movura/features/home/ui/widgets/top_tv_series_list.dart';
 import 'package:movura/features/home/ui/widgets/trending_poster_list.dart';
 
+import '../../../core/networking/di.dart';
 import '../../../core/utils/constants/strings.dart';
 import '../../../core/utils/helpers/spacing.dart';
 import '../../../core/widgets/app_navigation_bar.dart';
 import '../../../core/widgets/section_title.dart';
 import '../../search/custom_search_delegate.dart';
+import '../../search/logic/search/search_cubit.dart';
 import '../logic/trending_content/trending_content_cubit.dart';
 
-class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -52,9 +54,10 @@ class MainScreen extends StatelessWidget {
                 splashColor: AppColors.neonCyan.withValues(alpha: .2),
                 borderRadius: BorderRadius.circular(16.r),
                 onTap: () {
+                  final searchCubit = sl<SearchCubit>();
                   showSearch(
                     context: context,
-                    delegate: CustomSearchDelegate(),
+                    delegate: CustomSearchDelegate(searchCubit: searchCubit),
                   );
                 },
                 child: Padding(

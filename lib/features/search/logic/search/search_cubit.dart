@@ -7,7 +7,7 @@ import '../../../../core/models/poster_model.dart';
 part 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> {
-  SearchCubit({required this.searchRepo, required this.posters})
+  SearchCubit({required this.searchRepo, this.posters})
     : super(SearchInitial());
 
   final SearchRepo searchRepo;

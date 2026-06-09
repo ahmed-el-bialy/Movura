@@ -14,7 +14,6 @@ abstract class SearchWebServices {
   Future<PosterResponse> getSearchResults({
     @Query("language") String language = "en-US",
     @Query("query") required String query,
-    @Query("include_adult") bool includeAdult = false,
-    @Query("page") int page = 1,
+    @Query("page") int? page=1,
   });
 }
