@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,17 +11,21 @@ import 'logic/search/search_cubit.dart';
 class CustomSearchDelegate extends SearchDelegate {
   final SearchCubit searchCubit;
 
+  Timer? searchTimeResponse;
+  String lastQuery = '';
+
   CustomSearchDelegate({required this.searchCubit});
+
+  @override
+  String? get searchFieldLabel => 'Search movies, tv shows...';
 
   @override
   ThemeData appBarTheme(BuildContext context) {
     return ThemeData(
       appBarTheme: AppBarTheme(backgroundColor: AppColors.charcoalBlack),
-
       inputDecorationTheme: InputDecorationTheme(
         hintStyle: TextStyle(color: AppColors.coolGray, fontSize: 16.sp),
         border: InputBorder.none,
-
         focusedBorder: InputBorder.none,
         enabledBorder: InputBorder.none,
         errorBorder: InputBorder.none,
@@ -59,22 +65,46 @@ class CustomSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
+    return buildSuggestions(context);
+  }
+
+  @override
+  Widget buildSuggestions(context) {
     if (query.isEmpty) {
+      lastQuery = "";
       return Container(color: AppColors.richEerieBlack);
     }
+    final currentQuery = query.trim();
+    if (currentQuery == lastQuery) {
+      return BuildSearchResultsGrid(searchCubit: searchCubit);
+    }
 
-    searchCubit.getSearchResults(query: query.trim());
+    if (searchTimeResponse?.isActive ?? false) searchTimeResponse!.cancel();
 
+    searchTimeResponse = Timer(const Duration(milliseconds: 700), () {
+      lastQuery = currentQuery;
+      searchCubit.getSearchResults(query: query.trim());
+    });
+
+    return BuildSearchResultsGrid(searchCubit: searchCubit);
+  }
+}
+
+class BuildSearchResultsGrid extends StatelessWidget {
+  const BuildSearchResultsGrid({super.key, required this.searchCubit});
+
+  final SearchCubit searchCubit;
+
+  @override
+  Widget build(BuildContext context) {
     return BlocBuilder<SearchCubit, SearchState>(
       bloc: searchCubit,
       builder: (context, state) {
         if (state is SearchLoading) {
-          return Expanded(
-            child: Container(
-              color: AppColors.jetBlack,
-              child: Center(
-                child: CircularProgressIndicator(color: AppColors.neonCyan),
-              ),
+          return Container(
+            color: AppColors.jetBlack,
+            child: Center(
+              child: CircularProgressIndicator(color: AppColors.neonCyan),
             ),
           );
         }
@@ -124,10 +154,5 @@ class CustomSearchDelegate extends SearchDelegate {
         return Container(color: AppColors.richEerieBlack);
       },
     );
-  }
-
-  @override
-  Widget buildSuggestions(context) {
-    return Container(color: AppColors.jetBlack);
   }
 }
