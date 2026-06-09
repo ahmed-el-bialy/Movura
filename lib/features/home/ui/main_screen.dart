@@ -11,6 +11,7 @@ import '../../../core/utils/constants/strings.dart';
 import '../../../core/utils/helpers/spacing.dart';
 import '../../../core/widgets/app_navigation_bar.dart';
 import '../../../core/widgets/section_title.dart';
+import '../../search/custom_search_delegate.dart';
 import '../logic/trending_content/trending_content_cubit.dart';
 
 class MainScreen extends StatelessWidget {
@@ -50,7 +51,12 @@ class MainScreen extends StatelessWidget {
               child: InkWell(
                 splashColor: AppColors.neonCyan.withValues(alpha: .2),
                 borderRadius: BorderRadius.circular(16.r),
-                onTap: () {},
+                onTap: () {
+                  showSearch(
+                    context: context,
+                    delegate: CustomSearchDelegate(),
+                  );
+                },
                 child: Padding(
                   padding: EdgeInsets.all(8.0.r),
                   child: Icon(

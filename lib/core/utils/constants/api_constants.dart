@@ -9,6 +9,7 @@ class ApiConstants {
   static const String trendingMedia = "trending/all/day";
   static const String movieDetails = "movie";
   static const String tvDetails = "tv";
+  static const String multiSearch = "search/multi";
 
   static const String imageBaseUrl = "https://image.tmdb.org/t/p/w500";
   static const String videoCoverBaseUrl = 'https://img.youtube.com/vi/';

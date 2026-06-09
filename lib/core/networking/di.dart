@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:movura/core/utils/constants/api_constants.dart';
 import 'package:movura/features/details/data/repos/tv_repos/tv_reviews_repo.dart';
+import 'package:movura/features/search/data/repo/search_repo.dart';
+import 'package:movura/features/search/data/web_services/search_web_services.dart';
 
 import '../../features/details/data/repos/movie_repos/about_repo.dart';
 import '../../features/details/data/repos/movie_repos/reviews_repo.dart';
@@ -35,6 +37,10 @@ Future<void> initDI() async {
 
   sl.registerLazySingleton<TvWebServices>(
     () => TvWebServices(sl<Dio>(), baseUrl: ApiConstants.baseUrl),
+  );
+
+  sl.registerLazySingleton<SearchWebServices>(
+    () => SearchWebServices(sl<Dio>(), baseUrl: ApiConstants.baseUrl),
   );
 
   sl.registerLazySingleton<TrendingContentRepo>(
@@ -78,5 +84,9 @@ Future<void> initDI() async {
 
   sl.registerFactory<TopRatedTvSeriesCubit>(
     () => TopRatedTvSeriesCubit(postersRepo: sl<TopRatedTvSeriesRepo>()),
+  );
+
+  sl.registerLazySingleton<SearchRepo>(
+    () => SearchRepo(searchWebServices: sl<SearchWebServices>()),
   );
 }
