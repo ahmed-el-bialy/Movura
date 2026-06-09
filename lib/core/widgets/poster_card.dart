@@ -95,7 +95,8 @@ class PosterCard extends StatelessWidget {
                         SizedBox(height: 8.h),
                         Text(
                           "No Poster Available",
-                          style: Styles.font16SimiBoldPlatinumGray,
+                          style:
+                              titleStyle ?? Styles.font16SimiBoldPlatinumGray,
                         ),
                       ],
                     ),
@@ -115,7 +116,7 @@ class PosterCard extends StatelessWidget {
                         subCardColor ?? Color(0xFF2C2938).withValues(alpha: .7),
                     child: Padding(
                       padding: EdgeInsets.symmetric(
-                        horizontal: 10.w,
+                        horizontal: 9.w,
                         vertical: 4.w,
                       ),
                       child: Text(
@@ -125,6 +126,7 @@ class PosterCard extends StatelessWidget {
                         style: titleStyle ?? Styles.font17BoldIceBlueMontserrat,
                         overflow: TextOverflow.ellipsis,
                         maxLines: maxLines ?? 1,
+                        textAlign: TextAlign.left,
                       ),
                     ),
                   ),
@@ -144,7 +146,7 @@ class PosterCard extends StatelessWidget {
                           ),
                           color:
                               subCardColor ??
-                              Color(0xFF2C2938).withValues(alpha: .7),
+                              Color(0xFF2C2938).withValues(alpha: .8),
                           child: Padding(
                             padding: EdgeInsets.all(5.0.r),
                             child: Text(
@@ -190,7 +192,7 @@ class PosterCard extends StatelessWidget {
                                 ),
                                 Icon(
                                   Icons.star_purple500_outlined,
-                                  size: 18.sp,
+                                  size: subTextStyle?.fontSize ?? 18.sp,
                                   color:
                                       subTextStyle?.color ??
                                       Styles.font16SimiBoldPlatinumGray.color,

@@ -72,7 +72,7 @@ class ActorCard extends StatelessWidget {
               actor.character,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: Styles.font10BoldIceBlueMontserrat.copyWith(
+              style: Styles.font11BoldIceBlueMontserrat.copyWith(
                 fontWeight: FontWeight.normal,
                 color: AppColors.platinumGray,
               ),
@@ -85,7 +85,7 @@ class ActorCard extends StatelessWidget {
               actor.job,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: Styles.font10BoldIceBlueMontserrat,
+              style: Styles.font11BoldIceBlueMontserrat,
             ),
           ),
         ],

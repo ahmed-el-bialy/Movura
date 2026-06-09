@@ -42,7 +42,7 @@ class Styles {
     fontSize: 17.sp,
     fontFamily: "Montserrat",
   );
-  static TextStyle font10BoldIceBlueMontserrat = TextStyle(
+  static TextStyle font11BoldIceBlueMontserrat = TextStyle(
     fontWeight: FontWeight.bold,
     color: AppColors.iceBlue,
     fontSize: 11.sp,

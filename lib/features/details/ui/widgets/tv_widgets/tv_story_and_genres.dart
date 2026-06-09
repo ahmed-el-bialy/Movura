@@ -33,7 +33,7 @@ class TvStoryAndGenres extends StatelessWidget {
               ? Center(
                   child: Text(
                     ' "${model.tagline!}"',
-                    style: Styles.font10BoldIceBlueMontserrat.copyWith(
+                    style: Styles.font11BoldIceBlueMontserrat.copyWith(
                       fontSize: 12.sp,
                     ),
                   ),

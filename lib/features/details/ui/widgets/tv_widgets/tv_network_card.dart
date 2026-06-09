@@ -96,7 +96,7 @@ class TvNetworkCard extends StatelessWidget {
                 network.originCountry,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: Styles.font10BoldIceBlueMontserrat.copyWith(
+                style: Styles.font11BoldIceBlueMontserrat.copyWith(
                   fontSize: 12.sp,
                 ),
               ),
