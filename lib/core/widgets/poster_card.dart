@@ -24,6 +24,8 @@ class PosterCard extends StatelessWidget {
     this.subCardColor,
     this.subCardBorder,
     this.mediaType,
+    this.showRating = true,
+    this.showMediaType = true,
   });
 
   final double? height;
@@ -38,6 +40,8 @@ class PosterCard extends StatelessWidget {
   final double? subCardBorder;
   final PosterModel? mediaModel;
   final String? mediaType;
+  final bool? showRating;
+  final bool? showMediaType;
 
   @override
   Widget build(BuildContext context) {
@@ -106,10 +110,10 @@ class PosterCard extends StatelessWidget {
                     ),
                     elevation: subCardElevation ?? 8,
                     color:
-                        subCardColor ?? Color(0xFF2C2938).withValues(alpha: .9),
+                    subCardColor ?? Color(0xFF2C2938).withValues(alpha: .7),
                     child: Padding(
                       padding: EdgeInsets.symmetric(
-                        horizontal: 6.w,
+                        horizontal: 10.w,
                         vertical: 4.w,
                       ),
                       child: Text(
@@ -127,13 +131,13 @@ class PosterCard extends StatelessWidget {
                 alignment: AlignmentGeometry.topLeft,
                 child: Padding(
                   padding: EdgeInsets.all(2.0.r),
-                  child: Card(
+                  child: showMediaType == true ? Card(
                     elevation: subCardElevation ?? 8,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(subCardBorder ?? 10),
                     ),
                     color:
-                        subCardColor ?? Color(0xFF2C2938).withValues(alpha: .9),
+                    subCardColor ?? Color(0xFF2C2938).withValues(alpha: .7),
                     child: Padding(
                       padding: EdgeInsets.all(5.0.r),
                       child: Text(
@@ -142,19 +146,19 @@ class PosterCard extends StatelessWidget {
                             subTextStyle ?? Styles.font16SimiBoldPlatinumGray,
                       ),
                     ),
-                  ),
+                  ) : const SizedBox(),
                 ),
               ),
               Align(
                 alignment: AlignmentGeometry.topRight,
-                child: Padding(
+                child: showRating == true ? Padding(
                   padding: EdgeInsets.all(2.0.r),
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(subCardBorder ?? 10),
                     ),
                     color:
-                        subCardColor ?? Color(0xFF2C2938).withValues(alpha: .9),
+                    subCardColor ?? Color(0xFF2C2938).withValues(alpha: .7),
                     elevation: subCardElevation ?? 10,
                     child: Padding(
                       padding: EdgeInsets.all(5.0.r),
@@ -182,7 +186,7 @@ class PosterCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
+                ) : const SizedBox(),
               ),
             ],
           ),

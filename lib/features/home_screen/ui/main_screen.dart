@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/colors.dart';
 import 'package:movura/core/theming/styles.dart';
-import 'package:movura/features/home_screen/ui/widgets/poster_list_builder.dart';
+import 'package:movura/features/home_screen/ui/widgets/trending_poster_list.dart';
 import 'package:movura/features/home_screen/ui/widgets/top_movies_list.dart';
 import 'package:movura/features/home_screen/ui/widgets/top_tv_series_list.dart';
 
@@ -74,7 +74,7 @@ class MainScreen extends StatelessWidget {
             SliverToBoxAdapter(
               child: SectionTitle(
                 sectionName: "Trending Now",
-                actionName: "View All >> ",
+                actionName: "See All ",
               ),
             ),
             BlocBuilder<TrendingContentCubit, TrendingContentState>(
@@ -92,7 +92,7 @@ class MainScreen extends StatelessWidget {
                   );
                 } else if (state is TrendingContentLoaded) {
                   return SliverToBoxAdapter(
-                    child: PosterListBuilder(trendingContent: state.posters,),
+                    child: TrendingPosterList(trendingContent: state.posters,),
                   );
                 } else if (state is TrendingContentFailed) {
                   return SliverToBoxAdapter(
@@ -115,7 +115,7 @@ class MainScreen extends StatelessWidget {
             SliverToBoxAdapter(
               child: SectionTitle(
                 sectionName: "Top Rated Movies",
-                actionName: "View All >> ",
+                actionName: "See All ",
               ),
             ),
 
@@ -124,7 +124,7 @@ class MainScreen extends StatelessWidget {
             SliverToBoxAdapter(
               child: SectionTitle(
                 sectionName: "Top Rated TV Series",
-                actionName: "View All >> ",
+                actionName: "See All ",
               ),
             ),
             SliverToBoxAdapter(child: TopTvSeriesList()),

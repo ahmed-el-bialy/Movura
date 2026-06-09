@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/utils/extensions/routing_extension.dart';
 
-import '../utils/constants/strings.dart';
 import '../theming/colors.dart';
+import '../utils/constants/strings.dart';
 
 class AppNavigationBar extends StatelessWidget {
   final int activeIndex;
@@ -18,7 +18,7 @@ class AppNavigationBar extends StatelessWidget {
         height: 62.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25.r),
-          color: AppColors.jetBlack.withValues(alpha: .6),
+          color: AppColors.jetBlack.withValues(alpha: .8),
         ),
         child: Material(
           color: Colors.transparent,

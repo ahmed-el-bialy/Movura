@@ -25,13 +25,14 @@ class MediaList extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 12.h),
             child: PosterCard(
               width: 170,
-              elevation: 2,
+              elevation: 10,
               border: 15,
               titleStyle: Styles.font14BoldIceBlueMontserrat,
               subCardElevation: 3,
               subTextStyle: Styles.font11BoldGold.copyWith(fontSize: 12.sp),
               mediaModel: posters[index],
               mediaType: mediaType,
+              showMediaType: false,
             ),
           );
         },

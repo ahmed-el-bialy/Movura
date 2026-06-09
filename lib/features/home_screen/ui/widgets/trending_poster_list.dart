@@ -4,8 +4,8 @@ import 'package:movura/core/widgets/poster_card.dart';
 
 import '../../../../core/models/poster_model.dart';
 
-class PosterListBuilder extends StatelessWidget {
-  const PosterListBuilder({
+class TrendingPosterList extends StatelessWidget {
+  const TrendingPosterList({
     super.key,
     required this.trendingContent,
     this.height,
@@ -24,7 +24,7 @@ class PosterListBuilder extends StatelessWidget {
         itemCount: trendingContent.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0.w, vertical: 12.h),
+            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 12.h),
             child: PosterCard(mediaModel: trendingContent[index]),
           );
         },
