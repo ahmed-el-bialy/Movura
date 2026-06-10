@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles.dart';
-import '../../../../core/widgets/poster_card.dart';
+import '../../../../core/widgets/poster_card/poster_card.dart';
 import '../../logic/search/search_cubit.dart';
 
 class BuildSearchResultsGrid extends StatelessWidget {

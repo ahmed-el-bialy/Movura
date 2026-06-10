@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movura/core/theming/colors.dart';
 import 'package:movura/features/home/ui/widgets/top_movies_list.dart';
 import 'package:movura/features/home/ui/widgets/top_tv_series_list.dart';
+import 'package:movura/features/home/ui/widgets/trending_list.dart';
 
 import '../../../core/utils/helpers/spacing.dart';
 import '../../../core/widgets/app_navigation_bar.dart';
@@ -34,6 +35,8 @@ class HomeScreen extends StatelessWidget {
                 actionName: "See All ",
               ),
             ),
+
+            TrendingList(),
 
             SliverToBoxAdapter(child: verticalSpacing(25)),
 

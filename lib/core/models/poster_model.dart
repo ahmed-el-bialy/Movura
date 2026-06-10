@@ -31,6 +31,12 @@ class PosterModel {
   @JsonKey(name: "vote_average")
   final double? voteAverage;
 
+  @JsonKey(name: "known_for_department")
+  final String? knownForDepartment;
+
+  @JsonKey(name: "profile_path")
+  final String? profilePath;
+
   PosterModel({
     required this.id,
     this.title,
@@ -38,6 +44,8 @@ class PosterModel {
     this.posterPath,
     this.mediaType,
     this.voteAverage,
+    this.knownForDepartment,
+    this.profilePath,
   });
 
   factory PosterModel.fromJson(Map<String, dynamic> json) =>

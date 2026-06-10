@@ -23,6 +23,8 @@ PosterModel _$PosterModelFromJson(Map<String, dynamic> json) => PosterModel(
   posterPath: json['poster_path'] as String?,
   mediaType: json['media_type'] as String?,
   voteAverage: (json['vote_average'] as num?)?.toDouble(),
+  knownForDepartment: json['known_for_department'] as String?,
+  profilePath: json['profile_path'] as String?,
 );
 
 Map<String, dynamic> _$PosterModelToJson(PosterModel instance) =>
@@ -33,4 +35,6 @@ Map<String, dynamic> _$PosterModelToJson(PosterModel instance) =>
       'poster_path': instance.posterPath,
       'media_type': instance.mediaType,
       'vote_average': instance.voteAverage,
+      'known_for_department': instance.knownForDepartment,
+      'profile_path': instance.profilePath,
     };

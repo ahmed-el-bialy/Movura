@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/models/poster_model.dart';
 import '../../../../core/theming/styles.dart';
-import '../../../../core/widgets/poster_card.dart';
+import '../../../../core/widgets/poster_card/poster_card.dart';
 
 class MediaList extends StatelessWidget {
   const MediaList({super.key, required this.mediaType, required this.posters});
