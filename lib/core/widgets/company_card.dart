@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../models/company_model.dart';
-import '../theming/colors.dart';
 import '../theming/styles.dart';
 import '../utils/constants/api_constants.dart';
 

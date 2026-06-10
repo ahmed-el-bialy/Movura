@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/theming/colors.dart';
 import '../../../../core/utils/constants/strings.dart';
+import '../../../../core/utils/extensions/routing_extension.dart';
 
 class CustomSideDrawer extends StatelessWidget {
   const CustomSideDrawer({super.key});
@@ -13,6 +14,7 @@ class CustomSideDrawer extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.7,
       backgroundColor: AppColors.richEerieBlack,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           DrawerHeader(
             decoration: BoxDecoration(
@@ -52,30 +54,177 @@ class CustomSideDrawer extends StatelessWidget {
             ),
           ),
 
-          ListTile(
-            leading: Icon(Icons.person, color: AppColors.coolGray),
-            title: const Text('Profile', style: TextStyle(color: Colors.white)),
-            onTap: () {},
-          ),
-          ListTile(
-            leading: Icon(Icons.star, color: AppColors.coolGray),
-            title: const Text('Go Pro', style: TextStyle(color: Colors.white)),
-            trailing: Icon(
-              Icons.auto_awesome,
-              color: AppColors.neonCyan,
-              size: 22.sp,
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 4.h),
+            child: ListTile(
+              leading: Icon(
+                Icons.person_outline_rounded,
+                color: AppColors.coolGray,
+              ),
+              title: const Text(
+                'Profile',
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                // context.pop();
+                // context.pushNamed(Strings.profileScreen);
+              },
             ),
-            onTap: () {},
           ),
-          const Divider(color: Colors.grey),
-          ListTile(
-            leading: const Icon(Icons.logout, color: Colors.redAccent),
-            title: const Text(
-              'Logout',
-              style: TextStyle(color: Colors.redAccent),
+
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 4.h),
+            child: ListTile(
+              leading: Icon(
+                Icons.star_outline_rounded,
+                color: AppColors.coolGray,
+              ),
+              title: const Text(
+                'Go Pro',
+                style: TextStyle(color: Colors.white),
+              ),
+              trailing: Icon(
+                Icons.auto_awesome,
+                color: AppColors.neonCyan,
+                size: 22.sp,
+              ),
+              onTap: () {
+                // context.pop();
+                // context.pushNamed(Strings.goProScreen);
+              },
             ),
-            onTap: () {},
           ),
+
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            child: const Divider(color: Colors.white10),
+          ),
+
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+            child: Text(
+              "DISCOVER",
+              style: TextStyle(
+                color: AppColors.coolGray.withValues(alpha: 0.8),
+                fontSize: 10.sp,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.5,
+              ),
+            ),
+          ),
+
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 2.h),
+            child: ListTile(
+              leading: Icon(
+                Icons.movie_filter_outlined,
+                color: AppColors.coolGray,
+              ),
+              title: const Text(
+                'Discover Movies',
+                style: TextStyle(color: Colors.white),
+              ),
+              subtitle: Text(
+                'Popular, Top Rated, Upcoming',
+                style: TextStyle(
+                  color: AppColors.coolGray.withValues(alpha: 0.7),
+                  fontSize: 11.sp,
+                ),
+              ),
+              trailing: Icon(
+                Icons.arrow_forward_ios_rounded,
+                color: AppColors.coolGray.withValues(alpha: 0.5),
+                size: 14.sp,
+              ),
+              onTap: () {
+                // context.pop();
+                // context.pushNamed(Strings.moviesCategoryScreen);
+              },
+            ),
+          ),
+
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 2.h),
+            child: ListTile(
+              leading: Icon(Icons.tv_outlined, color: AppColors.coolGray),
+              title: const Text(
+                'TV Series',
+                style: TextStyle(color: Colors.white),
+              ),
+              subtitle: Text(
+                'Popular, Top Rated, On The Air',
+                style: TextStyle(
+                  color: AppColors.coolGray.withValues(alpha: 0.7),
+                  fontSize: 11.sp,
+                ),
+              ),
+              trailing: Icon(
+                Icons.arrow_forward_ios_rounded,
+                color: AppColors.coolGray.withValues(alpha: 0.5),
+                size: 14.sp,
+              ),
+              onTap: () {
+                // context.pop();
+                // context.pushNamed(Strings.tvCategoryScreen);
+              },
+            ),
+          ),
+
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 2.h),
+            child: ListTile(
+              leading: Icon(
+                Icons.people_alt_outlined,
+                color: AppColors.coolGray,
+              ),
+              title: const Text(
+                'Popular People',
+                style: TextStyle(color: Colors.white),
+              ),
+              subtitle: Text(
+                'Trending Actors & Creators',
+                style: TextStyle(
+                  color: AppColors.coolGray.withValues(alpha: 0.7),
+                  fontSize: 11.sp,
+                ),
+              ),
+              trailing: Icon(
+                Icons.arrow_forward_ios_rounded,
+                color: AppColors.coolGray.withValues(alpha: 0.5),
+                size: 14.sp,
+              ),
+              onTap: () {
+                // context.pop();
+                // context.pushNamed(Strings.popularPeopleScreen);
+              },
+            ),
+          ),
+
+          const Spacer(),
+
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            child: const Divider(color: Colors.white10),
+          ),
+
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 6.h),
+            child: ListTile(
+              leading: const Icon(
+                Icons.logout_rounded,
+                color: Colors.redAccent,
+              ),
+              title: const Text(
+                'Logout',
+                style: TextStyle(color: Colors.redAccent),
+              ),
+              onTap: () {
+                context.pop();
+              },
+            ),
+          ),
+
+          SizedBox(height: MediaQuery.of(context).padding.bottom + 12.h),
         ],
       ),
     );

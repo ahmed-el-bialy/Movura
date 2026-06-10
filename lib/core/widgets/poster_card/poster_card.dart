@@ -6,7 +6,7 @@ import 'package:movura/core/utils/constants/api_constants.dart';
 import 'package:movura/core/utils/constants/strings.dart';
 import 'package:movura/core/utils/extensions/routing_extension.dart';
 import 'package:movura/core/widgets/poster_card/sub_widgets/bottom_lef_sub_card.dart';
-import 'package:movura/core/widgets/poster_card/sub_widgets/error_poster_Image.dart';
+import 'package:movura/core/widgets/poster_card/sub_widgets/error_poster_image.dart';
 import 'package:movura/core/widgets/poster_card/sub_widgets/top_lef_sub_card.dart';
 import 'package:movura/core/widgets/poster_card/sub_widgets/top_right_sub_card.dart';
 
