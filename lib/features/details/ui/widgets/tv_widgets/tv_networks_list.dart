@@ -14,12 +14,15 @@ class TvNetworksList extends StatelessWidget {
 
     return SizedBox(
       height: 210.h,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: network.length,
-        itemBuilder: (context, index) {
-          return TvNetworkCard(network: network[index]);
-        },
+      child: Padding(
+        padding:  EdgeInsets.symmetric(horizontal: 6.w),
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: network.length,
+          itemBuilder: (context, index) {
+            return TvNetworkCard(network: network[index]);
+          },
+        ),
       ),
     );
   }
