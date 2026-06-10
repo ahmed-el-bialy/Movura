@@ -22,63 +22,82 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const CustomSideDrawer(),
       extendBody: true,
       backgroundColor: AppColors.richEerieBlack,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50.h),
-        child: AppBar(
-          backgroundColor: AppColors.eerieBlack,
-          title: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: 8.w, right: 8.w),
-                child: Image.asset(
-                  "assets/images/mini_icon.png",
-                  fit: BoxFit.fill,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 4.h),
-                child: Text(
-                  Strings.appName,
-                  style: Styles.font24SimiBoldNeonCyanManrope,
-                ),
-              ),
-            ],
-          ),
-          actions: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10.0.w),
-              child: InkWell(
-                splashColor: AppColors.neonCyan.withValues(alpha: .2),
-                borderRadius: BorderRadius.circular(16.r),
-                onTap: () {
-                  final searchCubit = sl<SearchCubit>();
-                  showSearch(
-                    context: context,
-                    delegate: CustomSearchDelegate(searchCubit: searchCubit),
-                  );
-                },
-                child: Padding(
-                  padding: EdgeInsets.all(8.0.r),
-                  child: Icon(
-                    Icons.search_outlined,
-                    size: 26.sp,
-                    color: AppColors.slateGray,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 8),
         child: CustomScrollView(
           scrollDirection: Axis.vertical,
           physics: const BouncingScrollPhysics(),
           slivers: [
+            SliverAppBar(
+              pinned: false,
+              floating: true,
+              snap: true,
+              leading: Builder(
+                builder: (context) {
+                  return IconButton(
+                    icon: Icon(
+                      Icons.notes,
+                      color: AppColors.neonCyan,
+                      size: 30.sp,
+                    ),
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    },
+                  );
+                },
+              ),
+              centerTitle: true,
+              backgroundColor: AppColors.eerieBlack,
+              title: Row(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 8.w, right: 8.w),
+                    child: Image.asset(
+                      "assets/images/mini_icon.png",
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 4.h),
+                    child: Text(
+                      Strings.appName,
+                      style: Styles.font24SimiBoldNeonCyanManrope,
+                    ),
+                  ),
+                ],
+              ),
+              actions: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.0.w),
+                  child: InkWell(
+                    splashColor: AppColors.neonCyan.withValues(alpha: .2),
+                    borderRadius: BorderRadius.circular(16.r),
+                    onTap: () {
+                      final searchCubit = sl<SearchCubit>();
+                      showSearch(
+                        context: context,
+                        delegate: CustomSearchDelegate(
+                          searchCubit: searchCubit,
+                        ),
+                      );
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0.r),
+                      child: Icon(
+                        Icons.search_outlined,
+                        size: 26.sp,
+                        color: AppColors.slateGray,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
             SliverToBoxAdapter(child: verticalSpacing(15)),
             SliverToBoxAdapter(
               child: SectionTitle(
@@ -143,6 +162,84 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: AppNavigationBar(activeIndex: 0),
+    );
+  }
+}
+
+class CustomSideDrawer extends StatelessWidget {
+  const CustomSideDrawer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      width: MediaQuery.of(context).size.width * 0.7,
+      backgroundColor: AppColors.richEerieBlack,
+      child: Column(
+        children: [
+          DrawerHeader(
+            decoration: BoxDecoration(
+              color: AppColors.charcoalBlack,
+              border: Border(
+                bottom: BorderSide(
+                  color: AppColors.coolGray.withValues(alpha: 0.2),
+                ),
+              ),
+            ),
+            child: Center(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 8.w, right: 8.w),
+                    child: Image.asset(
+                      "assets/images/mini_icon.png",
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 4.h),
+                    child: Text(
+                      Strings.appName,
+                      style: TextStyle(
+                        color: AppColors.neonCyan,
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 2,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+          ListTile(
+            leading: Icon(Icons.person, color: AppColors.coolGray),
+            title: const Text('Profile', style: TextStyle(color: Colors.white)),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: Icon(Icons.star, color: AppColors.coolGray),
+            title: const Text('Go Pro', style: TextStyle(color: Colors.white)),
+            trailing: Icon(
+              Icons.auto_awesome,
+              color: AppColors.neonCyan,
+              size: 22.sp,
+            ),
+            onTap: () {},
+          ),
+          const Divider(color: Colors.grey),
+          ListTile(
+            leading: const Icon(Icons.logout, color: Colors.redAccent),
+            title: const Text(
+              'Logout',
+              style: TextStyle(color: Colors.redAccent),
+            ),
+            onTap: () {},
+          ),
+        ],
+      ),
     );
   }
 }
