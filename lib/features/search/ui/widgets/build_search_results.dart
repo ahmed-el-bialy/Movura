@@ -26,18 +26,19 @@ class BuildSearchResultsGrid extends StatelessWidget {
           if (state.posters.isNotEmpty) {
             return Container(
               color: AppColors.jetBlack,
-              child: GridView.builder(
-                itemCount: state.posters.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: .57,
-                  mainAxisSpacing: 10.h,
-                  crossAxisSpacing: 6.w,
-                  crossAxisCount: 3,
-                ),
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: PosterCard(
+              child: Padding(
+                padding:  EdgeInsets.symmetric(vertical: 12.h),
+                child: GridView.builder(
+                  physics: BouncingScrollPhysics(),
+                  itemCount: state.posters.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: .57,
+                    mainAxisSpacing: 15.h,
+                    crossAxisSpacing: 14.w,
+                    crossAxisCount: 3,
+                  ),
+                  itemBuilder: (context, index) {
+                    return PosterCard(
                       border: 10,
                       subCardBorder: 10,
                       mediaModel: state.posters[index],
@@ -49,9 +50,9 @@ class BuildSearchResultsGrid extends StatelessWidget {
                       subTextStyle: Styles.font11BoldIceBlueMontserrat.copyWith(
                         fontSize: 10.sp,
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
             );
           } else {
