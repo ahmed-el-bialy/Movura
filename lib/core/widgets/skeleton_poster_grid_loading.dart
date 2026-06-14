@@ -20,7 +20,7 @@ class SkeletonPosterGridLoading extends StatelessWidget {
         ),
         itemCount: 18,
         itemBuilder: (context, index) {
-          return PosterCardSkeleton();
+          return PosterCardSkeleton(verticalPadding: 0,horizontalPadding: 0,);
         },
       ),
     );
