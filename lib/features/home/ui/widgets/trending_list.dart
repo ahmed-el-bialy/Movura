@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/features/home/ui/widgets/trending_poster_list.dart';
 
-import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles.dart';
+import '../../../../core/widgets/poster_card_skeleton.dart';
 import '../../logic/trending_content/trending_content_cubit.dart';
 
 class TrendingList extends StatelessWidget {
@@ -15,14 +14,7 @@ class TrendingList extends StatelessWidget {
     return BlocBuilder<TrendingContentCubit, TrendingContentState>(
       builder: (context, state) {
         if (state is TrendingContentLoading) {
-          return SliverToBoxAdapter(
-            child: SizedBox(
-              height: 340.h,
-              child: Center(
-                child: CircularProgressIndicator(color: AppColors.neonCyan),
-              ),
-            ),
-          );
+          return SliverToBoxAdapter(child: PosterCardSkeleton());
         } else if (state is TrendingContentLoaded) {
           return SliverToBoxAdapter(
             child: TrendingPosterList(trendingContent: state.posters),
