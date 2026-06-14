@@ -63,8 +63,8 @@ class PosterCard extends StatelessWidget {
         );
       },
       child: Card(
-        elevation: elevation ?? 10,
-        shadowColor: shadowColor ?? Colors.grey[400],
+        elevation: elevation ?? 11,
+        shadowColor: shadowColor ?? Colors.grey[350],
         margin: EdgeInsets.zero,
         clipBehavior: Clip.antiAlias,
         shape: RoundedRectangleBorder(

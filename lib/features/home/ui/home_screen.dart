@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/colors.dart';
+import 'package:movura/features/home/ui/widgets/category_list.dart';
 import 'package:movura/features/home/ui/widgets/top_movies_list.dart';
 import 'package:movura/features/home/ui/widgets/top_tv_series_list.dart';
 import 'package:movura/features/home/ui/widgets/trending_list.dart';
@@ -27,7 +29,12 @@ class HomeScreen extends StatelessWidget {
           slivers: [
             HomeAppBar(),
 
-            SliverToBoxAdapter(child: verticalSpacing(15)),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 15.h),
+                child: CategoryList(),
+              ),
+            ),
 
             SliverToBoxAdapter(
               child: SectionTitle(
