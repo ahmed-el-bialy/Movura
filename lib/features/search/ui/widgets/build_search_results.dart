@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/widgets/skeleton_poster_grid_loading.dart';
 
 import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles.dart';
@@ -18,12 +19,7 @@ class BuildSearchResultsGrid extends StatelessWidget {
       bloc: searchCubit,
       builder: (context, state) {
         if (state is SearchLoading) {
-          return Container(
-            color: AppColors.jetBlack,
-            child: Center(
-              child: CircularProgressIndicator(color: AppColors.neonCyan),
-            ),
-          );
+          return SkeletonPosterGridLoading();
         }
 
         if (state is SearchFounded) {
@@ -59,10 +55,13 @@ class BuildSearchResultsGrid extends StatelessWidget {
               ),
             );
           } else {
-            return const Center(
-              child: Text(
-                'No results found.',
-                style: TextStyle(color: Colors.white),
+            return Container(
+              color: AppColors.jetBlack,
+              child: Center(
+                child: Text(
+                  'No results found.',
+                  style: Styles.font14BoldIceBlueMontserrat,
+                ),
               ),
             );
           }

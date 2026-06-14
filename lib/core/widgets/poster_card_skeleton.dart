@@ -15,7 +15,7 @@ class PosterCardSkeleton extends StatelessWidget {
       highlightColor: Colors.grey[700]!,
       period: const Duration(milliseconds: 1200),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 12.h),
+        padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h),
         child: Card(
           elevation: 10,
           margin: EdgeInsets.zero,
