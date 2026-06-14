@@ -101,10 +101,10 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                     child: YoutubePlayer(
                       controller: widget.controller,
                       showVideoProgressIndicator: true,
-                      progressIndicatorColor: AppColors.neonCyan,
+                      progressIndicatorColor: AppColors.neonBlue,
                       progressColors: ProgressBarColors(
-                        playedColor: AppColors.neonCyan,
-                        handleColor: AppColors.neonCyan,
+                        playedColor: AppColors.neonBlue,
+                        handleColor: AppColors.neonBlue,
                         bufferedColor: AppColors.darkNeonCyan.withValues(
                           alpha: 0.7,
                         ),
@@ -133,13 +133,13 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                             color: AppColors.jetBlack.withValues(alpha: 0.85),
                             shape: BoxShape.circle,
                             border: Border.all(
-                              color: AppColors.neonCyan.withValues(alpha: 0.7),
+                              color: AppColors.neonBlue.withValues(alpha: 0.7),
                               width: 1.6,
                             ),
                           ),
                           child: Icon(
                             Icons.arrow_back_ios_new_rounded,
-                            color: AppColors.neonCyan,
+                            color: AppColors.neonBlue,
                             size: 22,
                           ),
                         ),

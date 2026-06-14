@@ -17,7 +17,7 @@ class AppColors {
   static const Color platinumGray = Color(0xFFE5E2E1);
   static const Color slateGray = Color(0xFFB9CACB);
 
-  static const Color neonCyan = Color(0xFF00F2FF);
+  static const Color neonBlue = Color(0xFF00D1FF);
   static const Color darkNeonCyan = Color(0xFF009191);
   static const Color iceBlue = Color(0xFFE1FDFF);
 

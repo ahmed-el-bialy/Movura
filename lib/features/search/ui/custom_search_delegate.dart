@@ -43,11 +43,11 @@ class CustomSearchDelegate extends SearchDelegate {
         onPressed: () {
           query = '';
         },
-        icon: Icon(Icons.clear, color: AppColors.neonCyan),
+        icon: Icon(Icons.clear, color: AppColors.neonBlue),
       ),
       IconButton(
         onPressed: () {},
-        icon: Icon(Icons.filter_alt, color: AppColors.neonCyan),
+        icon: Icon(Icons.filter_alt, color: AppColors.neonBlue),
       ),
     ];
   }
@@ -58,7 +58,7 @@ class CustomSearchDelegate extends SearchDelegate {
       onPressed: () {
         close(context, null);
       },
-      icon: Icon(Icons.arrow_back, color: AppColors.neonCyan),
+      icon: Icon(Icons.arrow_back, color: AppColors.neonBlue),
     );
   }
 

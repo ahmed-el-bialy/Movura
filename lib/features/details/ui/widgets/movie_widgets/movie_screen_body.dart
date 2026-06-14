@@ -99,10 +99,10 @@ class MovieScreenBody extends StatelessWidget {
                             fontSize: 13.sp,
                           ),
                       labelStyle: Styles.font13BoldNeonCyanSora,
-                      indicatorColor: AppColors.neonCyan,
+                      indicatorColor: AppColors.neonBlue,
                       indicatorWeight: 3.0,
                       indicatorSize: TabBarIndicatorSize.tab,
-                      labelColor: AppColors.neonCyan,
+                      labelColor: AppColors.neonBlue,
                       unselectedLabelColor: AppColors.slateGray,
                       tabs: const [
                         Tab(text: "ABOUT"),

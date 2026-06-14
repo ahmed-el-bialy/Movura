@@ -26,7 +26,7 @@ class AboutVideoCard extends StatelessWidget {
         },
         child: Card(
           elevation: 5,
-          shadowColor: AppColors.neonCyan,
+          shadowColor: AppColors.neonBlue,
           child: Stack(
             fit: StackFit.passthrough,
             alignment: Alignment.center,

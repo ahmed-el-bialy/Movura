@@ -18,12 +18,12 @@ class CustomBackButton extends StatelessWidget {
           shape: BoxShape.circle,
           color: AppColors.jetBlack.withValues(alpha: 0.82),
           border: Border.all(
-            color: AppColors.neonCyan.withValues(alpha: 0.9),
+            color: AppColors.neonBlue.withValues(alpha: 0.9),
             width: 2,
           ),
           boxShadow: [
             BoxShadow(
-              color: AppColors.neonCyan..withValues(alpha: 0.35),
+              color: AppColors.neonBlue..withValues(alpha: 0.35),
               blurRadius: 12,
               spreadRadius: 2,
             ),
@@ -31,7 +31,7 @@ class CustomBackButton extends StatelessWidget {
         ),
         child: Icon(
           Icons.arrow_back_ios_new_rounded,
-          color: AppColors.neonCyan,
+          color: AppColors.neonBlue,
           size: 22,
         ),
       ),

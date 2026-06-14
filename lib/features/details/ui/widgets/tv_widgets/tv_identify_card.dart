@@ -129,7 +129,7 @@ class TvIdentifyCard extends StatelessWidget {
                               Icon(
                                 Icons.star_purple500_sharp,
                                 size: 16.sp,
-                                color: AppColors.neonCyan,
+                                color: AppColors.neonBlue,
                               ),
                               const SizedBox(width: 4),
                               Text(

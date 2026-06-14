@@ -55,8 +55,8 @@ class MovieStoryAndGenres extends StatelessWidget {
                       ),
                       child: InkWell(
                         onTap: () {},
-                        splashColor: AppColors.neonCyan.withValues(alpha: .2),
-                        highlightColor: AppColors.neonCyan.withValues(
+                        splashColor: AppColors.neonBlue.withValues(alpha: .2),
+                        highlightColor: AppColors.neonBlue.withValues(
                           alpha: .1,
                         ),
                         borderRadius: BorderRadius.circular(16.r),

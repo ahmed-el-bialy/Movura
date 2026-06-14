@@ -19,7 +19,7 @@ class CustomRatingBar extends StatelessWidget {
       unratedColor: AppColors.darkSlateGray,
       itemPadding: EdgeInsets.symmetric(horizontal: 1.0.w),
       itemBuilder: (context, index) =>
-          const Icon(Icons.star, color: AppColors.neonCyan),
+          const Icon(Icons.star, color: AppColors.neonBlue),
     );
   }
 }

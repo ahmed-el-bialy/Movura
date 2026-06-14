@@ -56,12 +56,12 @@ class TvMainDetails extends StatelessWidget {
                 color: AppColors.onyxBlack.withValues(alpha: .9),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(22.r),
-                  splashColor: AppColors.neonCyan.withValues(alpha: .4),
+                  splashColor: AppColors.neonBlue.withValues(alpha: .4),
                   onTap: () {},
                   child: Center(
                     child: Icon(
                       Icons.favorite_border,
-                      color: AppColors.neonCyan,
+                      color: AppColors.neonBlue,
                       size: 22.r,
                     ),
                   ),
@@ -84,7 +84,7 @@ class TvMainDetails extends StatelessWidget {
                 color: AppColors.onyxBlack.withValues(alpha: .95),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(22.r),
-                  splashColor: AppColors.neonCyan.withValues(alpha: .4),
+                  splashColor: AppColors.neonBlue.withValues(alpha: .4),
                   onTap: () {
                     context.pop();
                   },
@@ -93,7 +93,7 @@ class TvMainDetails extends StatelessWidget {
                       padding: EdgeInsets.only(left: 4.w),
                       child: Icon(
                         Icons.arrow_back_ios,
-                        color: AppColors.neonCyan,
+                        color: AppColors.neonBlue,
                         size: 20.r,
                       ),
                     ),

@@ -20,7 +20,7 @@ class HomeAppBar extends StatelessWidget {
       leading: Builder(
         builder: (context) {
           return IconButton(
-            icon: Icon(Icons.notes, color: AppColors.neonCyan, size: 30.sp),
+            icon: Icon(Icons.notes, color: AppColors.neonBlue, size: 30.sp),
             onPressed: () {
               Scaffold.of(context).openDrawer();
             },
@@ -50,7 +50,7 @@ class HomeAppBar extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.0.w),
           child: InkWell(
-            splashColor: AppColors.neonCyan.withValues(alpha: .2),
+            splashColor: AppColors.neonBlue.withValues(alpha: .2),
             borderRadius: BorderRadius.circular(16.r),
             onTap: () {
               final searchCubit = sl<SearchCubit>();

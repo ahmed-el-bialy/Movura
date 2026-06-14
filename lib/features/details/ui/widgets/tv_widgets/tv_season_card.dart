@@ -17,7 +17,7 @@ class TvSeasonCard extends StatelessWidget {
       onTap: () {},
       child: Card(
         elevation: 8,
-        shadowColor: AppColors.neonCyan,
+        shadowColor: AppColors.neonBlue,
         margin: EdgeInsets.zero,
         clipBehavior: Clip.antiAlias,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),

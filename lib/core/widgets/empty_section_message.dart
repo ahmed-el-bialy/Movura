@@ -26,7 +26,7 @@ class EmptySectionMessage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon, color: AppColors.neonCyan, size: 50.sp),
+          Icon(icon, color: AppColors.neonBlue, size: 50.sp),
           SizedBox(height: 16.h),
           Text(title, style: Styles.font20SimiBoldNeonCyanManrope),
           SizedBox(height: 8.h),

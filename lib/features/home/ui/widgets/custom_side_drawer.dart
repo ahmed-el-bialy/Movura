@@ -42,7 +42,7 @@ class CustomSideDrawer extends StatelessWidget {
                     child: Text(
                       Strings.appName,
                       style: TextStyle(
-                        color: AppColors.neonCyan,
+                        color: AppColors.neonBlue,
                         fontSize: 24.sp,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 2,
@@ -85,7 +85,7 @@ class CustomSideDrawer extends StatelessWidget {
               ),
               trailing: Icon(
                 Icons.auto_awesome,
-                color: AppColors.neonCyan,
+                color: AppColors.neonBlue,
                 size: 22.sp,
               ),
               onTap: () {

@@ -32,7 +32,7 @@ class ButtonsRow extends StatelessWidget {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.neonCyan,
+                  backgroundColor: AppColors.neonBlue,
                   foregroundColor: AppColors.trueBlack,
                   elevation: 0,
                   shape: RoundedRectangleBorder(
@@ -62,7 +62,7 @@ class ButtonsRow extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 side: BorderSide(
                   width: 1.5.w,
-                  color: AppColors.neonCyan.withValues(alpha: 0.4),
+                  color: AppColors.neonBlue.withValues(alpha: 0.4),
                 ),
                 shape: const CircleBorder(),
                 backgroundColor: AppColors.onyxBlack.withValues(alpha: 0.6),
@@ -71,7 +71,7 @@ class ButtonsRow extends StatelessWidget {
               child:  Center(
                 child: Icon(
                   Icons.playlist_add_rounded,
-                  color: AppColors.neonCyan,
+                  color: AppColors.neonBlue,
                   size: 24.sp,
                 ),
               ),

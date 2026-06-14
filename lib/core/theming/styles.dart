@@ -8,13 +8,13 @@ class Styles {
 
   static TextStyle font24SimiBoldNeonCyanManrope = TextStyle(
     fontWeight: Weights.simiBold,
-    color: AppColors.neonCyan,
+    color: AppColors.neonBlue,
     fontSize: 24.sp,
     fontFamily: "Manrope",
   );
   static TextStyle font20SimiBoldNeonCyanManrope = TextStyle(
     fontWeight: Weights.simiBold,
-    color: AppColors.neonCyan,
+    color: AppColors.neonBlue,
     fontSize: 20.sp,
     fontFamily: "Manrope",
   );
@@ -66,7 +66,7 @@ class Styles {
 
   static TextStyle font13BoldNeonCyanSora = TextStyle(
     fontWeight: FontWeight.bold,
-    color: AppColors.neonCyan,
+    color: AppColors.neonBlue,
     fontSize: 13.sp,
     fontFamily: "Sora",
   );
@@ -92,7 +92,7 @@ class Styles {
 
   static TextStyle font13MediumNeonCyan = TextStyle(
     fontWeight: Weights.medium,
-    color: AppColors.neonCyan,
+    color: AppColors.neonBlue,
     fontSize: 13.sp,
   );
   static TextStyle font15MediumWhite = TextStyle(
