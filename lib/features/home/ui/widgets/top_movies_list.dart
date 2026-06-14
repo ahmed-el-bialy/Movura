@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/core/theming/styles.dart';
-import 'package:movura/core/widgets/poster_card_skeleton.dart';
+import 'package:movura/core/widgets/skeleton_posters_list_loading.dart';
 
 import '../../logic/top_rated_movies/top_rated_movies_cubit.dart';
 import 'posters_list.dart';
@@ -16,7 +16,7 @@ class TopMoviesList extends StatelessWidget {
         if (state is TopRatedMovieLoaded) {
           return PostersList(mediaType: 'movie', posters: state.posters);
         } else if (state is TopRatedMovieLoading) {
-          return PosterCardSkeleton(height: 260, width: 170,);
+          return SkeletonPostersListLoading(height: 260, width: 170,);
         } else if (state is TopRatedMovieFailed) {
           return Center(
             child: Text(state.errorMessage, style: Styles.font11BoldGold),
