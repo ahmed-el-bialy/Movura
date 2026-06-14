@@ -17,7 +17,7 @@ class TrendingPosterList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height == null ? 340.h : height!,
+      height: height == null ? 330.h : height!,
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
