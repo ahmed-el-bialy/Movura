@@ -33,7 +33,7 @@ class _CategoryListState extends State<CategoryList> {
       color: Colors.blueGrey,
       title: 'Most Popular Movies',
       hint: "TOP CHOICE",
-      icon: Icons.local_fire_department_outlined,
+      icon: Icons.auto_awesome_outlined,
       onTap: () {},
     ),
 

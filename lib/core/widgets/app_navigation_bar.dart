@@ -77,7 +77,7 @@ class AppNavigationBar extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(8.0.r),
                   child: Icon(
-                    Icons.smart_toy,
+                    Icons.psychology_outlined,
                     size: 28.sp,
                     color: activeIndex == 3
                         ? AppColors.neonBlue

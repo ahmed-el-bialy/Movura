@@ -60,7 +60,7 @@ class CategoryCard extends StatelessWidget {
                 style: Styles.font14PureWhiteManrope.copyWith(
                   fontSize: 20.sp,
                   fontWeight: FontWeight.bold,
-                  color: AppColors.platinumGray,
+                  color: AppColors.iceBlue,
                 ),
               ),
             ),
