@@ -53,10 +53,6 @@ Future<void> initDI() async {
     () => MovieRepo(movieWebServices: sl<MovieWebServices>()),
   );
 
-  sl.registerLazySingleton<MovieRepo>(
-    () => MovieRepo(movieWebServices: sl<MovieWebServices>()),
-  );
-
   sl.registerLazySingleton<TvSeriesRepo>(
     () => TvSeriesRepo(tvWebServices: sl<TvWebServices>()),
   );
