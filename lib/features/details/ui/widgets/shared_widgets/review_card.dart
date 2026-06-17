@@ -50,18 +50,26 @@ class ReviewCard extends StatelessWidget {
                       ),
                     ),
                     horizontalSpacing(10),
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          model.author,
-                          style: Styles.font14PureWhiteManrope,
-                        ),
-                        CustomRatingBar(rating: 10),
-                      ],
+                    Expanded(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            model.author,
+                            style: Styles.font14PureWhiteManrope,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                          ),
+                          model.userDetails.rating == null
+                              ? verticalSpacing(8)
+                              : CustomRatingBar(
+                                  rating: model.userDetails.rating!,
+                                ),
+                        ],
+                      ),
                     ),
-                    Spacer(flex: 1),
+                    horizontalSpacing(15),
                     Text(
                       model.createdAt.toTimeAgo(),
                       style: Styles.font12CoolGrayManrope,
