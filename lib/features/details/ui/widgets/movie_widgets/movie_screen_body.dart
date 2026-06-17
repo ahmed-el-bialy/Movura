@@ -9,17 +9,16 @@ import '../../../../../../core/theming/styles.dart';
 import '../../../../../core/networking/di.dart';
 import '../../../../../core/utils/helpers/spacing.dart';
 import '../../../data/models/movie_models/about_model.dart';
-import '../../../data/repos/movie_repos/reviews_repo.dart';
-import '../../../data/repos/movie_repos/similar_repo.dart';
+import '../../../data/repos/movies_repo.dart';
 import '../../../logic/movie_screen_cubit/reviews/reviews_cubit.dart';
 import '../../../logic/movie_screen_cubit/similar_content/similar_content_cubit.dart';
 import '../shared_widgets/buttons_row.dart';
 import 'about_tab_body.dart';
-import 'movie_reviews_tab_body.dart';
-import 'similar_tab_body.dart';
 import 'movie_additional_data.dart';
 import 'movie_main_details.dart';
+import 'movie_reviews_tab_body.dart';
 import 'movie_story_and_genres.dart';
+import 'similar_tab_body.dart';
 
 class MovieScreenBody extends StatelessWidget {
   const MovieScreenBody({super.key, required this.model});
@@ -50,13 +49,13 @@ class MovieScreenBody extends StatelessWidget {
       providers: [
         BlocProvider<ReviewsCubit>(
           create: (context) =>
-              ReviewsCubit(repo: sl<ReviewsRepo>())
+              ReviewsCubit(repo: sl<MovieRepo>())
                 ..getMovieReviews(id: model.id),
         ),
 
         BlocProvider<SimilarContentCubit>(
           create: (context) =>
-              SimilarContentCubit(repo: sl<SimilarRepo>())
+              SimilarContentCubit(repo: sl<MovieRepo>())
                 ..getSimilarMovies(id: model.id),
         ),
       ],

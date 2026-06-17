@@ -1,20 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:movura/core/utils/constants/api_constants.dart';
-import 'package:movura/features/details/data/repos/tv_repos/tv_reviews_repo.dart';
 import 'package:movura/features/search/data/repo/search_repo.dart';
 import 'package:movura/features/search/data/web_services/search_web_services.dart';
 
-import '../../features/details/data/repos/movie_repos/about_repo.dart';
-import '../../features/details/data/repos/movie_repos/reviews_repo.dart';
-import '../../features/details/data/repos/movie_repos/similar_repo.dart';
-import '../../features/details/data/repos/tv_repos/about_tv_series_repo.dart';
-import '../../features/details/data/repos/tv_repos/tv_similar_repo.dart';
+import '../../features/details/data/repos/movies_repo.dart';
+import '../../features/details/data/repos/tv_series_repo.dart';
 import '../../features/details/data/webs_services/movie_web_services.dart';
 import '../../features/details/data/webs_services/tv_web_services.dart';
-import '../../features/home/data/repo/top_rated_movies_repo.dart';
-import '../../features/home/data/repo/top_rated_tv_series.dart';
-import '../../features/home/data/repo/trending_content_repo.dart';
+import '../../features/home/data/repo/home_repo.dart';
 import '../../features/home/data/web_services/home_web_services.dart';
 import '../../features/home/logic/top_rated_movies/top_rated_movies_cubit.dart';
 import '../../features/home/logic/tpo_rated_tv_series/top_rated_tv_series_cubit.dart';
@@ -50,32 +44,21 @@ Future<void> initDI() async {
   // ==========================================
   // 3. Repositories
   // ==========================================
-  sl.registerLazySingleton<TrendingContentRepo>(
-    () => TrendingContentRepo(sl<HomeWebServices>()),
-  );
-  sl.registerLazySingleton<TopRatedMoviesRepo>(
-    () => TopRatedMoviesRepo(webServices: sl<HomeWebServices>()),
-  );
-  sl.registerLazySingleton<TopRatedTvSeriesRepo>(
-    () => TopRatedTvSeriesRepo(webServices: sl<HomeWebServices>()),
+
+  sl.registerLazySingleton<HomeRepo>(
+    () => HomeRepo(homeWebServices: sl<HomeWebServices>()),
   );
 
-  sl.registerLazySingleton<AboutRepo>(() => AboutRepo(sl<MovieWebServices>()));
-  sl.registerLazySingleton<ReviewsRepo>(
-    () => ReviewsRepo(detailsWebServices: sl<MovieWebServices>()),
-  );
-  sl.registerLazySingleton<SimilarRepo>(
-    () => SimilarRepo(detailsWebServices: sl<MovieWebServices>()),
+  sl.registerLazySingleton<MovieRepo>(
+    () => MovieRepo(movieWebServices: sl<MovieWebServices>()),
   );
 
-  sl.registerLazySingleton<AboutTvSeriesRepo>(
-    () => AboutTvSeriesRepo(sl<TvWebServices>()),
+  sl.registerLazySingleton<MovieRepo>(
+    () => MovieRepo(movieWebServices: sl<MovieWebServices>()),
   );
-  sl.registerLazySingleton<TvSimilarRepo>(
-    () => TvSimilarRepo(detailsWebServices: sl<TvWebServices>()),
-  );
-  sl.registerLazySingleton<TvReviewsRepo>(
-    () => TvReviewsRepo(detailsWebServices: sl<TvWebServices>()),
+
+  sl.registerLazySingleton<TvSeriesRepo>(
+    () => TvSeriesRepo(tvWebServices: sl<TvWebServices>()),
   );
 
   sl.registerLazySingleton<SearchRepo>(
@@ -87,13 +70,13 @@ Future<void> initDI() async {
   // ==========================================
 
   sl.registerFactory<TrendingContentCubit>(
-    () => TrendingContentCubit(postersRepo: sl<TrendingContentRepo>()),
+    () => TrendingContentCubit(postersRepo: sl<HomeRepo>()),
   );
   sl.registerFactory<TopRatedMovieCubit>(
-    () => TopRatedMovieCubit(postersRepo: sl<TopRatedMoviesRepo>()),
+    () => TopRatedMovieCubit(postersRepo: sl<HomeRepo>()),
   );
   sl.registerFactory<TopRatedTvSeriesCubit>(
-    () => TopRatedTvSeriesCubit(postersRepo: sl<TopRatedTvSeriesRepo>()),
+    () => TopRatedTvSeriesCubit(postersRepo: sl<HomeRepo>()),
   );
 
   sl.registerFactory<SearchCubit>(

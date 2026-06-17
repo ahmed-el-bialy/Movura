@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/features/details/logic/tv_series_cubit/about_tv/about_tv_cubit.dart';
-import 'package:movura/features/details/ui/widgets/shared_widgets/screen_body.dart';
+import 'package:movura/features/details/ui/widgets/tv_widgets/screen_body.dart';
 
 import '../../../../core/theming/colors.dart';
 import '../details_loading_skeleton.dart';

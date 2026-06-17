@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/models/movie_models/about_model.dart';
-import '../../../data/repos/movie_repos/about_repo.dart';
+import '../../../data/repos/movies_repo.dart';
 
 part 'about_state.dart';
 
@@ -10,7 +10,7 @@ class AboutCubit extends Cubit<AboutState> {
   AboutCubit({required this.repo}) : super(AboutInitial());
   AboutModel? mainDetailsModel;
 
-  final AboutRepo repo;
+  final MovieRepo repo;
 
   Future<void> getMovieMainDetails({required int id}) async {
     emit(AboutLoading());

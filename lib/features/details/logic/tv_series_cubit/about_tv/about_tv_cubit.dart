@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/models/tv_models/about_tv_series_model.dart';
-import '../../../data/repos/tv_repos/about_tv_series_repo.dart';
+import '../../../data/repos/tv_series_repo.dart';
 
 part 'about_tv_state.dart';
 
@@ -10,7 +10,7 @@ class AboutTvCubit extends Cubit<AboutTvState> {
   AboutTvCubit({required this.repo}) : super(AboutTvInitial());
   AboutTvSeriesModel? mainDetailsModel;
 
-  final AboutTvSeriesRepo repo;
+  final TvSeriesRepo repo;
 
   Future<void> getTvSeriesMainDetails({required int id}) async {
     emit(AboutTvLoading());

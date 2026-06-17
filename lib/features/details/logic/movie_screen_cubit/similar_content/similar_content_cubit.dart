@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movura/features/details/data/repos/movies_repo.dart';
 
 import '../../../data/models/shared_models/similar_model.dart';
-import '../../../data/repos/movie_repos/similar_repo.dart';
 
 part 'similar_content_state.dart';
 
@@ -11,7 +11,7 @@ class SimilarContentCubit extends Cubit<SimilarContentState> {
 
   SimilarContentResponse? reviewResponse;
 
-  final SimilarRepo repo;
+  final MovieRepo repo;
 
   Future<void> getSimilarMovies({required int id}) async {
     emit(SimilarContentLoading());

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/features/details/data/models/tv_models/about_tv_series_model.dart';
-import 'package:movura/features/details/data/repos/tv_repos/tv_similar_repo.dart';
+import 'package:movura/features/details/data/repos/tv_series_repo.dart';
 import 'package:movura/features/details/logic/tv_series_cubit/reviews/reviews_cubit.dart';
 import 'package:movura/features/details/logic/tv_series_cubit/similar_content/similar_content_cubit.dart';
 import 'package:movura/features/details/ui/widgets/tv_widgets/about_tv_tab_body.dart';
@@ -16,10 +16,9 @@ import '../../../../../core/networking/di.dart';
 import '../../../../../core/theming/colors.dart';
 import '../../../../../core/theming/styles.dart';
 import '../../../../../core/utils/helpers/spacing.dart';
-import '../../../data/repos/tv_repos/tv_reviews_repo.dart';
-import 'buttons_row.dart';
-import '../tv_widgets/reviews_tab_body.dart';
-import '../tv_widgets/similar_tab_body.dart';
+import 'reviews_tab_body.dart';
+import 'similar_tab_body.dart';
+import '../shared_widgets/buttons_row.dart';
 
 class TvScreenBody extends StatelessWidget {
   const TvScreenBody({super.key, required this.model});
@@ -50,13 +49,13 @@ class TvScreenBody extends StatelessWidget {
       providers: [
         BlocProvider<TvSeriesReviewsCubit>(
           create: (context) =>
-          TvSeriesReviewsCubit(repo: sl<TvReviewsRepo>())
+          TvSeriesReviewsCubit(repo: sl<TvSeriesRepo>())
             ..getTvSeriesReviews(id: model.id),
         ),
 
         BlocProvider<TvSeriesSimilarContentCubit>(
           create: (context) =>
-          TvSeriesSimilarContentCubit(repo: sl<TvSimilarRepo>())
+          TvSeriesSimilarContentCubit(repo: sl<TvSeriesRepo>())
             ..getSimilarTvSeries(id: model.id),
         ),
       ],

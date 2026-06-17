@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/features/details/data/repos/tv_repos/about_tv_series_repo.dart';
+import 'package:movura/features/details/data/repos/tv_series_repo.dart';
 import 'package:movura/features/details/logic/tv_series_cubit/about_tv/about_tv_cubit.dart';
 import 'package:movura/features/details/ui/screens/tv_series_details_screen.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import '../../features/details/data/repos/movie_repos/about_repo.dart';
+import '../../features/details/data/repos/movies_repo.dart';
 import '../../features/details/logic/movie_screen_cubit/main_details/about_cubit.dart';
 import '../../features/details/ui/screens/movie_details_screen.dart';
 import '../../features/details/ui/screens/video_screen.dart';
@@ -48,7 +48,7 @@ class AppRouter {
           return MaterialPageRoute(
             builder: (_) => BlocProvider(
               create: (context) =>
-                  AboutCubit(repo: sl<AboutRepo>())
+                  AboutCubit(repo: sl<MovieRepo>())
                     ..getMovieMainDetails(id: arguments.mediaId),
               child: MovieDetailsScreen(),
             ),
@@ -57,7 +57,7 @@ class AppRouter {
           return MaterialPageRoute(
             builder: (_) => BlocProvider(
               create: (context) =>
-                  AboutTvCubit(repo: sl<AboutTvSeriesRepo>())
+                  AboutTvCubit(repo: sl<TvSeriesRepo>())
                     ..getTvSeriesMainDetails(id: arguments.mediaId),
               child: TvSeriesDetailsScreen(),
             ),
