@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/colors.dart';
-import 'package:movura/core/theming/styles.dart';
+import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/utils/constants/api_constants.dart';
 
 import '../models/actor_model.dart';
@@ -57,7 +57,7 @@ class ActorCard extends StatelessWidget {
               actor.name,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: Styles.font13BoldNeonCyanSora,
+              style: AppTextStyles.font13BoldNeonBlueSora,
             ),
           ),
 
@@ -72,7 +72,7 @@ class ActorCard extends StatelessWidget {
               actor.character,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: Styles.font11BoldIceBlueMontserrat.copyWith(
+              style: AppTextStyles.font11BoldIceBlueMontserrat.copyWith(
                 fontWeight: FontWeight.normal,
                 color: AppColors.platinumGray,
               ),
@@ -85,7 +85,7 @@ class ActorCard extends StatelessWidget {
               actor.job,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: Styles.font11BoldIceBlueMontserrat,
+              style: AppTextStyles.font11BoldIceBlueMontserrat,
             ),
           ),
         ],

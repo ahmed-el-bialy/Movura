@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../theming/styles.dart';
+import '../theming/text_styles.dart';
 
 class SectionTitle extends StatelessWidget {
   const SectionTitle({
@@ -27,7 +27,7 @@ class SectionTitle extends StatelessWidget {
         children: [
           Text(
             sectionName,
-            style: titleStyle ?? Styles.font20SimiBoldPlatinumGray,
+            style: titleStyle ?? AppTextStyles.font20SimiBoldPlatinumGray,
           ),
           Spacer(flex: 1),
           actionName != null
@@ -35,7 +35,7 @@ class SectionTitle extends StatelessWidget {
                   onTap: onTap ?? () {},
                   child: Text(
                     actionName!,
-                    style: actionStyle ?? Styles.font13MediumNeonCyan,
+                    style: actionStyle ?? AppTextStyles.font13MediumNeonBlue,
                   ),
                 )
               : Spacer(flex: 1),

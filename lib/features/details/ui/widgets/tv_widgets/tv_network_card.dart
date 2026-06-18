@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/features/details/data/models/tv_models/about_tv_series_model.dart';
 
-import '../../../../../core/theming/styles.dart';
+import '../../../../../core/theming/text_styles.dart';
 import '../../../../../core/utils/constants/api_constants.dart';
 
 class TvNetworkCard extends StatelessWidget {
@@ -74,7 +74,7 @@ class TvNetworkCard extends StatelessWidget {
               network.name,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: Styles.font13BoldNeonCyanSora.copyWith(fontSize: 14.sp),
+              style: AppTextStyles.font13BoldNeonBlueSora.copyWith(fontSize: 14.sp),
             ),
           ),
 
@@ -89,7 +89,7 @@ class TvNetworkCard extends StatelessWidget {
               network.originCountry,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: Styles.font11BoldIceBlueMontserrat.copyWith(
+              style: AppTextStyles.font11BoldIceBlueMontserrat.copyWith(
                 fontSize: 12.sp,
               ),
             ),

@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/widgets/skeleton_poster_grid_loading.dart';
 
 import '../../../../core/theming/colors.dart';
-import '../../../../core/theming/styles.dart';
+import '../../../../core/theming/text_styles.dart';
 import '../../../../core/widgets/poster_card/poster_card.dart';
 import '../../logic/search/search_cubit.dart';
 
@@ -44,10 +44,10 @@ class BuildSearchResultsGrid extends StatelessWidget {
                       mediaModel: state.posters[index],
                       elevation: 5,
                       maxLines: 2,
-                      titleStyle: Styles.font11BoldIceBlueMontserrat.copyWith(
+                      titleStyle: AppTextStyles.font11BoldIceBlueMontserrat.copyWith(
                         fontSize: 10.sp,
                       ),
-                      subTextStyle: Styles.font11BoldIceBlueMontserrat.copyWith(
+                      subTextStyle: AppTextStyles.font11BoldIceBlueMontserrat.copyWith(
                         fontSize: 10.sp,
                       ),
                     );
@@ -61,7 +61,7 @@ class BuildSearchResultsGrid extends StatelessWidget {
               child: Center(
                 child: Text(
                   'No results found.',
-                  style: Styles.font14BoldIceBlueMontserrat,
+                  style: AppTextStyles.font14BoldIceBlueMontserrat,
                 ),
               ),
             );

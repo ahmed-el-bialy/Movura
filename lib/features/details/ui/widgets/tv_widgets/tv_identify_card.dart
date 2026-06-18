@@ -6,7 +6,7 @@ import 'package:movura/core/utils/extensions/status_display_extension.dart';
 import 'package:movura/features/details/data/models/tv_models/about_tv_series_model.dart';
 
 import '../../../../../core/theming/colors.dart';
-import '../../../../../core/theming/styles.dart';
+import '../../../../../core/theming/text_styles.dart';
 import '../../../../../core/utils/helpers/spacing.dart';
 
 class TvIdentifyCard extends StatelessWidget {
@@ -48,7 +48,7 @@ class TvIdentifyCard extends StatelessWidget {
                       children: [
                         Text(
                           model.title,
-                          style: Styles.font17BoldIceBlueMontserrat.copyWith(
+                          style: AppTextStyles.font17BoldIceBlueMontserrat.copyWith(
                             fontSize: 23.sp,
                           ),
                           maxLines: 2,
@@ -59,7 +59,7 @@ class TvIdentifyCard extends StatelessWidget {
                           children: [
                             Text(
                               " TV Series • ${model.language} • ${(model.status.statusDisplay)} ",
-                              style: Styles.font16SimiBoldPlatinumGray.copyWith(
+                              style: AppTextStyles.font16SimiBoldPlatinumGray.copyWith(
                                 fontSize: 14.sp,
                               ),
                             ),
@@ -134,12 +134,12 @@ class TvIdentifyCard extends StatelessWidget {
                               const SizedBox(width: 4),
                               Text(
                                 model.rating.toStringAsFixed(1),
-                                style: Styles.font20SimiBoldNeonCyanManrope
+                                style: AppTextStyles.font20SimiBoldNeonBlueManrope
                                     .copyWith(fontSize: 15.sp),
                               ),
                               Text(
                                 " / 10 ",
-                                style: Styles.font13BoldNeonCyanSora.copyWith(
+                                style: AppTextStyles.font13BoldNeonBlueSora.copyWith(
                                   fontSize: 11.sp,
                                 ),
                               ),

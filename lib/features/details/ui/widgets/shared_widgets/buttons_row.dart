@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/utils/helpers/video_player.dart';
 
 import '../../../../../core/theming/colors.dart';
-import '../../../../../core/theming/styles.dart';
+import '../../../../../core/theming/text_styles.dart';
 
 class ButtonsRow extends StatelessWidget {
   final String? videoKey;
@@ -42,7 +42,7 @@ class ButtonsRow extends StatelessWidget {
                 icon: const Icon(Icons.play_arrow_rounded, size: 24),
                 label: Text(
                   "WATCH TRAILER",
-                  style: Styles.font17BoldTrueBlackSora.copyWith(
+                  style: AppTextStyles.font17BoldTrueBlackSora.copyWith(
                     fontSize: 14.sp,
                   ),
                 ),

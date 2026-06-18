@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/theming/colors.dart';
-import '../../../../../core/theming/styles.dart';
+import '../../../../../core/theming/text_styles.dart';
 import '../../../../../core/utils/extensions/runtime_formatter.dart';
 import '../../../../../core/utils/helpers/spacing.dart';
 import '../../../data/models/movie_models/about_model.dart';
@@ -49,7 +49,7 @@ class MovieIdentifyCard extends StatelessWidget {
                       children: [
                         Text(
                           model.title,
-                          style: Styles.font17BoldIceBlueMontserrat.copyWith(
+                          style: AppTextStyles.font17BoldIceBlueMontserrat.copyWith(
                             fontSize: 23.sp,
                           ),
                           maxLines: 2,
@@ -60,7 +60,7 @@ class MovieIdentifyCard extends StatelessWidget {
                           children: [
                             Text(
                               " Movie • ${model.language} • ${model.runtime.runtimeFormatter()} ",
-                              style: Styles.font16SimiBoldPlatinumGray.copyWith(
+                              style: AppTextStyles.font16SimiBoldPlatinumGray.copyWith(
                                 fontSize: 14.sp,
                               ),
                             ),
@@ -135,12 +135,12 @@ class MovieIdentifyCard extends StatelessWidget {
                               const SizedBox(width: 4),
                               Text(
                                 model.rating.toStringAsFixed(1),
-                                style: Styles.font20SimiBoldNeonCyanManrope
+                                style: AppTextStyles.font20SimiBoldNeonBlueManrope
                                     .copyWith(fontSize: 15.sp),
                               ),
                               Text(
                                 " / 10 ",
-                                style: Styles.font13BoldNeonCyanSora.copyWith(
+                                style: AppTextStyles.font13BoldNeonBlueSora.copyWith(
                                   fontSize: 11.sp,
                                 ),
                               ),

@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/colors.dart';
-import 'package:movura/core/theming/styles.dart';
+import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/utils/constants/api_constants.dart';
 import 'package:movura/features/details/data/models/tv_models/about_tv_series_model.dart';
 
@@ -55,7 +55,7 @@ class TvSeasonCard extends StatelessWidget {
                       ),
                       child: Text(
                         tvSeasonModel.name,
-                        style: Styles.font17BoldIceBlueMontserrat.copyWith(
+                        style: AppTextStyles.font17BoldIceBlueMontserrat.copyWith(
                           fontSize: 15.sp,
                         ),
                         overflow: TextOverflow.ellipsis,
@@ -78,7 +78,7 @@ class TvSeasonCard extends StatelessWidget {
                       padding: EdgeInsets.all(5.0.r),
                       child: Text(
                         "${tvSeasonModel.episodeCount} Eps",
-                        style: Styles.font16SimiBoldPlatinumGray.copyWith(
+                        style: AppTextStyles.font16SimiBoldPlatinumGray.copyWith(
                           fontSize: 14.sp,
                         ),
                       ),
@@ -107,14 +107,14 @@ class TvSeasonCard extends StatelessWidget {
                             tvSeasonModel.voteAverage != null
                                 ? "${tvSeasonModel.voteAverage!.toStringAsFixed(1)} "
                                 : "0.0",
-                            style: Styles.font16SimiBoldPlatinumGray.copyWith(
+                            style: AppTextStyles.font16SimiBoldPlatinumGray.copyWith(
                               fontSize: 13.sp,
                             ),
                           ),
                           Icon(
                             Icons.star_purple500_outlined,
                             size: 15.sp,
-                            color: Styles.font16SimiBoldPlatinumGray.color,
+                            color: AppTextStyles.font16SimiBoldPlatinumGray.color,
                           ),
                         ],
                       ),

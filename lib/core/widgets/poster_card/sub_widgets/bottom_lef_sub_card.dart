@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/models/poster_model.dart';
-import 'package:movura/core/theming/styles.dart';
+import 'package:movura/core/theming/text_styles.dart';
 
 class BottomLeftSubCard extends StatelessWidget {
   const BottomLeftSubCard({
@@ -37,7 +37,7 @@ class BottomLeftSubCard extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 9.w, vertical: 4.w),
             child: Text(
               mediaModel?.title ?? mediaModel?.name ?? "Unknown Title",
-              style: titleStyle ?? Styles.font17BoldIceBlueMontserrat,
+              style: titleStyle ?? AppTextStyles.font17BoldIceBlueMontserrat,
               overflow: TextOverflow.ellipsis,
               maxLines: maxLines ?? 1,
               textAlign: TextAlign.left,

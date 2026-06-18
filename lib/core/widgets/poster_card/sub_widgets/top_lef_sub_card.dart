@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/models/poster_model.dart';
-import 'package:movura/core/theming/styles.dart';
+import 'package:movura/core/theming/text_styles.dart';
 
 class TopLeftSubCard extends StatelessWidget {
   const TopLeftSubCard({
@@ -40,7 +40,7 @@ class TopLeftSubCard extends StatelessWidget {
                   padding: EdgeInsets.all(5.0.r),
                   child: Text(
                     mediaModel?.mediaType ?? mediaType ?? "N/A",
-                    style: subTextStyle ?? Styles.font16SimiBoldPlatinumGray,
+                    style: subTextStyle ?? AppTextStyles.font16SimiBoldPlatinumGray,
                   ),
                 ),
               )

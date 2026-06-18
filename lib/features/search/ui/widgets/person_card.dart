@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/models/poster_model.dart';
 
-import '../../../../core/theming/styles.dart';
+import '../../../../core/theming/text_styles.dart';
 import '../../../../core/utils/constants/api_constants.dart';
 
 class PersonCard extends StatelessWidget {
@@ -52,7 +52,7 @@ class PersonCard extends StatelessWidget {
                       person.name ?? "Unknown",
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: Styles.font17BoldIceBlueMontserrat,
+                      style: AppTextStyles.font17BoldIceBlueMontserrat,
                     ),
                   ),
                 ),
@@ -69,7 +69,7 @@ class PersonCard extends StatelessWidget {
                     padding: EdgeInsets.all(5.r),
                     child: Text(
                       "Person",
-                      style: Styles.font16SimiBoldPlatinumGray,
+                      style: AppTextStyles.font16SimiBoldPlatinumGray,
                     ),
                   ),
                 ),
@@ -86,7 +86,7 @@ class PersonCard extends StatelessWidget {
                     padding: EdgeInsets.all(5.r),
                     child: Text(
                       person.knownForDepartment ?? "Unknown",
-                      style: Styles.font16SimiBoldPlatinumGray,
+                      style: AppTextStyles.font16SimiBoldPlatinumGray,
                     ),
                   ),
                 ),

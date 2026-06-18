@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/colors.dart';
-import 'package:movura/core/theming/styles.dart';
+import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/utils/extensions/runtime_list_extension.dart';
 import 'package:movura/core/utils/helpers/spacing.dart';
 import 'package:movura/features/details/data/models/tv_models/about_tv_series_model.dart';
@@ -36,13 +36,13 @@ class TvAdditionalData extends StatelessWidget {
                         ),
                         Text(
                           "Runtime avg",
-                          style: Styles.font10MediumCoolGraySora.copyWith(
+                          style: AppTextStyles.font10MediumCoolGraySora.copyWith(
                             fontSize: 12.sp,
                           ),
                         ),
                         Text(
                           model.episodeRunTime.formattedAverageRuntime,
-                          style: Styles.font15MediumWhite,
+                          style: AppTextStyles.font15MediumWhite,
                         ),
                       ],
                     ),
@@ -65,7 +65,7 @@ class TvAdditionalData extends StatelessWidget {
                         ),
                         Text(
                           "Episodes",
-                          style: Styles.font10MediumCoolGraySora.copyWith(
+                          style: AppTextStyles.font10MediumCoolGraySora.copyWith(
                             fontSize: 12.sp,
                           ),
                         ),
@@ -73,7 +73,7 @@ class TvAdditionalData extends StatelessWidget {
                           model.numberOfEpisodes != 0
                               ? model.numberOfEpisodes.toString()
                               : "Unknown",
-                          style: Styles.font15MediumWhite,
+                          style: AppTextStyles.font15MediumWhite,
                         ),
                       ],
                     ),
@@ -95,7 +95,7 @@ class TvAdditionalData extends StatelessWidget {
                         ),
                         Text(
                           "Seasons",
-                          style: Styles.font10MediumCoolGraySora.copyWith(
+                          style: AppTextStyles.font10MediumCoolGraySora.copyWith(
                             fontSize: 12.sp,
                           ),
                         ),
@@ -104,7 +104,7 @@ class TvAdditionalData extends StatelessWidget {
                           model.numberOfSeasons != 0
                               ? model.numberOfSeasons.toString()
                               : "Unknown",
-                          style: Styles.font15MediumWhite,
+                          style: AppTextStyles.font15MediumWhite,
                         ),
                       ],
                     ),

@@ -54,7 +54,7 @@ Future<void> playYoutubeVideo(
 
     if (!context.mounted) return;
 
-    await context.pushNamed(Strings.videoPlayScreen, controller);
+    await context.pushNamed(AppStrings.videoPlayScreen, controller);
   } catch (e) {
     debugPrint('Error playing YouTube video: $e');
 

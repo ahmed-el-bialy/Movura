@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/core/theming/styles.dart';
+import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/widgets/skeleton_posters_list_loading.dart';
 
 import '../../logic/top_rated_movies/top_rated_movies_cubit.dart';
@@ -19,13 +19,13 @@ class TopMoviesList extends StatelessWidget {
           return SkeletonPostersListLoading(height: 260, width: 170,);
         } else if (state is TopRatedMovieFailed) {
           return Center(
-            child: Text(state.errorMessage, style: Styles.font11BoldGold),
+            child: Text(state.errorMessage, style: AppTextStyles.font11BoldGold),
           );
         } else {
           return Center(
             child: Text(
               "there is an error : ${state.toString()}",
-              style: Styles.font11BoldGold,
+              style: AppTextStyles.font11BoldGold,
             ),
           );
         }

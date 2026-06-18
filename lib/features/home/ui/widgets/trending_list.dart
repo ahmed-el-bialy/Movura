@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/core/widgets/skeleton_posters_list_loading.dart';
 import 'package:movura/features/home/ui/widgets/trending_poster_list.dart';
 
-import '../../../../core/theming/styles.dart';
+import '../../../../core/theming/text_styles.dart';
 import '../../logic/trending_content/trending_content_cubit.dart';
 
 class TrendingList extends StatelessWidget {
@@ -21,11 +21,11 @@ class TrendingList extends StatelessWidget {
           );
         } else if (state is TrendingContentFailed) {
           return SliverToBoxAdapter(
-            child: Text(state.errorMessage, style: Styles.font13MediumNeonCyan),
+            child: Text(state.errorMessage, style: AppTextStyles.font13MediumNeonBlue),
           );
         } else {
           return SliverToBoxAdapter(
-            child: Text(state.toString(), style: Styles.font13MediumNeonCyan),
+            child: Text(state.toString(), style: AppTextStyles.font13MediumNeonBlue),
           );
         }
       },

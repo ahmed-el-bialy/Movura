@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/core/theming/styles.dart';
+import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/utils/helpers/spacing.dart';
 import 'package:movura/core/widgets/section_title.dart';
 
@@ -76,7 +76,7 @@ class AboutTabBody extends StatelessWidget {
           return Center(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(state.errorMessage, style: Styles.font11BoldGold),
+              child: Text(state.errorMessage, style: AppTextStyles.font11BoldGold),
             ),
           );
         } else {

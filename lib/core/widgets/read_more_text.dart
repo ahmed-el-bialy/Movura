@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../theming/styles.dart';
+import '../theming/text_styles.dart';
 import '../theming/weights.dart';
 
 class ReadMoreText extends StatefulWidget {
@@ -34,7 +34,7 @@ class _ReadMoreTextState extends State<ReadMoreText> {
             text: widget.content,
             style:
                 widget.style ??
-                Styles.font14BoldIceBlueMontserrat.copyWith(
+                AppTextStyles.font14BoldIceBlueMontserrat.copyWith(
                   color: Colors.white.withValues(alpha: 0.9),
                   fontWeight: Weights.simiBold,
                   fontSize: 14.sp,
@@ -54,7 +54,7 @@ class _ReadMoreTextState extends State<ReadMoreText> {
               widget.content,
               style:
                   widget.style ??
-                  Styles.font14BoldIceBlueMontserrat.copyWith(
+                  AppTextStyles.font14BoldIceBlueMontserrat.copyWith(
                     color: Colors.white.withValues(alpha: 0.85),
                     fontWeight: FontWeight.normal,
                     fontSize: 14.sp,
@@ -76,7 +76,7 @@ class _ReadMoreTextState extends State<ReadMoreText> {
                   padding: EdgeInsets.symmetric(vertical: 4.h),
                   child: Text(
                     isExpanded ? "Read Less" : "Read More",
-                    style: Styles.font13BoldNeonCyanSora.copyWith(
+                    style: AppTextStyles.font13BoldNeonBlueSora.copyWith(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.bold,
                     ),

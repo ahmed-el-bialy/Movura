@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/colors.dart';
-import 'package:movura/core/theming/styles.dart';
+import 'package:movura/core/theming/text_styles.dart';
 
 import '../../data/models/category_card_model.dart';
 
@@ -47,7 +47,7 @@ class CategoryCard extends StatelessWidget {
               bottom: 45.h,
               child: Text(
                 model.hint ?? "",
-                style: Styles.font14PureWhiteManrope.copyWith(
+                style: AppTextStyles.font14PureWhiteManrope.copyWith(
                   color: AppColors.platinumGray.withValues(alpha: .8),
                 ),
               ),
@@ -57,7 +57,7 @@ class CategoryCard extends StatelessWidget {
               bottom: 20.h,
               child: Text(
                 model.title,
-                style: Styles.font14PureWhiteManrope.copyWith(
+                style: AppTextStyles.font14PureWhiteManrope.copyWith(
                   fontSize: 20.sp,
                   fontWeight: FontWeight.bold,
                   color: AppColors.iceBlue,

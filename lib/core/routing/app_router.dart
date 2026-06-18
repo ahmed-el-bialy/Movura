@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movura/features/auth/ui/screens/log_in_screen.dart';
 import 'package:movura/features/details/data/repos/tv_series_repo.dart';
 import 'package:movura/features/details/logic/tv_series_cubit/about_tv/about_tv_cubit.dart';
 import 'package:movura/features/details/ui/screens/tv_series_details_screen.dart';
@@ -20,7 +21,9 @@ import 'arguments_model.dart';
 class AppRouter {
   Route generateRoute(RouteSettings setting) {
     switch (setting.name) {
-      case Strings.mainScreen:
+      case AppStrings.logInScreen:
+        return MaterialPageRoute(builder: (_) => const LogInScreen());
+      case AppStrings.mainScreen:
         return MaterialPageRoute(
           builder: (_) => MultiBlocProvider(
             providers: [
@@ -41,7 +44,7 @@ class AppRouter {
           ),
         );
 
-      case Strings.detailsScreen:
+      case AppStrings.detailsScreen:
         final arguments = setting.arguments as ArgumentsModel;
 
         if (arguments.mediaType == "movie") {
@@ -64,7 +67,7 @@ class AppRouter {
           );
         }
 
-      case Strings.videoPlayScreen:
+      case AppStrings.videoPlayScreen:
         final controller = setting.arguments as YoutubePlayerController;
         return MaterialPageRoute(
           builder: (_) => VideoScreen(controller: controller),

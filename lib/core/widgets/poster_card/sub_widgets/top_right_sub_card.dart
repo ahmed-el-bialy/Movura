@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/models/poster_model.dart';
-import 'package:movura/core/theming/styles.dart';
+import 'package:movura/core/theming/text_styles.dart';
 
 
 class TopRightSubCard extends StatelessWidget {
@@ -49,21 +49,21 @@ class TopRightSubCard extends StatelessWidget {
                                   : "0.0",
                               style:
                                   subTextStyle ??
-                                  Styles.font16SimiBoldPlatinumGray,
+                                  AppTextStyles.font16SimiBoldPlatinumGray,
                             ),
                             Icon(
                               Icons.star_purple500_outlined,
                               size: subTextStyle?.fontSize ?? 18.sp,
                               color:
                                   subTextStyle?.color ??
-                                  Styles.font16SimiBoldPlatinumGray.color,
+                                  AppTextStyles.font16SimiBoldPlatinumGray.color,
                             ),
                           ],
                         )
                       : Text(
                           mediaModel?.knownForDepartment ?? "Unknown",
                           style:
-                              subTextStyle ?? Styles.font16SimiBoldPlatinumGray,
+                              subTextStyle ?? AppTextStyles.font16SimiBoldPlatinumGray,
                         ),
                 ),
               ),

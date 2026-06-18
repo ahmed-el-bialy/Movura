@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/widgets/read_more_text.dart';
 
 import '../../../../../core/theming/colors.dart';
-import '../../../../../core/theming/styles.dart';
+import '../../../../../core/theming/text_styles.dart';
 import '../../../../../core/utils/helpers/spacing.dart';
 import '../../../data/models/movie_models/about_model.dart';
 
@@ -22,7 +22,7 @@ class MovieStoryAndGenres extends StatelessWidget {
         children: [
           Text(
             "STORYLINE",
-            style: Styles.font13BoldNeonCyanSora.copyWith(
+            style: AppTextStyles.font13BoldNeonBlueSora.copyWith(
               letterSpacing: 1.5,
               fontWeight: FontWeight.w900,
             ),
@@ -65,7 +65,7 @@ class MovieStoryAndGenres extends StatelessWidget {
                             padding: EdgeInsets.symmetric(horizontal: 14.w),
                             child: Text(
                               model.genres[index].name,
-                              style: Styles.font12MediumPlatinumGray.copyWith(
+                              style: AppTextStyles.font12MediumPlatinumGray.copyWith(
                                 fontSize: 13.sp,
                                 color: AppColors.platinumGray,
                               ),

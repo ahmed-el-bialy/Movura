@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/networking/di.dart';
 import '../../../../core/theming/colors.dart';
-import '../../../../core/theming/styles.dart';
+import '../../../../core/theming/text_styles.dart';
 import '../../../../core/utils/constants/strings.dart';
 import '../../../search/logic/search/search_cubit.dart';
 import '../../../search/ui/custom_search_delegate.dart';
@@ -40,8 +40,8 @@ class HomeAppBar extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(vertical: 4.h),
             child: Text(
-              Strings.appName,
-              style: Styles.font24SimiBoldNeonCyanManrope,
+              AppStrings.appName,
+              style: AppTextStyles.font24SimiBoldNeonBlueManrope,
             ),
           ),
         ],

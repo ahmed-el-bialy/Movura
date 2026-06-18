@@ -55,7 +55,7 @@ class PosterCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         context.pushNamed(
-          Strings.detailsScreen,
+          AppStrings.detailsScreen,
           ArgumentsModel(
             mediaType: mediaModel?.mediaType ?? mediaType ?? "movie",
             mediaId: mediaModel!.id,

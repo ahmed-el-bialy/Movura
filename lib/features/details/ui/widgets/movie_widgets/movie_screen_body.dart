@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/theming/colors.dart';
-import '../../../../../../core/theming/styles.dart';
+import '../../../../../../core/theming/text_styles.dart';
 import '../../../../../core/networking/di.dart';
 import '../../../../../core/utils/helpers/spacing.dart';
 import '../../../data/models/movie_models/about_model.dart';
@@ -92,12 +92,12 @@ class MovieScreenBody extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TabBar(
-                      unselectedLabelStyle: Styles.font10MediumCoolGraySora
+                      unselectedLabelStyle: AppTextStyles.font10MediumCoolGraySora
                           .copyWith(
                             fontWeight: FontWeight.bold,
                             fontSize: 13.sp,
                           ),
-                      labelStyle: Styles.font13BoldNeonCyanSora,
+                      labelStyle: AppTextStyles.font13BoldNeonBlueSora,
                       indicatorColor: AppColors.neonBlue,
                       indicatorWeight: 3.0,
                       indicatorSize: TabBarIndicatorSize.tab,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/colors.dart';
-import 'package:movura/core/theming/styles.dart';
+import 'package:movura/core/theming/text_styles.dart';
 
 class EmptySectionMessage extends StatelessWidget {
   final IconData icon;
@@ -28,10 +28,10 @@ class EmptySectionMessage extends StatelessWidget {
         children: [
           Icon(icon, color: AppColors.neonBlue, size: 50.sp),
           SizedBox(height: 16.h),
-          Text(title, style: Styles.font20SimiBoldNeonCyanManrope),
+          Text(title, style: AppTextStyles.font20SimiBoldNeonBlueManrope),
           SizedBox(height: 8.h),
           subTitle != null
-              ? Text(subTitle!, style: Styles.font12MediumPlatinumGray)
+              ? Text(subTitle!, style: AppTextStyles.font12MediumPlatinumGray)
               : SizedBox(),
         ],
       ),

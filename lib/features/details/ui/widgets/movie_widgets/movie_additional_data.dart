@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/colors.dart';
-import 'package:movura/core/theming/styles.dart';
+import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/utils/extensions/runtime_formatter.dart';
 import 'package:movura/core/utils/helpers/spacing.dart';
 
@@ -38,7 +38,7 @@ class AdditionalData extends StatelessWidget {
                         ),
                         Text(
                           "BUDGET",
-                          style: Styles.font10MediumCoolGraySora.copyWith(
+                          style: AppTextStyles.font10MediumCoolGraySora.copyWith(
                             fontSize: 12.sp,
                           ),
                         ),
@@ -46,7 +46,7 @@ class AdditionalData extends StatelessWidget {
                           model.budget != 0
                               ? model.budget.toSmartCurrency()
                               : "Unknown",
-                          style: Styles.font15MediumWhite,
+                          style: AppTextStyles.font15MediumWhite,
                         ),
                       ],
                     ),
@@ -69,7 +69,7 @@ class AdditionalData extends StatelessWidget {
                         ),
                         Text(
                           "REVENUE",
-                          style: Styles.font10MediumCoolGraySora.copyWith(
+                          style: AppTextStyles.font10MediumCoolGraySora.copyWith(
                             fontSize: 12.sp,
                           ),
                         ),
@@ -77,7 +77,7 @@ class AdditionalData extends StatelessWidget {
                           model.revenue != 0
                               ? model.revenue.toSmartCurrency()
                               : "Unknown",
-                          style: Styles.font15MediumWhite,
+                          style: AppTextStyles.font15MediumWhite,
                         ),
                       ],
                     ),
@@ -99,7 +99,7 @@ class AdditionalData extends StatelessWidget {
                         ),
                         Text(
                           "RUNTIME",
-                          style: Styles.font10MediumCoolGraySora.copyWith(
+                          style: AppTextStyles.font10MediumCoolGraySora.copyWith(
                             fontSize: 12.sp,
                           ),
                         ),
@@ -108,7 +108,7 @@ class AdditionalData extends StatelessWidget {
                           model.runtime != 0
                               ? model.runtime.runtimeFormatter()
                               : "Unknown",
-                          style: Styles.font15MediumWhite,
+                          style: AppTextStyles.font15MediumWhite,
                         ),
                       ],
                     ),

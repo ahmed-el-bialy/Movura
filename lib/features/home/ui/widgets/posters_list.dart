@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/models/poster_model.dart';
-import '../../../../core/theming/styles.dart';
+import '../../../../core/theming/text_styles.dart';
 import '../../../../core/widgets/poster_card/poster_card.dart';
 
 class PostersList extends StatelessWidget {
@@ -28,9 +28,9 @@ class PostersList extends StatelessWidget {
               width: 170,
               elevation: 10,
               border: 15,
-              titleStyle: Styles.font14BoldIceBlueMontserrat,
+              titleStyle: AppTextStyles.font14BoldIceBlueMontserrat,
               subCardElevation: 3,
-              subTextStyle: Styles.font11BoldGold.copyWith(fontSize: 12.sp),
+              subTextStyle: AppTextStyles.font11BoldGold.copyWith(fontSize: 12.sp),
               mediaModel: posters[index],
               mediaType: mediaType,
               showMediaType: false,

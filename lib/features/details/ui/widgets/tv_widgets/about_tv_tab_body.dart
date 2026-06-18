@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/core/theming/styles.dart';
+import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/utils/helpers/spacing.dart';
 import 'package:movura/core/widgets/section_title.dart';
 import 'package:movura/features/details/logic/tv_series_cubit/about_tv/about_tv_cubit.dart';
@@ -99,7 +99,7 @@ class AboutTvTabBody extends StatelessWidget {
           return Center(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(state.errorMessage, style: Styles.font11BoldGold),
+              child: Text(state.errorMessage, style: AppTextStyles.font11BoldGold),
             ),
           );
         } else {

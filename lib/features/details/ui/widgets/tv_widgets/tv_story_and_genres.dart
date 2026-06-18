@@ -4,7 +4,7 @@ import 'package:movura/core/widgets/read_more_text.dart';
 import 'package:movura/features/details/data/models/tv_models/about_tv_series_model.dart';
 
 import '../../../../../core/theming/colors.dart';
-import '../../../../../core/theming/styles.dart';
+import '../../../../../core/theming/text_styles.dart';
 import '../../../../../core/utils/helpers/spacing.dart';
 
 class TvStoryAndGenres extends StatelessWidget {
@@ -22,7 +22,7 @@ class TvStoryAndGenres extends StatelessWidget {
         children: [
           Text(
             "STORYLINE",
-            style: Styles.font13BoldNeonCyanSora.copyWith(
+            style: AppTextStyles.font13BoldNeonBlueSora.copyWith(
               letterSpacing: 1.5,
               fontWeight: FontWeight.w900,
             ),
@@ -33,7 +33,7 @@ class TvStoryAndGenres extends StatelessWidget {
               ? Center(
                   child: Text(
                     ' "${model.tagline!}"',
-                    style: Styles.font11BoldIceBlueMontserrat.copyWith(
+                    style: AppTextStyles.font11BoldIceBlueMontserrat.copyWith(
                       fontSize: 12.sp,
                     ),
                   ),
@@ -78,7 +78,7 @@ class TvStoryAndGenres extends StatelessWidget {
                             padding: EdgeInsets.symmetric(horizontal: 14.w),
                             child: Text(
                               model.genres[index].name,
-                              style: Styles.font12MediumPlatinumGray.copyWith(
+                              style: AppTextStyles.font12MediumPlatinumGray.copyWith(
                                 fontSize: 13.sp,
                                 color: AppColors.platinumGray,
                               ),

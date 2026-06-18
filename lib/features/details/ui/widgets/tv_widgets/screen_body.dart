@@ -14,7 +14,7 @@ import 'package:movura/features/details/ui/widgets/tv_widgets/tv_story_and_genre
 
 import '../../../../../core/networking/di.dart';
 import '../../../../../core/theming/colors.dart';
-import '../../../../../core/theming/styles.dart';
+import '../../../../../core/theming/text_styles.dart';
 import '../../../../../core/utils/helpers/spacing.dart';
 import 'reviews_tab_body.dart';
 import 'similar_tab_body.dart';
@@ -92,10 +92,10 @@ class TvScreenBody extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TabBar(
-                      unselectedLabelStyle: Styles.font10MediumCoolGraySora
+                      unselectedLabelStyle: AppTextStyles.font10MediumCoolGraySora
                           .copyWith(
                           fontWeight: FontWeight.bold, fontSize: 13.sp),
-                      labelStyle: Styles.font13BoldNeonCyanSora,
+                      labelStyle: AppTextStyles.font13BoldNeonBlueSora,
                       indicatorColor: AppColors.neonBlue,
                       indicatorWeight: 3.0,
                       indicatorSize: TabBarIndicatorSize.tab,

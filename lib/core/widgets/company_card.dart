@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../models/company_model.dart';
-import '../theming/styles.dart';
+import '../theming/text_styles.dart';
 import '../utils/constants/api_constants.dart';
 
 class CompanyCard extends StatelessWidget {
@@ -74,7 +74,7 @@ class CompanyCard extends StatelessWidget {
               company.name,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: Styles.font13BoldNeonCyanSora.copyWith(fontSize: 14.sp),
+              style: AppTextStyles.font13BoldNeonBlueSora.copyWith(fontSize: 14.sp),
             ),
           ),
 
@@ -89,7 +89,7 @@ class CompanyCard extends StatelessWidget {
               company.originCountry,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: Styles.font11BoldIceBlueMontserrat.copyWith(
+              style: AppTextStyles.font11BoldIceBlueMontserrat.copyWith(
                 fontSize: 12.sp,
               ),
             ),

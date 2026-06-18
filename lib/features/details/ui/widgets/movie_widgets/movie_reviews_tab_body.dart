@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/core/theming/styles.dart';
+import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/widgets/empty_section_message.dart';
 
 import '../../../logic/movie_screen_cubit/reviews/reviews_cubit.dart';
@@ -27,12 +27,12 @@ class MovieReviewsTabBody extends StatelessWidget {
         }
         if (state is ReviewsFailed) {
           return Center(
-            child: Text(state.errorMessage, style: Styles.font11BoldGold),
+            child: Text(state.errorMessage, style: AppTextStyles.font11BoldGold),
           );
         } else {
           return Text(
             " there was an error",
-            style: Styles.font13MediumNeonCyan,
+            style: AppTextStyles.font13MediumNeonBlue,
           );
         }
       },

@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/colors.dart';
-import 'package:movura/core/theming/styles.dart';
+import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/utils/constants/api_constants.dart';
 import 'package:movura/core/utils/extensions/date_extension.dart';
 import 'package:movura/core/utils/helpers/spacing.dart';
@@ -57,7 +57,7 @@ class ReviewCard extends StatelessWidget {
                         children: [
                           Text(
                             model.author,
-                            style: Styles.font14PureWhiteManrope,
+                            style: AppTextStyles.font14PureWhiteManrope,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                           ),
@@ -72,7 +72,7 @@ class ReviewCard extends StatelessWidget {
                     horizontalSpacing(15),
                     Text(
                       model.createdAt.toTimeAgo(),
-                      style: Styles.font12CoolGrayManrope,
+                      style: AppTextStyles.font12CoolGrayManrope,
                     ),
                   ],
                 ),

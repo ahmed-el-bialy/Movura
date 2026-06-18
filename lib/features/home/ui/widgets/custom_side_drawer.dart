@@ -40,7 +40,7 @@ class CustomSideDrawer extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 4.h),
                     child: Text(
-                      Strings.appName,
+                      AppStrings.appName,
                       style: TextStyle(
                         color: AppColors.neonBlue,
                         fontSize: 24.sp,

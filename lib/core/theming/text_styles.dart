@@ -3,22 +3,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/colors.dart';
 import 'package:movura/core/theming/weights.dart';
 
-class Styles {
+class AppTextStyles {
   // =================== Manrope ====================
 
-  static TextStyle font24SimiBoldNeonCyanManrope = TextStyle(
+  static TextStyle font24SimiBoldNeonBlueManrope = TextStyle(
     fontWeight: Weights.simiBold,
     color: AppColors.neonBlue,
     fontSize: 24.sp,
     fontFamily: "Manrope",
   );
-  static TextStyle font20SimiBoldNeonCyanManrope = TextStyle(
+  static TextStyle font20SimiBoldNeonBlueManrope = TextStyle(
     fontWeight: Weights.simiBold,
     color: AppColors.neonBlue,
     fontSize: 20.sp,
     fontFamily: "Manrope",
   );
-  static TextStyle font14DarkNeonCyanManrope = TextStyle(
+  static TextStyle font14DarkNeonBlueManrope = TextStyle(
     color: AppColors.darkNeonCyan,
     fontSize: 14.sp,
     fontFamily: "Manrope",
@@ -55,7 +55,7 @@ class Styles {
     fontFamily: "Montserrat",
   );
 
-  // =================== Montserrat ====================
+  // =================== Sora ====================
 
   static TextStyle font17BoldTrueBlackSora = TextStyle(
     fontWeight: FontWeight.bold,
@@ -64,7 +64,7 @@ class Styles {
     fontFamily: "Sora",
   );
 
-  static TextStyle font13BoldNeonCyanSora = TextStyle(
+  static TextStyle font13BoldNeonBlueSora = TextStyle(
     fontWeight: FontWeight.bold,
     color: AppColors.neonBlue,
     fontSize: 13.sp,
@@ -90,7 +90,7 @@ class Styles {
     fontSize: 20.sp,
   );
 
-  static TextStyle font13MediumNeonCyan = TextStyle(
+  static TextStyle font13MediumNeonBlue = TextStyle(
     fontWeight: Weights.medium,
     color: AppColors.neonBlue,
     fontSize: 13.sp,
@@ -105,6 +105,11 @@ class Styles {
     color: AppColors.platinumGray,
     fontSize: 16.sp,
   );
+  static TextStyle font12BoldCoolGray = TextStyle(
+      color: AppColors.coolGray,
+      fontSize: 12.sp,
+      fontWeight: FontWeight.bold
+  );
   static TextStyle font12MediumPlatinumGray = TextStyle(
     fontWeight: Weights.medium,
     color: AppColors.platinumGray,
@@ -116,9 +121,16 @@ class Styles {
     color: AppColors.gold,
     fontSize: 11.sp,
   );
-  static TextStyle font10BoldCoolGrayS = TextStyle(
+
+  static TextStyle font10BoldCoolGray = TextStyle(
     fontWeight: FontWeight.bold,
     color: AppColors.coolGray,
     fontSize: 10.sp,
+  );
+
+  static TextStyle font40BoldPureWhite = TextStyle(
+    color: AppColors.pureWhite,
+    fontSize: 40.sp,
+    fontWeight: FontWeight.bold,
   );
 }

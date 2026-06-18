@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/theming/styles.dart';
+import 'package:movura/core/theming/text_styles.dart';
 
 class ErrorPosterImage extends StatelessWidget {
   const ErrorPosterImage({super.key, required this.titleStyle});
@@ -18,7 +18,7 @@ class ErrorPosterImage extends StatelessWidget {
           SizedBox(height: 8.h),
           Text(
             "No Poster Available",
-            style: titleStyle ?? Styles.font16SimiBoldPlatinumGray,
+            style: titleStyle ?? AppTextStyles.font16SimiBoldPlatinumGray,
           ),
         ],
       ),
