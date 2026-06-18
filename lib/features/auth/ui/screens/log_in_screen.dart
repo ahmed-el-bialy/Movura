@@ -17,30 +17,28 @@ class LogInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.trueBlack,
-
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8.w),
-          child: Center(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15.w),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.w),
-                  child: Align(
-                    alignment: AlignmentGeometry.topRight,
+
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Material(
+                    color: AppColors.onyxBlack.withValues(alpha: .9),
+                    borderRadius: BorderRadius.circular(12.r),
                     child: InkWell(
                       onTap: () {
                         context.pushNamed(AppStrings.mainScreen, null);
                       },
-                      borderRadius: BorderRadius.circular(18),
-                      child: Container(
+                      borderRadius: BorderRadius.circular(12.r),
+                      child: Padding(
                         padding: EdgeInsets.symmetric(
-                          horizontal: 12.w,
-                          vertical: 5.h,
-                        ),
-                        decoration: BoxDecoration(
-                          color: AppColors.onyxBlack.withValues(alpha: .9),
-                          borderRadius: BorderRadius.circular(12),
+                          horizontal: 16.w,
+                          vertical: 6.h,
                         ),
                         child: Text(
                           "Skip",
@@ -50,23 +48,29 @@ class LogInScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+
+                verticalSpacing(15),
                 SizedBox(
-                  height: 80.h,
+                  height: 70.h,
                   child: Image.asset("assets/images/movura.png"),
                 ),
 
-                verticalSpacing(20),
-                Text("Welcome Back", style: AppTextStyles.font40BoldPureWhite),
+                verticalSpacing(25),
+                Text("Welcome Back",
+                    style: AppTextStyles.font40BoldPureWhite.copyWith(
+                        fontSize: 35.sp)),
+                verticalSpacing(4),
                 Text(
                   "Sign in to continue your cinematic journey",
                   style: AppTextStyles.font12CoolGrayManrope.copyWith(
-                    fontSize: 16.sp,
+                    fontSize: 14.sp,
                   ),
+                  textAlign: TextAlign.center,
                 ),
-                verticalSpacing(20),
+                verticalSpacing(30),
 
                 Align(
-                  alignment: AlignmentGeometry.centerLeft,
+                  alignment: Alignment.centerLeft,
                   child: Text(
                     "Email Address",
                     style: AppTextStyles.font14SimiBoldPlatinumGraySora
@@ -76,15 +80,19 @@ class LogInScreen extends StatelessWidget {
                 verticalSpacing(8),
                 AppTextFormField(
                   hintText: "movura@example.com",
-                  prefixIcon: Icon(
-                    Icons.email_outlined,
-                    size: 23.sp,
-                    color: AppColors.slateGray.withValues(alpha: .9),
+                  prefixIcon: Padding(
+                    padding: EdgeInsets.only(left: 14.w, right: 10.w),
+                    child: Icon(
+                      Icons.email_outlined,
+                      size: 22.sp,
+                      color: AppColors.slateGray.withValues(alpha: .9),
+                    ),
                   ),
                 ),
-                verticalSpacing(35),
+                verticalSpacing(20),
 
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       "Password",
@@ -94,51 +102,85 @@ class LogInScreen extends StatelessWidget {
                             color: AppColors.slateGray,
                           ),
                     ),
-                    Spacer(flex: 1),
-                    Text(
-                      "Forgot?",
-                      style: AppTextStyles.font13MediumNeonBlue.copyWith(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.normal,
+                    GestureDetector(
+                      onTap: () {},
+                      child: Text(
+                        "Forgot?",
+                        style: AppTextStyles.font13MediumNeonBlue.copyWith(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                verticalSpacing(8),
+                AppTextFormField(
+                  hintText: "••••••••",
+                  isObscureText: true,
+                  prefixIcon: Padding(
+                    padding: EdgeInsets.only(left: 14.w, right: 10.w),
+                    child: Icon(
+                      Icons.lock_outline_rounded,
+                      size: 22.sp,
+                      color: AppColors.slateGray.withValues(alpha: .9),
+                    ),
+                  ),
+                  suffixIcon: Padding(
+                    padding: EdgeInsets.only(left: 10.w, right: 14.w),
+                    child: Icon(
+                      Icons.remove_red_eye_outlined,
+                      size: 22.sp,
+                      color: AppColors.slateGray.withValues(alpha: .9),
+                    ),
+                  ),
+                ),
+
+                verticalSpacing(60),
+
+                AppTextButton(
+                  buttonText: "Login",
+                  onPressed: () {},
+                  buttonWidth: 250,
+                  buttonHeight: 42,
+                  borderRadius: 18,
+                  textStyle: AppTextStyles.font17BoldTrueBlackSora.copyWith(
+                    fontSize: 16.sp,
+                  ),
+                ),
+
+                verticalSpacing(25),
+
+                Row(
+                  children: [
+                    Expanded(
+                      child: Divider(
+                        color: AppColors.slateGray.withValues(alpha: .7),
+                        thickness: 1,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 12.w),
+                      child: Text(
+                        "OR CONTINUE WITH",
+                        style: AppTextStyles.font12BoldCoolGray.copyWith(
+                          fontSize: 11.sp,
+                          letterSpacing: 0.5,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Divider(
+                        color: AppColors.slateGray.withValues(alpha: .7),
+                        thickness: 1,
                       ),
                     ),
                   ],
                 ),
 
-                verticalSpacing(8),
-                AppTextFormField(
-                  hintText: "••••••••",
-                  prefixIcon: Icon(
-                    Icons.lock_outline_rounded,
-                    size: 23.sp,
-                    color: AppColors.slateGray.withValues(alpha: .9),
-                  ),
-                  suffixIcon: Icon(
-                    Icons.remove_red_eye_outlined,
-                    size: 23.sp,
-                    color: AppColors.slateGray.withValues(alpha: .9),
-                  ),
-                ),
-
-                verticalSpacing(20),
-
-                AppTextButton(
-                  buttonText: "Login",
-                  onPressed: () {},
-                  buttonWidth: 280,
-                  borderRadius: 30,
-                ),
-
-                verticalSpacing(30),
-
-                Text(
-                  "OR CONTINUE WITH",
-                  style: AppTextStyles.font12BoldCoolGray,
-                ),
-
                 verticalSpacing(15),
+
                 Row(
-                  mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     BuildSocialButton(
@@ -160,16 +202,20 @@ class LogInScreen extends StatelessWidget {
                 ),
 
                 verticalSpacing(15),
-                Spacer(flex: 1),
+
                 RichText(
                   textAlign: TextAlign.center,
                   text: TextSpan(
-                    style: AppTextStyles.font10BoldCoolGray,
+                    style: AppTextStyles.font10BoldCoolGray.copyWith(
+                      fontSize: 13.sp,
+                    ),
                     children: [
-                      TextSpan(text: "Already have an account yet? "),
+                       TextSpan(text: "Don't have an account? "),
                       TextSpan(
-                        text: "Sign Up ",
-                        style: AppTextStyles.font12CoolGrayManrope,
+                        text: "Sign Up",
+                        style: AppTextStyles.font13BoldNeonBlueSora.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/colors.dart';
-
-import '../theming/text_styles.dart';
+import 'package:movura/core/theming/text_styles.dart';
 
 class AppTextFormField extends StatelessWidget {
   const AppTextFormField({
@@ -37,25 +36,23 @@ class AppTextFormField extends StatelessWidget {
     return TextFormField(
       style: inputTextStyle ?? AppTextStyles.font14SimiBoldPlatinumGraySora,
       obscureText: isObscureText ?? false,
-
       decoration: InputDecoration(
         filled: true,
         fillColor: backgroundColor ?? AppColors.charcoalBlack,
         isDense: true,
         contentPadding:
             contentPadding ??
-            EdgeInsets.symmetric(horizontal: 20.w, vertical: 18.h),
-        hintStyle: hintStyle ?? AppTextStyles.font16SimiBoldPlatinumGray,
+            EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
 
-        hint: Text(
-          hintText,
-          style: AppTextStyles.font10BoldCoolGray.copyWith(
-            fontSize: 16.sp,
-            color: AppTextStyles.font10BoldCoolGray.color?.withValues(
-              alpha: .6,
+        hintText: hintText,
+        hintStyle:
+            hintStyle ??
+            AppTextStyles.font10BoldCoolGray.copyWith(
+              fontSize: 14.sp,
+              color: AppTextStyles.font10BoldCoolGray.color?.withValues(
+                alpha: .6,
+              ),
             ),
-          ),
-        ),
 
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,
@@ -63,21 +60,23 @@ class AppTextFormField extends StatelessWidget {
         enabledBorder:
             enabledBorder ??
             OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
-              borderSide: BorderSide(color: AppColors.coolGray, width: 1.3.w),
-            ),
+              borderRadius: BorderRadius.circular(16.r),
 
+              borderSide: BorderSide(
+                color: AppColors.coolGray.withValues(alpha: 0.15),
+                width: 1.3.w,
+              ),
+            ),
         errorBorder:
             errorBorder ??
             OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(16.r),
               borderSide: BorderSide(color: Colors.red, width: 1.3.w),
             ),
-
         focusedBorder:
             focusedBorder ??
             OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(16.r),
               borderSide: BorderSide(color: AppColors.neonBlue, width: 1.3.w),
             ),
       ),
