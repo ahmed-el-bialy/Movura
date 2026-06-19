@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/features/auth/ui/screens/log_in_screen.dart';
+import 'package:movura/features/auth/ui/screens/log_out_screen.dart';
 import 'package:movura/features/details/data/repos/tv_series_repo.dart';
 import 'package:movura/features/details/logic/tv_series_cubit/about_tv/about_tv_cubit.dart';
 import 'package:movura/features/details/ui/screens/tv_series_details_screen.dart';
@@ -23,6 +24,10 @@ class AppRouter {
     switch (setting.name) {
       case AppStrings.logInScreen:
         return MaterialPageRoute(builder: (_) => const LogInScreen());
+
+      case AppStrings.logOutScreen:
+        return MaterialPageRoute(builder: (_) => const LogOutScreen());
+
       case AppStrings.mainScreen:
         return MaterialPageRoute(
           builder: (_) => MultiBlocProvider(

@@ -203,23 +203,27 @@ class LogInScreen extends StatelessWidget {
 
                 verticalSpacing(20),
 
-                RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                    style: AppTextStyles.font10BoldCoolGray.copyWith(
-                      fontSize: 13.sp,
-                    ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                       TextSpan(text: "Don't have an account? "),
-                      TextSpan(
-                        text: "Sign Up",
-                        style: AppTextStyles.font13BoldNeonBlueSora.copyWith(
-                          fontWeight: FontWeight.bold,
+                      Text("Don't have an account? ",
+                        style: AppTextStyles.font10BoldCoolGray.copyWith(
+                          fontSize: 13.sp,
+                        ),),
+                      GestureDetector(
+                        onTap: () {
+                          context.pushNamed(AppStrings.logOutScreen, null);
+                        },
+                        child: Text(
+                          "Sign Up",
+                          style: AppTextStyles.font13BoldNeonBlueSora.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ],
                   ),
-                ),
+
                 verticalSpacing(10),
               ],
             ),
