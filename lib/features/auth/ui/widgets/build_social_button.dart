@@ -24,12 +24,12 @@ class BuildSocialButton extends StatelessWidget {
           onTap: onTap,
           borderRadius: BorderRadius.circular(16.r),
           child: Ink(
-            padding: EdgeInsets.all(12.r),
+            padding: EdgeInsets.all(10.r),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16.r),
               border: Border.all(color: Colors.white10),
             ),
-            child: Image.asset(assetPath, width: 20.w, height: 20.w),
+            child: Image.asset(assetPath, width: 18.w, height: 18.w),
           ),
         ),
       ),

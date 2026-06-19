@@ -23,14 +23,14 @@ class LogOutScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                verticalSpacing(5),
+                verticalSpacing(10),
 
                 SizedBox(
                   height: 70.h,
                   child: Image.asset("assets/images/movura.png"),
                 ),
 
-                verticalSpacing(25),
+                verticalSpacing(15),
                 Text(
                   "Create Account",
                   style: AppTextStyles.font40BoldPureWhite.copyWith(
@@ -140,7 +140,7 @@ class LogOutScreen extends StatelessWidget {
                   ),
                 ),
 
-                verticalSpacing(18),
+                verticalSpacing(25),
 
                 Row(
                   children: [
@@ -192,7 +192,7 @@ class LogOutScreen extends StatelessWidget {
                   ],
                 ),
 
-                verticalSpacing(18),
+                verticalSpacing(15),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
