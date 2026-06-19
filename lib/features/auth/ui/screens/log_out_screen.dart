@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/text_styles.dart';
-import '../../../../core/utils/constants/strings.dart';
 import '../../../../core/utils/extensions/routing_extension.dart';
 import '../../../../core/utils/helpers/spacing.dart';
 import '../../../../core/widgets/app_text_button.dart';
@@ -24,32 +23,8 @@ class LogOutScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                verticalSpacing(10),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Material(
-                    color: AppColors.onyxBlack.withValues(alpha: .9),
-                    borderRadius: BorderRadius.circular(12.r),
-                    child: InkWell(
-                      onTap: () {
-                        context.pushNamed(AppStrings.mainScreen, null);
-                      },
-                      borderRadius: BorderRadius.circular(12.r),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 16.w,
-                          vertical: 6.h,
-                        ),
-                        child: Text(
-                          "Skip",
-                          style: AppTextStyles.font12CoolGrayManrope,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                verticalSpacing(5),
 
-                verticalSpacing(15),
                 SizedBox(
                   height: 70.h,
                   child: Image.asset("assets/images/movura.png"),
@@ -57,20 +32,20 @@ class LogOutScreen extends StatelessWidget {
 
                 verticalSpacing(25),
                 Text(
-                  "Welcome Back",
+                  "Create Account",
                   style: AppTextStyles.font40BoldPureWhite.copyWith(
                     fontSize: 35.sp,
                   ),
                 ),
                 verticalSpacing(4),
                 Text(
-                  "Sign in to continue your cinematic journey",
+                  "Join the premiere community for cinema lovers, fans, and enthusiasts.",
                   style: AppTextStyles.font12CoolGrayManrope.copyWith(
                     fontSize: 14.sp,
                   ),
                   textAlign: TextAlign.center,
                 ),
-                verticalSpacing(30),
+                verticalSpacing(20),
 
                 Align(
                   alignment: Alignment.centerLeft,
@@ -93,31 +68,14 @@ class LogOutScreen extends StatelessWidget {
                   ),
                 ),
                 verticalSpacing(20),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Password",
-                      style: AppTextStyles.font14SimiBoldPlatinumGraySora
-                          .copyWith(
-                            fontSize: 12.sp,
-                            color: AppColors.slateGray,
-                          ),
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Text(
-                        "Forgot?",
-                        style: AppTextStyles.font13MediumNeonBlue.copyWith(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      ),
-                    ),
-                  ],
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Password",
+                    style: AppTextStyles.font14SimiBoldPlatinumGraySora
+                        .copyWith(fontSize: 12.sp, color: AppColors.slateGray),
+                  ),
                 ),
-                verticalSpacing(8),
                 AppTextFormField(
                   hintText: "••••••••",
                   isObscureText: true,
@@ -139,10 +97,40 @@ class LogOutScreen extends StatelessWidget {
                   ),
                 ),
 
-                verticalSpacing(70),
+                verticalSpacing(20),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Confirm Password",
+                    style: AppTextStyles.font14SimiBoldPlatinumGraySora
+                        .copyWith(fontSize: 12.sp, color: AppColors.slateGray),
+                  ),
+                ),
+                AppTextFormField(
+                  hintText: "••••••••",
+                  isObscureText: true,
+                  prefixIcon: Padding(
+                    padding: EdgeInsets.only(left: 14.w, right: 10.w),
+                    child: Icon(
+                      Icons.lock_outline_rounded,
+                      size: 22.sp,
+                      color: AppColors.slateGray.withValues(alpha: .9),
+                    ),
+                  ),
+                  suffixIcon: Padding(
+                    padding: EdgeInsets.only(left: 10.w, right: 14.w),
+                    child: Icon(
+                      Icons.remove_red_eye_outlined,
+                      size: 22.sp,
+                      color: AppColors.slateGray.withValues(alpha: .9),
+                    ),
+                  ),
+                ),
+
+                verticalSpacing(50),
 
                 AppTextButton(
-                  buttonText: "Login",
+                  buttonText: "Sign Up",
                   onPressed: () {},
                   buttonWidth: 250,
                   buttonHeight: 42,
@@ -152,7 +140,7 @@ class LogOutScreen extends StatelessWidget {
                   ),
                 ),
 
-                verticalSpacing(25),
+                verticalSpacing(18),
 
                 Row(
                   children: [
@@ -181,7 +169,7 @@ class LogOutScreen extends StatelessWidget {
                   ],
                 ),
 
-                verticalSpacing(20),
+                verticalSpacing(18),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -204,26 +192,31 @@ class LogOutScreen extends StatelessWidget {
                   ],
                 ),
 
-                verticalSpacing(20),
+                verticalSpacing(18),
 
-                RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                    style: AppTextStyles.font10BoldCoolGray.copyWith(
-                      fontSize: 13.sp,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Already have an account? ",
+                      style: AppTextStyles.font10BoldCoolGray.copyWith(
+                        fontSize: 13.sp,
+                      ),
                     ),
-                    children: [
-                      TextSpan(text: "Don't have an account? "),
-                      TextSpan(
-                        text: "Sign Up",
+                    GestureDetector(
+                      onTap: () {
+                        context.pop();
+                      },
+                      child: Text(
+                        "Login",
                         style: AppTextStyles.font13BoldNeonBlueSora.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                verticalSpacing(10),
+                verticalSpacing(8),
               ],
             ),
           ),
