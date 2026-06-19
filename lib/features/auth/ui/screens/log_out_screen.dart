@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/theming/colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/core/utils/constants/strings.dart';
-import 'package:movura/core/utils/extensions/routing_extension.dart';
-import 'package:movura/core/utils/helpers/spacing.dart';
-import 'package:movura/core/widgets/app_text_button.dart';
-import 'package:movura/core/widgets/app_text_form_field.dart';
 
+import '../../../../core/theming/colors.dart';
+import '../../../../core/theming/text_styles.dart';
+import '../../../../core/utils/constants/strings.dart';
+import '../../../../core/utils/extensions/routing_extension.dart';
+import '../../../../core/utils/helpers/spacing.dart';
+import '../../../../core/widgets/app_text_button.dart';
+import '../../../../core/widgets/app_text_form_field.dart';
 import '../widgets/build_social_button.dart';
 
-class LogInScreen extends StatelessWidget {
-  const LogInScreen({super.key});
+class LogOutScreen extends StatelessWidget {
+  const LogOutScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,9 +56,12 @@ class LogInScreen extends StatelessWidget {
                 ),
 
                 verticalSpacing(25),
-                Text("Welcome Back",
-                    style: AppTextStyles.font40BoldPureWhite.copyWith(
-                        fontSize: 35.sp)),
+                Text(
+                  "Welcome Back",
+                  style: AppTextStyles.font40BoldPureWhite.copyWith(
+                    fontSize: 35.sp,
+                  ),
+                ),
                 verticalSpacing(4),
                 Text(
                   "Sign in to continue your cinematic journey",
@@ -210,7 +213,7 @@ class LogInScreen extends StatelessWidget {
                       fontSize: 13.sp,
                     ),
                     children: [
-                       TextSpan(text: "Don't have an account? "),
+                      TextSpan(text: "Don't have an account? "),
                       TextSpan(
                         text: "Sign Up",
                         style: AppTextStyles.font13BoldNeonBlueSora.copyWith(
