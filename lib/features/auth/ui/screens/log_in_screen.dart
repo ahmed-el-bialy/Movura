@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/core/utils/constants/strings.dart';
+import 'package:movura/core/utils/constants/app_strings.dart';
 import 'package:movura/core/utils/extensions/routing_extension.dart';
 import 'package:movura/core/utils/helpers/spacing.dart';
 import 'package:movura/core/widgets/app_text_button.dart';
 import 'package:movura/core/widgets/app_text_form_field.dart';
+import 'package:movura/core/widgets/section_title.dart';
 
 import '../widgets/build_social_button.dart';
 
@@ -91,29 +92,15 @@ class LogInScreen extends StatelessWidget {
                 ),
                 verticalSpacing(20),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Password",
-                      style: AppTextStyles.font14SimiBoldPlatinumGraySora
-                          .copyWith(
-                            fontSize: 12.sp,
-                            color: AppColors.slateGray,
-                          ),
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Text(
-                        "Forgot?",
-                        style: AppTextStyles.font13MediumNeonBlue.copyWith(
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                SectionTitle(sectionName: "Password",
+                  actionName: "Forgot?",
+                  onTap: () {},
+                  titleStyle: AppTextStyles.font14SimiBoldPlatinumGraySora
+                      .copyWith(fontSize: 12.sp, color: AppColors.slateGray),
+                  actionStyle: AppTextStyles.font13MediumNeonBlue,
+                  verticalPadding: 0,
+                  horizontalPadding: 0,),
+
                 verticalSpacing(8),
                 AppTextFormField(
                   hintText: "••••••••",
@@ -136,7 +123,7 @@ class LogInScreen extends StatelessWidget {
                   ),
                 ),
 
-                verticalSpacing(70),
+                verticalSpacing(66),
 
                 AppTextButton(
                   buttonText: "Login",
@@ -149,7 +136,7 @@ class LogInScreen extends StatelessWidget {
                   ),
                 ),
 
-                verticalSpacing(25),
+                verticalSpacing(28),
 
                 Row(
                   children: [
@@ -184,17 +171,17 @@ class LogInScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     BuildSocialButton(
-                      assetPath: "assets/images/google_logo.png",
+                      logoPath: "assets/images/google_logo.png",
                       backgroundColor: AppColors.onyxBlack,
                       onTap: () {},
                     ),
                     BuildSocialButton(
-                      assetPath: "assets/images/facebook_logo.png",
+                      logoPath: "assets/images/facebook_logo.png",
                       backgroundColor: AppColors.onyxBlack,
                       onTap: () {},
                     ),
                     BuildSocialButton(
-                      assetPath: "assets/images/apple_logo.png",
+                      logoPath: "assets/images/apple_logo.png",
                       backgroundColor: AppColors.onyxBlack,
                       onTap: () {},
                     ),
@@ -212,7 +199,7 @@ class LogInScreen extends StatelessWidget {
                         ),),
                       GestureDetector(
                         onTap: () {
-                          context.pushNamed(AppStrings.logOutScreen, null);
+                          context.pushNamed(AppStrings.signUpScreen, null);
                         },
                         child: Text(
                           "Sign Up",

@@ -9,8 +9,8 @@ import '../../../../core/widgets/app_text_button.dart';
 import '../../../../core/widgets/app_text_form_field.dart';
 import '../widgets/build_social_button.dart';
 
-class LogOutScreen extends StatelessWidget {
-  const LogOutScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +76,8 @@ class LogOutScreen extends StatelessWidget {
                         .copyWith(fontSize: 12.sp, color: AppColors.slateGray),
                   ),
                 ),
+                verticalSpacing(8),
+
                 AppTextFormField(
                   hintText: "••••••••",
                   isObscureText: true,
@@ -106,6 +108,7 @@ class LogOutScreen extends StatelessWidget {
                         .copyWith(fontSize: 12.sp, color: AppColors.slateGray),
                   ),
                 ),
+                verticalSpacing(8),
                 AppTextFormField(
                   hintText: "••••••••",
                   isObscureText: true,
@@ -127,7 +130,7 @@ class LogOutScreen extends StatelessWidget {
                   ),
                 ),
 
-                verticalSpacing(50),
+                verticalSpacing(40),
 
                 AppTextButton(
                   buttonText: "Sign Up",
@@ -140,7 +143,7 @@ class LogOutScreen extends StatelessWidget {
                   ),
                 ),
 
-                verticalSpacing(25),
+                verticalSpacing(20),
 
                 Row(
                   children: [
@@ -169,23 +172,23 @@ class LogOutScreen extends StatelessWidget {
                   ],
                 ),
 
-                verticalSpacing(18),
+                verticalSpacing(15),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     BuildSocialButton(
-                      assetPath: "assets/images/google_logo.png",
+                      logoPath: "assets/images/google_logo.png",
                       backgroundColor: AppColors.onyxBlack,
                       onTap: () {},
                     ),
                     BuildSocialButton(
-                      assetPath: "assets/images/facebook_logo.png",
+                      logoPath: "assets/images/facebook_logo.png",
                       backgroundColor: AppColors.onyxBlack,
                       onTap: () {},
                     ),
                     BuildSocialButton(
-                      assetPath: "assets/images/apple_logo.png",
+                      logoPath: "assets/images/apple_logo.png",
                       backgroundColor: AppColors.onyxBlack,
                       onTap: () {},
                     ),
@@ -216,7 +219,7 @@ class LogOutScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                verticalSpacing(8),
+                verticalSpacing(10),
               ],
             ),
           ),

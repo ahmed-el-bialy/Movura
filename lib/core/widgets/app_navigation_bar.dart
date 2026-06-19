@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/utils/extensions/routing_extension.dart';
 
 import '../theming/colors.dart';
-import '../utils/constants/strings.dart';
+import '../utils/constants/app_strings.dart';
 
 class AppNavigationBar extends StatelessWidget {
   final int activeIndex;

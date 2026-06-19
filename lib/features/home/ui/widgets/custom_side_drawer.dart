@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/theming/colors.dart';
-import '../../../../core/utils/constants/strings.dart';
+import '../../../../core/utils/constants/app_strings.dart';
 import '../../../../core/utils/extensions/routing_extension.dart';
 
 class CustomSideDrawer extends StatelessWidget {
@@ -29,12 +29,15 @@ class CustomSideDrawer extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
                     padding: EdgeInsets.only(left: 8.w, right: 8.w),
                     child: Image.asset(
-                      "assets/images/mini_icon.png",
+                      "assets/images/movura.png",
                       fit: BoxFit.fill,
+                      height: 30.h,
+                      width: 30.w,
                     ),
                   ),
                   Padding(

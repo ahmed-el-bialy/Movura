@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:movura/core/utils/constants/strings.dart';
+import 'package:movura/core/utils/constants/app_strings.dart';
 import 'package:movura/core/utils/extensions/routing_extension.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/features/auth/ui/screens/log_in_screen.dart';
-import 'package:movura/features/auth/ui/screens/log_out_screen.dart';
+import 'package:movura/features/auth/ui/screens/sign_up_screen.dart';
 import 'package:movura/features/details/data/repos/tv_series_repo.dart';
 import 'package:movura/features/details/logic/tv_series_cubit/about_tv/about_tv_cubit.dart';
 import 'package:movura/features/details/ui/screens/tv_series_details_screen.dart';
@@ -16,7 +16,7 @@ import '../../features/home/logic/tpo_rated_tv_series/top_rated_tv_series_cubit.
 import '../../features/home/logic/trending_content/trending_content_cubit.dart';
 import '../../features/home/ui/home_screen.dart';
 import '../networking/di.dart';
-import '../utils/constants/strings.dart';
+import '../utils/constants/app_strings.dart';
 import 'arguments_model.dart';
 
 class AppRouter {
@@ -25,8 +25,8 @@ class AppRouter {
       case AppStrings.logInScreen:
         return MaterialPageRoute(builder: (_) => const LogInScreen());
 
-      case AppStrings.logOutScreen:
-        return MaterialPageRoute(builder: (_) => const LogOutScreen());
+      case AppStrings.signUpScreen:
+        return MaterialPageRoute(builder: (_) => const SignUpScreen());
 
       case AppStrings.mainScreen:
         return MaterialPageRoute(

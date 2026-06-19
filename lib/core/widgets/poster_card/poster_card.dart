@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/models/poster_model.dart';
 import 'package:movura/core/utils/constants/api_constants.dart';
-import 'package:movura/core/utils/constants/strings.dart';
+import 'package:movura/core/utils/constants/app_strings.dart';
 import 'package:movura/core/utils/extensions/routing_extension.dart';
 import 'package:movura/core/widgets/poster_card/sub_widgets/bottom_lef_sub_card.dart';
 import 'package:movura/core/widgets/poster_card/sub_widgets/error_poster_image.dart';
