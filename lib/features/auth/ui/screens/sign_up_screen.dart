@@ -24,14 +24,10 @@ class SignUpScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                verticalSpacing(10),
+                verticalSpacing(8),
 
-                SizedBox(
-                  height: 70.h,
-                  child: Image.asset(AppConstants.appLogo),
-                ),
+                Image.asset(AppConstants.appLogo, width: 85.w, height: 85.h,),
 
-                verticalSpacing(15),
                 Text(
                   "Create Account",
                   style: AppTextStyles.font40BoldPureWhite.copyWith(
@@ -46,7 +42,7 @@ class SignUpScreen extends StatelessWidget {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                verticalSpacing(20),
+                verticalSpacing(15),
 
                 Align(
                   alignment: Alignment.centerLeft,
@@ -131,7 +127,7 @@ class SignUpScreen extends StatelessWidget {
                   ),
                 ),
 
-                verticalSpacing(40),
+                verticalSpacing(30),
 
                 AppTextButton(
                   buttonText: "Sign Up",
@@ -220,7 +216,6 @@ class SignUpScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                verticalSpacing(10),
               ],
             ),
           ),

@@ -50,13 +50,8 @@ class LogInScreen extends StatelessWidget {
                   ),
                 ),
 
-                verticalSpacing(15),
-                SizedBox(
-                  height: 70.h,
-                  child: Image.asset(AppConstants.appLogo),
-                ),
+                Image.asset(AppConstants.appLogo, width: 85.w, height: 85.h,),
 
-                verticalSpacing(25),
                 Text("Welcome Back",
                     style: AppTextStyles.font40BoldPureWhite.copyWith(
                         fontSize: 35.sp)),
@@ -123,7 +118,7 @@ class LogInScreen extends StatelessWidget {
                   ),
                 ),
 
-                verticalSpacing(66),
+                verticalSpacing(65),
 
                 AppTextButton(
                   buttonText: "Login",
@@ -136,7 +131,7 @@ class LogInScreen extends StatelessWidget {
                   ),
                 ),
 
-                verticalSpacing(28),
+                verticalSpacing(25),
 
                 Row(
                   children: [
@@ -210,8 +205,6 @@ class LogInScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-
-                verticalSpacing(10),
               ],
             ),
           ),
