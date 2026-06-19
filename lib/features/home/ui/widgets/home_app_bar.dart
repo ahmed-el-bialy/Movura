@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/networking/di.dart';
 import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/text_styles.dart';
-import '../../../../core/utils/constants/app_strings.dart';
+import '../../../../core/utils/constants/app_constants.dart';
 import '../../../search/logic/search/search_cubit.dart';
 import '../../../search/ui/custom_search_delegate.dart';
 
@@ -35,12 +35,17 @@ class HomeAppBar extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.only(left: 8.w, right: 8.w),
-            child: Image.asset("assets/images/mini_icon.png", fit: BoxFit.fill),
+            child: Image.asset(
+              AppConstants.appLogo,
+              fit: BoxFit.fill,
+              height: 30.h,
+              width: 30.w,
+            ),
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 4.h),
             child: Text(
-              AppStrings.appName,
+              AppConstants.appName,
               style: AppTextStyles.font24SimiBoldNeonBlueManrope,
             ),
           ),

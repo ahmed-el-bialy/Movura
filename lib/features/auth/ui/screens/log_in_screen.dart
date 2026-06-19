@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/core/utils/constants/app_strings.dart';
+import 'package:movura/core/utils/constants/app_constants.dart';
 import 'package:movura/core/utils/extensions/routing_extension.dart';
 import 'package:movura/core/utils/helpers/spacing.dart';
 import 'package:movura/core/widgets/app_text_button.dart';
@@ -33,7 +33,7 @@ class LogInScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12.r),
                     child: InkWell(
                       onTap: () {
-                        context.pushNamed(AppStrings.mainScreen, null);
+                        context.pushNamed(AppConstants.mainScreen, null);
                       },
                       borderRadius: BorderRadius.circular(12.r),
                       child: Padding(
@@ -53,7 +53,7 @@ class LogInScreen extends StatelessWidget {
                 verticalSpacing(15),
                 SizedBox(
                   height: 70.h,
-                  child: Image.asset("assets/images/movura.png"),
+                  child: Image.asset(AppConstants.appLogo),
                 ),
 
                 verticalSpacing(25),
@@ -199,7 +199,7 @@ class LogInScreen extends StatelessWidget {
                         ),),
                       GestureDetector(
                         onTap: () {
-                          context.pushNamed(AppStrings.signUpScreen, null);
+                          context.pushNamed(AppConstants.signUpScreen, null);
                         },
                         child: Text(
                           "Sign Up",

@@ -16,19 +16,19 @@ import '../../features/home/logic/tpo_rated_tv_series/top_rated_tv_series_cubit.
 import '../../features/home/logic/trending_content/trending_content_cubit.dart';
 import '../../features/home/ui/home_screen.dart';
 import '../networking/di.dart';
-import '../utils/constants/app_strings.dart';
+import '../utils/constants/app_constants.dart';
 import 'arguments_model.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings setting) {
     switch (setting.name) {
-      case AppStrings.logInScreen:
+      case AppConstants.logInScreen:
         return MaterialPageRoute(builder: (_) => const LogInScreen());
 
-      case AppStrings.signUpScreen:
+      case AppConstants.signUpScreen:
         return MaterialPageRoute(builder: (_) => const SignUpScreen());
 
-      case AppStrings.mainScreen:
+      case AppConstants.mainScreen:
         return MaterialPageRoute(
           builder: (_) => MultiBlocProvider(
             providers: [
@@ -49,7 +49,7 @@ class AppRouter {
           ),
         );
 
-      case AppStrings.detailsScreen:
+      case AppConstants.detailsScreen:
         final arguments = setting.arguments as ArgumentsModel;
 
         if (arguments.mediaType == "movie") {
@@ -72,7 +72,7 @@ class AppRouter {
           );
         }
 
-      case AppStrings.videoPlayScreen:
+      case AppConstants.videoPlayScreen:
         final controller = setting.arguments as YoutubePlayerController;
         return MaterialPageRoute(
           builder: (_) => VideoScreen(controller: controller),

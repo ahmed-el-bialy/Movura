@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/utils/extensions/routing_extension.dart';
 
 import '../theming/colors.dart';
-import '../utils/constants/app_strings.dart';
+import '../utils/constants/app_constants.dart';
 
 class AppNavigationBar extends StatelessWidget {
   final int activeIndex;
@@ -33,7 +33,7 @@ class AppNavigationBar extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16.r),
                 onTap: () {
                   if (activeIndex != 0) {
-                    context.pushReplacementNamed(AppStrings.logInScreen, null);
+                    context.pushReplacementNamed(AppConstants.logInScreen, null);
                   }
                 },
                 child: Padding(
