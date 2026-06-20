@@ -78,6 +78,7 @@ class LogInScreen extends StatelessWidget {
                   ),
                   verticalSpacing(8),
                   AppTextFormField(
+                    inputType: TextInputType.emailAddress,
                     hintText: "movura@example.com",
                     prefixIcon: Padding(
                       padding: EdgeInsets.only(left: 14.w, right: 10.w),
@@ -101,6 +102,7 @@ class LogInScreen extends StatelessWidget {
 
                   verticalSpacing(8),
                   AppTextFormField(
+                    inputType: TextInputType.text,
                     hintText: "••••••••",
                     isObscureText: true,
                     prefixIcon: Padding(

@@ -16,7 +16,7 @@ class AppTextFormField extends StatelessWidget {
     this.isObscureText,
     this.suffixIcon,
     this.backgroundColor,
-    this.prefixIcon,
+    this.prefixIcon, this.inputType,
   });
 
   final EdgeInsetsGeometry? contentPadding;
@@ -30,10 +30,13 @@ class AppTextFormField extends StatelessWidget {
   final Widget? suffixIcon;
   final Widget? prefixIcon;
   final Color? backgroundColor;
+  final TextInputType? inputType;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: inputType,
+
       style: inputTextStyle ?? AppTextStyles.font14SimiBoldPlatinumGraySora,
       obscureText: isObscureText ?? false,
       decoration: InputDecoration(
