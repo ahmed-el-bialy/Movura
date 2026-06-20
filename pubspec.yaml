@@ -71,6 +71,8 @@ dependencies:
   flutter_dotenv: ^6.0.1
   # Customizable animated page indicator with a set of built-in effects.
   smooth_page_indicator: ^2.0.1
+  firebase_core: ^4.11.0
+  firebase_auth: ^6.5.3
 
 
 
