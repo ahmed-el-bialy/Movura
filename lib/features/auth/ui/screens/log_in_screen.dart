@@ -23,6 +23,15 @@ class _LogInScreenState extends State<LogInScreen> {
   final password = TextEditingController();
   final email = TextEditingController();
 
+  bool isObscure = true;
+
+  @override
+  void dispose() {
+    email.dispose();
+    password.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -64,11 +73,17 @@ class _LogInScreenState extends State<LogInScreen> {
                     ),
 
                     Image.asset(
-                      AppConstants.appLogo, width: 85.w, height: 85.h,),
+                      AppConstants.appLogo,
+                      width: 85.w,
+                      height: 85.h,
+                    ),
 
-                    Text("Welcome Back",
-                        style: AppTextStyles.font40BoldPureWhite.copyWith(
-                            fontSize: 35.sp)),
+                    Text(
+                      "Welcome Back",
+                      style: AppTextStyles.font40BoldPureWhite.copyWith(
+                        fontSize: 35.sp,
+                      ),
+                    ),
                     verticalSpacing(4),
                     Text(
                       "Sign in to continue your cinematic journey",
@@ -85,13 +100,16 @@ class _LogInScreenState extends State<LogInScreen> {
                         "Email Address",
                         style: AppTextStyles.font14SimiBoldPlatinumGraySora
                             .copyWith(
-                            fontSize: 12.sp, color: AppColors.slateGray),
+                          fontSize: 12.sp,
+                          color: AppColors.slateGray,
+                        ),
                       ),
                     ),
                     verticalSpacing(8),
                     AppTextFormField(
                       controller: email,
                       inputType: TextInputType.emailAddress,
+                      textInputAction: TextInputAction.next,
                       hintText: "movura@example.com",
                       prefixIcon: Padding(
                         padding: EdgeInsets.only(left: 14.w, right: 10.w),
@@ -101,32 +119,46 @@ class _LogInScreenState extends State<LogInScreen> {
                           color: AppColors.slateGray.withValues(alpha: .9),
                         ),
                       ),
+                      validator: (value) {
+                        if (value == null || value
+                            .trim()
+                            .isEmpty) {
+                          return "Email is required";
+                        }
+
+                        final emailRegex = RegExp(
+                          r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                        );
+                        if (!emailRegex.hasMatch(value.trim())) {
+                          return "Please enter a valid email address";
+                        }
+                        return null;
+                      },
                     ),
                     verticalSpacing(20),
 
-                    SectionTitle(sectionName: "Password",
+                    SectionTitle(
+                      sectionName: "Password",
                       actionName: "Forgot?",
                       onTap: () {},
                       titleStyle: AppTextStyles.font14SimiBoldPlatinumGraySora
                           .copyWith(
-                          fontSize: 12.sp, color: AppColors.slateGray),
+                        fontSize: 12.sp,
+                        color: AppColors.slateGray,
+                      ),
                       actionStyle: AppTextStyles.font13MediumNeonBlue,
                       verticalPadding: 0,
-                      horizontalPadding: 0,),
+                      horizontalPadding: 0,
+                    ),
 
                     verticalSpacing(8),
 
                     AppTextFormField(
-                      validator: (value) {
-                        if (password.text.isEmpty) {
-                          return "Password is required";
-                        }
-                        return "";
-                      },
+                      hintText: isObscure == true ? "••••••••" : "Password",
                       controller: password,
                       inputType: TextInputType.text,
-                      hintText: "••••••••",
-                      isObscureText: true,
+                      textInputAction: TextInputAction.done,
+                      isObscureText: isObscure,
                       prefixIcon: Padding(
                         padding: EdgeInsets.only(left: 14.w, right: 10.w),
                         child: Icon(
@@ -137,19 +169,72 @@ class _LogInScreenState extends State<LogInScreen> {
                       ),
                       suffixIcon: Padding(
                         padding: EdgeInsets.only(left: 10.w, right: 14.w),
-                        child: Icon(
-                          Icons.remove_red_eye_outlined,
-                          size: 22.sp,
-                          color: AppColors.slateGray.withValues(alpha: .9),
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isObscure = !isObscure;
+                            });
+                          },
+                          child: Icon(
+                            isObscure
+                                ? Icons.visibility_off_outlined
+                                : Icons.visibility_outlined,
+                            size: 22.sp,
+                            color: AppColors.slateGray.withValues(alpha: .9),
+                          ),
                         ),
                       ),
-                    ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Password is required";
+                        }
+
+                        if (value.length < 6) {
+                          return "Password must be at least 6 characters";
+                        }
+
+                        final passwordRegex = RegExp(
+                            r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).+$');
+
+                        if (!passwordRegex.hasMatch(value)) {
+                          return "Password must contain uppercase, lowercase, number, and special character (e.g. #)";
+                        }
+
+                        return null;
+                      },),
 
                     verticalSpacing(65),
 
                     AppTextButton(
                       buttonText: "Login",
-                      onPressed: () {},
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          context.pushNamed(AppConstants.mainScreen, null);
+                        } else {
+                          ScaffoldMessenger.of(context).clearSnackBars();
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Row(
+                                children: [
+                                  const Icon(
+                                    Icons.error_outline,
+                                    color: Colors.white,
+                                  ),
+                                  SizedBox(width: 10.w),
+                                  const Text(
+                                    "Please fill all fields correctly",
+                                  ),
+                                ],
+                              ),
+                              backgroundColor: Colors.redAccent,
+                              behavior: SnackBarBehavior.floating,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.r),
+                              ),
+                            ),
+                          );
+                        }
+                      },
                       buttonWidth: 250,
                       buttonHeight: 42,
                       borderRadius: 18,
@@ -215,10 +300,12 @@ class _LogInScreenState extends State<LogInScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Don't have an account? ",
+                        Text(
+                          "Don't have an account? ",
                           style: AppTextStyles.font10BoldCoolGray.copyWith(
                             fontSize: 13.sp,
-                          ),),
+                          ),
+                        ),
                         GestureDetector(
                           onTap: () {
                             context.pushNamed(AppConstants.signUpScreen, null);
@@ -226,9 +313,7 @@ class _LogInScreenState extends State<LogInScreen> {
                           child: Text(
                             "Sign Up",
                             style: AppTextStyles.font13BoldNeonBlueSora
-                                .copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
+                                .copyWith(fontWeight: FontWeight.bold),
                           ),
                         ),
                       ],

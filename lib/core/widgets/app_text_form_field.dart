@@ -10,6 +10,7 @@ class AppTextFormField extends StatelessWidget {
     this.focusedBorder,
     this.enabledBorder,
     this.errorBorder,
+    this.focusedErrorBorder,
     this.inputTextStyle,
     this.hintStyle,
     required this.hintText,
@@ -18,6 +19,7 @@ class AppTextFormField extends StatelessWidget {
     this.backgroundColor,
     this.prefixIcon,
     this.inputType,
+    this.textInputAction,
     this.controller,
     this.validator,
   });
@@ -26,6 +28,7 @@ class AppTextFormField extends StatelessWidget {
   final InputBorder? focusedBorder;
   final InputBorder? enabledBorder;
   final InputBorder? errorBorder;
+  final InputBorder? focusedErrorBorder;
   final TextStyle? inputTextStyle;
   final TextStyle? hintStyle;
   final String hintText;
@@ -34,6 +37,7 @@ class AppTextFormField extends StatelessWidget {
   final Widget? prefixIcon;
   final Color? backgroundColor;
   final TextInputType? inputType;
+  final TextInputAction? textInputAction;
   final TextEditingController? controller;
   final FormFieldValidator<String>? validator;
 
@@ -41,9 +45,8 @@ class AppTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       keyboardType: inputType,
-
+      textInputAction: textInputAction,
       controller: controller,
-
       style: inputTextStyle ?? AppTextStyles.font14SimiBoldPlatinumGraySora,
       obscureText: isObscureText ?? false,
       decoration: InputDecoration(
@@ -53,17 +56,15 @@ class AppTextFormField extends StatelessWidget {
         contentPadding:
             contentPadding ??
             EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
-
         hintText: hintText,
         hintStyle:
             hintStyle ??
             AppTextStyles.font10BoldCoolGray.copyWith(
               fontSize: 14.sp,
               color: AppTextStyles.font10BoldCoolGray.color?.withValues(
-                alpha: .6,
+                alpha: .8,
               ),
             ),
-
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,
 
@@ -71,25 +72,35 @@ class AppTextFormField extends StatelessWidget {
             enabledBorder ??
             OutlineInputBorder(
               borderRadius: BorderRadius.circular(16.r),
-
               borderSide: BorderSide(
-                color: AppColors.coolGray.withValues(alpha: 0.15),
+                color: AppColors.coolGray.withValues(alpha: 0.45),
                 width: 1.3.w,
               ),
             ),
-        errorBorder:
-            errorBorder ??
-            OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16.r),
-              borderSide: BorderSide(color: Colors.red, width: 1.3.w),
-            ),
+
         focusedBorder:
             focusedBorder ??
             OutlineInputBorder(
               borderRadius: BorderRadius.circular(16.r),
               borderSide: BorderSide(color: AppColors.neonBlue, width: 1.3.w),
             ),
+
+        errorBorder:
+            errorBorder ??
+            OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16.r),
+              borderSide: BorderSide(color: Colors.red, width: 1.2.w),
+            ),
+
+        focusedErrorBorder:
+            focusedErrorBorder ??
+            OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16.r),
+              borderSide: BorderSide(color: Colors.redAccent, width: 1.2.w),
+            ),
+        errorMaxLines: 2,
       ),
+
       validator: validator,
     );
   }
