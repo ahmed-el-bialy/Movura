@@ -18,6 +18,12 @@ class Validators {
     if (value.length < 6) {
       return 'Password must be at least 6 characters';
     }
+
+    final passwordRegex = RegExp(r'^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$');
+
+    if (!passwordRegex.hasMatch(value)) {
+      return 'Password must contain at least one uppercase letter, one number, and one special character';
+    }
     return null;
   }
 

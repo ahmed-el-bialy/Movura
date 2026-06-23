@@ -5,6 +5,7 @@ import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/utils/constants/app_constants.dart';
 import 'package:movura/core/utils/extensions/routing_extension.dart';
 import 'package:movura/core/utils/helpers/spacing.dart';
+import 'package:movura/core/utils/helpers/validators.dart';
 import 'package:movura/core/widgets/app_text_button.dart';
 import 'package:movura/core/widgets/app_text_form_field.dart';
 import 'package:movura/core/widgets/section_title.dart';
@@ -119,19 +120,7 @@ class _LogInScreenState extends State<LogInScreen> {
                           color: AppColors.slateGray.withValues(alpha: .9),
                         ),
                       ),
-                      validator: (value) {
-                        if (value == null || value.trim().isEmpty) {
-                          return "Email is required";
-                        }
-
-                        final emailRegex = RegExp(
-                          r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
-                        );
-                        if (!emailRegex.hasMatch(value.trim())) {
-                          return "Please enter a valid email address";
-                        }
-                        return null;
-                      },
+                      validator: Validators.validateEmail,
                     ),
                     verticalSpacing(20),
 
@@ -181,15 +170,7 @@ class _LogInScreenState extends State<LogInScreen> {
                           ),
                         ),
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Password is required";
-                        }
-                        if (value.length < 6) {
-                          return "Password must be at least 6 characters";
-                        }
-                        return null;
-                      },
+                      validator: Validators.validatePassword,
                     ),
 
                     verticalSpacing(65),
