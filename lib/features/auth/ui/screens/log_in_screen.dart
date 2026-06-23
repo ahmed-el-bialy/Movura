@@ -20,15 +20,15 @@ class LogInScreen extends StatefulWidget {
 
 class _LogInScreenState extends State<LogInScreen> {
   final formKey = GlobalKey<FormState>();
-  final password = TextEditingController();
-  final email = TextEditingController();
+  final passwordController = TextEditingController();
+  final emailController = TextEditingController();
 
   bool isObscure = true;
 
   @override
   void dispose() {
-    email.dispose();
-    password.dispose();
+    emailController.dispose();
+    passwordController.dispose();
     super.dispose();
   }
 
@@ -98,8 +98,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "Email Address",
-                        style: AppTextStyles.font14SimiBoldPlatinumGraySora
-                            .copyWith(
+                        style: AppTextStyles.font14SimiBoldPlatinumGraySora.copyWith(
                           fontSize: 12.sp,
                           color: AppColors.slateGray,
                         ),
@@ -107,7 +106,7 @@ class _LogInScreenState extends State<LogInScreen> {
                     ),
                     verticalSpacing(8),
                     AppTextFormField(
-                      controller: email,
+                      controller: emailController,
                       inputType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
                       hintText: "movura@example.com",
@@ -120,9 +119,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         ),
                       ),
                       validator: (value) {
-                        if (value == null || value
-                            .trim()
-                            .isEmpty) {
+                        if (value == null || value.trim().isEmpty) {
                           return "Email is required";
                         }
 
@@ -140,9 +137,10 @@ class _LogInScreenState extends State<LogInScreen> {
                     SectionTitle(
                       sectionName: "Password",
                       actionName: "Forgot?",
-                      onTap: () {},
-                      titleStyle: AppTextStyles.font14SimiBoldPlatinumGraySora
-                          .copyWith(
+                      onTap: () {
+
+                      },
+                      titleStyle: AppTextStyles.font14SimiBoldPlatinumGraySora.copyWith(
                         fontSize: 12.sp,
                         color: AppColors.slateGray,
                       ),
@@ -150,14 +148,13 @@ class _LogInScreenState extends State<LogInScreen> {
                       verticalPadding: 0,
                       horizontalPadding: 0,
                     ),
-
                     verticalSpacing(8),
 
                     AppTextFormField(
-                      hintText: isObscure == true ? "••••••••" : "Password",
-                      controller: password,
+                      controller: passwordController,
                       inputType: TextInputType.text,
                       textInputAction: TextInputAction.done,
+                      hintText: "••••••••",
                       isObscureText: isObscure,
                       prefixIcon: Padding(
                         padding: EdgeInsets.only(left: 14.w, right: 10.w),
@@ -188,20 +185,12 @@ class _LogInScreenState extends State<LogInScreen> {
                         if (value == null || value.isEmpty) {
                           return "Password is required";
                         }
-
                         if (value.length < 6) {
                           return "Password must be at least 6 characters";
                         }
-
-                        final passwordRegex = RegExp(
-                            r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).+$');
-
-                        if (!passwordRegex.hasMatch(value)) {
-                          return "Password must contain uppercase, lowercase, number, and special character (e.g. #)";
-                        }
-
                         return null;
-                      },),
+                      },
+                    ),
 
                     verticalSpacing(65),
 
@@ -209,6 +198,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       buttonText: "Login",
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
+
                           context.pushNamed(AppConstants.mainScreen, null);
                         } else {
                           ScaffoldMessenger.of(context).clearSnackBars();
@@ -312,8 +302,9 @@ class _LogInScreenState extends State<LogInScreen> {
                           },
                           child: Text(
                             "Sign Up",
-                            style: AppTextStyles.font13BoldNeonBlueSora
-                                .copyWith(fontWeight: FontWeight.bold),
+                            style: AppTextStyles.font13BoldNeonBlueSora.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ],
