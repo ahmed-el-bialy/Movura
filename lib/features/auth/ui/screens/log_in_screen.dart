@@ -98,10 +98,11 @@ class _LogInScreenState extends State<LogInScreen> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "Email Address",
-                        style: AppTextStyles.font14SimiBoldPlatinumGraySora.copyWith(
-                          fontSize: 12.sp,
-                          color: AppColors.slateGray,
-                        ),
+                        style: AppTextStyles.font14SimiBoldPlatinumGraySora
+                            .copyWith(
+                              fontSize: 12.sp,
+                              color: AppColors.slateGray,
+                            ),
                       ),
                     ),
                     verticalSpacing(8),
@@ -137,13 +138,12 @@ class _LogInScreenState extends State<LogInScreen> {
                     SectionTitle(
                       sectionName: "Password",
                       actionName: "Forgot?",
-                      onTap: () {
-
-                      },
-                      titleStyle: AppTextStyles.font14SimiBoldPlatinumGraySora.copyWith(
-                        fontSize: 12.sp,
-                        color: AppColors.slateGray,
-                      ),
+                      onTap: () {},
+                      titleStyle: AppTextStyles.font14SimiBoldPlatinumGraySora
+                          .copyWith(
+                            fontSize: 12.sp,
+                            color: AppColors.slateGray,
+                          ),
                       actionStyle: AppTextStyles.font13MediumNeonBlue,
                       verticalPadding: 0,
                       horizontalPadding: 0,
@@ -198,7 +198,6 @@ class _LogInScreenState extends State<LogInScreen> {
                       buttonText: "Login",
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-
                           context.pushNamed(AppConstants.mainScreen, null);
                         } else {
                           ScaffoldMessenger.of(context).clearSnackBars();
@@ -302,9 +301,8 @@ class _LogInScreenState extends State<LogInScreen> {
                           },
                           child: Text(
                             "Sign Up",
-                            style: AppTextStyles.font13BoldNeonBlueSora.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: AppTextStyles.font13BoldNeonBlueSora
+                                .copyWith(fontWeight: FontWeight.bold),
                           ),
                         ),
                       ],
