@@ -143,7 +143,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       controller: passwordController,
                       inputType: TextInputType.text,
                       textInputAction: TextInputAction.done,
-                      hintText: "••••••••",
+                      hintText: "********",
                       isObscureText: isObscure,
                       prefixIcon: Padding(
                         padding: EdgeInsets.only(left: 14.w, right: 10.w),

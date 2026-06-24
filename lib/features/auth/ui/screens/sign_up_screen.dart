@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/utils/constants/app_constants.dart';
+import 'package:movura/core/utils/helpers/validators.dart';
 
 import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/text_styles.dart';
@@ -26,7 +27,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   void dispose() {
-
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
@@ -44,7 +44,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
               padding: EdgeInsets.symmetric(horizontal: 15.w),
               child: Form(
                 key: formKey,
-                // [تعديل] ربط الـ formKey هنا لكي يشتغل الـ validation
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -83,7 +82,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     verticalSpacing(8),
                     AppTextFormField(
-                      controller: emailController, // [تعديل] ربط الـ controller
+                      controller: emailController,
                       hintText: "movura@example.com",
                       prefixIcon: Padding(
                         padding: EdgeInsets.only(left: 14.w, right: 10.w),
@@ -94,19 +93,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
 
-                      validator: (value) {
-                        if (value == null || value
-                            .trim()
-                            .isEmpty) {
-                          return "Email is required";
-                        }
-                        final emailRegex = RegExp(
-                            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-                        if (!emailRegex.hasMatch(value.trim())) {
-                          return "Please enter a valid email address";
-                        }
-                        return null;
-                      },
+                      validator: Validators.validateEmail,
                     ),
                     verticalSpacing(20),
                     Align(
@@ -122,10 +109,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                     AppTextFormField(
                       controller: passwordController,
-
-                      hintText: "••••••••",
+                      hintText: "********",
                       isObscureText: isObscure,
-
                       prefixIcon: Padding(
                         padding: EdgeInsets.only(left: 14.w, right: 10.w),
                         child: Icon(
@@ -151,24 +136,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Password is required";
-                        }
-
-                        if (value.length < 6) {
-                          return "Password must be at least 6 characters";
-                        }
-
-                        final passwordRegex = RegExp(
-                            r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).+$');
-
-                        if (!passwordRegex.hasMatch(value)) {
-                          return "Password must contain uppercase, lowercase, number, and special character";
-                        }
-
-                        return null;
-                      },
+                      validator: Validators.validatePassword,
                     ),
                     verticalSpacing(20),
                     Align(
@@ -182,7 +150,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     verticalSpacing(8),
                     AppTextFormField(
-                      hintText: "••••••••",
+                      hintText: "********",
                       isObscureText: isConfirmObscure,
                       prefixIcon: Padding(
                         padding: EdgeInsets.only(left: 14.w, right: 10.w),
@@ -209,17 +177,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Confirm Password is required";
-                        }
-
-                        if (value.trim() != passwordController.text.trim()) {
-                          return "Passwords do not match";
-                        }
-
-                        return null;
-                      },
+                      validator: (value) =>
+                          Validators.validateConfirmPassword(
+                              value, password: passwordController.text),
                     ),
 
                     verticalSpacing(30),
@@ -228,7 +188,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       buttonText: "Sign Up",
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          // هنا يتم الإنتقال إذا كانت كل المدخلات صحيحة
                           context.pushNamed(AppConstants.mainScreen, null);
                         } else {
                           ScaffoldMessenger.of(context).clearSnackBars();
