@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/colors.dart';
+import 'package:movura/core/utils/extensions/routing_extension.dart';
 import 'package:movura/features/home/ui/widgets/category_list.dart';
 import 'package:movura/features/home/ui/widgets/top_movies_list.dart';
 import 'package:movura/features/home/ui/widgets/top_tv_series_list.dart';
 import 'package:movura/features/home/ui/widgets/trending_list.dart';
 
+import '../../../core/utils/constants/app_constants.dart';
 import '../../../core/utils/helpers/spacing.dart';
 import '../../../core/widgets/app_navigation_bar.dart';
 import '../../../core/widgets/section_title.dart';
@@ -40,6 +42,9 @@ class HomeScreen extends StatelessWidget {
               child: SectionTitle(
                 sectionName: "Trending Now",
                 actionName: "See All ",
+                onTap: () {
+                  context.pushNamed(AppConstants.trendingScreen, null);
+                },
               ),
             ),
 
