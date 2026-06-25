@@ -1,5 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
-
+import '../models/user_model.dart';
 import '../web_services/auth_services.dart';
 
 class AuthRepo {
@@ -7,20 +6,45 @@ class AuthRepo {
 
   AuthRepo(this.authServices);
 
-  Future<UserCredential> login(String email, String password) async {
-    return await authServices.loginWithEmailAndPassword(
+  Future<UserModel> login(String email, String password) async {
+    final credential = await authServices.loginWithEmailAndPassword(
       email: email,
-
       password: password,
     );
+
+    final userData = await authServices.getUserData(uid: credential.user!.uid);
+
+    return UserModel.fromJson(userData);
   }
 
-  Future<UserCredential> signUp(String email, String password) async {
-    return await authServices.signUpWithEmailAndPassword(
+  Future<UserModel> signUp({
+    required String name,
+    required String email,
+    required String password,
+  }) async {
+    final credential = await authServices.signUpWithEmailAndPassword(
       email: email,
-
       password: password,
     );
+
+    await authServices.updateUserName(name: name);
+
+    final newUser = UserModel(
+      id: credential.user!.uid,
+      email: email,
+      name: name,
+      favorites: [],
+      watched: [],
+      toWatch: [],
+      watchNow: [],
+    );
+
+    await authServices.saveUserData(
+      userData: newUser.toJson(),
+      uid: newUser.id,
+    );
+
+    return newUser;
   }
 
   Future<void> logOut() async {
@@ -37,24 +61,25 @@ class AuthRepo {
 
   Future<void> deleteAccount({
     required String email,
-
     required String password,
   }) async {
+    final uid = authServices.currentUser?.uid;
+
     await authServices.deleteAccount(email: email, password: password);
+
+    if (uid != null) {
+      await authServices.deleteUserData(uid: uid);
+    }
   }
 
   Future<void> changePasswordFromCurrent({
     required String email,
-
     required String currentPassword,
-
     required String newPassword,
   }) async {
     await authServices.restPasswordFromCurrentPassword(
       email: email,
-
       currentPassword: currentPassword,
-
       newPassword: newPassword,
     );
   }
