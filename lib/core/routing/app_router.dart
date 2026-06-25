@@ -5,6 +5,7 @@ import 'package:movura/features/auth/ui/screens/sign_up_screen.dart';
 import 'package:movura/features/details/data/repos/tv_series_repo.dart';
 import 'package:movura/features/details/logic/tv_series_cubit/about_tv/about_tv_cubit.dart';
 import 'package:movura/features/details/ui/screens/tv_series_details_screen.dart';
+import 'package:movura/features/trending_screen.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../features/details/data/repos/movies_repo.dart';
@@ -27,6 +28,9 @@ class AppRouter {
 
       case AppConstants.signUpScreen:
         return MaterialPageRoute(builder: (_) => const SignUpScreen());
+
+      case AppConstants.trendingScreen:
+        return MaterialPageRoute(builder: (_) => const TrendingScreen());
 
       case AppConstants.mainScreen:
         return MaterialPageRoute(
