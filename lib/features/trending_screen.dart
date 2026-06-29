@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/theming/text_styles.dart';
 
 import '../core/theming/colors.dart';
 
@@ -12,10 +14,18 @@ class TrendingScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            iconTheme: IconThemeData(color: AppColors.neonBlue),
             pinned: false,
-            title: Text("Trending today"),
+            title: Text(
+              "Trending today",
+              style: AppTextStyles.font20SimiBoldNeonBlueManrope.copyWith(
+                  fontSize: 18.sp),),
             centerTitle: true,
+            backgroundColor: Colors.transparent,
+
           )
+
+
         ],
       ),
     );
