@@ -6,8 +6,8 @@ import '../../../../../core/models/video_model.dart';
 import '../../../../../core/theming/colors.dart';
 import '../../../../../core/utils/helpers/video_player.dart';
 
-class AboutVideoCard extends StatelessWidget {
-  const AboutVideoCard({
+class VideoCard extends StatelessWidget {
+  const VideoCard({
     super.key,
     required this.video,
     required this.youtubeThumbnail,

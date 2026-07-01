@@ -7,10 +7,10 @@ import 'package:movura/core/widgets/section_title.dart';
 import '../../../../../core/models/video_model.dart';
 import '../../../logic/movie_screen_cubit/main_details/about_cubit.dart';
 import '../../details_loading_skeleton.dart';
-import '../shared_widgets/about_actors_list.dart';
-import '../shared_widgets/about_companies_list.dart';
-import '../shared_widgets/about_images_list.dart';
-import '../shared_widgets/about_videos_list.dart';
+import '../shared_widgets/actors_list.dart';
+import '../shared_widgets/companies_list.dart';
+import '../shared_widgets/images_list.dart';
+import '../shared_widgets/videos_list.dart';
 
 class AboutTabBody extends StatelessWidget {
   const AboutTabBody({super.key});
@@ -34,19 +34,19 @@ class AboutTabBody extends StatelessWidget {
                     )
                   : const SizedBox.shrink(),
 
-              AboutActorsList(actors: state.model.actors.movieActors),
+              ActorsList(actors: state.model.actors.movieActors),
               verticalSpacing(15),
 
               (state.model.companies.isNotEmpty)
                   ? const SectionTitle(sectionName: "Companies")
                   : const SizedBox.shrink(),
-              AboutCompaniesList(company: state.model.companies),
+              CompaniesList(company: state.model.companies),
               verticalSpacing(15),
 
               state.model.mediaImages.backdropImages.isNotEmpty
                   ? const SectionTitle(sectionName: "IMAGES")
                   : const SizedBox.shrink(),
-              AboutImagesList(
+              ImagesList(
                 images: state.model.mediaImages.backdropImages,
                 height: 250,
                 imageFit: BoxFit.fill,
@@ -56,7 +56,7 @@ class AboutTabBody extends StatelessWidget {
               state.model.mediaImages.logoImages.isNotEmpty
                   ? const SectionTitle(sectionName: "LOGOS")
                   : const SizedBox.shrink(),
-              AboutImagesList(
+              ImagesList(
                 images: state.model.mediaImages.logoImages,
                 imageFit: BoxFit.contain,
                 herPadding: 8,
@@ -68,7 +68,7 @@ class AboutTabBody extends StatelessWidget {
                 verticalSpacing(15),
                 const SectionTitle(sectionName: "TRAILERS & CLIPS"),
                 verticalSpacing(8),
-                AboutVideosList(allVideos: allVideos),
+                VideosList(allVideos: allVideos),
               ],
             ],
           );

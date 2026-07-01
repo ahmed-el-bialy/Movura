@@ -4,8 +4,8 @@ import 'package:movura/core/widgets/company_card.dart';
 
 import '../../../../../core/models/company_model.dart';
 
-class AboutCompaniesList extends StatelessWidget {
-  const AboutCompaniesList({super.key, required this.company});
+class CompaniesList extends StatelessWidget {
+  const CompaniesList({super.key, required this.company});
 
   final List<CompanyModel> company;
 

@@ -8,10 +8,10 @@ import 'package:movura/features/details/ui/widgets/tv_widgets/seasons_list.dart'
 import 'package:movura/features/details/ui/widgets/tv_widgets/tv_networks_list.dart';
 
 import '../../../../../core/models/video_model.dart';
-import '../shared_widgets/about_actors_list.dart';
-import '../shared_widgets/about_companies_list.dart';
-import '../shared_widgets/about_images_list.dart';
-import '../shared_widgets/about_videos_list.dart';
+import '../shared_widgets/actors_list.dart';
+import '../shared_widgets/companies_list.dart';
+import '../shared_widgets/images_list.dart';
+import '../shared_widgets/videos_list.dart';
 import '../../details_loading_skeleton.dart';
 
 class AboutTvTabBody extends StatelessWidget {
@@ -51,13 +51,13 @@ class AboutTvTabBody extends StatelessWidget {
                     )
                   : const SizedBox.shrink(),
 
-              AboutActorsList(actors: state.model.actors.tvActors),
+              ActorsList(actors: state.model.actors.tvActors),
               verticalSpacing(15),
 
               (state.model.companies.isNotEmpty)
                   ? const SectionTitle(sectionName: "Companies")
                   : const SizedBox.shrink(),
-              AboutCompaniesList(company: state.model.companies),
+              CompaniesList(company: state.model.companies),
               verticalSpacing(15),
               (state.model.networks.isNotEmpty)
                   ? const SectionTitle(sectionName: "Networks")
@@ -68,7 +68,7 @@ class AboutTvTabBody extends StatelessWidget {
               state.model.mediaImages.backdropImages.isNotEmpty
                   ? const SectionTitle(sectionName: "IMAGES")
                   : const SizedBox.shrink(),
-              AboutImagesList(
+              ImagesList(
                 images: state.model.mediaImages.backdropImages,
                 height: 250,
                 imageFit: BoxFit.fill,
@@ -78,7 +78,7 @@ class AboutTvTabBody extends StatelessWidget {
               state.model.mediaImages.logoImages.isNotEmpty
                   ? const SectionTitle(sectionName: "LOGOS")
                   : const SizedBox.shrink(),
-              AboutImagesList(
+              ImagesList(
                 images: state.model.mediaImages.logoImages,
                 imageFit: BoxFit.contain,
                 herPadding: 8,
@@ -90,7 +90,7 @@ class AboutTvTabBody extends StatelessWidget {
                 verticalSpacing(15),
                 const SectionTitle(sectionName: "TRAILERS & CLIPS"),
                 verticalSpacing(8),
-                AboutVideosList(allVideos: allVideos),
+                VideosList(allVideos: allVideos),
                 verticalSpacing(35),
               ],
             ],

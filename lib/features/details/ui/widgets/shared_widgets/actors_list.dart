@@ -4,8 +4,8 @@ import 'package:movura/core/widgets/actor_card.dart';
 
 import '../../../../../core/models/actor_model.dart';
 
-class AboutActorsList extends StatelessWidget {
-  const AboutActorsList({super.key, required this.actors});
+class ActorsList extends StatelessWidget {
+  const ActorsList({super.key, required this.actors});
 
   final List<ActorModel> actors;
 
