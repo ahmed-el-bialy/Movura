@@ -1,0 +1,9 @@
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/movura_icon_1254.png"
+  min_sdk_android: 21
+
+  adaptive_icon_background: "#030114"
+  adaptive_icon_foreground: "assets/images/movura_icon_1254.png"
+  adaptive_icon_foreground_inset: 10

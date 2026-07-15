@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/features/search/ui/widgets/build_search_results.dart';
 
-import '../../../core/theming/colors.dart';
+import '../../../core/theming/app_colors.dart';
 import '../logic/search/search_cubit.dart';
 
 class CustomSearchDelegate extends SearchDelegate {

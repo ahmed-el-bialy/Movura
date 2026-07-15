@@ -13,7 +13,7 @@ import 'package:movura/features/details/ui/widgets/tv_widgets/tv_main_details.da
 import 'package:movura/features/details/ui/widgets/tv_widgets/tv_story_and_genres.dart';
 
 import '../../../../../core/networking/di.dart';
-import '../../../../../core/theming/colors.dart';
+import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/text_styles.dart';
 import '../../../../../core/utils/helpers/spacing.dart';
 import 'reviews_tab_body.dart';

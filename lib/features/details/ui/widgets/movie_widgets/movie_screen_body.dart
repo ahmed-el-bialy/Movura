@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../../core/theming/colors.dart';
+import '../../../../../../core/theming/app_colors.dart';
 import '../../../../../../core/theming/text_styles.dart';
 import '../../../../../core/networking/di.dart';
 import '../../../../../core/utils/helpers/spacing.dart';

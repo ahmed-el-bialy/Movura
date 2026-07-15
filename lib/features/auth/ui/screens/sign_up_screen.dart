@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/utils/constants/app_constants.dart';
 import 'package:movura/core/utils/helpers/validators.dart';
 
-import '../../../../core/theming/colors.dart';
+import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../../../../core/utils/extensions/routing_extension.dart';
 import '../../../../core/utils/helpers/spacing.dart';

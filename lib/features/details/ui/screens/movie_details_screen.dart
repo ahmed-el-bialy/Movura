@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/core/theming/colors.dart';
+import 'package:movura/core/theming/app_colors.dart';
 
 import '../../logic/movie_screen_cubit/main_details/about_cubit.dart';
 import '../details_loading_skeleton.dart';

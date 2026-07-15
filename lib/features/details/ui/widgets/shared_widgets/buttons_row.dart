@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/utils/helpers/video_player.dart';
 
-import '../../../../../core/theming/colors.dart';
+import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/text_styles.dart';
 
 class ButtonsRow extends StatelessWidget {

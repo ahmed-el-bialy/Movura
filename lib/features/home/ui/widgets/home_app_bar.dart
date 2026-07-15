@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/networking/di.dart';
-import '../../../../core/theming/colors.dart';
+import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../../../../core/utils/constants/app_constants.dart';
 import '../../../search/logic/search/search_cubit.dart';

@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/theming/app_colors.dart';
 import 'package:shimmer/shimmer.dart';
 
 class PosterCardSkeleton extends StatelessWidget {
-  const PosterCardSkeleton({super.key, this.height, this.width, this.horizontalPadding, this.verticalPadding});
+  const PosterCardSkeleton({
+    super.key,
+    this.height,
+    this.width,
+    this.horizontalPadding,
+    this.verticalPadding,
+  });
 
   final double? height;
   final double? width;
@@ -14,12 +21,13 @@ class PosterCardSkeleton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
       baseColor: const Color(0xFF1A1A1A),
-      highlightColor: Colors.grey[700]!,
+      highlightColor: AppColors.coolGray,
       period: const Duration(milliseconds: 1200),
       child: Padding(
         padding: EdgeInsets.symmetric(
-            horizontal: horizontalPadding?.w ?? 10.w,
-            vertical: verticalPadding?.h ?? 12.h),
+          horizontal: horizontalPadding?.w ?? 10.w,
+          vertical: verticalPadding?.h ?? 12.h,
+        ),
         child: Card(
           elevation: 10,
           margin: EdgeInsets.zero,
@@ -29,11 +37,11 @@ class PosterCardSkeleton extends StatelessWidget {
           ),
           child: Card(
             elevation: 20,
-            shadowColor: Colors.white,
+            shadowColor: AppColors.pureWhite,
             child: Container(
               width: width?.w ?? 220.w,
               height: height?.h ?? 310.h,
-              color: Colors.white,
+              color: AppColors.pureWhite,
             ),
           ),
         ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/theming/colors.dart';
+import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/utils/extensions/routing_extension.dart';
 import 'package:movura/features/home/ui/widgets/category_list.dart';
 import 'package:movura/features/home/ui/widgets/top_movies_list.dart';
