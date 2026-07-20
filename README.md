@@ -7,9 +7,9 @@
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS-blue.svg?style=for-the-badge)](https://flutter.dev)
 
-**A sleek, modern entertainment application for cinephiles and TV show enthusiasts. Discover, track,
-and explore the world of cinema and television with a premium dark user interface and seamless
-navigation.**
+**A dark-themed movie & TV show discovery app powered by TMDB. Browse trending titles, dive into
+full details — cast, reviews, trailers, and similar content — all wrapped in a clean-architecture
+Flutter codebase with Cubit state management.**
 
 [✨ Features](#-features) • [📸 Screenshots](#-screenshots) • [🏗️ Architecture](#-architecture) • [🚀 Getting Started](#-getting-started) • [👤 Author](#-author)
 
@@ -19,89 +19,86 @@ navigation.**
 
 ## 🎯 Overview
 
-**Movura** is a production-ready Flutter entertainment application that provides comprehensive movie
-and TV show information with ratings, reviews, and detailed content discovery. It features a premium
-high-contrast dark interface, smooth animations, intelligent search, and responsive design — built
-as a portfolio project demonstrating modern mobile development practices with clean architecture,
-BLoC state management, repository pattern, and type-safe API clients.
+**Movura** is a Flutter entertainment app built on top of **The Movie Database (TMDB) API**. It lets
+users browse trending movies and TV shows, search across both, and open a rich details screen with
+cast & crew, budget/revenue stats (for movies) or season/episode stats (for TV), reviews, trailers,
+and recommendations — all rendered in a premium dark, neon-accented UI.
+
+The project was built as a **CodeAlpha Internship** task and pushed beyond the basic requirements —
+adding Firebase integration, a full custom design system, shimmer loading states, and a reusable
+poster-card component system used across every screen.
 
 ### 💡 Key Highlights
 
-- 🎬 **Movie & Show Database** — Browse comprehensive database of movies and TV shows
-- ⭐ **Smart Search** — Find movies and shows by title, actor, or genre
-- 📝 **Detailed Information** — Complete cast, crew, plot, ratings, and reviews
-- ⚡ **Fast Performance** — Cached images and optimized data fetching
-- 🎥 **Multimedia Content** — Integrated trailers and video player
-- 🌙 **Premium Dark UI** — High-contrast dark interface for eye comfort
-- 📱 **Fully Responsive** — Adaptive layouts for all screen sizes
-- 🛡️ **Error Resilience** — Graceful error handling and loading states
-- 🏗️ **Clean Architecture** — Feature-based modular structure
-- 🔌 **Type-Safe API** — Retrofit-generated HTTP client
-- 💫 **Smooth Animations** — Shimmer effects and transitions
-- 🔑 **Dependency Injection** — GetIt for scalable service management
+- 🎬 **TMDB-Powered Catalog** — Trending, top-rated movies, and top-rated TV series
+- 🔍 **Debounced Search** — Multi-type search (movies, TV, people) with a smart 800ms debounce
+- 📝 **Rich Details Screen** — Cast, companies/networks, images, trailers, reviews, and similar content in tabs
+- 🎥 **In-App Trailer Player** — Full-screen YouTube playback with orientation handling
+- 🌙 **Custom Dark Design System** — Neon-cyan accent palette with 3 custom fonts (Manrope, Montserrat, Sora)
+- 💀 **Shimmer Loading States** — Skeleton loaders for grids, lists, and the details screen
+- 🏗️ **Clean, Feature-Based Architecture** — `data / logic / ui` split per feature
+- 🔌 **Type-Safe Networking** — Retrofit + Dio with a centralized `DioFactory`
+- 🔑 **Dependency Injection** — GetIt service locator wiring services → repos → cubits
+- 🔥 **Firebase Ready** — `firebase_core`, `firebase_auth`, and `cloud_firestore` wired into the app bootstrap
 
 ---
 
 ## ✨ Features
 
 ### 🏠 Home Screen
+- Rotating **category cards** (Popular Movies/TV, Trending Movies/People) with a page indicator
+- **Trending Now**, **Top Rated Movies**, and **Top Rated TV Series** horizontal rails, each backed by its own Cubit
+- Side navigation **drawer** (Profile, Go Pro, Discover Movies, TV Series, Popular People, Logout)
+- Sliver-based scroll with a floating app bar
 
-- **Trending Movies** — Latest and most popular movies
-- **Trending Shows** — Popular TV series and shows
-- **Featured Content** — Curated recommendations
-- **Quick Access** — Fast navigation to all categories
-- **Loading States** — Shimmer skeleton loading animations
+### 🔍 Search
+- Multi-type search across TMDB's `search/multi` endpoint (movies, TV shows, people)
+- 800ms debounce before firing the request to avoid spamming the API on every keystroke
+- Dedicated `PersonCard` for people results, alongside the shared `PosterCard` for titles
+- Shimmer grid while loading, empty-state message when nothing matches
 
-### 🔍 Search Feature
+### 🎞️ Details (Movie & TV)
+- Glassmorphism-style identity card over the backdrop (title, rating, runtime/status, age rating badge)
+- **Movie:** budget, revenue, and runtime stats
+- **TV:** average episode runtime, episode count, and season count, plus a horizontal seasons list
+- Tabbed layout — **About** (cast, companies/networks, images, logos, trailers), **Reviews**, **Similar**
+- "Read more / Read less" storyline text and a horizontally scrollable genre chip list
+- Full-screen YouTube trailer playback with auto-hide controls in landscape
 
-- **Multi-Category Search** — Search movies and shows simultaneously
-- **Advanced Filters** — Filter by genre, year, rating
-- **Auto-Complete** — Suggestions while typing
-- **Search History** — Quick access to previous searches
-- **Real-Time Results** — Live search results
-
-### 📽️ Details Screen
-
-- **Full Information** — Title, plot, ratings, release date
-- **Cast & Crew** — Complete list with photos and roles
-- **Reviews & Ratings** — User and critic reviews
-- **Similar Content** — Recommendations based on title
-- **Video Trailers** — Watch official trailers in-app
-- **Share Options** — Share on social media
-
-### 🎨 User Experience
-
-- **Smart Image Handling** — Cached images with fallbacks
-- **Dark Mode Interface** — Premium high-contrast theme
-- **Smooth Animations** — Transitions and loading effects
-- **Error States** — Helpful error messages
-- **Empty States** — Friendly messages for no results
-- **Responsive Design** — Works on all devices
-
-### ⚙️ Technical Features
-
-- **REST API Integration** — Real-time data via Retrofit + Dio
-- **BLoC Architecture** — Clean state management
-- **Repository Pattern** — Data abstraction layer
-- **Type-Safe API** — Retrofit with annotations
-- **JSON Serialization** — Automatic model conversion
-- **Image Caching** — CachedNetworkImage optimization
-- **Dependency Injection** — GetIt for service location
-- **Environment Config** — `.env` file support
-- **Shimmer Loading** — Professional skeleton screens
-- **Video Integration** — YouTube trailer player
+### 🎨 Design System
+- Custom `AppColors` palette (blacks, neon-cyan, gold, cool gray, ice blue) shared across every widget
+- Custom `AppTextStyles` built on **Manrope**, **Montserrat**, and **Sora**
+- Reusable `PosterCard` composed of sub-widgets (top-left media type badge, top-right rating badge, bottom-left title card) used identically across Home, Search, and Details screens
 
 ---
 
 ## 📸 Screenshots
 
-|           Home Screen            |      Search Results       |      Details View       |
-|:--------------------------------:|:-------------------------:|:-----------------------:|
-| Browse trending movies and shows | Search and filter content | Full movie/show details |
+> Screenshots live in the `screenshots/` folder — update the paths below if you rename or move them.
 
-|      Cast & Reviews       |   Dark Interface   |     Loading States     |
-|:-------------------------:|:------------------:|:----------------------:|
-| Complete cast information | Premium dark theme | Smooth shimmer effects |
+| Splash | Login | Sign Up |
+|:---:|:---:|:---:|
+| ![Splash](screenshots/splash_screen.png) | ![Login](screenshots/login.png) | ![Sign Up](screenshots/sign_up.png) |
+
+| Home | Home (loading) | Side Drawer |
+|:---:|:---:|:---:|
+| ![Home](screenshots/home_p1.png) | ![Home Loading](screenshots/home_loding.png) | ![Drawer](screenshots/home_drawer.png) |
+
+| Search | Search Results | Search Loading |
+|:---:|:---:|:---:|
+| ![Search](screenshots/search_p1.png) | ![Search Results](screenshots/search_results.png) | ![Search Loading](screenshots/scearch_loading.png) |
+
+| Movie Details | Movie Details (Cast) | Movie Similar |
+|:---:|:---:|:---:|
+| ![Movie Details 1](screenshots/movie_details_p1.png) | ![Movie Details 2](screenshots/movie_details_p2.png) | ![Movie Similar](screenshots/movie_similar.png) |
+
+| TV Details | TV Details (Cast/Companies) | TV Similar |
+|:---:|:---:|:---:|
+| ![TV Details 1](screenshots/tv_details_p1.png) | ![TV Details 3](screenshots/tv_details_p3.png) | ![TV Similar](screenshots/tv_similar.png) |
+
+| Reviews | Trailer Player | Details Loading |
+|:---:|:---:|:---:|
+| ![Reviews](screenshots/reviews.png) | ![Trailer Player](screenshots/trailer_player_v.png) | ![Details Loading](screenshots/details_loading.png) |
 
 ---
 
@@ -109,31 +106,32 @@ BLoC state management, repository pattern, and type-safe API clients.
 
 <div align="center">
 
-|      Component       |           Technology           |        Purpose         |
-|:--------------------:|:------------------------------:|:----------------------:|
-|    **Framework**     |          Flutter 3.x           |   Cross-platform UI    |
-|     **Language**     |           Dart 3.11+           |    Core development    |
-| **State Management** |          BLoC ^9.1.1           |  Business logic layer  |
-|   **HTTP Client**    |           Dio ^5.9.2           |       Networking       |
-|  **Type-Safe API**   |        Retrofit ^4.9.2         |     API interfaces     |
-|  **API Generator**   |   retrofit_generator ^10.2.6   |    Code generation     |
-|   **JSON Parsing**   |   json_serializable ^6.14.0    |  Model serialization   |
-|   **Build System**   |      build_runner ^2.15.0      |    Code generation     |
-|  **Debug Logging**   |    pretty_dio_logger ^1.4.0    |     HTTP debugging     |
-|  **Image Caching**   |  cached_network_image ^3.4.1   |   Image optimization   |
-|   **Video Player**   | youtube_player_flutter ^9.1.3  |  Trailer integration   |
-|  **Responsive UI**   |   flutter_screenutil ^5.9.3    |   Screen adaptation    |
-|     **Shimmer**      |         shimmer ^3.0.0         |   Loading animations   |
-|  **Rating Widget**   |   flutter_rating_bar ^4.0.1    |      User ratings      |
-|   **Time Format**    |         timeago ^3.7.1         |  Relative timestamps   |
-| **Expandable Pages** |  expandable_page_view ^1.3.0   |    Flexible layouts    |
-|   **Localization**   |          intl ^0.20.2          | Multi-language support |
-| **Service Locator**  |         get_it ^9.2.1          |  Dependency injection  |
-|   **Environment**    |     flutter_dotenv ^6.0.1      |     Configuration      |
-|  **Native Splash**   |  flutter_native_splash ^2.4.8  |     Launch screen      |
-|    **App Icons**     | flutter_launcher_icons ^0.14.4 |     Platform icons     |
-|    **App Rename**    |         rename ^3.1.0          |  Bundle configuration  |
-|      **Design**      |           Material 3           | Latest design patterns |
+|      Component        |             Technology              |             Purpose             |
+|:----------------------:|:------------------------------------:|:--------------------------------:|
+|     **Framework**      |               Flutter                |        Cross-platform UI         |
+|      **Language**      |                 Dart                 |         Core development         |
+|  **State Management**  |         flutter_bloc (Cubit)         |      Business logic layer        |
+|    **HTTP Client**     |                  Dio                 |            Networking            |
+|   **Type-Safe API**    |               Retrofit               |         API interfaces           |
+|   **API Generator**    |         retrofit_generator           |        Code generation           |
+|    **JSON Parsing**    | json_annotation / json_serializable  |      Model serialization         |
+|    **Build System**    |             build_runner             |        Code generation           |
+|   **Image Caching**    |        cached_network_image          |       Image optimization         |
+|    **Video Player**    |        youtube_player_flutter        |   ^9.1.3 — Trailer playback      |
+|   **Responsive UI**    |          flutter_screenutil          |        Screen adaptation         |
+|      **Shimmer**       |                shimmer               |       Loading animations         |
+|   **Rating Widget**    |          flutter_rating_bar          |   ^4.0.1 — 5-star review UI      |
+|    **Time Format**     |                timeago                |   ^3.7.1 — Relative timestamps   |
+|  **Expandable Pages**  |          expandable_page_view         |   ^1.3.0 — Synced tab/page swipe |
+|  **Page Indicator**    |          smooth_page_indicator        |   ^2.0.1 — Category carousel dots|
+|  **Service Locator**   |                get_it                |      Dependency injection        |
+|    **Environment**     |            flutter_dotenv             |   ^6.0.1 — `.env` configuration  |
+| **Backend / Auth**     | firebase_core, firebase_auth, cloud_firestore | ^4.12.1 / ^6.5.6 / ^6.7.1 |
+|   **Native Splash**    |          flutter_native_splash        |          Launch screen           |
+|     **App Icons**      |          flutter_launcher_icons       |          Platform icons          |
+|       **Design**       |            Custom Design System       | Neon-dark theme, 3 custom fonts  |
+
+*Version numbers shown are the ones confirmed in `pubspec.yaml`; packages without a version above are used in the code but should be double-checked against your `pubspec.yaml` for the exact pinned version.*
 
 </div>
 
@@ -141,193 +139,147 @@ BLoC state management, repository pattern, and type-safe API clients.
 
 ## 🏗️ Architecture
 
-### 📁 Clean Architecture Structure
+### 📁 Project Structure
 
 ```
 lib/
-├── main.dart                          # App entry point
+├── main.dart                          # App entry point (Firebase, dotenv, DI bootstrap)
+├── firebase_options.dart              # FlutterFire-generated platform config
 │
-├── core/                              # 🏢 Core Layer (Shared)
+├── core/                              # Shared layer
+│   ├── models/                        # actor, company, genre, image, poster, video models
 │   ├── networking/
-│   │   ├── api_service.dart           # Retrofit API interface
-│   │   ├── api_service.g.dart         # Generated Retrofit client
-│   │   ├── di.dart                    # Dependency injection setup
-│   │   └── constants.dart             # API constants
+│   │   ├── di.dart                    # GetIt service registration
+│   │   └── dio_factory.dart           # Dio instance + auth headers + logging interceptor
 │   ├── routing/
-│   │   └── app_router.dart            # Navigation management
+│   │   ├── app_router.dart            # onGenerateRoute navigation
+│   │   └── arguments_model.dart       # Typed route arguments
 │   ├── theming/
-│   │   ├── colors.dart                # App color palette
-│   │   ├── styles.dart                # Text styles
-│   │   └── theme.dart                 # Material theme
-│   ├── models/
-│   │   ├── movie_model.dart           # Movie data model
-│   │   ├── show_model.dart            # Show data model
-│   │   └── *.g.dart                   # Generated JSON code
-│   ├── widgets/
-│   │   ├── shimmer_loader.dart        # Loading skeleton
-│   │   ├── error_widget.dart          # Error display
-│   │   └── common_widgets.dart        # Reusable components
-│   └── utils/
-│       ├── extensions.dart            # Dart extensions
-│       ├── constants.dart             # App constants
-│       └── helpers.dart               # Helper functions
+│   │   ├── app_colors.dart
+│   │   ├── text_styles.dart
+│   │   └── weights.dart
+│   ├── utils/
+│   │   ├── constants/                 # api_constants.dart, app_constants.dart
+│   │   ├── extensions/                # date, money, rating, runtime, routing, status formatters
+│   │   └── helpers/                   # spacing.dart, validators.dart, video_player.dart
+│   └── widgets/                       # PosterCard system, buttons, form fields, skeletons...
 │
-├── features/                          # ✨ Feature Modules
+├── features/
+│   ├── auth/
+│   │   └── ui/screens/                # log_in_screen.dart, sign_up_screen.dart
+│   │
 │   ├── home/
-│   │   ├── data/
-│   │   │   ├── models/                # Home-specific models
-│   │   │   ├── repositories/          # Data abstraction
-│   │   │   └── data_sources/          # API calls
-│   │   ├── presentation/
-│   │   │   ├── bloc/                  # BLoC state management
-│   │   │   ├── pages/                 # Home screen
-│   │   │   └── widgets/               # Home widgets
-│   │   └── home_feature.dart          # Feature barrel file
+│   │   ├── data/                      # category_card_model, home_repo, home_web_services
+│   │   ├── logic/                     # trending_content, top_rated_movies, top_rated_tv_series (Cubits)
+│   │   └── ui/                        # home_screen.dart + widgets
 │   │
 │   ├── search/
-│   │   ├── data/
-│   │   │   ├── models/
-│   │   │   ├── repositories/
-│   │   │   └── data_sources/
-│   │   ├── presentation/
-│   │   │   ├── bloc/
-│   │   │   ├── pages/
-│   │   │   └── widgets/
-│   │   └── search_feature.dart
+│   │   ├── data/                      # search_repo, search_web_services
+│   │   ├── logic/search/              # search_cubit.dart
+│   │   └── ui/                        # custom_search_delegate.dart + widgets
 │   │
 │   └── details/
 │       ├── data/
-│       │   ├── models/
-│       │   ├── repositories/
-│       │   └── data_sources/
-│       ├── presentation/
-│       │   ├── bloc/
-│       │   ├── pages/
-│       │   └── widgets/
-│       └── details_feature.dart
-
+│       │   ├── models/movie_models/   # about_model.dart
+│       │   ├── models/tv_models/      # about_tv_series_model.dart
+│       │   ├── models/shared_models/  # review_model.dart, similar_model.dart
+│       │   ├── repos/                 # movies_repo.dart, tv_series_repo.dart
+│       │   └── webs_services/         # movie_web_services.dart, tv_web_services.dart
+│       ├── logic/
+│       │   ├── movie_screen_cubit/    # main_details, reviews, similar_content
+│       │   └── tv_series_cubit/       # about_tv, reviews, similar_content
+│       └── ui/
+│           ├── screens/               # movie_details_screen, tv_series_details_screen, video_screen
+│           └── widgets/               # movie_widgets/, tv_widgets/, shared_widgets/
+│
 assets/
-├── fonts/
-│   ├── Manrope-Regular.ttf
-│   ├── Montserrat-Regular.ttf
-│   └── Sora-Regular.ttf
-└── images/
-    └── app_icons/
+├── fonts/                              # Manrope-Regular, Montserrat-Regular, Sora-Regular
+└── images/                             # app icons, logos, social login icons
 ```
 
-### 🔄 Data Flow Architecture
+### 🎨 Color Palette
+
+| Swatch | Name | Hex |
+|:---:|:---|:---|
+| 🟦 | Neon Blue | `#00D1FF` |
+| 🟦 | Dark Neon Cyan | `#009191` |
+| ⬛ | Jet Black | `#0A0A0A` |
+| ⬛ | Onyx Black | `#2A2A2A` |
+| 🟡 | Gold | `#FFB869` |
+| 🔴 | Soft Red | `#E57373` |
+| ⚪ | Platinum Gray | `#E5E2E1` |
+| ⚪ | Ice Blue | `#E1FDFF` |
+
+### 🔄 Data Flow
 
 ```
 ┌──────────────────────────────────────────────────────────┐
-│                   UI Layer (Presentation)                 │
-│              Pages, Widgets, BLoC Listeners              │
+│                    UI (Screens & Widgets)                 │
+│           BlocBuilder listens to Cubit states             │
 └──────────────────────────────────────────────────────────┘
                             ↑↓
 ┌──────────────────────────────────────────────────────────┐
-│              Business Logic Layer (BLoC)                  │
-│         State Management, Business Rules, Events         │
+│                  Cubit (flutter_bloc)                      │
+│   Initial → Loading → Loaded/Success → Failed(message)    │
 └──────────────────────────────────────────────────────────┘
                             ↑↓
 ┌──────────────────────────────────────────────────────────┐
-│            Data Layer (Repositories)                      │
-│         Abstract Data Access, Caching Strategy           │
+│                     Repository                             │
+│        Thin abstraction over the web service layer        │
 └──────────────────────────────────────────────────────────┘
                             ↑↓
 ┌──────────────────────────────────────────────────────────┐
-│          Data Sources (Remote API & Local Cache)         │
-│     Retrofit HTTP Client, Database, Shared Preferences   │
+│              Retrofit Web Service (generated)              │
+│           Typed HTTP calls via a shared Dio client         │
 └──────────────────────────────────────────────────────────┘
                             ↑↓
 ┌──────────────────────────────────────────────────────────┐
-│                 External Services                         │
-│              Movie API, YouTube, Analytics               │
+│                        TMDB API                            │
 └──────────────────────────────────────────────────────────┘
 ```
+
+### 🧠 State Management
+
+Every feature follows the same **Cubit** convention: a `sealed class` state with `Initial`,
+`Loading`, a success state carrying the fetched model, and a `Failed(errorMessage)` state. Cubits
+are registered as **factories** in GetIt and provided per-screen via `BlocProvider` /
+`MultiBlocProvider`, so each screen gets a fresh instance backed by a shared repository singleton.
 
 ---
 
 ## 🌐 API Integration
 
-The app integrates with a movie database API to fetch content.
+Movura consumes **The Movie Database (TMDB) API v3**.
 
-| Endpoint               | Method | Purpose               |
-|:-----------------------|:------:|:----------------------|
-| `/trending/movie/week` | `GET`  | Trending movies       |
-| `/trending/tv/week`    | `GET`  | Trending shows        |
-| `/search/multi`        | `GET`  | Search movies & shows |
-| `/movie/{id}`          | `GET`  | Movie details         |
-| `/tv/{id}`             | `GET`  | Show details          |
-| `/movie/{id}/videos`   | `GET`  | Trailers & videos     |
-| `/movie/{id}/credits`  | `GET`  | Cast & crew info      |
+| Endpoint | Method | Purpose |
+|:---|:---:|:---|
+| `trending/all/day` | `GET` | Trending movies & TV for the Home screen |
+| `movie/top_rated` | `GET` | Top rated movies |
+| `tv/top_rated` | `GET` | Top rated TV series |
+| `search/multi` | `GET` | Multi-type search (movies, TV, people) |
+| `movie/{id}` | `GET` | Movie details (with `append_to_response=credits,images,videos`) |
+| `tv/{id}` | `GET` | TV series details (same `append_to_response`) |
+| `movie/{id}/reviews` | `GET` | Movie reviews |
+| `tv/{id}/reviews` | `GET` | TV series reviews |
+| `movie/{id}` | `GET` | Similar/recommended movies (`append_to_response=similar,recommendations`) |
+| `tv/{id}` | `GET` | Similar/recommended TV series |
 
-**HTTP Client:** Dio with Retrofit, automatic JSON parsing, error handling
+**HTTP Client:** Dio, wrapped by Retrofit-generated interfaces, with a `DioFactory` that injects the
+Bearer read-access token and `api_key` query parameter, plus a `LogInterceptor` for request/response
+debugging.
 
 ---
 
 ## ⚙️ Code Generation
 
-This project uses Dart `build_runner` for automated code generation.
-
-### Build Commands
+This project relies on `build_runner` for JSON models (`json_serializable`) and the Retrofit HTTP clients.
 
 ```bash
 # Generate code once
-flutter pub run build_runner build
-
-# Generate with conflict resolution
 flutter pub run build_runner build --delete-conflicting-outputs
 
-# Watch for changes (development)
+# Watch for changes during development
 flutter pub run build_runner watch --delete-conflicting-outputs
-```
-
----
-
-## 📦 Dependencies
-
-```yaml
-dependencies:
-  flutter:
-    sdk: flutter
-
-  # State Management
-  flutter_bloc: ^9.1.1
-
-  # Networking
-  dio: ^5.9.2
-  retrofit: ^4.9.2
-  retrofit_generator: ^10.2.6
-  pretty_dio_logger: ^1.4.0
-
-  # JSON
-  json_annotation: ^4.12.0
-
-  # UI & Media
-  cached_network_image: ^3.4.1
-  flutter_screenutil: ^5.9.3
-  shimmer: ^3.0.0
-  youtube_player_flutter: ^9.1.3
-  flutter_rating_bar: ^4.0.1
-  expandable_page_view: ^1.3.0
-  cupertino_icons: ^1.0.9
-
-  # Utilities
-  timeago: ^3.7.1
-  intl: ^0.20.2
-  get_it: ^9.2.1
-  flutter_dotenv: ^6.0.1
-
-  # Native
-  flutter_native_splash: ^2.4.8
-  flutter_launcher_icons: ^0.14.4
-  rename: ^3.1.0
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^6.0.0
-  json_serializable: ^6.14.0
-  build_runner: ^2.15.0
 ```
 
 ---
@@ -336,129 +288,82 @@ dev_dependencies:
 
 ### 📋 Prerequisites
 
-|  Requirement  | Version  | Purpose          |
-|:-------------:|:--------:|:-----------------|
-|  Flutter SDK  | >=3.0.0  | Framework        |
-|   Dart SDK    | >=3.11.5 | Language         |
-| Movie API Key |    —     | Content database |
+| Requirement | Purpose |
+|:---:|:---|
+| Flutter SDK | Framework |
+| Dart SDK | Language |
+| TMDB API Key & Read Access Token | [themoviedb.org](https://www.themoviedb.org/settings/api) |
+| Firebase project | `firebase_core` / `firebase_auth` / `cloud_firestore` |
 
 ### 💻 Installation
 
 ```bash
-# 1. Clone repository
-git clone https://github.com/ahmed-el-bialy/Movura.git
-cd Movura
+# 1. Clone the repository
+git clone https://github.com/your-username/movura.git
+cd movura
 
 # 2. Install dependencies
 flutter pub get
 
-# 3. Generate code (required)
+# 3. Generate code (required for models & API clients)
 flutter pub run build_runner build --delete-conflicting-outputs
 
-# 4. Setup environment variables
-#    Create .env file with your API key:
-#    API_KEY=your_api_key_here
-#    BASE_URL=https://api.themoviedb.org/3
+# 4. Set up environment variables — create a .env file at the project root:
+#    TMDB_API_KEY=your_tmdb_api_key
+#    TMDB_READ_TOKEN=your_tmdb_read_access_token
 
-# 5. Run the app
+# 5. Set up Firebase (if you're wiring up your own project)
+#    flutterfire configure
+
+# 6. Run the app
 flutter run
-
-# Build for production
-flutter build apk --release      # Android
-flutter build ios --release      # iOS
 ```
 
----
-
-## 🎨 Customization
-
-### Environment Variables (.env)
+### 🔑 Environment Variables (`.env`)
 
 ```env
-API_KEY=your_movie_api_key
-BASE_URL=https://api.themoviedb.org/3
-LANGUAGE=en
-IMAGE_BASE_URL=https://image.tmdb.org/t/p/w500
+TMDB_API_KEY=your_tmdb_api_key
+TMDB_READ_TOKEN=your_tmdb_read_access_token
 ```
 
-### App Branding
-
-```bash
-# Update app name and bundle ID
-flutter pub run rename:main --bundleId com.example.movura
-flutter pub run rename:main --appName "Movura"
-
-# Generate splash screen
-flutter pub run flutter_native_splash:create
-
-# Generate app icons
-flutter pub run flutter_launcher_icons:generate
-```
+These are read via `flutter_dotenv` in `ApiConstants` and injected into every request through `DioFactory`.
 
 ---
 
-## 🏃 Running
+## 🚧 Known Limitations
 
-### Development
+Based on the current state of the codebase:
 
-```bash
-flutter run -v                    # Verbose mode
-flutter run --profile             # Profile mode
-```
+- **TV Seasons & Episodes screens** (`tv_seasons_screen.dart`, `tv_episodes_screen.dart`) are routed
+  but currently **empty placeholders** — tapping a season card doesn't open a detail view yet.
+- **Social login buttons** (Google / Facebook / Apple) on the Login and Sign Up screens are UI-only;
+  they aren't wired to actual OAuth/Firebase Auth flows yet.
+- Several **drawer menu items** (Profile, Library, Assistant tab, per-account search) have their
+  navigation commented out pending those screens being built.
+- A few debug `print()` statements (guarded by `kDebugMode`) are still present in the movie/TV
+  screen bodies.
 
-### Testing
+## 🗺️ Roadmap
 
-```bash
-flutter test                      # Run all tests
-flutter test --coverage           # Coverage report
-```
-
-### Build
-
-```bash
-flutter build apk --release       # Android APK
-flutter build ios --release       # iOS app
-flutter build web --release       # Web app
-```
-
----
-
-## 📊 Project Status
-
-| Feature         |     Status     |
-|:----------------|:--------------:|
-| Home Screen     |   ✅ Complete   |
-| Movie Search    |   ✅ Complete   |
-| Details Page    |   ✅ Complete   |
-| Video Player    |   ✅ Complete   |
-| Cast & Reviews  |   ✅ Complete   |
-| Favorites       | 🔄 In Progress |
-| Dark Mode       | 🔄 In Progress |
-| Offline Cache   |   🔄 Planned   |
-| Recommendations |   🔄 Planned   |
-| Social Share    |   🔄 Planned   |
-| Notifications   |   🔄 Planned   |
+- [ ] Build out TV Seasons and Episodes detail screens
+- [ ] Wire Firebase Authentication (Email + Google/Facebook/Apple) into Login/Sign Up
+- [ ] Favorites / Watchlist persistence via Cloud Firestore
+- [ ] User profile screen
+- [ ] Advanced search filters (genre, year, rating)
 
 ---
 
 ## 🤝 Contributing
 
-We welcome contributions! Please follow these steps:
-
 1. **Fork** the repository
 2. **Create** a feature branch: `git checkout -b feature/amazing-feature`
-3. **Generate code** after changes: `flutter pub run build_runner build`
-4. **Commit** with clear messages: `git commit -m 'feat: Add amazing feature'`
-5. **Push** to branch: `git push origin feature/amazing-feature`
-6. **Open** a Pull Request
+3. **Regenerate code** after model/API changes: `flutter pub run build_runner build --delete-conflicting-outputs`
+4. **Commit** with clear messages: `git commit -m 'feat: add amazing feature'`
+5. **Push** to your branch and **open a Pull Request**
 
 ### Code Style
-
-- Follow [Dart style guide](https://dart.dev/guides/language/effective-dart/style)
-- Use meaningful names
-- Add comments for complex logic
-- Run linter: `flutter analyze`
-- Format code: `dart format lib/`
+- Follow the [Dart style guide](https://dart.dev/guides/language/effective-dart/style)
+- Run `flutter analyze` and `dart format lib/` before committing
 
 ---
 
@@ -466,14 +371,7 @@ We welcome contributions! Please follow these steps:
 
 This project is licensed under the **MIT License** — see [LICENSE](LICENSE) for details.
 
----
-
-## 🐛 Support
-
-Found a bug or have feedback?
-
-- **Report Issues:** [GitHub Issues](https://github.com/ahmed-el-bialy/Movura/issues)
-- **Documentation:** [Wiki](https://github.com/ahmed-el-bialy/Movura/wiki)
+> ⚠️ *Update this if your actual license differs — this was not confirmed against a LICENSE file.*
 
 ---
 
@@ -481,15 +379,12 @@ Found a bug or have feedback?
 
 <div align="center">
 
-**Ahmed El-Bialy**  
-*Flutter Developer | Mobile App Specialist*
+**Ahmed**
+*Flutter Developer*
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ahmedel-bialy/)
-[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:ah.elbialy.dev@gmail.com)
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ahmed-el-bialy)
-
-📧 **ah.elbialy.dev@gmail.com**  
-📞 **+20 102 212 1573**
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](#)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](#)
+[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](#)
 
 </div>
 
@@ -498,7 +393,5 @@ Found a bug or have feedback?
 <div align="center">
 
 ### ⭐ Give this project a star if you found it helpful!
-
-**Built with ❤️ by Ahmed El-Bialy**
 
 </div>
