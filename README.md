@@ -81,7 +81,6 @@ poster-card component system used across every screen.
 - Reusable `PosterCard` composed of sub-widgets (top-left media type badge, top-right rating badge, bottom-left title card) used identically across Home, Search, and Details screens
 
 ---
-
 ## 📸 Screenshots
 
 > Screenshots live in the `screenshots/` folder — update the paths below if you rename or move them.
@@ -96,24 +95,37 @@ poster-card component system used across every screen.
 <td align="center" style="padding: 16px 24px;"><img src="screenshots/sign_up.png" width="180"/><br/><sub>Sign Up</sub></td>
 <td align="center" style="padding: 16px 24px;"><img src="screenshots/home_drawer.png" width="180"/><br/><sub>Side Drawer</sub></td>
 </tr>
+
+<tr height="20"></tr>
+
 <tr>
 <td align="center" style="padding: 16px 24px;"><img src="screenshots/home_p1.png" width="180"/><br/><sub>Home</sub></td>
 <td align="center" style="padding: 16px 24px;"><img src="screenshots/home_p2.png" width="180"/><br/><sub>Home (Top Rated)</sub></td>
 <td align="center" style="padding: 16px 24px;"><img src="screenshots/home_loding.png" width="180"/><br/><sub>Home Loading</sub></td>
 <td align="center" style="padding: 16px 24px;"><img src="screenshots/search_p1.png" width="180"/><br/><sub>Search</sub></td>
 </tr>
+
+<!-- مسافة فاصلة بين الصف الثاني والثالث -->
+<tr height="20"></tr>
+
 <tr>
 <td align="center" style="padding: 16px 24px;"><img src="screenshots/search_results.png" width="180"/><br/><sub>Search Results</sub></td>
 <td align="center" style="padding: 16px 24px;"><img src="screenshots/movie_details_p1.png" width="180"/><br/><sub>Movie Details</sub></td>
 <td align="center" style="padding: 16px 24px;"><img src="screenshots/movie_details_p2.png" width="180"/><br/><sub>Movie Details (Cast)</sub></td>
 <td align="center" style="padding: 16px 24px;"><img src="screenshots/movie_details_p3.png" width="180"/><br/><sub>Movie Details (Images/Trailers)</sub></td>
 </tr>
+
+<tr height="20"></tr>
+
 <tr>
 <td align="center" style="padding: 16px 24px;"><img src="screenshots/movie_similar.png" width="180"/><br/><sub>Movie Similar/Recommendations</sub></td>
 <td align="center" style="padding: 16px 24px;"><img src="screenshots/tv_details_p1.png" width="180"/><br/><sub>TV Details</sub></td>
 <td align="center" style="padding: 16px 24px;"><img src="screenshots/tv_details_p3.png" width="180"/><br/><sub>TV Details (Cast/Companies)</sub></td>
 <td align="center" style="padding: 16px 24px;"><img src="screenshots/tv_details_p4.png" width="180"/><br/><sub>TV Details (Networks)</sub></td>
 </tr>
+
+<tr height="20"></tr>
+
 <tr>
 <td align="center" style="padding: 16px 24px;"><img src="screenshots/tv_anime_p1.png" width="180"/><br/><sub>TV Details (Anime example)</sub></td>
 <td align="center" style="padding: 16px 24px;"><img src="screenshots/tv_similar.png" width="180"/><br/><sub>TV Similar/Recommendations</sub></td>
