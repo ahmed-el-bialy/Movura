@@ -77,14 +77,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       child: Text(
                         "Email Address",
                         style: AppTextStyles.font14SimiBoldPlatinumGraySora
-                            .copyWith(fontSize: 12.sp, color: AppColors
-                            .slateGray),
+                            .copyWith(
+                              fontSize: 12.sp,
+                              color: AppColors.slateGray,
+                            ),
                       ),
                     ),
                     verticalSpacing(8),
                     AppTextFormField(
                       controller: emailController,
-                      hintText: "movura@example.com",
+                      hintText: AppConstants.emailExample,
                       prefixIcon: Padding(
                         padding: EdgeInsets.only(left: 14.w, right: 10.w),
                         child: Icon(
@@ -102,15 +104,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       child: Text(
                         "Password",
                         style: AppTextStyles.font14SimiBoldPlatinumGraySora
-                            .copyWith(fontSize: 12.sp, color: AppColors
-                            .slateGray),
+                            .copyWith(
+                              fontSize: 12.sp,
+                              color: AppColors.slateGray,
+                            ),
                       ),
                     ),
                     verticalSpacing(8),
 
                     AppTextFormField(
                       controller: passwordController,
-                      hintText: "********",
+                      hintText: AppConstants.signUpPasswordHint,
                       isObscureText: isObscure,
                       prefixIcon: Padding(
                         padding: EdgeInsets.only(left: 14.w, right: 10.w),
@@ -145,13 +149,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       child: Text(
                         "Confirm Password",
                         style: AppTextStyles.font14SimiBoldPlatinumGraySora
-                            .copyWith(fontSize: 12.sp, color: AppColors
-                            .slateGray),
+                            .copyWith(
+                              fontSize: 12.sp,
+                              color: AppColors.slateGray,
+                            ),
                       ),
                     ),
                     verticalSpacing(8),
                     AppTextFormField(
-                      hintText: "********",
+                      hintText: AppConstants.signUpPasswordHint,
                       isObscureText: isConfirmObscure,
                       prefixIcon: Padding(
                         padding: EdgeInsets.only(left: 14.w, right: 10.w),
@@ -178,9 +184,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                       ),
-                      validator: (value) =>
-                          Validators.validateConfirmPassword(
-                              value, password: passwordController.text),
+                      validator: (value) => Validators.validateConfirmPassword(
+                        value,
+                        password: passwordController.text,
+                      ),
                     ),
 
                     verticalSpacing(30),
@@ -293,9 +300,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           child: Text(
                             "Login",
                             style: AppTextStyles.font13BoldNeonBlueSora
-                                .copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
+                                .copyWith(fontWeight: FontWeight.bold),
                           ),
                         ),
                       ],
