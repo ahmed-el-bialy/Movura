@@ -59,7 +59,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     Text(
                       "Create Account",
                       style: AppTextStyles.font40BoldPureWhite.copyWith(
-                        fontSize: 35.sp,
+                        fontSize: 33.sp,
                       ),
                     ),
                     verticalSpacing(4),

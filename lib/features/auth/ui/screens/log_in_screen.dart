@@ -83,7 +83,7 @@ class _LogInScreenState extends State<LogInScreen> {
                     Text(
                       "Welcome Back",
                       style: AppTextStyles.font40BoldPureWhite.copyWith(
-                        fontSize: 35.sp,
+                        fontSize: 33.sp,
                       ),
                     ),
                     verticalSpacing(4),

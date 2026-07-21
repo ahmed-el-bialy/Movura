@@ -31,21 +31,21 @@ class AppTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       style: ButtonStyle(
-        padding: WidgetStateProperty.all(
+        padding: WidgetStatePropertyAll(
           EdgeInsets.symmetric(
-            horizontal: horizontalPadding?.w ?? 10.w,
-            vertical: verticalPadding?.h ?? 10.h,
+            horizontal: horizontalPadding?.w ?? 12.w,
+            vertical: verticalPadding?.h ?? 12.h,
           ),
         ),
-        shape: WidgetStateProperty.all(
+        shape: WidgetStatePropertyAll(
           RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius ?? 16.r),
+            borderRadius: BorderRadius.circular(borderRadius?.r ?? 24.r),
           ),
         ),
-        backgroundColor: WidgetStateProperty.all(
+        backgroundColor: WidgetStatePropertyAll(
           backgroundColor ?? AppColors.neonBlue,
         ),
-        fixedSize: WidgetStateProperty.all(
+        fixedSize: WidgetStatePropertyAll(
           Size(buttonWidth?.w ?? double.maxFinite, buttonHeight?.h ?? 50.h),
         ),
       ),
@@ -54,7 +54,7 @@ class AppTextButton extends StatelessWidget {
         buttonText,
         style:
             textStyle ??
-            AppTextStyles.font17BoldTrueBlackSora.copyWith(fontSize: 20.sp),
+            AppTextStyles.font17BoldTrueBlackSora.copyWith(fontSize: 18.sp),
       ),
     );
   }
