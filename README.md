@@ -19,7 +19,11 @@ Flutter codebase with Cubit state management.**
 
 ## 🎥 Demo Video
 
-[Watch the demo](#) <!-- add your demo video link here -->
+<div align="center">
+
+[![Watch Demo](https://img.shields.io/badge/▶-Watch%20Demo-00D1FF?style=for-the-badge&logoColor=white)](https://youtube.com/@ahmedel-bialy)
+
+</div>
 
 ---
 
@@ -87,34 +91,34 @@ poster-card component system used across every screen.
 
 <table>
 <tr>
-<td align="center"><img src="screenshots/splash_screen.png" width="180"/><br/><sub>Splash</sub></td>
-<td align="center"><img src="screenshots/login.png" width="180"/><br/><sub>Login</sub></td>
-<td align="center"><img src="screenshots/sign_up.png" width="180"/><br/><sub>Sign Up</sub></td>
-<td align="center"><img src="screenshots/home_drawer.png" width="180"/><br/><sub>Side Drawer</sub></td>
+<td align="center" style="padding: 16px 24px;"><img src="screenshots/splash_screen.png" width="180"/><br/><sub>Splash</sub></td>
+<td align="center" style="padding: 16px 24px;"><img src="screenshots/login.png" width="180"/><br/><sub>Login</sub></td>
+<td align="center" style="padding: 16px 24px;"><img src="screenshots/sign_up.png" width="180"/><br/><sub>Sign Up</sub></td>
+<td align="center" style="padding: 16px 24px;"><img src="screenshots/home_drawer.png" width="180"/><br/><sub>Side Drawer</sub></td>
 </tr>
 <tr>
-<td align="center"><img src="screenshots/home_p1.png" width="180"/><br/><sub>Home</sub></td>
-<td align="center"><img src="screenshots/home_p2.png" width="180"/><br/><sub>Home (Top Rated)</sub></td>
-<td align="center"><img src="screenshots/home_loding.png" width="180"/><br/><sub>Home Loading</sub></td>
-<td align="center"><img src="screenshots/search_p1.png" width="180"/><br/><sub>Search</sub></td>
+<td align="center" style="padding: 16px 24px;"><img src="screenshots/home_p1.png" width="180"/><br/><sub>Home</sub></td>
+<td align="center" style="padding: 16px 24px;"><img src="screenshots/home_p2.png" width="180"/><br/><sub>Home (Top Rated)</sub></td>
+<td align="center" style="padding: 16px 24px;"><img src="screenshots/home_loding.png" width="180"/><br/><sub>Home Loading</sub></td>
+<td align="center" style="padding: 16px 24px;"><img src="screenshots/search_p1.png" width="180"/><br/><sub>Search</sub></td>
 </tr>
 <tr>
-<td align="center"><img src="screenshots/search_results.png" width="180"/><br/><sub>Search Results</sub></td>
-<td align="center"><img src="screenshots/movie_details_p1.png" width="180"/><br/><sub>Movie Details</sub></td>
-<td align="center"><img src="screenshots/movie_details_p2.png" width="180"/><br/><sub>Movie Details (Cast)</sub></td>
-<td align="center"><img src="screenshots/movie_details_p3.png" width="180"/><br/><sub>Movie Details (Images/Trailers)</sub></td>
+<td align="center" style="padding: 16px 24px;"><img src="screenshots/search_results.png" width="180"/><br/><sub>Search Results</sub></td>
+<td align="center" style="padding: 16px 24px;"><img src="screenshots/movie_details_p1.png" width="180"/><br/><sub>Movie Details</sub></td>
+<td align="center" style="padding: 16px 24px;"><img src="screenshots/movie_details_p2.png" width="180"/><br/><sub>Movie Details (Cast)</sub></td>
+<td align="center" style="padding: 16px 24px;"><img src="screenshots/movie_details_p3.png" width="180"/><br/><sub>Movie Details (Images/Trailers)</sub></td>
 </tr>
 <tr>
-<td align="center"><img src="screenshots/movie_similar.png" width="180"/><br/><sub>Movie Similar/Recommendations</sub></td>
-<td align="center"><img src="screenshots/tv_details_p1.png" width="180"/><br/><sub>TV Details</sub></td>
-<td align="center"><img src="screenshots/tv_details_p3.png" width="180"/><br/><sub>TV Details (Cast/Companies)</sub></td>
-<td align="center"><img src="screenshots/tv_details_p4.png" width="180"/><br/><sub>TV Details (Networks)</sub></td>
+<td align="center" style="padding: 16px 24px;"><img src="screenshots/movie_similar.png" width="180"/><br/><sub>Movie Similar/Recommendations</sub></td>
+<td align="center" style="padding: 16px 24px;"><img src="screenshots/tv_details_p1.png" width="180"/><br/><sub>TV Details</sub></td>
+<td align="center" style="padding: 16px 24px;"><img src="screenshots/tv_details_p3.png" width="180"/><br/><sub>TV Details (Cast/Companies)</sub></td>
+<td align="center" style="padding: 16px 24px;"><img src="screenshots/tv_details_p4.png" width="180"/><br/><sub>TV Details (Networks)</sub></td>
 </tr>
 <tr>
-<td align="center"><img src="screenshots/tv_anime_p1.png" width="180"/><br/><sub>TV Details (Anime example)</sub></td>
-<td align="center"><img src="screenshots/tv_similar.png" width="180"/><br/><sub>TV Similar/Recommendations</sub></td>
-<td align="center"><img src="screenshots/reviews.png" width="180"/><br/><sub>Reviews</sub></td>
-<td align="center"><img src="screenshots/trailer_player_v.png" width="180"/><br/><sub>Trailer Player (Portrait)</sub></td>
+<td align="center" style="padding: 16px 24px;"><img src="screenshots/tv_anime_p1.png" width="180"/><br/><sub>TV Details (Anime example)</sub></td>
+<td align="center" style="padding: 16px 24px;"><img src="screenshots/tv_similar.png" width="180"/><br/><sub>TV Similar/Recommendations</sub></td>
+<td align="center" style="padding: 16px 24px;"><img src="screenshots/reviews.png" width="180"/><br/><sub>Reviews</sub></td>
+<td align="center" style="padding: 16px 24px;"><img src="screenshots/trailer_player_v.png" width="180"/><br/><sub>Trailer Player (Portrait)</sub></td>
 </tr>
 </table>
 
