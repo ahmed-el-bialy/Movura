@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
 
+import '../routing/route_names.dart';
 import '../theming/app_colors.dart';
-import '../constants/app_constants.dart';
 
 class AppNavigationBar extends StatelessWidget {
   final int activeIndex;
@@ -33,10 +33,7 @@ class AppNavigationBar extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16.r),
                 onTap: () {
                   if (activeIndex != 0) {
-                    context.pushReplacementNamed(
-                      AppConstants.logInScreen,
-                      null,
-                    );
+                    context.pushReplacementNamed(RouteNames.logInScreen, null);
                   }
                 },
                 child: Padding(

@@ -4,6 +4,8 @@ import 'package:movura/core/constants/app_constants.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
+import '../routing/route_names.dart';
+
 Future<void> playYoutubeVideo(
   BuildContext context,
 
@@ -54,7 +56,7 @@ Future<void> playYoutubeVideo(
 
     if (!context.mounted) return;
 
-    await context.pushNamed(AppConstants.videoPlayScreen, controller);
+    await context.pushNamed(RouteNames.videoPlayScreen, controller);
   } catch (e) {
     debugPrint('Error playing YouTube video: $e');
 

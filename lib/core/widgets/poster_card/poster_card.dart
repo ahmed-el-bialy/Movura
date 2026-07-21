@@ -11,6 +11,7 @@ import 'package:movura/core/widgets/poster_card/sub_widgets/top_lef_sub_card.dar
 import 'package:movura/core/widgets/poster_card/sub_widgets/top_right_sub_card.dart';
 
 import '../../routing/arguments_model.dart';
+import '../../routing/route_names.dart';
 
 class PosterCard extends StatelessWidget {
   const PosterCard({
@@ -55,7 +56,7 @@ class PosterCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         context.pushNamed(
-          AppConstants.detailsScreen,
+          RouteNames.detailsScreen,
           ArgumentsModel(
             mediaType: mediaModel?.mediaType ?? mediaType ?? "movie",
             mediaId: mediaModel!.id,

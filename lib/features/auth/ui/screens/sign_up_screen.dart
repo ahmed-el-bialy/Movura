@@ -3,10 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/constants/app_constants.dart';
 import 'package:movura/core/helpers/validators.dart';
 
-import '../../../../core/theming/app_colors.dart';
-import '../../../../core/theming/text_styles.dart';
 import '../../../../core/extensions/routing_extension.dart';
 import '../../../../core/helpers/spacing.dart';
+import '../../../../core/routing/route_names.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/text_styles.dart';
 import '../../../../core/widgets/app_text_button.dart';
 import '../../../../core/widgets/app_text_form_field.dart';
 import '../widgets/build_social_button.dart';
@@ -188,7 +189,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       buttonText: "Sign Up",
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          context.pushNamed(AppConstants.mainScreen, null);
+                          context.pushNamed(RouteNames.mainScreen, null);
                         } else {
                           ScaffoldMessenger.of(context).clearSnackBars();
                           ScaffoldMessenger.of(context).showSnackBar(

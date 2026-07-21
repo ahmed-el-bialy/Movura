@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/constants/app_constants.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/helpers/spacing.dart';
 import 'package:movura/core/helpers/validators.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/widgets/app_text_button.dart';
 import 'package:movura/core/widgets/app_text_form_field.dart';
 import 'package:movura/core/widgets/section_title.dart';
 
+import '../../../../core/routing/route_names.dart';
 import '../widgets/build_social_button.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -56,7 +57,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         borderRadius: BorderRadius.circular(12.r),
                         child: InkWell(
                           onTap: () {
-                            context.pushNamed(AppConstants.mainScreen, null);
+                            context.pushNamed(RouteNames.mainScreen, null);
                           },
                           borderRadius: BorderRadius.circular(12.r),
                           child: Padding(
@@ -179,7 +180,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       buttonText: "Login",
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          context.pushNamed(AppConstants.mainScreen, null);
+                          context.pushNamed(RouteNames.mainScreen, null);
                         } else {
                           ScaffoldMessenger.of(context).clearSnackBars();
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -278,7 +279,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            context.pushNamed(AppConstants.signUpScreen, null);
+                            context.pushNamed(RouteNames.signUpScreen, null);
                           },
                           child: Text(
                             "Sign Up",

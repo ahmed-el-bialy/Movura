@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/features/auth/ui/screens/log_in_screen.dart';
 import 'package:movura/features/auth/ui/screens/sign_up_screen.dart';
 import 'package:movura/features/details/data/repos/tv_series_repo.dart';
@@ -23,16 +24,16 @@ import 'arguments_model.dart';
 class AppRouter {
   Route generateRoute(RouteSettings setting) {
     switch (setting.name) {
-      case AppConstants.logInScreen:
+      case RouteNames.logInScreen:
         return MaterialPageRoute(builder: (_) => const LogInScreen());
 
-      case AppConstants.signUpScreen:
+      case RouteNames.signUpScreen:
         return MaterialPageRoute(builder: (_) => const SignUpScreen());
 
-      case AppConstants.trendingScreen:
+      case RouteNames.trendingScreen:
         return MaterialPageRoute(builder: (_) => const TrendingScreen());
 
-      case AppConstants.mainScreen:
+      case RouteNames.mainScreen:
         return MaterialPageRoute(
           builder: (_) => MultiBlocProvider(
             providers: [
@@ -53,7 +54,7 @@ class AppRouter {
           ),
         );
 
-      case AppConstants.detailsScreen:
+      case RouteNames.detailsScreen:
         final arguments = setting.arguments as ArgumentsModel;
 
         if (arguments.mediaType == "movie") {
@@ -76,7 +77,7 @@ class AppRouter {
           );
         }
 
-      case AppConstants.videoPlayScreen:
+      case RouteNames.videoPlayScreen:
         final controller = setting.arguments as YoutubePlayerController;
         return MaterialPageRoute(
           builder: (_) => VideoScreen(controller: controller),
