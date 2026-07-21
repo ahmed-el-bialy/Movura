@@ -17,6 +17,12 @@ Flutter codebase with Cubit state management.**
 
 ---
 
+## 🎥 Demo Video
+
+[Watch the demo](#) <!-- add your demo video link here -->
+
+---
+
 ## 🎯 Overview
 
 **Movura** is a Flutter entertainment app built on top of **The Movie Database (TMDB) API**. It lets
@@ -75,30 +81,44 @@ poster-card component system used across every screen.
 ## 📸 Screenshots
 
 > Screenshots live in the `screenshots/` folder — update the paths below if you rename or move them.
+> This is a temporary gallery; feel free to swap in a cleaner set once the app is fully polished.
 
-| Splash | Login | Sign Up |
-|:---:|:---:|:---:|
-| ![Splash](screenshots/splash_screen.png) | ![Login](screenshots/login.png) | ![Sign Up](screenshots/sign_up.png) |
+<div align="center">
 
-| Home | Home (loading) | Side Drawer |
-|:---:|:---:|:---:|
-| ![Home](screenshots/home_p1.png) | ![Home Loading](screenshots/home_loding.png) | ![Drawer](screenshots/home_drawer.png) |
+<table>
+<tr>
+<td align="center"><img src="screenshots/splash_screen.png" width="180"/><br/><sub>Splash</sub></td>
+<td align="center"><img src="screenshots/login.png" width="180"/><br/><sub>Login</sub></td>
+<td align="center"><img src="screenshots/sign_up.png" width="180"/><br/><sub>Sign Up</sub></td>
+<td align="center"><img src="screenshots/home_drawer.png" width="180"/><br/><sub>Side Drawer</sub></td>
+</tr>
+<tr>
+<td align="center"><img src="screenshots/home_p1.png" width="180"/><br/><sub>Home</sub></td>
+<td align="center"><img src="screenshots/home_p2.png" width="180"/><br/><sub>Home (Top Rated)</sub></td>
+<td align="center"><img src="screenshots/home_loding.png" width="180"/><br/><sub>Home Loading</sub></td>
+<td align="center"><img src="screenshots/search_p1.png" width="180"/><br/><sub>Search</sub></td>
+</tr>
+<tr>
+<td align="center"><img src="screenshots/search_results.png" width="180"/><br/><sub>Search Results</sub></td>
+<td align="center"><img src="screenshots/movie_details_p1.png" width="180"/><br/><sub>Movie Details</sub></td>
+<td align="center"><img src="screenshots/movie_details_p2.png" width="180"/><br/><sub>Movie Details (Cast)</sub></td>
+<td align="center"><img src="screenshots/movie_details_p3.png" width="180"/><br/><sub>Movie Details (Images/Trailers)</sub></td>
+</tr>
+<tr>
+<td align="center"><img src="screenshots/movie_similar.png" width="180"/><br/><sub>Movie Similar/Recommendations</sub></td>
+<td align="center"><img src="screenshots/tv_details_p1.png" width="180"/><br/><sub>TV Details</sub></td>
+<td align="center"><img src="screenshots/tv_details_p3.png" width="180"/><br/><sub>TV Details (Cast/Companies)</sub></td>
+<td align="center"><img src="screenshots/tv_details_p4.png" width="180"/><br/><sub>TV Details (Networks)</sub></td>
+</tr>
+<tr>
+<td align="center"><img src="screenshots/tv_anime_p1.png" width="180"/><br/><sub>TV Details (Anime example)</sub></td>
+<td align="center"><img src="screenshots/tv_similar.png" width="180"/><br/><sub>TV Similar/Recommendations</sub></td>
+<td align="center"><img src="screenshots/reviews.png" width="180"/><br/><sub>Reviews</sub></td>
+<td align="center"><img src="screenshots/trailer_player_v.png" width="180"/><br/><sub>Trailer Player (Portrait)</sub></td>
+</tr>
+</table>
 
-| Search | Search Results | Search Loading |
-|:---:|:---:|:---:|
-| ![Search](screenshots/search_p1.png) | ![Search Results](screenshots/search_results.png) | ![Search Loading](screenshots/scearch_loading.png) |
-
-| Movie Details | Movie Details (Cast) | Movie Similar |
-|:---:|:---:|:---:|
-| ![Movie Details 1](screenshots/movie_details_p1.png) | ![Movie Details 2](screenshots/movie_details_p2.png) | ![Movie Similar](screenshots/movie_similar.png) |
-
-| TV Details | TV Details (Cast/Companies) | TV Similar |
-|:---:|:---:|:---:|
-| ![TV Details 1](screenshots/tv_details_p1.png) | ![TV Details 3](screenshots/tv_details_p3.png) | ![TV Similar](screenshots/tv_similar.png) |
-
-| Reviews | Trailer Player | Details Loading |
-|:---:|:---:|:---:|
-| ![Reviews](screenshots/reviews.png) | ![Trailer Player](screenshots/trailer_player_v.png) | ![Details Loading](screenshots/details_loading.png) |
+</div>
 
 ---
 
@@ -299,8 +319,8 @@ flutter pub run build_runner watch --delete-conflicting-outputs
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/movura.git
-cd movura
+git clone https://github.com/ahmed-el-bialy/Movura.git
+cd Movura
 
 # 2. Install dependencies
 flutter pub get
@@ -379,12 +399,15 @@ This project is licensed under the **MIT License** — see [LICENSE](LICENSE) fo
 
 <div align="center">
 
-**Ahmed**
+**Ahmed El-Bialy**
 *Flutter Developer*
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](#)
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](#)
-[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](#)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ahmedel-bialy/)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ahmed-el-bialy)
+[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:ah.elbialy.dev@gmail.com)
+[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/@ahmedel-bialy)
+
+📧 **ah.elbialy.dev@gmail.com** • 📱 **+20 10 2212 1573** • 🌐 [Portfolio](https://ahmedel-bialy.framer.website/)
 
 </div>
 
