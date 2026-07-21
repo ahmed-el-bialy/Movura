@@ -17,7 +17,7 @@ import '../../features/home/logic/tpo_rated_tv_series/top_rated_tv_series_cubit.
 import '../../features/home/logic/trending_content/trending_content_cubit.dart';
 import '../../features/home/ui/home_screen.dart';
 import '../networking/di.dart';
-import '../utils/constants/app_constants.dart';
+import '../constants/app_constants.dart';
 import 'arguments_model.dart';
 
 class AppRouter {

@@ -5,8 +5,8 @@ import 'package:movura/features/details/data/models/tv_models/about_tv_series_mo
 import 'package:movura/features/details/ui/widgets/tv_widgets/tv_identify_card.dart';
 
 import '../../../../../core/theming/app_colors.dart';
-import '../../../../../core/utils/constants/api_constants.dart';
-import '../../../../../core/utils/extensions/routing_extension.dart';
+import '../../../../../core/constants/api_constants.dart';
+import '../../../../../core/extensions/routing_extension.dart';
 
 class TvMainDetails extends StatelessWidget {
   const TvMainDetails({super.key, required this.model});

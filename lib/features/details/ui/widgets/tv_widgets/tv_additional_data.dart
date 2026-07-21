@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/core/utils/extensions/runtime_list_extension.dart';
-import 'package:movura/core/utils/helpers/spacing.dart';
+import 'package:movura/core/extensions/runtime_list_extension.dart';
+import 'package:movura/core/helpers/spacing.dart';
 import 'package:movura/features/details/data/models/tv_models/about_tv_series_model.dart';
 
 class TvAdditionalData extends StatelessWidget {

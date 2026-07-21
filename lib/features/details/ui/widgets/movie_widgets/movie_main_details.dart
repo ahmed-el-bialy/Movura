@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/theming/app_colors.dart';
-import '../../../../../core/utils/constants/api_constants.dart';
-import '../../../../../core/utils/extensions/routing_extension.dart';
+import '../../../../../core/constants/api_constants.dart';
+import '../../../../../core/extensions/routing_extension.dart';
 import '../../../data/models/movie_models/about_model.dart';
 import 'movie_identify_card.dart';
 

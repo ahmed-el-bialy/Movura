@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/text_styles.dart';
-import '../../../../../core/utils/extensions/runtime_formatter.dart';
-import '../../../../../core/utils/helpers/spacing.dart';
+import '../../../../../core/extensions/runtime_formatter.dart';
+import '../../../../../core/helpers/spacing.dart';
 import '../../../data/models/movie_models/about_model.dart';
 
 class MovieIdentifyCard extends StatelessWidget {

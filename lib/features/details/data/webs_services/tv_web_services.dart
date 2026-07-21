@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 
-import '../../../../core/utils/constants/api_constants.dart';
+import '../../../../core/constants/api_constants.dart';
 import '../models/shared_models/review_model.dart';
 import '../models/shared_models/similar_model.dart';
 import '../models/tv_models/about_tv_series_model.dart';

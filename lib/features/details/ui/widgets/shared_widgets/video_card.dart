@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/models/video_model.dart';
 import '../../../../../core/theming/app_colors.dart';
-import '../../../../../core/utils/helpers/video_player.dart';
+import '../../../../../core/helpers/video_player.dart';
 
 class VideoCard extends StatelessWidget {
   const VideoCard({

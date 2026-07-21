@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/models/poster_model.dart';
 
 import '../../../../core/theming/text_styles.dart';
-import '../../../../core/utils/constants/api_constants.dart';
+import '../../../../core/constants/api_constants.dart';
 
 class PersonCard extends StatelessWidget {
   const PersonCard({super.key, required this.person, this.height, this.width});

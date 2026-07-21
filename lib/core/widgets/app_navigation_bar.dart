@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/utils/extensions/routing_extension.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
 
 import '../theming/app_colors.dart';
-import '../utils/constants/app_constants.dart';
+import '../constants/app_constants.dart';
 
 class AppNavigationBar extends StatelessWidget {
   final int activeIndex;

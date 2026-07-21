@@ -5,7 +5,7 @@ import 'package:movura/features/details/data/models/tv_models/about_tv_series_mo
 
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/text_styles.dart';
-import '../../../../../core/utils/helpers/spacing.dart';
+import '../../../../../core/helpers/spacing.dart';
 
 class TvStoryAndGenres extends StatelessWidget {
   const TvStoryAndGenres({super.key, required this.model});

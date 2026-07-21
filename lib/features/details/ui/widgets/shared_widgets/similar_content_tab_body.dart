@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/models/poster_model.dart';
 import '../../../../../core/theming/app_colors.dart';
-import '../../../../../core/utils/helpers/spacing.dart';
+import '../../../../../core/helpers/spacing.dart';
 import '../../../../../core/widgets/poster_card/poster_card.dart';
 import '../../../../../core/widgets/section_title.dart';
 

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:movura/core/utils/constants/api_constants.dart';
+import 'package:movura/core/constants/api_constants.dart';
 import 'package:movura/features/search/data/repo/search_repo.dart';
 import 'package:movura/features/search/data/web_services/search_web_services.dart';
 

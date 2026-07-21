@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/utils/constants/app_constants.dart';
-import 'package:movura/core/utils/helpers/validators.dart';
+import 'package:movura/core/constants/app_constants.dart';
+import 'package:movura/core/helpers/validators.dart';
 
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
-import '../../../../core/utils/extensions/routing_extension.dart';
-import '../../../../core/utils/helpers/spacing.dart';
+import '../../../../core/extensions/routing_extension.dart';
+import '../../../../core/helpers/spacing.dart';
 import '../../../../core/widgets/app_text_button.dart';
 import '../../../../core/widgets/app_text_form_field.dart';
 import '../widgets/build_social_button.dart';

@@ -4,7 +4,7 @@ import 'package:movura/features/details/ui/widgets/shared_widgets/back_button.da
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../../core/theming/app_colors.dart';
-import '../../../../core/utils/extensions/routing_extension.dart';
+import '../../../../core/extensions/routing_extension.dart';
 
 class VideoScreen extends StatefulWidget {
   final YoutubePlayerController controller;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/core/utils/helpers/spacing.dart';
+import 'package:movura/core/helpers/spacing.dart';
 import 'package:movura/core/widgets/section_title.dart';
 
 import '../../../../../core/models/video_model.dart';

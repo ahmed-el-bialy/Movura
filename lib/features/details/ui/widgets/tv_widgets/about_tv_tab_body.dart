@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/core/utils/helpers/spacing.dart';
+import 'package:movura/core/helpers/spacing.dart';
 import 'package:movura/core/widgets/section_title.dart';
 import 'package:movura/features/details/logic/tv_series_cubit/about_tv/about_tv_cubit.dart';
 import 'package:movura/features/details/ui/widgets/tv_widgets/seasons_list.dart';

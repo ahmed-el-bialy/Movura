@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/utils/extensions/routing_extension.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/features/home/ui/widgets/category_list.dart';
 import 'package:movura/features/home/ui/widgets/top_movies_list.dart';
 import 'package:movura/features/home/ui/widgets/top_tv_series_list.dart';
 import 'package:movura/features/home/ui/widgets/trending_list.dart';
 
-import '../../../core/utils/constants/app_constants.dart';
-import '../../../core/utils/helpers/spacing.dart';
+import '../../../core/constants/app_constants.dart';
+import '../../../core/helpers/spacing.dart';
 import '../../../core/widgets/app_navigation_bar.dart';
 import '../../../core/widgets/section_title.dart';
 import 'widgets/custom_side_drawer.dart';

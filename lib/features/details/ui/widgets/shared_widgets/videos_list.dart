@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/utils/constants/api_constants.dart';
+import 'package:movura/core/constants/api_constants.dart';
 
 import '../../../../../core/models/video_model.dart';
 import 'video_card.dart';

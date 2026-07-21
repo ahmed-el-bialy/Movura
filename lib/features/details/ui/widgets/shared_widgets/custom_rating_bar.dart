@@ -3,7 +3,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/theming/app_colors.dart';
-import '../../../../../core/utils/extensions/rating_formatter.dart';
+import '../../../../../core/extensions/rating_formatter.dart';
 
 class CustomRatingBar extends StatelessWidget {
   final double rating;

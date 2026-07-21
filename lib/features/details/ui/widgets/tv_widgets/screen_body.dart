@@ -15,7 +15,7 @@ import 'package:movura/features/details/ui/widgets/tv_widgets/tv_story_and_genre
 import '../../../../../core/networking/di.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/text_styles.dart';
-import '../../../../../core/utils/helpers/spacing.dart';
+import '../../../../../core/helpers/spacing.dart';
 import 'reviews_tab_body.dart';
 import 'similar_tab_body.dart';
 import '../shared_widgets/buttons_row.dart';

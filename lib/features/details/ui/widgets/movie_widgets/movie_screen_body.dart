@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../core/theming/app_colors.dart';
 import '../../../../../../core/theming/text_styles.dart';
 import '../../../../../core/networking/di.dart';
-import '../../../../../core/utils/helpers/spacing.dart';
+import '../../../../../core/helpers/spacing.dart';
 import '../../../data/models/movie_models/about_model.dart';
 import '../../../data/repos/movies_repo.dart';
 import '../../../logic/movie_screen_cubit/reviews/reviews_cubit.dart';

@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../../core/theming/app_colors.dart';
-import '../../../../core/utils/helpers/spacing.dart';
+import '../../../../core/helpers/spacing.dart';
 import '../../data/models/category_card_model.dart';
 import 'category_card.dart';
 

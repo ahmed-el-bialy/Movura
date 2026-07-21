@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/core/utils/constants/api_constants.dart';
+import 'package:movura/core/constants/api_constants.dart';
 
 import '../models/actor_model.dart';
 

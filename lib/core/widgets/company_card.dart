@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../models/company_model.dart';
 import '../theming/text_styles.dart';
-import '../utils/constants/api_constants.dart';
+import '../constants/api_constants.dart';
 
 class CompanyCard extends StatelessWidget {
   const CompanyCard({super.key, required this.company});

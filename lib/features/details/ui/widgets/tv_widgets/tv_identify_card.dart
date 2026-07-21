@@ -2,12 +2,12 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/utils/extensions/status_display_extension.dart';
+import 'package:movura/core/extensions/status_display_extension.dart';
 import 'package:movura/features/details/data/models/tv_models/about_tv_series_model.dart';
 
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/text_styles.dart';
-import '../../../../../core/utils/helpers/spacing.dart';
+import '../../../../../core/helpers/spacing.dart';
 
 class TvIdentifyCard extends StatelessWidget {
   const TvIdentifyCard({super.key, required this.model});
