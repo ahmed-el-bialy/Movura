@@ -4,6 +4,7 @@ import 'package:movura/features/details/logic/tv_series_cubit/about_tv/about_tv_
 import 'package:movura/features/details/ui/widgets/tv_widgets/screen_body.dart';
 
 import '../../../../core/theming/app_colors.dart';
+import '../../../../core/widgets/back_to_home_scope.dart';
 import '../details_loading_skeleton.dart';
 
 class TvSeriesDetailsScreen extends StatelessWidget {
@@ -11,10 +12,11 @@ class TvSeriesDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      backgroundColor: AppColors.richEerieBlack,
-      body: BlocBuilder<AboutTvCubit, AboutTvState>(
+    return BackToHomeScope(
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        backgroundColor: AppColors.richEerieBlack,
+        body: BlocBuilder<AboutTvCubit, AboutTvState>(
         builder: (context, state) {
           if (state is AboutTvLoading) {
             return DetailsLoadingSkeleton();
@@ -26,6 +28,7 @@ class TvSeriesDetailsScreen extends StatelessWidget {
             return Center(child: Text("There was An Error"));
           }
         },
+      ),
       ),
     );
   }

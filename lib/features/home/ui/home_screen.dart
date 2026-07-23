@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
       extendBody: true,
       backgroundColor: AppColors.richEerieBlack,
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8),
+        padding: EdgeInsets.symmetric(horizontal: 8.w),
         child: CustomScrollView(
           scrollDirection: Axis.vertical,
           physics: const BouncingScrollPhysics(),

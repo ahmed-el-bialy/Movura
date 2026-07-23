@@ -196,7 +196,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       buttonText: "Sign Up",
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          context.pushNamed(RouteNames.mainScreen, null);
+                          context.goHome();
                         } else {
                           ScaffoldMessenger.of(context).clearSnackBars();
                           ScaffoldMessenger.of(context).showSnackBar(

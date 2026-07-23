@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/routing/app_router.dart';
+import 'package:movura/core/theming/app_theme.dart';
 import 'package:movura/firebase_options.dart';
 
 import 'core/networking/di.dart';
@@ -35,6 +36,7 @@ class Movura extends StatelessWidget {
       builder: (_, child) {
         return MaterialApp(
           onGenerateRoute: appRouter.generateRoute,
+          theme: AppTheme.darkTheme,
           debugShowCheckedModeBanner: false,
         );
       },

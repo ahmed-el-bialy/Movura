@@ -7,14 +7,19 @@ import 'package:movura/core/constants/api_constants.dart';
 import 'package:movura/features/details/data/models/tv_models/about_tv_series_model.dart';
 
 class TvSeasonCard extends StatelessWidget {
-  const TvSeasonCard({super.key, required this.tvSeasonModel});
+  const TvSeasonCard({
+    super.key,
+    required this.tvSeasonModel,
+    required this.onTap,
+  });
 
   final TvSeasonModel tvSeasonModel;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: Card(
         elevation: 8,
         shadowColor: AppColors.neonBlue,

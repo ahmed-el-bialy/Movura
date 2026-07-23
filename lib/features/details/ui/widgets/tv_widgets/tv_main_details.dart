@@ -86,7 +86,7 @@ class TvMainDetails extends StatelessWidget {
                   borderRadius: BorderRadius.circular(22.r),
                   splashColor: AppColors.neonBlue.withValues(alpha: .4),
                   onTap: () {
-                    context.pop();
+                    context.popToHomeOrGoHome();
                   },
                   child: Center(
                     child: Padding(

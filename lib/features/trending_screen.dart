@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
-
-import '../core/theming/app_colors.dart';
+import 'package:movura/core/widgets/app_navigation_bar.dart';
+import 'package:movura/core/widgets/custom_posters_grid_view.dart';
+import 'package:movura/core/widgets/skeleton_posters_list_loading.dart';
+import 'package:movura/features/home/logic/trending_content/trending_content_cubit.dart';
 
 class TrendingScreen extends StatelessWidget {
   const TrendingScreen({super.key});
@@ -10,24 +15,63 @@ class TrendingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       backgroundColor: AppColors.richEerieBlack,
       body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
         slivers: [
           SliverAppBar(
-            iconTheme: IconThemeData(color: AppColors.neonBlue),
-            pinned: false,
+            pinned: true,
+            floating: true,
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back_ios_new_rounded),
+              color: AppColors.neonBlue,
+              onPressed: () => context.popToHomeOrGoHome(),
+            ),
             title: Text(
-              "Trending today",
+              'Trending Today',
               style: AppTextStyles.font20SimiBoldNeonBlueManrope.copyWith(
-                  fontSize: 18.sp),),
+                fontSize: 18.sp,
+              ),
+            ),
             centerTitle: true,
-            backgroundColor: Colors.transparent,
+            backgroundColor: AppColors.eerieBlack.withValues(alpha: 0.85),
+          ),
+          BlocBuilder<TrendingContentCubit, TrendingContentState>(
+            builder: (context, state) {
+              if (state is TrendingContentLoading) {
+                return const SliverToBoxAdapter(
+                  child: SkeletonPostersListLoading(),
+                );
+              }
 
-          )
+              if (state is TrendingContentFailed) {
+                return SliverFillRemaining(
+                  child: Center(
+                    child: Text(
+                      state.errorMessage,
+                      style: AppTextStyles.font13MediumNeonBlue,
+                    ),
+                  ),
+                );
+              }
 
+              if (state is TrendingContentLoaded) {
+                return SliverPadding(
+                  padding: EdgeInsets.symmetric(horizontal: 12.w),
+                  sliver: SliverToBoxAdapter(
+                    child: CustomPostersGridView(poster: state.posters),
+                  ),
+                );
+              }
 
+              return const SliverToBoxAdapter(child: SizedBox.shrink());
+            },
+          ),
+          SliverToBoxAdapter(child: SizedBox(height: 90.h)),
         ],
       ),
+      bottomNavigationBar: const AppNavigationBar(activeIndex: 0),
     );
   }
 }

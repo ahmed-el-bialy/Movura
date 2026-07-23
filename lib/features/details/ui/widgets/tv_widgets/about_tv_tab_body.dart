@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/routing/arguments_model.dart';
+import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/helpers/spacing.dart';
 import 'package:movura/core/widgets/section_title.dart';
@@ -32,12 +35,25 @@ class AboutTvTabBody extends StatelessWidget {
                   ? SectionTitle(
                       sectionName: "Seasons",
                       actionName: "View All >>",
-                      onTap: () {},
+                      onTap: () {
+                        context.pushNamed(
+                          RouteNames.allSeasonsScreen,
+                          AllSeasonsArgumentsModel(
+                            tvId: state.model.id,
+                            tvTitle: state.model.title,
+                            seasons: state.model.seasons,
+                          ),
+                        );
+                      },
                     )
                   : const SizedBox.shrink(),
 
               (state.model.seasons.isNotEmpty && state.model.seasons.length > 1)
-                  ? SeasonsList(season: state.model.seasons)
+                  ? SeasonsList(
+                      seasons: state.model.seasons,
+                      tvId: state.model.id,
+                      tvTitle: state.model.title,
+                    )
                   : const SizedBox.shrink(),
 
               (state.model.seasons.isNotEmpty && state.model.seasons.length > 1)

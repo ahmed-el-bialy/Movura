@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -14,9 +15,16 @@ class HomeAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      pinned: false,
+      pinned: true,
       floating: true,
       snap: true,
+      elevation: 0,
+      flexibleSpace: ClipRRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: Container(color: Colors.transparent),
+        ),
+      ),
       leading: Builder(
         builder: (context) {
           return IconButton(
@@ -28,7 +36,7 @@ class HomeAppBar extends StatelessWidget {
         },
       ),
       centerTitle: true,
-      backgroundColor: AppColors.eerieBlack,
+      backgroundColor: AppColors.eerieBlack.withValues(alpha: 0.6),
       title: Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,

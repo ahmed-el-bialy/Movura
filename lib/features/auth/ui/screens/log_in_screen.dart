@@ -57,7 +57,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         borderRadius: BorderRadius.circular(12.r),
                         child: InkWell(
                           onTap: () {
-                            context.pushNamed(RouteNames.mainScreen, null);
+                            context.goHome();
                           },
                           borderRadius: BorderRadius.circular(12.r),
                           child: Padding(
@@ -180,7 +180,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       buttonText: "Login",
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          context.pushNamed(RouteNames.mainScreen, null);
+                          context.goHome();
                         } else {
                           ScaffoldMessenger.of(context).clearSnackBars();
                           ScaffoldMessenger.of(context).showSnackBar(

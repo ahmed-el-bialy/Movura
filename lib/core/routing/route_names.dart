@@ -5,4 +5,6 @@ class RouteNames {
   static const String trendingScreen = "/trending";
   static const String detailsScreen = "/details";
   static const String videoPlayScreen = "/video";
+  static const String seasonDetailsScreen = "/seasonDetails";
+  static const String allSeasonsScreen = "/allSeasons";
 }

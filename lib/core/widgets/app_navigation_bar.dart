@@ -1,113 +1,114 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
-
-import '../routing/route_names.dart';
-import '../theming/app_colors.dart';
+import 'package:movura/core/networking/di.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/features/search/logic/search/search_cubit.dart';
+import 'package:movura/features/search/ui/custom_search_delegate.dart';
 
 class AppNavigationBar extends StatelessWidget {
   final int activeIndex;
 
   const AppNavigationBar({super.key, required this.activeIndex});
 
+  void _openSearch(BuildContext context) {
+    showSearch(
+      context: context,
+      delegate: CustomSearchDelegate(searchCubit: sl<SearchCubit>()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(bottom: 10.h, left: 18.w, right: 18.w),
-      child: Container(
-        height: 62.h,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25.r),
-          color: AppColors.jetBlack.withValues(alpha: .8),
-        ),
-        child: Material(
-          color: Colors.transparent,
-          borderRadius: BorderRadius.circular(25.r),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              InkWell(
-                splashColor: AppColors.neonBlue.withValues(alpha: .5),
-                borderRadius: BorderRadius.circular(16.r),
-                onTap: () {
-                  if (activeIndex != 0) {
-                    context.pushAndRemoveUntil(
-                      routeName: RouteNames.mainScreen,
-                      predicate: (route) => false,
-                    );
-                  }
-                },
-                child: Padding(
-                  padding: EdgeInsets.all(8.0.r),
-                  child: Icon(
-                    Icons.home_rounded,
-                    size: 28.sp,
-                    color: activeIndex == 0
-                        ? AppColors.neonBlue
-                        : AppColors.slateGray,
-                  ),
-                ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(25.r),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: Container(
+            height: 62.h,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(25.r),
+              color: AppColors.jetBlack.withValues(alpha: .6),
+              border: Border.all(
+                color: AppColors.slateGray.withValues(alpha: 0.2),
+                width: 1,
               ),
-
-              InkWell(
-                splashColor: AppColors.neonBlue.withValues(alpha: .4),
-                borderRadius: BorderRadius.circular(16.r),
-                onTap: () {
-                  // هنا هتحط الـ Route بتاع شاشة الـ Library
-                  // if (activeIndex != 2) context.pushReplacementNamed(Strings.libraryScreen, null);
-                },
-                child: Padding(
-                  padding: EdgeInsets.all(8.0.r),
-                  child: Icon(
-                    Icons.format_list_bulleted_rounded,
-                    size: 28.sp,
-                    color: activeIndex == 2
-                        ? AppColors.neonBlue
-                        : AppColors.slateGray,
+            ),
+            child: Material(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(25.r),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _NavItem(
+                    icon: Icons.home_rounded,
+                    isActive: activeIndex == 0,
+                    onTap: () {
+                      if (!context.isOnHomeScreen) {
+                        context.goHome();
+                      }
+                    },
                   ),
-                ),
-              ),
-              // أيقونة Library -> index = 2
-              InkWell(
-                splashColor: AppColors.neonBlue.withValues(alpha: .45),
-                borderRadius: BorderRadius.circular(16.r),
-                onTap: () {
-                  // هنا هتحط الـ Route بتاع شاشة الـ Assistant
-                  // if (activeIndex != 3) context.pushReplacementNamed(Strings.assistantScreen, null);
-                },
-                child: Padding(
-                  padding: EdgeInsets.all(8.0.r),
-                  child: Icon(
-                    Icons.psychology_outlined,
-                    size: 28.sp,
-                    color: activeIndex == 3
-                        ? AppColors.neonBlue
-                        : AppColors.slateGray,
+                  _NavItem(
+                    icon: Icons.search_rounded,
+                    isActive: activeIndex == 1,
+                    onTap: () => _openSearch(context),
                   ),
-                ),
-              ),
-              InkWell(
-                splashColor: AppColors.neonBlue.withValues(alpha: .5),
-                borderRadius: BorderRadius.circular(16.r),
-                onTap: () {
-                  // هنا هتحط الـ Route بتاع شاشة البحث لما تعملها
-                  // if (activeIndex != 1) context.pushReplacementNamed(Strings.searchScreen, null);
-                },
-                child: Padding(
-                  padding: EdgeInsets.all(8.0.r),
-                  child: Icon(
-                    Icons.person_rounded,
-                    size: 28.sp,
-                    color: activeIndex == 1
-                        ? AppColors.neonBlue
-                        : AppColors.slateGray,
+                  _NavItem(
+                    icon: Icons.format_list_bulleted_rounded,
+                    isActive: activeIndex == 2,
+                    onTap: () {
+                      if (!context.isOnHomeScreen) {
+                        context.goHome();
+                      }
+                    },
                   ),
-                ),
+                  _NavItem(
+                    icon: Icons.person_rounded,
+                    isActive: activeIndex == 3,
+                    onTap: () {
+                      if (!context.isOnHomeScreen) {
+                        context.goHome();
+                      }
+                    },
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _NavItem extends StatelessWidget {
+  const _NavItem({
+    required this.icon,
+    required this.isActive,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final bool isActive;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      splashColor: AppColors.neonBlue.withValues(alpha: .5),
+      borderRadius: BorderRadius.circular(16.r),
+      onTap: onTap,
+      child: Padding(
+        padding: EdgeInsets.all(8.0.r),
+        child: Icon(
+          icon,
+          size: 28.sp,
+          color: isActive ? AppColors.neonBlue : AppColors.slateGray,
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:movura/features/details/data/models/tv_models/about_tv_series_model.dart';
+import 'package:movura/features/details/data/models/tv_models/season_details_model.dart';
 
 import '../models/shared_models/review_model.dart';
 import '../models/shared_models/similar_model.dart';
@@ -27,6 +28,17 @@ class TvSeriesRepo {
 
   Future<SimilarContentResponse> getSimilarTvSeries({required int id}) async {
     final response = await tvWebServices.getSimilarTvSeries(id: id);
+    return response;
+  }
+
+  Future<SeasonDetailsModel> getTvSeasonDetails({
+    required int id,
+    required int seasonNumber,
+  }) async {
+    final response = await tvWebServices.getTvSeasonDetails(
+      id: id,
+      seasonNumber: seasonNumber,
+    );
     return response;
   }
 }

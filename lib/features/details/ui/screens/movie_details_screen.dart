@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/widgets/back_to_home_scope.dart';
 
 import '../../logic/movie_screen_cubit/main_details/about_cubit.dart';
 import '../details_loading_skeleton.dart';
@@ -11,21 +12,23 @@ class MovieDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      backgroundColor: AppColors.richEerieBlack,
-      body: BlocBuilder<AboutCubit, AboutState>(
-        builder: (context, state) {
-          if (state is AboutLoading) {
-            return DetailsLoadingSkeleton();
-          } else if (state is AboutSuccess) {
-            return MovieScreenBody(model: state.model);
-          } else if (state is AboutFailed) {
-            return Center(child: Text(state.errorMessage));
-          } else {
-            return Center(child: Text("There was An Error"));
-          }
-        },
+    return BackToHomeScope(
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        backgroundColor: AppColors.richEerieBlack,
+        body: BlocBuilder<AboutCubit, AboutState>(
+          builder: (context, state) {
+            if (state is AboutLoading) {
+              return DetailsLoadingSkeleton();
+            } else if (state is AboutSuccess) {
+              return MovieScreenBody(model: state.model);
+            } else if (state is AboutFailed) {
+              return Center(child: Text(state.errorMessage));
+            } else {
+              return Center(child: Text("There was An Error"));
+            }
+          },
+        ),
       ),
     );
   }
