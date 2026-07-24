@@ -146,7 +146,7 @@ class TvSeasonDetailsBody extends StatelessWidget {
                                       size: 13.sp,
                                       color: AppColors.coolGray,
                                     ),
-                                    SizedBox(width: 5.w),
+                                    horizontalSpacing(5),
                                     Text(
                                       seasonDetails.airDate!,
                                       style: AppTextStyles.font10MediumCoolGraySora
@@ -158,7 +158,7 @@ class TvSeasonDetailsBody extends StatelessWidget {
                                       size: 13.sp,
                                       color: AppColors.coolGray,
                                     ),
-                                    SizedBox(width: 5.w),
+                                    horizontalSpacing(5),
                                     Text(
                                       '${seasonDetails.episodes.length} Episodes',
                                       style: AppTextStyles.font10MediumCoolGraySora
@@ -195,7 +195,7 @@ class TvSeasonDetailsBody extends StatelessWidget {
             ),
           ),
 
-        SliverToBoxAdapter(child: verticalSpacing(4)),
+        sliverVerticalSpacing(4),
 
         // ─── Episodes header ───────────────────────────────────────────────────
         SliverToBoxAdapter(
@@ -211,14 +211,14 @@ class TvSeasonDetailsBody extends StatelessWidget {
                     borderRadius: BorderRadius.circular(4.r),
                   ),
                 ),
-                SizedBox(width: 10.w),
+                horizontalSpacing(10),
                 Text(
                   'Episodes',
                   style: AppTextStyles.font17BoldIceBlueMontserrat.copyWith(
                     fontSize: 16.sp,
                   ),
                 ),
-                SizedBox(width: 8.w),
+                horizontalSpacing(8),
                 Text(
                   '(${seasonDetails.episodes.length})',
                   style: AppTextStyles.font12CoolGrayManrope,
@@ -228,7 +228,7 @@ class TvSeasonDetailsBody extends StatelessWidget {
           ),
         ),
 
-        SliverToBoxAdapter(child: verticalSpacing(12)),
+        sliverVerticalSpacing(12),
 
         EpisodesList(
           episodes: seasonDetails.episodes,
@@ -237,7 +237,7 @@ class TvSeasonDetailsBody extends StatelessWidget {
           seasonName: seasonDetails.name ?? 'Season',
         ),
 
-        SliverToBoxAdapter(child: verticalSpacing(40)),
+        sliverVerticalSpacing(40),
       ],
     );
   }

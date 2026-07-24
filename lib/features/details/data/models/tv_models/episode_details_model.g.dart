@@ -23,6 +23,12 @@ EpisodeDetailsModel _$EpisodeDetailsModelFromJson(Map<String, dynamic> json) =>
       crew: (json['crew'] as List<dynamic>?)
           ?.map((e) => ActorModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      images: json['images'] == null
+          ? null
+          : TvImagesResponse.fromJson(json['images'] as Map<String, dynamic>),
+      videos: json['videos'] == null
+          ? null
+          : TvVideoResponse.fromJson(json['videos'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$EpisodeDetailsModelToJson(
@@ -39,4 +45,6 @@ Map<String, dynamic> _$EpisodeDetailsModelToJson(
   'runtime': instance.runtime,
   'guest_stars': instance.guestStars,
   'crew': instance.crew,
+  'images': instance.images,
+  'videos': instance.videos,
 };

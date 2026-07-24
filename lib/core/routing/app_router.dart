@@ -9,8 +9,8 @@ import 'package:movura/features/details/ui/screens/tv_seasons_screen.dart';
 import 'package:movura/features/details/ui/screens/episode_details_screen.dart';
 import 'package:movura/features/auth/ui/screens/sign_up_screen.dart';
 import 'package:movura/features/home/ui/home_screen.dart';
-import 'package:movura/features/main_wrapper_screen.dart';
-import 'package:movura/features/trending_screen.dart';
+import 'package:movura/features/main/ui/main_wrapper_screen.dart';
+import 'package:movura/features/home/ui/screens/trending_screen.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../features/details/logic/movie_screen_cubit/main_details/about_cubit.dart';

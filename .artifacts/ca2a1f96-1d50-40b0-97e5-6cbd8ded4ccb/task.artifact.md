@@ -1,12 +1,9 @@
-- [x] Implement `MainWrapperScreen` with `IndexedStack`
-- [x] Create `CategoriesScreen` and `ProfileScreen`
-- [x] Update `AppRouter` and `RouteNames`
-- [x] Redesign Home Trending section with `HomeTrendingBanner`
-- [x] Fix Search text visibility and professional look
-- [x] Fix Episode Details model (Null handling for images/videos)
-- [x] Refactor all Details widgets for null-safety
-- [x] Optimize Dependency Injection (sl<Cubit>)
-- [x] Cleanup code (Remove prints, comments, unused files)
-- [x] Update Auth screens (Login/Signup)
-- [ ] Run `build_runner` (User action required)
-- [x] Commit and push changes
+- [ ] Refactor Auth widgets (Login/Signup) into Classes
+- [ ] Refactor Trending Banner helper methods into Classes
+- [ ] Complete Auth UI with all missing icons and styles
+- [ ] Create `AppIconButton` for consistent styling
+- [ ] Move `trending_screen.dart` to `lib/features/home/ui/screens/`
+- [ ] Move `main_wrapper_screen.dart` to `lib/features/main/ui/`
+- [ ] Update all imports affected by file moves
+- [ ] Final project-wide cleanup
+- [ ] Commit and push changes

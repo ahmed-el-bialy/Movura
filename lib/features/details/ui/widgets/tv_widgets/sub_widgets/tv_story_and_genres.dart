@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/widgets/read_more_text.dart';
 import 'package:movura/features/details/data/models/tv_models/about_tv_series_model.dart';
 
-import '../../../../../core/theming/app_colors.dart';
-import '../../../../../core/theming/text_styles.dart';
-import '../../../../../core/helpers/spacing.dart';
+import '../../../../../../core/theming/app_colors.dart';
+import '../../../../../../core/theming/text_styles.dart';
+import '../../../../../../core/helpers/spacing.dart';
 
 class TvStoryAndGenres extends StatelessWidget {
   const TvStoryAndGenres({super.key, required this.model});

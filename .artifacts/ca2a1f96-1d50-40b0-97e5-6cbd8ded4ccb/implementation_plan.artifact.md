@@ -1,54 +1,38 @@
-# Implementation Plan - Project Cleanup and Optimization
+# Implementation Plan - Architecture Refinement, Spacing Optimization, and UI Completion
 
-This plan aims to "correct everything" by performing a thorough cleanup, optimizing dependency injection, and ensuring the app is robust against API failures.
+This plan focuses on standardizing the widget architecture, optimizing spacing helpers, and cleaning up the project for a professional finish.
 
 ## User Review Required
 
 > [!IMPORTANT]
-> - I will be updating several Models (Movie and TV) to be more null-safe. This requires running `build_runner`.
-> - I will register all major Cubits in `di.dart` for better state management.
-> - I will remove unused files and clean up commented-out code.
+> - **Spacing Optimization**: I will replace all instances of manual `SliverToBoxAdapter(child: verticalSpacing(x))` with the specialized `sliverVerticalSpacing(x)` helper, and similar for horizontal spacing and manual `SizedBox`.
+> - **Widget Refactoring**: I will continue converting helper methods into `StatelessWidget` classes.
+> - **Folder Restructuring**: I will finalize moving files to their logical feature folders.
 
 ## Proposed Changes
 
-### 1. Robustness & Model Updates
-#### [MODIFY] [about_model.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/details/data/models/movie_models/about_model.dart)
-- Make `posterPath` nullable.
-- Make `videoList`, `backdropImages`, `logoImages`, and `movieActors` nullable or default to empty lists in their respective response classes.
+### 1. Spacing Cleanup (Global)
+- Search and replace:
+  - `SliverToBoxAdapter(child: verticalSpacing(x))` -> `sliverVerticalSpacing(x)`
+  - `SliverToBoxAdapter(child: horizontalSpacing(x))` -> `sliverHorizontalSpacing(x)`
+  - `SizedBox(height: x.h)` -> `verticalSpacing(x)` (where appropriate)
+  - `SizedBox(width: x.w)` -> `horizontalSpacing(x)` (where appropriate)
 
----
+### 2. Widget Architecture (Refactoring)
+- Finish converting methods into `StatelessWidget` classes for all remaining features (Home, Details, Search).
 
-### 2. Dependency Injection (DI) Optimization
-#### [MODIFY] [di.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/core/networking/di.dart)
-- Register `AboutCubit`, `AboutTvCubit`, `TvSeriesReviewsCubit`, `TvSeriesSimilarContentCubit`, and `TvEpisodeDetailsCubit` as factories.
+### 3. Folder Structure & Path Correction
+- Finalize the move of `trending_screen.dart`, `main_wrapper_screen.dart`, and sub-widgets into their respective `ui/screens/` and `ui/widgets/sub_widgets/` folders.
 
-#### [MODIFY] [app_router.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/core/routing/app_router.dart)
-#### [MODIFY] [screen_body.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/details/ui/widgets/tv_widgets/screen_body.dart)
-#### [MODIFY] [episode_details_screen.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/details/ui/screens/episode_details_screen.dart)
-- Update code to use `sl<Cubit>()` instead of manual instantiation where applicable.
-
----
-
-### 3. Code Cleanup & UI Polish
-#### [MODIFY] [custom_posters_grid_view.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/core/widgets/custom_posters_grid_view.dart)
-- Remove commented-out code.
-#### [MODIFY] [screen_body.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/details/ui/widgets/tv_widgets/screen_body.dart)
-- Remove `print` statements.
-#### [MODIFY] [about_tv_tab_body.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/details/ui/widgets/tv_widgets/about_tv_tab_body.dart)
-- Replace hardcoded strings with localized-ready text and use `AppTextStyles`.
-
----
-
-### 4. File Management
-- Delete any redundant files (e.g., duplicated `home_trending_banner.dart` if it still exists).
+### 4. Auth UI & Icon Consistency
+- Complete the Login/Signup UI.
+- Use `AppIconButton` globally for consistent splash and padding.
 
 ## Verification Plan
 
 ### Automated Tests
-- Run `flutter pub run build_runner build` to verify model generation.
-- Ensure the app builds successfully.
+- Run `flutter analyze` to ensure no broken imports or type errors.
 
 ### Manual Verification
-- Verify that Movie details no longer crash if data is missing.
-- Verify that all tabs in the navigation bar work as expected.
-- Check that the search functionality still works with the new DI-managed Cubit.
+- Verify that spacing remains consistent across all screens.
+- Ensure state preservation in `MainWrapperScreen` works after restructuring.

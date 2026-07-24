@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/widgets/section_title.dart';
 import 'package:movura/features/home/ui/widgets/category_list.dart';
+import 'package:movura/features/home/ui/widgets/custom_side_drawer.dart';
+import 'package:movura/features/home/ui/widgets/home_app_bar.dart';
 import 'package:movura/features/home/ui/widgets/sub_widgets/home_trending_banner.dart';
 import 'package:movura/features/home/ui/widgets/top_movies_list.dart';
 import 'package:movura/features/home/ui/widgets/top_tv_series_list.dart';
@@ -10,9 +13,6 @@ import 'package:movura/features/home/ui/widgets/trending_list.dart';
 
 import '../../../core/helpers/spacing.dart';
 import '../../../core/routing/route_names.dart';
-import '../../../core/widgets/section_title.dart';
-import 'widgets/custom_side_drawer.dart';
-import 'widgets/home_app_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -48,7 +48,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             TrendingList(),
-            SliverToBoxAdapter(child: verticalSpacing(25)),
+            sliverVerticalSpacing(25),
             SliverToBoxAdapter(
               child: SectionTitle(
                 sectionName: "Top Rated Movies",
@@ -56,7 +56,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             SliverToBoxAdapter(child: TopMoviesList()),
-            SliverToBoxAdapter(child: verticalSpacing(25)),
+            sliverVerticalSpacing(25),
             SliverToBoxAdapter(
               child: SectionTitle(
                 sectionName: "Top Rated TV Series",
@@ -64,7 +64,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             SliverToBoxAdapter(child: TopTvSeriesList()),
-            SliverToBoxAdapter(child: verticalSpacing(100)),
+            sliverVerticalSpacing(100),
           ],
         ),
       ),

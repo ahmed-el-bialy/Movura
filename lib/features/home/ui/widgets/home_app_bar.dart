@@ -6,6 +6,7 @@ import '../../../../core/networking/di.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../../../../core/constants/app_constants.dart';
+import '../../../../core/widgets/app_icon_button.dart';
 import '../../../search/logic/search/search_cubit.dart';
 import '../../../search/ui/custom_search_delegate.dart';
 
@@ -27,11 +28,10 @@ class HomeAppBar extends StatelessWidget {
       ),
       leading: Builder(
         builder: (context) {
-          return IconButton(
-            icon: Icon(Icons.notes, color: AppColors.neonBlue, size: 30.sp),
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
+          return AppIconButton(
+            icon: Icons.notes,
+            onPressed: () => Scaffold.of(context).openDrawer(),
+            size: 30,
           );
         },
       ),
@@ -61,25 +61,18 @@ class HomeAppBar extends StatelessWidget {
       ),
       actions: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.0.w),
-          child: InkWell(
-            splashColor: AppColors.neonBlue.withValues(alpha: .2),
-            borderRadius: BorderRadius.circular(16.r),
-            onTap: () {
+          padding: EdgeInsets.symmetric(horizontal: 10.w),
+          child: AppIconButton(
+            icon: Icons.search_outlined,
+            onPressed: () {
               final searchCubit = sl<SearchCubit>();
               showSearch(
                 context: context,
                 delegate: CustomSearchDelegate(searchCubit: searchCubit),
               );
             },
-            child: Padding(
-              padding: EdgeInsets.all(8.0.r),
-              child: Icon(
-                Icons.search_outlined,
-                size: 26.sp,
-                color: AppColors.slateGray,
-              ),
-            ),
+            iconColor: AppColors.slateGray,
+            size: 26,
           ),
         ),
       ],

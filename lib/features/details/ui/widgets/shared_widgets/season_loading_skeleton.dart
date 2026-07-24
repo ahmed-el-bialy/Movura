@@ -80,7 +80,7 @@ class SeasonLoadingSkeleton extends StatelessWidget {
             ),
           ),
 
-          SliverToBoxAdapter(child: verticalSpacing(16)),
+          sliverVerticalSpacing(16),
 
           // ─── Episode skeletons ─────────────────────────────────────────────
           SliverList(

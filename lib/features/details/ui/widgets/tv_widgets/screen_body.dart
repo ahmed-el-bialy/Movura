@@ -8,9 +8,9 @@ import 'package:movura/features/details/data/repos/tv_series_repo.dart';
 import 'package:movura/features/details/logic/tv_series_cubit/reviews/reviews_cubit.dart';
 import 'package:movura/features/details/logic/tv_series_cubit/similar_content/similar_content_cubit.dart';
 import 'package:movura/features/details/ui/widgets/tv_widgets/about_tv_tab_body.dart';
-import 'package:movura/features/details/ui/widgets/tv_widgets/tv_additional_data.dart';
+import 'package:movura/features/details/ui/widgets/tv_widgets/sub_widgets/tv_additional_data.dart';
+import 'package:movura/features/details/ui/widgets/tv_widgets/sub_widgets/tv_story_and_genres.dart';
 import 'package:movura/features/details/ui/widgets/tv_widgets/tv_main_details.dart';
-import 'package:movura/features/details/ui/widgets/tv_widgets/tv_story_and_genres.dart';
 
 import '../../../../../core/networking/di.dart';
 import '../../../../../core/theming/app_colors.dart';
@@ -100,7 +100,7 @@ class TvScreenBody extends StatelessWidget {
                         Tab(text: "SIMILAR"),
                       ],
                     ),
-                    SizedBox(height: 10.h),
+                    verticalSpacing(10),
                     ExpandablePageView(
                       controller: pageController,
                       onPageChanged: (index) {

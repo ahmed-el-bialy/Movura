@@ -2,17 +2,17 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/extensions/status_display_extension.dart';
-import 'package:movura/features/details/data/models/tv_models/about_tv_series_model.dart';
 
-import '../../../../../core/theming/app_colors.dart';
-import '../../../../../core/theming/text_styles.dart';
-import '../../../../../core/helpers/spacing.dart';
+import '../../../../../../core/theming/app_colors.dart';
+import '../../../../../../core/theming/text_styles.dart';
+import '../../../../../../core/extensions/runtime_formatter.dart';
+import '../../../../../../core/helpers/spacing.dart';
+import '../../../../data/models/movie_models/about_model.dart';
 
-class TvIdentifyCard extends StatelessWidget {
-  const TvIdentifyCard({super.key, required this.model});
+class MovieIdentifyCard extends StatelessWidget {
+  const MovieIdentifyCard({super.key, required this.model});
 
-  final AboutTvSeriesModel model;
+  final AboutModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +31,7 @@ class TvIdentifyCard extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(24.r),
                 color: AppColors.pureWhite.withValues(alpha: 0.07),
+
                 border: Border.all(
                   color: AppColors.pureWhite.withValues(alpha: 0.15),
                   width: 1.5,
@@ -58,7 +59,7 @@ class TvIdentifyCard extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              " TV Series • ${model.language} • ${(model.status.statusDisplay)} ",
+                              " Movie • ${model.language} • ${model.runtime.runtimeFormatter()} ",
                               style: AppTextStyles.font16SimiBoldPlatinumGray.copyWith(
                                 fontSize: 14.sp,
                               ),
