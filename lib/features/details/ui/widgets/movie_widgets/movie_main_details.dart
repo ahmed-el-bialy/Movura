@@ -7,6 +7,7 @@ import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/constants/api_constants.dart';
 import '../../../../../core/extensions/routing_extension.dart';
 import '../../../../../core/widgets/app_icon_button.dart';
+import 'package:movura/features/details/ui/widgets/shared_widgets/platform_options_sheet.dart';
 import '../../../data/models/movie_models/about_model.dart';
 import 'sub_widgets/movie_identify_card.dart';
 
@@ -56,18 +57,17 @@ class MovieMainDetails extends StatelessWidget {
                   AppIconButton(
                     icon: Icons.open_in_new_rounded,
                     onPressed: () {
-                      // TODO: Implement url_launcher: launchUrl(Uri.parse(model.homepage!));
+                      showModalBottomSheet(
+                        context: context,
+                        backgroundColor: Colors.transparent,
+                        builder: (context) => PlatformOptionsSheet(
+                          homepageUrl: model.homepage!,
+                        ),
+                      );
                     },
                     backgroundColor: AppColors.onyxBlack.withValues(alpha: .9),
                     size: 22,
                   ),
-                horizontalSpacing(8),
-                AppIconButton(
-                  icon: Icons.add_rounded,
-                  onPressed: () {},
-                  backgroundColor: AppColors.onyxBlack.withValues(alpha: .9),
-                  size: 22,
-                ),
               ],
             ),
           ),

@@ -32,12 +32,8 @@ class AppRouter {
 
       case RouteNames.trendingScreen:
         return MaterialPageRoute(
-          builder: (_) => BackToHomeScope(
-            child: BlocProvider(
-              create: (context) =>
-                  sl<TrendingContentCubit>()..getTrendingPosters(),
-              child: const TrendingScreen(),
-            ),
+          builder: (_) => const BackToHomeScope(
+            child: TrendingScreen(),
           ),
         );
 

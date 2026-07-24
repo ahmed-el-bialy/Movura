@@ -23,6 +23,7 @@ AboutModel _$AboutModelFromJson(Map<String, dynamic> json) => AboutModel(
       .toList(),
   budget: (json['budget'] as num).toInt(),
   revenue: (json['revenue'] as num).toInt(),
+  homepage: json['homepage'] as String?,
   adultContent: json['adult'] as bool,
   mediaImages: ImagesResponse.fromJson(json['images'] as Map<String, dynamic>),
   movieVideos: json['videos'] == null
@@ -44,6 +45,7 @@ Map<String, dynamic> _$AboutModelToJson(AboutModel instance) =>
       'production_companies': instance.companies,
       'budget': instance.budget,
       'revenue': instance.revenue,
+      'homepage': instance.homepage,
       'adult': instance.adultContent,
       'images': instance.mediaImages,
       'videos': instance.movieVideos,

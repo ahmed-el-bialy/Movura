@@ -91,6 +91,7 @@ class CustomSearchDelegate extends SearchDelegate {
         onPressed: () {
           query = '';
           searchCubit.setFilter(SearchFilterType.all);
+          searchCubit.setGenreFilter(null);
           showSuggestions(context);
         },
         icon: Icon(Icons.clear, color: AppColors.neonBlue),

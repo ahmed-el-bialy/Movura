@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:movura/features/details/ui/widgets/shared_widgets/back_button.dart';
+import 'package:movura/core/widgets/app_icon_button.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../../core/theming/app_colors.dart';
@@ -25,62 +25,41 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    // Note: controller is disposed by the caller or by the player widget usually,
+    // but here it's passed as an argument.
     super.dispose();
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.paused) {
-      widget.controller.pause();
+      widget.controller.pauseVideo();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return YoutubePlayerBuilder(
-      onExitFullScreen: () {
-        SystemChrome.setPreferredOrientations(DeviceOrientation.values);
-      },
-      player: YoutubePlayer(
-        controller: widget.controller,
-        showVideoProgressIndicator: true,
-        progressIndicatorColor: AppColors.neonBlue,
-        topActions: [
-          const SizedBox(width: 8.0),
-          Expanded(
-            child: Text(
-              widget.controller.metadata.title,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 18.0,
-              ),
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
+    return Scaffold(
+      backgroundColor: AppColors.trueBlack,
+      body: Stack(
+        children: [
+          Center(
+            child: YoutubePlayer(
+              controller: widget.controller,
+              aspectRatio: 16 / 9,
+            ),
+          ),
+          Positioned(
+            top: 40,
+            left: 20,
+            child: AppIconButton(
+              icon: Icons.arrow_back_ios_new_rounded,
+              onPressed: () => context.pop(),
+              backgroundColor: Colors.black45,
             ),
           ),
         ],
-        onReady: () {
-          widget.controller.addListener(() {
-            if (mounted) setState(() {});
-          });
-        },
-        onEnded: (data) {
-          context.pop();
-        },
       ),
-      builder: (context, player) {
-        return Scaffold(
-          backgroundColor: AppColors.trueBlack,
-          appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            leading: CustomBackButton(
-              onTap: () => context.pop(),
-            ),
-          ),
-          body: Center(child: player),
-        );
-      },
     );
   }
 }

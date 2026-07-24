@@ -2,6 +2,20 @@
 
 part of 'home_web_services.dart';
 
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+GenreResponse _$GenreResponseFromJson(Map<String, dynamic> json) =>
+    GenreResponse(
+      genres: (json['genres'] as List<dynamic>)
+          .map((e) => GenreModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$GenreResponseToJson(GenreResponse instance) =>
+    <String, dynamic>{'genres': instance.genres};
+
 // dart format off
 
 // **************************************************************************
@@ -95,6 +109,60 @@ class _HomeWebServices implements HomeWebServices {
     late PosterResponse _value;
     try {
       _value = PosterResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<GenreResponse> getMovieGenres({String language = "en-US"}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'language': language};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<GenreResponse>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'genre/movie/list',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late GenreResponse _value;
+    try {
+      _value = GenreResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<GenreResponse> getTvGenres({String language = "en-US"}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'language': language};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<GenreResponse>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'genre/tv/list',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late GenreResponse _value;
+    try {
+      _value = GenreResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
