@@ -32,3 +32,19 @@ class AllSeasonsArgumentsModel {
     required this.seasons,
   });
 }
+
+class EpisodeArgumentsModel {
+  final int tvId;
+  final int seasonNumber;
+  final int episodeNumber;
+  final String tvTitle;
+  final String seasonName;
+
+  EpisodeArgumentsModel({
+    required this.tvId,
+    required this.seasonNumber,
+    required this.episodeNumber,
+    required this.tvTitle,
+    required this.seasonName,
+  });
+}

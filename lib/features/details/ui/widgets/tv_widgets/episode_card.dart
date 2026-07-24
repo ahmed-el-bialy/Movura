@@ -8,14 +8,14 @@ import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/features/details/data/models/tv_models/season_details_model.dart';
 
 class EpisodeCard extends StatelessWidget {
-  const EpisodeCard({super.key, required this.episode});
+  const EpisodeCard({super.key, required this.episode, this.onTap});
 
   final EpisodeModel episode;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    final hasStill =
-        episode.stillPath != null && episode.stillPath!.isNotEmpty;
+    final hasStill = episode.stillPath != null && episode.stillPath!.isNotEmpty;
 
     return Card(
       margin: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
@@ -24,132 +24,133 @@ class EpisodeCard extends StatelessWidget {
       shadowColor: AppColors.neonBlue.withValues(alpha: 0.15),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
       clipBehavior: Clip.antiAlias,
-      child: IntrinsicHeight(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            SizedBox(
-              width: 130.w,
-              child: hasStill
-                  ? CachedNetworkImage(
-                      imageUrl:
-                          '${ApiConstants.imageBaseUrl}${episode.stillPath}',
-                      fit: BoxFit.cover,
-                      errorWidget: (context, url, error) => _EpisodePlaceholder(
-                        episodeNumber: episode.episodeNumber,
-                      ),
-                    )
-                  : _EpisodePlaceholder(episodeNumber: episode.episodeNumber),
-            ),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.all(12.r),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 8.w,
-                            vertical: 4.h,
-                          ),
-                          decoration: BoxDecoration(
-                            color: AppColors.neonBlue.withValues(alpha: 0.15),
-                            borderRadius: BorderRadius.circular(8.r),
-                            border: Border.all(
-                              color: AppColors.neonBlue.withValues(alpha: 0.4),
+      child: InkWell(
+        onTap: onTap,
+        child: IntrinsicHeight(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(
+                width: 130.w,
+                child: hasStill
+                    ? CachedNetworkImage(
+                        imageUrl:
+                            '${ApiConstants.imageBaseUrl}${episode.stillPath}',
+                        fit: BoxFit.cover,
+                        errorWidget: (context, url, error) =>
+                            _EpisodePlaceholder(
+                              episodeNumber: episode.episodeNumber,
+                            ),
+                      )
+                    : _EpisodePlaceholder(episodeNumber: episode.episodeNumber),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(12.r),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 8.w,
+                              vertical: 4.h,
+                            ),
+                            decoration: BoxDecoration(
+                              color: AppColors.neonBlue.withValues(alpha: 0.15),
+                              borderRadius: BorderRadius.circular(8.r),
+                              border: Border.all(
+                                color: AppColors.neonBlue.withValues(
+                                  alpha: 0.4,
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              'E${episode.episodeNumber}',
+                              style: AppTextStyles.font13BoldNeonBlueSora
+                                  .copyWith(fontSize: 11.sp),
                             ),
                           ),
-                          child: Text(
-                            'E${episode.episodeNumber}',
-                            style: AppTextStyles.font13BoldNeonBlueSora.copyWith(
-                              fontSize: 11.sp,
+                          const Spacer(),
+                          if (episode.voteAverage != null &&
+                              episode.voteAverage! > 0) ...[
+                            Icon(
+                              Icons.star_rounded,
+                              color: AppColors.gold,
+                              size: 14.sp,
                             ),
-                          ),
-                        ),
-                        const Spacer(),
-                        if (episode.voteAverage != null &&
-                            episode.voteAverage! > 0) ...[
-                          Icon(
-                            Icons.star_rounded,
-                            color: AppColors.gold,
-                            size: 14.sp,
-                          ),
-                          SizedBox(width: 4.w),
-                          Text(
-                            episode.voteAverage!.toStringAsFixed(1),
-                            style: AppTextStyles.font12CoolGrayManrope.copyWith(
-                              color: AppColors.platinumGray,
+                            SizedBox(width: 4.w),
+                            Text(
+                              episode.voteAverage!.toStringAsFixed(1),
+                              style: AppTextStyles.font12CoolGrayManrope
+                                  .copyWith(color: AppColors.platinumGray),
                             ),
-                          ),
+                          ],
                         ],
-                      ],
-                    ),
-                    SizedBox(height: 8.h),
-                    Text(
-                      episode.name,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppTextStyles.font17BoldIceBlueMontserrat.copyWith(
-                        fontSize: 14.sp,
                       ),
-                    ),
-                    if (episode.overview != null &&
-                        episode.overview!.isNotEmpty) ...[
-                      SizedBox(height: 6.h),
+                      SizedBox(height: 8.h),
                       Text(
-                        episode.overview!,
+                        episode.name,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: AppTextStyles.font12CoolGrayManrope.copyWith(
-                          fontSize: 11.sp,
-                          height: 1.4,
+                        style: AppTextStyles.font17BoldIceBlueMontserrat
+                            .copyWith(fontSize: 14.sp),
+                      ),
+                      if (episode.overview != null &&
+                          episode.overview!.isNotEmpty) ...[
+                        SizedBox(height: 6.h),
+                        Text(
+                          episode.overview!,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: AppTextStyles.font12CoolGrayManrope.copyWith(
+                            fontSize: 11.sp,
+                            height: 1.4,
+                          ),
                         ),
+                      ],
+                      const Spacer(),
+                      Row(
+                        children: [
+                          if (episode.airDate != null &&
+                              episode.airDate!.isNotEmpty) ...[
+                            Icon(
+                              Icons.calendar_today_outlined,
+                              size: 12.sp,
+                              color: AppColors.coolGray,
+                            ),
+                            SizedBox(width: 4.w),
+                            Text(
+                              episode.airDate!.toTimeAgo().isNotEmpty
+                                  ? episode.airDate!.toTimeAgo()
+                                  : episode.airDate!,
+                              style: AppTextStyles.font12CoolGrayManrope
+                                  .copyWith(fontSize: 10.sp),
+                            ),
+                          ],
+                          if (episode.runtime != null) ...[
+                            const Spacer(),
+                            Icon(
+                              Icons.schedule_rounded,
+                              size: 12.sp,
+                              color: AppColors.coolGray,
+                            ),
+                            SizedBox(width: 4.w),
+                            Text(
+                              '${episode.runtime} min',
+                              style: AppTextStyles.font12CoolGrayManrope
+                                  .copyWith(fontSize: 10.sp),
+                            ),
+                          ],
+                        ],
                       ),
                     ],
-                    const Spacer(),
-                    Row(
-                      children: [
-                        if (episode.airDate != null &&
-                            episode.airDate!.isNotEmpty) ...[
-                          Icon(
-                            Icons.calendar_today_outlined,
-                            size: 12.sp,
-                            color: AppColors.coolGray,
-                          ),
-                          SizedBox(width: 4.w),
-                          Text(
-                            episode.airDate!.toTimeAgo().isNotEmpty
-                                ? episode.airDate!.toTimeAgo()
-                                : episode.airDate!,
-                            style: AppTextStyles.font12CoolGrayManrope.copyWith(
-                              fontSize: 10.sp,
-                            ),
-                          ),
-                        ],
-                        if (episode.runtime != null) ...[
-                          const Spacer(),
-                          Icon(
-                            Icons.schedule_rounded,
-                            size: 12.sp,
-                            color: AppColors.coolGray,
-                          ),
-                          SizedBox(width: 4.w),
-                          Text(
-                            '${episode.runtime} min',
-                            style: AppTextStyles.font12CoolGrayManrope.copyWith(
-                              fontSize: 10.sp,
-                            ),
-                          ),
-                        ],
-                      ],
-                    ),
-                  ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:movura/features/details/data/models/tv_models/about_tv_series_model.dart';
+import 'package:movura/features/details/data/models/tv_models/episode_details_model.dart';
 import 'package:movura/features/details/data/models/tv_models/season_details_model.dart';
 
 import '../models/shared_models/review_model.dart';
@@ -41,4 +42,18 @@ class TvSeriesRepo {
     );
     return response;
   }
+
+  Future<EpisodeDetailsModel> getTvEpisodeDetails({
+    required int id,
+    required int seasonNumber,
+    required int episodeNumber,
+  }) async {
+    final response = await tvWebServices.getTvEpisodeDetails(
+      id: id,
+      seasonNumber: seasonNumber,
+      episodeNumber: episodeNumber,
+    );
+    return response;
+  }
 }
+

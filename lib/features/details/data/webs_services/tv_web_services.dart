@@ -6,6 +6,7 @@ import '../../../../core/constants/api_constants.dart';
 import '../models/shared_models/review_model.dart';
 import '../models/shared_models/similar_model.dart';
 import '../models/tv_models/about_tv_series_model.dart';
+import '../models/tv_models/episode_details_model.dart';
 import '../models/tv_models/season_details_model.dart';
 
 part 'tv_web_services.g.dart';
@@ -42,4 +43,15 @@ abstract class TvWebServices {
     @Path("season_number") required int seasonNumber,
     @Query("language") String language = "en-US",
   });
+
+  @GET("${ApiConstants.tvDetails}/{id}/season/{season_number}/episode/{episode_number}")
+  Future<EpisodeDetailsModel> getTvEpisodeDetails({
+    @Path("id") required int id,
+    @Path("season_number") required int seasonNumber,
+    @Path("episode_number") required int episodeNumber,
+    @Query("append_to_response")
+    String additionalData = "credits,images,videos",
+    @Query("language") String language = "en-US",
+  });
 }
+
