@@ -42,6 +42,8 @@ class EpisodeDetailsScreen extends StatelessWidget {
                   episode: state.episodeDetails,
                   tvTitle: args.tvTitle,
                   seasonName: args.seasonName,
+                  tvId: args.tvId,
+                  totalEpisodes: args.totalEpisodes,
                 );
               }
 
