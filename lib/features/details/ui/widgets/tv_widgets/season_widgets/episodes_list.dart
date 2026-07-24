@@ -28,6 +28,7 @@ class EpisodesList extends StatelessWidget {
         episodeNumber: episode.episodeNumber,
         tvTitle: tvTitle,
         seasonName: seasonName,
+        totalEpisodes: episodes.length,
       ),
     );
   }
