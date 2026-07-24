@@ -22,4 +22,10 @@ class AppColors {
   static const Color iceBlue = Color(0xFFE1FDFF);
 
   static const Color pureWhite = Color(0xFFFFFFFF);
+
+  // Category Colors
+  static const Color vibrantPurple = Color(0xFF6A1B9A);
+  static const Color electricBlueAccent = Color(0xFF2979FF);
+  static const Color tealCyan = Color(0xFF00838F);
+  static const Color royalIndigo = Color(0xFF283593);
 }

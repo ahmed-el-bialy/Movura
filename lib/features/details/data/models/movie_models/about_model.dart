@@ -45,6 +45,8 @@ class AboutModel {
   @JsonKey(name: "revenue")
   final int revenue;
 
+  final String? homepage;
+
   @JsonKey(name: "adult")
   final bool adultContent;
 
@@ -67,6 +69,7 @@ class AboutModel {
     required this.companies,
     required this.budget,
     required this.revenue,
+    this.homepage,
     required this.adultContent,
     required this.mediaImages,
     this.movieVideos,

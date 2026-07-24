@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/networking/di.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/features/search/logic/search/search_cubit.dart';
 import 'package:movura/features/search/ui/custom_search_delegate.dart';
 
-import '../../../../core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_colors.dart';
 import '../../../../core/helpers/spacing.dart';
 import '../../data/models/category_card_model.dart';
 import 'category_card.dart';
@@ -19,7 +18,7 @@ class CategoryList extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<CategoryCardModel> categories = [
       CategoryCardModel(
-        color: Colors.deepPurple,
+        color: AppColors.vibrantPurple,
         title: 'Popular TV Series',
         hint: "TOP CHOICE",
         icon: Icons.tv_rounded,
@@ -28,7 +27,7 @@ class CategoryList extends StatelessWidget {
         },
       ),
       CategoryCardModel(
-        color: Colors.blueAccent,
+        color: AppColors.electricBlueAccent,
         title: 'Popular Movies',
         hint: "TOP CHOICE",
         icon: Icons.auto_awesome_rounded,
@@ -37,7 +36,7 @@ class CategoryList extends StatelessWidget {
         },
       ),
       CategoryCardModel(
-        color: Colors.cyan,
+        color: AppColors.tealCyan,
         title: 'Trending Today',
         hint: "DAILY UPDATES",
         icon: Icons.trending_up_rounded,
@@ -46,7 +45,7 @@ class CategoryList extends StatelessWidget {
         },
       ),
       CategoryCardModel(
-        color: Colors.indigoAccent,
+        color: AppColors.royalIndigo,
         title: 'Celebrities',
         hint: "PEOPLE",
         icon: Icons.people_alt_rounded,

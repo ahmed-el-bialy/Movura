@@ -72,6 +72,8 @@ class AboutTvSeriesModel {
   @JsonKey(name: "credits")
   final TvActorResponse actors;
 
+  final String? homepage;
+
   @JsonKey(name: "adult")
   final bool adultContent;
 
@@ -101,6 +103,7 @@ class AboutTvSeriesModel {
     required this.companies,
     required this.seasons,
     required this.actors,
+    this.homepage,
     required this.adultContent,
     required this.mediaImages,
     this.tvVideos,

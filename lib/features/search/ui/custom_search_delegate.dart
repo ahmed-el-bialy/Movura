@@ -49,17 +49,15 @@ class CustomSearchDelegate extends SearchDelegate {
   }
 
   Future<void> _openFilterSheet(BuildContext context) async {
-    final selected = await SearchFilterSheet.show(
+    await SearchFilterSheet.show(
       context,
-      selectedFilter: searchCubit.currentFilter,
+      searchCubit: searchCubit,
     );
-
-    if (selected != null) {
-      searchCubit.setFilter(selected);
-      if (query.trim().isNotEmpty) {
-        lastQuery = '';
-        searchCubit.getSearchResults(query: query.trim());
-      }
+    // Sheet will call cubit methods directly, then pop.
+    // Re-trigger suggestions if query is not empty
+    if (query.trim().isNotEmpty) {
+      lastQuery = '';
+      searchCubit.getSearchResults(query: query.trim());
     }
   }
 
@@ -92,6 +90,7 @@ class CustomSearchDelegate extends SearchDelegate {
       IconButton(
         onPressed: () {
           query = '';
+          searchCubit.setFilter(SearchFilterType.all);
           showSuggestions(context);
         },
         icon: Icon(Icons.clear, color: AppColors.neonBlue),

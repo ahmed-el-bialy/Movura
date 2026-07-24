@@ -1,7 +1,9 @@
-- [ ] Remove `HomeTrendingBanner` and references
-- [ ] Redesign `CategoryList` with modern horizontal cards
-- [ ] Refactor `VideoScreen` for `youtube_player_flutter` v10.0.1
-- [ ] Review and optimize `AppRouter` and routing logic
-- [ ] Complete Firebase Auth integration in `AuthRepo` and `AuthCubit`
-- [ ] Connect Login/Signup UI buttons to logic with loading indicators
-- [ ] Commit and push changes to GitHub
+- [x] Add category colors to `AppColors`
+- [x] Update `CategoryCardModel` to use `Color` and update `CategoryList`
+- [x] Add `genreIds` and `homepage` to Models
+- [x] Fix Search "X" button to reset filters to "All"
+- [x] Implement dynamic Genre sub-filtering in `SearchFilterSheet`
+- [x] Add "Go to Platform" and "Add to Watchlist" (+) buttons to Details AppBar
+- [x] Move Favorite button to `ButtonsRow` for better UX
+- [ ] Run `build_runner` (User action required to update `.g.dart` files)
+- [x] Commit and push changes
