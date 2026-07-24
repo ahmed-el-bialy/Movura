@@ -8,6 +8,9 @@ import '../../features/details/data/repos/movies_repo.dart';
 import '../../features/details/data/repos/tv_series_repo.dart';
 import '../../features/details/data/webs_services/movie_web_services.dart';
 import '../../features/details/data/webs_services/tv_web_services.dart';
+import '../../features/auth/data/repos/auth_repo.dart';
+import '../../features/auth/data/web_services/auth_services.dart';
+import '../../features/auth/logic/auth/auth_cubit.dart';
 import '../../features/details/logic/movie_screen_cubit/main_details/about_cubit.dart';
 import '../../features/details/logic/movie_screen_cubit/reviews/reviews_cubit.dart';
 import '../../features/details/logic/movie_screen_cubit/similar_content/similar_content_cubit.dart';
@@ -49,6 +52,8 @@ Future<void> initDI() async {
     () => SearchWebServices(sl<Dio>(), baseUrl: ApiConstants.baseUrl),
   );
 
+  sl.registerLazySingleton<AuthServices>(() => AuthServices());
+
   // ==========================================
   // 3. Repositories
   // ==========================================
@@ -69,6 +74,8 @@ Future<void> initDI() async {
     () => SearchRepo(searchWebServices: sl<SearchWebServices>()),
   );
 
+  sl.registerLazySingleton<AuthRepo>(() => AuthRepo(sl<AuthServices>()));
+
   // ==========================================
   // 4. Cubits (State Management) - Factories
   // ==========================================
@@ -86,6 +93,8 @@ Future<void> initDI() async {
   sl.registerFactory<SearchCubit>(
     () => SearchCubit(searchRepo: sl<SearchRepo>()),
   );
+
+  sl.registerFactory<AuthCubit>(() => AuthCubit(sl<AuthRepo>()));
 
   sl.registerFactory<AboutCubit>(
     () => AboutCubit(repo: sl<MovieRepo>()),

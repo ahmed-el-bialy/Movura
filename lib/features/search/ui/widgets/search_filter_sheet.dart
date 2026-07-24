@@ -4,6 +4,8 @@ import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/features/search/data/models/search_filter_type.dart';
 
+import '../../../../core/helpers/spacing.dart';
+
 class SearchFilterSheet extends StatelessWidget {
   const SearchFilterSheet({
     super.key,
@@ -50,21 +52,21 @@ class SearchFilterSheet extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20.h),
+            verticalSpacing(20),
             Text(
               'Filter Results',
               style: AppTextStyles.font17BoldIceBlueMontserrat.copyWith(
                 fontSize: 18.sp,
               ),
             ),
-            SizedBox(height: 6.h),
+            verticalSpacing(6),
             Text(
               'Choose what type of content to show',
               style: AppTextStyles.font12CoolGrayManrope.copyWith(
                 fontSize: 13.sp,
               ),
             ),
-            SizedBox(height: 20.h),
+            verticalSpacing(20),
             GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),

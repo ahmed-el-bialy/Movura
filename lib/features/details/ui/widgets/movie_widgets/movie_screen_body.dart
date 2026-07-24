@@ -14,10 +14,10 @@ import '../../../logic/movie_screen_cubit/reviews/reviews_cubit.dart';
 import '../../../logic/movie_screen_cubit/similar_content/similar_content_cubit.dart';
 import '../shared_widgets/buttons_row.dart';
 import 'about_tab_body.dart';
-import 'movie_additional_data.dart';
+import 'sub_widgets/movie_additional_data.dart';
 import 'movie_main_details.dart';
 import 'movie_reviews_tab_body.dart';
-import 'movie_story_and_genres.dart';
+import 'sub_widgets/movie_story_and_genres.dart';
 import 'similar_tab_body.dart';
 
 class MovieScreenBody extends StatelessWidget {
@@ -102,7 +102,7 @@ class MovieScreenBody extends StatelessWidget {
                         Tab(text: "SIMILAR"),
                       ],
                     ),
-                    SizedBox(height: 10.h),
+                    verticalSpacing(10),
                     ExpandablePageView(
                       controller: pageController,
                       onPageChanged: (index) {

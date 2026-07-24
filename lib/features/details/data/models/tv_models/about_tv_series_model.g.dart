@@ -126,8 +126,8 @@ Map<String, dynamic> _$TvActorResponseToJson(TvActorResponse instance) =>
 
 TvVideoResponse _$TvVideoResponseFromJson(Map<String, dynamic> json) =>
     TvVideoResponse(
-      videoList: (json['results'] as List<dynamic>)
-          .map((e) => VideoModel.fromJson(e as Map<String, dynamic>))
+      videoList: (json['results'] as List<dynamic>?)
+          ?.map((e) => VideoModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -136,11 +136,14 @@ Map<String, dynamic> _$TvVideoResponseToJson(TvVideoResponse instance) =>
 
 TvImagesResponse _$TvImagesResponseFromJson(Map<String, dynamic> json) =>
     TvImagesResponse(
-      backdropImages: (json['backdrops'] as List<dynamic>)
-          .map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
+      backdropImages: (json['backdrops'] as List<dynamic>?)
+          ?.map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      logoImages: (json['logos'] as List<dynamic>)
-          .map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
+      logoImages: (json['logos'] as List<dynamic>?)
+          ?.map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      stills: (json['stills'] as List<dynamic>?)
+          ?.map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -148,4 +151,5 @@ Map<String, dynamic> _$TvImagesResponseToJson(TvImagesResponse instance) =>
     <String, dynamic>{
       'backdrops': instance.backdropImages,
       'logos': instance.logoImages,
+      'stills': instance.stills,
     };

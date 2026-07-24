@@ -23,7 +23,7 @@ class _MainWrapperScreenState extends State<MainWrapperScreen> {
 
   final List<Widget> _screens = [
     const HomeScreen(),
-    const SizedBox.shrink(), // Placeholder for search (handled via delegate or separate screen)
+    const SizedBox.shrink(), // Placeholder for search
     const CategoriesScreen(),
     const ProfileScreen(),
   ];

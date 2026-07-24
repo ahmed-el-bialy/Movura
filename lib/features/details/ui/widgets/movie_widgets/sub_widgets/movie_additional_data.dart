@@ -5,8 +5,8 @@ import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/extensions/runtime_formatter.dart';
 import 'package:movura/core/helpers/spacing.dart';
 
-import '../../../../../core/extensions/money_formatter.dart';
-import '../../../data/models/movie_models/about_model.dart';
+import '../../../../../../core/extensions/money_formatter.dart';
+import '../../../../data/models/movie_models/about_model.dart';
 
 class AdditionalData extends StatelessWidget {
   const AdditionalData({super.key, required this.model});

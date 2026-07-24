@@ -7,6 +7,7 @@ import 'package:movura/core/routing/arguments_model.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/widgets/app_icon_button.dart';
 import 'package:movura/core/widgets/app_navigation_bar.dart';
 import 'package:movura/core/widgets/back_to_home_scope.dart';
 import 'package:movura/features/details/ui/widgets/tv_widgets/tv_season_card.dart';
@@ -55,13 +56,10 @@ class AllSeasonsScreen extends StatelessWidget {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
-          leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back_ios_new_rounded,
-              color: AppColors.neonBlue,
-              size: 20.sp,
-            ),
+          leading: AppIconButton(
+            icon: Icons.arrow_back_ios_new_rounded,
             onPressed: () => context.popToHomeOrGoHome(),
+            size: 20,
           ),
         ),
         body: GridView.builder(

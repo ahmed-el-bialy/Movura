@@ -9,7 +9,7 @@ part of 'about_model.dart';
 AboutModel _$AboutModelFromJson(Map<String, dynamic> json) => AboutModel(
   id: (json['id'] as num).toInt(),
   language: json['original_language'] as String,
-  posterPath: json['poster_path'] as String,
+  posterPath: json['poster_path'] as String?,
   title: json['title'] as String,
   overview: json['overview'] as String,
   runtime: (json['runtime'] as num).toDouble(),
@@ -51,8 +51,8 @@ Map<String, dynamic> _$AboutModelToJson(AboutModel instance) =>
 
 VideoResponse _$VideoResponseFromJson(Map<String, dynamic> json) =>
     VideoResponse(
-      videoList: (json['results'] as List<dynamic>)
-          .map((e) => VideoModel.fromJson(e as Map<String, dynamic>))
+      videoList: (json['results'] as List<dynamic>?)
+          ?.map((e) => VideoModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -61,11 +61,11 @@ Map<String, dynamic> _$VideoResponseToJson(VideoResponse instance) =>
 
 ImagesResponse _$ImagesResponseFromJson(Map<String, dynamic> json) =>
     ImagesResponse(
-      backdropImages: (json['backdrops'] as List<dynamic>)
-          .map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
+      backdropImages: (json['backdrops'] as List<dynamic>?)
+          ?.map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      logoImages: (json['logos'] as List<dynamic>)
-          .map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
+      logoImages: (json['logos'] as List<dynamic>?)
+          ?.map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -77,8 +77,8 @@ Map<String, dynamic> _$ImagesResponseToJson(ImagesResponse instance) =>
 
 ActorResponse _$ActorResponseFromJson(Map<String, dynamic> json) =>
     ActorResponse(
-      movieActors: (json['cast'] as List<dynamic>)
-          .map((e) => ActorModel.fromJson(e as Map<String, dynamic>))
+      movieActors: (json['cast'] as List<dynamic>?)
+          ?.map((e) => ActorModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

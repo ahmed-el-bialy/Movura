@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/widgets/skeleton_poster_grid_loading.dart';
 import 'package:movura/features/search/data/models/search_filter_type.dart';
-import 'package:movura/features/search/ui/widgets/person_card.dart';
+import 'package:movura/features/search/ui/widgets/sub_widgets/person_card.dart';
 
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';

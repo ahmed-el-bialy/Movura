@@ -1,0 +1,42 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:movura/core/constants/api_constants.dart';
+import 'package:movura/core/models/poster_model.dart';
+import 'package:movura/core/widgets/poster_card/sub_widgets/error_poster_image.dart';
+
+class PosterBackgroundImage extends StatelessWidget {
+  const PosterBackgroundImage({
+    super.key,
+    required this.cardRadius,
+    required this.mediaModel,
+    required this.titleStyle,
+  });
+
+  final double cardRadius;
+  final PosterModel? mediaModel;
+  final TextStyle? titleStyle;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(cardRadius),
+      child: CachedNetworkImage(
+        imageUrl:
+            (mediaModel?.posterPath != null &&
+                mediaModel!.posterPath!.isNotEmpty)
+            ? "${ApiConstants.imageBaseUrl}${mediaModel!.posterPath}"
+            : (mediaModel?.profilePath != null &&
+                  mediaModel!.profilePath!.isNotEmpty)
+            ? "${ApiConstants.imageBaseUrl}${mediaModel!.profilePath}"
+            : "",
+        fit: BoxFit.fill,
+        errorWidget: (context, url, error) => mediaModel?.mediaType == "person"
+            ? CachedNetworkImage(
+                imageUrl: ApiConstants.actorImageError,
+                fit: BoxFit.cover,
+              )
+            : ErrorPosterImage(titleStyle: titleStyle),
+      ),
+    );
+  }
+}

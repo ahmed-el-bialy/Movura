@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
 
+import '../../../../core/helpers/spacing.dart';
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
@@ -28,12 +30,12 @@ class ProfileScreen extends StatelessWidget {
                 color: AppColors.neonBlue,
               ),
             ),
-            SizedBox(height: 20.h),
+            verticalSpacing(20),
             Text(
               'Profile',
               style: AppTextStyles.font24SimiBoldNeonBlueManrope,
             ),
-            SizedBox(height: 10.h),
+            verticalSpacing(10),
             Text(
               'Your Cinematic Universe',
               style: AppTextStyles.font12CoolGrayManrope.copyWith(fontSize: 14.sp),

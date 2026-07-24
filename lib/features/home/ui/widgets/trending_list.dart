@@ -14,14 +14,17 @@ class TrendingList extends StatelessWidget {
     return BlocBuilder<TrendingContentCubit, TrendingContentState>(
       builder: (context, state) {
         if (state is TrendingContentLoading) {
-          return SliverToBoxAdapter(child: SkeletonPostersListLoading());
+          return const SliverToBoxAdapter(child: SkeletonPostersListLoading());
         } else if (state is TrendingContentLoaded) {
           return SliverToBoxAdapter(
             child: TrendingPosterList(trendingContent: state.posters),
           );
         } else if (state is TrendingContentFailed) {
           return SliverToBoxAdapter(
-            child: Text(state.errorMessage, style: AppTextStyles.font13MediumNeonBlue),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(state.errorMessage, style: AppTextStyles.font13MediumNeonBlue),
+            ),
           );
         } else {
           return SliverToBoxAdapter(

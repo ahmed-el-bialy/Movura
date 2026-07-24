@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/features/details/data/models/tv_models/about_tv_series_model.dart';
-import 'package:movura/features/details/ui/widgets/tv_widgets/tv_identify_card.dart';
+import 'sub_widgets/tv_identify_card.dart';
 
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/constants/api_constants.dart';

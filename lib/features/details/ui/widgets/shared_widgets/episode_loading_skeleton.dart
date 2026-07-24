@@ -69,7 +69,7 @@ class EpisodeLoadingSkeleton extends StatelessWidget {
               ),
             ),
           ),
-          SliverToBoxAdapter(child: verticalSpacing(20)),
+              sliverVerticalSpacing(20),
           SliverToBoxAdapter(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),

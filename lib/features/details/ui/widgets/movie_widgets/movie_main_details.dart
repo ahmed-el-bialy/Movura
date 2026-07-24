@@ -6,7 +6,7 @@ import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/constants/api_constants.dart';
 import '../../../../../core/extensions/routing_extension.dart';
 import '../../../data/models/movie_models/about_model.dart';
-import 'movie_identify_card.dart';
+import 'sub_widgets/movie_identify_card.dart';
 
 class MovieMainDetails extends StatelessWidget {
   const MovieMainDetails({super.key, required this.model});

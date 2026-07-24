@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/features/search/data/models/search_filter_type.dart';
+import 'package:movura/features/search/ui/widgets/sub_widgets/search_empty_state.dart';
 import 'package:movura/features/search/ui/widgets/build_search_results.dart';
 import 'package:movura/features/search/ui/widgets/search_filter_sheet.dart';
 
@@ -121,7 +122,7 @@ class CustomSearchDelegate extends SearchDelegate {
   Widget buildSuggestions(context) {
     if (query.isEmpty) {
       lastQuery = '';
-      return _SearchEmptyState(filter: searchCubit.currentFilter);
+      return SearchEmptyState(filter: searchCubit.currentFilter);
     }
 
     final currentQuery = query.trim();
@@ -137,46 +138,5 @@ class CustomSearchDelegate extends SearchDelegate {
     });
 
     return BuildSearchResultsGrid(searchCubit: searchCubit);
-  }
-}
-
-class _SearchEmptyState extends StatelessWidget {
-  const _SearchEmptyState({required this.filter});
-
-  final SearchFilterType filter;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.richEerieBlack,
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.search_rounded,
-              size: 56.sp,
-              color: AppColors.neonBlue.withValues(alpha: 0.4),
-            ),
-            SizedBox(height: 16.h),
-            Text(
-              'Search Movura',
-              style: AppTextStyles.font20SimiBoldNeonBlueManrope.copyWith(
-                fontSize: 18.sp,
-              ),
-            ),
-            SizedBox(height: 8.h),
-            Text(
-              filter == SearchFilterType.all
-                  ? 'Find movies, TV shows, and people'
-                  : 'Showing ${filter.label.toLowerCase()} only',
-              style: AppTextStyles.font12CoolGrayManrope.copyWith(
-                fontSize: 13.sp,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 }

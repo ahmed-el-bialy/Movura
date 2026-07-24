@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
 
+import '../../../../core/helpers/spacing.dart';
+
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
 
@@ -19,12 +21,12 @@ class CategoriesScreen extends StatelessWidget {
               size: 80.sp,
               color: AppColors.neonBlue.withValues(alpha: 0.2),
             ),
-            SizedBox(height: 20.h),
+            verticalSpacing(20),
             Text(
               'Categories',
               style: AppTextStyles.font24SimiBoldNeonBlueManrope,
             ),
-            SizedBox(height: 10.h),
+            verticalSpacing(10),
             Text(
               'Explore by Genre',
               style: AppTextStyles.font12CoolGrayManrope.copyWith(fontSize: 14.sp),

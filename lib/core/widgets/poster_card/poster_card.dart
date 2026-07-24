@@ -5,7 +5,7 @@ import 'package:movura/core/constants/api_constants.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/models/poster_model.dart';
 import 'package:movura/core/widgets/poster_card/sub_widgets/bottom_lef_sub_card.dart';
-import 'package:movura/core/widgets/poster_card/sub_widgets/error_poster_image.dart';
+import 'package:movura/core/widgets/poster_card/sub_widgets/poster_background_image.dart';
 import 'package:movura/core/widgets/poster_card/sub_widgets/top_lef_sub_card.dart';
 import 'package:movura/core/widgets/poster_card/sub_widgets/top_right_sub_card.dart';
 
@@ -76,7 +76,7 @@ class PosterCard extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              BackGroundImage(
+              PosterBackgroundImage(
                 cardRadius: cardRadius,
                 mediaModel: mediaModel,
                 titleStyle: titleStyle,
@@ -112,43 +112,6 @@ class PosterCard extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class BackGroundImage extends StatelessWidget {
-  const BackGroundImage({
-    super.key,
-    required this.cardRadius,
-    required this.mediaModel,
-    required this.titleStyle,
-  });
-
-  final double cardRadius;
-  final PosterModel? mediaModel;
-  final TextStyle? titleStyle;
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(cardRadius),
-      child: CachedNetworkImage(
-        imageUrl:
-            (mediaModel?.posterPath != null &&
-                mediaModel!.posterPath!.isNotEmpty)
-            ? "${ApiConstants.imageBaseUrl}${mediaModel!.posterPath}"
-            : (mediaModel?.profilePath != null &&
-                  mediaModel!.profilePath!.isNotEmpty)
-            ? "${ApiConstants.imageBaseUrl}${mediaModel!.profilePath}"
-            : "",
-        fit: BoxFit.fill,
-        errorWidget: (context, url, error) => mediaModel?.mediaType == "person"
-            ? CachedNetworkImage(
-                imageUrl: ApiConstants.actorImageError,
-                fit: BoxFit.cover,
-              )
-            : ErrorPosterImage(titleStyle: titleStyle),
       ),
     );
   }
