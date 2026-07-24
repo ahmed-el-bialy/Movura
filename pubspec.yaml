@@ -60,7 +60,7 @@ dependencies:
   # Contains code to deal with internationalized/localized messages
   intl: ^0.20.3
   # Flutter plugin for playing or streaming inline YouTube videos using the official iFrame player API.
-  youtube_player_flutter: ^9.1.3
+  youtube_player_flutter: ^10.0.1
   # A simple yet fully customizable ratingbar for flutter
   flutter_rating_bar: ^4.0.1
   # A library useful for creating fuzzy timestamps.

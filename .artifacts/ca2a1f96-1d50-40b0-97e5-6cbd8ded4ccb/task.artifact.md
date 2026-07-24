@@ -1,9 +1,7 @@
-- [ ] Refactor Auth widgets (Login/Signup) into Classes
-- [ ] Refactor Trending Banner helper methods into Classes
-- [ ] Complete Auth UI with all missing icons and styles
-- [ ] Create `AppIconButton` for consistent styling
-- [ ] Move `trending_screen.dart` to `lib/features/home/ui/screens/`
-- [ ] Move `main_wrapper_screen.dart` to `lib/features/main/ui/`
-- [ ] Update all imports affected by file moves
-- [ ] Final project-wide cleanup
-- [ ] Commit and push changes
+- [ ] Remove `HomeTrendingBanner` and references
+- [ ] Redesign `CategoryList` with modern horizontal cards
+- [ ] Refactor `VideoScreen` for `youtube_player_flutter` v10.0.1
+- [ ] Review and optimize `AppRouter` and routing logic
+- [ ] Complete Firebase Auth integration in `AuthRepo` and `AuthCubit`
+- [ ] Connect Login/Signup UI buttons to logic with loading indicators
+- [ ] Commit and push changes to GitHub

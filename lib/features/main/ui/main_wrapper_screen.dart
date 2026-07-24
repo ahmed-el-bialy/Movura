@@ -8,6 +8,7 @@ import 'package:movura/features/home/logic/tpo_rated_tv_series/top_rated_tv_seri
 import 'package:movura/features/home/logic/trending_content/trending_content_cubit.dart';
 import 'package:movura/features/home/ui/home_screen.dart';
 import 'package:movura/features/profile/ui/screens/profile_screen.dart';
+import 'package:movura/features/search/ui/screens/search_screen.dart';
 import 'package:movura/features/search/logic/search/search_cubit.dart';
 import 'package:movura/features/search/ui/custom_search_delegate.dart';
 
@@ -23,26 +24,15 @@ class _MainWrapperScreenState extends State<MainWrapperScreen> {
 
   final List<Widget> _screens = [
     const HomeScreen(),
-    const SizedBox.shrink(), // Placeholder for search
+    const SearchScreen(),
     const CategoriesScreen(),
     const ProfileScreen(),
   ];
 
   void _onTabChanged(int index) {
-    if (index == 1) {
-      _openSearch();
-      return;
-    }
     setState(() {
       _currentIndex = index;
     });
-  }
-
-  void _openSearch() {
-    showSearch(
-      context: context,
-      delegate: CustomSearchDelegate(searchCubit: sl<SearchCubit>()),
-    );
   }
 
   @override
