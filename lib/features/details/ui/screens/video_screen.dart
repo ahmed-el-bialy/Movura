@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:movura/core/widgets/app_icon_button.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import '../../../../core/theming/app_colors.dart';
 import '../../../../core/extensions/routing_extension.dart';
+import '../../../../core/theming/app_colors.dart';
 
 class VideoScreen extends StatefulWidget {
   final YoutubePlayerController controller;

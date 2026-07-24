@@ -17,7 +17,7 @@ abstract class MovieWebServices {
   Future<AboutModel> getMovieMainDetails({
     @Path("id") required int movieId,
     @Query("append_to_response")
-    String additionalData = "credits,images,videos",
+    String additionalData = "credits,images,videos,watch/providers",
     @Query("language") String language = "en-US",
   });
 

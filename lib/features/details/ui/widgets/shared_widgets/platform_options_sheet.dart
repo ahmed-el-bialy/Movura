@@ -1,16 +1,28 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/constants/api_constants.dart';
 import 'package:movura/core/helpers/spacing.dart';
+import 'package:movura/core/models/watch_provider_model.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
 
 class PlatformOptionsSheet extends StatelessWidget {
-  const PlatformOptionsSheet({super.key, required this.homepageUrl});
+  const PlatformOptionsSheet({
+    super.key,
+    required this.homepageUrl,
+    this.watchProviders,
+  });
 
   final String homepageUrl;
+  final WatchProviderResponse? watchProviders;
 
   @override
   Widget build(BuildContext context) {
+    // Extracting providers for a specific country (e.g., US) or just the first available
+    final providers = watchProviders?.results?['US'] ?? watchProviders?.results?.values.firstOrNull;
+    final streaming = providers?.flatrate ?? [];
+
     return Container(
       padding: EdgeInsets.fromLTRB(24.w, 12.h, 24.w, 32.h),
       decoration: BoxDecoration(
@@ -40,10 +52,45 @@ class PlatformOptionsSheet extends StatelessWidget {
           ),
           verticalSpacing(8),
           Text(
-            'Visit the official platform to watch this content',
+            'Visit official sources to watch this content',
             style: AppTextStyles.font12CoolGrayManrope,
           ),
           verticalSpacing(24),
+          if (streaming.isNotEmpty) ...[
+            Text(
+              'AVAILABLE ON',
+              style: AppTextStyles.font10BoldCoolGray.copyWith(
+                letterSpacing: 1.2,
+                color: AppColors.neonBlue,
+              ),
+            ),
+            verticalSpacing(12),
+            SizedBox(
+              height: 60.h,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemCount: streaming.length,
+                separatorBuilder: (_, __) => horizontalSpacing(16),
+                itemBuilder: (context, index) {
+                  final provider = streaming[index];
+                  return Column(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(12.r),
+                        child: CachedNetworkImage(
+                          imageUrl: '${ApiConstants.imageBaseUrl}${provider.logoPath}',
+                          width: 40.r,
+                          height: 40.r,
+                          errorWidget: (_, __, ___) => const Icon(Icons.broken_image),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+            verticalSpacing(24),
+          ],
           _OptionTile(
             icon: Icons.public_rounded,
             label: 'Visit Official Website',

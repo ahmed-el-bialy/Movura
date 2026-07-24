@@ -5,6 +5,8 @@ import 'package:movura/core/models/genre_model.dart';
 import 'package:movura/core/models/image_model.dart';
 import 'package:movura/core/models/video_model.dart';
 
+import 'package:movura/core/models/watch_provider_model.dart';
+
 part 'about_tv_series_model.g.dart';
 
 @JsonSerializable()
@@ -83,6 +85,9 @@ class AboutTvSeriesModel {
   @JsonKey(name: "videos")
   final TvVideoResponse? tvVideos;
 
+  @JsonKey(name: "watch/providers")
+  final WatchProviderResponse? watchProviders;
+
   AboutTvSeriesModel({
     required this.id,
     required this.language,
@@ -109,6 +114,7 @@ class AboutTvSeriesModel {
     this.tvVideos,
     required this.startAirDate,
     this.endAirDate,
+    this.watchProviders,
   });
 
   factory AboutTvSeriesModel.fromJson(Map<String, dynamic> json) =>
