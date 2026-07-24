@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/networking/di.dart';
+import 'package:movura/core/routing/route_names.dart';
+import 'package:movura/features/search/logic/search/search_cubit.dart';
+import 'package:movura/features/search/ui/custom_search_delegate.dart';
 
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/helpers/spacing.dart';
@@ -20,13 +25,15 @@ class _CategoryListState extends State<CategoryList> {
     initialPage: 1,
   );
 
-  final List<CategoryCardModel> categories = [
+  late final List<CategoryCardModel> categories = [
     CategoryCardModel(
       color: Colors.grey,
       title: 'Most Popular TV Series',
       hint: "TOP CHOICE",
       icon: Icons.tv_outlined,
-      onTap: () {},
+      onTap: () {
+        context.pushNamed(RouteNames.trendingScreen, null);
+      },
     ),
 
     CategoryCardModel(
@@ -34,7 +41,9 @@ class _CategoryListState extends State<CategoryList> {
       title: 'Most Popular Movies',
       hint: "TOP CHOICE",
       icon: Icons.auto_awesome_outlined,
-      onTap: () {},
+      onTap: () {
+        context.pushNamed(RouteNames.trendingScreen, null);
+      },
     ),
 
     CategoryCardModel(
@@ -42,7 +51,9 @@ class _CategoryListState extends State<CategoryList> {
       title: 'Trending Movies',
       hint: "TODAY",
       icon: Icons.trending_up_outlined,
-      onTap: () {},
+      onTap: () {
+        context.pushNamed(RouteNames.trendingScreen, null);
+      },
     ),
 
     CategoryCardModel(
@@ -50,7 +61,12 @@ class _CategoryListState extends State<CategoryList> {
       title: 'Trending People',
       hint: "TODAY",
       icon: Icons.people_outline_rounded,
-      onTap: () {},
+      onTap: () {
+        showSearch(
+          context: context,
+          delegate: CustomSearchDelegate(searchCubit: sl<SearchCubit>()),
+        );
+      },
     ),
   ];
 
@@ -72,7 +88,10 @@ class _CategoryListState extends State<CategoryList> {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: EdgeInsets.symmetric(horizontal: 8.w),
-                    child: CategoryCard(model: categories[index], onTap: () {}),
+                    child: CategoryCard(
+                      model: categories[index],
+                      onTap: categories[index].onTap,
+                    ),
                   );
                 },
               ),
