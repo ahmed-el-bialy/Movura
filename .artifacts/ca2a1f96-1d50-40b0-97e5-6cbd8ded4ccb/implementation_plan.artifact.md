@@ -1,63 +1,54 @@
-# Implementation Plan - Professional Navigation, UI Redesign, and Architecture Refinement
+# Implementation Plan - Project Cleanup and Optimization
 
-This plan aims to transform the app into a high-end, professional product by implementing persistent navigation, a modern Home UI, and a cleaner project structure.
+This plan aims to "correct everything" by performing a thorough cleanup, optimizing dependency injection, and ensuring the app is robust against API failures.
 
 ## User Review Required
 
 > [!IMPORTANT]
-> - **Stateful Navigation**: I will implement a `MainWrapperScreen` using an `IndexedStack` to keep the Home, Search, Categories, and Profile pages in memory. This prevents unnecessary API re-requests when switching tabs.
-> - **Trending Banners**: The top cards on the Home screen will be replaced with a high-end "Movie Poster Banner" using `PageView` and glassmorphism effects.
-> - **Sub-Widget Restructuring**: I will move local widgets into `sub_widgets` directories to keep the main `widgets` folders clean.
+> - I will be updating several Models (Movie and TV) to be more null-safe. This requires running `build_runner`.
+> - I will register all major Cubits in `di.dart` for better state management.
+> - I will remove unused files and clean up commented-out code.
 
 ## Proposed Changes
 
-### 1. Navigation & Routing (Stateful/Persistent)
+### 1. Robustness & Model Updates
+#### [MODIFY] [about_model.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/details/data/models/movie_models/about_model.dart)
+- Make `posterPath` nullable.
+- Make `videoList`, `backdropImages`, `logoImages`, and `movieActors` nullable or default to empty lists in their respective response classes.
 
-#### [NEW] [main_wrapper_screen.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/main_wrapper_screen.dart)
-- Create a root screen that manages the `AppNavigationBar` and an `IndexedStack` for the 4 main tabs.
-- Tab 1: Home
-- Tab 2: Search (Integrated as a full screen or persistent delegate)
-- Tab 3: Categories
-- Tab 4: Profile
+---
+
+### 2. Dependency Injection (DI) Optimization
+#### [MODIFY] [di.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/core/networking/di.dart)
+- Register `AboutCubit`, `AboutTvCubit`, `TvSeriesReviewsCubit`, `TvSeriesSimilarContentCubit`, and `TvEpisodeDetailsCubit` as factories.
 
 #### [MODIFY] [app_router.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/core/routing/app_router.dart)
-- Update `mainScreen` route to point to `MainWrapperScreen`.
+#### [MODIFY] [screen_body.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/details/ui/widgets/tv_widgets/screen_body.dart)
+#### [MODIFY] [episode_details_screen.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/details/ui/screens/episode_details_screen.dart)
+- Update code to use `sl<Cubit>()` instead of manual instantiation where applicable.
 
 ---
 
-### 2. Home UI - Trending Banners (Redesign from Scratch)
-
-#### [NEW] [home_trending_banner.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/home/ui/widgets/sub_widgets/home_trending_banner.dart)
-- A professional, auto-playing (optional) banner using `PageView`.
-- Features: Stacked gradients, high-quality image background, and glassmorphism info cards.
-
----
-
-### 3. Architecture & Refactoring (Sub-Widgets)
-
-#### [MODIFY] Directory Structure
-- Create `sub_widgets` folders in:
-  - `lib/features/home/ui/widgets/`
-  - `lib/features/search/ui/widgets/`
-  - `lib/features/details/ui/widgets/tv_widgets/`
-- Move specific, non-reusable sub-components into these folders.
+### 3. Code Cleanup & UI Polish
+#### [MODIFY] [custom_posters_grid_view.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/core/widgets/custom_posters_grid_view.dart)
+- Remove commented-out code.
+#### [MODIFY] [screen_body.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/details/ui/widgets/tv_widgets/screen_body.dart)
+- Remove `print` statements.
+#### [MODIFY] [about_tv_tab_body.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/details/ui/widgets/tv_widgets/about_tv_tab_body.dart)
+- Replace hardcoded strings with localized-ready text and use `AppTextStyles`.
 
 ---
 
-### 4. Search & Auth UI Tweaks
-
-#### [MODIFY] [custom_search_delegate.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/search/ui/custom_search_delegate.dart)
-- Fix text visibility issues (White/IceBlue text on dark bg).
-
-#### [MODIFY] [log_in_screen.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/auth/ui/screens/log_in_screen.dart)
-- Professional cleanup (Gradients, better shadow handling).
+### 4. File Management
+- Delete any redundant files (e.g., duplicated `home_trending_banner.dart` if it still exists).
 
 ## Verification Plan
 
 ### Automated Tests
-- Run `flutter pub run build_runner build` to ensure all models are up to date.
+- Run `flutter pub run build_runner build` to verify model generation.
+- Ensure the app builds successfully.
 
 ### Manual Verification
-- Switch between tabs and verify that the Home screen does **not** show a loading indicator (state is preserved).
-- Verify the new Trending Banner animations and responsiveness.
-- Ensure the Search input text is clearly visible.
+- Verify that Movie details no longer crash if data is missing.
+- Verify that all tabs in the navigation bar work as expected.
+- Check that the search functionality still works with the new DI-managed Cubit.

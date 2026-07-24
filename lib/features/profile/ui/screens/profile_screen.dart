@@ -35,8 +35,8 @@ class ProfileScreen extends StatelessWidget {
             ),
             SizedBox(height: 10.h),
             Text(
-              'Cinematic Journey Starts Here',
-              style: AppTextStyles.font12CoolGrayManrope,
+              'Your Cinematic Universe',
+              style: AppTextStyles.font12CoolGrayManrope.copyWith(fontSize: 14.sp),
             ),
           ],
         ),

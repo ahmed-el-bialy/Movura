@@ -26,8 +26,8 @@ class CategoriesScreen extends StatelessWidget {
             ),
             SizedBox(height: 10.h),
             Text(
-              'Coming Soon',
-              style: AppTextStyles.font12CoolGrayManrope,
+              'Explore by Genre',
+              style: AppTextStyles.font12CoolGrayManrope.copyWith(fontSize: 14.sp),
             ),
           ],
         ),

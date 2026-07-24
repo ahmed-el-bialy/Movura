@@ -3,11 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/widgets/back_to_home_scope.dart';
 import 'package:movura/features/auth/ui/screens/log_in_screen.dart';
+import 'package:movura/features/details/logic/tv_series_cubit/about_tv/about_tv_cubit.dart';
+import 'package:movura/features/details/ui/screens/tv_series_details_screen.dart';
+import 'package:movura/features/details/ui/screens/tv_seasons_screen.dart';
+import 'package:movura/features/details/ui/screens/episode_details_screen.dart';
+import 'package:movura/features/auth/ui/screens/sign_up_screen.dart';
+import 'package:movura/features/home/ui/home_screen.dart';
 import 'package:movura/features/main_wrapper_screen.dart';
 import 'package:movura/features/trending_screen.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import '../../features/details/data/repos/movies_repo.dart';
 import '../../features/details/logic/movie_screen_cubit/main_details/about_cubit.dart';
 import '../../features/details/ui/screens/all_seasons_screen.dart';
 import '../../features/details/ui/screens/movie_details_screen.dart';
@@ -50,8 +55,7 @@ class AppRouter {
           return MaterialPageRoute(
             builder: (_) => BlocProvider(
               create: (context) =>
-                  AboutCubit(repo: sl<MovieRepo>())
-                    ..getMovieMainDetails(id: arguments.mediaId),
+                  sl<AboutCubit>()..getMovieMainDetails(id: arguments.mediaId),
               child: const MovieDetailsScreen(),
             ),
           );
@@ -59,8 +63,7 @@ class AppRouter {
           return MaterialPageRoute(
             builder: (_) => BlocProvider(
               create: (context) =>
-                  AboutTvCubit(repo: sl<TvSeriesRepo>())
-                    ..getTvSeriesMainDetails(id: arguments.mediaId),
+                  sl<AboutTvCubit>()..getTvSeriesMainDetails(id: arguments.mediaId),
               child: const TvSeriesDetailsScreen(),
             ),
           );
