@@ -91,7 +91,7 @@ Future<void> initDI() async {
   );
 
   sl.registerFactory<SearchCubit>(
-    () => SearchCubit(searchRepo: sl<SearchRepo>()),
+    () => SearchCubit(searchRepo: sl<SearchRepo>(), homeRepo: sl<HomeRepo>()),
   );
 
   sl.registerFactory<AuthCubit>(() => AuthCubit(sl<AuthRepo>()));

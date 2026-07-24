@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CategoryCardModel {
-  final MaterialColor color;
+  final Color color;
   final String title;
   final String? hint;
   final IconData? icon;

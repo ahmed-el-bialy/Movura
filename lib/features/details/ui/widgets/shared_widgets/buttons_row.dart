@@ -7,12 +7,10 @@ import '../../../../../core/theming/text_styles.dart';
 
 class ButtonsRow extends StatelessWidget {
   final String? videoKey;
-  final String? homepageUrl;
 
   const ButtonsRow({
     super.key,
     required this.videoKey,
-    this.homepageUrl,
   });
 
   @override
@@ -92,7 +90,7 @@ class ButtonsRow extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 side: BorderSide(
                   width: 1,
-                  color: AppColors.coolGray.withValues(alpha: 0.3),
+                  color: Colors.redAccent.withValues(alpha: 0.4),
                 ),
                 shape: const CircleBorder(),
                 backgroundColor: AppColors.onyxBlack.withValues(alpha: 0.6),
@@ -100,8 +98,8 @@ class ButtonsRow extends StatelessWidget {
               ),
               child: Center(
                 child: Icon(
-                  Icons.open_in_new_rounded,
-                  color: AppColors.coolGray.withValues(alpha: 0.95),
+                  Icons.favorite_rounded,
+                  color: Colors.redAccent.withValues(alpha: 0.95),
                   size: 20.sp,
                 ),
               ),

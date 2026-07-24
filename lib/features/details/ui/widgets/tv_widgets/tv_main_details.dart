@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/features/details/data/models/tv_models/about_tv_series_model.dart';
+import '../../../../../core/helpers/spacing.dart';
+import '../../../../../core/widgets/app_icon_button.dart';
 import 'sub_widgets/tv_identify_card.dart';
 
 import '../../../../../core/theming/app_colors.dart';
@@ -48,28 +50,25 @@ class TvMainDetails extends StatelessWidget {
           Positioned(
             top: 40.h,
             right: 16.w,
-            child: SizedBox(
-              width: 44.r,
-              height: 44.r,
-              child: Card(
-                margin: EdgeInsets.zero,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(22.r),
-                ),
-                color: AppColors.onyxBlack.withValues(alpha: .9),
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(22.r),
-                  splashColor: AppColors.neonBlue.withValues(alpha: .4),
-                  onTap: () {},
-                  child: Center(
-                    child: Icon(
-                      Icons.favorite_border,
-                      color: AppColors.neonBlue,
-                      size: 22.r,
-                    ),
+            child: Row(
+              children: [
+                if (model.homepage != null && model.homepage!.isNotEmpty)
+                  AppIconButton(
+                    icon: Icons.open_in_new_rounded,
+                    onPressed: () {
+                      // TODO: Implement url_launcher: launchUrl(Uri.parse(model.homepage!));
+                    },
+                    backgroundColor: AppColors.onyxBlack.withValues(alpha: .9),
+                    size: 22,
                   ),
+                horizontalSpacing(8),
+                AppIconButton(
+                  icon: Icons.add_rounded,
+                  onPressed: () {},
+                  backgroundColor: AppColors.onyxBlack.withValues(alpha: .9),
+                  size: 22,
                 ),
-              ),
+              ],
             ),
           ),
 

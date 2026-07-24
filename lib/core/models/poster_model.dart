@@ -37,6 +37,9 @@ class PosterModel {
   @JsonKey(name: "profile_path")
   final String? profilePath;
 
+  @JsonKey(name: "genre_ids")
+  final List<int>? genreIds;
+
   PosterModel({
     required this.id,
     this.title,
@@ -46,6 +49,7 @@ class PosterModel {
     this.voteAverage,
     this.knownForDepartment,
     this.profilePath,
+    this.genreIds,
   });
 
   factory PosterModel.fromJson(Map<String, dynamic> json) =>

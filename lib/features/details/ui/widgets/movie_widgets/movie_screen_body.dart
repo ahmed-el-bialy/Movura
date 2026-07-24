@@ -1,24 +1,22 @@
 import 'package:expandable_page_view/expandable_page_view.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/theming/app_colors.dart';
 import '../../../../../../core/theming/text_styles.dart';
-import '../../../../../core/networking/di.dart';
 import '../../../../../core/helpers/spacing.dart';
+import '../../../../../core/networking/di.dart';
 import '../../../data/models/movie_models/about_model.dart';
-import '../../../data/repos/movies_repo.dart';
 import '../../../logic/movie_screen_cubit/reviews/reviews_cubit.dart';
 import '../../../logic/movie_screen_cubit/similar_content/similar_content_cubit.dart';
 import '../shared_widgets/buttons_row.dart';
 import 'about_tab_body.dart';
-import 'sub_widgets/movie_additional_data.dart';
 import 'movie_main_details.dart';
 import 'movie_reviews_tab_body.dart';
-import 'sub_widgets/movie_story_and_genres.dart';
 import 'similar_tab_body.dart';
+import 'sub_widgets/movie_additional_data.dart';
+import 'sub_widgets/movie_story_and_genres.dart';
 
 class MovieScreenBody extends StatelessWidget {
   const MovieScreenBody({super.key, required this.model});

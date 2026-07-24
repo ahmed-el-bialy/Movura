@@ -1,10 +1,8 @@
 import 'package:expandable_page_view/expandable_page_view.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/features/details/data/models/tv_models/about_tv_series_model.dart';
-import 'package:movura/features/details/data/repos/tv_series_repo.dart';
 import 'package:movura/features/details/logic/tv_series_cubit/reviews/reviews_cubit.dart';
 import 'package:movura/features/details/logic/tv_series_cubit/similar_content/similar_content_cubit.dart';
 import 'package:movura/features/details/ui/widgets/tv_widgets/about_tv_tab_body.dart';
@@ -12,13 +10,13 @@ import 'package:movura/features/details/ui/widgets/tv_widgets/sub_widgets/tv_add
 import 'package:movura/features/details/ui/widgets/tv_widgets/sub_widgets/tv_story_and_genres.dart';
 import 'package:movura/features/details/ui/widgets/tv_widgets/tv_main_details.dart';
 
+import '../../../../../core/helpers/spacing.dart';
 import '../../../../../core/networking/di.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/text_styles.dart';
-import '../../../../../core/helpers/spacing.dart';
+import '../shared_widgets/buttons_row.dart';
 import 'reviews_tab_body.dart';
 import 'similar_tab_body.dart';
-import '../shared_widgets/buttons_row.dart';
 
 class TvScreenBody extends StatelessWidget {
   const TvScreenBody({super.key, required this.model});

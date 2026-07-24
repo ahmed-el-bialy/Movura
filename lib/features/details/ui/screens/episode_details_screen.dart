@@ -7,7 +7,6 @@ import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/widgets/app_navigation_bar.dart';
 import 'package:movura/core/widgets/back_to_home_scope.dart';
-import 'package:movura/features/details/data/repos/tv_series_repo.dart';
 import 'package:movura/features/details/logic/tv_series_cubit/tv_episode_details_cubit/tv_episode_details_cubit.dart';
 import 'package:movura/features/details/ui/widgets/shared_widgets/episode_loading_skeleton.dart';
 import 'package:movura/features/details/ui/widgets/tv_widgets/episode_widgets/episode_details_body.dart';

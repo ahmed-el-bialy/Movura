@@ -9,8 +9,6 @@ import 'package:movura/features/home/logic/trending_content/trending_content_cub
 import 'package:movura/features/home/ui/home_screen.dart';
 import 'package:movura/features/profile/ui/screens/profile_screen.dart';
 import 'package:movura/features/search/ui/screens/search_screen.dart';
-import 'package:movura/features/search/logic/search/search_cubit.dart';
-import 'package:movura/features/search/ui/custom_search_delegate.dart';
 
 class MainWrapperScreen extends StatefulWidget {
   const MainWrapperScreen({super.key});
