@@ -36,26 +36,19 @@ class MovieScreenBody extends StatelessWidget {
         orElse: () => videos.first,
       );
       trailerKey = trailer.key;
-      if (kDebugMode) {
-        print("this is the trailer kay: $trailerKey");
-      }
-    } else {
-      if (kDebugMode) {
-        print("trailer not exist");
-      }
     }
 
     return MultiBlocProvider(
       providers: [
         BlocProvider<ReviewsCubit>(
           create: (context) =>
-              ReviewsCubit(repo: sl<MovieRepo>())
+              sl<ReviewsCubit>()
                 ..getMovieReviews(id: model.id),
         ),
 
         BlocProvider<SimilarContentCubit>(
           create: (context) =>
-              SimilarContentCubit(repo: sl<MovieRepo>())
+              sl<SimilarContentCubit>()
                 ..getSimilarMovies(id: model.id),
         ),
       ],

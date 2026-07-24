@@ -1,10 +1,12 @@
-- [ ] Implement `MainWrapperScreen` with `IndexedStack`
-- [ ] Create `CategoriesScreen` and `ProfileScreen` placeholders
-- [ ] Update `AppRouter` and `RouteNames`
-- [ ] Redesign Home Trending section with `HomeTrendingBanner`
-- [ ] Fix Search text visibility and professional look
-- [ ] Fix Episode Details model (Null handling for images/videos)
-- [ ] Refactor widgets into `sub_widgets`
-- [ ] Update Auth screens (Login/Signup)
-- [ ] Run `build_runner`
-- [ ] Commit and push changes
+- [x] Implement `MainWrapperScreen` with `IndexedStack`
+- [x] Create `CategoriesScreen` and `ProfileScreen`
+- [x] Update `AppRouter` and `RouteNames`
+- [x] Redesign Home Trending section with `HomeTrendingBanner`
+- [x] Fix Search text visibility and professional look
+- [x] Fix Episode Details model (Null handling for images/videos)
+- [x] Refactor all Details widgets for null-safety
+- [x] Optimize Dependency Injection (sl<Cubit>)
+- [x] Cleanup code (Remove prints, comments, unused files)
+- [x] Update Auth screens (Login/Signup)
+- [ ] Run `build_runner` (User action required)
+- [x] Commit and push changes

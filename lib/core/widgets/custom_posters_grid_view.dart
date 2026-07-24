@@ -8,16 +8,6 @@ import '../theming/text_styles.dart';
 class CustomPostersGridView extends StatelessWidget {
   const CustomPostersGridView({super.key, required this.poster});
 
-  // final int crossAxisCount;
-
-  // final double mainAxisSpacing;
-
-  // final double crossAxisSpacing;
-
-  // final double childAspectRatio;
-
-  // final double? mainAxisExtent;
-
   final List<PosterModel> poster;
 
   @override

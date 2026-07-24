@@ -26,7 +26,7 @@ class AboutTabBody extends StatelessWidget {
               state.model.movieVideos?.videoList ?? [];
           return Column(
             children: [
-              (state.model.actors.movieActors.isNotEmpty)
+              (state.model.actors.movieActors != null && state.model.actors.movieActors!.isNotEmpty)
                   ? SectionTitle(
                       sectionName: "CAST",
                       actionName: "View All >>",
@@ -34,7 +34,7 @@ class AboutTabBody extends StatelessWidget {
                     )
                   : const SizedBox.shrink(),
 
-              ActorsList(actors: state.model.actors.movieActors),
+              ActorsList(actors: state.model.actors.movieActors ?? []),
               verticalSpacing(15),
 
               (state.model.companies.isNotEmpty)
@@ -43,21 +43,21 @@ class AboutTabBody extends StatelessWidget {
               CompaniesList(company: state.model.companies),
               verticalSpacing(15),
 
-              state.model.mediaImages.backdropImages.isNotEmpty
+              state.model.mediaImages.backdropImages != null && state.model.mediaImages.backdropImages!.isNotEmpty
                   ? const SectionTitle(sectionName: "IMAGES")
                   : const SizedBox.shrink(),
               ImagesList(
-                images: state.model.mediaImages.backdropImages,
+                images: state.model.mediaImages.backdropImages ?? [],
                 height: 250,
                 imageFit: BoxFit.fill,
               ),
               verticalSpacing(15),
 
-              state.model.mediaImages.logoImages.isNotEmpty
+              state.model.mediaImages.logoImages != null && state.model.mediaImages.logoImages!.isNotEmpty
                   ? const SectionTitle(sectionName: "LOGOS")
                   : const SizedBox.shrink(),
               ImagesList(
-                images: state.model.mediaImages.logoImages,
+                images: state.model.mediaImages.logoImages ?? [],
                 imageFit: BoxFit.contain,
                 herPadding: 8,
                 imageWidth: 120,

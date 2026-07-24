@@ -17,7 +17,7 @@ class AboutModel {
   final String language;
 
   @JsonKey(name: "poster_path")
-  final String posterPath;
+  final String? posterPath;
 
   @JsonKey(name: "title")
   final String title;
@@ -81,9 +81,9 @@ class AboutModel {
 @JsonSerializable()
 class VideoResponse {
   @JsonKey(name: "results")
-  final List<VideoModel> videoList;
+  final List<VideoModel>? videoList;
 
-  VideoResponse({required this.videoList});
+  VideoResponse({this.videoList});
 
   factory VideoResponse.fromJson(Map<String, dynamic> json) =>
       _$VideoResponseFromJson(json);
@@ -94,12 +94,12 @@ class VideoResponse {
 @JsonSerializable()
 class ImagesResponse {
   @JsonKey(name: "backdrops")
-  final List<ImageModel> backdropImages;
+  final List<ImageModel>? backdropImages;
 
   @JsonKey(name: "logos")
-  final List<ImageModel> logoImages;
+  final List<ImageModel>? logoImages;
 
-  ImagesResponse({required this.backdropImages, required this.logoImages});
+  ImagesResponse({this.backdropImages, this.logoImages});
 
   factory ImagesResponse.fromJson(Map<String, dynamic> json) =>
       _$ImagesResponseFromJson(json);
@@ -110,9 +110,9 @@ class ImagesResponse {
 @JsonSerializable()
 class ActorResponse {
   @JsonKey(name: "cast")
-  final List<ActorModel> movieActors;
+  final List<ActorModel>? movieActors;
 
-  ActorResponse({required this.movieActors});
+  ActorResponse({this.movieActors});
 
   factory ActorResponse.fromJson(Map<String, dynamic> json) =>
       _$ActorResponseFromJson(json);

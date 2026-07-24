@@ -8,6 +8,14 @@ import '../../features/details/data/repos/movies_repo.dart';
 import '../../features/details/data/repos/tv_series_repo.dart';
 import '../../features/details/data/webs_services/movie_web_services.dart';
 import '../../features/details/data/webs_services/tv_web_services.dart';
+import '../../features/details/logic/movie_screen_cubit/main_details/about_cubit.dart';
+import '../../features/details/logic/movie_screen_cubit/reviews/reviews_cubit.dart';
+import '../../features/details/logic/movie_screen_cubit/similar_content/similar_content_cubit.dart';
+import '../../features/details/logic/tv_series_cubit/about_tv/about_tv_cubit.dart';
+import '../../features/details/logic/tv_series_cubit/reviews/reviews_cubit.dart';
+import '../../features/details/logic/tv_series_cubit/similar_content/similar_content_cubit.dart';
+import '../../features/details/logic/tv_series_cubit/tv_episode_details_cubit/tv_episode_details_cubit.dart';
+import '../../features/details/logic/tv_series_cubit/tv_seasons_cubit/tv_seasons_cubit.dart';
 import '../../features/home/data/repo/home_repo.dart';
 import '../../features/home/data/web_services/home_web_services.dart';
 import '../../features/home/logic/top_rated_movies/top_rated_movies_cubit.dart';
@@ -77,5 +85,37 @@ Future<void> initDI() async {
 
   sl.registerFactory<SearchCubit>(
     () => SearchCubit(searchRepo: sl<SearchRepo>()),
+  );
+
+  sl.registerFactory<AboutCubit>(
+    () => AboutCubit(repo: sl<MovieRepo>()),
+  );
+
+  sl.registerFactory<ReviewsCubit>(
+    () => ReviewsCubit(repo: sl<MovieRepo>()),
+  );
+
+  sl.registerFactory<SimilarContentCubit>(
+    () => SimilarContentCubit(repo: sl<MovieRepo>()),
+  );
+
+  sl.registerFactory<AboutTvCubit>(
+    () => AboutTvCubit(repo: sl<TvSeriesRepo>()),
+  );
+
+  sl.registerFactory<TvSeriesReviewsCubit>(
+    () => TvSeriesReviewsCubit(repo: sl<TvSeriesRepo>()),
+  );
+
+  sl.registerFactory<TvSeriesSimilarContentCubit>(
+    () => TvSeriesSimilarContentCubit(repo: sl<TvSeriesRepo>()),
+  );
+
+  sl.registerFactory<TvEpisodeDetailsCubit>(
+    () => TvEpisodeDetailsCubit(repo: sl<TvSeriesRepo>()),
+  );
+
+  sl.registerFactory<TvSeasonsCubit>(
+    () => TvSeasonsCubit(repo: sl<TvSeriesRepo>()),
   );
 }

@@ -19,7 +19,7 @@ class TvSeasonDetailsScreen extends StatelessWidget {
     final args = ModalRoute.of(context)!.settings.arguments as SeasonArgumentsModel;
 
     return BlocProvider(
-      create: (context) => TvSeasonsCubit(repo: sl<TvSeriesRepo>())
+      create: (context) => sl<TvSeasonsCubit>()
         ..getTvSeasonDetails(
           tvId: args.tvId,
           seasonNumber: args.seasonNumber,

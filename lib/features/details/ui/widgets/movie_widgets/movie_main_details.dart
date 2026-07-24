@@ -22,8 +22,11 @@ class MovieMainDetails extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           CachedNetworkImage(
-            imageUrl: "${ApiConstants.imageBaseUrl}${model.posterPath}",
+            imageUrl: model.posterPath != null && model.posterPath!.isNotEmpty
+                ? "${ApiConstants.imageBaseUrl}${model.posterPath}"
+                : "",
             fit: BoxFit.cover,
+            errorWidget: (context, url, error) => Container(color: AppColors.onyxBlack),
           ),
 
           Container(

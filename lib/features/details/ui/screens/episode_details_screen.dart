@@ -22,7 +22,7 @@ class EpisodeDetailsScreen extends StatelessWidget {
 
     return BlocProvider(
       create: (context) =>
-          TvEpisodeDetailsCubit(repo: sl<TvSeriesRepo>())..getTvEpisodeDetails(
+          sl<TvEpisodeDetailsCubit>()..getTvEpisodeDetails(
             tvId: args.tvId,
             seasonNumber: args.seasonNumber,
             episodeNumber: args.episodeNumber,
