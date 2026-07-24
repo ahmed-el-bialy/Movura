@@ -6,7 +6,6 @@ import 'package:movura/core/widgets/section_title.dart';
 import 'package:movura/features/home/ui/widgets/category_list.dart';
 import 'package:movura/features/home/ui/widgets/custom_side_drawer.dart';
 import 'package:movura/features/home/ui/widgets/home_app_bar.dart';
-import 'package:movura/features/home/ui/widgets/sub_widgets/home_trending_banner.dart';
 import 'package:movura/features/home/ui/widgets/top_movies_list.dart';
 import 'package:movura/features/home/ui/widgets/top_tv_series_list.dart';
 import 'package:movura/features/home/ui/widgets/trending_list.dart';
@@ -31,12 +30,9 @@ class HomeScreen extends StatelessWidget {
             HomeAppBar(),
             SliverToBoxAdapter(
               child: Padding(
-                padding: EdgeInsets.only(top: 15.h, bottom: 10.h),
-                child: CategoryList(),
+                padding: EdgeInsets.only(top: 15.h, bottom: 20.h),
+                child: const CategoryList(),
               ),
-            ),
-            const SliverToBoxAdapter(
-              child: HomeTrendingBanner(),
             ),
             SliverToBoxAdapter(
               child: SectionTitle(

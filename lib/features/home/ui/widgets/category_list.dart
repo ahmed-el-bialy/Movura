@@ -12,109 +12,67 @@ import '../../../../core/helpers/spacing.dart';
 import '../../data/models/category_card_model.dart';
 import 'category_card.dart';
 
-class CategoryList extends StatefulWidget {
+class CategoryList extends StatelessWidget {
   const CategoryList({super.key});
 
   @override
-  State<CategoryList> createState() => _CategoryListState();
-}
-
-class _CategoryListState extends State<CategoryList> {
-  final PageController controller = PageController(
-    viewportFraction: 0.85,
-    initialPage: 1,
-  );
-
-  late final List<CategoryCardModel> categories = [
-    CategoryCardModel(
-      color: Colors.grey,
-      title: 'Most Popular TV Series',
-      hint: "TOP CHOICE",
-      icon: Icons.tv_outlined,
-      onTap: () {
-        context.pushNamed(RouteNames.trendingScreen, null);
-      },
-    ),
-
-    CategoryCardModel(
-      color: Colors.blueGrey,
-      title: 'Most Popular Movies',
-      hint: "TOP CHOICE",
-      icon: Icons.auto_awesome_outlined,
-      onTap: () {
-        context.pushNamed(RouteNames.trendingScreen, null);
-      },
-    ),
-
-    CategoryCardModel(
-      color: Colors.teal,
-      title: 'Trending Movies',
-      hint: "TODAY",
-      icon: Icons.trending_up_outlined,
-      onTap: () {
-        context.pushNamed(RouteNames.trendingScreen, null);
-      },
-    ),
-
-    CategoryCardModel(
-      color: Colors.indigo,
-      title: 'Trending People',
-      hint: "TODAY",
-      icon: Icons.people_outline_rounded,
-      onTap: () {
-        showSearch(
-          context: context,
-          delegate: CustomSearchDelegate(searchCubit: sl<SearchCubit>()),
-        );
-      },
-    ),
-  ];
-
-  @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width,
+    final List<CategoryCardModel> categories = [
+      CategoryCardModel(
+        color: Colors.deepPurple,
+        title: 'Popular TV Series',
+        hint: "TOP CHOICE",
+        icon: Icons.tv_rounded,
+        onTap: () {
+          context.pushNamed(RouteNames.trendingScreen, null);
+        },
+      ),
+      CategoryCardModel(
+        color: Colors.blueAccent,
+        title: 'Popular Movies',
+        hint: "TOP CHOICE",
+        icon: Icons.auto_awesome_rounded,
+        onTap: () {
+          context.pushNamed(RouteNames.trendingScreen, null);
+        },
+      ),
+      CategoryCardModel(
+        color: Colors.cyan,
+        title: 'Trending Today',
+        hint: "DAILY UPDATES",
+        icon: Icons.trending_up_rounded,
+        onTap: () {
+          context.pushNamed(RouteNames.trendingScreen, null);
+        },
+      ),
+      CategoryCardModel(
+        color: Colors.indigoAccent,
+        title: 'Celebrities',
+        hint: "PEOPLE",
+        icon: Icons.people_alt_rounded,
+        onTap: () {
+          showSearch(
+            context: context,
+            delegate: CustomSearchDelegate(searchCubit: sl<SearchCubit>()),
+          );
+        },
+      ),
+    ];
 
-        height: 150.h,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Expanded(
-              child: PageView.builder(
-                itemCount: categories.length,
-                controller: controller,
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8.w),
-                    child: CategoryCard(
-                      model: categories[index],
-                      onTap: categories[index].onTap,
-                    ),
-                  );
-                },
-              ),
-            ),
-
-            verticalSpacing(12),
-
-            Center(
-              child: SmoothPageIndicator(
-                controller: controller,
-                count: categories.length,
-                effect: ExpandingDotsEffect(
-                  dotHeight: 6.h,
-                  dotWidth: 6.w,
-                  expansionFactor: 3,
-                  activeDotColor: AppColors.neonBlue,
-                  dotColor: AppColors.platinumGray.withValues(alpha: 0.4),
-                  spacing: 6.w,
-                ),
-              ),
-            ),
-          ],
-        ),
+    return SizedBox(
+      height: 120.h,
+      child: ListView.separated(
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
+        scrollDirection: Axis.horizontal,
+        physics: const BouncingScrollPhysics(),
+        itemCount: categories.length,
+        separatorBuilder: (context, index) => horizontalSpacing(12),
+        itemBuilder: (context, index) {
+          return CategoryCard(
+            model: categories[index],
+            onTap: categories[index].onTap,
+          );
+        },
       ),
     );
   }

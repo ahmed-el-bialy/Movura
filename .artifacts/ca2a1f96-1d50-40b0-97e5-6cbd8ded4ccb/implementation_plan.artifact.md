@@ -1,38 +1,57 @@
-# Implementation Plan - Architecture Refinement, Spacing Optimization, and UI Completion
+# Implementation Plan - Final Professional Polish and Firebase Integration
 
-This plan focuses on standardizing the widget architecture, optimizing spacing helpers, and cleaning up the project for a professional finish.
+This plan addresses a complete routing review, upgrading the Video Screen for the latest library, redesigning the Home categories, and finalizing Firebase Auth integration.
 
 ## User Review Required
 
 > [!IMPORTANT]
-> - **Spacing Optimization**: I will replace all instances of manual `SliverToBoxAdapter(child: verticalSpacing(x))` with the specialized `sliverVerticalSpacing(x)` helper, and similar for horizontal spacing and manual `SizedBox`.
-> - **Widget Refactoring**: I will continue converting helper methods into `StatelessWidget` classes.
-> - **Folder Restructuring**: I will finalize moving files to their logical feature folders.
+> - **Video Screen Redesign**: I will refactor `VideoScreen` to use `YoutubePlayerBuilder`, which is the standard for `youtube_player_flutter` v10+. This will provide a more stable full-screen and control experience.
+> - **Home Section Changes**: I will **delete** the `HomeTrendingBanner` as requested and completely redesign the `CategoryList` as a modern, horizontally scrollable list.
+> - **Firebase Auth**: I will ensure the Login and Signup logic is fully connected to the Firebase backend, including error handling (e.g., showing SnackBars for wrong credentials).
 
 ## Proposed Changes
 
-### 1. Spacing Cleanup (Global)
-- Search and replace:
-  - `SliverToBoxAdapter(child: verticalSpacing(x))` -> `sliverVerticalSpacing(x)`
-  - `SliverToBoxAdapter(child: horizontalSpacing(x))` -> `sliverHorizontalSpacing(x)`
-  - `SizedBox(height: x.h)` -> `verticalSpacing(x)` (where appropriate)
-  - `SizedBox(width: x.w)` -> `horizontalSpacing(x)` (where appropriate)
+### 1. Routing & UX Consistency
+#### [MODIFY] [app_router.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/core/routing/app_router.dart)
+- Review and clean up all route definitions.
+- Ensure the transition between Login -> MainWrapper is smooth.
 
-### 2. Widget Architecture (Refactoring)
-- Finish converting methods into `StatelessWidget` classes for all remaining features (Home, Details, Search).
+---
 
-### 3. Folder Structure & Path Correction
-- Finalize the move of `trending_screen.dart`, `main_wrapper_screen.dart`, and sub-widgets into their respective `ui/screens/` and `ui/widgets/sub_widgets/` folders.
+### 2. Video Player Upgrade (v10.0.1)
+#### [MODIFY] [video_screen.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/details/ui/screens/video_screen.dart)
+- Refactor to use `YoutubePlayerBuilder` for automatic orientation handling.
+- Improve the UI of overlays and the custom back button in landscape mode.
 
-### 4. Auth UI & Icon Consistency
-- Complete the Login/Signup UI.
-- Use `AppIconButton` globally for consistent splash and padding.
+---
+
+### 3. Home Screen Redesign
+#### [DELETE] [home_trending_banner.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/home/ui/widgets/sub_widgets/home_trending_banner.dart)
+- Remove the banner widget and all its references in `HomeScreen`.
+
+#### [MODIFY] [category_list.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/home/ui/widgets/category_list.dart)
+- Redesign from scratch as a horizontal `ListView` of compact, modern cards.
+- Add better visual feedback and styling consistent with the app's theme.
+
+---
+
+### 4. Auth Completion & Firebase Logic
+#### [MODIFY] [auth_repo.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/auth/data/repos/auth_repo.dart)
+#### [MODIFY] [auth_cubit.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/auth/logic/auth/auth_cubit.dart)
+- Ensure all methods handle Firebase exceptions (e.g., `user-not-found`, `wrong-password`).
+- Finalize the social login structure (placeholders for Google/Facebook/Apple).
+
+#### [MODIFY] [log_in_screen.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/auth/ui/screens/log_in_screen.dart)
+#### [MODIFY] [sign_up_screen.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/auth/ui/screens/sign_up_screen.dart)
+- Connect the UI buttons to `AuthCubit` logic.
+- Add loading indicators (using the already integrated `AuthLoading` state).
 
 ## Verification Plan
 
 ### Automated Tests
-- Run `flutter analyze` to ensure no broken imports or type errors.
+- Run `flutter analyze` to verify the project's health.
 
 ### Manual Verification
-- Verify that spacing remains consistent across all screens.
-- Ensure state preservation in `MainWrapperScreen` works after restructuring.
+- Test video playback in both portrait and landscape.
+- Verify that `CategoryList` scrolls smoothly and navigates correctly.
+- Perform a full Login/Signup flow and check Firebase Console for new users.
