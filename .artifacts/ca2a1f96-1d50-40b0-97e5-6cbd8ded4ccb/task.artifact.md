@@ -1,8 +1,0 @@
-- [ ] Revert `youtube_player_flutter` to `^9.1.3` and restore stable orientation code
-- [ ] Implement active filter indicator in `CustomSearchDelegate`
-- [ ] Refactor `PlatformOptionsSheet` with `Wrap` and `url_launcher` logic
-- [ ] Redesign `WatchlistOptionsSheet` into a `Row` of action buttons
-- [ ] Rename "Categories" feature to "Library" and implement new UI
-- [ ] Update `MainWrapperScreen` and `RouteNames` for the renamed Library
-- [ ] Final project-wide check for spacing and class-based widgets
-- [ ] Commit and push changes
