@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movura/core/widgets/app_navigation_bar.dart';
-import 'package:movura/features/categories/ui/screens/categories_screen.dart';
 import 'package:movura/features/home/ui/home_screen.dart';
+import 'package:movura/features/library/ui/screens/library_screen.dart';
 import 'package:movura/features/profile/ui/screens/profile_screen.dart';
 import 'package:movura/features/search/ui/screens/search_screen.dart';
 
@@ -18,7 +18,7 @@ class _MainWrapperScreenState extends State<MainWrapperScreen> {
   final List<Widget> _screens = [
     const HomeScreen(),
     const SearchScreen(),
-    const CategoriesScreen(),
+    const LibraryScreen(),
     const ProfileScreen(),
   ];
 

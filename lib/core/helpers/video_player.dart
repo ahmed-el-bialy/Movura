@@ -1,44 +1,60 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/utils/constants/app_constants.dart';
+import 'package:movura/core/utils/extensions/routing_extension.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import '../routing/route_names.dart';
-
 Future<void> playYoutubeVideo(
-  BuildContext context,
+    BuildContext context,
 
-  String videoKey, {
+    String videoKey, {
 
-  bool autoPlay = true,
+      bool autoPlay = true,
 
-  bool mute = false,
+      bool mute = false,
 
-  bool enableCaption = true,
+      bool enableCaption = true,
 
-  String? captionLanguage = 'en',
+      String? captionLanguage = 'en',
 
-  bool forceHD = true,
+      bool forceHD = true,
 
-  bool loop = false,
-}) async {
+      bool loop = false,
+    }) async {
   try {
     await _prepareVideoMode();
 
-    final YoutubePlayerController controller = YoutubePlayerController.fromVideoId(
-      videoId: videoKey,
-      autoPlay: autoPlay,
-      params: YoutubePlayerParams(
+    final YoutubePlayerController controller = YoutubePlayerController(
+      initialVideoId: videoKey,
+
+      flags: YoutubePlayerFlags(
+        autoPlay: autoPlay,
+
         mute: mute,
-        showControls: true,
-        showFullscreenButton: true,
+
+        disableDragSeek: false,
+
         loop: loop,
+
+        isLive: false,
+
+        forceHD: forceHD,
+
+        enableCaption: enableCaption,
+
+        captionLanguage: captionLanguage!,
+
+        hideControls: false,
+
+        hideThumbnail: false,
+
+        showLiveFullscreenButton: true,
       ),
     );
 
     if (!context.mounted) return;
 
-    await context.pushNamed(RouteNames.videoPlayScreen, controller);
+    await context.pushNamed(AppConstants.videoPlayScreen, controller);
   } catch (e) {
     debugPrint('Error playing YouTube video: $e');
 

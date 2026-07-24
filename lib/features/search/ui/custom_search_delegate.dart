@@ -63,6 +63,8 @@ class CustomSearchDelegate extends SearchDelegate {
 
   @override
   List<Widget>? buildActions(context) {
+    final bool isFiltered = searchCubit.currentFilter != SearchFilterType.all || searchCubit.selectedGenreId != null;
+
     return [
       if (searchCubit.currentFilter != SearchFilterType.all)
         Padding(
@@ -80,6 +82,7 @@ class CustomSearchDelegate extends SearchDelegate {
             visualDensity: VisualDensity.compact,
             onDeleted: () {
               searchCubit.setFilter(SearchFilterType.all);
+              searchCubit.setGenreFilter(null);
               if (query.trim().isNotEmpty) {
                 lastQuery = '';
                 searchCubit.getSearchResults(query: query.trim());
@@ -94,11 +97,31 @@ class CustomSearchDelegate extends SearchDelegate {
           searchCubit.setGenreFilter(null);
           showSuggestions(context);
         },
-        icon: Icon(Icons.clear, color: AppColors.neonBlue),
+        icon: Icon(Icons.clear, color: isFiltered ? Colors.redAccent : AppColors.neonBlue),
       ),
       IconButton(
         onPressed: () => _openFilterSheet(context),
-        icon: Icon(Icons.filter_alt, color: AppColors.neonBlue),
+        icon: Stack(
+          children: [
+            Icon(Icons.filter_alt, color: isFiltered ? Colors.redAccent : AppColors.neonBlue),
+            if (isFiltered)
+              Positioned(
+                right: 0,
+                top: 0,
+                child: Container(
+                  padding: const EdgeInsets.all(1),
+                  decoration: BoxDecoration(
+                    color: Colors.redAccent,
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  constraints: const BoxConstraints(
+                    minWidth: 8,
+                    minHeight: 8,
+                  ),
+                ),
+              ),
+          ],
+        ),
       ),
     ];
   }

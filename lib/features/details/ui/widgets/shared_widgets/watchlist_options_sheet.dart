@@ -41,45 +41,47 @@ class WatchlistOptionsSheet extends StatelessWidget {
             'Save this content to your personalized collections',
             style: AppTextStyles.font12CoolGrayManrope,
           ),
-          verticalSpacing(24),
-          _ListOptionTile(
-            icon: Icons.bookmark_outline_rounded,
-            label: 'Watchlist',
-            onTap: () {
-              // TODO: Implement Watchlist logic
-              Navigator.pop(context);
-            },
-            color: AppColors.neonBlue,
-          ),
-          verticalSpacing(12),
-          _ListOptionTile(
-            icon: Icons.check_circle_outline_rounded,
-            label: 'Mark as Watched',
-            onTap: () {
-              // TODO: Implement Watched logic
-              Navigator.pop(context);
-            },
-            color: AppColors.tealCyan,
-          ),
-          verticalSpacing(12),
-          _ListOptionTile(
-            icon: Icons.favorite_border_rounded,
-            label: 'Add to Favorites',
-            onTap: () {
-              // TODO: Implement Favorites logic
-              Navigator.pop(context);
-            },
-            color: AppColors.deepCrimson,
-          ),
-          verticalSpacing(12),
-          _ListOptionTile(
-            icon: Icons.add_box_outlined,
-            label: 'Create Custom List',
-            onTap: () {
-              // TODO: Implement custom list creation
-              Navigator.pop(context);
-            },
-            color: AppColors.amberGold,
+          verticalSpacing(32),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              _ActionItem(
+                icon: Icons.bookmark_outline_rounded,
+                label: 'Watchlist',
+                onTap: () {
+                  // TODO: Implement Watchlist logic
+                  Navigator.pop(context);
+                },
+                color: AppColors.neonBlue,
+              ),
+              _ActionItem(
+                icon: Icons.check_circle_outline_rounded,
+                label: 'Watched',
+                onTap: () {
+                  // TODO: Implement Watched logic
+                  Navigator.pop(context);
+                },
+                color: AppColors.tealCyan,
+              ),
+              _ActionItem(
+                icon: Icons.favorite_border_rounded,
+                label: 'Favorite',
+                onTap: () {
+                  // TODO: Implement Favorites logic
+                  Navigator.pop(context);
+                },
+                color: AppColors.deepCrimson,
+              ),
+              _ActionItem(
+                icon: Icons.add_box_outlined,
+                label: 'Create List',
+                onTap: () {
+                  // TODO: Implement custom list creation
+                  Navigator.pop(context);
+                },
+                color: AppColors.amberGold,
+              ),
+            ],
           ),
         ],
       ),
@@ -87,8 +89,8 @@ class WatchlistOptionsSheet extends StatelessWidget {
   }
 }
 
-class _ListOptionTile extends StatelessWidget {
-  const _ListOptionTile({
+class _ActionItem extends StatelessWidget {
+  const _ActionItem({
     required this.icon,
     required this.label,
     required this.onTap,
@@ -102,40 +104,37 @@ class _ListOptionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: AppColors.onyxBlack,
-      borderRadius: BorderRadius.circular(16.r),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(16.r),
-        child: Container(
-          padding: EdgeInsets.all(16.r),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16.r),
-            border: Border.all(
-              color: color.withValues(alpha: 0.2),
-            ),
-          ),
-          child: Row(
-            children: [
-              Icon(icon, color: color, size: 24.sp),
-              horizontalSpacing(16),
-              Text(
-                label,
-                style: AppTextStyles.font14PureWhiteManrope.copyWith(
-                  fontWeight: FontWeight.w600,
+    return Column(
+      children: [
+        Material(
+          color: AppColors.onyxBlack,
+          shape: const CircleBorder(),
+          child: InkWell(
+            onTap: onTap,
+            customBorder: const CircleBorder(),
+            splashColor: color.withValues(alpha: 0.2),
+            child: Container(
+              padding: EdgeInsets.all(16.r),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: color.withValues(alpha: 0.3),
+                  width: 1.5,
                 ),
               ),
-              const Spacer(),
-              Icon(
-                Icons.add_rounded,
-                color: AppColors.coolGray,
-                size: 20.sp,
-              ),
-            ],
+              child: Icon(icon, color: color, size: 28.sp),
+            ),
           ),
         ),
-      ),
+        verticalSpacing(8),
+        Text(
+          label,
+          style: AppTextStyles.font10BoldCoolGray.copyWith(
+            color: Colors.white70,
+            fontSize: 11.sp,
+          ),
+        ),
+      ],
     );
   }
 }

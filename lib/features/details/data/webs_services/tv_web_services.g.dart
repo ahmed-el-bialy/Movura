@@ -22,7 +22,7 @@ class _TvWebServices implements TvWebServices {
   @override
   Future<AboutTvSeriesModel> getTvSeriesMainDetails({
     required int id,
-    String additionalData = "credits,images,videos",
+    String additionalData = "credits,images,videos,watch/providers",
     String language = "en-US",
   }) async {
     final _extra = <String, dynamic>{};
