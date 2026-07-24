@@ -1,9 +1,8 @@
-- [x] Update `AppColors` with professional category and UI colors
-- [x] Move core Cubits (Trending, Top Rated) to `main.dart` for global state preservation
-- [x] Update `AppRouter` to remove redundant BlocProviders
-- [x] Redesign `CategoryList` to use `PageView.builder` and `SmoothPageIndicator`
-- [x] Fix Search "X" button and reset filter logic
-- [x] Remove "+" button from details AppBar
-- [x] Implement "Platform Options" BottomSheet for the platform button
-- [x] Refine `ButtonsRow` in details (Trailer, Watchlist, Favorite) for a premium look
-- [x] Project-wide cleanup and final commit
+- [ ] Revert `youtube_player_flutter` to `^9.1.3` and restore stable orientation code
+- [ ] Implement active filter indicator in `CustomSearchDelegate`
+- [ ] Refactor `PlatformOptionsSheet` with `Wrap` and `url_launcher` logic
+- [ ] Redesign `WatchlistOptionsSheet` into a `Row` of action buttons
+- [ ] Rename "Categories" feature to "Library" and implement new UI
+- [ ] Update `MainWrapperScreen` and `RouteNames` for the renamed Library
+- [ ] Final project-wide check for spacing and class-based widgets
+- [ ] Commit and push changes

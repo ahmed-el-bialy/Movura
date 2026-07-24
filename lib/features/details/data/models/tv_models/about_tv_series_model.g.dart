@@ -47,6 +47,11 @@ AboutTvSeriesModel _$AboutTvSeriesModelFromJson(Map<String, dynamic> json) =>
           : TvVideoResponse.fromJson(json['videos'] as Map<String, dynamic>),
       startAirDate: json['first_air_date'] as String,
       endAirDate: json['last_air_date'] as String?,
+      watchProviders: json['watch/providers'] == null
+          ? null
+          : WatchProviderResponse.fromJson(
+              json['watch/providers'] as Map<String, dynamic>,
+            ),
     );
 
 Map<String, dynamic> _$AboutTvSeriesModelToJson(AboutTvSeriesModel instance) =>
@@ -76,6 +81,7 @@ Map<String, dynamic> _$AboutTvSeriesModelToJson(AboutTvSeriesModel instance) =>
       'adult': instance.adultContent,
       'images': instance.mediaImages,
       'videos': instance.tvVideos,
+      'watch/providers': instance.watchProviders,
     };
 
 TvSeasonModel _$TvSeasonModelFromJson(Map<String, dynamic> json) =>

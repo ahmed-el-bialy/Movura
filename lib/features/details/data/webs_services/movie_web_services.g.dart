@@ -22,7 +22,7 @@ class _MovieWebServices implements MovieWebServices {
   @override
   Future<AboutModel> getMovieMainDetails({
     required int movieId,
-    String additionalData = "credits,images,videos",
+    String additionalData = "credits,images,videos,watch/providers",
     String language = "en-US",
   }) async {
     final _extra = <String, dynamic>{};

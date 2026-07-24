@@ -29,6 +29,11 @@ AboutModel _$AboutModelFromJson(Map<String, dynamic> json) => AboutModel(
   movieVideos: json['videos'] == null
       ? null
       : VideoResponse.fromJson(json['videos'] as Map<String, dynamic>),
+  watchProviders: json['watch/providers'] == null
+      ? null
+      : WatchProviderResponse.fromJson(
+          json['watch/providers'] as Map<String, dynamic>,
+        ),
 );
 
 Map<String, dynamic> _$AboutModelToJson(AboutModel instance) =>
@@ -49,6 +54,7 @@ Map<String, dynamic> _$AboutModelToJson(AboutModel instance) =>
       'adult': instance.adultContent,
       'images': instance.mediaImages,
       'videos': instance.movieVideos,
+      'watch/providers': instance.watchProviders,
     };
 
 VideoResponse _$VideoResponseFromJson(Map<String, dynamic> json) =>

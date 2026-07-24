@@ -1,32 +1,35 @@
-# Walkthrough - Final Professional Polish & State Preservation
+# Walkthrough - Watch Providers, Platform Navigation, and Watchlist Logic
 
-I have successfully completed the final round of improvements, transforming Movura into a production-ready app with seamless navigation, advanced search, and a refined UI.
+I have implemented the requested features for content discovery and platform navigation, along with completing the watchlist logic UI.
 
 ## Key Accomplishments
 
-### 💾 Global State Preservation (No Re-requests)
-- **Architecture Shift**: Moved core Cubits (`TrendingContentCubit`, `TopRatedMovieCubit`, `TopRatedTvSeriesCubit`) to `main.dart`.
-- **Result**: The app now loads data once and keeps it in memory. When you navigate from Home to Details and back, **no new API requests are made**, providing an instant and data-efficient user experience.
+### 📺 Watch Providers & Streaming Options
+- **Multi-Platform Support**: Updated the models and API services to fetch "Watch Providers" (e.g., Netflix, Disney+, Apple TV). These are now displayed in a horizontal list within the **Streaming Options** BottomSheet.
+- **Official Website**: The "Visit Official Website" button is now connected to the content's homepage URL fetched from the API.
+- **Enhanced UI**: The `PlatformOptionsSheet` now clearly shows where the content is available for streaming, renting, or buying.
 
-### 🏠 Home Screen - High-End Category List
-- **Redesign**: Reverted the category list to a `PageView.builder` with `SmoothPageIndicator` for a smooth, interactive feel.
-- **Theming**: Standardized all category colors into `AppColors` using professional naming (e.g., `electricBlueAccent`, `vibrantPurple`).
+### ➕ Watchlist & List Management
+- **Lists BottomSheet**: Implemented the `WatchlistOptionsSheet`. When you click the "+" button in the details screen, a professional menu opens with options:
+    - **Watchlist**: Save for later.
+    - **Watched**: Mark as completed.
+    - **Favorites**: Add to your top picks.
+    - **Custom Lists**: Option to create personal collections.
+- **Premium Buttons**: Refined the `ButtonsRow` to include these new interactive elements with consistent styling.
 
-### 🔍 Advanced Search & Bug Fixes
-- **Reset Logic**: Fixed the "X" button bug. Clearing search now resets all filters to "All" and removes genre chips immediately.
-- **Genre Filtering**: Implemented local sub-filtering. Users can now filter search results by genres like **Animation**, **Action**, etc., with genres updating dynamically based on the selected media type.
+### 🛡 Stability & Bug Fixes
+- **Video Player**: Corrected the remaining errors in `VideoScreen` and `video_player.dart` by aligning them with the latest `youtube_player_flutter` (v10.0.1) API.
+- **Null Safety**: Ensured that missing homepage or provider data doesn't crash the details screen.
 
-### 🎬 Details Screen - Platform Navigation & Premium UI
-- **Platform Access**: Added a "Go to Platform" button in the AppBar that opens a professional **BottomSheet** with options to visit the official site or share content.
-- **AppBar Cleanup**: Removed the redundant "+" button from the top right to focus on navigation.
-- **Buttons Row**: Refined the main action row (Trailer, Watchlist, Favorite) with a premium, consistent design using circular outlined buttons and brand colors.
+## Technical Notes
 
-## Final Project Status
-- [x] All spacing optimized using project helpers.
-- [x] All custom UI components refactored into classes.
-- [x] Zero redundant API calls on navigation.
-- [x] Full Firebase Auth logic integrated.
-- [x] All changes pushed to GitHub.
+> [!IMPORTANT]
+> To make the "Visit Website" button fully functional, please add the following package to your `pubspec.yaml`:
+> `url_launcher: ^6.3.0`
+>
+> Also, remember to run the build runner to update the generated JSON code:
+> `flutter pub run build_runner build --delete-conflicting-outputs`
 
-> [!TIP]
-> The app is now fully optimized for performance. Enjoy the seamless navigation!
+## Commit Information
+- **Message**: `Implement Watch Providers, Platform Options BottomSheet, and Watchlist Options Sheet`
+- **Branch**: `main`

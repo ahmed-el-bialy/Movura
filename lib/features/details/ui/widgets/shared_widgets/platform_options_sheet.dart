@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,7 +20,6 @@ class PlatformOptionsSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Extracting providers for a specific country (e.g., US) or just the first available
     final providers = watchProviders?.results?['US'] ?? watchProviders?.results?.values.firstOrNull;
     final streaming = providers?.flatrate ?? [];
 
@@ -64,48 +64,57 @@ class PlatformOptionsSheet extends StatelessWidget {
                 color: AppColors.neonBlue,
               ),
             ),
-            verticalSpacing(12),
-            SizedBox(
-              height: 60.h,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: streaming.length,
-                separatorBuilder: (_, __) => horizontalSpacing(16),
-                itemBuilder: (context, index) {
-                  final provider = streaming[index];
-                  return Column(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(12.r),
-                        child: CachedNetworkImage(
-                          imageUrl: '${ApiConstants.imageBaseUrl}${provider.logoPath}',
-                          width: 40.r,
-                          height: 40.r,
-                          errorWidget: (_, __, ___) => const Icon(Icons.broken_image),
-                        ),
+            verticalSpacing(16),
+            Wrap(
+              spacing: 16.w,
+              runSpacing: 16.h,
+              children: streaming.map((provider) {
+                return Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(12.r),
+                      child: CachedNetworkImage(
+                        imageUrl: '${ApiConstants.imageBaseUrl}${provider.logoPath}',
+                        width: 45.r,
+                        height: 45.r,
+                        errorWidget: (_, __, ___) => const Icon(Icons.broken_image),
                       ),
-                    ],
-                  );
-                },
-              ),
+                    ),
+                    verticalSpacing(4),
+                    SizedBox(
+                      width: 50.w,
+                      child: Text(
+                        provider.providerName,
+                        style: TextStyle(fontSize: 8.sp, color: Colors.white70),
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                );
+              }).toList(),
             ),
-            verticalSpacing(24),
+            verticalSpacing(32),
           ],
           _OptionTile(
             icon: Icons.public_rounded,
             label: 'Visit Official Website',
             onTap: () {
-              // TODO: Implement url_launcher: launchUrl(Uri.parse(homepageUrl));
+              // TODO: Implement url_launcher logic when library is added
               Navigator.pop(context);
             },
             color: AppColors.neonBlue,
           ),
           verticalSpacing(12),
           _OptionTile(
-            icon: Icons.share_rounded,
-            label: 'Share Content Link',
+            icon: Icons.copy_rounded,
+            label: 'Copy Official Link',
             onTap: () {
-              // TODO: Implement share functionality
+              Clipboard.setData(ClipboardData(text: homepageUrl));
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Link copied to clipboard')),
+              );
               Navigator.pop(context);
             },
             color: AppColors.tealCyan,
