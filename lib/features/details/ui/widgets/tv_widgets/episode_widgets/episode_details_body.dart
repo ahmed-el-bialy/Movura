@@ -295,7 +295,9 @@ class EpisodeDetailsBody extends StatelessWidget {
               ],
             ),
           ),
-        if (episode.videos != null && episode.videos!.videoList.isNotEmpty)
+        if (episode.videos != null &&
+            episode.videos!.videoList != null &&
+            episode.videos!.videoList!.isNotEmpty)
           SliverToBoxAdapter(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -303,12 +305,13 @@ class EpisodeDetailsBody extends StatelessWidget {
                 verticalSpacing(15),
                 const SectionTitle(sectionName: 'VIDEOS'),
                 verticalSpacing(8),
-                VideosList(allVideos: episode.videos!.videoList),
+                VideosList(allVideos: episode.videos!.videoList!),
               ],
             ),
           ),
         if (episode.images != null &&
-            episode.images!.backdropImages.isNotEmpty)
+            episode.images!.backdropImages != null &&
+            episode.images!.backdropImages!.isNotEmpty)
           SliverToBoxAdapter(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -316,7 +319,7 @@ class EpisodeDetailsBody extends StatelessWidget {
                 verticalSpacing(15),
                 const SectionTitle(sectionName: 'STILLS'),
                 verticalSpacing(8),
-                ImagesList(images: episode.images!.backdropImages),
+                ImagesList(images: episode.images!.backdropImages!),
               ],
             ),
           ),

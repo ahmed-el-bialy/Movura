@@ -24,17 +24,25 @@ class CustomSearchDelegate extends SearchDelegate {
   @override
   ThemeData appBarTheme(BuildContext context) {
     return ThemeData(
-      appBarTheme: AppBarTheme(backgroundColor: AppColors.charcoalBlack),
+      appBarTheme: AppBarTheme(
+        backgroundColor: AppColors.charcoalBlack,
+        elevation: 0,
+      ),
       inputDecorationTheme: InputDecorationTheme(
-        hintStyle: TextStyle(color: AppColors.coolGray, fontSize: 16.sp),
+        hintStyle: TextStyle(
+          color: AppColors.slateGray.withValues(alpha: 0.6),
+          fontSize: 16.sp,
+        ),
         border: InputBorder.none,
         focusedBorder: InputBorder.none,
         enabledBorder: InputBorder.none,
-        errorBorder: InputBorder.none,
-        disabledBorder: InputBorder.none,
       ),
       textTheme: TextTheme(
-        titleLarge: TextStyle(color: AppColors.slateGray, fontSize: 16.sp),
+        titleLarge: TextStyle(
+          color: AppColors.iceBlue,
+          fontSize: 18.sp,
+          fontWeight: FontWeight.w500,
+        ),
       ),
     );
   }

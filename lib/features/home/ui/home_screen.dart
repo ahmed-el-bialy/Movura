@@ -3,13 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/features/home/ui/widgets/category_list.dart';
+import 'package:movura/features/home/ui/widgets/sub_widgets/home_trending_banner.dart';
 import 'package:movura/features/home/ui/widgets/top_movies_list.dart';
 import 'package:movura/features/home/ui/widgets/top_tv_series_list.dart';
 import 'package:movura/features/home/ui/widgets/trending_list.dart';
 
 import '../../../core/helpers/spacing.dart';
 import '../../../core/routing/route_names.dart';
-import '../../../core/widgets/app_navigation_bar.dart';
 import '../../../core/widgets/section_title.dart';
 import 'widgets/custom_side_drawer.dart';
 import 'widgets/home_app_bar.dart';
@@ -21,7 +21,6 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const CustomSideDrawer(),
-      extendBody: true,
       backgroundColor: AppColors.richEerieBlack,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 8.w),
@@ -30,14 +29,15 @@ class HomeScreen extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           slivers: [
             HomeAppBar(),
-
             SliverToBoxAdapter(
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 15.h),
+                padding: EdgeInsets.only(top: 15.h, bottom: 10.h),
                 child: CategoryList(),
               ),
             ),
-
+            const SliverToBoxAdapter(
+              child: HomeTrendingBanner(),
+            ),
             SliverToBoxAdapter(
               child: SectionTitle(
                 sectionName: "Trending Now",
@@ -47,37 +47,27 @@ class HomeScreen extends StatelessWidget {
                 },
               ),
             ),
-
             TrendingList(),
-
             SliverToBoxAdapter(child: verticalSpacing(25)),
-
             SliverToBoxAdapter(
               child: SectionTitle(
                 sectionName: "Top Rated Movies",
                 actionName: "See All ",
               ),
             ),
-
             SliverToBoxAdapter(child: TopMoviesList()),
-
             SliverToBoxAdapter(child: verticalSpacing(25)),
-
             SliverToBoxAdapter(
               child: SectionTitle(
                 sectionName: "Top Rated TV Series",
                 actionName: "See All ",
               ),
             ),
-
             SliverToBoxAdapter(child: TopTvSeriesList()),
-
-            SliverToBoxAdapter(child: verticalSpacing(50)),
+            SliverToBoxAdapter(child: verticalSpacing(100)),
           ],
         ),
       ),
-
-      bottomNavigationBar: AppNavigationBar(activeIndex: 0),
     );
   }
 }
