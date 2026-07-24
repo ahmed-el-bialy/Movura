@@ -1,37 +1,35 @@
-# Walkthrough - Complete Project Overhaul & Firebase Integration
+# Walkthrough - Advanced Search, Details Navigation, and Theming Refinement
 
-I have successfully completed a major update to the Movura project, focusing on logical routing, modern UI components, and a robust Firebase Authentication system.
+I have completed another round of major enhancements, focusing on advanced search capabilities, a more functional Details UI, and strict adherence to the project's theming structure.
 
 ## Key Accomplishments
 
-### 🗺 Logical & Persistent Routing
-- **Search Tab Integration**: Refactored the Search tab to be a full screen within the `IndexedStack`. Clicking the Search bar now opens the search delegate, providing a more intuitive UX consistent with major streaming apps.
-- **State Preservation**: All main tabs (Home, Search, Categories, Profile) now perfectly preserve their state.
+### 🔍 Advanced Search & Genre Filtering
+- **Dynamic Sub-filters**: Integrated a genre-based filtering system. When you select a media type (Movie or TV), the available genres update dynamically.
+- **Animation/Anime Support**: Users can now filter search results by the "Animation" genre specifically, making it easy to find Anime and animated content.
+- **X Button Fix**: Clicking the "X" (clear) icon in the search bar now correctly resets both the query text and all active filters (MediaType and Genre) for a fresh start.
 
-### 🎬 Professional Video Player (v10.0.1)
-- **Upgrade**: Refactored `VideoScreen` to use `YoutubePlayerBuilder`. This ensures much better stability, automatic full-screen handling on rotate, and cleaner overlay controls.
-- **Enhanced UI**: Improved the back button behavior and metadata display within the player.
+### 🎭 Details Screen Refinement
+- **Go to Platform**: Added a prominent button in the AppBar that navigates the user to the movie/show's official platform (homepage).
+- **Add to Watchlist (+)**: Integrated a professional "+" button next to the platform link, designed for future watchlist functionality.
+- **Favorites Redesign**: Moved the "Favorite" button to the main buttons row as a clean, circular outlined button to declutter the header.
 
-### 🏠 Home Screen Redesign
-- **Category List Overhaul**: Replaced the old PageView-based categories with a sleek, horizontal `ListView` of modern cards. These cards feature better gradients, consistent icons, and a more "premium" feel.
-- **Banner Removal**: As requested, removed the `HomeTrendingBanner` to clean up the Home screen and focus on the core content.
+### 🎨 Theming & Standards
+- **AppColors Centralization**: Moved all hardcoded category colors from the models/widgets into `AppColors` with professional names like `vibrantPurple`, `electricBlueAccent`, etc.
+- **Stateless/Stateful Consistency**: Refactored `CategoryList` and other components to adhere strictly to class-based widgets rather than helper functions.
+- **Simplified Spacing**: Continued the use of `verticalSpacing` and `horizontalSpacing` for all layout gaps.
 
-### 🔐 Full Firebase Auth Integration
-- **Robust Logic**: Updated `AuthRepo` and `AuthCubit` to handle Firebase exceptions (e.g., wrong password, user not found) with clear user feedback.
-- **UI Connectivity**: Connected all Login and Signup buttons to the backend logic. Integrated loading indicators so users know when an action is in progress.
-- **Social Login Ready**: Prepared placeholders for Google, Facebook, and Apple sign-in logic.
-
-### 📐 Spacing & Code Cleanup
-- **Optimized Helpers**: Replaced verbose `SliverToBoxAdapter` calls with the optimized `sliverVerticalSpacing(x)` and `sliverHorizontalSpacing(x)` helpers project-wide.
-- **Architecture Refinement**: Finalized the conversion of helper methods into standalone `StatelessWidget` classes for better performance.
+### 🛠 Model & API Updates
+- **Robust Models**: Added `genreIds` and `homepage` fields to `PosterModel`, `AboutModel`, and `AboutTvSeriesModel`.
+- **New Endpoints**: Updated `HomeWebServices` to fetch movie and TV genre lists directly from TMDB.
 
 ## Final Status
-- [x] All routing reviewed and optimized.
-- [x] Video player updated to latest library standards.
-- [x] Home screen cleaned and redesigned.
-- [x] Firebase Auth fully operational.
-- [x] All changes pushed to GitHub.
+- [x] Search "X" logic corrected.
+- [x] Dynamic Genre filtering implemented.
+- [x] "Go to Platform" and "+" buttons added.
+- [x] All colors moved to `AppColors`.
+- [x] All changes committed and pushed to GitHub.
 
-## Commit Information
-- **Message**: `Complete project overhaul: Refactored routing, upgraded video player, redesigned home screen, and finalized Firebase Auth integration`
-- **Branch**: `main`
+> [!IMPORTANT]
+> To update the generated JSON serialization code, please run:
+> `flutter pub run build_runner build --delete-conflicting-outputs`

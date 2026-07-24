@@ -1,9 +1,9 @@
-- [x] Add category colors to `AppColors`
-- [x] Update `CategoryCardModel` to use `Color` and update `CategoryList`
-- [x] Add `genreIds` and `homepage` to Models
-- [x] Fix Search "X" button to reset filters to "All"
-- [x] Implement dynamic Genre sub-filtering in `SearchFilterSheet`
-- [x] Add "Go to Platform" and "Add to Watchlist" (+) buttons to Details AppBar
-- [x] Move Favorite button to `ButtonsRow` for better UX
-- [ ] Run `build_runner` (User action required to update `.g.dart` files)
-- [x] Commit and push changes
+- [x] Update `AppColors` with professional category and UI colors
+- [x] Move core Cubits (Trending, Top Rated) to `main.dart` for global state preservation
+- [x] Update `AppRouter` to remove redundant BlocProviders
+- [x] Redesign `CategoryList` to use `PageView.builder` and `SmoothPageIndicator`
+- [x] Fix Search "X" button and reset filter logic
+- [x] Remove "+" button from details AppBar
+- [x] Implement "Platform Options" BottomSheet for the platform button
+- [x] Refine `ButtonsRow` in details (Trailer, Watchlist, Favorite) for a premium look
+- [x] Project-wide cleanup and final commit

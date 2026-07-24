@@ -25,31 +25,14 @@ Future<void> playYoutubeVideo(
   try {
     await _prepareVideoMode();
 
-    final YoutubePlayerController controller = YoutubePlayerController(
-      initialVideoId: videoKey,
-
-      flags: YoutubePlayerFlags(
-        autoPlay: autoPlay,
-
+    final YoutubePlayerController controller = YoutubePlayerController.fromVideoId(
+      videoId: videoKey,
+      autoPlay: autoPlay,
+      params: YoutubePlayerParams(
         mute: mute,
-
-        disableDragSeek: false,
-
+        showControls: true,
+        showFullscreenButton: true,
         loop: loop,
-
-        isLive: false,
-
-        forceHD: forceHD,
-
-        enableCaption: enableCaption,
-
-        captionLanguage: captionLanguage!,
-
-        hideControls: false,
-
-        hideThumbnail: false,
-
-        showLiveFullscreenButton: true,
       ),
     );
 

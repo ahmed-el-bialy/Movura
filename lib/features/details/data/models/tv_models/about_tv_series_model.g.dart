@@ -37,6 +37,7 @@ AboutTvSeriesModel _$AboutTvSeriesModelFromJson(Map<String, dynamic> json) =>
           .map((e) => TvSeasonModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       actors: TvActorResponse.fromJson(json['credits'] as Map<String, dynamic>),
+      homepage: json['homepage'] as String?,
       adultContent: json['adult'] as bool,
       mediaImages: TvImagesResponse.fromJson(
         json['images'] as Map<String, dynamic>,
@@ -71,6 +72,7 @@ Map<String, dynamic> _$AboutTvSeriesModelToJson(AboutTvSeriesModel instance) =>
       'production_companies': instance.companies,
       'seasons': instance.seasons,
       'credits': instance.actors,
+      'homepage': instance.homepage,
       'adult': instance.adultContent,
       'images': instance.mediaImages,
       'videos': instance.tvVideos,

@@ -1,57 +1,58 @@
-# Implementation Plan - Advanced Filtering, Theming, and Platform Navigation
+# Implementation Plan - UI Refinement, Navigation Persistence, and Search Optimization
 
-This plan focuses on enhancing the search experience with genre-based filtering, adhering to strict theming standards, and adding essential navigation features to the details screens.
+This plan addresses several UI/UX improvements, including reverting the Category list to a `PageView`, fixing search filter visibility issues, and preventing redundant API requests during navigation.
 
 ## User Review Required
 
 > [!IMPORTANT]
-> - **Dependency Needed**: I will implement the UI for the "Go to Platform" button, but you will need to add `url_launcher` to your `pubspec.yaml` to make it functional.
-> - **Genre Data**: I will add `genreIds` to the `PosterModel`. You will need to run `build_runner` to update the generated files.
-> - **Search UX**: I will modify the "X" clear button in search to also reset the media type filter to "All", as requested.
+> - **Navigation Logic**: To prevent redundant API requests when returning to the Home screen, I will move the global Cubits (Trending, Top Rated) to be provided above the `MaterialApp` in `main.dart`. This ensures they live for the entire app lifecycle and keep their data.
+> - **Platform Button**: The "Go to Platform" button will now open a professional BottomSheet with options. Since I don't have the specific streaming links for each platform yet, I will provide a clean UI with "Visit Website" and "Share Link" as initial options.
 
 ## Proposed Changes
 
-### 1. Theming & Color Standardization
+### 1. Global Theming & Spacing
 #### [MODIFY] [app_colors.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/core/theming/app_colors.dart)
-- Add professional category colors: `vibrantPurple`, `electricBlueAccent`, `deepTeal`, `royalIndigo`.
-#### [MODIFY] [category_card_model.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/home/data/models/category_card_model.dart)
-- Change `MaterialColor` to `Color`.
+- Add more nuanced colors for categories that better match the dark theme.
+
+---
+
+### 2. Home - Category List Redesign
 #### [MODIFY] [category_list.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/home/ui/widgets/category_list.dart)
-- Update data to use colors from `AppColors`.
+- Revert from `ListView` to `PageView.builder`.
+- Integrate `SmoothPageIndicator`.
+- Use a `viewportFraction` of ~0.85 to show a preview of adjacent cards.
 
 ---
 
-### 2. Search & Genre Filtering
-#### [MODIFY] [poster_model.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/core/models/poster_model.dart)
-- Add `List<int>? genreIds` to `PosterModel`.
+### 3. Search UI/UX Fixes
 #### [MODIFY] [custom_search_delegate.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/search/ui/custom_search_delegate.dart)
-- Fix the "X" button bug: Clear button will now reset the search filter to `All`.
-- Ensure UI rebuilds correctly when the filter is cleared.
-#### [MODIFY] [search_filter_sheet.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/search/ui/widgets/search_filter_sheet.dart)
-- Add a **Genres / Animation** section.
-- Implementation of "Animation / Anime" specifically as a prominent genre filter.
-- Sub-filters (Genres) will dynamically show/hide based on the selected media type (Movie vs TV).
+- Ensure that when the "X" button is pressed, the `searchCubit.setFilter(SearchFilterType.all)` is called and the UI reflects this immediately (removing any filter chips).
+- Verify and fix any awkward horizontal layouts in the search results.
 
 ---
 
-### 3. Details Screen Enhancements
+### 4. Details Screen & Platform Navigation
 #### [MODIFY] [movie_main_details.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/details/ui/widgets/movie_widgets/movie_main_details.dart) & [tv_main_details.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/details/ui/widgets/tv_widgets/tv_main_details.dart)
-- Move the "Favorite" button inside a more appropriate place (e.g., in a settings menu or the buttons row).
-- Add the **"Go to Platform"** button in the AppBar for high visibility.
-- Add the **"+" (Add to Watchlist)** button with a professional UI.
+- **Remove** the "+" (Add to Watchlist) button from the AppBar as requested.
+- Update the "Go to Platform" button to show a `ModalBottomSheet` with professional options.
+
+#### [MODIFY] [buttons_row.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/details/ui/widgets/shared_widgets/buttons_row.dart)
+- Refine the 3-button layout (Trailer, Watchlist (+), Favorite) for a premium look.
 
 ---
 
-### 4. Code Cleanup & Standards
-- Ensure all new components are `StatelessWidget` or `StatefulWidget`.
-- Use the project's spacing helpers (`verticalSpacing`, etc.) exclusively.
+### 5. Persistent State & Routing Fix
+#### [MODIFY] [main.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/main.dart)
+- Wrap the app in `MultiBlocProvider` for the core Home/Trending Cubits.
+#### [MODIFY] [app_router.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/core/routing/app_router.dart)
+- Remove `BlocProvider` creation from the `mainScreen` route since they will be global. This prevents re-creation and re-fetching on navigation.
 
 ## Verification Plan
 
 ### Automated Tests
-- Run `flutter analyze` to verify the project's health.
+- Run `flutter analyze` to ensure code quality.
 
 ### Manual Verification
-- Verify that searching and then clearing resets both text and filters.
-- Test the "Animation/Anime" filter to ensure it correctly filters results locally.
-- Review the new details screen layout with "Go to Platform" and "+" buttons.
+- Navigate from Home -> Details -> Home and verify that no loading indicator appears (data is cached).
+- Scroll the `CategoryList` and verify the indicator updates.
+- Use the Search "X" button and verify filters are reset.

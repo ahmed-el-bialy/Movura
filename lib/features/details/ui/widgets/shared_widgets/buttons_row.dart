@@ -50,62 +50,62 @@ class ButtonsRow extends StatelessWidget {
 
           SizedBox(width: 12.w),
 
-
-          SizedBox(
-            width: 46.r,
-            height: 46.r,
-            child: OutlinedButton(
-              onPressed: () {},
-              style: OutlinedButton.styleFrom(
-                padding: EdgeInsets.zero,
-                side: BorderSide(
-                  width: 1.5.w,
-                  color: AppColors.neonBlue.withValues(alpha: 0.4),
-                ),
-                shape: const CircleBorder(),
-                backgroundColor: AppColors.onyxBlack.withValues(alpha: 0.6),
-                elevation: 0,
-              ),
-              child:  Center(
-                child: Icon(
-                  Icons.playlist_add_rounded,
-                  color: AppColors.neonBlue,
-                  size: 24.sp,
-                ),
-              ),
-            ),
+          // Watchlist Button
+          _CircularActionButton(
+            icon: Icons.add_rounded,
+            onPressed: () {},
+            color: AppColors.neonBlue,
           ),
 
-          SizedBox(width: 10.w),
+          SizedBox(width: 12.w),
 
-
-          SizedBox(
-            width: 46.r,
-            height: 46.r,
-            child: OutlinedButton(
-              onPressed: () {
-
-              },
-              style: OutlinedButton.styleFrom(
-                padding: EdgeInsets.zero,
-                side: BorderSide(
-                  width: 1,
-                  color: Colors.redAccent.withValues(alpha: 0.4),
-                ),
-                shape: const CircleBorder(),
-                backgroundColor: AppColors.onyxBlack.withValues(alpha: 0.6),
-                elevation: 0,
-              ),
-              child: Center(
-                child: Icon(
-                  Icons.favorite_rounded,
-                  color: Colors.redAccent.withValues(alpha: 0.95),
-                  size: 20.sp,
-                ),
-              ),
-            ),
+          // Favorite Button
+          _CircularActionButton(
+            icon: Icons.favorite_rounded,
+            onPressed: () {},
+            color: AppColors.deepCrimson,
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _CircularActionButton extends StatelessWidget {
+  const _CircularActionButton({
+    required this.icon,
+    required this.onPressed,
+    required this.color,
+  });
+
+  final IconData icon;
+  final VoidCallback onPressed;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 46.r,
+      height: 46.r,
+      child: OutlinedButton(
+        onPressed: onPressed,
+        style: OutlinedButton.styleFrom(
+          padding: EdgeInsets.zero,
+          side: BorderSide(
+            width: 1.5.w,
+            color: color.withValues(alpha: 0.4),
+          ),
+          shape: const CircleBorder(),
+          backgroundColor: AppColors.onyxBlack.withValues(alpha: 0.6),
+          elevation: 0,
+        ),
+        child: Center(
+          child: Icon(
+            icon,
+            color: color.withValues(alpha: 0.95),
+            size: 24.sp,
+          ),
+        ),
       ),
     );
   }

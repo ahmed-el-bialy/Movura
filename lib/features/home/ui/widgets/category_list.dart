@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/networking/di.dart';
 import 'package:movura/core/routing/route_names.dart';
@@ -11,8 +12,24 @@ import '../../../../core/helpers/spacing.dart';
 import '../../data/models/category_card_model.dart';
 import 'category_card.dart';
 
-class CategoryList extends StatelessWidget {
+class CategoryList extends StatefulWidget {
   const CategoryList({super.key});
+
+  @override
+  State<CategoryList> createState() => _CategoryListState();
+}
+
+class _CategoryListState extends State<CategoryList> {
+  final PageController controller = PageController(
+    viewportFraction: 0.85,
+    initialPage: 0,
+  );
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,21 +75,39 @@ class CategoryList extends StatelessWidget {
       ),
     ];
 
-    return SizedBox(
-      height: 120.h,
-      child: ListView.separated(
-        padding: EdgeInsets.symmetric(horizontal: 16.w),
-        scrollDirection: Axis.horizontal,
-        physics: const BouncingScrollPhysics(),
-        itemCount: categories.length,
-        separatorBuilder: (context, index) => horizontalSpacing(12),
-        itemBuilder: (context, index) {
-          return CategoryCard(
-            model: categories[index],
-            onTap: categories[index].onTap,
-          );
-        },
-      ),
+    return Column(
+      children: [
+        SizedBox(
+          height: 140.h,
+          child: PageView.builder(
+            itemCount: categories.length,
+            controller: controller,
+            physics: const BouncingScrollPhysics(),
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.w),
+                child: CategoryCard(
+                  model: categories[index],
+                  onTap: categories[index].onTap,
+                ),
+              );
+            },
+          ),
+        ),
+        verticalSpacing(12),
+        SmoothPageIndicator(
+          controller: controller,
+          count: categories.length,
+          effect: ExpandingDotsEffect(
+            dotHeight: 6.h,
+            dotWidth: 6.w,
+            expansionFactor: 3,
+            activeDotColor: AppColors.neonBlue,
+            dotColor: AppColors.platinumGray.withValues(alpha: 0.3),
+            spacing: 6.w,
+          ),
+        ),
+      ],
     );
   }
 }

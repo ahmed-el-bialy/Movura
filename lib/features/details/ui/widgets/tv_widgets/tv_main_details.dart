@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/features/details/data/models/tv_models/about_tv_series_model.dart';
 import '../../../../../core/helpers/spacing.dart';
 import '../../../../../core/widgets/app_icon_button.dart';
+import 'package:movura/features/details/ui/widgets/shared_widgets/platform_options_sheet.dart';
 import 'sub_widgets/tv_identify_card.dart';
 
 import '../../../../../core/theming/app_colors.dart';
@@ -56,18 +57,17 @@ class TvMainDetails extends StatelessWidget {
                   AppIconButton(
                     icon: Icons.open_in_new_rounded,
                     onPressed: () {
-                      // TODO: Implement url_launcher: launchUrl(Uri.parse(model.homepage!));
+                      showModalBottomSheet(
+                        context: context,
+                        backgroundColor: Colors.transparent,
+                        builder: (context) => PlatformOptionsSheet(
+                          homepageUrl: model.homepage!,
+                        ),
+                      );
                     },
                     backgroundColor: AppColors.onyxBlack.withValues(alpha: .9),
                     size: 22,
                   ),
-                horizontalSpacing(8),
-                AppIconButton(
-                  icon: Icons.add_rounded,
-                  onPressed: () {},
-                  backgroundColor: AppColors.onyxBlack.withValues(alpha: .9),
-                  size: 22,
-                ),
               ],
             ),
           ),

@@ -23,9 +23,11 @@ class AppColors {
 
   static const Color pureWhite = Color(0xFFFFFFFF);
 
-  // Category Colors
-  static const Color vibrantPurple = Color(0xFF6A1B9A);
+  // Category & Action Colors
+  static const Color vibrantPurple = Color(0xFF8E24AA);
   static const Color electricBlueAccent = Color(0xFF2979FF);
-  static const Color tealCyan = Color(0xFF00838F);
-  static const Color royalIndigo = Color(0xFF283593);
+  static const Color tealCyan = Color(0xFF00ACC1);
+  static const Color royalIndigo = Color(0xFF3949AB);
+  static const Color amberGold = Color(0xFFFFB300);
+  static const Color deepCrimson = Color(0xFFD81B60);
 }
