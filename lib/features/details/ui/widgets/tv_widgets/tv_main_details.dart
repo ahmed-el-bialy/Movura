@@ -62,6 +62,7 @@ class TvMainDetails extends StatelessWidget {
                         backgroundColor: Colors.transparent,
                         builder: (context) => PlatformOptionsSheet(
                           homepageUrl: model.homepage!,
+                          watchProviders: model.watchProviders,
                         ),
                       );
                     },

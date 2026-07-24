@@ -19,7 +19,7 @@ abstract class TvWebServices {
   Future<AboutTvSeriesModel> getTvSeriesMainDetails({
     @Path("id") required int id,
     @Query("append_to_response")
-    String additionalData = "credits,images,videos",
+    String additionalData = "credits,images,videos,watch/providers",
     @Query("language") String language = "en-US",
   });
 

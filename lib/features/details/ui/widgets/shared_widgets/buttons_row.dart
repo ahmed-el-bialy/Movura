@@ -5,6 +5,8 @@ import 'package:movura/core/helpers/video_player.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/text_styles.dart';
 
+import 'package:movura/features/details/ui/widgets/shared_widgets/watchlist_options_sheet.dart';
+
 class ButtonsRow extends StatelessWidget {
   final String? videoKey;
 
@@ -53,7 +55,13 @@ class ButtonsRow extends StatelessWidget {
           // Watchlist Button
           _CircularActionButton(
             icon: Icons.add_rounded,
-            onPressed: () {},
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                backgroundColor: Colors.transparent,
+                builder: (context) => const WatchlistOptionsSheet(),
+              );
+            },
             color: AppColors.neonBlue,
           ),
 

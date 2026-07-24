@@ -1,28 +1,14 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/constants/api_constants.dart';
 import 'package:movura/core/helpers/spacing.dart';
-import 'package:movura/core/models/watch_provider_model.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
 
-class PlatformOptionsSheet extends StatelessWidget {
-  const PlatformOptionsSheet({
-    super.key,
-    required this.homepageUrl,
-    this.watchProviders,
-  });
-
-  final String homepageUrl;
-  final WatchProviderResponse? watchProviders;
+class WatchlistOptionsSheet extends StatelessWidget {
+  const WatchlistOptionsSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Extracting providers for a specific country (e.g., US) or just the first available
-    final providers = watchProviders?.results?['US'] ?? watchProviders?.results?.values.firstOrNull;
-    final streaming = providers?.flatrate ?? [];
-
     return Container(
       padding: EdgeInsets.fromLTRB(24.w, 12.h, 24.w, 32.h),
       decoration: BoxDecoration(
@@ -45,70 +31,55 @@ class PlatformOptionsSheet extends StatelessWidget {
           ),
           verticalSpacing(24),
           Text(
-            'Streaming Options',
+            'Add to My Lists',
             style: AppTextStyles.font17BoldIceBlueMontserrat.copyWith(
               fontSize: 18.sp,
             ),
           ),
           verticalSpacing(8),
           Text(
-            'Visit official sources to watch this content',
+            'Save this content to your personalized collections',
             style: AppTextStyles.font12CoolGrayManrope,
           ),
           verticalSpacing(24),
-          if (streaming.isNotEmpty) ...[
-            Text(
-              'AVAILABLE ON',
-              style: AppTextStyles.font10BoldCoolGray.copyWith(
-                letterSpacing: 1.2,
-                color: AppColors.neonBlue,
-              ),
-            ),
-            verticalSpacing(12),
-            SizedBox(
-              height: 60.h,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: streaming.length,
-                separatorBuilder: (_, __) => horizontalSpacing(16),
-                itemBuilder: (context, index) {
-                  final provider = streaming[index];
-                  return Column(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(12.r),
-                        child: CachedNetworkImage(
-                          imageUrl: '${ApiConstants.imageBaseUrl}${provider.logoPath}',
-                          width: 40.r,
-                          height: 40.r,
-                          errorWidget: (_, __, ___) => const Icon(Icons.broken_image),
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              ),
-            ),
-            verticalSpacing(24),
-          ],
-          _OptionTile(
-            icon: Icons.public_rounded,
-            label: 'Visit Official Website',
+          _ListOptionTile(
+            icon: Icons.bookmark_outline_rounded,
+            label: 'Watchlist',
             onTap: () {
-              // TODO: Implement url_launcher: launchUrl(Uri.parse(homepageUrl));
+              // TODO: Implement Watchlist logic
               Navigator.pop(context);
             },
             color: AppColors.neonBlue,
           ),
           verticalSpacing(12),
-          _OptionTile(
-            icon: Icons.share_rounded,
-            label: 'Share Content Link',
+          _ListOptionTile(
+            icon: Icons.check_circle_outline_rounded,
+            label: 'Mark as Watched',
             onTap: () {
-              // TODO: Implement share functionality
+              // TODO: Implement Watched logic
               Navigator.pop(context);
             },
             color: AppColors.tealCyan,
+          ),
+          verticalSpacing(12),
+          _ListOptionTile(
+            icon: Icons.favorite_border_rounded,
+            label: 'Add to Favorites',
+            onTap: () {
+              // TODO: Implement Favorites logic
+              Navigator.pop(context);
+            },
+            color: AppColors.deepCrimson,
+          ),
+          verticalSpacing(12),
+          _ListOptionTile(
+            icon: Icons.add_box_outlined,
+            label: 'Create Custom List',
+            onTap: () {
+              // TODO: Implement custom list creation
+              Navigator.pop(context);
+            },
+            color: AppColors.amberGold,
           ),
         ],
       ),
@@ -116,8 +87,8 @@ class PlatformOptionsSheet extends StatelessWidget {
   }
 }
 
-class _OptionTile extends StatelessWidget {
-  const _OptionTile({
+class _ListOptionTile extends StatelessWidget {
+  const _ListOptionTile({
     required this.icon,
     required this.label,
     required this.onTap,
@@ -157,9 +128,9 @@ class _OptionTile extends StatelessWidget {
               ),
               const Spacer(),
               Icon(
-                Icons.arrow_forward_ios_rounded,
+                Icons.add_rounded,
                 color: AppColors.coolGray,
-                size: 14.sp,
+                size: 20.sp,
               ),
             ],
           ),
