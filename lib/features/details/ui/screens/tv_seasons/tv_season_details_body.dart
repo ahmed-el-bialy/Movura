@@ -16,10 +16,12 @@ class TvSeasonDetailsBody extends StatelessWidget {
     super.key,
     required this.seasonDetails,
     required this.tvTitle,
+    required this.tvId,
   });
 
   final SeasonDetailsModel seasonDetails;
   final String tvTitle;
+  final int tvId;
 
   @override
   Widget build(BuildContext context) {
@@ -228,8 +230,12 @@ class TvSeasonDetailsBody extends StatelessWidget {
 
         SliverToBoxAdapter(child: verticalSpacing(12)),
 
-        // ─── Episodes list ─────────────────────────────────────────────────────
-        EpisodesList(episodes: seasonDetails.episodes),
+        EpisodesList(
+          episodes: seasonDetails.episodes,
+          tvId: tvId,
+          tvTitle: tvTitle,
+          seasonName: seasonDetails.name ?? 'Season',
+        ),
 
         SliverToBoxAdapter(child: verticalSpacing(40)),
       ],

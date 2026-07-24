@@ -6,15 +6,15 @@ import 'package:movura/features/auth/ui/screens/log_in_screen.dart';
 import 'package:movura/features/auth/ui/screens/sign_up_screen.dart';
 import 'package:movura/features/details/data/repos/tv_series_repo.dart';
 import 'package:movura/features/details/logic/tv_series_cubit/about_tv/about_tv_cubit.dart';
-import 'package:movura/features/details/logic/tv_series_cubit/tv_seasons_cubit/tv_seasons_cubit.dart';
-import 'package:movura/features/details/ui/screens/all_seasons_screen.dart';
-import 'package:movura/features/details/ui/screens/season_details_screen.dart';
+import 'package:movura/features/details/ui/screens/episode_details_screen.dart';
+import 'package:movura/features/details/ui/screens/tv_seasons_screen.dart';
 import 'package:movura/features/details/ui/screens/tv_series_details_screen.dart';
 import 'package:movura/features/trending_screen.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../features/details/data/repos/movies_repo.dart';
 import '../../features/details/logic/movie_screen_cubit/main_details/about_cubit.dart';
+import '../../features/details/ui/screens/all_seasons_screen.dart';
 import '../../features/details/ui/screens/movie_details_screen.dart';
 import '../../features/details/ui/screens/video_screen.dart';
 import '../../features/home/logic/top_rated_movies/top_rated_movies_cubit.dart';
@@ -91,16 +91,15 @@ class AppRouter {
         }
 
       case RouteNames.seasonDetailsScreen:
-        final arguments = setting.arguments as SeasonArgumentsModel;
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => TvSeasonsCubit(repo: sl<TvSeriesRepo>())
-              ..getTvSeasonDetails(
-                tvId: arguments.tvId,
-                seasonNumber: arguments.seasonNumber,
-              ),
-            child: SeasonDetailsScreen(arguments: arguments),
-          ),
+          builder: (_) => const TvSeasonDetailsScreen(),
+          settings: setting,
+        );
+
+      case RouteNames.episodeDetailsScreen:
+        return MaterialPageRoute(
+          builder: (_) => const EpisodeDetailsScreen(),
+          settings: setting,
         );
 
       case RouteNames.allSeasonsScreen:

@@ -8,7 +8,8 @@ import 'package:movura/features/details/logic/tv_series_cubit/tv_seasons_cubit/t
 import 'package:movura/features/details/ui/screens/tv_seasons/tv_season_details_body.dart';
 import 'package:movura/features/details/ui/widgets/shared_widgets/season_loading_skeleton.dart';
 
-import '../../../../../core/widgets/back_to_home_scope.dart';
+import 'package:movura/core/widgets/app_navigation_bar.dart';
+import 'package:movura/core/widgets/back_to_home_scope.dart';
 
 class TvSeasonDetailsScreen extends StatelessWidget {
   const TvSeasonDetailsScreen({super.key});
@@ -26,6 +27,7 @@ class TvSeasonDetailsScreen extends StatelessWidget {
       child: BackToHomeScope(
         child: Scaffold(
           backgroundColor: AppColors.richEerieBlack,
+          extendBody: true,
           body: BlocBuilder<TvSeasonsCubit, TvSeasonsState>(
             builder: (context, state) {
               if (state is TvSeasonsLoading) {
@@ -37,6 +39,7 @@ class TvSeasonDetailsScreen extends StatelessWidget {
                 return TvSeasonDetailsBody(
                   seasonDetails: state.seasonDetails,
                   tvTitle: args.tvTitle,
+                  tvId: args.tvId,
                 );
               } else if (state is TvSeasonsFailed) {
                 return Center(
@@ -49,6 +52,7 @@ class TvSeasonDetailsScreen extends StatelessWidget {
               return const SizedBox.shrink();
             },
           ),
+          bottomNavigationBar: const AppNavigationBar(activeIndex: 0),
         ),
       ),
     );
