@@ -1,0 +1,7 @@
+- [ ] Update `EpisodeDetailsModel` with videos and images
+- [ ] Update `EpisodeArgumentsModel` with `totalEpisodes`
+- [ ] Implement new sections in `EpisodeDetailsBody` (Videos, Images, Navigation)
+- [ ] Update `EpisodeDetailsScreen` logic
+- [ ] Refine `SearchFilterSheet` and logic
+- [ ] Run `build_runner`
+- [ ] Commit and push changes

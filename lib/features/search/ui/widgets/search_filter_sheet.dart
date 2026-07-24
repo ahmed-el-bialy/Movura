@@ -65,13 +65,22 @@ class SearchFilterSheet extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20.h),
-            ...SearchFilterType.values.map((filter) {
-              final isSelected = filter == selectedFilter;
-              return Padding(
-                padding: EdgeInsets.only(bottom: 10.h),
-                child: Material(
+            GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 12.w,
+                mainAxisSpacing: 12.h,
+                childAspectRatio: 2.2,
+              ),
+              itemCount: SearchFilterType.values.length,
+              itemBuilder: (context, index) {
+                final filter = SearchFilterType.values[index];
+                final isSelected = filter == selectedFilter;
+                return Material(
                   color: isSelected
-                      ? AppColors.neonBlue.withValues(alpha: 0.12)
+                      ? AppColors.neonBlue.withValues(alpha: 0.15)
                       : AppColors.onyxBlack,
                   borderRadius: BorderRadius.circular(16.r),
                   child: InkWell(
@@ -79,11 +88,7 @@ class SearchFilterSheet extends StatelessWidget {
                     splashColor: AppColors.neonBlue.withValues(alpha: 0.2),
                     onTap: () => onFilterSelected(filter),
                     child: Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 16.w,
-                        vertical: 14.h,
-                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 12.w),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16.r),
                         border: Border.all(
@@ -99,30 +104,27 @@ class SearchFilterSheet extends StatelessWidget {
                             color: isSelected
                                 ? AppColors.neonBlue
                                 : AppColors.slateGray,
-                            size: 22.sp,
+                            size: 20.sp,
                           ),
-                          SizedBox(width: 14.w),
-                          Text(
-                            filter.label,
-                            style: (isSelected
-                                    ? AppTextStyles.font13BoldNeonBlueSora
-                                    : AppTextStyles.font14PureWhiteManrope)
-                                .copyWith(fontSize: 14.sp),
-                          ),
-                          const Spacer(),
-                          if (isSelected)
-                            Icon(
-                              Icons.check_circle_rounded,
-                              color: AppColors.neonBlue,
-                              size: 22.sp,
+                          SizedBox(width: 10.w),
+                          Expanded(
+                            child: Text(
+                              filter.label,
+                              style: (isSelected
+                                      ? AppTextStyles.font13BoldNeonBlueSora
+                                      : AppTextStyles.font14PureWhiteManrope)
+                                  .copyWith(fontSize: 13.sp),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
+                          ),
                         ],
                       ),
                     ),
                   ),
-                ),
-              );
-            }),
+                );
+              },
+            ),
           ],
         ),
       ),

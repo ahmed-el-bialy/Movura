@@ -6,11 +6,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/constants/api_constants.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/helpers/spacing.dart';
+import 'package:movura/core/routing/arguments_model.dart';
+import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/widgets/section_title.dart';
 import 'package:movura/features/details/data/models/tv_models/episode_details_model.dart';
 import 'package:movura/features/details/ui/widgets/shared_widgets/actors_list.dart';
+import 'package:movura/features/details/ui/widgets/shared_widgets/images_list.dart';
+import 'package:movura/features/details/ui/widgets/shared_widgets/videos_list.dart';
 
 class EpisodeDetailsBody extends StatelessWidget {
   const EpisodeDetailsBody({
@@ -18,15 +22,36 @@ class EpisodeDetailsBody extends StatelessWidget {
     required this.episode,
     required this.tvTitle,
     required this.seasonName,
+    required this.tvId,
+    this.totalEpisodes,
   });
 
   final EpisodeDetailsModel episode;
   final String tvTitle;
   final String seasonName;
+  final int tvId;
+  final int? totalEpisodes;
+
+  void _navigateToEpisode(BuildContext context, int episodeNumber) {
+    context.pushReplacementNamed(
+      RouteNames.episodeDetailsScreen,
+      EpisodeArgumentsModel(
+        tvId: tvId,
+        seasonNumber: episode.seasonNumber,
+        episodeNumber: episodeNumber,
+        tvTitle: tvTitle,
+        seasonName: seasonName,
+        totalEpisodes: totalEpisodes,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     final hasStill = episode.stillPath != null && episode.stillPath!.isNotEmpty;
+    final hasNext =
+        totalEpisodes != null && episode.episodeNumber < totalEpisodes!;
+    final hasPrevious = episode.episodeNumber > 1;
 
     return CustomScrollView(
       physics: const BouncingScrollPhysics(),
@@ -151,7 +176,8 @@ class EpisodeDetailsBody extends StatelessWidget {
                                     ),
                                     child: Text(
                                       'S${episode.seasonNumber} E${episode.episodeNumber}',
-                                      style: AppTextStyles.font13BoldNeonBlueSora
+                                      style: AppTextStyles
+                                          .font13BoldNeonBlueSora
                                           .copyWith(fontSize: 11.sp),
                                     ),
                                   ),
@@ -175,7 +201,7 @@ class EpisodeDetailsBody extends StatelessWidget {
                               ),
                               verticalSpacing(8),
                               Text(
-                                episode.name,
+                                episode.name ?? "",
                                 style: AppTextStyles.font17BoldIceBlueMontserrat
                                     .copyWith(fontSize: 18.sp),
                                 maxLines: 2,
@@ -269,8 +295,120 @@ class EpisodeDetailsBody extends StatelessWidget {
               ],
             ),
           ),
+        if (episode.videos != null && episode.videos!.videoList.isNotEmpty)
+          SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                verticalSpacing(15),
+                const SectionTitle(sectionName: 'VIDEOS'),
+                verticalSpacing(8),
+                VideosList(allVideos: episode.videos!.videoList),
+              ],
+            ),
+          ),
+        if (episode.images != null &&
+            episode.images!.backdropImages.isNotEmpty)
+          SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                verticalSpacing(15),
+                const SectionTitle(sectionName: 'STILLS'),
+                verticalSpacing(8),
+                ImagesList(images: episode.images!.backdropImages),
+              ],
+            ),
+          ),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 30.h),
+            child: Row(
+              children: [
+                if (hasPrevious)
+                  Expanded(
+                    child: _NavigationButton(
+                      label: 'Previous Episode',
+                      icon: Icons.skip_previous_rounded,
+                      onTap: () =>
+                          _navigateToEpisode(context, episode.episodeNumber - 1),
+                      isLeft: true,
+                    ),
+                  ),
+                if (hasPrevious && hasNext) horizontalSpacing(12),
+                if (hasNext)
+                  Expanded(
+                    child: _NavigationButton(
+                      label: 'Next Episode',
+                      icon: Icons.skip_next_rounded,
+                      onTap: () =>
+                          _navigateToEpisode(context, episode.episodeNumber + 1),
+                      isLeft: false,
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ),
         SliverToBoxAdapter(child: verticalSpacing(90)),
       ],
+    );
+  }
+}
+
+class _NavigationButton extends StatelessWidget {
+  const _NavigationButton({
+    required this.label,
+    required this.icon,
+    required this.onTap,
+    required this.isLeft,
+  });
+
+  final String label;
+  final IconData icon;
+  final VoidCallback onTap;
+  final bool isLeft;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: AppColors.onyxBlack,
+      borderRadius: BorderRadius.circular(16.r),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(16.r),
+        splashColor: AppColors.neonBlue.withValues(alpha: 0.1),
+        child: Container(
+          padding: EdgeInsets.all(16.r),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16.r),
+            border: Border.all(
+              color: AppColors.pureWhite.withValues(alpha: 0.1),
+            ),
+          ),
+          child: Row(
+            mainAxisAlignment:
+                isLeft ? MainAxisAlignment.start : MainAxisAlignment.end,
+            children: [
+              if (isLeft) ...[
+                Icon(icon, color: AppColors.neonBlue, size: 20.sp),
+                horizontalSpacing(8),
+              ],
+              Text(
+                label,
+                style: AppTextStyles.font13BoldNeonBlueSora.copyWith(
+                  fontSize: 12.sp,
+                  color: AppColors.iceBlue,
+                ),
+              ),
+              if (!isLeft) ...[
+                horizontalSpacing(8),
+                Icon(icon, color: AppColors.neonBlue, size: 20.sp),
+              ],
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
