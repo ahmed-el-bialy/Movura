@@ -85,7 +85,7 @@ class SeasonLoadingSkeleton extends StatelessWidget {
           // ─── Episode skeletons ─────────────────────────────────────────────
           SliverList(
             delegate: SliverChildBuilderDelegate(
-              (_, __) => Padding(
+              (context, index) => Padding(
                 padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
                 child: Container(
                   height: 100.h,

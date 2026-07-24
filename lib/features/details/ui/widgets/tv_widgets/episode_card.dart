@@ -35,7 +35,7 @@ class EpisodeCard extends StatelessWidget {
                       imageUrl:
                           '${ApiConstants.imageBaseUrl}${episode.stillPath}',
                       fit: BoxFit.cover,
-                      errorWidget: (_, __, ___) => _EpisodePlaceholder(
+                      errorWidget: (context, url, error) => _EpisodePlaceholder(
                         episodeNumber: episode.episodeNumber,
                       ),
                     )

@@ -73,7 +73,7 @@ class TvSeasonDetailsBody extends StatelessWidget {
                         imageUrl:
                             '${ApiConstants.imageBaseUrl}${seasonDetails.posterPath}',
                         fit: BoxFit.cover,
-                        errorWidget: (_, __, ___) =>
+                        errorWidget: (context, url, error) =>
                             Container(color: AppColors.onyxBlack),
                       )
                     : Container(color: AppColors.onyxBlack),

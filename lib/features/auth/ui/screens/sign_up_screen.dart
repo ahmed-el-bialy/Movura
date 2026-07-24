@@ -5,7 +5,6 @@ import 'package:movura/core/helpers/validators.dart';
 
 import '../../../../core/extensions/routing_extension.dart';
 import '../../../../core/helpers/spacing.dart';
-import '../../../../core/routing/route_names.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../../../../core/widgets/app_text_button.dart';
