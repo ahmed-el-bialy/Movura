@@ -1,20 +1,36 @@
 part of 'search_cubit.dart';
 
 @immutable
-sealed class SearchState {}
+sealed class SearchState {
+  const SearchState({this.filter = SearchFilterType.all});
 
-final class SearchInitial extends SearchState {}
+  final SearchFilterType filter;
+}
 
-final class SearchLoading extends SearchState {}
+final class SearchInitial extends SearchState {
+  const SearchInitial({super.filter});
+}
+
+final class SearchLoading extends SearchState {
+  const SearchLoading({super.filter});
+}
 
 final class SearchFounded extends SearchState {
-  final List<PosterModel> posters;
+  const SearchFounded({
+    required this.posters,
+    required super.filter,
+    required this.query,
+  });
 
-  SearchFounded({required this.posters});
+  final List<PosterModel> posters;
+  final String query;
 }
 
 final class SearchFailed extends SearchState {
-  final String errorMessage;
+  const SearchFailed({
+    required this.errorMessage,
+    required super.filter,
+  });
 
-  SearchFailed({required this.errorMessage});
+  final String errorMessage;
 }

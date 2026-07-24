@@ -2,9 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/features/search/data/models/search_filter_type.dart';
 import 'package:movura/features/search/ui/widgets/build_search_results.dart';
+import 'package:movura/features/search/ui/widgets/search_filter_sheet.dart';
 
 import '../../../core/theming/app_colors.dart';
+import '../../../core/theming/text_styles.dart';
 import '../logic/search/search_cubit.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
@@ -16,7 +19,7 @@ class CustomSearchDelegate extends SearchDelegate {
   CustomSearchDelegate({required this.searchCubit});
 
   @override
-  String? get searchFieldLabel => 'Search movies, tv shows...';
+  String? get searchFieldLabel => 'Search movies, tv shows, people...';
 
   @override
   ThemeData appBarTheme(BuildContext context) {
@@ -36,17 +39,56 @@ class CustomSearchDelegate extends SearchDelegate {
     );
   }
 
+  Future<void> _openFilterSheet(BuildContext context) async {
+    final selected = await SearchFilterSheet.show(
+      context,
+      selectedFilter: searchCubit.currentFilter,
+    );
+
+    if (selected != null) {
+      searchCubit.setFilter(selected);
+      if (query.trim().isNotEmpty) {
+        lastQuery = '';
+        searchCubit.getSearchResults(query: query.trim());
+      }
+    }
+  }
+
   @override
   List<Widget>? buildActions(context) {
     return [
+      if (searchCubit.currentFilter != SearchFilterType.all)
+        Padding(
+          padding: EdgeInsets.only(right: 4.w),
+          child: Chip(
+            label: Text(
+              searchCubit.currentFilter.label,
+              style: AppTextStyles.font12CoolGrayManrope.copyWith(
+                color: AppColors.neonBlue,
+                fontSize: 11.sp,
+              ),
+            ),
+            backgroundColor: AppColors.neonBlue.withValues(alpha: 0.12),
+            side: BorderSide(color: AppColors.neonBlue.withValues(alpha: 0.4)),
+            visualDensity: VisualDensity.compact,
+            onDeleted: () {
+              searchCubit.setFilter(SearchFilterType.all);
+              if (query.trim().isNotEmpty) {
+                lastQuery = '';
+                searchCubit.getSearchResults(query: query.trim());
+              }
+            },
+          ),
+        ),
       IconButton(
         onPressed: () {
           query = '';
+          showSuggestions(context);
         },
         icon: Icon(Icons.clear, color: AppColors.neonBlue),
       ),
       IconButton(
-        onPressed: () {},
+        onPressed: () => _openFilterSheet(context),
         icon: Icon(Icons.filter_alt, color: AppColors.neonBlue),
       ),
     ];
@@ -70,9 +112,10 @@ class CustomSearchDelegate extends SearchDelegate {
   @override
   Widget buildSuggestions(context) {
     if (query.isEmpty) {
-      lastQuery = "";
-      return Container(color: AppColors.richEerieBlack);
+      lastQuery = '';
+      return _SearchEmptyState(filter: searchCubit.currentFilter);
     }
+
     final currentQuery = query.trim();
     if (currentQuery == lastQuery) {
       return BuildSearchResultsGrid(searchCubit: searchCubit);
@@ -86,5 +129,46 @@ class CustomSearchDelegate extends SearchDelegate {
     });
 
     return BuildSearchResultsGrid(searchCubit: searchCubit);
+  }
+}
+
+class _SearchEmptyState extends StatelessWidget {
+  const _SearchEmptyState({required this.filter});
+
+  final SearchFilterType filter;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: AppColors.richEerieBlack,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.search_rounded,
+              size: 56.sp,
+              color: AppColors.neonBlue.withValues(alpha: 0.4),
+            ),
+            SizedBox(height: 16.h),
+            Text(
+              'Search Movura',
+              style: AppTextStyles.font20SimiBoldNeonBlueManrope.copyWith(
+                fontSize: 18.sp,
+              ),
+            ),
+            SizedBox(height: 8.h),
+            Text(
+              filter == SearchFilterType.all
+                  ? 'Find movies, TV shows, and people'
+                  : 'Showing ${filter.label.toLowerCase()} only',
+              style: AppTextStyles.font12CoolGrayManrope.copyWith(
+                fontSize: 13.sp,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
