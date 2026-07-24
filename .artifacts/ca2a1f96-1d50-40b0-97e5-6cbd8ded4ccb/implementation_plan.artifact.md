@@ -1,60 +1,63 @@
-# Implementation Plan - Enhancing Episode Details and Search Filtering
+# Implementation Plan - Professional Navigation, UI Redesign, and Architecture Refinement
 
-This plan aims to professionalize the `EpisodeDetailsScreen` and enhance the `Search` functionality with advanced filtering, following the project's existing architecture and style.
+This plan aims to transform the app into a high-end, professional product by implementing persistent navigation, a modern Home UI, and a cleaner project structure.
 
 ## User Review Required
 
 > [!IMPORTANT]
-> - I will be adding `images` and `videos` to the `EpisodeDetailsModel`. This requires running `build_runner` to update the generated files.
-> - I will add "Next/Previous Episode" navigation. This requires updating `EpisodeArgumentsModel` to include the total number of episodes in the season.
+> - **Stateful Navigation**: I will implement a `MainWrapperScreen` using an `IndexedStack` to keep the Home, Search, Categories, and Profile pages in memory. This prevents unnecessary API re-requests when switching tabs.
+> - **Trending Banners**: The top cards on the Home screen will be replaced with a high-end "Movie Poster Banner" using `PageView` and glassmorphism effects.
+> - **Sub-Widget Restructuring**: I will move local widgets into `sub_widgets` directories to keep the main `widgets` folders clean.
 
 ## Proposed Changes
 
-### Core & Models
+### 1. Navigation & Routing (Stateful/Persistent)
 
-#### [MODIFY] [episode_details_model.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/details/data/models/tv_models/episode_details_model.dart)
-- Add `TvVideoResponse? videos` and `TvImagesResponse? images` fields.
-- Update constructor and JSON serialization.
+#### [NEW] [main_wrapper_screen.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/main_wrapper_screen.dart)
+- Create a root screen that manages the `AppNavigationBar` and an `IndexedStack` for the 4 main tabs.
+- Tab 1: Home
+- Tab 2: Search (Integrated as a full screen or persistent delegate)
+- Tab 3: Categories
+- Tab 4: Profile
 
-#### [MODIFY] [arguments_model.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/core/routing/arguments_model.dart)
-- Add `totalEpisodes` to `EpisodeArgumentsModel` to enable navigation.
-
----
-
-### UI - Episode Details
-
-#### [MODIFY] [episode_details_body.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/details/ui/widgets/tv_widgets/episode_widgets/episode_details_body.dart)
-- Add `VideosList` section.
-- Add `ImagesList` section.
-- Implement a bottom navigation row for "Previous Episode" and "Next Episode".
-- Improve overall styling and animations (e.g., using `SliverToBoxAdapter` for new sections).
-
-#### [MODIFY] [episode_details_screen.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/details/ui/screens/episode_details_screen.dart)
-- Update to handle navigation between episodes if possible (by re-providing the Cubit or updating the state).
+#### [MODIFY] [app_router.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/core/routing/app_router.dart)
+- Update `mainScreen` route to point to `MainWrapperScreen`.
 
 ---
 
-### UI - Search Filtering
+### 2. Home UI - Trending Banners (Redesign from Scratch)
 
-#### [MODIFY] [search_filter_sheet.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/search/ui/widgets/search_filter_sheet.dart)
-- Redesign the sheet to be more professional.
-- Add "Release Year" or "Sort By" options (UI only for now, logic to follow if API supports).
-
-#### [MODIFY] [search_cubit.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/search/logic/search/search_cubit.dart)
-- Refine filtering logic.
+#### [NEW] [home_trending_banner.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/home/ui/widgets/sub_widgets/home_trending_banner.dart)
+- A professional, auto-playing (optional) banner using `PageView`.
+- Features: Stacked gradients, high-quality image background, and glassmorphism info cards.
 
 ---
 
-### Git Workflow
-- Perform atomic commits for each major change.
-- Push to GitHub.
+### 3. Architecture & Refactoring (Sub-Widgets)
+
+#### [MODIFY] Directory Structure
+- Create `sub_widgets` folders in:
+  - `lib/features/home/ui/widgets/`
+  - `lib/features/search/ui/widgets/`
+  - `lib/features/details/ui/widgets/tv_widgets/`
+- Move specific, non-reusable sub-components into these folders.
+
+---
+
+### 4. Search & Auth UI Tweaks
+
+#### [MODIFY] [custom_search_delegate.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/search/ui/custom_search_delegate.dart)
+- Fix text visibility issues (White/IceBlue text on dark bg).
+
+#### [MODIFY] [log_in_screen.dart](file:///home/uzumaki/Development/Flutter /Personal/Movura/lib/features/auth/ui/screens/log_in_screen.dart)
+- Professional cleanup (Gradients, better shadow handling).
 
 ## Verification Plan
 
 ### Automated Tests
-- Since the project has a `test` folder, I will check if there are relevant tests to run.
-- Run `flutter test` if applicable.
+- Run `flutter pub run build_runner build` to ensure all models are up to date.
 
 ### Manual Verification
-- Render Compose previews if applicable (though this is Flutter, so I'll rely on code quality).
-- Verify the UI layout in the code.
+- Switch between tabs and verify that the Home screen does **not** show a loading indicator (state is preserved).
+- Verify the new Trending Banner animations and responsiveness.
+- Ensure the Search input text is clearly visible.

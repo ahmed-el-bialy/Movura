@@ -10,14 +10,23 @@ import 'package:movura/features/search/ui/custom_search_delegate.dart';
 
 class AppNavigationBar extends StatelessWidget {
   final int activeIndex;
+  final ValueChanged<int>? onTabChanged;
 
-  const AppNavigationBar({super.key, required this.activeIndex});
+  const AppNavigationBar({
+    super.key,
+    required this.activeIndex,
+    this.onTabChanged,
+  });
 
   void _openSearch(BuildContext context) {
-    showSearch(
-      context: context,
-      delegate: CustomSearchDelegate(searchCubit: sl<SearchCubit>()),
-    );
+    if (onTabChanged != null) {
+      onTabChanged!(1);
+    } else {
+      showSearch(
+        context: context,
+        delegate: CustomSearchDelegate(searchCubit: sl<SearchCubit>()),
+      );
+    }
   }
 
   @override
@@ -48,7 +57,9 @@ class AppNavigationBar extends StatelessWidget {
                     icon: Icons.home_rounded,
                     isActive: activeIndex == 0,
                     onTap: () {
-                      if (!context.isOnHomeScreen) {
+                      if (onTabChanged != null) {
+                        onTabChanged!(0);
+                      } else if (!context.isOnHomeScreen) {
                         context.goHome();
                       }
                     },
@@ -62,7 +73,9 @@ class AppNavigationBar extends StatelessWidget {
                     icon: Icons.format_list_bulleted_rounded,
                     isActive: activeIndex == 2,
                     onTap: () {
-                      if (!context.isOnHomeScreen) {
+                      if (onTabChanged != null) {
+                        onTabChanged!(2);
+                      } else if (!context.isOnHomeScreen) {
                         context.goHome();
                       }
                     },
@@ -71,7 +84,9 @@ class AppNavigationBar extends StatelessWidget {
                     icon: Icons.person_rounded,
                     isActive: activeIndex == 3,
                     onTap: () {
-                      if (!context.isOnHomeScreen) {
+                      if (onTabChanged != null) {
+                        onTabChanged!(3);
+                      } else if (!context.isOnHomeScreen) {
                         context.goHome();
                       }
                     },

@@ -1,7 +1,10 @@
-- [ ] Update `EpisodeDetailsModel` with videos and images
-- [ ] Update `EpisodeArgumentsModel` with `totalEpisodes`
-- [ ] Implement new sections in `EpisodeDetailsBody` (Videos, Images, Navigation)
-- [ ] Update `EpisodeDetailsScreen` logic
-- [ ] Refine `SearchFilterSheet` and logic
+- [ ] Implement `MainWrapperScreen` with `IndexedStack`
+- [ ] Create `CategoriesScreen` and `ProfileScreen` placeholders
+- [ ] Update `AppRouter` and `RouteNames`
+- [ ] Redesign Home Trending section with `HomeTrendingBanner`
+- [ ] Fix Search text visibility and professional look
+- [ ] Fix Episode Details model (Null handling for images/videos)
+- [ ] Refactor widgets into `sub_widgets`
+- [ ] Update Auth screens (Login/Signup)
 - [ ] Run `build_runner`
 - [ ] Commit and push changes

@@ -183,9 +183,9 @@ class TvActorResponse {
 @JsonSerializable()
 class TvVideoResponse {
   @JsonKey(name: "results")
-  final List<VideoModel> videoList;
+  final List<VideoModel>? videoList;
 
-  TvVideoResponse({required this.videoList});
+  TvVideoResponse({this.videoList});
 
   factory TvVideoResponse.fromJson(Map<String, dynamic> json) =>
       _$TvVideoResponseFromJson(json);
@@ -196,11 +196,13 @@ class TvVideoResponse {
 @JsonSerializable()
 class TvImagesResponse {
   @JsonKey(name: "backdrops")
-  final List<ImageModel> backdropImages;
+  final List<ImageModel>? backdropImages;
   @JsonKey(name: "logos")
-  final List<ImageModel> logoImages;
+  final List<ImageModel>? logoImages;
+  @JsonKey(name: "stills")
+  final List<ImageModel>? stills;
 
-  TvImagesResponse({required this.backdropImages, required this.logoImages});
+  TvImagesResponse({this.backdropImages, this.logoImages, this.stills});
 
   factory TvImagesResponse.fromJson(Map<String, dynamic> json) =>
       _$TvImagesResponseFromJson(json);
