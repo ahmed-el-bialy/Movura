@@ -9,7 +9,7 @@ part of 'episode_details_model.dart';
 EpisodeDetailsModel _$EpisodeDetailsModelFromJson(Map<String, dynamic> json) =>
     EpisodeDetailsModel(
       id: (json['id'] as num).toInt(),
-      name: json['name'] as String,
+      name: json['name'] as String?,
       overview: json['overview'] as String?,
       airDate: json['air_date'] as String?,
       episodeNumber: (json['episode_number'] as num).toInt(),

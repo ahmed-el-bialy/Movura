@@ -39,6 +39,7 @@ class EpisodeArgumentsModel {
   final int episodeNumber;
   final String tvTitle;
   final String seasonName;
+  final int? totalEpisodes;
 
   EpisodeArgumentsModel({
     required this.tvId,
@@ -46,5 +47,6 @@ class EpisodeArgumentsModel {
     required this.episodeNumber,
     required this.tvTitle,
     required this.seasonName,
+    this.totalEpisodes,
   });
 }

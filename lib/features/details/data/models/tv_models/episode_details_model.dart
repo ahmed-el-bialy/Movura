@@ -1,12 +1,13 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:movura/core/models/actor_model.dart';
+import 'package:movura/features/details/data/models/tv_models/about_tv_series_model.dart';
 
 part 'episode_details_model.g.dart';
 
 @JsonSerializable()
 class EpisodeDetailsModel {
   final int id;
-  final String name;
+  final String? name;
   final String? overview;
 
   @JsonKey(name: "air_date")
@@ -32,9 +33,15 @@ class EpisodeDetailsModel {
   @JsonKey(name: "crew")
   final List<ActorModel>? crew;
 
+  @JsonKey(name: "images")
+  final TvImagesResponse? images;
+
+  @JsonKey(name: "videos")
+  final TvVideoResponse? videos;
+
   EpisodeDetailsModel({
     required this.id,
-    required this.name,
+    this.name,
     this.overview,
     this.airDate,
     required this.episodeNumber,
@@ -44,6 +51,8 @@ class EpisodeDetailsModel {
     this.runtime,
     this.guestStars,
     this.crew,
+    this.images,
+    this.videos,
   });
 
   factory EpisodeDetailsModel.fromJson(Map<String, dynamic> json) =>
