@@ -1,4 +1,4 @@
-import 'package:movura/features/details/data/models/tv_models/about_tv_series_model.dart';
+import 'package:movura/features/tv_details/data/about_tv_series_model.dart';
 
 class ArgumentsModel {
   final String mediaType;

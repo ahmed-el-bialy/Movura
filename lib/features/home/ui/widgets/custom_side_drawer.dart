@@ -60,41 +60,35 @@ class CustomSideDrawer extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(vertical: 4.h),
             child: ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.person_outline_rounded,
                 color: AppColors.coolGray,
               ),
               title: const Text(
                 'Profile',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppColors.pureWhite),
               ),
-              onTap: () {
-                // context.pop();
-                // context.pushNamed(Strings.profileScreen);
-              },
+              onTap: () {},
             ),
           ),
 
           Padding(
             padding: EdgeInsets.symmetric(vertical: 4.h),
             child: ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.star_outline_rounded,
                 color: AppColors.coolGray,
               ),
               title: const Text(
                 'Go Pro',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppColors.pureWhite),
               ),
               trailing: Icon(
                 Icons.auto_awesome,
                 color: AppColors.neonBlue,
                 size: 22.sp,
               ),
-              onTap: () {
-                // context.pop();
-                // context.pushNamed(Strings.goProScreen);
-              },
+              onTap: () {},
             ),
           ),
 
@@ -119,13 +113,13 @@ class CustomSideDrawer extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(vertical: 2.h),
             child: ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.movie_filter_outlined,
                 color: AppColors.coolGray,
               ),
               title: const Text(
                 'Discover Movies',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppColors.pureWhite),
               ),
               subtitle: Text(
                 'Popular, Top Rated, Upcoming',
@@ -139,20 +133,17 @@ class CustomSideDrawer extends StatelessWidget {
                 color: AppColors.coolGray.withValues(alpha: 0.5),
                 size: 14.sp,
               ),
-              onTap: () {
-                // context.pop();
-                // context.pushNamed(Strings.moviesCategoryScreen);
-              },
+              onTap: () {},
             ),
           ),
 
           Padding(
             padding: EdgeInsets.symmetric(vertical: 2.h),
             child: ListTile(
-              leading: Icon(Icons.tv_outlined, color: AppColors.coolGray),
+              leading: const Icon(Icons.tv_outlined, color: AppColors.coolGray),
               title: const Text(
                 'TV Series',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppColors.pureWhite),
               ),
               subtitle: Text(
                 'Popular, Top Rated, On The Air',
@@ -166,23 +157,20 @@ class CustomSideDrawer extends StatelessWidget {
                 color: AppColors.coolGray.withValues(alpha: 0.5),
                 size: 14.sp,
               ),
-              onTap: () {
-                // context.pop();
-                // context.pushNamed(Strings.tvCategoryScreen);
-              },
+              onTap: () {},
             ),
           ),
 
           Padding(
             padding: EdgeInsets.symmetric(vertical: 2.h),
             child: ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.people_alt_outlined,
                 color: AppColors.coolGray,
               ),
               title: const Text(
                 'Popular People',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppColors.pureWhite),
               ),
               subtitle: Text(
                 'Trending Actors & Creators',
@@ -196,10 +184,7 @@ class CustomSideDrawer extends StatelessWidget {
                 color: AppColors.coolGray.withValues(alpha: 0.5),
                 size: 14.sp,
               ),
-              onTap: () {
-                // context.pop();
-                // context.pushNamed(Strings.popularPeopleScreen);
-              },
+              onTap: () {},
             ),
           ),
 
@@ -215,11 +200,11 @@ class CustomSideDrawer extends StatelessWidget {
             child: ListTile(
               leading: const Icon(
                 Icons.logout_rounded,
-                color: Colors.redAccent,
+                color: AppColors.softRed,
               ),
               title: const Text(
                 'Logout',
-                style: TextStyle(color: Colors.redAccent),
+                style: TextStyle(color: AppColors.softRed),
               ),
               onTap: () {
                 context.pop();

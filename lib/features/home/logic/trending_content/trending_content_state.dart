@@ -13,8 +13,8 @@ final class TrendingContentLoaded extends TrendingContentState {
 
 final class TrendingContentLoading extends TrendingContentState {}
 
-final class TrendingContentFailed extends TrendingContentState {
+final class TrendingContentError extends TrendingContentState {
   final String errorMessage;
 
-  TrendingContentFailed({required this.errorMessage});
+  TrendingContentError({required this.errorMessage});
 }

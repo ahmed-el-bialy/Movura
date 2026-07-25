@@ -19,7 +19,7 @@ class TrendingContentCubit extends Cubit<TrendingContentState> {
       posters = await postersRepo.getTrendingMedia();
       emit(TrendingContentLoaded(posters: posters ?? []));
     } catch (e) {
-      emit(TrendingContentFailed(errorMessage: e.toString()));
+      emit(TrendingContentError(errorMessage: e.toString()));
     }
   }
 }

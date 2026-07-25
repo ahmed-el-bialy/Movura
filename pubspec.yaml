@@ -37,7 +37,7 @@ dependencies:
   # Flutter widgets that make it easy to implement the Bloc (Business Logic Component) design pattern.
   flutter_bloc: ^9.1.1
   # networking .
-  dio: ^5.10.0
+  dio: ^5.11.0
   retrofit_generator: ^10.2.8
   retrofit: ^4.9.2
   pretty_dio_logger: ^1.4.0
@@ -71,6 +71,10 @@ dependencies:
   flutter_dotenv: ^6.0.1
   # Customizable animated page indicator with a set of built-in effects.
   smooth_page_indicator: ^2.0.1
+  # Open URLs in the browser or other apps.
+  url_launcher: ^6.3.1
+  # Share content via the platform share UI.
+  share_plus: ^10.1.4
 
   #  firebase
   firebase_core: ^4.12.1

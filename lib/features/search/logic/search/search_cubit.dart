@@ -10,13 +10,15 @@ import '../../../../core/models/poster_model.dart';
 part 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> {
-  SearchCubit({required this.searchRepo, required this.homeRepo}) : super(SearchInitial());
+  SearchCubit({required this.searchRepo, required this.homeRepo})
+    : super(SearchInitial());
 
   final SearchRepo searchRepo;
   final HomeRepo homeRepo;
   List<PosterModel> _allPosters = [];
   SearchFilterType currentFilter = SearchFilterType.all;
   int? selectedGenreId;
+  bool sortByRating = false;
   String _lastQuery = '';
 
   List<GenreModel> movieGenres = [];
@@ -37,14 +39,14 @@ class SearchCubit extends Cubit<SearchState> {
       _lastQuery = query;
       _allPosters = await searchRepo.getSearchResults(query: query, page: page);
       emit(
-        SearchFounded(
+        SearchLoaded(
           posters: _applyFilter(_allPosters),
           filter: currentFilter,
           query: query,
         ),
       );
     } catch (e) {
-      emit(SearchFailed(errorMessage: e.toString(), filter: currentFilter));
+      emit(SearchError(errorMessage: e.toString(), filter: currentFilter, query: query));
     }
   }
 
@@ -53,7 +55,7 @@ class SearchCubit extends Cubit<SearchState> {
     selectedGenreId = null; // Reset genre when changing main filter
     if (_allPosters.isNotEmpty) {
       emit(
-        SearchFounded(
+        SearchLoaded(
           posters: _applyFilter(_allPosters),
           filter: currentFilter,
           query: _lastQuery,
@@ -68,7 +70,20 @@ class SearchCubit extends Cubit<SearchState> {
     selectedGenreId = genreId;
     if (_allPosters.isNotEmpty) {
       emit(
-        SearchFounded(
+        SearchLoaded(
+          posters: _applyFilter(_allPosters),
+          filter: currentFilter,
+          query: _lastQuery,
+        ),
+      );
+    }
+  }
+
+  void setSortByRating(bool sortBy) {
+    sortByRating = sortBy;
+    if (_allPosters.isNotEmpty) {
+      emit(
+        SearchLoaded(
           posters: _applyFilter(_allPosters),
           filter: currentFilter,
           query: _lastQuery,
@@ -78,14 +93,26 @@ class SearchCubit extends Cubit<SearchState> {
   }
 
   List<PosterModel> _applyFilter(List<PosterModel> posters) {
-    var filtered = posters;
+    var filtered = List<PosterModel>.from(posters);
     final mediaType = currentFilter.mediaType;
     if (mediaType != null) {
-      filtered = filtered.where((poster) => poster.mediaType == mediaType).toList();
+      filtered = filtered
+          .where((poster) => poster.mediaType == mediaType)
+          .toList();
     }
 
     if (selectedGenreId != null) {
-      filtered = filtered.where((poster) => poster.genreIds?.contains(selectedGenreId) ?? false).toList();
+      filtered = filtered
+          .where(
+            (poster) => poster.genreIds?.contains(selectedGenreId) ?? false,
+          )
+          .toList();
+    }
+
+    if (sortByRating) {
+      filtered.sort(
+        (a, b) => (b.voteAverage ?? 0.0).compareTo(a.voteAverage ?? 0.0),
+      );
     }
 
     return filtered;

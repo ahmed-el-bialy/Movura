@@ -13,8 +13,8 @@ final class TopRatedTvSeriesLoaded extends TopRatedTvSeriesState {
 
 final class TopRatedTvSeriesLoading extends TopRatedTvSeriesState {}
 
-final class TopRatedTvSeriesFailed extends TopRatedTvSeriesState {
+final class TopRatedTvSeriesError extends TopRatedTvSeriesState {
   final String errorMessage;
 
-  TopRatedTvSeriesFailed({required this.errorMessage});
+  TopRatedTvSeriesError({required this.errorMessage});
 }

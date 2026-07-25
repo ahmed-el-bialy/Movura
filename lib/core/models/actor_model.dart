@@ -4,19 +4,21 @@ part 'actor_model.g.dart';
 
 @JsonSerializable()
 class ActorModel {
+  final int? id;
   @JsonKey(name: "known_for_department")
-  final String job;
+  final String? job;
   @JsonKey(name: "name")
-  final String name;
+  final String? name;
   @JsonKey(name: "character")
-  final String character;
+  final String? character;
   @JsonKey(name: "profile_path")
   final String? actorImage;
 
   ActorModel({
-    required this.job,
-    required this.name,
-    required this.character,
+    this.id,
+    this.job,
+    this.name,
+    this.character,
     this.actorImage,
   });
 

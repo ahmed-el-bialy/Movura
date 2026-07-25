@@ -1,0 +1,50 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/constants/api_constants.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/text_styles.dart';
+
+import '../../data/about_tv_series_model.dart';
+
+class TvNetworkCard extends StatelessWidget {
+  const TvNetworkCard({super.key, required this.network});
+
+  final TvNetworkModel network;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 100.w,
+      padding: EdgeInsets.all(12.r),
+      decoration: BoxDecoration(
+        color: AppColors.onyxBlack.withValues(alpha: 0.4),
+        borderRadius: BorderRadius.circular(16.r),
+        border: Border.all(color: AppColors.slateGray.withValues(alpha: 0.1)),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            child: network.logo != null
+                ? CachedNetworkImage(
+                    imageUrl: "${ApiConstants.imageBaseUrl}${network.logo}",
+                    fit: BoxFit.contain,
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.tv, color: Colors.white70),
+                  )
+                : const Icon(Icons.tv, color: Colors.white70),
+          ),
+          SizedBox(height: 8.h),
+          Text(
+            network.name ?? 'Network',
+            style: AppTextStyles.font10BoldCoolGray,
+            textAlign: TextAlign.center,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
+      ),
+    );
+  }
+}

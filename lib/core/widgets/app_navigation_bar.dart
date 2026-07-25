@@ -1,8 +1,6 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/networking/di.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/widgets/sub_widgets/nav_item.dart';
@@ -60,8 +58,6 @@ class AppNavigationBar extends StatelessWidget {
                     onTap: () {
                       if (onTabChanged != null) {
                         onTabChanged!(0);
-                      } else if (!context.isOnHomeScreen) {
-                        context.goHome();
                       }
                     },
                   ),
@@ -76,8 +72,6 @@ class AppNavigationBar extends StatelessWidget {
                     onTap: () {
                       if (onTabChanged != null) {
                         onTabChanged!(2);
-                      } else if (!context.isOnHomeScreen) {
-                        context.goHome();
                       }
                     },
                   ),
@@ -87,8 +81,6 @@ class AppNavigationBar extends StatelessWidget {
                     onTap: () {
                       if (onTabChanged != null) {
                         onTabChanged!(3);
-                      } else if (!context.isOnHomeScreen) {
-                        context.goHome();
                       }
                     },
                   ),

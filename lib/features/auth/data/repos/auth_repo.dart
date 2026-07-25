@@ -17,7 +17,6 @@ class AuthRepo {
 
       final userData = await authServices.getUserData(uid: credential.user!.uid);
       if (userData.isEmpty) {
-        // Handle case where user exists in Auth but not in Firestore
         return UserModel(
           id: credential.user!.uid,
           email: email,

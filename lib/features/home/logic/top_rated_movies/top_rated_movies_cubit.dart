@@ -19,7 +19,7 @@ class TopRatedMovieCubit extends Cubit<TopRatedMovieState> {
       posters = await postersRepo.getTopRatedMovies();
       emit(TopRatedMovieLoaded(posters: posters ?? []));
     } catch (e) {
-      emit(TopRatedMovieFailed(errorMessage: e.toString()));
+      emit(TopRatedMovieError(errorMessage: e.toString()));
     }
   }
 }

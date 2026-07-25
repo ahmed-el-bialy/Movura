@@ -1,28 +1,30 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/models/poster_model.dart';
+import 'package:movura/core/theming/app_colors.dart';
 
-import '../../../../../core/theming/text_styles.dart';
-import '../../../../../core/constants/api_constants.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/constants/api_constants.dart';
 
 class PersonCard extends StatelessWidget {
-  const PersonCard({super.key, required this.person, this.height, this.width});
+  const PersonCard({super.key, required this.person});
 
   final PosterModel person;
-  final double? height;
-  final double? width;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 10,
-      margin: EdgeInsets.zero,
-      clipBehavior: Clip.antiAlias,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.r)),
-      child: SizedBox(
-        width: width?.w ?? 220.w,
-        height: height?.h ?? 310.h,
+    return GestureDetector(
+      onTap: () {
+        context.pushNamed(RouteNames.personDetailsScreen, arguments: person.id);
+      },
+      child: Card(
+        elevation: 8,
+        margin: EdgeInsets.zero,
+        clipBehavior: Clip.antiAlias,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
         child: Stack(
           fit: StackFit.expand,
           children: [
@@ -32,64 +34,43 @@ class PersonCard extends StatelessWidget {
                   : "",
               fit: BoxFit.cover,
               errorWidget: (context, url, error) => Container(
-                color: const Color(0xFF2C2938),
-                child: Icon(Icons.person, size: 50.sp),
+                color: AppColors.onyxBlack,
+                child: Icon(Icons.person_rounded, size: 40.sp, color: AppColors.slateGray),
               ),
             ),
-
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: Padding(
-                padding: EdgeInsets.all(2.r),
-                child: Card(
-                  color: const Color(0xFF2C2938).withValues(alpha: .8),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 8.w,
-                      vertical: 4.h,
-                    ),
-                    child: Text(
-                      person.name ?? "Unknown",
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppTextStyles.font17BoldIceBlueMontserrat,
-                    ),
-                  ),
+            Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.transparent,
+                    Colors.black.withValues(alpha: 0.1),
+                    Colors.black.withValues(alpha: 0.8),
+                  ],
                 ),
               ),
             ),
-
-            Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: EdgeInsets.all(2.r),
-                child: Card(
-                  color: const Color(0xFF2C2938).withValues(alpha: .8),
-                  child: Padding(
-                    padding: EdgeInsets.all(5.r),
-                    child: Text(
-                      "Person",
-                      style: AppTextStyles.font16SimiBoldPlatinumGray,
+            Padding(
+              padding: EdgeInsets.all(12.r),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    person.name ?? "Unknown",
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTextStyles.font14BoldIceBlueMontserrat,
+                  ),
+                  SizedBox(height: 4.h),
+                  Text(
+                    person.knownForDepartment ?? "Person",
+                    style: AppTextStyles.font10MediumCoolGraySora.copyWith(
+                      color: AppColors.neonBlue.withValues(alpha: 0.8),
                     ),
                   ),
-                ),
-              ),
-            ),
-
-            Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding: EdgeInsets.all(2.r),
-                child: Card(
-                  color: const Color(0xFF2C2938).withValues(alpha: .8),
-                  child: Padding(
-                    padding: EdgeInsets.all(5.r),
-                    child: Text(
-                      person.knownForDepartment ?? "Unknown",
-                      style: AppTextStyles.font16SimiBoldPlatinumGray,
-                    ),
-                  ),
-                ),
+                ],
               ),
             ),
           ],

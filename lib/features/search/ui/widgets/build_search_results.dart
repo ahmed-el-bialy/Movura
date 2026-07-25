@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/widgets/app_error_widget.dart';
 import 'package:movura/core/widgets/skeleton_poster_grid_loading.dart';
 import 'package:movura/features/search/data/models/search_filter_type.dart';
 import 'package:movura/features/search/ui/widgets/sub_widgets/person_card.dart';
@@ -21,10 +22,10 @@ class BuildSearchResultsGrid extends StatelessWidget {
       bloc: searchCubit,
       builder: (context, state) {
         if (state is SearchLoading) {
-          return SkeletonPosterGridLoading();
+          return const SkeletonPosterGridLoading();
         }
 
-        if (state is SearchFounded) {
+        if (state is SearchLoaded) {
           if (state.posters.isEmpty) {
             return Container(
               color: AppColors.jetBlack,
@@ -56,21 +57,19 @@ class BuildSearchResultsGrid extends StatelessWidget {
           if (state.filter == SearchFilterType.people) {
             return Container(
               color: AppColors.jetBlack,
-              child: ListView.builder(
-                padding: EdgeInsets.symmetric(vertical: 12.h),
+              child: GridView.builder(
+                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
                 physics: const BouncingScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 16.h,
+                  crossAxisSpacing: 12.w,
+                  childAspectRatio: 0.7,
+                ),
                 itemCount: state.posters.length,
                 itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 12.w,
-                      vertical: 8.h,
-                    ),
-                    child: PersonCard(
-                      person: state.posters[index],
-                      width: double.infinity,
-                      height: 120,
-                    ),
+                  return PersonCard(
+                    person: state.posters[index],
                   );
                 },
               ),
@@ -83,16 +82,10 @@ class BuildSearchResultsGrid extends StatelessWidget {
           );
         }
 
-        if (state is SearchFailed) {
-          return Center(
-            child: Padding(
-              padding: EdgeInsets.all(20.r),
-              child: Text(
-                state.errorMessage,
-                style: AppTextStyles.font13MediumNeonBlue,
-                textAlign: TextAlign.center,
-              ),
-            ),
+        if (state is SearchError) {
+          return AppErrorWidget(
+            errorMessage: state.errorMessage,
+            onRetry: () => searchCubit.getSearchResults(query: state.query),
           );
         }
 

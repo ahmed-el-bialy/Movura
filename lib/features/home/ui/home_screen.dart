@@ -24,10 +24,9 @@ class HomeScreen extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 8.w),
         child: CustomScrollView(
-          scrollDirection: Axis.vertical,
           physics: const BouncingScrollPhysics(),
           slivers: [
-            HomeAppBar(),
+            const HomeAppBar(),
             SliverToBoxAdapter(
               child: Padding(
                 padding: EdgeInsets.only(top: 15.h, bottom: 20.h),
@@ -38,28 +37,26 @@ class HomeScreen extends StatelessWidget {
               child: SectionTitle(
                 sectionName: "Trending Now",
                 actionName: "See All ",
-                onTap: () {
-                  context.pushNamed(RouteNames.trendingScreen, null);
-                },
+                onTap: () => context.pushNamed(RouteNames.trendingScreen),
               ),
             ),
-            TrendingList(),
+            const TrendingList(),
             sliverVerticalSpacing(25),
-            SliverToBoxAdapter(
+            const SliverToBoxAdapter(
               child: SectionTitle(
                 sectionName: "Top Rated Movies",
                 actionName: "See All ",
               ),
             ),
-            SliverToBoxAdapter(child: TopMoviesList()),
+            const SliverToBoxAdapter(child: TopMoviesList()),
             sliverVerticalSpacing(25),
-            SliverToBoxAdapter(
+            const SliverToBoxAdapter(
               child: SectionTitle(
                 sectionName: "Top Rated TV Series",
                 actionName: "See All ",
               ),
             ),
-            SliverToBoxAdapter(child: TopTvSeriesList()),
+            const SliverToBoxAdapter(child: TopTvSeriesList()),
             sliverVerticalSpacing(100),
           ],
         ),

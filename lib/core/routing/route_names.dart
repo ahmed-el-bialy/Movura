@@ -8,6 +8,7 @@ class RouteNames {
   static const String seasonDetailsScreen = "/seasonDetails";
   static const String allSeasonsScreen = "/allSeasons";
   static const String episodeDetailsScreen = "/episodeDetails";
+  static const String personDetailsScreen = "/personDetails";
   static const String libraryScreen = "/library";
   static const String profileScreen = "/profile";
 }
