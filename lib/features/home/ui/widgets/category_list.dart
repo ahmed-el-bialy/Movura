@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/networking/di.dart';
 import 'package:movura/core/routing/route_names.dart';
+import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/features/search/logic/search/search_cubit.dart';
 import 'package:movura/features/search/ui/custom_search_delegate.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import 'package:movura/core/theming/app_colors.dart';
 import '../../../../core/helpers/spacing.dart';
 import '../../data/models/category_card_model.dart';
 import 'category_card.dart';
@@ -40,7 +40,7 @@ class _CategoryListState extends State<CategoryList> {
         hint: "TOP CHOICE",
         icon: Icons.tv_rounded,
         onTap: () {
-          context.pushNamed(RouteNames.trendingScreen, null);
+          context.pushNamed(RouteNames.trendingScreen, arguments: null);
         },
       ),
       CategoryCardModel(
@@ -49,7 +49,7 @@ class _CategoryListState extends State<CategoryList> {
         hint: "TOP CHOICE",
         icon: Icons.auto_awesome_rounded,
         onTap: () {
-          context.pushNamed(RouteNames.trendingScreen, null);
+          context.pushNamed(RouteNames.trendingScreen, arguments: null);
         },
       ),
       CategoryCardModel(
@@ -58,7 +58,7 @@ class _CategoryListState extends State<CategoryList> {
         hint: "DAILY UPDATES",
         icon: Icons.trending_up_rounded,
         onTap: () {
-          context.pushNamed(RouteNames.trendingScreen, null);
+          context.pushNamed(RouteNames.trendingScreen, arguments: null);
         },
       ),
       CategoryCardModel(

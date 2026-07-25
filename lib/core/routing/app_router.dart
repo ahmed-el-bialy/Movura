@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/core/routing/route_names.dart';
-import 'package:movura/core/widgets/back_to_home_scope.dart';
 import 'package:movura/features/auth/ui/screens/log_in_screen.dart';
-import 'package:movura/features/details/logic/tv_series_cubit/about_tv/about_tv_cubit.dart';
-import 'package:movura/features/details/ui/screens/tv_series_details_screen.dart';
-import 'package:movura/features/details/ui/screens/tv_seasons_screen.dart';
-import 'package:movura/features/details/ui/screens/episode_details_screen.dart';
 import 'package:movura/features/auth/ui/screens/sign_up_screen.dart';
 import 'package:movura/features/home/ui/home_screen.dart';
-import 'package:movura/features/main/ui/main_wrapper_screen.dart';
 import 'package:movura/features/home/ui/screens/trending_screen.dart';
 import 'package:movura/features/library/ui/screens/library_screen.dart';
+import 'package:movura/features/main/ui/main_wrapper_screen.dart';
+import 'package:movura/features/movie_details/logic/main_details/about_cubit.dart';
+import 'package:movura/features/movie_details/ui/screens/movie_details_screen.dart';
+import 'package:movura/features/movie_details/ui/screens/video_screen.dart';
+import 'package:movura/features/person_details/logic/person_details_cubit.dart';
+import 'package:movura/features/person_details/ui/screens/person_details_screen.dart';
+import 'package:movura/features/tv_details/logic/about_tv/about_tv_cubit.dart';
+import 'package:movura/features/tv_details/ui/screens/all_seasons_screen.dart';
+import 'package:movura/features/tv_details/ui/screens/episode_details_screen.dart';
+import 'package:movura/features/tv_details/ui/screens/tv_details_screen.dart';
+import 'package:movura/features/tv_details/ui/screens/tv_seasons_screen.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import '../../features/details/logic/movie_screen_cubit/main_details/about_cubit.dart';
-import '../../features/details/ui/screens/all_seasons_screen.dart';
-import '../../features/details/ui/screens/movie_details_screen.dart';
-import '../../features/details/ui/screens/video_screen.dart';
-import '../../features/home/logic/trending_content/trending_content_cubit.dart';
 import '../networking/di.dart';
 import 'arguments_model.dart';
 
@@ -32,23 +32,13 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const SignUpScreen());
 
       case RouteNames.trendingScreen:
-        return MaterialPageRoute(
-          builder: (_) => const BackToHomeScope(
-            child: TrendingScreen(),
-          ),
-        );
+        return MaterialPageRoute(builder: (_) => const TrendingScreen());
 
       case RouteNames.mainScreen:
-        return MaterialPageRoute(
-          builder: (_) => HomeRootScope(
-            child: const MainWrapperScreen(),
-          ),
-        );
+        return MaterialPageRoute(builder: (_) => const MainWrapperScreen());
 
       case RouteNames.libraryScreen:
-        return MaterialPageRoute(
-          builder: (_) => const LibraryScreen(),
-        );
+        return MaterialPageRoute(builder: (_) => const LibraryScreen());
 
       case RouteNames.detailsScreen:
         final arguments = setting.arguments as ArgumentsModel;
@@ -57,7 +47,8 @@ class AppRouter {
           return MaterialPageRoute(
             builder: (_) => BlocProvider(
               create: (context) =>
-                  sl<AboutCubit>()..getMovieMainDetails(id: arguments.mediaId),
+              sl<AboutCubit>()
+                ..getMovieMainDetails(id: arguments.mediaId),
               child: const MovieDetailsScreen(),
             ),
           );
@@ -65,7 +56,8 @@ class AppRouter {
           return MaterialPageRoute(
             builder: (_) => BlocProvider(
               create: (context) =>
-                  sl<AboutTvCubit>()..getTvSeriesMainDetails(id: arguments.mediaId),
+              sl<AboutTvCubit>()
+                ..getTvSeriesMainDetails(id: arguments.mediaId),
               child: const TvSeriesDetailsScreen(),
             ),
           );
@@ -83,6 +75,18 @@ class AppRouter {
           settings: setting,
         );
 
+      case RouteNames.personDetailsScreen:
+        final personId = setting.arguments as int;
+        return MaterialPageRoute(
+          builder: (_) =>
+              BlocProvider(
+                create: (context) =>
+                sl<PersonDetailsCubit>()
+                  ..getPersonDetails(id: personId),
+                child: const PersonDetailsScreen(),
+              ),
+        );
+
       case RouteNames.allSeasonsScreen:
         final arguments = setting.arguments as AllSeasonsArgumentsModel;
         return MaterialPageRoute(
@@ -96,7 +100,7 @@ class AppRouter {
         );
       default:
         return MaterialPageRoute(
-          builder: (_) => HomeRootScope(child: const HomeScreen()),
+          builder: (_) => const HomeScreen(),
         );
     }
   }

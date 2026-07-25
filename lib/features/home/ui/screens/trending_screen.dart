@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/widgets/app_error_widget.dart';
 import 'package:movura/core/widgets/app_icon_button.dart';
 import 'package:movura/core/widgets/app_navigation_bar.dart';
 import 'package:movura/core/widgets/custom_posters_grid_view.dart';
@@ -28,7 +29,7 @@ class TrendingScreen extends StatelessWidget {
             floating: true,
             leading: AppIconButton(
               icon: Icons.arrow_back_ios_new_rounded,
-              onPressed: () => context.popToHomeOrGoHome(),
+              onPressed: () => context.pop(),
             ),
             title: Text(
               'Trending Today',
@@ -47,13 +48,13 @@ class TrendingScreen extends StatelessWidget {
                 );
               }
 
-              if (state is TrendingContentFailed) {
+              if (state is TrendingContentError) {
                 return SliverFillRemaining(
-                  child: Center(
-                    child: Text(
-                      state.errorMessage,
-                      style: AppTextStyles.font13MediumNeonBlue,
-                    ),
+                  child: AppErrorWidget(
+                    errorMessage: state.errorMessage,
+                    onRetry: () => context
+                        .read<TrendingContentCubit>()
+                        .getTrendingPosters(),
                   ),
                 );
               }
@@ -67,7 +68,9 @@ class TrendingScreen extends StatelessWidget {
                 );
               }
 
-              return const SliverToBoxAdapter(child: SizedBox.shrink());
+              return const SliverToBoxAdapter(
+                child: AppErrorWidget(errorMessage: "Something went wrong"),
+              );
             },
           ),
           sliverVerticalSpacing(90),

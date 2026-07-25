@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movura/core/widgets/app_error_widget.dart';
 import 'package:movura/core/widgets/skeleton_posters_list_loading.dart';
 import 'package:movura/features/home/ui/widgets/trending_poster_list.dart';
-
-import '../../../../core/theming/text_styles.dart';
 import '../../logic/trending_content/trending_content_cubit.dart';
 
 class TrendingList extends StatelessWidget {
@@ -19,18 +18,15 @@ class TrendingList extends StatelessWidget {
           return SliverToBoxAdapter(
             child: TrendingPosterList(trendingContent: state.posters),
           );
-        } else if (state is TrendingContentFailed) {
+        } else if (state is TrendingContentError) {
           return SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(state.errorMessage, style: AppTextStyles.font13MediumNeonBlue),
+            child: AppErrorWidget(
+              errorMessage: state.errorMessage,
+              onRetry: () => context.read<TrendingContentCubit>().getTrendingPosters(),
             ),
           );
-        } else {
-          return SliverToBoxAdapter(
-            child: Text(state.toString(), style: AppTextStyles.font13MediumNeonBlue),
-          );
         }
+        return const SliverToBoxAdapter(child: SizedBox.shrink());
       },
     );
   }

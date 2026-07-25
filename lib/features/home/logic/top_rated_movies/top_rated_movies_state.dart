@@ -12,8 +12,8 @@ final class TopRatedMovieLoaded extends TopRatedMovieState {
 
 final class TopRatedMovieLoading extends TopRatedMovieState {}
 
-final class TopRatedMovieFailed extends TopRatedMovieState {
+final class TopRatedMovieError extends TopRatedMovieState {
   final String errorMessage;
 
-  TopRatedMovieFailed({required this.errorMessage});
+  TopRatedMovieError({required this.errorMessage});
 }

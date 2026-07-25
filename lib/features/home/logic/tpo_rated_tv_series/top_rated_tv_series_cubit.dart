@@ -19,7 +19,7 @@ class TopRatedTvSeriesCubit extends Cubit<TopRatedTvSeriesState> {
       posters = await postersRepo.getTopRatedTvSeries();
       emit(TopRatedTvSeriesLoaded(posters: posters ?? []));
     } catch (e) {
-      emit(TopRatedTvSeriesFailed(errorMessage: e.toString()));
+      emit(TopRatedTvSeriesError(errorMessage: e.toString()));
     }
   }
 }

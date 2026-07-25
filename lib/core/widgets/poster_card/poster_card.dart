@@ -54,7 +54,7 @@ class PosterCard extends StatelessWidget {
       onTap: () {
         context.pushNamed(
           RouteNames.detailsScreen,
-          ArgumentsModel(
+          arguments: ArgumentsModel(
             mediaType: mediaModel?.mediaType ?? mediaType ?? "movie",
             mediaId: mediaModel!.id,
           ),

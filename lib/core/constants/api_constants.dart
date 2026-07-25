@@ -15,6 +15,7 @@ class ApiConstants {
   static const String multiSearch = "search/multi";
   static const String movieGenres = "genre/movie/list";
   static const String tvGenres = "genre/tv/list";
+  static const String personDetails = "person";
 
   static const String imageBaseUrl = "https://image.tmdb.org/t/p/w500";
   static const String videoCoverBaseUrl = 'https://img.youtube.com/vi/';

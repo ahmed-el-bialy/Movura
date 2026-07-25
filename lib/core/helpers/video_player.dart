@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:movura/core/utils/constants/app_constants.dart';
-import 'package:movura/core/utils/extensions/routing_extension.dart';
+import 'package:movura/core/routing/route_names.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
+import '../extensions/routing_extension.dart';
+
 Future<void> playYoutubeVideo(
-    BuildContext context,
+  BuildContext context,
 
-    String videoKey, {
+  String videoKey, {
 
-      bool autoPlay = true,
+  bool autoPlay = true,
 
-      bool mute = false,
+  bool mute = false,
 
-      bool enableCaption = true,
+  bool enableCaption = true,
 
-      String? captionLanguage = 'en',
+  String? captionLanguage = 'en',
 
-      bool forceHD = true,
+  bool forceHD = true,
 
-      bool loop = false,
-    }) async {
+  bool loop = false,
+}) async {
   try {
     await _prepareVideoMode();
 
@@ -54,7 +55,7 @@ Future<void> playYoutubeVideo(
 
     if (!context.mounted) return;
 
-    await context.pushNamed(AppConstants.videoPlayScreen, controller);
+    await context.pushNamed(RouteNames.videoPlayScreen, arguments: controller);
   } catch (e) {
     debugPrint('Error playing YouTube video: $e');
 

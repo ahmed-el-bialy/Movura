@@ -11,7 +11,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     try {
       final user = await authRepo.login(email, password);
-      emit(AuthSuccess(user));
+      emit(AuthLoaded(user));
     } catch (e) {
       emit(AuthError(e.toString()));
     }
@@ -29,7 +29,7 @@ class AuthCubit extends Cubit<AuthState> {
         email: email,
         password: password,
       );
-      emit(AuthSuccess(user));
+      emit(AuthLoaded(user));
     } catch (e) {
       emit(AuthError(e.toString()));
     }
@@ -57,7 +57,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     try {
       final user = await authRepo.signInWithGoogle();
-      emit(AuthSuccess(user));
+      emit(AuthLoaded(user));
     } catch (e) {
       emit(AuthError(e.toString()));
     }
@@ -67,7 +67,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     try {
       final user = await authRepo.signInWithFacebook();
-      emit(AuthSuccess(user));
+      emit(AuthLoaded(user));
     } catch (e) {
       emit(AuthError(e.toString()));
     }
@@ -77,7 +77,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     try {
       final user = await authRepo.signInWithApple();
-      emit(AuthSuccess(user));
+      emit(AuthLoaded(user));
     } catch (e) {
       emit(AuthError(e.toString()));
     }

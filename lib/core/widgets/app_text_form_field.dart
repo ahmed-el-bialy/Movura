@@ -89,14 +89,14 @@ class AppTextFormField extends StatelessWidget {
             errorBorder ??
             OutlineInputBorder(
               borderRadius: BorderRadius.circular(16.r),
-              borderSide: BorderSide(color: Colors.red, width: 1.2.w),
+              borderSide: BorderSide(color: AppColors.softRed, width: 1.2.w),
             ),
 
         focusedErrorBorder:
             focusedErrorBorder ??
             OutlineInputBorder(
               borderRadius: BorderRadius.circular(16.r),
-              borderSide: BorderSide(color: Colors.redAccent, width: 1.2.w),
+              borderSide: BorderSide(color: AppColors.softRed, width: 1.2.w),
             ),
         errorMaxLines: 2,
       ),

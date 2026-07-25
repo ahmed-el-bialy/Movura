@@ -15,8 +15,8 @@ final class SearchLoading extends SearchState {
   const SearchLoading({super.filter});
 }
 
-final class SearchFounded extends SearchState {
-  const SearchFounded({
+final class SearchLoaded extends SearchState {
+  const SearchLoaded({
     required this.posters,
     required super.filter,
     required this.query,
@@ -26,11 +26,13 @@ final class SearchFounded extends SearchState {
   final String query;
 }
 
-final class SearchFailed extends SearchState {
-  const SearchFailed({
+final class SearchError extends SearchState {
+  const SearchError({
     required this.errorMessage,
     required super.filter,
+    required this.query,
   });
 
   final String errorMessage;
+  final String query;
 }
