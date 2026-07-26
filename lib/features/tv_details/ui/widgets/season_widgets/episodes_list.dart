@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
-import 'package:movura/core/routing/arguments_model.dart';
+import 'package:movura/core/routing/arguments_models.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/features/tv_details/data/season_details_model.dart';
 import '../episode_card.dart';

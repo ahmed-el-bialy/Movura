@@ -6,7 +6,7 @@ import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/widgets/read_more_text.dart';
 import 'package:movura/core/widgets/section_title.dart';
 
-import '../../../data/about_model.dart';
+import '../../../data/models/about_model.dart';
 
 class MovieStoryAndGenres extends StatelessWidget {
   const MovieStoryAndGenres({super.key, required this.model});
@@ -20,11 +20,25 @@ class MovieStoryAndGenres extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SectionTitle(sectionName: "STORYLINE"),
-          verticalSpacing(10),
+          SectionTitle(
+            sectionName: "STORYLINE",
+            titleStyle: AppTextStyles.font20SimiBoldPlatinumGray.copyWith(
+              fontSize: 16.sp,
+            ),
+            horizontalPadding: 1,
+            verticalPadding: 2,
+          ),
+          verticalSpacing(5),
           ReadMoreText(content: model.overview ?? ''),
-          verticalSpacing(20),
-          const SectionTitle(sectionName: "GENRES"),
+          verticalSpacing(10),
+          SectionTitle(
+            sectionName: "GENRES",
+            titleStyle: AppTextStyles.font20SimiBoldPlatinumGray.copyWith(
+              fontSize: 16.sp,
+            ),
+            horizontalPadding: 1,
+            verticalPadding: 2,
+          ),
           verticalSpacing(10),
           if (model.genres != null)
             Wrap(
@@ -50,6 +64,8 @@ class MovieStoryAndGenres extends StatelessWidget {
                 );
               }).toList(),
             ),
+
+          verticalSpacing(10),
         ],
       ),
     );

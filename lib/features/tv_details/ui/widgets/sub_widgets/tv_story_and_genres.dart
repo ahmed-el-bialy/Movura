@@ -20,11 +20,26 @@ class TvStoryAndGenres extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SectionTitle(sectionName: "STORYLINE"),
-          verticalSpacing(10),
+          verticalSpacing(30),
+          SectionTitle(
+            sectionName: "STORYLINE",
+            titleStyle: AppTextStyles.font20SimiBoldPlatinumGray.copyWith(
+              fontSize: 16.sp,
+            ),
+            horizontalPadding: 0,
+            verticalPadding: 0,
+          ),
+          verticalSpacing(6),
           ReadMoreText(content: model.overview ?? ''),
-          verticalSpacing(20),
-          const SectionTitle(sectionName: "GENRES"),
+          verticalSpacing(15),
+          SectionTitle(
+            sectionName: "GENRES",
+            titleStyle: AppTextStyles.font20SimiBoldPlatinumGray.copyWith(
+              fontSize: 16.sp,
+            ),
+            horizontalPadding: 0,
+            verticalPadding: 0,
+          ),
           verticalSpacing(10),
           if (model.genres != null)
             Wrap(

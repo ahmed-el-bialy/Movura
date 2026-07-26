@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:movura/core/helpers/spacing.dart';
 import 'package:movura/core/networking/di.dart';
-import 'package:movura/features/movie_details/data/about_model.dart';
-import 'package:movura/features/movie_details/logic/reviews/reviews_cubit.dart';
-import 'package:movura/features/movie_details/logic/similar_content/similar_content_cubit.dart';
 import 'package:movura/core/widgets/shared_details/buttons_row.dart';
 import 'package:movura/core/widgets/shared_details/details_tabs.dart';
+import 'package:movura/features/movie_details/data/models/about_model.dart';
+import 'package:movura/features/movie_details/logic/reviews/reviews_cubit.dart';
+import 'package:movura/features/movie_details/logic/similar_content/similar_content_cubit.dart';
+
 import 'about_tab_body.dart';
 import 'movie_main_details.dart';
 import 'movie_reviews_tab_body.dart';
@@ -52,8 +52,9 @@ class MovieScreenBody extends StatelessWidget {
         children: [
           MovieMainDetails(model: model),
           ButtonsRow(videoKey: trailerKey),
-          verticalSpacing(20),
+          verticalSpacing(30),
           AdditionalData(model: model),
+          verticalSpacing(20),
           MovieStoryAndGenres(model: model),
           verticalSpacing(10),
           DetailsTabs(

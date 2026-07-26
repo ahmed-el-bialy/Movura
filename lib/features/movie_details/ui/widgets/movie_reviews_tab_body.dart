@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movura/core/helpers/spacing.dart';
 import 'package:movura/core/widgets/app_error_widget.dart';
 import 'package:movura/core/widgets/empty_section_message.dart';
 
@@ -23,7 +24,14 @@ class MovieReviewsTabBody extends StatelessWidget {
           }
           return ReviewsList(reviews: state.response);
         } else if (state is ReviewsLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return Column(
+
+            children: [
+              verticalSpacing(100),
+              const Center(child: CircularProgressIndicator()),
+              verticalSpacing(150),
+            ],
+          );
         } else if (state is ReviewsError) {
           return AppErrorWidget(
             errorMessage: state.errorMessage,

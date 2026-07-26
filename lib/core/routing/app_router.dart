@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/features/auth/ui/screens/log_in_screen.dart';
 import 'package:movura/features/auth/ui/screens/sign_up_screen.dart';
-import 'package:movura/features/home/ui/home_screen.dart';
+import 'package:movura/features/home/ui/screens/home_screen.dart';
 import 'package:movura/features/home/ui/screens/trending_screen.dart';
 import 'package:movura/features/library/ui/screens/library_screen.dart';
 import 'package:movura/features/main/ui/main_wrapper_screen.dart';
@@ -20,7 +20,7 @@ import 'package:movura/features/tv_details/ui/screens/tv_seasons_screen.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../networking/di.dart';
-import 'arguments_model.dart';
+import 'arguments_models.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings setting) {
@@ -41,7 +41,7 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const LibraryScreen());
 
       case RouteNames.detailsScreen:
-        final arguments = setting.arguments as ArgumentsModel;
+        final arguments = setting.arguments as DetailsArgumentModel;
 
         if (arguments.mediaType == "movie") {
           return MaterialPageRoute(

@@ -36,12 +36,12 @@ class LibraryScreen extends StatelessWidget {
             indicatorSize: TabBarIndicatorSize.tab,
             labelColor: AppColors.neonBlue,
             unselectedLabelColor: AppColors.slateGray,
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            padding: EdgeInsets.symmetric(horizontal: 5.w),
             tabs: const [
-              Tab(text: "WANT TO WATCH"),
-              Tab(text: "WATCHED"),
-              Tab(text: "LATER"),
-              Tab(text: "FAVORITES"),
+              Tab(text: "Watch Now"),
+              Tab(text: "To Watch"),
+              Tab(text: "Watched"),
+              Tab(text: "Favorites"),
             ],
           ),
         ),
@@ -95,6 +95,7 @@ class _LibraryTabContent extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.all(20.r),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             verticalSpacing(40),
             Icon(

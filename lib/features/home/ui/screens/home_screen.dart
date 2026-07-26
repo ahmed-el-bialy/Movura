@@ -10,8 +10,8 @@ import 'package:movura/features/home/ui/widgets/top_movies_list.dart';
 import 'package:movura/features/home/ui/widgets/top_tv_series_list.dart';
 import 'package:movura/features/home/ui/widgets/trending_list.dart';
 
-import '../../../core/helpers/spacing.dart';
-import '../../../core/routing/route_names.dart';
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/routing/route_names.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
       drawer: const CustomSideDrawer(),
       backgroundColor: AppColors.richEerieBlack,
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8.w),
+        padding: EdgeInsets.symmetric(horizontal: 6.w),
         child: CustomScrollView(
           physics: const BouncingScrollPhysics(),
           slivers: [

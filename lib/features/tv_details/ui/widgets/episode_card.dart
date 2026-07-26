@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/constants/api_constants.dart';
 import 'package:movura/core/extensions/date_extension.dart';
+import 'package:movura/core/helpers/spacing.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/features/tv_details/data/season_details_model.dart';
@@ -80,7 +81,7 @@ class EpisodeCard extends StatelessWidget {
                               color: AppColors.gold,
                               size: 14.sp,
                             ),
-                            SizedBox(width: 4.w),
+                            horizontalSpacing(4),
                             Text(
                               episode.voteAverage!.toStringAsFixed(1),
                               style: AppTextStyles.font12CoolGrayManrope
@@ -89,7 +90,7 @@ class EpisodeCard extends StatelessWidget {
                           ],
                         ],
                       ),
-                      SizedBox(height: 8.h),
+                      verticalSpacing(8),
                       Text(
                         episode.name ?? "",
                         maxLines: 2,
@@ -99,7 +100,7 @@ class EpisodeCard extends StatelessWidget {
                       ),
                       if (episode.overview != null &&
                           episode.overview!.isNotEmpty) ...[
-                        SizedBox(height: 6.h),
+                        verticalSpacing(6),
                         Text(
                           episode.overview!,
                           maxLines: 2,
@@ -110,7 +111,7 @@ class EpisodeCard extends StatelessWidget {
                           ),
                         ),
                       ],
-                      const Spacer(),
+                      verticalSpacing(8),
                       Row(
                         children: [
                           if (episode.airDate != null &&
@@ -120,7 +121,7 @@ class EpisodeCard extends StatelessWidget {
                               size: 12.sp,
                               color: AppColors.coolGray,
                             ),
-                            SizedBox(width: 4.w),
+                            horizontalSpacing(4),
                             Text(
                               episode.airDate!.toTimeAgo().isNotEmpty
                                   ? episode.airDate!.toTimeAgo()
@@ -136,7 +137,7 @@ class EpisodeCard extends StatelessWidget {
                               size: 12.sp,
                               color: AppColors.coolGray,
                             ),
-                            SizedBox(width: 4.w),
+                            horizontalSpacing(4),
                             Text(
                               '${episode.runtime} min',
                               style: AppTextStyles.font12CoolGrayManrope

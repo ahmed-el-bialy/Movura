@@ -39,14 +39,14 @@ class AppTextButton extends StatelessWidget {
         ),
         shape: WidgetStatePropertyAll(
           RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius?.r ?? 24.r),
+            borderRadius: BorderRadius.circular(borderRadius?.r ?? 18.r),
           ),
         ),
         backgroundColor: WidgetStatePropertyAll(
           backgroundColor ?? AppColors.neonBlue,
         ),
         fixedSize: WidgetStatePropertyAll(
-          Size(buttonWidth?.w ?? double.maxFinite, buttonHeight?.h ?? 50.h),
+          Size(buttonWidth?.w ?? double.maxFinite, buttonHeight?.h ?? 45.h),
         ),
       ),
       onPressed: onPressed,

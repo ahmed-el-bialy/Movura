@@ -67,12 +67,6 @@ class ButtonsRow extends StatelessWidget {
 
           SizedBox(width: 12.w),
 
-          // Favorite Button
-          _CircularActionButton(
-            icon: Icons.favorite_rounded,
-            onPressed: () {},
-            color: AppColors.deepCrimson,
-          ),
         ],
       ),
     );

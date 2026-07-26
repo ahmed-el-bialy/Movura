@@ -32,24 +32,21 @@ class CustomSideDrawer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(left: 8.w, right: 8.w),
+                    padding: EdgeInsets.only(left: 8.w, right: 2.w),
                     child: Image.asset(
                       AppConstants.appLogo,
                       fit: BoxFit.fill,
-                      height: 30.h,
-                      width: 30.w,
+                      height: 50.h,
+                      width: 50.w,
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 4.h),
-                    child: Text(
-                      AppConstants.appName,
-                      style: TextStyle(
-                        color: AppColors.neonBlue,
-                        fontSize: 24.sp,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 2,
-                      ),
+                  Text(
+                    AppConstants.appName,
+                    style: TextStyle(
+                      color: AppColors.neonBlue,
+                      fontSize: 24.sp,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 2,
                     ),
                   ),
                 ],
