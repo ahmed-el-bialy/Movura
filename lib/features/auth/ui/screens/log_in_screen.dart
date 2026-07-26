@@ -18,8 +18,9 @@ import 'package:movura/features/auth/logic/auth/auth_state.dart';
 import 'package:movura/features/auth/ui/widgets/auth_divider.dart';
 import 'package:movura/features/auth/ui/widgets/auth_input_field.dart';
 import 'package:movura/features/auth/ui/widgets/auth_prefix_icon.dart';
+import 'package:movura/features/auth/ui/widgets/hero_app_logo.dart';
 
-import '../widgets/build_social_button.dart';
+import '../widgets/social_button_row.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({super.key});
@@ -75,7 +76,11 @@ class _LogInScreenState extends State<LogInScreen> {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          AppColors.neonBlue.withValues(alpha: 0.15),
+                          AppColors.neonBlue.withValues(alpha: 0.4),
+                          AppColors.neonBlue.withValues(alpha: 0.3),
+                          AppColors.neonBlue.withValues(alpha: 0.4),
+                          AppColors.trueBlack,
+                          AppColors.trueBlack,
                           AppColors.trueBlack,
                           AppColors.charcoalBlack,
                         ],
@@ -103,25 +108,26 @@ class _LogInScreenState extends State<LogInScreen> {
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 28.w),
+                      padding: EdgeInsets.symmetric(horizontal: 12.w),
                       child: Form(
                         key: formKey,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            verticalSpacing(15),
+                            verticalSpacing(10),
                             Align(
                               alignment: Alignment.topRight,
                               child: TextButton(
                                 onPressed: () =>
                                     context.pushAndRemoveUntil(
-                                        routeName: RouteNames.mainScreen),
+                                      routeName: RouteNames.mainScreen,
+                                    ),
                                 style: TextButton.styleFrom(
                                   backgroundColor: AppColors.onyxBlack
                                       .withValues(alpha: 0.4),
                                   shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(
-                                          20.r)),
+                                    borderRadius: BorderRadius.circular(20.r),
+                                  ),
                                 ),
                                 child: Text(
                                   "Skip",
@@ -130,27 +136,9 @@ class _LogInScreenState extends State<LogInScreen> {
                                 ),
                               ),
                             ),
-                            verticalSpacing(30),
-                            Hero(
-                              tag: 'app_logo',
-                              child: Container(
-                                padding: EdgeInsets.all(12.r),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: AppColors.neonBlue.withValues(
-                                      alpha: 0.05),
-                                  border: Border.all(
-                                      color: AppColors.neonBlue.withValues(
-                                          alpha: 0.2)),
-                                ),
-                                child: Image.asset(
-                                  AppConstants.appLogo,
-                                  width: 80.w,
-                                  height: 80.h,
-                                ),
-                              ),
-                            ),
-                            verticalSpacing(24),
+                            verticalSpacing(10),
+                            HeroAppLogo(),
+                            verticalSpacing(5),
                             Text(
                               "Welcome Back",
                               style: AppTextStyles.font40BoldPureWhite.copyWith(
@@ -158,31 +146,39 @@ class _LogInScreenState extends State<LogInScreen> {
                                 letterSpacing: -0.5,
                               ),
                             ),
-                            verticalSpacing(8),
+                            verticalSpacing(5),
                             Text(
                               "Sign in to continue your cinematic journey",
                               style: AppTextStyles.font12CoolGrayManrope
                                   .copyWith(
                                 fontSize: 14.sp,
                                 color: AppColors.slateGray.withValues(
-                                    alpha: 0.6),
+                                  alpha: 0.6,
+                                ),
                               ),
                             ),
-                            verticalSpacing(45),
+                            verticalSpacing(15),
                             ClipRRect(
                               borderRadius: BorderRadius.circular(24.r),
                               child: BackdropFilter(
                                 filter: ImageFilter.blur(
-                                    sigmaX: 10, sigmaY: 10),
+                                  sigmaX: 10,
+                                  sigmaY: 10,
+                                ),
                                 child: Container(
-                                  padding: EdgeInsets.all(2.r),
-                                  decoration: BoxDecoration(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 8.w,
+                                    vertical: 12.h,
+                                  ), decoration: BoxDecoration(
                                     color: AppColors.onyxBlack.withValues(
-                                        alpha: 0.3),
+                                      alpha: 0.3,
+                                    ),
                                     borderRadius: BorderRadius.circular(24.r),
                                     border: Border.all(
-                                        color: AppColors.pureWhite.withValues(
-                                            alpha: 0.05)),
+                                      color: AppColors.pureWhite.withValues(
+                                        alpha: 0.05,
+                                      ),
+                                    ),
                                   ),
                                   child: Column(
                                     children: [
@@ -191,10 +187,10 @@ class _LogInScreenState extends State<LogInScreen> {
                                         child: AppTextFormField(
                                           controller: emailController,
                                           inputType: TextInputType.emailAddress,
-                                          hintText: "example@mail.com",
+                                          hintText: AppConstants.emailExample,
                                           prefixIcon: const AuthPrefixIcon(
-                                              icon: Icons
-                                                  .alternate_email_rounded),
+                                            icon: Icons.alternate_email_rounded,
+                                          ),
                                           validator: Validators.validateEmail,
                                         ),
                                       ),
@@ -204,19 +200,23 @@ class _LogInScreenState extends State<LogInScreen> {
                                         action: Text(
                                           "Forgot?",
                                           style: AppTextStyles
-                                              .font13MediumNeonBlue.copyWith(
-                                              fontSize: 11.sp),
+                                              .font13MediumNeonBlue
+                                              .copyWith(fontSize: 11.sp),
                                         ),
                                         child: AppTextFormField(
                                           controller: passwordController,
                                           isObscureText: isObscure,
-                                          hintText: "••••••••",
+                                          hintText: AppConstants
+                                              .passwordExample,
                                           prefixIcon: const AuthPrefixIcon(
-                                              icon: Icons.lock_outline_rounded),
+                                            icon: Icons.lock_outline_rounded,
+                                          ),
                                           suffixIcon: IconButton(
                                             onPressed: () =>
-                                                setState(() =>
-                                                isObscure = !isObscure),
+                                                setState(
+                                                      () =>
+                                                  isObscure = !isObscure,
+                                                ),
                                             icon: Icon(
                                               isObscure
                                                   ? Icons
@@ -226,8 +226,8 @@ class _LogInScreenState extends State<LogInScreen> {
                                               size: 18.sp,
                                             ),
                                           ),
-                                          validator: Validators
-                                              .validatePassword,
+                                          validator:
+                                          Validators.validatePassword,
                                         ),
                                       ),
                                     ],
@@ -235,7 +235,7 @@ class _LogInScreenState extends State<LogInScreen> {
                                 ),
                               ),
                             ),
-                            verticalSpacing(40),
+                            verticalSpacing(25),
                             BlocBuilder<AuthCubit, AuthState>(
                               builder: (context, state) {
                                 return Container(
@@ -244,7 +244,8 @@ class _LogInScreenState extends State<LogInScreen> {
                                     boxShadow: [
                                       BoxShadow(
                                         color: AppColors.neonBlue.withValues(
-                                            alpha: 0.3),
+                                          alpha: 0.3,
+                                        ),
                                         blurRadius: 15,
                                         offset: const Offset(0, 8),
                                       ),
@@ -262,11 +263,11 @@ class _LogInScreenState extends State<LogInScreen> {
                                         );
                                       }
                                     },
-                                    buttonWidth: double.infinity,
-                                    buttonHeight: 52.h,
-                                    borderRadius: 18.r,
+                                    buttonWidth: 140.w,
+                                    borderRadius: 16.r,
                                     textStyle: AppTextStyles
-                                        .font17BoldTrueBlackSora.copyWith(
+                                        .font17BoldTrueBlackSora
+                                        .copyWith(
                                       fontSize: 16.sp,
                                       letterSpacing: 1.2,
                                     ),
@@ -274,35 +275,11 @@ class _LogInScreenState extends State<LogInScreen> {
                                 );
                               },
                             ),
-                            verticalSpacing(35),
-                            const AuthDivider(),
                             verticalSpacing(25),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                BuildSocialButton(
-                                  logoPath: "assets/images/google_logo.png",
-                                  backgroundColor: AppColors.onyxBlack
-                                      .withValues(alpha: 0.6),
-                                  onTap: () {},
-                                ),
-                                horizontalSpacing(12),
-                                BuildSocialButton(
-                                  logoPath: "assets/images/facebook_logo.png",
-                                  backgroundColor: AppColors.onyxBlack
-                                      .withValues(alpha: 0.6),
-                                  onTap: () {},
-                                ),
-                                horizontalSpacing(12),
-                                BuildSocialButton(
-                                  logoPath: "assets/images/apple_logo.png",
-                                  backgroundColor: AppColors.onyxBlack
-                                      .withValues(alpha: 0.6),
-                                  onTap: () {},
-                                ),
-                              ],
-                            ),
-                            verticalSpacing(35),
+                            const AuthDivider(),
+                            verticalSpacing(20),
+                            SocialButtonsRow(),
+                            verticalSpacing(20),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -313,19 +290,19 @@ class _LogInScreenState extends State<LogInScreen> {
                                 GestureDetector(
                                   onTap: () =>
                                       context.pushNamed(
-                                          RouteNames.signUpScreen),
+                                        RouteNames.signUpScreen,
+                                      ),
                                   child: Text(
                                     "Create Account",
                                     style: AppTextStyles.font13BoldNeonBlueSora
                                         .copyWith(
                                       fontWeight: FontWeight.w800,
-                                      decoration: TextDecoration.underline,
                                     ),
                                   ),
                                 ),
                               ],
                             ),
-                            verticalSpacing(30),
+                            verticalSpacing(10),
                           ],
                         ),
                       ),
@@ -340,3 +317,4 @@ class _LogInScreenState extends State<LogInScreen> {
     );
   }
 }
+

@@ -1,14 +1,15 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/constants/app_constants.dart';
 import '../../../../core/networking/di.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
-import '../../../../core/constants/app_constants.dart';
 import '../../../../core/widgets/app_icon_button.dart';
 import '../../../search/logic/search/search_cubit.dart';
-import '../../../search/ui/custom_search_delegate.dart';
+import '../../../search/ui/screens/custom_search_delegate.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
@@ -42,19 +43,21 @@ class HomeAppBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: EdgeInsets.only(left: 8.w, right: 8.w),
+            padding: EdgeInsets.only(left: 8.w, right: 0.w),
             child: Image.asset(
               AppConstants.appLogo,
               fit: BoxFit.fill,
-              height: 30.h,
-              width: 30.w,
+              height: 45.h,
+              width: 45.w,
             ),
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 4.h),
             child: Text(
               AppConstants.appName,
-              style: AppTextStyles.font24SimiBoldNeonBlueManrope,
+              style: AppTextStyles.font24SimiBoldNeonBlueManrope.copyWith(
+                  fontSize: 22.sp
+              ),
             ),
           ),
         ],

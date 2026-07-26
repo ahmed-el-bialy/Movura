@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:movura/core/helpers/spacing.dart';
 import 'package:movura/core/models/poster_model.dart';
 import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/helpers/spacing.dart';
 import 'package:movura/core/widgets/poster_card/poster_card.dart';
 import 'package:movura/core/widgets/section_title.dart';
+
+import '../../constants/app_constants.dart';
 
 class SimilarContentTabBody extends StatelessWidget {
   const SimilarContentTabBody({
@@ -25,7 +26,8 @@ class SimilarContentTabBody extends StatelessWidget {
         verticalSpacing(10),
         recommendList.isNotEmpty
             ? SectionTitle(
-            sectionName: "RECOMMENDATIONS", actionName: "VIEW ALL")
+            sectionName: "RECOMMENDATIONS",
+            actionName: AppConstants.sectionAction)
             : Container(),
         verticalSpacing(10),
         recommendList.isNotEmpty
@@ -34,11 +36,11 @@ class SimilarContentTabBody extends StatelessWidget {
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: recommendList.length,
-            itemExtent: 180.h,
+            itemExtent: 180.w,
             shrinkWrap: true,
             itemBuilder: (context, index) {
               return Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(10.0),
                 child: PosterCard(
                   mediaModel: recommendList[index],
                   elevation: 2,
@@ -51,7 +53,8 @@ class SimilarContentTabBody extends StatelessWidget {
         ) : SizedBox(),
         verticalSpacing(10),
         similarList.isNotEmpty ? SectionTitle(
-            sectionName: "SIMILAR", actionName: "VIEW ALL") : Container(),
+            sectionName: "SIMILAR", actionName: AppConstants.sectionAction)
+            : Container(),
         verticalSpacing(10),
         similarList.isNotEmpty ?SizedBox(
           height: 250.h,

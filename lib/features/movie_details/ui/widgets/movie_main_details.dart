@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movura/core/widgets/shared_details/core_details_header.dart';
-import '../../data/about_model.dart';
+import '../../data/models/about_model.dart';
 import 'sub_widgets/movie_identify_card.dart';
 
 class MovieMainDetails extends StatelessWidget {

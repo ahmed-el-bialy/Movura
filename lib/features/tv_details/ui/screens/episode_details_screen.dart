@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/core/networking/di.dart';
-import 'package:movura/core/routing/arguments_model.dart';
+import 'package:movura/core/routing/arguments_models.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/widgets/app_error_widget.dart';
 import 'package:movura/core/widgets/app_navigation_bar.dart';

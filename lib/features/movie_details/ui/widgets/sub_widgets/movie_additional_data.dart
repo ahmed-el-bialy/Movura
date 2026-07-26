@@ -4,7 +4,7 @@ import 'package:movura/core/extensions/money_formatter.dart';
 import 'package:movura/core/helpers/spacing.dart';
 import 'package:movura/core/theming/text_styles.dart';
 
-import '../../../data/about_model.dart';
+import '../../../data/models/about_model.dart';
 
 class AdditionalData extends StatelessWidget {
   const AdditionalData({super.key, required this.model});
@@ -44,9 +44,11 @@ class _DataItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(label, style: AppTextStyles.font10BoldCoolGray),
+        Text(label,
+            style: AppTextStyles.font10BoldCoolGray.copyWith(fontSize: 12.sp)),
         verticalSpacing(4),
-        Text(value, style: AppTextStyles.font12MediumPlatinumGray),
+        Text(value, style: AppTextStyles.font12MediumPlatinumGray.copyWith(
+            fontSize: 14.sp)),
       ],
     );
   }

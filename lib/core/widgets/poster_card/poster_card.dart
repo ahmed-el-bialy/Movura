@@ -7,7 +7,7 @@ import 'package:movura/core/widgets/poster_card/sub_widgets/poster_background_im
 import 'package:movura/core/widgets/poster_card/sub_widgets/top_lef_sub_card.dart';
 import 'package:movura/core/widgets/poster_card/sub_widgets/top_right_sub_card.dart';
 
-import '../../routing/arguments_model.dart';
+import '../../routing/arguments_models.dart';
 import '../../routing/route_names.dart';
 
 class PosterCard extends StatelessWidget {
@@ -54,7 +54,7 @@ class PosterCard extends StatelessWidget {
       onTap: () {
         context.pushNamed(
           RouteNames.detailsScreen,
-          arguments: ArgumentsModel(
+          arguments: DetailsArgumentModel(
             mediaType: mediaModel?.mediaType ?? mediaType ?? "movie",
             mediaId: mediaModel!.id,
           ),

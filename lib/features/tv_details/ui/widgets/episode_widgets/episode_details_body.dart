@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/constants/api_constants.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/helpers/spacing.dart';
-import 'package:movura/core/routing/arguments_model.dart';
+import 'package:movura/core/routing/arguments_models.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';

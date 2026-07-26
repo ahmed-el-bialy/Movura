@@ -5,7 +5,7 @@ import 'package:movura/core/networking/di.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/features/search/logic/search/search_cubit.dart';
-import 'package:movura/features/search/ui/custom_search_delegate.dart';
+import 'package:movura/features/search/ui/screens/custom_search_delegate.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../../core/helpers/spacing.dart';

@@ -1,10 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../../../core/models/actor_model.dart';
-import '../../../../../core/models/company_model.dart';
-import '../../../../../core/models/genre_model.dart';
-import '../../../../../core/models/image_model.dart';
-import '../../../../../core/models/video_model.dart';
+import '../../../../../../core/models/actor_model.dart';
+import '../../../../../../core/models/company_model.dart';
+import '../../../../../../core/models/genre_model.dart';
+import '../../../../../../core/models/image_model.dart';
+import '../../../../../../core/models/video_model.dart';
 import 'package:movura/core/models/watch_provider_model.dart';
 
 part 'about_model.g.dart';

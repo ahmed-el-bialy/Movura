@@ -1,10 +1,10 @@
 import 'package:movura/features/tv_details/data/about_tv_series_model.dart';
 
-class ArgumentsModel {
+class DetailsArgumentModel {
   final String mediaType;
   final int mediaId;
 
-  ArgumentsModel({required this.mediaType, required this.mediaId});
+  DetailsArgumentModel({required this.mediaType, required this.mediaId});
 }
 
 class SeasonArgumentsModel {

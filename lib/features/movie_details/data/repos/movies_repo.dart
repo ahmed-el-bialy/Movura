@@ -1,5 +1,5 @@
 import '../web_services/movie_web_services.dart';
-import '../about_model.dart';
+import '../models/about_model.dart';
 import '../../../../core/models/review_model.dart';
 import '../../../../core/models/similar_model.dart';
 

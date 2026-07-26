@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movura/core/constants/app_constants.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/helpers/spacing.dart';
+import 'package:movura/core/models/video_model.dart';
 import 'package:movura/core/networking/di.dart';
-import 'package:movura/core/routing/arguments_model.dart';
+import 'package:movura/core/routing/arguments_models.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/widgets/app_error_widget.dart';
 import 'package:movura/core/widgets/section_title.dart';
-import 'package:movura/features/tv_details/logic/about_tv/about_tv_cubit.dart';
-import 'package:movura/features/tv_details/logic/tv_seasons_cubit/tv_seasons_cubit.dart';
-import 'episode_card.dart';
-import 'seasons_list.dart';
-import 'tv_networks_list.dart';
-
-import 'package:movura/core/models/video_model.dart';
 import 'package:movura/core/widgets/shared_details/actors_list.dart';
 import 'package:movura/core/widgets/shared_details/companies_list.dart';
 import 'package:movura/core/widgets/shared_details/images_list.dart';
 import 'package:movura/core/widgets/shared_details/videos_list.dart';
+import 'package:movura/features/tv_details/logic/about_tv/about_tv_cubit.dart';
+import 'package:movura/features/tv_details/logic/tv_seasons_cubit/tv_seasons_cubit.dart';
+
+import 'episode_card.dart';
+import 'seasons_list.dart';
+import 'tv_networks_list.dart';
 
 class AboutTvTabBody extends StatelessWidget {
   const AboutTvTabBody({super.key});
@@ -28,7 +29,9 @@ class AboutTvTabBody extends StatelessWidget {
     return BlocBuilder<AboutTvCubit, AboutTvState>(
       builder: (context, state) {
         if (state is AboutTvLoading) {
-          return const Center(child: CircularProgressIndicator(color: AppColors.neonBlue));
+          return const Center(
+            child: CircularProgressIndicator(color: AppColors.neonBlue),
+          );
         } else if (state is AboutTvLoaded) {
           final List<VideoModel> allVideos =
               state.model.tvVideos?.videoList ?? [];
@@ -42,7 +45,7 @@ class AboutTvTabBody extends StatelessWidget {
               if (hasMultipleSeasons) ...[
                 SectionTitle(
                   sectionName: "Seasons",
-                  actionName: "View All >>",
+                  actionName: AppConstants.sectionAction,
                   onTap: () {
                     context.pushNamed(
                       RouteNames.allSeasonsScreen,
@@ -73,10 +76,11 @@ class AboutTvTabBody extends StatelessWidget {
                 verticalSpacing(15),
               ],
 
-              (state.model.actors?.tvActors != null && state.model.actors!.tvActors!.isNotEmpty)
+              (state.model.actors?.tvActors != null &&
+                      state.model.actors!.tvActors!.isNotEmpty)
                   ? SectionTitle(
                       sectionName: "CAST",
-                      actionName: "View All >>",
+                      actionName: AppConstants.sectionAction,
                       onTap: () {},
                     )
                   : const SizedBox.shrink(),
@@ -85,12 +89,15 @@ class AboutTvTabBody extends StatelessWidget {
                 ActorsList(actors: state.model.actors!.tvActors!),
               verticalSpacing(15),
 
-              (state.model.companies != null && state.model.companies!.isNotEmpty)
+              (state.model.companies != null &&
+                      state.model.companies!.isNotEmpty)
                   ? const SectionTitle(sectionName: "Companies")
                   : const SizedBox.shrink(),
+
               if (state.model.companies != null)
                 CompaniesList(company: state.model.companies!),
               verticalSpacing(15),
+
               (state.model.networks != null && state.model.networks!.isNotEmpty)
                   ? const SectionTitle(sectionName: "Networks")
                   : const SizedBox.shrink(),

@@ -6,7 +6,7 @@ import 'package:movura/core/helpers/spacing.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
 
-import '../../../data/about_model.dart';
+import '../../../data/models/about_model.dart';
 
 class MovieIdentifyCard extends StatelessWidget {
   const MovieIdentifyCard({super.key, required this.model});
