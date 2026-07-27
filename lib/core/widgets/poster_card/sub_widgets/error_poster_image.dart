@@ -18,7 +18,7 @@ class ErrorPosterImage extends StatelessWidget {
           SizedBox(height: 8.h),
           Text(
             "No Poster Available",
-            style: titleStyle ?? AppTextStyles.font16SimiBoldPlatinumGray,
+            style: titleStyle ?? TextStyles.font16SimiBoldPlatinumGray,
           ),
         ],
       ),

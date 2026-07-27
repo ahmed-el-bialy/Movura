@@ -26,7 +26,7 @@ class AuthInputField extends StatelessWidget {
           children: [
             Text(
               label,
-              style: AppTextStyles.font14SimiBoldPlatinumGraySora.copyWith(
+              style: TextStyles.font14SimiBoldPlatinumGraySora.copyWith(
                 fontSize: 13.sp,
                 color: AppColors.slateGray,
               ),

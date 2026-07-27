@@ -60,7 +60,7 @@ class TvSeasonCard extends StatelessWidget {
                       ),
                       child: Text(
                         tvSeasonModel.name ?? "",
-                        style: AppTextStyles.font17BoldIceBlueMontserrat
+                        style: TextStyles.font17BoldIceBlueMontserrat
                             .copyWith(fontSize: 15.sp),
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -82,7 +82,7 @@ class TvSeasonCard extends StatelessWidget {
                       padding: EdgeInsets.all(5.0.r),
                       child: Text(
                         "${tvSeasonModel.episodeCount} Eps",
-                        style: AppTextStyles.font16SimiBoldPlatinumGray
+                        style: TextStyles.font16SimiBoldPlatinumGray
                             .copyWith(fontSize: 14.sp),
                       ),
                     ),
@@ -110,14 +110,14 @@ class TvSeasonCard extends StatelessWidget {
                             tvSeasonModel.voteAverage != null
                                 ? "${tvSeasonModel.voteAverage!.toStringAsFixed(1)} "
                                 : "0.0",
-                            style: AppTextStyles.font16SimiBoldPlatinumGray
+                            style: TextStyles.font16SimiBoldPlatinumGray
                                 .copyWith(fontSize: 13.sp),
                           ),
                           Icon(
                             Icons.star_purple500_outlined,
                             size: 15.sp,
                             color:
-                                AppTextStyles.font16SimiBoldPlatinumGray.color,
+                                TextStyles.font16SimiBoldPlatinumGray.color,
                           ),
                         ],
                       ),

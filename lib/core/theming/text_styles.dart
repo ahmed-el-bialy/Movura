@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/weights.dart';
 
-class AppTextStyles {
+class TextStyles {
   // =================== Manrope ====================
 
   static TextStyle font24SimiBoldNeonBlueManrope = TextStyle(

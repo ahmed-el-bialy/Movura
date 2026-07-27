@@ -26,7 +26,7 @@ class SearchEmptyState extends StatelessWidget {
             verticalSpacing(16),
             Text(
               'Search Movura',
-              style: AppTextStyles.font20SimiBoldNeonBlueManrope.copyWith(
+              style: TextStyles.font20SimiBoldNeonBlueManrope.copyWith(
                 fontSize: 18.sp,
               ),
             ),
@@ -35,7 +35,7 @@ class SearchEmptyState extends StatelessWidget {
               filter == SearchFilterType.all
                   ? 'Find movies, TV shows, and people'
                   : 'Showing ${filter.label.toLowerCase()} only',
-              style: AppTextStyles.font12CoolGrayManrope.copyWith(
+              style: TextStyles.font12CoolGrayManrope.copyWith(
                 fontSize: 13.sp,
               ),
             ),

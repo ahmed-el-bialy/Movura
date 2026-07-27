@@ -30,10 +30,10 @@ class CustomPostersGridView extends StatelessWidget {
             mediaModel: poster[index],
             elevation: 5,
             maxLines: 2,
-            titleStyle: AppTextStyles.font11BoldIceBlueMontserrat.copyWith(
+            titleStyle: TextStyles.font11BoldIceBlueMontserrat.copyWith(
               fontSize: 10.sp,
             ),
-            subTextStyle: AppTextStyles.font11BoldIceBlueMontserrat.copyWith(
+            subTextStyle: TextStyles.font11BoldIceBlueMontserrat.copyWith(
               fontSize: 10.sp,
             ),
           );

@@ -32,14 +32,14 @@ class WatchlistOptionsSheet extends StatelessWidget {
           verticalSpacing(24),
           Text(
             'Add to My Lists',
-            style: AppTextStyles.font17BoldIceBlueMontserrat.copyWith(
+            style: TextStyles.font17BoldIceBlueMontserrat.copyWith(
               fontSize: 18.sp,
             ),
           ),
           verticalSpacing(8),
           Text(
             'Save this content to your personalized collections',
-            style: AppTextStyles.font12CoolGrayManrope,
+            style: TextStyles.font12CoolGrayManrope,
           ),
           verticalSpacing(32),
           Row(
@@ -129,7 +129,7 @@ class _ActionItem extends StatelessWidget {
         verticalSpacing(8),
         Text(
           label,
-          style: AppTextStyles.font10BoldCoolGray.copyWith(
+          style: TextStyles.font10BoldCoolGray.copyWith(
             color: Colors.white70,
             fontSize: 11.sp,
           ),

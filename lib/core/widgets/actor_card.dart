@@ -63,7 +63,7 @@ class ActorCard extends StatelessWidget {
                 actor.name ?? "Unknown",
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: AppTextStyles.font13BoldNeonBlueSora,
+                style: TextStyles.font13BoldNeonBlueSora,
               ),
             ),
             Padding(
@@ -77,7 +77,7 @@ class ActorCard extends StatelessWidget {
                 actor.character ?? "",
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: AppTextStyles.font11BoldIceBlueMontserrat.copyWith(
+                style: TextStyles.font11BoldIceBlueMontserrat.copyWith(
                   fontWeight: FontWeight.normal,
                   color: AppColors.platinumGray,
                 ),
@@ -89,7 +89,7 @@ class ActorCard extends StatelessWidget {
                 actor.job ?? "",
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: AppTextStyles.font11BoldIceBlueMontserrat,
+                style: TextStyles.font11BoldIceBlueMontserrat,
               ),
             ),
           ],

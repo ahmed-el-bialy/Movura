@@ -48,7 +48,7 @@ class TvIdentifyCard extends StatelessWidget {
                       children: [
                         Text(
                           model.title ?? 'Unknown',
-                          style: AppTextStyles.font17BoldIceBlueMontserrat
+                          style: TextStyles.font17BoldIceBlueMontserrat
                               .copyWith(fontSize: 23.sp),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
@@ -58,7 +58,7 @@ class TvIdentifyCard extends StatelessWidget {
                           children: [
                             Text(
                               " TV Series • ${model.language ?? 'EN'} • ${(model.status?.statusDisplay ?? 'N/A')} ",
-                              style: AppTextStyles.font16SimiBoldPlatinumGray
+                              style: TextStyles.font16SimiBoldPlatinumGray
                                   .copyWith(fontSize: 14.sp),
                             ),
                             horizontalSpacing(5.w),
@@ -129,13 +129,13 @@ class TvIdentifyCard extends StatelessWidget {
                               const SizedBox(width: 4),
                               Text(
                                 (model.rating ?? 0.0).toStringAsFixed(1),
-                                style: AppTextStyles
+                                style: TextStyles
                                     .font20SimiBoldNeonBlueManrope
                                     .copyWith(fontSize: 15.sp),
                               ),
                               Text(
                                 " / 10 ",
-                                style: AppTextStyles.font13BoldNeonBlueSora
+                                style: TextStyles.font13BoldNeonBlueSora
                                     .copyWith(fontSize: 11.sp),
                               ),
                             ],

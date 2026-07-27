@@ -57,20 +57,20 @@ class PlatformOptionsSheet extends StatelessWidget {
           verticalSpacing(24),
           Text(
             'Streaming Options',
-            style: AppTextStyles.font17BoldIceBlueMontserrat.copyWith(
+            style: TextStyles.font17BoldIceBlueMontserrat.copyWith(
               fontSize: 18.sp,
             ),
           ),
           verticalSpacing(8),
           Text(
             'Visit official sources to watch this content',
-            style: AppTextStyles.font12CoolGrayManrope,
+            style: TextStyles.font12CoolGrayManrope,
           ),
           verticalSpacing(24),
           if (streaming.isNotEmpty) ...[
             Text(
               'AVAILABLE ON',
-              style: AppTextStyles.font10BoldCoolGray.copyWith(
+              style: TextStyles.font10BoldCoolGray.copyWith(
                 letterSpacing: 1.2,
                 color: AppColors.neonBlue,
               ),
@@ -197,7 +197,7 @@ class _ActionItem extends StatelessWidget {
         verticalSpacing(8),
         Text(
           label,
-          style: AppTextStyles.font10BoldCoolGray.copyWith(
+          style: TextStyles.font10BoldCoolGray.copyWith(
             color: Colors.white70,
             fontSize: 11.sp,
           ),

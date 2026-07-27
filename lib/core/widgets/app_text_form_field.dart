@@ -47,7 +47,7 @@ class AppTextFormField extends StatelessWidget {
       keyboardType: inputType,
       textInputAction: textInputAction,
       controller: controller,
-      style: inputTextStyle ?? AppTextStyles.font14SimiBoldPlatinumGraySora,
+      style: inputTextStyle ?? TextStyles.font14SimiBoldPlatinumGraySora,
       obscureText: isObscureText ?? false,
       decoration: InputDecoration(
         filled: true,
@@ -59,9 +59,9 @@ class AppTextFormField extends StatelessWidget {
         hintText: hintText,
         hintStyle:
             hintStyle ??
-            AppTextStyles.font10BoldCoolGray.copyWith(
+            TextStyles.font10BoldCoolGray.copyWith(
               fontSize: 14.sp,
-              color: AppTextStyles.font10BoldCoolGray.color?.withValues(
+              color: TextStyles.font10BoldCoolGray.color?.withValues(
                 alpha: .8,
               ),
             ),

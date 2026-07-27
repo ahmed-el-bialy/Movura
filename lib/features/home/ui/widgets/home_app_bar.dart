@@ -55,7 +55,7 @@ class HomeAppBar extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 4.h),
             child: Text(
               AppConstants.appName,
-              style: AppTextStyles.font24SimiBoldNeonBlueManrope.copyWith(
+              style: TextStyles.font24SimiBoldNeonBlueManrope.copyWith(
                   fontSize: 22.sp
               ),
             ),

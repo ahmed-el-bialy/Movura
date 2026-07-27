@@ -49,21 +49,21 @@ class TopRightSubCard extends StatelessWidget {
                                   : "0.0",
                               style:
                                   subTextStyle ??
-                                  AppTextStyles.font16SimiBoldPlatinumGray,
+                                  TextStyles.font16SimiBoldPlatinumGray,
                             ),
                             Icon(
                               Icons.star_purple500_outlined,
                               size: subTextStyle?.fontSize ?? 18.sp,
                               color:
                                   subTextStyle?.color ??
-                                  AppTextStyles.font16SimiBoldPlatinumGray.color,
+                                  TextStyles.font16SimiBoldPlatinumGray.color,
                             ),
                           ],
                         )
                       : Text(
                           mediaModel?.knownForDepartment ?? "Unknown",
                           style:
-                              subTextStyle ?? AppTextStyles.font16SimiBoldPlatinumGray,
+                              subTextStyle ?? TextStyles.font16SimiBoldPlatinumGray,
                         ),
                 ),
               ),

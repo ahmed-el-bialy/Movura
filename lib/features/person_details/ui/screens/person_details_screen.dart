@@ -69,7 +69,7 @@ class PersonDetailsScreen extends StatelessWidget {
                       children: [
                         Text(
                           person.name ?? "Unknown",
-                          style: AppTextStyles.font24SimiBoldNeonBlueManrope
+                          style: TextStyles.font24SimiBoldNeonBlueManrope
                               .copyWith(
                                 fontSize: 28.sp,
                                 color: AppColors.iceBlue,
@@ -79,7 +79,7 @@ class PersonDetailsScreen extends StatelessWidget {
                         if (person.knownFor != null)
                           Text(
                             person.knownFor!,
-                            style: AppTextStyles.font14DarkNeonBlueManrope,
+                            style: TextStyles.font14DarkNeonBlueManrope,
                           ),
                         verticalSpacing(20),
                         if (person.biography != null &&
@@ -88,7 +88,7 @@ class PersonDetailsScreen extends StatelessWidget {
                           verticalSpacing(10),
                           Text(
                             person.biography!,
-                            style: AppTextStyles.font12CoolGrayManrope.copyWith(
+                            style: TextStyles.font12CoolGrayManrope.copyWith(
                               height: 1.6,
                               fontSize: 13.sp,
                             ),
@@ -150,9 +150,9 @@ class _InfoRow extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 8.h),
       child: Row(
         children: [
-          Text("$label: ", style: AppTextStyles.font12BoldCoolGray),
+          Text("$label: ", style: TextStyles.font12BoldCoolGray),
           Expanded(
-            child: Text(value, style: AppTextStyles.font12MediumPlatinumGray),
+            child: Text(value, style: TextStyles.font12MediumPlatinumGray),
           ),
         ],
       ),

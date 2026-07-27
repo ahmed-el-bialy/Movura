@@ -61,12 +61,12 @@ class PersonCard extends StatelessWidget {
                     person.name ?? "Unknown",
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: AppTextStyles.font14BoldIceBlueMontserrat,
+                    style: TextStyles.font14BoldIceBlueMontserrat,
                   ),
                   SizedBox(height: 4.h),
                   Text(
                     person.knownForDepartment ?? "Person",
-                    style: AppTextStyles.font10MediumCoolGraySora.copyWith(
+                    style: TextStyles.font10MediumCoolGraySora.copyWith(
                       color: AppColors.neonBlue.withValues(alpha: 0.8),
                     ),
                   ),

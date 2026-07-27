@@ -103,7 +103,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             verticalSpacing(10),
                             Text(
                               "Join Movura",
-                              style: AppTextStyles.font40BoldPureWhite.copyWith(
+                              style: TextStyles.font40BoldPureWhite.copyWith(
                                 fontSize: 32.sp,
                                 letterSpacing: -0.5,
                               ),
@@ -111,7 +111,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             verticalSpacing(6),
                             Text(
                               "Create an account to start your journey",
-                              style: AppTextStyles.font12CoolGrayManrope
+                              style: TextStyles.font12CoolGrayManrope
                                   .copyWith(
                                     fontSize: 14.sp,
                                     color: AppColors.slateGray.withValues(
@@ -149,13 +149,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           prefixIcon: const AuthPrefixIcon(
                                             icon: Icons.person_outline_rounded,
                                           ),
+                                          textInputAction: TextInputAction.next,
                                           validator: (v) =>
                                               v == null || v.isEmpty
                                               ? "Name is required"
                                               : null,
+
                                         ),
                                       ),
+
                                       verticalSpacing(14),
+
                                       AuthInputField(
                                         label: "Email Address",
                                         child: AppTextFormField(
@@ -165,6 +169,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           prefixIcon: const AuthPrefixIcon(
                                             icon: Icons.alternate_email_rounded,
                                           ),
+                                          textInputAction: TextInputAction.next,
                                           validator: Validators.validateEmail,
                                         ),
                                       ),
@@ -192,6 +197,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                               size: 18.sp,
                                             ),
                                           ),
+                                          textInputAction: TextInputAction.done,
                                           validator:
                                               Validators.validatePassword,
                                         ),
@@ -230,9 +236,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         );
                                       }
                                     },
-                                    buttonWidth: 140.w,
-                                    borderRadius: 18.r,
-                                    textStyle: AppTextStyles
+                                    buttonWidth: 190.w,
+                                    borderRadius: 14.r,
+                                    textStyle: TextStyles
                                         .font17BoldTrueBlackSora
                                         .copyWith(
                                           fontSize: 16.sp,
@@ -252,13 +258,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               children: [
                                 Text(
                                   "Already a member? ",
-                                  style: AppTextStyles.font12CoolGrayManrope,
+                                  style: TextStyles.font12CoolGrayManrope,
                                 ),
                                 GestureDetector(
                                   onTap: () => context.pop(),
                                   child: Text(
                                     "Sign In",
-                                    style: AppTextStyles.font13BoldNeonBlueSora
+                                    style: TextStyles.font13BoldNeonBlueSora
                                         .copyWith(fontWeight: FontWeight.w800),
                                   ),
                                 ),

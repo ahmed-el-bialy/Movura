@@ -59,7 +59,7 @@ class PersonCreditsList extends StatelessWidget {
                     title ?? "Unknown",
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: AppTextStyles.font12MediumPlatinumGray,
+                    style: TextStyles.font12MediumPlatinumGray,
                   ),
                 ],
               ),

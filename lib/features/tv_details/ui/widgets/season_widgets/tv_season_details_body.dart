@@ -90,12 +90,12 @@ class TvSeasonDetailsBody extends StatelessWidget {
                         children: [
                           Text(
                             tvTitle,
-                            style: AppTextStyles.font12CoolGrayManrope,
+                            style: TextStyles.font12CoolGrayManrope,
                           ),
                           verticalSpacing(4),
                           Text(
                             seasonDetails.name ?? 'Season',
-                            style: AppTextStyles.font17BoldIceBlueMontserrat
+                            style: TextStyles.font17BoldIceBlueMontserrat
                                 .copyWith(fontSize: 20.sp),
                           ),
                         ],
@@ -114,7 +114,7 @@ class TvSeasonDetailsBody extends StatelessWidget {
               padding: EdgeInsets.all(16.r),
               child: Text(
                 seasonDetails.overview!,
-                style: AppTextStyles.font12CoolGrayManrope.copyWith(
+                style: TextStyles.font12CoolGrayManrope.copyWith(
                   height: 1.6,
                 ),
               ),

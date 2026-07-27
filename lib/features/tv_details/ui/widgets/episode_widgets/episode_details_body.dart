@@ -115,12 +115,12 @@ class EpisodeDetailsBody extends StatelessWidget {
                         children: [
                           Text(
                             tvTitle,
-                            style: AppTextStyles.font12CoolGrayManrope,
+                            style: TextStyles.font12CoolGrayManrope,
                           ),
                           verticalSpacing(4),
                           Text(
                             episode.name ?? 'Episode',
-                            style: AppTextStyles.font17BoldIceBlueMontserrat
+                            style: TextStyles.font17BoldIceBlueMontserrat
                                 .copyWith(fontSize: 18.sp),
                           ),
                         ],
@@ -143,7 +143,7 @@ class EpisodeDetailsBody extends StatelessWidget {
                   verticalSpacing(8),
                   Text(
                     episode.overview!,
-                    style: AppTextStyles.font12CoolGrayManrope.copyWith(
+                    style: TextStyles.font12CoolGrayManrope.copyWith(
                       height: 1.6,
                     ),
                   ),

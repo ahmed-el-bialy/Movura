@@ -1,6 +1,7 @@
 import 'package:intl/intl.dart';
 
 extension NumberFormatterExt on num {
+
   String toSmartCurrency() {
     if (this <= 0) return r"$0";
 

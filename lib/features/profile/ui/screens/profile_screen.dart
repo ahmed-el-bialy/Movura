@@ -48,13 +48,13 @@ class ProfileScreen extends StatelessWidget {
                       verticalSpacing(16),
                       Text(
                         'John Doe',
-                        style: AppTextStyles.font24SimiBoldNeonBlueManrope.copyWith(
+                        style: TextStyles.font24SimiBoldNeonBlueManrope.copyWith(
                           color: AppColors.iceBlue,
                         ),
                       ),
                       Text(
                         'Cinematic Explorer',
-                        style: AppTextStyles.font12CoolGrayManrope,
+                        style: TextStyles.font12CoolGrayManrope,
                       ),
                     ],
                   ),
@@ -63,7 +63,7 @@ class ProfileScreen extends StatelessWidget {
                 // --- Your Collections Column ---
                 Text(
                   'YOUR COLLECTIONS',
-                  style: AppTextStyles.font10BoldCoolGray.copyWith(
+                  style: TextStyles.font10BoldCoolGray.copyWith(
                     letterSpacing: 1.5,
                     color: AppColors.neonBlue.withValues(alpha: 0.7),
                   ),
@@ -101,7 +101,7 @@ class ProfileScreen extends StatelessWidget {
                 // --- App Settings ---
                 Text(
                   'SETTINGS',
-                  style: AppTextStyles.font10BoldCoolGray.copyWith(
+                  style: TextStyles.font10BoldCoolGray.copyWith(
                     letterSpacing: 1.5,
                     color: AppColors.neonBlue.withValues(alpha: 0.7),
                   ),
@@ -176,7 +176,7 @@ class _ProfileCollectionTile extends StatelessWidget {
                 horizontalSpacing(16),
                 Text(
                   title,
-                  style: AppTextStyles.font14PureWhiteManrope.copyWith(
+                  style: TextStyles.font14PureWhiteManrope.copyWith(
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -184,7 +184,7 @@ class _ProfileCollectionTile extends StatelessWidget {
                 if (count != null)
                   Text(
                     '$count',
-                    style: AppTextStyles.font17BoldIceBlueMontserrat.copyWith(
+                    style: TextStyles.font17BoldIceBlueMontserrat.copyWith(
                       fontSize: 16.sp,
                       color: AppColors.coolGray,
                     ),

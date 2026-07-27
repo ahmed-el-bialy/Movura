@@ -28,10 +28,10 @@ class EmptySectionMessage extends StatelessWidget {
         children: [
           Icon(icon, color: AppColors.neonBlue, size: 50.sp),
           SizedBox(height: 16.h),
-          Text(title, style: AppTextStyles.font20SimiBoldNeonBlueManrope),
+          Text(title, style: TextStyles.font20SimiBoldNeonBlueManrope),
           SizedBox(height: 8.h),
           subTitle != null
-              ? Text(subTitle!, style: AppTextStyles.font12MediumPlatinumGray)
+              ? Text(subTitle!, style: TextStyles.font12MediumPlatinumGray)
               : SizedBox(),
         ],
       ),
