@@ -22,7 +22,7 @@ class MovieStoryAndGenres extends StatelessWidget {
         children: [
           SectionTitle(
             sectionName: "STORYLINE",
-            titleStyle: AppTextStyles.font20SimiBoldPlatinumGray.copyWith(
+            titleStyle: TextStyles.font20SimiBoldPlatinumGray.copyWith(
               fontSize: 16.sp,
             ),
             horizontalPadding: 1,
@@ -33,7 +33,7 @@ class MovieStoryAndGenres extends StatelessWidget {
           verticalSpacing(10),
           SectionTitle(
             sectionName: "GENRES",
-            titleStyle: AppTextStyles.font20SimiBoldPlatinumGray.copyWith(
+            titleStyle: TextStyles.font20SimiBoldPlatinumGray.copyWith(
               fontSize: 16.sp,
             ),
             horizontalPadding: 1,
@@ -59,7 +59,7 @@ class MovieStoryAndGenres extends StatelessWidget {
                   ),
                   child: Text(
                     genre.name,
-                    style: AppTextStyles.font12MediumPlatinumGray,
+                    style: TextStyles.font12MediumPlatinumGray,
                   ),
                 );
               }).toList(),

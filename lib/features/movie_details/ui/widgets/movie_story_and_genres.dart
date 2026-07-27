@@ -22,7 +22,7 @@ class MovieStoryAndGenres extends StatelessWidget {
         children: [
           Text(
             "STORYLINE",
-            style: AppTextStyles.font13BoldNeonBlueSora.copyWith(
+            style: TextStyles.font13BoldNeonBlueSora.copyWith(
               letterSpacing: 1.5,
               fontWeight: FontWeight.w900,
             ),
@@ -65,7 +65,7 @@ class MovieStoryAndGenres extends StatelessWidget {
                             padding: EdgeInsets.symmetric(horizontal: 14.w),
                             child: Text(
                               model.genres![index].name,
-                              style: AppTextStyles.font12MediumPlatinumGray
+                              style: TextStyles.font12MediumPlatinumGray
                                   .copyWith(
                                     fontSize: 13.sp,
                                     color: AppColors.platinumGray,

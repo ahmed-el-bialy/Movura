@@ -41,12 +41,12 @@ class BuildSearchResultsGrid extends StatelessWidget {
                     SizedBox(height: 12.h),
                     Text(
                       'No ${state.filter.label.toLowerCase()} found.',
-                      style: AppTextStyles.font14BoldIceBlueMontserrat,
+                      style: TextStyles.font14BoldIceBlueMontserrat,
                     ),
                     SizedBox(height: 6.h),
                     Text(
                       'Try a different keyword or filter',
-                      style: AppTextStyles.font12CoolGrayManrope,
+                      style: TextStyles.font12CoolGrayManrope,
                     ),
                   ],
                 ),

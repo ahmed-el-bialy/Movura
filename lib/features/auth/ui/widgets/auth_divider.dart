@@ -17,7 +17,7 @@ class AuthDivider extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: Text(
             "OR CONTINUE WITH",
-            style: AppTextStyles.font12BoldCoolGray.copyWith(
+            style: TextStyles.font12BoldCoolGray.copyWith(
               fontSize: 11.sp,
               letterSpacing: 1.2,
             ),

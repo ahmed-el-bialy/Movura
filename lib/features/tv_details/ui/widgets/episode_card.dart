@@ -69,7 +69,7 @@ class EpisodeCard extends StatelessWidget {
                             ),
                             child: Text(
                               'E${episode.episodeNumber}',
-                              style: AppTextStyles.font13BoldNeonBlueSora
+                              style: TextStyles.font13BoldNeonBlueSora
                                   .copyWith(fontSize: 11.sp),
                             ),
                           ),
@@ -84,7 +84,7 @@ class EpisodeCard extends StatelessWidget {
                             horizontalSpacing(4),
                             Text(
                               episode.voteAverage!.toStringAsFixed(1),
-                              style: AppTextStyles.font12CoolGrayManrope
+                              style: TextStyles.font12CoolGrayManrope
                                   .copyWith(color: AppColors.platinumGray),
                             ),
                           ],
@@ -95,7 +95,7 @@ class EpisodeCard extends StatelessWidget {
                         episode.name ?? "",
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: AppTextStyles.font17BoldIceBlueMontserrat
+                        style: TextStyles.font17BoldIceBlueMontserrat
                             .copyWith(fontSize: 14.sp),
                       ),
                       if (episode.overview != null &&
@@ -105,7 +105,7 @@ class EpisodeCard extends StatelessWidget {
                           episode.overview!,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: AppTextStyles.font12CoolGrayManrope.copyWith(
+                          style: TextStyles.font12CoolGrayManrope.copyWith(
                             fontSize: 11.sp,
                             height: 1.4,
                           ),
@@ -126,7 +126,7 @@ class EpisodeCard extends StatelessWidget {
                               episode.airDate!.toTimeAgo().isNotEmpty
                                   ? episode.airDate!.toTimeAgo()
                                   : episode.airDate!,
-                              style: AppTextStyles.font12CoolGrayManrope
+                              style: TextStyles.font12CoolGrayManrope
                                   .copyWith(fontSize: 10.sp),
                             ),
                           ],
@@ -140,7 +140,7 @@ class EpisodeCard extends StatelessWidget {
                             horizontalSpacing(4),
                             Text(
                               '${episode.runtime} min',
-                              style: AppTextStyles.font12CoolGrayManrope
+                              style: TextStyles.font12CoolGrayManrope
                                   .copyWith(fontSize: 10.sp),
                             ),
                           ],
@@ -170,7 +170,7 @@ class _EpisodePlaceholder extends StatelessWidget {
       child: Center(
         child: Text(
           '$episodeNumber',
-          style: AppTextStyles.font24SimiBoldNeonBlueManrope.copyWith(
+          style: TextStyles.font24SimiBoldNeonBlueManrope.copyWith(
             fontSize: 28.sp,
             color: AppColors.neonBlue.withValues(alpha: 0.5),
           ),

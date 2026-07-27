@@ -37,7 +37,7 @@ class BottomLeftSubCard extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 9.w, vertical: 4.w),
             child: Text(
               mediaModel?.title ?? mediaModel?.name ?? "Unknown Title",
-              style: titleStyle ?? AppTextStyles.font17BoldIceBlueMontserrat,
+              style: titleStyle ?? TextStyles.font17BoldIceBlueMontserrat,
               overflow: TextOverflow.ellipsis,
               maxLines: maxLines ?? 1,
               textAlign: TextAlign.left,

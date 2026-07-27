@@ -57,7 +57,7 @@ class ReviewCard extends StatelessWidget {
                         children: [
                           Text(
                             model.author,
-                            style: AppTextStyles.font14PureWhiteManrope,
+                            style: TextStyles.font14PureWhiteManrope,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                           ),
@@ -72,7 +72,7 @@ class ReviewCard extends StatelessWidget {
                     horizontalSpacing(15),
                     Text(
                       model.createdAt.toTimeAgo(),
-                      style: AppTextStyles.font12CoolGrayManrope,
+                      style: TextStyles.font12CoolGrayManrope,
                     ),
                   ],
                 ),

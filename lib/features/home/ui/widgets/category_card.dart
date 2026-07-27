@@ -72,7 +72,7 @@ class CategoryCard extends StatelessWidget {
                     if (model.hint != null)
                       Text(
                         model.hint!.toUpperCase(),
-                        style: AppTextStyles.font10BoldCoolGray.copyWith(
+                        style: TextStyles.font10BoldCoolGray.copyWith(
                           color: Colors.white.withValues(alpha: 0.6),
                           letterSpacing: 1.2,
                           fontSize: 9.sp,
@@ -81,7 +81,7 @@ class CategoryCard extends StatelessWidget {
                     SizedBox(height: 4.h),
                     Text(
                       model.title,
-                      style: AppTextStyles.font14BoldIceBlueMontserrat.copyWith(
+                      style: TextStyles.font14BoldIceBlueMontserrat.copyWith(
                         fontSize: 13.sp,
                         height: 1.2,
                       ),

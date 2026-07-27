@@ -19,18 +19,18 @@ class LibraryScreen extends StatelessWidget {
           elevation: 0,
           title: Text(
             'My Library',
-            style: AppTextStyles.font24SimiBoldNeonBlueManrope.copyWith(
+            style: TextStyles.font24SimiBoldNeonBlueManrope.copyWith(
               fontSize: 22.sp,
             ),
           ),
           bottom: TabBar(
             isScrollable: true,
             tabAlignment: TabAlignment.start,
-            unselectedLabelStyle: AppTextStyles.font10MediumCoolGraySora.copyWith(
+            unselectedLabelStyle: TextStyles.font10MediumCoolGraySora.copyWith(
               fontWeight: FontWeight.bold,
               fontSize: 13.sp,
             ),
-            labelStyle: AppTextStyles.font13BoldNeonBlueSora,
+            labelStyle: TextStyles.font13BoldNeonBlueSora,
             indicatorColor: AppColors.neonBlue,
             indicatorWeight: 3.0,
             indicatorSize: TabBarIndicatorSize.tab,
@@ -106,7 +106,7 @@ class _LibraryTabContent extends StatelessWidget {
             verticalSpacing(20),
             Text(
               'No items in $title',
-              style: AppTextStyles.font17BoldIceBlueMontserrat.copyWith(
+              style: TextStyles.font17BoldIceBlueMontserrat.copyWith(
                 color: AppColors.slateGray,
               ),
             ),
@@ -114,7 +114,7 @@ class _LibraryTabContent extends StatelessWidget {
             Text(
               'Start adding your favorite movies and TV shows to see them here.',
               textAlign: TextAlign.center,
-              style: AppTextStyles.font12CoolGrayManrope,
+              style: TextStyles.font12CoolGrayManrope,
             ),
             verticalSpacing(100),
           ],

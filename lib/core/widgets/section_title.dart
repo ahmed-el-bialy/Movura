@@ -31,7 +31,7 @@ class SectionTitle extends StatelessWidget {
         children: [
           Text(
             sectionName,
-            style: titleStyle ?? AppTextStyles.font20SimiBoldPlatinumGray,
+            style: titleStyle ?? TextStyles.font20SimiBoldPlatinumGray,
           ),
           Spacer(flex: 1),
           actionName != null
@@ -39,7 +39,7 @@ class SectionTitle extends StatelessWidget {
                   onTap: onTap ?? () {},
                   child: Text(
                     actionName!,
-                    style: actionStyle ?? AppTextStyles.font13MediumNeonBlue,
+                    style: actionStyle ?? TextStyles.font13MediumNeonBlue,
                   ),
                 )
               : Spacer(flex: 1),

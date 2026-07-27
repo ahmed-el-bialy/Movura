@@ -40,7 +40,7 @@ class TopLeftSubCard extends StatelessWidget {
                   padding: EdgeInsets.all(5.0.r),
                   child: Text(
                     mediaModel?.mediaType ?? mediaType ?? "N/A",
-                    style: subTextStyle ?? AppTextStyles.font16SimiBoldPlatinumGray,
+                    style: subTextStyle ?? TextStyles.font16SimiBoldPlatinumGray,
                   ),
                 ),
               )

@@ -33,7 +33,7 @@ class TrendingScreen extends StatelessWidget {
             ),
             title: Text(
               'Trending Today',
-              style: AppTextStyles.font20SimiBoldNeonBlueManrope.copyWith(
+              style: TextStyles.font20SimiBoldNeonBlueManrope.copyWith(
                 fontSize: 18.sp,
               ),
             ),

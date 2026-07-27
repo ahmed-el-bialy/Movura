@@ -43,7 +43,7 @@ class SearchScreen extends StatelessWidget {
                       horizontalSpacing(12),
                       Text(
                         'Search movies, TV shows...',
-                        style: AppTextStyles.font12CoolGrayManrope.copyWith(
+                        style: TextStyles.font12CoolGrayManrope.copyWith(
                           fontSize: 14.sp,
                           color: AppColors.slateGray.withValues(alpha: 0.6),
                         ),

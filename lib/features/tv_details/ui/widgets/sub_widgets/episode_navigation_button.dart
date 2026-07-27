@@ -45,7 +45,7 @@ class EpisodeNavigationButton extends StatelessWidget {
               ],
               Text(
                 label,
-                style: AppTextStyles.font13BoldNeonBlueSora.copyWith(
+                style: TextStyles.font13BoldNeonBlueSora.copyWith(
                   fontSize: 12.sp,
                   color: AppColors.iceBlue,
                 ),

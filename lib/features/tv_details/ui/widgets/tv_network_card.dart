@@ -38,7 +38,7 @@ class TvNetworkCard extends StatelessWidget {
           SizedBox(height: 8.h),
           Text(
             network.name ?? 'Network',
-            style: AppTextStyles.font10BoldCoolGray.copyWith(fontSize: 12.sp),
+            style: TextStyles.font10BoldCoolGray.copyWith(fontSize: 12.sp),
             textAlign: TextAlign.center,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,

@@ -30,7 +30,7 @@ class AppErrorWidget extends StatelessWidget {
             verticalSpacing(16),
             Text(
               errorMessage,
-              style: AppTextStyles.font14PureWhiteManrope.copyWith(
+              style: TextStyles.font14PureWhiteManrope.copyWith(
                 color: AppColors.coolGray,
               ),
               textAlign: TextAlign.center,
@@ -47,7 +47,7 @@ class AppErrorWidget extends StatelessWidget {
                 ),
                 child: Text(
                   'RETRY',
-                  style: AppTextStyles.font17BoldTrueBlackSora.copyWith(
+                  style: TextStyles.font17BoldTrueBlackSora.copyWith(
                     fontSize: 14.sp,
                   ),
                 ),

@@ -42,7 +42,7 @@ class ButtonsRow extends StatelessWidget {
                 icon: const Icon(Icons.play_arrow_rounded, size: 24),
                 label: Text(
                   "WATCH TRAILER",
-                  style: AppTextStyles.font17BoldTrueBlackSora.copyWith(
+                  style: TextStyles.font17BoldTrueBlackSora.copyWith(
                     fontSize: 14.sp,
                   ),
                 ),

@@ -129,7 +129,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                   children: [
                     Text(
                       'Refine Search',
-                      style: AppTextStyles.font17BoldIceBlueMontserrat.copyWith(
+                      style: TextStyles.font17BoldIceBlueMontserrat.copyWith(
                         fontSize: 22.sp,
                         letterSpacing: -0.5,
                         fontWeight: FontWeight.w800,
@@ -253,7 +253,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
         horizontalSpacing(12),
         Text(
           title,
-          style: AppTextStyles.font10BoldCoolGray.copyWith(
+          style: TextStyles.font10BoldCoolGray.copyWith(
             letterSpacing: 2.0,
             color: AppColors.coolGray.withValues(alpha: 0.6),
             fontWeight: FontWeight.w900,
@@ -353,8 +353,8 @@ class _FilterOptionTile extends StatelessWidget {
                     label,
                     style:
                         (isSelected
-                                ? AppTextStyles.font13BoldNeonBlueSora
-                                : AppTextStyles.font14PureWhiteManrope)
+                                ? TextStyles.font13BoldNeonBlueSora
+                                : TextStyles.font14PureWhiteManrope)
                             .copyWith(
                               fontSize: 12.sp,
                               fontWeight: isSelected
@@ -491,7 +491,7 @@ class _SelectionSummaryBar extends StatelessWidget {
           Expanded(
             child: Text(
               summary,
-              style: AppTextStyles.font12CoolGrayManrope.copyWith(
+              style: TextStyles.font12CoolGrayManrope.copyWith(
                 fontSize: 11.sp,
                 color: AppColors.iceBlue.withValues(alpha: 0.6),
                 fontWeight: FontWeight.w700,
@@ -534,7 +534,7 @@ class _SmallActionButton extends StatelessWidget {
           ),
           child: Text(
             label,
-            style: AppTextStyles.font14PureWhiteManrope.copyWith(
+            style: TextStyles.font14PureWhiteManrope.copyWith(
               color: AppColors.softRed,
               fontWeight: FontWeight.w900,
               fontSize: 12.sp,
@@ -573,7 +573,7 @@ class _SmallActionButton extends StatelessWidget {
         ),
         child: Text(
           label.toUpperCase(),
-          style: AppTextStyles.font17BoldTrueBlackSora.copyWith(
+          style: TextStyles.font17BoldTrueBlackSora.copyWith(
             fontSize: 10.sp,
             letterSpacing: 0.5,
             fontWeight: FontWeight.w900,

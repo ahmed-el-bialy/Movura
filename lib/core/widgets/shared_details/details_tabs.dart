@@ -37,9 +37,9 @@ class DetailsTabs extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TabBar(
-                unselectedLabelStyle: AppTextStyles.font10MediumCoolGraySora
+                unselectedLabelStyle: TextStyles.font10MediumCoolGraySora
                     .copyWith(fontWeight: FontWeight.bold, fontSize: 13.sp),
-                labelStyle: AppTextStyles.font13BoldNeonBlueSora,
+                labelStyle: TextStyles.font13BoldNeonBlueSora,
                 indicatorColor: AppColors.neonBlue,
                 indicatorWeight: 3.0,
                 indicatorSize: TabBarIndicatorSize.tab,

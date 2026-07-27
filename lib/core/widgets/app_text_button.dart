@@ -54,7 +54,7 @@ class AppTextButton extends StatelessWidget {
         buttonText,
         style:
             textStyle ??
-            AppTextStyles.font17BoldTrueBlackSora.copyWith(fontSize: 18.sp),
+            TextStyles.font17BoldTrueBlackSora.copyWith(fontSize: 18.sp),
       ),
     );
   }

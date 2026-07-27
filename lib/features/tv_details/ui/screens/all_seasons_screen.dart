@@ -48,7 +48,7 @@ class AllSeasonsScreen extends StatelessWidget {
         ),
         title: Text(
           '${arguments.tvTitle} — Seasons',
-          style: AppTextStyles.font17BoldIceBlueMontserrat.copyWith(
+          style: TextStyles.font17BoldIceBlueMontserrat.copyWith(
             fontSize: 16.sp,
           ),
           maxLines: 1,

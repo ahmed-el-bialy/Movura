@@ -46,9 +46,9 @@ class _DataItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(label, style: AppTextStyles.font10BoldCoolGray),
+        Text(label, style: TextStyles.font10BoldCoolGray),
         verticalSpacing(4),
-        Text(value, style: AppTextStyles.font12MediumPlatinumGray),
+        Text(value, style: TextStyles.font12MediumPlatinumGray),
       ],
     );
   }

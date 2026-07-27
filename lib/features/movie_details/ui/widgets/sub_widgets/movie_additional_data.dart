@@ -45,9 +45,9 @@ class _DataItem extends StatelessWidget {
     return Column(
       children: [
         Text(label,
-            style: AppTextStyles.font10BoldCoolGray.copyWith(fontSize: 12.sp)),
+            style: TextStyles.font10BoldCoolGray.copyWith(fontSize: 12.sp)),
         verticalSpacing(4),
-        Text(value, style: AppTextStyles.font12MediumPlatinumGray.copyWith(
+        Text(value, style: TextStyles.font12MediumPlatinumGray.copyWith(
             fontSize: 14.sp)),
       ],
     );
