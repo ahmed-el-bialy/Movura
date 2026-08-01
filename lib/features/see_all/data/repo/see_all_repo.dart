@@ -68,6 +68,14 @@ class SeeAllRepo {
         response = await webServices.getSimilarTv(id!, page);
         mediaType = 'tv';
         break;
+      case SeeAllEndpoint.moviesByGenre:
+        response = await webServices.getMoviesByGenre(id!, page);
+        mediaType = 'movie';
+        break;
+      case SeeAllEndpoint.tvByGenre:
+        response = await webServices.getTvByGenre(id!, page);
+        mediaType = 'tv';
+        break;
     }
 
     // Force media type if not provided by the API directly

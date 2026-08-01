@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/helpers/spacing.dart';
+import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/widgets/read_more_text.dart';
 import 'package:movura/features/movie_details/data/models/about_model.dart';
+import 'package:movura/features/see_all/data/models/see_all_arguments.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
 
 class MovieStoryAndGenres extends StatelessWidget {
   const MovieStoryAndGenres({super.key, required this.model});
@@ -49,7 +52,16 @@ class MovieStoryAndGenres extends StatelessWidget {
                         ),
                       ),
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          context.pushNamed(
+                            RouteNames.seeAllScreen,
+                            arguments: SeeAllArguments(
+                              title: model.genres![index].name,
+                              endpoint: SeeAllEndpoint.moviesByGenre,
+                              id: model.genres![index].id,
+                            ),
+                          );
+                        },
                         splashColor: AppColors.neonBlue.withValues(alpha: .2),
                         highlightColor: AppColors.neonBlue.withValues(
                           alpha: .1,

@@ -38,4 +38,16 @@ abstract class SeeAllWebServices {
     @Path("id") int id,
     @Query("page") int page,
   );
+
+  @GET("discover/movie")
+  Future<PosterResponse> getMoviesByGenre(
+    @Query("with_genres") int genreId,
+    @Query("page") int page,
+  );
+
+  @GET("discover/tv")
+  Future<PosterResponse> getTvByGenre(
+    @Query("with_genres") int genreId,
+    @Query("page") int page,
+  );
 }

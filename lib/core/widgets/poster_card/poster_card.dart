@@ -69,8 +69,8 @@ class PosterCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(cardRadius),
         ),
         child: SizedBox(
-          width: width?.w ?? 220.w,
-          height: height?.h ?? 310.h,
+          width: width ?? 220.w,
+          height: height ?? 310.h,
           child: Stack(
             fit: StackFit.expand,
             children: [
