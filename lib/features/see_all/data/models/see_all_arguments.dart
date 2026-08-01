@@ -12,6 +12,8 @@ enum SeeAllEndpoint {
   onTheAirTv,
   similarMovies,
   similarTv,
+  moviesByGenre,
+  tvByGenre,
 }
 
 class SeeAllArguments {

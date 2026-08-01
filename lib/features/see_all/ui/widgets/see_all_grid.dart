@@ -6,6 +6,8 @@ import 'package:movura/core/widgets/poster_card/poster_card.dart';
 import 'package:movura/core/helpers/spacing.dart';
 import 'package:movura/features/see_all/logic/see_all_cubit.dart';
 
+import '../../../../core/theming/text_styles.dart';
+
 class SeeAllGrid extends StatelessWidget {
   const SeeAllGrid({super.key});
 
@@ -51,13 +53,13 @@ class SeeAllGrid extends StatelessWidget {
             child: CustomScrollView(
               slivers: [
                 SliverPadding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                  padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 8.h),
                   sliver: SliverGrid(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
-                      childAspectRatio: 0.65,
-                      crossAxisSpacing: 16.w,
-                      mainAxisSpacing: 16.h,
+                      childAspectRatio: 0.55,
+                      crossAxisSpacing: 8.w,
+                      mainAxisSpacing: 12.h,
                     ),
                     delegate: SliverChildBuilderDelegate(
                       (context, index) {
@@ -65,6 +67,20 @@ class SeeAllGrid extends StatelessWidget {
                         return PosterCard(
                           mediaModel: item,
                           mediaType: item.mediaType,
+                          elevation: 6,
+                          width: double.infinity,
+                          height: double.infinity,
+                          border: 12,
+                          titleStyle: TextStyles.font14BoldIceBlueMontserrat.copyWith(
+                            fontSize: 11.sp,
+                            fontWeight: FontWeight.w800,
+                          ),
+                          subTextStyle: TextStyles.font16SimiBoldPlatinumGray.copyWith(
+                            fontSize: 10.sp,
+                            letterSpacing: 0.5,
+                          ),
+                          showMediaType: true,
+                          maxLines: 2,
                         );
                       },
                       childCount: state.items.length,

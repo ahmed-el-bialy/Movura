@@ -11,6 +11,8 @@ import 'package:movura/features/search/logic/search/search_cubit.dart';
 import 'package:movura/features/search/ui/screens/custom_search_delegate.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../../see_all/data/models/see_all_arguments.dart';
+
 
 class CategoryList extends StatefulWidget {
   const CategoryList({super.key});
@@ -40,7 +42,13 @@ class _CategoryListState extends State<CategoryList> {
         hint: "TOP CHOICE",
         icon: Icons.tv_rounded,
         onTap: () {
-          context.pushNamed(RouteNames.trendingScreen, arguments: null);
+          context.pushNamed(
+            RouteNames.seeAllScreen,
+            arguments: SeeAllArguments(
+              title: "Popular TV Series",
+              endpoint: SeeAllEndpoint.popularTv,
+            ),
+          );
         },
       ),
       CategoryCardModel(
@@ -49,7 +57,13 @@ class _CategoryListState extends State<CategoryList> {
         hint: "TOP CHOICE",
         icon: Icons.auto_awesome_rounded,
         onTap: () {
-          context.pushNamed(RouteNames.trendingScreen, arguments: null);
+          context.pushNamed(
+            RouteNames.seeAllScreen,
+            arguments: SeeAllArguments(
+              title: "Popular Movies",
+              endpoint: SeeAllEndpoint.popularMovies,
+            ),
+          );
         },
       ),
       CategoryCardModel(
@@ -58,7 +72,13 @@ class _CategoryListState extends State<CategoryList> {
         hint: "DAILY UPDATES",
         icon: Icons.trending_up_rounded,
         onTap: () {
-          context.pushNamed(RouteNames.trendingScreen, arguments: null);
+          context.pushNamed(
+            RouteNames.seeAllScreen,
+            arguments: SeeAllArguments(
+              title: "Trending Today",
+              endpoint: SeeAllEndpoint.trendingMoviesDay,
+            ),
+          );
         },
       ),
       CategoryCardModel(
