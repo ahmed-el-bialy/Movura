@@ -54,7 +54,7 @@ class SeeAllGrid extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
                   sliver: SliverGrid(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
+                      crossAxisCount: 3,
                       childAspectRatio: 0.65,
                       crossAxisSpacing: 16.w,
                       mainAxisSpacing: 16.h,
