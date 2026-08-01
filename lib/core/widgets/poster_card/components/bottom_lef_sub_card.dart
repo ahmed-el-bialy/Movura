@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/models/poster_model.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/widgets/poster_card/components/glass_card.dart';
 
 class BottomLeftSubCard extends StatelessWidget {
   const BottomLeftSubCard({
@@ -28,21 +29,16 @@ class BottomLeftSubCard extends StatelessWidget {
       alignment: Alignment.bottomLeft,
       child: Padding(
         padding: EdgeInsets.all(2.0.r),
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(subCardBorder ?? 10),
-          ),
-          elevation: subCardElevation ?? 8,
-          color: subCardColor ?? AppColors.darkPurpleGray.withValues(alpha: .7),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 9.w, vertical: 4.w),
-            child: Text(
-              mediaModel?.title ?? mediaModel?.name ?? "Unknown Title",
-              style: titleStyle ?? TextStyles.font17BoldIceBlueMontserrat,
-              overflow: TextOverflow.ellipsis,
-              maxLines: maxLines ?? 1,
-              textAlign: TextAlign.left,
-            ),
+        child: GlassCard(
+          borderRadius: subCardBorder ?? 10,
+          color: subCardColor,
+          padding: EdgeInsets.symmetric(horizontal: 9.w, vertical: 4.w),
+          child: Text(
+            mediaModel?.title ?? mediaModel?.name ?? "Unknown Title",
+            style: titleStyle ?? TextStyles.font17BoldIceBlueMontserrat.copyWith(fontSize: 14.sp),
+            overflow: TextOverflow.ellipsis,
+            maxLines: maxLines ?? 1,
+            textAlign: TextAlign.left,
           ),
         ),
       ),

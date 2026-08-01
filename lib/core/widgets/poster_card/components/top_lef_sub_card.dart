@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/models/poster_model.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/widgets/poster_card/components/glass_card.dart';
 
 class TopLeftSubCard extends StatelessWidget {
   const TopLeftSubCard({
@@ -31,18 +32,13 @@ class TopLeftSubCard extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.all(2.0.r),
         child: showMediaType == true
-            ? Card(
-                elevation: subCardElevation ?? 8,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(subCardBorder ?? 10),
-                ),
-                color: subCardColor ?? AppColors.darkPurpleGray.withValues(alpha: .8),
-                child: Padding(
-                  padding: EdgeInsets.all(5.0.r),
-                  child: Text(
-                    mediaModel?.mediaType ?? mediaType ?? "N/A",
-                    style: subTextStyle ?? TextStyles.font16SimiBoldPlatinumGray,
-                  ),
+            ? GlassCard(
+                borderRadius: subCardBorder ?? 10,
+                color: subCardColor,
+                padding: EdgeInsets.all(5.0.r),
+                child: Text(
+                  (mediaModel?.mediaType ?? mediaType ?? "N/A").toUpperCase(),
+                  style: subTextStyle ?? TextStyles.font16SimiBoldPlatinumGray.copyWith(fontSize: 13.sp, letterSpacing: 1.2),
                 ),
               )
             : const SizedBox.shrink(),

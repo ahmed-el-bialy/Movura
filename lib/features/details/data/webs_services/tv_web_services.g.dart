@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'search_web_services.dart';
+part of 'tv_web_services.dart';
 
 // dart format off
 
@@ -10,8 +10,8 @@ part of 'search_web_services.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter,avoid_unused_constructor_parameters,unreachable_from_main,avoid_redundant_argument_values
 
-class _SearchWebServices implements SearchWebServices {
-  _SearchWebServices(this._dio, {this.baseUrl, this.errorLogger});
+class _TvWebServices implements TvWebServices {
+  _TvWebServices(this._dio, {this.baseUrl, this.errorLogger});
 
   final Dio _dio;
 
@@ -20,34 +20,32 @@ class _SearchWebServices implements SearchWebServices {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<PosterResponse> getMultiSearchResults({
+  Future<InvalidType> getTvSeriesMainDetails({
+    required int id,
+    String additionalData = "credits,images,videos",
     String language = "en-US",
-    required String query,
-    int? page = 1,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
+      r'append_to_response': additionalData,
       r'language': language,
-      r'query': query,
-      r'page': page,
     };
-    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<PosterResponse>(
+    final _options = _setStreamType<InvalidType>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'search/multi',
+            'tv/${id}',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late PosterResponse _value;
+    late InvalidType _value;
     try {
-      _value = PosterResponse.fromJson(_result.data!);
+      _value = InvalidType.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -56,34 +54,28 @@ class _SearchWebServices implements SearchWebServices {
   }
 
   @override
-  Future<PosterResponse> getMovieSearchResults({
+  Future<InvalidType> getTvSeriesReviews({
+    required int id,
     String language = "en-US",
-    required String query,
-    int? page = 1,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'language': language,
-      r'query': query,
-      r'page': page,
-    };
-    queryParameters.removeWhere((k, v) => v == null);
+    final queryParameters = <String, dynamic>{r'language': language};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<PosterResponse>(
+    final _options = _setStreamType<InvalidType>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'search/movie',
+            'tv/${id}/reviews',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late PosterResponse _value;
+    late InvalidType _value;
     try {
-      _value = PosterResponse.fromJson(_result.data!);
+      _value = InvalidType.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -92,34 +84,32 @@ class _SearchWebServices implements SearchWebServices {
   }
 
   @override
-  Future<PosterResponse> getTvSearchResults({
+  Future<InvalidType> getSimilarTvSeries({
+    required int id,
+    String additionalData = "similar,recommendations",
     String language = "en-US",
-    required String query,
-    int? page = 1,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
+      r'append_to_response': additionalData,
       r'language': language,
-      r'query': query,
-      r'page': page,
     };
-    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<PosterResponse>(
+    final _options = _setStreamType<InvalidType>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'search/tv',
+            'tv/${id}',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late PosterResponse _value;
+    late InvalidType _value;
     try {
-      _value = PosterResponse.fromJson(_result.data!);
+      _value = InvalidType.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -128,34 +118,29 @@ class _SearchWebServices implements SearchWebServices {
   }
 
   @override
-  Future<PosterResponse> getPersonSearchResults({
+  Future<InvalidType> getTvSeasonDetails({
+    required int id,
+    required int seasonNumber,
     String language = "en-US",
-    required String query,
-    int? page = 1,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{
-      r'language': language,
-      r'query': query,
-      r'page': page,
-    };
-    queryParameters.removeWhere((k, v) => v == null);
+    final queryParameters = <String, dynamic>{r'language': language};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<PosterResponse>(
+    final _options = _setStreamType<InvalidType>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'search/person',
+            'tv/${id}/season/${seasonNumber}',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late PosterResponse _value;
+    late InvalidType _value;
     try {
-      _value = PosterResponse.fromJson(_result.data!);
+      _value = InvalidType.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;

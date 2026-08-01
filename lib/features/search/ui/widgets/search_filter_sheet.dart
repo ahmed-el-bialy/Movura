@@ -118,31 +118,35 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
               ),
             ],
           ),
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Refine Search',
-                      style: TextStyles.font17BoldIceBlueMontserrat.copyWith(
-                        fontSize: 22.sp,
-                        letterSpacing: -0.5,
-                        fontWeight: FontWeight.w800,
-                      ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Refine Search',
+                    style: TextStyles.font17BoldIceBlueMontserrat.copyWith(
+                      fontSize: 22.sp,
+                      letterSpacing: -0.5,
+                      fontWeight: FontWeight.w800,
                     ),
-                    _HeaderCloseButton(onPressed: () => context.pop()),
-                  ],
-                ),
-                verticalSpacing(28),
-                _buildSectionHeader(
-                  Icons.auto_awesome_motion_rounded,
-                  'SEARCH IN',
-                ),
+                  ),
+                  _HeaderCloseButton(onPressed: () => context.pop()),
+                ],
+              ),
+              verticalSpacing(20),
+              Flexible(
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildSectionHeader(
+                        Icons.auto_awesome_motion_rounded,
+                        'SEARCH IN',
+                      ),
                 verticalSpacing(16),
                 GridView.builder(
                   shrinkWrap: true,
@@ -202,11 +206,15 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                     setState(() {
                       _tempSortByRating = !_tempSortByRating;
                     });
-                  },
-                ),
-                verticalSpacing(40),
-                _SelectionSummaryBar(summary: selectionSummary),
-                verticalSpacing(28),
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+          verticalSpacing(20),
+          _SelectionSummaryBar(summary: selectionSummary),
+          verticalSpacing(20),
                 Row(
                   children: [
                     Expanded(

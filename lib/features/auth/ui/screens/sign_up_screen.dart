@@ -90,7 +90,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 12.w),
+                      padding: EdgeInsets.symmetric(horizontal: 24.w),
                       child: Form(
                         key: formKey,
                         child: Column(
@@ -126,8 +126,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ),
                                 child: Container(
                                   padding: EdgeInsets.symmetric(
-                                    horizontal: 8.w,
-                                    vertical: 12.h,
+                                    horizontal: 16.w,
+                                    vertical: 20.h,
                                   ),
                                   decoration: BoxDecoration(
                                     color: AppColors.onyxBlack.withValues(
@@ -230,7 +230,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         );
                                       }
                                     },
-                                    buttonWidth: 240.w,
+                                    buttonWidth: double.infinity,
                                     borderRadius: 16.r,
                                     textStyle: TextStyles
                                         .font17BoldTrueBlackSora
