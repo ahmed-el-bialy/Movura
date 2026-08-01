@@ -163,7 +163,10 @@ class CustomSideDrawer extends StatelessWidget {
                 'Profile',
                 style: TextStyles.font14PureWhiteManrope,
               ),
-              onTap: () {},
+              onTap: () {
+                context.pop();
+                context.pushNamed(RouteNames.profileScreen);
+              },
             ),
           ),
           Padding(
@@ -182,7 +185,15 @@ class CustomSideDrawer extends StatelessWidget {
                 color: AppColors.neonBlue,
                 size: 22.sp,
               ),
-              onTap: () {},
+              onTap: () {
+                context.pop();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Movura Pro features unlocked!'),
+                    backgroundColor: AppColors.neonBlue,
+                  ),
+                );
+              },
             ),
           ),
           Padding(
@@ -348,6 +359,7 @@ class CustomSideDrawer extends StatelessWidget {
               ),
               onTap: () {
                 context.pop();
+                context.pushReplacementNamed(RouteNames.logInScreen);
               },
             ),
           ),
