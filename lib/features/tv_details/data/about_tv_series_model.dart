@@ -25,6 +25,9 @@ class AboutTvSeriesModel {
   @JsonKey(name: "name")
   final String? title;
 
+  @JsonKey(name: "original_name")
+  final String? originalTitle;
+
   @JsonKey(name: "overview")
   final String? overview;
 
@@ -93,6 +96,7 @@ class AboutTvSeriesModel {
     this.posterPath,
     this.backdropPath,
     this.title,
+    this.originalTitle,
     this.overview,
     this.rating,
     this.status,

@@ -69,14 +69,15 @@ class EpisodeCard extends StatelessWidget {
                             ),
                             child: Text(
                               'E${episode.episodeNumber}',
-                              style: TextStyles.font13BoldNeonBlueSora
-                                  .copyWith(fontSize: 11.sp),
+                              style: TextStyles.font13BoldNeonBlueSora.copyWith(
+                                fontSize: 11.sp,
+                              ),
                             ),
                           ),
                           const Spacer(),
                           if (episode.voteAverage != null &&
                               episode.voteAverage! > 0) ...[
-                            const Icon(
+                            Icon(
                               Icons.star_rounded,
                               color: AppColors.gold,
                               size: 14.sp,
@@ -84,8 +85,9 @@ class EpisodeCard extends StatelessWidget {
                             horizontalSpacing(4),
                             Text(
                               episode.voteAverage!.toStringAsFixed(1),
-                              style: TextStyles.font12CoolGrayManrope
-                                  .copyWith(color: AppColors.platinumGray),
+                              style: TextStyles.font12CoolGrayManrope.copyWith(
+                                color: AppColors.platinumGray,
+                              ),
                             ),
                           ],
                         ],
@@ -95,8 +97,9 @@ class EpisodeCard extends StatelessWidget {
                         episode.name ?? "",
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyles.font17BoldIceBlueMontserrat
-                            .copyWith(fontSize: 14.sp),
+                        style: TextStyles.font17BoldIceBlueMontserrat.copyWith(
+                          fontSize: 14.sp,
+                        ),
                       ),
                       if (episode.overview != null &&
                           (episode.overview?.isNotEmpty ?? false)) ...[
@@ -116,7 +119,7 @@ class EpisodeCard extends StatelessWidget {
                         children: [
                           if (episode.airDate != null &&
                               (episode.airDate?.isNotEmpty ?? false)) ...[
-                            const Icon(
+                            Icon(
                               Icons.calendar_today_outlined,
                               size: 12.sp,
                               color: AppColors.coolGray,
@@ -126,13 +129,14 @@ class EpisodeCard extends StatelessWidget {
                               (episode.airDate?.toTimeAgo().isNotEmpty ?? false)
                                   ? episode.airDate!.toTimeAgo()
                                   : (episode.airDate ?? ""),
-                              style: TextStyles.font12CoolGrayManrope
-                                  .copyWith(fontSize: 10.sp),
+                              style: TextStyles.font12CoolGrayManrope.copyWith(
+                                fontSize: 10.sp,
+                              ),
                             ),
                           ],
                           if (episode.runtime != null) ...[
                             const Spacer(),
-                            const Icon(
+                            Icon(
                               Icons.schedule_rounded,
                               size: 12.sp,
                               color: AppColors.coolGray,
@@ -140,8 +144,9 @@ class EpisodeCard extends StatelessWidget {
                             horizontalSpacing(4),
                             Text(
                               '${episode.runtime} min',
-                              style: TextStyles.font12CoolGrayManrope
-                                  .copyWith(fontSize: 10.sp),
+                              style: TextStyles.font12CoolGrayManrope.copyWith(
+                                fontSize: 10.sp,
+                              ),
                             ),
                           ],
                         ],

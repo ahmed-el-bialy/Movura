@@ -30,6 +30,7 @@ class PlatformOptionsSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final providers =
+        watchProviders?.results?['EG'] ??
         watchProviders?.results?['US'] ??
         watchProviders?.results?.values.firstOrNull;
     final streaming = providers?.flatrate ?? [];

@@ -15,27 +15,38 @@ class SearchRepo {
   }) async {
     PosterResponse response;
     switch (filterType) {
-      case SearchFilterType.movie:
-        response = await searchWebServices.getMovieSearchResults(query: query, page: page);
+      case SearchFilterType.movies:
+        response = await searchWebServices.getMovieSearchResults(
+          query: query,
+          page: page,
+        );
         break;
       case SearchFilterType.tv:
-        response = await searchWebServices.getTvSearchResults(query: query, page: page);
+        response = await searchWebServices.getTvSearchResults(
+          query: query,
+          page: page,
+        );
         break;
-      case SearchFilterType.person:
-        response = await searchWebServices.getPersonSearchResults(query: query, page: page);
+      case SearchFilterType.people:
+        response = await searchWebServices.getPersonSearchResults(
+          query: query,
+          page: page,
+        );
         break;
       case SearchFilterType.all:
-      default:
-        response = await searchWebServices.getMultiSearchResults(query: query, page: page);
+        response = await searchWebServices.getMultiSearchResults(
+          query: query,
+          page: page,
+        );
         break;
     }
 
     var results = response.results ?? [];
-    if (filterType == SearchFilterType.movie) {
+    if (filterType == SearchFilterType.movies) {
       results = results.map((e) => e.copyWith(mediaType: 'movie')).toList();
     } else if (filterType == SearchFilterType.tv) {
       results = results.map((e) => e.copyWith(mediaType: 'tv')).toList();
-    } else if (filterType == SearchFilterType.person) {
+    } else if (filterType == SearchFilterType.people) {
       results = results.map((e) => e.copyWith(mediaType: 'person')).toList();
     }
 

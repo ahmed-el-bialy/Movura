@@ -11,6 +11,7 @@ AboutModel _$AboutModelFromJson(Map<String, dynamic> json) => AboutModel(
   language: json['original_language'] as String?,
   posterPath: json['poster_path'] as String?,
   title: json['title'] as String?,
+  originalTitle: json['original_title'] as String?,
   overview: json['overview'] as String?,
   runtime: (json['runtime'] as num?)?.toDouble(),
   rating: (json['vote_average'] as num?)?.toDouble(),
@@ -26,6 +27,8 @@ AboutModel _$AboutModelFromJson(Map<String, dynamic> json) => AboutModel(
   budget: (json['budget'] as num?)?.toInt(),
   revenue: (json['revenue'] as num?)?.toInt(),
   homepage: json['homepage'] as String?,
+  tagline: json['tagline'] as String?,
+  status: json['status'] as String?,
   adultContent: json['adult'] as bool?,
   mediaImages: json['images'] == null
       ? null
@@ -46,6 +49,7 @@ Map<String, dynamic> _$AboutModelToJson(AboutModel instance) =>
       'original_language': instance.language,
       'poster_path': instance.posterPath,
       'title': instance.title,
+      'original_title': instance.originalTitle,
       'overview': instance.overview,
       'runtime': instance.runtime,
       'vote_average': instance.rating,
@@ -55,6 +59,8 @@ Map<String, dynamic> _$AboutModelToJson(AboutModel instance) =>
       'budget': instance.budget,
       'revenue': instance.revenue,
       'homepage': instance.homepage,
+      'tagline': instance.tagline,
+      'status': instance.status,
       'adult': instance.adultContent,
       'images': instance.mediaImages,
       'videos': instance.movieVideos,

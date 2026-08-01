@@ -5,7 +5,6 @@ import 'package:movura/core/widgets/app_error_widget.dart';
 import 'package:movura/core/widgets/empty_section_message.dart';
 import 'package:movura/core/widgets/shared_details/reviews_list.dart';
 import 'package:movura/features/movie_details/logic/reviews/reviews_cubit.dart';
-import 'package:movura/features/movie_details/logic/reviews/reviews_state.dart';
 
 class MovieReviewsTabBody extends StatelessWidget {
   const MovieReviewsTabBody({super.key});
