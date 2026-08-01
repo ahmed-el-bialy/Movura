@@ -13,6 +13,9 @@ class ApiConstants {
   static const String movieDetails = "movie";
   static const String tvDetails = "tv";
   static const String multiSearch = "search/multi";
+  static const String movieSearch = "search/movie";
+  static const String tvSearch = "search/tv";
+  static const String personSearch = "search/person";
   static const String movieGenres = "genre/movie/list";
   static const String tvGenres = "genre/tv/list";
   static const String personDetails = "person";

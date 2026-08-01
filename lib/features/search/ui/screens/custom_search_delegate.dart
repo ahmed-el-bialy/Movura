@@ -65,14 +65,11 @@ class CustomSearchDelegate extends SearchDelegate {
       IconButton(
         onPressed: () {
           query = '';
-          searchCubit.setFilter(SearchFilterType.all);
-          searchCubit.setGenreFilter(null);
-          searchCubit.setSortByRating(false);
           showSuggestions(context);
         },
-        icon: Icon(
+        icon: const Icon(
           Icons.clear,
-          color: isFiltered ? AppColors.softRed : AppColors.neonBlue,
+          color: AppColors.neonBlue,
         ),
       ),
       IconButton(

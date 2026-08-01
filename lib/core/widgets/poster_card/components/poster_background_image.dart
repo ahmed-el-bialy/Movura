@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movura/core/constants/api_constants.dart';
 import 'package:movura/core/models/poster_model.dart';
-import 'package:movura/core/widgets/poster_card/sub_widgets/error_poster_image.dart';
+import 'package:movura/core/widgets/poster_card/components/error_poster_image.dart';
 
 class PosterBackgroundImage extends StatelessWidget {
   const PosterBackgroundImage({

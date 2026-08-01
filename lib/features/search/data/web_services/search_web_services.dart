@@ -11,7 +11,28 @@ abstract class SearchWebServices {
   factory SearchWebServices(Dio dio, {String? baseUrl}) = _SearchWebServices;
 
   @GET(ApiConstants.multiSearch)
-  Future<PosterResponse> getSearchResults({
+  Future<PosterResponse> getMultiSearchResults({
+    @Query("language") String language = "en-US",
+    @Query("query") required String query,
+    @Query("page") int? page=1,
+  });
+
+  @GET(ApiConstants.movieSearch)
+  Future<PosterResponse> getMovieSearchResults({
+    @Query("language") String language = "en-US",
+    @Query("query") required String query,
+    @Query("page") int? page=1,
+  });
+
+  @GET(ApiConstants.tvSearch)
+  Future<PosterResponse> getTvSearchResults({
+    @Query("language") String language = "en-US",
+    @Query("query") required String query,
+    @Query("page") int? page=1,
+  });
+
+  @GET(ApiConstants.personSearch)
+  Future<PosterResponse> getPersonSearchResults({
     @Query("language") String language = "en-US",
     @Query("query") required String query,
     @Query("page") int? page=1,

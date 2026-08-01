@@ -36,7 +36,11 @@ class SearchCubit extends Cubit<SearchState> {
     emit(SearchLoading(filter: currentFilter));
     try {
       _lastQuery = query;
-      _allPosters = await searchRepo.getSearchResults(query: query, page: page);
+      _allPosters = await searchRepo.getSearchResults(
+        query: query,
+        filterType: currentFilter,
+        page: page,
+      );
       emit(
         SearchLoaded(
           posters: _applyFilter(_allPosters),
@@ -52,14 +56,8 @@ class SearchCubit extends Cubit<SearchState> {
   void setFilter(SearchFilterType filter) {
     currentFilter = filter;
     selectedGenreId = null;
-    if (_allPosters.isNotEmpty) {
-      emit(
-        SearchLoaded(
-          posters: _applyFilter(_allPosters),
-          filter: currentFilter,
-          query: _lastQuery,
-        ),
-      );
+    if (_lastQuery.isNotEmpty) {
+      getSearchResults(query: _lastQuery);
     } else {
       emit(SearchInitial(filter: currentFilter));
     }
@@ -93,12 +91,6 @@ class SearchCubit extends Cubit<SearchState> {
 
   List<PosterModel> _applyFilter(List<PosterModel> posters) {
     var filtered = List<PosterModel>.from(posters);
-    final mediaType = currentFilter.mediaType;
-    if (mediaType != null) {
-      filtered = filtered
-          .where((poster) => poster.mediaType == mediaType)
-          .toList();
-    }
 
     if (selectedGenreId != null) {
       filtered = filtered

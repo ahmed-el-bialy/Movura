@@ -56,4 +56,28 @@ class PosterModel {
       _$PosterModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$PosterModelToJson(this);
+
+  PosterModel copyWith({
+    int? id,
+    String? title,
+    String? name,
+    String? posterPath,
+    String? mediaType,
+    double? voteAverage,
+    String? knownForDepartment,
+    String? profilePath,
+    List<int>? genreIds,
+  }) {
+    return PosterModel(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      name: name ?? this.name,
+      posterPath: posterPath ?? this.posterPath,
+      mediaType: mediaType ?? this.mediaType,
+      voteAverage: voteAverage ?? this.voteAverage,
+      knownForDepartment: knownForDepartment ?? this.knownForDepartment,
+      profilePath: profilePath ?? this.profilePath,
+      genreIds: genreIds ?? this.genreIds,
+    );
+  }
 }

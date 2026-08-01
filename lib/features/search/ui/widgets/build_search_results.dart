@@ -8,7 +8,6 @@ import 'package:movura/core/widgets/custom_posters_grid_view.dart';
 import 'package:movura/core/widgets/skeleton_poster_grid_loading.dart';
 import 'package:movura/features/search/data/models/search_filter_type.dart';
 import 'package:movura/features/search/logic/search/search_cubit.dart';
-import 'package:movura/features/search/ui/widgets/sub_widgets/person_card.dart';
 
 class BuildSearchResultsGrid extends StatelessWidget {
   const BuildSearchResultsGrid({super.key, required this.searchCubit});
@@ -53,27 +52,6 @@ class BuildSearchResultsGrid extends StatelessWidget {
             );
           }
 
-          if (state.filter == SearchFilterType.people) {
-            return Container(
-              color: AppColors.jetBlack,
-              child: GridView.builder(
-                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
-                physics: const BouncingScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 16.h,
-                  crossAxisSpacing: 12.w,
-                  childAspectRatio: 0.7,
-                ),
-                itemCount: state.posters.length,
-                itemBuilder: (context, index) {
-                  return PersonCard(
-                    person: state.posters[index],
-                  );
-                },
-              ),
-            );
-          }
 
           return Container(
             color: AppColors.jetBlack,

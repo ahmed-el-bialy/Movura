@@ -106,7 +106,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 12.w),
+                      padding: EdgeInsets.symmetric(horizontal: 24.w),
                       child: Form(
                         key: formKey,
                         child: Column(
@@ -161,8 +161,8 @@ class _LogInScreenState extends State<LogInScreen> {
                                 ),
                                 child: Container(
                                   padding: EdgeInsets.symmetric(
-                                    horizontal: 8.w,
-                                    vertical: 12.h,
+                                    horizontal: 16.w,
+                                    vertical: 20.h,
                                   ),
                                   decoration: BoxDecoration(
                                     color: AppColors.onyxBlack.withValues(
@@ -257,7 +257,7 @@ class _LogInScreenState extends State<LogInScreen> {
                                         );
                                       }
                                     },
-                                    buttonWidth: 240.w,
+                                    buttonWidth: double.infinity,
                                     borderRadius: 16.r,
                                     textStyle: TextStyles
                                         .font17BoldTrueBlackSora
@@ -269,11 +269,11 @@ class _LogInScreenState extends State<LogInScreen> {
                                 );
                               },
                             ),
-                            verticalSpacing(25),
+                            verticalSpacing(20),
                             const AuthDivider(),
-                            verticalSpacing(20),
+                            verticalSpacing(16),
                             SocialButtonsRow(),
-                            verticalSpacing(20),
+                            verticalSpacing(16),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [

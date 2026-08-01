@@ -55,7 +55,7 @@ class AppTextFormField extends StatelessWidget {
         isDense: true,
         contentPadding:
             contentPadding ??
-            EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+            EdgeInsets.symmetric(horizontal: 16.w, vertical: 17.h),
         hintText: hintText,
         hintStyle:
             hintStyle ??

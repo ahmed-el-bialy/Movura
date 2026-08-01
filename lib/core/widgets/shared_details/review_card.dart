@@ -55,7 +55,7 @@ class ReviewCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            model.author,
+                            model.author!,
                             style: TextStyles.font14PureWhiteManrope,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
@@ -70,13 +70,13 @@ class ReviewCard extends StatelessWidget {
                     ),
                     horizontalSpacing(15),
                     Text(
-                      model.createdAt.toTimeAgo(),
+                      model.createdAt!.toTimeAgo(),
                       style: TextStyles.font12CoolGrayManrope,
                     ),
                   ],
                 ),
               ),
-              ReadMoreText(content: model.content),
+              ReadMoreText(content: model.content!),
             ],
           ),
         ),
