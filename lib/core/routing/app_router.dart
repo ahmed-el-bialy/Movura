@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movura/core/networking/di.dart';
+import 'package:movura/core/routing/arguments_models.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/features/auth/ui/screens/log_in_screen.dart';
 import 'package:movura/features/auth/ui/screens/sign_up_screen.dart';
@@ -18,9 +20,6 @@ import 'package:movura/features/tv_details/ui/screens/episode_details_screen.dar
 import 'package:movura/features/tv_details/ui/screens/tv_details_screen.dart';
 import 'package:movura/features/tv_details/ui/screens/tv_seasons_screen.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-
-import '../networking/di.dart';
-import 'arguments_models.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings setting) {
@@ -47,8 +46,7 @@ class AppRouter {
           return MaterialPageRoute(
             builder: (_) => BlocProvider(
               create: (context) =>
-              sl<AboutCubit>()
-                ..getMovieMainDetails(id: arguments.mediaId),
+                  sl<AboutCubit>()..getMovieMainDetails(id: arguments.mediaId),
               child: const MovieDetailsScreen(),
             ),
           );
@@ -56,8 +54,7 @@ class AppRouter {
           return MaterialPageRoute(
             builder: (_) => BlocProvider(
               create: (context) =>
-              sl<AboutTvCubit>()
-                ..getTvSeriesMainDetails(id: arguments.mediaId),
+                  sl<AboutTvCubit>()..getTvSeriesMainDetails(id: arguments.mediaId),
               child: const TvSeriesDetailsScreen(),
             ),
           );
@@ -78,13 +75,11 @@ class AppRouter {
       case RouteNames.personDetailsScreen:
         final personId = setting.arguments as int;
         return MaterialPageRoute(
-          builder: (_) =>
-              BlocProvider(
-                create: (context) =>
-                sl<PersonDetailsCubit>()
-                  ..getPersonDetails(id: personId),
-                child: const PersonDetailsScreen(),
-              ),
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                sl<PersonDetailsCubit>()..getPersonDetails(id: personId),
+            child: const PersonDetailsScreen(),
+          ),
         );
 
       case RouteNames.allSeasonsScreen:

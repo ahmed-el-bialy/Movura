@@ -1,13 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:movura/core/constants/api_constants.dart';
+import 'package:movura/core/networking/dio_factory.dart';
 import 'package:movura/features/auth/data/repos/auth_repo.dart';
 import 'package:movura/features/auth/data/web_services/auth_services.dart';
 import 'package:movura/features/auth/logic/auth/auth_cubit.dart';
 import 'package:movura/features/home/data/repo/home_repo.dart';
 import 'package:movura/features/home/data/web_services/home_web_services.dart';
 import 'package:movura/features/home/logic/top_rated_movies/top_rated_movies_cubit.dart';
-import 'package:movura/features/home/logic/tpo_rated_tv_series/top_rated_tv_series_cubit.dart';
+import 'package:movura/features/home/logic/top_rated_tv_series/top_rated_tv_series_cubit.dart';
 import 'package:movura/features/home/logic/trending_content/trending_content_cubit.dart';
 import 'package:movura/features/movie_details/data/repos/movies_repo.dart';
 import 'package:movura/features/movie_details/data/web_services/movie_web_services.dart';
@@ -27,8 +28,6 @@ import 'package:movura/features/tv_details/logic/reviews/reviews_cubit.dart';
 import 'package:movura/features/tv_details/logic/similar_content/similar_content_cubit.dart';
 import 'package:movura/features/tv_details/logic/tv_episode_details_cubit/tv_episode_details_cubit.dart';
 import 'package:movura/features/tv_details/logic/tv_seasons_cubit/tv_seasons_cubit.dart';
-
-import 'dio_factory.dart';
 
 final sl = GetIt.instance;
 

@@ -18,9 +18,8 @@ import 'package:movura/features/auth/logic/auth/auth_state.dart';
 import 'package:movura/features/auth/ui/widgets/auth_divider.dart';
 import 'package:movura/features/auth/ui/widgets/auth_input_field.dart';
 import 'package:movura/features/auth/ui/widgets/auth_prefix_icon.dart';
+import 'package:movura/features/auth/ui/widgets/hero_app_logo.dart';
 import 'package:movura/features/auth/ui/widgets/social_button_row.dart';
-
-import '../widgets/hero_app_logo.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -31,7 +30,6 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   bool isObscure = true;
-  bool isConfirmObscure = true;
   final formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
   final passwordController = TextEditingController();
@@ -77,9 +75,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         begin: Alignment.topRight,
                         end: Alignment.bottomLeft,
                         colors: [
-                          AppColors.neonBlue.withValues(alpha: 0.4),
                           AppColors.neonBlue.withValues(alpha: 0.3),
-                          AppColors.neonBlue.withValues(alpha: 0.4),
+                          AppColors.neonBlue.withValues(alpha: 0.2),
+                          AppColors.trueBlack,
                           AppColors.trueBlack,
                           AppColors.trueBlack,
                           AppColors.charcoalBlack,
@@ -92,45 +90,48 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15.w),
+                      padding: EdgeInsets.symmetric(horizontal: 12.w),
                       child: Form(
                         key: formKey,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            verticalSpacing(15),
+                            verticalSpacing(20),
                             HeroAppLogo(),
-                            verticalSpacing(10),
+                            verticalSpacing(5),
                             Text(
-                              "Join Movura",
+                              "Create Account",
                               style: TextStyles.font40BoldPureWhite.copyWith(
                                 fontSize: 32.sp,
                                 letterSpacing: -0.5,
                               ),
                             ),
-                            verticalSpacing(6),
                             Text(
-                              "Create an account to start your journey",
-                              style: TextStyles.font12CoolGrayManrope
-                                  .copyWith(
-                                    fontSize: 14.sp,
-                                    color: AppColors.slateGray.withValues(
-                                      alpha: 0.6,
-                                    ),
-                                  ),
+                              "Join the premiere community for cinema lovers",
+                              style: TextStyles.font12CoolGrayManrope.copyWith(
+                                fontSize: 14.sp,
+                                color: AppColors.slateGray.withValues(
+                                  alpha: 0.6,
+                                ),
+                              ),
+                              textAlign: TextAlign.center,
                             ),
-                            verticalSpacing(15),
+                            verticalSpacing(25),
                             ClipRRect(
                               borderRadius: BorderRadius.circular(24.r),
                               child: BackdropFilter(
-                                filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+                                filter: ImageFilter.blur(
+                                  sigmaX: 10,
+                                  sigmaY: 10,
+                                ),
                                 child: Container(
                                   padding: EdgeInsets.symmetric(
-                                      vertical: 12.h, horizontal: 6.w
+                                    horizontal: 8.w,
+                                    vertical: 12.h,
                                   ),
                                   decoration: BoxDecoration(
                                     color: AppColors.onyxBlack.withValues(
-                                      alpha: 0.25,
+                                      alpha: 0.3,
                                     ),
                                     borderRadius: BorderRadius.circular(24.r),
                                     border: Border.all(
@@ -145,21 +146,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         label: "Full Name",
                                         child: AppTextFormField(
                                           controller: nameController,
-                                          hintText: "Ahmed El-Bialy",
+                                          hintText: "John Doe",
                                           prefixIcon: const AuthPrefixIcon(
                                             icon: Icons.person_outline_rounded,
                                           ),
                                           textInputAction: TextInputAction.next,
-                                          validator: (v) =>
-                                              v == null || v.isEmpty
-                                              ? "Name is required"
-                                              : null,
-
+                                          validator: (v) => v == null || v.isEmpty ? "Name is required" : null,
                                         ),
                                       ),
-
-                                      verticalSpacing(14),
-
+                                      verticalSpacing(16),
                                       AuthInputField(
                                         label: "Email Address",
                                         child: AppTextFormField(
@@ -173,14 +168,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           validator: Validators.validateEmail,
                                         ),
                                       ),
-                                      verticalSpacing(14),
+                                      verticalSpacing(16),
                                       AuthInputField(
                                         label: "Password",
                                         child: AppTextFormField(
                                           controller: passwordController,
                                           isObscureText: isObscure,
-                                          hintText: AppConstants
-                                              .passwordExample,
+                                          hintText: AppConstants.passwordExample,
                                           prefixIcon: const AuthPrefixIcon(
                                             icon: Icons.lock_outline_rounded,
                                           ),
@@ -207,7 +201,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ),
                               ),
                             ),
-                            verticalSpacing(25),
+                            verticalSpacing(30),
                             BlocBuilder<AuthCubit, AuthState>(
                               builder: (context, state) {
                                 return Container(
@@ -216,10 +210,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     boxShadow: [
                                       BoxShadow(
                                         color: AppColors.neonBlue.withValues(
-                                          alpha: 0.2,
+                                          alpha: 0.3,
                                         ),
-                                        blurRadius: 12,
-                                        offset: const Offset(0, 6),
+                                        blurRadius: 15,
+                                        offset: const Offset(0, 8),
                                       ),
                                     ],
                                   ),
@@ -236,23 +230,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         );
                                       }
                                     },
-                                    buttonWidth: 190.w,
-                                    borderRadius: 14.r,
+                                    buttonWidth: 240.w,
+                                    borderRadius: 16.r,
                                     textStyle: TextStyles
                                         .font17BoldTrueBlackSora
                                         .copyWith(
                                           fontSize: 16.sp,
-                                          letterSpacing: 1.0,
+                                          letterSpacing: 1.2,
                                         ),
                                   ),
                                 );
                               },
                             ),
-                            verticalSpacing(20),
+                            verticalSpacing(25),
                             const AuthDivider(),
-                            verticalSpacing(18),
+                            verticalSpacing(20),
                             SocialButtonsRow(),
-                            verticalSpacing(15),
+                            verticalSpacing(25),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -270,7 +264,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ),
                               ],
                             ),
-                            verticalSpacing(5),
+                            verticalSpacing(20),
                           ],
                         ),
                       ),

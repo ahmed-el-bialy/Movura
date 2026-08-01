@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../theming/text_styles.dart';
-import '../theming/weights.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/theming/weights.dart';
 
 class ReadMoreText extends StatefulWidget {
   const ReadMoreText({
@@ -35,7 +35,7 @@ class _ReadMoreTextState extends State<ReadMoreText> {
             style:
                 widget.style ??
                 TextStyles.font14BoldIceBlueMontserrat.copyWith(
-                  color: Colors.white.withValues(alpha: 0.9),
+                  color: AppColors.pureWhite.withValues(alpha: 0.9),
                   fontWeight: Weights.simiBold,
                   fontSize: 14.sp,
                   height: 1.5,
@@ -55,7 +55,7 @@ class _ReadMoreTextState extends State<ReadMoreText> {
               style:
                   widget.style ??
                   TextStyles.font14BoldIceBlueMontserrat.copyWith(
-                    color: Colors.white.withValues(alpha: 0.85),
+                    color: AppColors.pureWhite.withValues(alpha: 0.85),
                     fontWeight: FontWeight.normal,
                     fontSize: 14.sp,
                     height: 1.5,

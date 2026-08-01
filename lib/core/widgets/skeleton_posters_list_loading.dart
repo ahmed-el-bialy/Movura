@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/widgets/poster_card_skeleton.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -12,8 +13,8 @@ class SkeletonPostersListLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: const Color(0xFF1A1A1A),
-      highlightColor: Colors.grey[700]!,
+      baseColor: AppColors.darkBackground,
+      highlightColor: AppColors.onyxBlack,
       period: const Duration(milliseconds: 1200),
       child: SizedBox(
         height: height == null ? 340.h : height!.h,

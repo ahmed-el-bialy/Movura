@@ -4,8 +4,7 @@ import 'package:movura/core/helpers/spacing.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/widgets/read_more_text.dart';
-
-import '../../data/models/about_model.dart';
+import 'package:movura/features/movie_details/data/models/about_model.dart';
 
 class MovieStoryAndGenres extends StatelessWidget {
   const MovieStoryAndGenres({super.key, required this.model});
@@ -27,13 +26,9 @@ class MovieStoryAndGenres extends StatelessWidget {
               fontWeight: FontWeight.w900,
             ),
           ),
-
           verticalSpacing(12),
-
           ReadMoreText(content: model.overview!),
-
           verticalSpacing(14),
-
           if (model.genres!.isNotEmpty)
             SizedBox(
               height: 36.h,
@@ -50,7 +45,7 @@ class MovieStoryAndGenres extends StatelessWidget {
                         color: AppColors.onyxBlack.withValues(alpha: 0.5),
                         borderRadius: BorderRadius.circular(16.r),
                         border: Border.all(
-                          color: Colors.white.withValues(alpha: 0.08),
+                          color: AppColors.pureWhite.withValues(alpha: 0.08),
                         ),
                       ),
                       child: InkWell(

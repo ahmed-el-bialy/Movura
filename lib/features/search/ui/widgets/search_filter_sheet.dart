@@ -99,7 +99,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
       child: Dialog(
-        backgroundColor: Colors.transparent,
+        backgroundColor: AppColors.transparent,
         insetPadding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
         child: Container(
           padding: EdgeInsets.all(24.r),
@@ -393,10 +393,10 @@ class _RefinedChip extends StatelessWidget {
       onSelected: onTap,
       backgroundColor: AppColors.onyxBlack.withValues(alpha: 0.4),
       selectedColor: AppColors.neonBlue.withValues(alpha: 0.25),
-      labelStyle: TextStyle(
+      labelStyle: TextStyles.font10MediumCoolGraySora.copyWith(
         color: isSelected
             ? AppColors.neonBlue
-            : Colors.white.withValues(alpha: 0.7),
+            : AppColors.pureWhite.withValues(alpha: 0.7),
         fontSize: 11.sp,
         fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
       ),
@@ -456,8 +456,8 @@ class _SortToggleChip extends StatelessWidget {
             horizontalSpacing(10),
             Text(
               label,
-              style: TextStyle(
-                color: isSelected ? AppColors.neonBlue : Colors.white70,
+              style: TextStyles.font14PureWhiteManrope.copyWith(
+                color: isSelected ? AppColors.neonBlue : AppColors.pureWhite.withValues(alpha: 0.7),
                 fontSize: 12.sp,
                 fontWeight: isSelected ? FontWeight.w800 : FontWeight.w500,
               ),
@@ -547,7 +547,7 @@ class _SmallActionButton extends StatelessWidget {
     return Container(
       height: 30.h,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           colors: [AppColors.neonBlue, AppColors.tealCyan],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -564,8 +564,8 @@ class _SmallActionButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.transparent,
-          shadowColor: Colors.transparent,
+          backgroundColor: AppColors.transparent,
+          shadowColor: AppColors.transparent,
           padding: EdgeInsets.zero,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.r),

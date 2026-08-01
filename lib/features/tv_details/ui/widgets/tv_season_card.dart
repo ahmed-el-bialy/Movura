@@ -40,7 +40,7 @@ class TvSeasonCard extends StatelessWidget {
                       : "",
                   fit: BoxFit.fill,
                   errorWidget: (context, url, error) =>
-                      Container(color: const Color(0xFF2C2938)),
+                      Container(color: AppColors.darkPurpleGray),
                 ),
               ),
               Align(
@@ -52,7 +52,7 @@ class TvSeasonCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     elevation: 8,
-                    color: Color(0xFF2C2938).withValues(alpha: .9),
+                    color: AppColors.darkPurpleGray.withValues(alpha: .9),
                     child: Padding(
                       padding: EdgeInsets.symmetric(
                         horizontal: 6.w,
@@ -77,11 +77,11 @@ class TvSeasonCard extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    color: Color(0xFF2C2938).withValues(alpha: .9),
+                    color: AppColors.darkPurpleGray.withValues(alpha: .9),
                     child: Padding(
                       padding: EdgeInsets.all(5.0.r),
                       child: Text(
-                        "${tvSeasonModel.episodeCount} Eps",
+                        "${tvSeasonModel.episodeCount ?? 0} Eps",
                         style: TextStyles.font16SimiBoldPlatinumGray
                             .copyWith(fontSize: 14.sp),
                       ),
@@ -92,12 +92,12 @@ class TvSeasonCard extends StatelessWidget {
               Align(
                 alignment: AlignmentGeometry.topRight,
                 child: Padding(
-                  padding: EdgeInsets.all(4.0).r,
+                  padding: const EdgeInsets.all(4.0).r,
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    color: Color(0xFF2C2938).withValues(alpha: .9),
+                    color: AppColors.darkPurpleGray.withValues(alpha: .9),
                     elevation: 10,
                     child: Padding(
                       padding: EdgeInsets.all(5.0.r),

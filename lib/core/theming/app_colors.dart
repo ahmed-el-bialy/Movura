@@ -22,8 +22,9 @@ class AppColors {
   static const Color iceBlue = Color(0xFFE1FDFF);
 
   static const Color pureWhite = Color(0xFFFFFFFF);
+  static const Color transparent = Color(0x00000000);
+  static const Color darkPurpleGray = Color(0xFF2C2938);
 
-  // Category & Action Colors
   static const Color vibrantPurple = Color(0xFF8E24AA);
   static const Color electricBlueAccent = Color(0xFF2979FF);
   static const Color tealCyan = Color(0xFF00ACC1);

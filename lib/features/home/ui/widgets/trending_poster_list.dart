@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/models/poster_model.dart';
 import 'package:movura/core/widgets/poster_card/poster_card.dart';
-
-import '../../../../core/models/poster_model.dart';
 
 class TrendingPosterList extends StatelessWidget {
   const TrendingPosterList({

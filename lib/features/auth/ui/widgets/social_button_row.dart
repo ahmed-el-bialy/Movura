@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/helpers/spacing.dart';
-import '../../../../core/theming/app_colors.dart';
-import 'build_social_button.dart';
+import 'package:movura/core/helpers/spacing.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/features/auth/ui/widgets/build_social_button.dart';
 
 class SocialButtonsRow extends StatelessWidget {
   const SocialButtonsRow({super.key});

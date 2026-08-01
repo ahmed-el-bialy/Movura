@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/constants/api_constants.dart';
-
 import 'package:movura/core/models/video_model.dart';
-import 'video_card.dart';
+import 'package:movura/core/widgets/shared_details/video_card.dart';
 
 class VideosList extends StatelessWidget {
   const VideosList({super.key, required this.allVideos});

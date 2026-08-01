@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/helpers/spacing.dart';
+import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/widgets/section_title.dart';
 import 'package:movura/features/home/ui/widgets/category_list.dart';
@@ -9,9 +11,6 @@ import 'package:movura/features/home/ui/widgets/home_app_bar.dart';
 import 'package:movura/features/home/ui/widgets/top_movies_list.dart';
 import 'package:movura/features/home/ui/widgets/top_tv_series_list.dart';
 import 'package:movura/features/home/ui/widgets/trending_list.dart';
-
-import '../../../../core/helpers/spacing.dart';
-import '../../../../core/routing/route_names.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

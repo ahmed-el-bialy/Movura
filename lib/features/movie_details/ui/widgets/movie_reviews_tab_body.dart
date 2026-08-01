@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/core/helpers/spacing.dart';
 import 'package:movura/core/widgets/app_error_widget.dart';
 import 'package:movura/core/widgets/empty_section_message.dart';
-
-import '../../logic/reviews/reviews_cubit.dart';
 import 'package:movura/core/widgets/shared_details/reviews_list.dart';
+import 'package:movura/features/movie_details/logic/reviews/reviews_cubit.dart';
+import 'package:movura/features/movie_details/logic/reviews/reviews_state.dart';
 
 class MovieReviewsTabBody extends StatelessWidget {
   const MovieReviewsTabBody({super.key});
@@ -25,7 +25,6 @@ class MovieReviewsTabBody extends StatelessWidget {
           return ReviewsList(reviews: state.response);
         } else if (state is ReviewsLoading) {
           return Column(
-
             children: [
               verticalSpacing(100),
               const Center(child: CircularProgressIndicator()),
@@ -35,9 +34,7 @@ class MovieReviewsTabBody extends StatelessWidget {
         } else if (state is ReviewsError) {
           return AppErrorWidget(
             errorMessage: state.errorMessage,
-            onRetry: () {
-              // Retry logic here
-            },
+            onRetry: () {},
           );
         } else {
           return const AppErrorWidget(errorMessage: "Something went wrong");

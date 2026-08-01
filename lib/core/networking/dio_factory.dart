@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
-
-import '../constants/api_constants.dart';
+import 'package:movura/core/constants/api_constants.dart';
 
 class DioFactory {
   static Dio getDio() {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/theming/app_colors.dart';
 
 class BuildSocialButton extends StatelessWidget {
   const BuildSocialButton({
@@ -27,7 +28,7 @@ class BuildSocialButton extends StatelessWidget {
             padding: EdgeInsets.all(10.r),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.r),
-              border: Border.all(color: Colors.white10),
+              border: Border.all(color: AppColors.pureWhite.withValues(alpha: 0.1)),
             ),
             child: Image.asset(logoPath, width: 18.w, height: 18.h),
           ),

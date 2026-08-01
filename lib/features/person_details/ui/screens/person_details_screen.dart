@@ -21,9 +21,7 @@ class PersonDetailsScreen extends StatelessWidget {
       body: BlocBuilder<PersonDetailsCubit, PersonDetailsState>(
         builder: (context, state) {
           if (state is PersonDetailsLoading) {
-            return const Center(
-              child: CircularProgressIndicator(color: AppColors.neonBlue),
-            );
+            return const Center(child: CircularProgressIndicator(color: AppColors.neonBlue));
           } else if (state is PersonDetailsLoaded) {
             final person = state.personDetails;
             return CustomScrollView(
@@ -37,20 +35,21 @@ class PersonDetailsScreen extends StatelessWidget {
                     background: Stack(
                       fit: StackFit.expand,
                       children: [
-                        CachedNetworkImage(
-                          imageUrl:
-                              "${ApiConstants.imageBaseUrl}${person.profilePath}",
-                          fit: BoxFit.cover,
-                          errorWidget: (context, url, error) =>
-                              Container(color: AppColors.onyxBlack),
-                        ),
+                        if (person.profilePath != null)
+                          CachedNetworkImage(
+                            imageUrl: "${ApiConstants.imageBaseUrl}${person.profilePath}",
+                            fit: BoxFit.cover,
+                            errorWidget: (context, url, error) => Container(color: AppColors.onyxBlack),
+                          )
+                        else
+                          Container(color: AppColors.onyxBlack),
                         Container(
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
                               colors: [
-                                Colors.transparent,
+                                AppColors.transparent,
                                 AppColors.richEerieBlack.withValues(alpha: 0.8),
                                 AppColors.richEerieBlack,
                               ],
@@ -69,11 +68,10 @@ class PersonDetailsScreen extends StatelessWidget {
                       children: [
                         Text(
                           person.name ?? "Unknown",
-                          style: TextStyles.font24SimiBoldNeonBlueManrope
-                              .copyWith(
-                                fontSize: 28.sp,
-                                color: AppColors.iceBlue,
-                              ),
+                          style: TextStyles.font24SimiBoldNeonBlueManrope.copyWith(
+                            fontSize: 28.sp,
+                            color: AppColors.iceBlue,
+                          ),
                         ),
                         verticalSpacing(8),
                         if (person.knownFor != null)
@@ -82,42 +80,28 @@ class PersonDetailsScreen extends StatelessWidget {
                             style: TextStyles.font14DarkNeonBlueManrope,
                           ),
                         verticalSpacing(20),
-                        if (person.biography != null &&
-                            person.biography!.isNotEmpty) ...[
+                        if (person.biography != null && person.biography!.isNotEmpty) ...[
                           const SectionTitle(sectionName: "BIOGRAPHY"),
                           verticalSpacing(10),
                           Text(
                             person.biography!,
-                            style: TextStyles.font12CoolGrayManrope.copyWith(
-                              height: 1.6,
-                              fontSize: 13.sp,
-                            ),
+                            style: TextStyles.font12CoolGrayManrope.copyWith(height: 1.6, fontSize: 13.sp),
                           ),
                         ],
                         verticalSpacing(24),
                         const SectionTitle(sectionName: "PERSONAL INFO"),
                         verticalSpacing(12),
-                        _InfoRow(
-                          label: "Birthday",
-                          value: person.birthday ?? "N/A",
-                        ),
-                        _InfoRow(
-                          label: "Place of Birth",
-                          value: person.placeOfBirth ?? "N/A",
-                        ),
+                        _InfoRow(label: "Birthday", value: person.birthday ?? "N/A"),
+                        _InfoRow(label: "Place of Birth", value: person.placeOfBirth ?? "N/A"),
                         verticalSpacing(30),
-                        if (person.movieCredits?.cast != null &&
-                            person.movieCredits!.cast!.isNotEmpty) ...[
+                        if (person.movieCredits?.cast != null && person.movieCredits!.cast!.isNotEmpty) ...[
                           const SectionTitle(sectionName: "KNOWN FOR (MOVIES)"),
                           verticalSpacing(12),
                           PersonCreditsList(movies: person.movieCredits!.cast!),
                         ],
                         verticalSpacing(30),
-                        if (person.tvCredits?.cast != null &&
-                            person.tvCredits!.cast!.isNotEmpty) ...[
-                          const SectionTitle(
-                            sectionName: "KNOWN FOR (TV SHOWS)",
-                          ),
+                        if (person.tvCredits?.cast != null && person.tvCredits!.cast!.isNotEmpty) ...[
+                          const SectionTitle(sectionName: "KNOWN FOR (TV SHOWS)"),
                           verticalSpacing(12),
                           PersonCreditsList(tvShows: person.tvCredits!.cast!),
                         ],
@@ -140,7 +124,6 @@ class PersonDetailsScreen extends StatelessWidget {
 
 class _InfoRow extends StatelessWidget {
   const _InfoRow({required this.label, required this.value});
-
   final String label;
   final String value;
 
@@ -152,7 +135,10 @@ class _InfoRow extends StatelessWidget {
         children: [
           Text("$label: ", style: TextStyles.font12BoldCoolGray),
           Expanded(
-            child: Text(value, style: TextStyles.font12MediumPlatinumGray),
+            child: Text(
+              value,
+              style: TextStyles.font12MediumPlatinumGray,
+            ),
           ),
         ],
       ),

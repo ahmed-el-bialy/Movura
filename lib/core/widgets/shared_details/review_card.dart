@@ -4,12 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/constants/api_constants.dart';
 import 'package:movura/core/extensions/date_extension.dart';
 import 'package:movura/core/helpers/spacing.dart';
+import 'package:movura/core/models/review_model.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/widgets/read_more_text.dart';
-
-import '../../models/review_model.dart';
-import 'custom_rating_bar.dart';
+import 'package:movura/core/widgets/shared_details/custom_rating_bar.dart';
 
 class ReviewCard extends StatelessWidget {
   const ReviewCard({super.key, required this.model});
@@ -26,7 +25,7 @@ class ReviewCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
         ),
         child: Padding(
-          padding: EdgeInsetsGeometry.symmetric(
+          padding: EdgeInsets.symmetric(
             horizontal: 10.w,
             vertical: 8.h,
           ),

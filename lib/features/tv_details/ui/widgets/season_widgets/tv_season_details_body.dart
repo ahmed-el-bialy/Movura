@@ -5,9 +5,8 @@ import 'package:movura/core/constants/api_constants.dart';
 import 'package:movura/core/helpers/spacing.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
-
-import '../../../data/season_details_model.dart';
-import 'episodes_list.dart';
+import 'package:movura/features/tv_details/data/season_details_model.dart';
+import 'package:movura/features/tv_details/ui/widgets/season_widgets/episodes_list.dart';
 
 class TvSeasonDetailsBody extends StatelessWidget {
   const TvSeasonDetailsBody({
@@ -63,8 +62,8 @@ class TvSeasonDetailsBody extends StatelessWidget {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [
-                        Colors.transparent,
-                        Colors.black.withValues(alpha: 0.2),
+                        AppColors.transparent,
+                        AppColors.trueBlack.withValues(alpha: 0.2),
                         AppColors.richEerieBlack,
                       ],
                     ),
@@ -108,12 +107,12 @@ class TvSeasonDetailsBody extends StatelessWidget {
           ),
         ),
         if (seasonDetails.overview != null &&
-            seasonDetails.overview!.isNotEmpty)
+            (seasonDetails.overview?.isNotEmpty ?? false))
           SliverToBoxAdapter(
             child: Padding(
               padding: EdgeInsets.all(16.r),
               child: Text(
-                seasonDetails.overview!,
+                seasonDetails.overview ?? '',
                 style: TextStyles.font12CoolGrayManrope.copyWith(
                   height: 1.6,
                 ),
@@ -124,11 +123,10 @@ class TvSeasonDetailsBody extends StatelessWidget {
         SliverToBoxAdapter(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
-            child: const Text(
+            child: Text(
               'Episodes',
-              style: TextStyle(
+              style: TextStyles.font14PureWhiteManrope.copyWith(
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
               ),
             ),
           ),

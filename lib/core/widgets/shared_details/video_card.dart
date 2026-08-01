@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../../core/models/video_model.dart';
-import '../../../../../core/theming/app_colors.dart';
-import '../../../../../core/helpers/video_player.dart';
+import 'package:movura/core/helpers/video_player.dart';
+import 'package:movura/core/models/video_model.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/text_styles.dart';
 
 class VideoCard extends StatelessWidget {
   const VideoCard({
@@ -40,7 +40,7 @@ class VideoCard extends StatelessWidget {
                   imageUrl: youtubeThumbnail,
                   placeholder: (context, url) => Container(
                     width: 190.w,
-                    color: Colors.grey[900],
+                    color: AppColors.jetBlack,
                     child: const Center(child: CircularProgressIndicator()),
                   ),
                   errorWidget: (context, url, error) => const Icon(Icons.error),
@@ -50,16 +50,16 @@ class VideoCard extends StatelessWidget {
                 width: 190.w,
                 height: 115.h,
                 decoration: BoxDecoration(
-                  color: Colors.black.withValues(alpha: 0.35),
+                  color: AppColors.trueBlack.withValues(alpha: 0.35),
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
               const CircleAvatar(
                 radius: 20,
-                backgroundColor: Colors.cyanAccent,
+                backgroundColor: AppColors.neonBlue,
                 child: Icon(
                   Icons.play_arrow_rounded,
-                  color: Colors.black,
+                  color: AppColors.trueBlack,
                   size: 26,
                 ),
               ),
@@ -71,10 +71,9 @@ class VideoCard extends StatelessWidget {
                   video.name,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 11,
-                    fontWeight: FontWeight.bold,
+                  style: TextStyles.font11BoldIceBlueMontserrat.copyWith(
+                    color: AppColors.pureWhite,
+                    fontSize: 11.sp,
                   ),
                 ),
               ),

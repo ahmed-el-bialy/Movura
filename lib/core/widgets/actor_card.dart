@@ -1,13 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/constants/api_constants.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/models/actor_model.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/core/constants/api_constants.dart';
-
-import '../models/actor_model.dart';
 
 class ActorCard extends StatelessWidget {
   const ActorCard({super.key, required this.actor});
@@ -37,7 +36,7 @@ class ActorCard extends StatelessWidget {
                       height: 160.w,
                       alignment: Alignment.topCenter,
                       errorWidget: (context, url, error) =>
-                          const Icon(Icons.person, color: Colors.white),
+                          const Icon(Icons.person, color: AppColors.pureWhite),
                     ),
                   )
                 : ClipRRect(
@@ -49,7 +48,7 @@ class ActorCard extends StatelessWidget {
                       height: 160.w,
                       alignment: Alignment.topCenter,
                       errorWidget: (context, url, error) =>
-                          const Icon(Icons.person, color: Colors.white),
+                          const Icon(Icons.person, color: AppColors.pureWhite),
                     ),
                   ),
             Padding(

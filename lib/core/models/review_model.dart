@@ -15,17 +15,17 @@ class ReviewsResponse {
 
 @JsonSerializable()
 class ReviewModel {
-  final String author;
-  final String content;
+  final String? author;
+  final String? content;
   @JsonKey(name: "created_at")
-  final String createdAt;
+  final String? createdAt;
   @JsonKey(name: "author_details")
   final AuthorDetails? authorDetails;
 
   ReviewModel({
-    required this.author,
-    required this.content,
-    required this.createdAt,
+    this.author,
+    this.content,
+    this.createdAt,
     this.authorDetails,
   });
 

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/helpers/video_player.dart';
-
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
-
 import 'package:movura/core/widgets/shared_details/watchlist_options_sheet.dart';
 
 class ButtonsRow extends StatelessWidget {
@@ -21,7 +19,6 @@ class ButtonsRow extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 10.w),
       child: Row(
         children: [
-
           Expanded(
             child: SizedBox(
               height: 46.r,
@@ -49,24 +46,19 @@ class ButtonsRow extends StatelessWidget {
               ),
             ),
           ),
-
           SizedBox(width: 12.w),
-
-          // Watchlist Button
           _CircularActionButton(
             icon: Icons.add_rounded,
             onPressed: () {
               showModalBottomSheet(
                 context: context,
-                backgroundColor: Colors.transparent,
+                backgroundColor: AppColors.transparent,
                 builder: (context) => const WatchlistOptionsSheet(),
               );
             },
             color: AppColors.neonBlue,
           ),
-
           SizedBox(width: 12.w),
-
         ],
       ),
     );

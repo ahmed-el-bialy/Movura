@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/models/poster_model.dart';
+import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
-
 
 class TopRightSubCard extends StatelessWidget {
   const TopRightSubCard({
@@ -25,7 +25,7 @@ class TopRightSubCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentGeometry.topRight,
+      alignment: Alignment.topRight,
       child: showRating == true
           ? Padding(
               padding: EdgeInsets.all(2.0.r),
@@ -33,7 +33,7 @@ class TopRightSubCard extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(subCardBorder ?? 10),
                 ),
-                color: subCardColor ?? Color(0xFF2C2938).withValues(alpha: .7),
+                color: subCardColor ?? AppColors.darkPurpleGray.withValues(alpha: .7),
                 elevation: subCardElevation ?? 10,
                 child: Padding(
                   padding: EdgeInsets.all(5.0.r),
@@ -68,7 +68,7 @@ class TopRightSubCard extends StatelessWidget {
                 ),
               ),
             )
-          : const SizedBox(),
+          : const SizedBox.shrink(),
     );
   }
 }

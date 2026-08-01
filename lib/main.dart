@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/routing/app_router.dart';
 import 'package:movura/core/theming/app_theme.dart';
 import 'package:movura/features/home/logic/top_rated_movies/top_rated_movies_cubit.dart';
-import 'package:movura/features/home/logic/tpo_rated_tv_series/top_rated_tv_series_cubit.dart';
+import 'package:movura/features/home/logic/top_rated_tv_series/top_rated_tv_series_cubit.dart';
 import 'package:movura/features/home/logic/trending_content/trending_content_cubit.dart';
 import 'package:movura/firebase_options.dart';
 

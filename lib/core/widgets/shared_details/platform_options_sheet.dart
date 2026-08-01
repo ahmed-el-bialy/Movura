@@ -98,7 +98,10 @@ class PlatformOptionsSheet extends StatelessWidget {
                       width: 50.w,
                       child: Text(
                         provider.providerName,
-                        style: TextStyle(fontSize: 8.sp, color: Colors.white70),
+                        style: TextStyle(
+                          fontSize: 8.sp,
+                          color: AppColors.pureWhite.withValues(alpha: 0.7),
+                        ),
                         textAlign: TextAlign.center,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -198,7 +201,7 @@ class _ActionItem extends StatelessWidget {
         Text(
           label,
           style: TextStyles.font10BoldCoolGray.copyWith(
-            color: Colors.white70,
+            color: AppColors.pureWhite.withValues(alpha: 0.7),
             fontSize: 11.sp,
           ),
         ),

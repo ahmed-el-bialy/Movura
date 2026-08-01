@@ -20,7 +20,7 @@ class PosterCardSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: const Color(0xFF1A1A1A),
+      baseColor: AppColors.darkBackground,
       highlightColor: AppColors.coolGray,
       period: const Duration(milliseconds: 1200),
       child: Padding(

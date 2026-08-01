@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/helpers/spacing.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/widgets/app_error_widget.dart';
@@ -10,8 +11,6 @@ import 'package:movura/core/widgets/app_navigation_bar.dart';
 import 'package:movura/core/widgets/custom_posters_grid_view.dart';
 import 'package:movura/core/widgets/skeleton_posters_list_loading.dart';
 import 'package:movura/features/home/logic/trending_content/trending_content_cubit.dart';
-
-import '../../../../core/helpers/spacing.dart';
 
 class TrendingScreen extends StatelessWidget {
   const TrendingScreen({super.key});

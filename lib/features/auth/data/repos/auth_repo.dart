@@ -123,17 +123,14 @@ class AuthRepo {
   }
 
   Future<UserModel> signInWithGoogle() async {
-    // TODO: Implement Google Sign-In logic with Firebase
     throw "Google Sign-In not implemented yet.";
   }
 
   Future<UserModel> signInWithFacebook() async {
-    // TODO: Implement Facebook Sign-In logic with Firebase
     throw "Facebook Sign-In not implemented yet.";
   }
 
   Future<UserModel> signInWithApple() async {
-    // TODO: Implement Apple Sign-In logic with Firebase
     throw "Apple Sign-In not implemented yet.";
   }
 }

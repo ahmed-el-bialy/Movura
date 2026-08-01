@@ -1,25 +1,25 @@
-
 import 'package:json_annotation/json_annotation.dart';
 
 part 'video_model.g.dart';
+
 @JsonSerializable()
 class VideoModel {
-  final String id;
-  final String key;
-  final String name;
-  final String site;
-  final int size;
-  final String type;
-  final bool official;
+  final String? id;
+  final String? key;
+  final String? name;
+  final String? site;
+  final int? size;
+  final String? type;
+  final bool? official;
 
   VideoModel({
-    required this.id,
-    required this.key,
-    required this.name,
-    required this.site,
-    required this.size,
-    required this.type,
-    required this.official,
+    this.id,
+    this.key,
+    this.name,
+    this.site,
+    this.size,
+    this.type,
+    this.official,
   });
 
   factory VideoModel.fromJson(Map<String, dynamic> json) =>

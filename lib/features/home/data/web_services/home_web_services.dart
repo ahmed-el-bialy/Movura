@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:movura/core/constants/api_constants.dart';
 import 'package:movura/core/models/genre_model.dart';
 import 'package:movura/core/models/poster_model.dart';
-import 'package:movura/core/constants/api_constants.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'home_web_services.g.dart';

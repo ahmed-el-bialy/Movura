@@ -5,11 +5,9 @@ import 'package:movura/core/routing/arguments_models.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/widgets/app_error_widget.dart';
 import 'package:movura/core/widgets/app_navigation_bar.dart';
-import 'package:movura/features/tv_details/logic/tv_episode_details_cubit/tv_episode_details_cubit.dart';
 import 'package:movura/core/widgets/shared_details/episode_loading_skeleton.dart';
-
-
-import '../widgets/episode_widgets/episode_details_body.dart';
+import 'package:movura/features/tv_details/logic/tv_episode_details_cubit/tv_episode_details_cubit.dart';
+import 'package:movura/features/tv_details/ui/widgets/episode_widgets/episode_details_body.dart';
 
 class EpisodeDetailsScreen extends StatelessWidget {
   const EpisodeDetailsScreen({super.key});

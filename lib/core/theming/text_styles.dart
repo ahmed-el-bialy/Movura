@@ -4,8 +4,6 @@ import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/weights.dart';
 
 class TextStyles {
-  // =================== Manrope ====================
-
   static TextStyle font24SimiBoldNeonBlueManrope = TextStyle(
     fontWeight: Weights.simiBold,
     color: AppColors.neonBlue,
@@ -34,8 +32,6 @@ class TextStyles {
     fontFamily: "Manrope",
   );
 
-  // =================== Montserrat ====================
-
   static TextStyle font17BoldIceBlueMontserrat = TextStyle(
     fontWeight: FontWeight.bold,
     color: AppColors.iceBlue,
@@ -54,8 +50,6 @@ class TextStyles {
     fontSize: 14.sp,
     fontFamily: "Montserrat",
   );
-
-  // =================== Sora ====================
 
   static TextStyle font17BoldTrueBlackSora = TextStyle(
     fontWeight: FontWeight.bold,
@@ -83,7 +77,6 @@ class TextStyles {
     fontFamily: "Sora",
   );
 
-  // =================== Inter or normal  ====================
   static TextStyle font20SimiBoldPlatinumGray = TextStyle(
     fontWeight: Weights.simiBold,
     color: AppColors.platinumGray,

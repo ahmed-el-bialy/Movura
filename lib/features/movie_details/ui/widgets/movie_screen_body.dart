@@ -7,13 +7,12 @@ import 'package:movura/core/widgets/shared_details/details_tabs.dart';
 import 'package:movura/features/movie_details/data/models/about_model.dart';
 import 'package:movura/features/movie_details/logic/reviews/reviews_cubit.dart';
 import 'package:movura/features/movie_details/logic/similar_content/similar_content_cubit.dart';
-
-import 'about_tab_body.dart';
-import 'movie_main_details.dart';
-import 'movie_reviews_tab_body.dart';
-import 'similar_tab_body.dart';
-import 'sub_widgets/movie_additional_data.dart';
-import 'sub_widgets/movie_story_and_genres.dart';
+import 'package:movura/features/movie_details/ui/widgets/about_tab_body.dart';
+import 'package:movura/features/movie_details/ui/widgets/movie_main_details.dart';
+import 'package:movura/features/movie_details/ui/widgets/movie_reviews_tab_body.dart';
+import 'package:movura/features/movie_details/ui/widgets/similar_tab_body.dart';
+import 'package:movura/features/movie_details/ui/widgets/sub_widgets/movie_additional_data.dart';
+import 'package:movura/features/movie_details/ui/widgets/sub_widgets/movie_story_and_genres.dart';
 
 class MovieScreenBody extends StatelessWidget {
   const MovieScreenBody({super.key, required this.model});
@@ -27,7 +26,7 @@ class MovieScreenBody extends StatelessWidget {
 
     if (videos != null && videos.isNotEmpty) {
       final trailer = videos.firstWhere(
-        (v) => v.type.toLowerCase() == 'trailer',
+        (v) => v.type?.toLowerCase() == 'trailer',
         orElse: () => videos.first,
       );
       trailerKey = trailer.key;

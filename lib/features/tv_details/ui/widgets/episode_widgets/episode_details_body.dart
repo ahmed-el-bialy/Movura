@@ -9,11 +9,10 @@ import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/widgets/section_title.dart';
-
-import '../../../../../core/widgets/shared_details/actors_list.dart';
-import '../../../../../core/widgets/shared_details/videos_list.dart';
-import '../../../data/episode_details_model.dart';
-import '../sub_widgets/episode_navigation_button.dart';
+import 'package:movura/core/widgets/shared_details/actors_list.dart';
+import 'package:movura/core/widgets/shared_details/videos_list.dart';
+import 'package:movura/features/tv_details/data/episode_details_model.dart';
+import 'package:movura/features/tv_details/ui/widgets/sub_widgets/episode_navigation_button.dart';
 
 class EpisodeDetailsBody extends StatelessWidget {
   const EpisodeDetailsBody({
@@ -88,8 +87,8 @@ class EpisodeDetailsBody extends StatelessWidget {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [
-                        Colors.transparent,
-                        Colors.black.withValues(alpha: 0.2),
+                        AppColors.transparent,
+                        AppColors.trueBlack.withValues(alpha: 0.2),
                         AppColors.richEerieBlack,
                       ],
                     ),
@@ -132,7 +131,7 @@ class EpisodeDetailsBody extends StatelessWidget {
             ),
           ),
         ),
-        if (episode.overview != null && episode.overview!.isNotEmpty)
+        if (episode.overview != null && (episode.overview?.isNotEmpty ?? false))
           SliverToBoxAdapter(
             child: Padding(
               padding: EdgeInsets.all(16.r),
@@ -142,7 +141,7 @@ class EpisodeDetailsBody extends StatelessWidget {
                   const SectionTitle(sectionName: 'STORYLINE'),
                   verticalSpacing(8),
                   Text(
-                    episode.overview!,
+                    episode.overview ?? '',
                     style: TextStyles.font12CoolGrayManrope.copyWith(
                       height: 1.6,
                     ),
@@ -151,24 +150,24 @@ class EpisodeDetailsBody extends StatelessWidget {
               ),
             ),
           ),
-        if (episode.guestStars != null && episode.guestStars!.isNotEmpty)
+        if (episode.guestStars != null && (episode.guestStars?.isNotEmpty ?? false))
           SliverToBoxAdapter(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SectionTitle(sectionName: 'GUEST STARS'),
-                ActorsList(actors: episode.guestStars!),
+                ActorsList(actors: episode.guestStars ?? []),
               ],
             ),
           ),
         if (episode.videos?.videoList != null &&
-            episode.videos!.videoList!.isNotEmpty)
+            (episode.videos?.videoList?.isNotEmpty ?? false))
           SliverToBoxAdapter(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SectionTitle(sectionName: 'VIDEOS'),
-                VideosList(allVideos: episode.videos!.videoList!),
+                VideosList(allVideos: episode.videos?.videoList ?? []),
               ],
             ),
           ),

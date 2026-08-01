@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movura/core/theming/app_colors.dart';
 import 'package:shimmer/shimmer.dart';
-import '../theming/app_colors.dart';
 
 class AppShimmer extends StatelessWidget {
   const AppShimmer({

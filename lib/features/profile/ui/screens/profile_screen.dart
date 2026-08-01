@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/helpers/spacing.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/core/helpers/spacing.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -20,7 +20,6 @@ class ProfileScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 verticalSpacing(30),
-                // --- Profile Header ---
                 Center(
                   child: Column(
                     children: [
@@ -60,7 +59,6 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ),
                 verticalSpacing(40),
-                // --- Your Collections Column ---
                 Text(
                   'YOUR COLLECTIONS',
                   style: TextStyles.font10BoldCoolGray.copyWith(
@@ -98,7 +96,6 @@ class ProfileScreen extends StatelessWidget {
                   onTap: () {},
                 ),
                 verticalSpacing(30),
-                // --- App Settings ---
                 Text(
                   'SETTINGS',
                   style: TextStyles.font10BoldCoolGray.copyWith(

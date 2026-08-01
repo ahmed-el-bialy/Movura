@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/constants/api_constants.dart';
-
 import 'package:movura/core/models/image_model.dart';
 import 'package:movura/core/theming/app_colors.dart';
 

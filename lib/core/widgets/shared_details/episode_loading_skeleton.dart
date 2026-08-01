@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shimmer/shimmer.dart';
-
 import 'package:movura/core/helpers/spacing.dart';
 import 'package:movura/core/theming/app_colors.dart';
+import 'package:shimmer/shimmer.dart';
 
 class EpisodeLoadingSkeleton extends StatelessWidget {
   const EpisodeLoadingSkeleton({super.key});
@@ -11,7 +10,7 @@ class EpisodeLoadingSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final baseColor = AppColors.onyxBlack.withValues(alpha: 0.8);
-    final highlightColor = Colors.grey[800]!;
+    final highlightColor = AppColors.onyxBlack;
 
     return Shimmer.fromColors(
       baseColor: baseColor,
@@ -36,7 +35,7 @@ class EpisodeLoadingSkeleton extends StatelessWidget {
                       child: Container(
                         height: 90.h,
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: AppColors.pureWhite,
                           borderRadius: BorderRadius.circular(20.r),
                         ),
                       ),
@@ -55,21 +54,21 @@ class EpisodeLoadingSkeleton extends StatelessWidget {
                   Container(
                     width: double.infinity,
                     height: 12.h,
-                    color: Colors.white,
+                    color: AppColors.pureWhite,
                   ),
                   verticalSpacing(8),
                   Container(
                     width: double.infinity,
                     height: 12.h,
-                    color: Colors.white,
+                    color: AppColors.pureWhite,
                   ),
                   verticalSpacing(8),
-                  Container(width: 180.w, height: 12.h, color: Colors.white),
+                  Container(width: 180.w, height: 12.h, color: AppColors.pureWhite),
                 ],
               ),
             ),
           ),
-              sliverVerticalSpacing(20),
+          sliverVerticalSpacing(20),
           SliverToBoxAdapter(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -83,7 +82,7 @@ class EpisodeLoadingSkeleton extends StatelessWidget {
                     child: Container(
                       width: 100.w,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: AppColors.pureWhite,
                         borderRadius: BorderRadius.circular(16.r),
                       ),
                     ),

@@ -1,4 +1,5 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/networking/di.dart';
@@ -47,7 +48,7 @@ class AppNavigationBar extends StatelessWidget {
               ),
             ),
             child: Material(
-              color: Colors.transparent,
+              color: AppColors.transparent,
               borderRadius: BorderRadius.circular(25.r),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,

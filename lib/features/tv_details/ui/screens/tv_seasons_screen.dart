@@ -6,9 +6,8 @@ import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/widgets/app_error_widget.dart';
 import 'package:movura/core/widgets/app_navigation_bar.dart';
 import 'package:movura/core/widgets/shared_details/season_loading_skeleton.dart';
-
-import '../../logic/tv_seasons_cubit/tv_seasons_cubit.dart';
-import '../widgets/season_widgets/tv_season_details_body.dart';
+import 'package:movura/features/tv_details/logic/tv_seasons_cubit/tv_seasons_cubit.dart';
+import 'package:movura/features/tv_details/ui/widgets/season_widgets/tv_season_details_body.dart';
 
 class TvSeasonDetailsScreen extends StatelessWidget {
   const TvSeasonDetailsScreen({super.key});

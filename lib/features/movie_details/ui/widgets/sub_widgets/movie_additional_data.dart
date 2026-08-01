@@ -3,8 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/extensions/money_formatter.dart';
 import 'package:movura/core/helpers/spacing.dart';
 import 'package:movura/core/theming/text_styles.dart';
-
-import '../../../data/models/about_model.dart';
+import 'package:movura/features/movie_details/data/models/about_model.dart';
 
 class AdditionalData extends StatelessWidget {
   const AdditionalData({super.key, required this.model});
@@ -18,7 +17,7 @@ class AdditionalData extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _DataItem(label: "Status", value: "Released"), // Simplified
+          const _DataItem(label: "Status", value: "Released"),
           _DataItem(
             label: "Language",
             value: model.language?.toUpperCase() ?? 'N/A',

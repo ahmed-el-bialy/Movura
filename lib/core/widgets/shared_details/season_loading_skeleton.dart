@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shimmer/shimmer.dart';
-
 import 'package:movura/core/helpers/spacing.dart';
 import 'package:movura/core/theming/app_colors.dart';
+import 'package:shimmer/shimmer.dart';
 
 class SeasonLoadingSkeleton extends StatelessWidget {
   const SeasonLoadingSkeleton({
@@ -18,7 +17,7 @@ class SeasonLoadingSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final baseColor = AppColors.onyxBlack.withValues(alpha: 0.8);
-    final highlightColor = Colors.grey[800]!;
+    final highlightColor = AppColors.onyxBlack;
 
     return Shimmer.fromColors(
       baseColor: baseColor,
@@ -43,7 +42,7 @@ class SeasonLoadingSkeleton extends StatelessWidget {
                       child: Container(
                         height: 90.h,
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: AppColors.pureWhite,
                           borderRadius: BorderRadius.circular(20.r),
                         ),
                       ),
@@ -62,16 +61,16 @@ class SeasonLoadingSkeleton extends StatelessWidget {
                   Container(
                     width: double.infinity,
                     height: 12.h,
-                    color: Colors.white,
+                    color: AppColors.pureWhite,
                   ),
                   verticalSpacing(8),
                   Container(
                     width: double.infinity,
                     height: 12.h,
-                    color: Colors.white,
+                    color: AppColors.pureWhite,
                   ),
                   verticalSpacing(8),
-                  Container(width: 200.w, height: 12.h, color: Colors.white),
+                  Container(width: 200.w, height: 12.h, color: AppColors.pureWhite),
                 ],
               ),
             ),
@@ -84,7 +83,7 @@ class SeasonLoadingSkeleton extends StatelessWidget {
                 child: Container(
                   height: 100.h,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: AppColors.pureWhite,
                     borderRadius: BorderRadius.circular(16.r),
                   ),
                 ),

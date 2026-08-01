@@ -1,25 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import '../extensions/routing_extension.dart';
-
 Future<void> playYoutubeVideo(
   BuildContext context,
-
   String videoKey, {
-
   bool autoPlay = true,
-
   bool mute = false,
-
   bool enableCaption = true,
-
   String? captionLanguage = 'en',
-
   bool forceHD = true,
-
   bool loop = false,
 }) async {
   try {
@@ -27,28 +19,17 @@ Future<void> playYoutubeVideo(
 
     final YoutubePlayerController controller = YoutubePlayerController(
       initialVideoId: videoKey,
-
       flags: YoutubePlayerFlags(
         autoPlay: autoPlay,
-
         mute: mute,
-
         disableDragSeek: false,
-
         loop: loop,
-
         isLive: false,
-
         forceHD: forceHD,
-
         enableCaption: enableCaption,
-
         captionLanguage: captionLanguage!,
-
         hideControls: false,
-
         hideThumbnail: false,
-
         showLiveFullscreenButton: true,
       ),
     );
@@ -66,15 +47,12 @@ Future<void> playYoutubeVideo(
 Future<void> _prepareVideoMode() async {
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
-
     DeviceOrientation.landscapeLeft,
-
     DeviceOrientation.landscapeRight,
   ]);
 
   await SystemChrome.setEnabledSystemUIMode(
     SystemUiMode.immersiveSticky,
-
     overlays: [],
   );
 }
@@ -84,7 +62,6 @@ void _restoreSystemDefaults() {
 
   SystemChrome.setEnabledSystemUIMode(
     SystemUiMode.edgeToEdge,
-
     overlays: SystemUiOverlay.values,
   );
 }
