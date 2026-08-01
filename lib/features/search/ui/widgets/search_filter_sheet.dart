@@ -246,7 +246,6 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
             ),
           ),
         ),
-      ),
     );
   }
 

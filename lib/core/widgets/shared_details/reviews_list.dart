@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movura/core/widgets/section_title.dart';
 import 'package:movura/core/widgets/shared_details/review_card.dart';
-import 'package:movura/features/movie_details/data/models/review_model.dart';
+
+import '../../models/review_model.dart';
 
 class ReviewsList extends StatelessWidget {
   const ReviewsList({super.key, required this.reviews});

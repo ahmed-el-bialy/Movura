@@ -23,6 +23,9 @@ class AboutModel {
   @JsonKey(name: "title")
   final String? title;
 
+  @JsonKey(name: "original_title")
+  final String? originalTitle;
+
   @JsonKey(name: "overview")
   final String? overview;
 
@@ -48,6 +51,10 @@ class AboutModel {
 
   final String? homepage;
 
+  final String? tagline;
+
+  final String? status;
+
   @JsonKey(name: "adult")
   final bool? adultContent;
 
@@ -65,6 +72,7 @@ class AboutModel {
     this.language,
     this.posterPath,
     this.title,
+    this.originalTitle,
     this.overview,
     this.runtime,
     this.rating,
@@ -74,6 +82,8 @@ class AboutModel {
     this.budget,
     this.revenue,
     this.homepage,
+    this.tagline,
+    this.status,
     this.adultContent,
     this.mediaImages,
     this.movieVideos,

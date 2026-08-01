@@ -1,5 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/constants/api_constants.dart';
 import 'package:movura/core/constants/app_constants.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/helpers/spacing.dart';
@@ -8,18 +11,19 @@ import 'package:movura/core/networking/di.dart';
 import 'package:movura/core/routing/arguments_models.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/widgets/app_error_widget.dart';
 import 'package:movura/core/widgets/section_title.dart';
 import 'package:movura/core/widgets/shared_details/actors_list.dart';
 import 'package:movura/core/widgets/shared_details/companies_list.dart';
 import 'package:movura/core/widgets/shared_details/images_list.dart';
 import 'package:movura/core/widgets/shared_details/videos_list.dart';
+import 'package:movura/features/tv_details/data/season_details_model.dart';
 import 'package:movura/features/tv_details/logic/about_tv/about_tv_cubit.dart';
 import 'package:movura/features/tv_details/logic/tv_seasons_cubit/tv_seasons_cubit.dart';
-import 'package:movura/features/tv_details/ui/widgets/episode_card.dart';
 import 'package:movura/features/tv_details/ui/widgets/seasons_list.dart';
-import 'package:movura/features/tv_details/ui/widgets/tv_network_card.dart';
 import 'package:movura/features/tv_details/ui/widgets/tv_networks_list.dart';
+
 
 class AboutTvTabBody extends StatelessWidget {
   const AboutTvTabBody({super.key});
@@ -165,33 +169,35 @@ class _SingleSeasonEpisodes extends StatelessWidget {
           if (state is TvSeasonsLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is TvSeasonsLoaded) {
-            return Column(
-              children: [
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: state.seasonDetails.episodes.length,
-                  itemBuilder: (context, index) {
-                    final episode = state.seasonDetails.episodes[index];
-                    return EpisodeCard(
-                      episode: episode,
-                      onTap: () {
-                        context.pushNamed(
-                          RouteNames.episodeDetailsScreen,
-                          arguments: EpisodeArgumentsModel(
-                            tvId: tvId,
-                            seasonNumber: seasonNumber,
-                            episodeNumber: episode.episodeNumber,
-                            tvTitle: tvTitle,
-                            seasonName: state.seasonDetails.name ?? 'Season 1',
-                            totalEpisodes: state.seasonDetails.episodes.length,
-                          ),
-                        );
-                      },
-                    );
-                  },
-                ),
-              ],
+            final episodes = state.seasonDetails.episodes;
+            final seasonName = state.seasonDetails.name ?? 'Season 1';
+            return SizedBox(
+              height: 200.h,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.symmetric(horizontal: 12.w),
+                physics: const BouncingScrollPhysics(),
+                itemCount: episodes.length,
+                itemBuilder: (context, index) {
+                  final episode = episodes[index];
+                  return _HorizontalEpisodeCard(
+                    episode: episode,
+                    onTap: () {
+                      context.pushNamed(
+                        RouteNames.episodeDetailsScreen,
+                        arguments: EpisodeArgumentsModel(
+                          tvId: tvId,
+                          seasonNumber: seasonNumber,
+                          episodeNumber: episode.episodeNumber,
+                          tvTitle: tvTitle,
+                          seasonName: seasonName,
+                          totalEpisodes: episodes.length,
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
             );
           } else if (state is TvSeasonsError) {
             return AppErrorWidget(
@@ -204,6 +210,171 @@ class _SingleSeasonEpisodes extends StatelessWidget {
           }
           return const AppErrorWidget(errorMessage: "Something went wrong");
         },
+      ),
+    );
+  }
+}
+
+class _HorizontalEpisodeCard extends StatelessWidget {
+  const _HorizontalEpisodeCard({
+    required this.episode,
+    required this.onTap,
+  });
+
+  final EpisodeModel episode;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final hasStill = episode.stillPath != null && episode.stillPath!.isNotEmpty;
+
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 160.w,
+        margin: EdgeInsets.only(right: 12.w),
+        decoration: BoxDecoration(
+          color: AppColors.onyxBlack,
+          borderRadius: BorderRadius.circular(16.r),
+          border: Border.all(
+            color: AppColors.neonBlue.withValues(alpha: 0.15),
+            width: 1,
+          ),
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Thumbnail
+            Stack(
+              children: [
+                SizedBox(
+                  height: 100.h,
+                  width: double.infinity,
+                  child: hasStill
+                      ? CachedNetworkImage(
+                          imageUrl:
+                              '${ApiConstants.imageBaseUrl}${episode.stillPath}',
+                          fit: BoxFit.cover,
+                          errorWidget: (context, url, error) => Container(
+                            color: AppColors.darkBackground,
+                            child: Icon(
+                              Icons.tv_rounded,
+                              color: AppColors.neonBlue.withValues(alpha: 0.4),
+                              size: 32.sp,
+                            ),
+                          ),
+                        )
+                      : Container(
+                          color: AppColors.darkBackground,
+                          child: Icon(
+                            Icons.tv_rounded,
+                            color: AppColors.neonBlue.withValues(alpha: 0.4),
+                            size: 32.sp,
+                          ),
+                        ),
+                ),
+                Positioned(
+                  top: 6.h,
+                  left: 6.w,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 6.w,
+                      vertical: 2.h,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColors.neonBlue.withValues(alpha: 0.9),
+                      borderRadius: BorderRadius.circular(6.r),
+                    ),
+                    child: Text(
+                      'E${episode.episodeNumber}',
+                      style: TextStyle(
+                        color: AppColors.trueBlack,
+                        fontSize: 10.sp,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ),
+                ),
+                if (episode.voteAverage != null && episode.voteAverage! > 0)
+                  Positioned(
+                    top: 6.h,
+                    right: 6.w,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 5.w,
+                        vertical: 2.h,
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.trueBlack.withValues(alpha: 0.75),
+                        borderRadius: BorderRadius.circular(6.r),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.star_rounded,
+                            color: AppColors.gold,
+                            size: 10.sp,
+                          ),
+                          horizontalSpacing(2),
+                          Text(
+                            episode.voteAverage!.toStringAsFixed(1),
+                            style: TextStyle(
+                              color: AppColors.pureWhite,
+                              fontSize: 9.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+            // Info
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(8.r),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      episode.name ?? '',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyles.font12CoolGrayManrope.copyWith(
+                        color: AppColors.iceBlue,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 11.sp,
+                        height: 1.3,
+                      ),
+                    ),
+                    if (episode.runtime != null) ...[
+                      const Spacer(),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.schedule_rounded,
+                            size: 10.sp,
+                            color: AppColors.coolGray,
+                          ),
+                          horizontalSpacing(3),
+                          Text(
+                            '${episode.runtime} min',
+                            style: TextStyles.font12CoolGrayManrope.copyWith(
+                              fontSize: 9.sp,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -71,7 +71,7 @@ class CompanyCard extends StatelessWidget {
               bottom: 4.w,
             ),
             child: Text(
-              company.name,
+              company.name ?? '',
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyles.font13BoldNeonBlueSora.copyWith(fontSize: 14.sp),
@@ -86,7 +86,7 @@ class CompanyCard extends StatelessWidget {
               bottom: 8.w,
             ),
             child: Text(
-              company.originCountry,
+              company.originCountry ?? '',
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyles.font11BoldIceBlueMontserrat.copyWith(

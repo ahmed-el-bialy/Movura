@@ -56,21 +56,21 @@ class CoreDetailsHeader extends StatelessWidget {
             right: 16.w,
             child: Row(
               children: [
-                if (homepage != null && homepage!.isNotEmpty)
+                if ((homepage != null && homepage!.isNotEmpty) || (watchProviders?.results != null && watchProviders!.results!.isNotEmpty))
                   AppIconButton(
-                    icon: Icons.open_in_new_rounded,
+                    icon: Icons.play_circle_outline_rounded,
                     onPressed: () {
                       showModalBottomSheet(
                         context: context,
                         backgroundColor: AppColors.transparent,
                         builder: (context) => PlatformOptionsSheet(
-                          homepageUrl: homepage!,
+                          homepageUrl: homepage ?? '',
                           watchProviders: watchProviders,
                         ),
                       );
                     },
                     backgroundColor: AppColors.onyxBlack.withValues(alpha: .9),
-                    size: 22,
+                    size: 26,
                   ),
               ],
             ),

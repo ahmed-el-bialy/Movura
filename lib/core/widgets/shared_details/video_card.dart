@@ -22,7 +22,7 @@ class VideoCard extends StatelessWidget {
       padding: const EdgeInsets.only(right: 12.0),
       child: GestureDetector(
         onTap: () {
-          playYoutubeVideo(context, video.key);
+          if (video.key != null) playYoutubeVideo(context, video.key!);
         },
         child: Card(
           elevation: 5,
@@ -68,7 +68,7 @@ class VideoCard extends StatelessWidget {
                 left: 8,
                 right: 8,
                 child: Text(
-                  video.name,
+                  video.name ?? '',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyles.font11BoldIceBlueMontserrat.copyWith(
