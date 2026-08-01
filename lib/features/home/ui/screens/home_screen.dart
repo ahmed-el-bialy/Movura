@@ -11,6 +11,7 @@ import 'package:movura/features/home/ui/widgets/home_app_bar.dart';
 import 'package:movura/features/home/ui/widgets/top_movies_list.dart';
 import 'package:movura/features/home/ui/widgets/top_tv_series_list.dart';
 import 'package:movura/features/home/ui/widgets/trending_list.dart';
+import 'package:movura/features/see_all/data/models/see_all_arguments.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -36,23 +37,25 @@ class HomeScreen extends StatelessWidget {
               child: SectionTitle(
                 sectionName: "Trending Now",
                 actionName: "See All ",
-                onTap: () => context.pushNamed(RouteNames.trendingScreen),
+                onTap: () => context.pushNamed(RouteNames.seeAllScreen, arguments: SeeAllArguments(title: "Trending Now", endpoint: SeeAllEndpoint.trendingMoviesDay)),
               ),
             ),
             const TrendingList(),
             sliverVerticalSpacing(25),
-            const SliverToBoxAdapter(
+            SliverToBoxAdapter(
               child: SectionTitle(
                 sectionName: "Top Rated Movies",
                 actionName: "See All ",
+                onTap: () => context.pushNamed(RouteNames.seeAllScreen, arguments: SeeAllArguments(title: "Top Rated Movies", endpoint: SeeAllEndpoint.topRatedMovies)),
               ),
             ),
             const SliverToBoxAdapter(child: TopMoviesList()),
             sliverVerticalSpacing(25),
-            const SliverToBoxAdapter(
+            SliverToBoxAdapter(
               child: SectionTitle(
                 sectionName: "Top Rated TV Series",
                 actionName: "See All ",
+                onTap: () => context.pushNamed(RouteNames.seeAllScreen, arguments: SeeAllArguments(title: "Top Rated TV Series", endpoint: SeeAllEndpoint.topRatedTv)),
               ),
             ),
             const SliverToBoxAdapter(child: TopTvSeriesList()),

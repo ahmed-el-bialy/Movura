@@ -16,135 +16,94 @@ class MovieIdentifyCard extends StatelessWidget {
     final bool showOriginalTitle =
         model.originalTitle != null && model.originalTitle != model.title;
 
+    final String releaseYear = (model.releaseDate != null && model.releaseDate!.length >= 4)
+        ? model.releaseDate!.substring(0, 4)
+        : (model.status ?? 'Released');
+
     return Align(
       alignment: Alignment.bottomCenter,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              model.title ?? 'Unknown',
-              style: TextStyles.font17BoldIceBlueMontserrat.copyWith(
-                fontSize: 26.sp,
-                shadows: [
-                  const Shadow(color: AppColors.trueBlack, blurRadius: 10)
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(24.r),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 18.0, sigmaY: 18.0),
+            child: Container(
+              width: double.infinity,
+              padding: EdgeInsets.all(18.r),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(24.r),
+                color: AppColors.pureWhite.withValues(alpha: 0.08),
+                border: Border.all(
+                  color: AppColors.pureWhite.withValues(alpha: 0.18),
+                  width: 1.5,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.trueBlack.withValues(alpha: 0.4),
+                    blurRadius: 15,
+                    offset: const Offset(0, 8),
+                  ),
                 ],
               ),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-            if (showOriginalTitle) ...[
-              verticalSpacing(4),
-              Text(
-                model.originalTitle!,
-                style: TextStyles.font12CoolGrayManrope.copyWith(
-                  color: AppColors.platinumGray,
-                  fontSize: 14.sp,
-                  shadows: [
-                    const Shadow(color: AppColors.trueBlack, blurRadius: 10)
-                  ],
-                ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ],
-            if (model.tagline != null && model.tagline!.isNotEmpty) ...[
-              verticalSpacing(8),
-              Text(
-                model.tagline!,
-                style: TextStyles.font12CoolGrayManrope.copyWith(
-                  fontStyle: FontStyle.italic,
-                  color: AppColors.neonBlue,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 14.sp,
-                  shadows: [
-                    const Shadow(color: AppColors.trueBlack, blurRadius: 10)
-                  ],
-                ),
-              ),
-            ],
-            verticalSpacing(16),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(24.r),
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 15.0, sigmaY: 15.0),
-                child: Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.all(16.r),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(24.r),
-                    color: AppColors.pureWhite.withValues(alpha: 0.07),
-                    border: Border.all(
-                      color: AppColors.pureWhite.withValues(alpha: 0.15),
-                      width: 1.5,
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        children: [
-                          Text(
-                            " Movie • ${model.language?.toUpperCase() ??
-                                'EN'} • ${model.status ?? 'Released'} ",
-                            style: TextStyles.font16SimiBoldPlatinumGray
-                                .copyWith(
-                              fontSize: 13.sp,
-                            ),
-                          ),
-                          horizontalSpacing(5.w),
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 6.w, vertical: 2.h),
-                            decoration: BoxDecoration(
-                              color: (model.adultContent ?? false)
-                                  ? AppColors.softRed.withValues(alpha: 0.1)
-                                  : AppColors.coolGray.withValues(alpha: 0.1),
-                              borderRadius: BorderRadius.circular(4.r),
-                              border: Border.all(
-                                color: (model.adultContent ?? false)
-                                    ? AppColors.softRed.withValues(alpha: 0.4)
-                                    : AppColors.coolGray.withValues(alpha: 0.4),
-                                width: 0.8,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              model.title ?? 'Unknown',
+                              style: TextStyles.font17BoldIceBlueMontserrat.copyWith(
+                                fontSize: 22.sp,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.pureWhite,
                               ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
                             ),
-                            child: Text(
-                              (model.adultContent ?? false) ? "18+" : "PG",
-                              style: TextStyles.font10BoldCoolGray.copyWith(
-                                color: (model.adultContent ?? false)
-                                    ? AppColors.softRed
-                                    : AppColors.platinumGray,
-                                fontSize: 10.sp,
+                            if (showOriginalTitle) ...[
+                              verticalSpacing(2),
+                              Text(
+                                model.originalTitle!,
+                                style: TextStyles.font12CoolGrayManrope.copyWith(
+                                  color: AppColors.platinumGray.withValues(alpha: 0.8),
+                                  fontSize: 13.sp,
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                               ),
-                            ),
-                          ),
-                        ],
+                            ],
+                          ],
+                        ),
                       ),
+                      horizontalSpacing(10.w),
                       Container(
-                        height: 30.h,
-                        padding: EdgeInsets.symmetric(horizontal: 10.w),
+                        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(24.r),
+                          borderRadius: BorderRadius.circular(20.r),
                           color: AppColors.onyxBlack.withValues(alpha: 0.6),
                           border: Border.all(
-                            color: AppColors.neonBlue.withValues(alpha: 0.3),
+                            color: AppColors.neonBlue.withValues(alpha: 0.4),
                             width: 1.2,
                           ),
                         ),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(Icons.star_rounded, size: 16.sp,
-                                color: AppColors.neonBlue),
-                            const SizedBox(width: 4),
+                            Icon(Icons.star_rounded, size: 16.sp, color: AppColors.neonBlue),
+                            SizedBox(width: 4.w),
                             Text(
                               (model.rating ?? 0.0).toStringAsFixed(1),
-                              style: TextStyles.font20SimiBoldNeonBlueManrope
-                                  .copyWith(
+                              style: TextStyles.font20SimiBoldNeonBlueManrope.copyWith(
                                 fontSize: 14.sp,
                                 color: AppColors.pureWhite,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ],
@@ -152,10 +111,67 @@ class MovieIdentifyCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                ),
+                  if (model.tagline != null && model.tagline!.isNotEmpty) ...[
+                    verticalSpacing(6),
+                    Text(
+                      '"${model.tagline!}"',
+                      style: TextStyles.font12CoolGrayManrope.copyWith(
+                        fontStyle: FontStyle.italic,
+                        color: AppColors.neonBlue,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 13.sp,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                  verticalSpacing(12),
+                  Divider(
+                    color: AppColors.pureWhite.withValues(alpha: 0.12),
+                    height: 1,
+                  ),
+                  verticalSpacing(10),
+                  Row(
+                    children: [
+                      Text(
+                        "Movie  •  $releaseYear  •  ${model.language?.toUpperCase() ?? 'EN'}",
+                        style: TextStyles.font16SimiBoldPlatinumGray.copyWith(
+                          fontSize: 12.sp,
+                          color: AppColors.platinumGray.withValues(alpha: 0.9),
+                        ),
+                      ),
+                      const Spacer(),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
+                        decoration: BoxDecoration(
+                          color: (model.adultContent ?? false)
+                              ? AppColors.softRed.withValues(alpha: 0.15)
+                              : AppColors.coolGray.withValues(alpha: 0.15),
+                          borderRadius: BorderRadius.circular(6.r),
+                          border: Border.all(
+                            color: (model.adultContent ?? false)
+                                ? AppColors.softRed.withValues(alpha: 0.5)
+                                : AppColors.coolGray.withValues(alpha: 0.5),
+                            width: 0.8,
+                          ),
+                        ),
+                        child: Text(
+                          (model.adultContent ?? false) ? "18+" : "PG",
+                          style: TextStyle(
+                            color: (model.adultContent ?? false)
+                                ? AppColors.softRed
+                                : AppColors.platinumGray,
+                            fontSize: 10.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
-          ],
+          ),
         ),
       ),
     );

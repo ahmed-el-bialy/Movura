@@ -152,13 +152,24 @@ class _LogInScreenState extends State<LogInScreen> {
                               ),
                             ),
                             verticalSpacing(18),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(24.r),
-                              child: BackdropFilter(
-                                filter: ImageFilter.blur(
-                                  sigmaX: 10,
-                                  sigmaY: 10,
-                                ),
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(24.r),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: AppColors.trueBlack.withValues(alpha: 0.5),
+                                    blurRadius: 20,
+                                    offset: const Offset(0, 10),
+                                  ),
+                                ],
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(24.r),
+                                child: BackdropFilter(
+                                  filter: ImageFilter.blur(
+                                    sigmaX: 10,
+                                    sigmaY: 10,
+                                  ),
                                 child: Container(
                                   padding: EdgeInsets.symmetric(
                                     horizontal: 16.w,
@@ -229,6 +240,7 @@ class _LogInScreenState extends State<LogInScreen> {
                                 ),
                               ),
                             ),
+                            ),
                             verticalSpacing(25),
                             BlocBuilder<AuthCubit, AuthState>(
                               builder: (context, state) {
@@ -258,7 +270,8 @@ class _LogInScreenState extends State<LogInScreen> {
                                       }
                                     },
                                     buttonWidth: double.infinity,
-                                    borderRadius: 16.r,
+                                    buttonHeight: 52,
+                                    borderRadius: 30.r,
                                     textStyle: TextStyles
                                         .font17BoldTrueBlackSora
                                         .copyWith(
@@ -269,7 +282,7 @@ class _LogInScreenState extends State<LogInScreen> {
                                 );
                               },
                             ),
-                            verticalSpacing(20),
+                            verticalSpacing(30),
                             const AuthDivider(),
                             verticalSpacing(16),
                             SocialButtonsRow(),

@@ -4,6 +4,9 @@ import 'package:movura/core/constants/app_constants.dart';
 import 'package:movura/core/helpers/spacing.dart';
 import 'package:movura/core/models/poster_model.dart';
 import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/features/see_all/data/models/see_all_arguments.dart';
+import 'package:movura/core/routing/route_names.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/widgets/poster_card/poster_card.dart';
 import 'package:movura/core/widgets/section_title.dart';
 
@@ -13,9 +16,11 @@ class SimilarContentTabBody extends StatelessWidget {
     required this.recommendList,
     required this.similarList,
     required this.mediaType,
+    required this.mediaId,
   });
 
   final String mediaType;
+  final int mediaId;
   final List<PosterModel> recommendList;
   final List<PosterModel> similarList;
 
@@ -58,6 +63,15 @@ class SimilarContentTabBody extends StatelessWidget {
             ? SectionTitle(
                 sectionName: "SIMILAR",
                 actionName: AppConstants.sectionAction,
+                onTap: () {
+                  final endpoint = mediaType == 'movie' 
+                      ? SeeAllEndpoint.similarMovies 
+                      : SeeAllEndpoint.similarTv;
+                  context.pushNamed(
+                    RouteNames.seeAllScreen, 
+                    arguments: SeeAllArguments(title: "Similar", endpoint: endpoint, id: mediaId)
+                  );
+                },
               )
             : const SizedBox.shrink(),
         verticalSpacing(10),

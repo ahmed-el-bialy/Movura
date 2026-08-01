@@ -12,7 +12,7 @@ import 'package:movura/core/widgets/section_title.dart';
 import 'package:movura/core/widgets/shared_details/actors_list.dart';
 import 'package:movura/core/widgets/shared_details/videos_list.dart';
 import 'package:movura/features/tv_details/data/episode_details_model.dart';
-import 'package:movura/features/tv_details/ui/widgets/sub_widgets/episode_navigation_button.dart';
+import 'package:movura/features/tv_details/ui/widgets/tv_info_widgets/episode_navigation_button.dart';
 
 class EpisodeDetailsBody extends StatelessWidget {
   const EpisodeDetailsBody({

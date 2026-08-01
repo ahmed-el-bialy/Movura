@@ -58,6 +58,9 @@ class AboutModel {
   @JsonKey(name: "adult")
   final bool? adultContent;
 
+  @JsonKey(name: "release_date")
+  final String? releaseDate;
+
   @JsonKey(name: "images")
   final ImagesResponse? mediaImages;
 
@@ -85,6 +88,7 @@ class AboutModel {
     this.tagline,
     this.status,
     this.adultContent,
+    this.releaseDate,
     this.mediaImages,
     this.movieVideos,
     this.watchProviders,

@@ -14,7 +14,7 @@ class SimilarContentCubit extends Cubit<SimilarContentState> {
     emit(SimilarContentLoading());
     try {
       final similarContent = await repo.getSimilarMovies(id: id);
-      emit(SimilarContentLoaded(similarMovieResponse: similarContent));
+      emit(SimilarContentLoaded(similarMovieResponse: similarContent, id: id));
     } catch (e) {
       emit(SimilarContentError(errorMessage: e.toString()));
     }

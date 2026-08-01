@@ -11,5 +11,6 @@ class RouteNames {
   static const String personDetailsScreen = "/personDetails";
   static const String libraryScreen = "/library";
   static const String profileScreen = "/profile";
+  static const String seeAllScreen = "/seeAll";
 }
 

@@ -10,8 +10,8 @@ import 'package:movura/features/tv_details/logic/similar_content/similar_content
 import 'package:movura/features/tv_details/ui/widgets/about_tv_tab_body.dart';
 import 'package:movura/features/tv_details/ui/widgets/reviews_tab_body.dart';
 import 'package:movura/features/tv_details/ui/widgets/similar_tab_body.dart';
-import 'package:movura/features/tv_details/ui/widgets/sub_widgets/tv_additional_data.dart';
-import 'package:movura/features/tv_details/ui/widgets/sub_widgets/tv_story_and_genres.dart';
+import 'package:movura/features/tv_details/ui/widgets/tv_info_widgets/tv_additional_data.dart';
+import 'package:movura/features/tv_details/ui/widgets/tv_info_widgets/tv_story_and_genres.dart';
 import 'package:movura/features/tv_details/ui/widgets/tv_main_details.dart';
 
 class TvScreenBody extends StatelessWidget {

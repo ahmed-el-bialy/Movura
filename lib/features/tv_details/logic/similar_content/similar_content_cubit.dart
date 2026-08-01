@@ -15,7 +15,7 @@ class TvSeriesSimilarContentCubit extends Cubit<TvSeriesSimilarContentState> {
     emit(TvSimilarContentLoading());
     try {
       final similarContent = await repo.getSimilarTvSeries(id: id);
-      emit(TvSimilarContentLoaded(similarContentResponse: similarContent));
+      emit(TvSimilarContentLoaded(similarContentResponse: similarContent, id: id));
     } catch (e) {
       emit(TvSimilarContentError(errorMessage: e.toString()));
     }
