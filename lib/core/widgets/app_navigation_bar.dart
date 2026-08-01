@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/networking/di.dart';
 import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/widgets/sub_widgets/nav_item.dart';
+import 'package:movura/core/widgets/navigation_widgets/nav_item.dart';
 import 'package:movura/features/search/logic/search/search_cubit.dart';
 import 'package:movura/features/search/ui/screens/custom_search_delegate.dart';
 

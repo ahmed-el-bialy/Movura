@@ -20,6 +20,8 @@ import 'package:movura/features/tv_details/ui/screens/episode_details_screen.dar
 import 'package:movura/features/tv_details/ui/screens/tv_details_screen.dart';
 import 'package:movura/features/tv_details/ui/screens/tv_seasons_screen.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:movura/features/see_all/data/models/see_all_arguments.dart';
+import 'package:movura/features/see_all/ui/screens/see_all_screen.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings setting) {
@@ -92,6 +94,12 @@ class AppRouter {
         final controller = setting.arguments as YoutubePlayerController;
         return MaterialPageRoute(
           builder: (_) => VideoScreen(controller: controller),
+        );
+        
+      case RouteNames.seeAllScreen:
+        final seeAllArgs = setting.arguments as SeeAllArguments;
+        return MaterialPageRoute(
+          builder: (_) => SeeAllScreen(arguments: seeAllArgs),
         );
       default:
         return MaterialPageRoute(

@@ -9,8 +9,9 @@ final class TvSimilarContentLoading extends TvSeriesSimilarContentState {}
 
 final class TvSimilarContentLoaded extends TvSeriesSimilarContentState {
   final SimilarContentResponse similarContentResponse;
+  final int id;
 
-  TvSimilarContentLoaded({required this.similarContentResponse});
+  TvSimilarContentLoaded({required this.similarContentResponse, required this.id});
 }
 
 final class TvSimilarContentError extends TvSeriesSimilarContentState {

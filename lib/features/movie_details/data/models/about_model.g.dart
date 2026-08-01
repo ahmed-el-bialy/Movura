@@ -30,6 +30,7 @@ AboutModel _$AboutModelFromJson(Map<String, dynamic> json) => AboutModel(
   tagline: json['tagline'] as String?,
   status: json['status'] as String?,
   adultContent: json['adult'] as bool?,
+  releaseDate: json['release_date'] as String?,
   mediaImages: json['images'] == null
       ? null
       : ImagesResponse.fromJson(json['images'] as Map<String, dynamic>),
@@ -62,6 +63,7 @@ Map<String, dynamic> _$AboutModelToJson(AboutModel instance) =>
       'tagline': instance.tagline,
       'status': instance.status,
       'adult': instance.adultContent,
+      'release_date': instance.releaseDate,
       'images': instance.mediaImages,
       'videos': instance.movieVideos,
       'watch/providers': instance.watchProviders,

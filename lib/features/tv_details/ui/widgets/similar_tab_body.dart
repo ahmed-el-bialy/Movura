@@ -16,6 +16,7 @@ class SimilarTabBody extends StatelessWidget {
             mediaType: "tv",
             recommendList: state.similarContentResponse.recommendations?.results ?? [],
             similarList: state.similarContentResponse.similar?.results ?? [],
+            mediaId: state.id,
           );
         } else if (state is TvSimilarContentLoading) {
           return const Center(child: CircularProgressIndicator());

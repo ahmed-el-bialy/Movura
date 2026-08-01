@@ -11,8 +11,8 @@ import 'package:movura/features/movie_details/ui/widgets/about_tab_body.dart';
 import 'package:movura/features/movie_details/ui/widgets/movie_main_details.dart';
 import 'package:movura/features/movie_details/ui/widgets/movie_reviews_tab_body.dart';
 import 'package:movura/features/movie_details/ui/widgets/similar_tab_body.dart';
-import 'package:movura/features/movie_details/ui/widgets/sub_widgets/movie_additional_data.dart';
-import 'package:movura/features/movie_details/ui/widgets/sub_widgets/movie_story_and_genres.dart';
+import 'package:movura/features/movie_details/ui/widgets/movie_info_widgets/movie_additional_data.dart';
+import 'package:movura/features/movie_details/ui/widgets/movie_info_widgets/movie_story_and_genres.dart';
 
 class MovieScreenBody extends StatelessWidget {
   const MovieScreenBody({super.key, required this.model});

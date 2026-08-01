@@ -28,6 +28,9 @@ import 'package:movura/features/tv_details/logic/reviews/reviews_cubit.dart';
 import 'package:movura/features/tv_details/logic/similar_content/similar_content_cubit.dart';
 import 'package:movura/features/tv_details/logic/tv_episode_details_cubit/tv_episode_details_cubit.dart';
 import 'package:movura/features/tv_details/logic/tv_seasons_cubit/tv_seasons_cubit.dart';
+import 'package:movura/features/see_all/data/web_services/see_all_web_services.dart';
+import 'package:movura/features/see_all/data/repo/see_all_repo.dart';
+import 'package:movura/features/see_all/logic/see_all_cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -50,6 +53,9 @@ Future<void> initDI() async {
   sl.registerLazySingleton<PersonWebServices>(
     () => PersonWebServices(sl<Dio>(), baseUrl: ApiConstants.baseUrl),
   );
+  sl.registerLazySingleton<SeeAllWebServices>(
+    () => SeeAllWebServices(sl<Dio>(), baseUrl: ApiConstants.baseUrl),
+  );
   sl.registerLazySingleton<AuthServices>(() => AuthServices());
 
   sl.registerLazySingleton<HomeRepo>(
@@ -66,6 +72,9 @@ Future<void> initDI() async {
   );
   sl.registerLazySingleton<PersonRepo>(
     () => PersonRepo(personWebServices: sl<PersonWebServices>()),
+  );
+  sl.registerLazySingleton<SeeAllRepo>(
+    () => SeeAllRepo(webServices: sl<SeeAllWebServices>()),
   );
   sl.registerLazySingleton<AuthRepo>(() => AuthRepo(sl<AuthServices>()));
 
@@ -108,5 +117,8 @@ void _initCubits() {
   );
   sl.registerFactory<PersonDetailsCubit>(
     () => PersonDetailsCubit(repo: sl<PersonRepo>()),
+  );
+  sl.registerFactory<SeeAllCubit>(
+    () => SeeAllCubit(sl<SeeAllRepo>()),
   );
 }

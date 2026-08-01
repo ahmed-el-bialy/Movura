@@ -8,7 +8,7 @@ import 'package:movura/features/search/data/models/search_filter_type.dart';
 import 'package:movura/features/search/logic/search/search_cubit.dart';
 import 'package:movura/features/search/ui/widgets/build_search_results.dart';
 import 'package:movura/features/search/ui/widgets/search_filter_sheet.dart';
-import 'package:movura/features/search/ui/widgets/sub_widgets/search_empty_state.dart';
+import 'package:movura/features/search/ui/widgets/search_ui_widgets/search_empty_state.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
   final SearchCubit searchCubit;

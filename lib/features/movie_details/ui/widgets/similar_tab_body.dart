@@ -16,6 +16,7 @@ class MovieSimilarTabBody extends StatelessWidget {
             recommendList: state.similarMovieResponse.recommendations!.results!,
             similarList: state.similarMovieResponse.similar!.results!,
             mediaType: "movie",
+            mediaId: state.id,
           );
         } else if (state is SimilarContentLoading) {
           return const Center(child: CircularProgressIndicator());
