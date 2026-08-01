@@ -68,7 +68,7 @@ class LibraryScreen extends StatelessWidget {
                 onPageChanged: (index) {
                   tabController.animateTo(index);
                 },
-                children: [
+                children: const [
                   _LibraryTabContent(title: 'Want to Watch'),
                   _LibraryTabContent(title: 'Watched'),
                   _LibraryTabContent(title: 'Later'),

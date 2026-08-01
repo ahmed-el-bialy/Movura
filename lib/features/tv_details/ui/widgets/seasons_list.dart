@@ -4,8 +4,7 @@ import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/routing/arguments_models.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/features/tv_details/data/about_tv_series_model.dart';
-
-import 'tv_season_card.dart';
+import 'package:movura/features/tv_details/ui/widgets/tv_season_card.dart';
 
 class SeasonsList extends StatelessWidget {
   const SeasonsList({
@@ -52,7 +51,7 @@ class SeasonsList extends StatelessWidget {
           itemBuilder: (context, index) {
             final season = displaySeasons[index];
             return Padding(
-              padding: EdgeInsets.all(8.0).r,
+              padding: const EdgeInsets.all(8.0).r,
               child: TvSeasonCard(
                 tvSeasonModel: season,
                 onTap: () => _openSeason(context, season),

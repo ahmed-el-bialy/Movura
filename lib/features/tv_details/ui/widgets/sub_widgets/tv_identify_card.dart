@@ -6,8 +6,7 @@ import 'package:movura/core/extensions/status_display_extension.dart';
 import 'package:movura/core/helpers/spacing.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
-
-import '../../../data/about_tv_series_model.dart';
+import 'package:movura/features/tv_details/data/about_tv_series_model.dart';
 
 class TvIdentifyCard extends StatelessWidget {
   const TvIdentifyCard({super.key, required this.model});
@@ -83,12 +82,11 @@ class TvIdentifyCard extends StatelessWidget {
                               ),
                               child: Text(
                                 (model.adultContent ?? false) ? "18+" : "PG",
-                                style: TextStyle(
+                                style: TextStyles.font10BoldCoolGray.copyWith(
                                   color: (model.adultContent ?? false)
                                       ? AppColors.softRed
                                       : AppColors.platinumGray,
                                   fontSize: 10.sp,
-                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),

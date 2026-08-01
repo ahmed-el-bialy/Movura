@@ -1,12 +1,14 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/features/search/data/models/search_filter_type.dart';
+import 'package:movura/features/search/logic/search/search_cubit.dart';
 import 'package:movura/features/search/ui/widgets/build_search_results.dart';
 import 'package:movura/features/search/ui/widgets/search_filter_sheet.dart';
 import 'package:movura/features/search/ui/widgets/sub_widgets/search_empty_state.dart';
-import '../../../../core/theming/app_colors.dart';
-import '../../logic/search/search_cubit.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
   final SearchCubit searchCubit;
@@ -26,7 +28,7 @@ class CustomSearchDelegate extends SearchDelegate {
         elevation: 0,
       ),
       inputDecorationTheme: InputDecorationTheme(
-        hintStyle: TextStyle(
+        hintStyle: TextStyles.font12CoolGrayManrope.copyWith(
           color: AppColors.slateGray.withValues(alpha: 0.6),
           fontSize: 16.sp,
         ),
@@ -35,7 +37,7 @@ class CustomSearchDelegate extends SearchDelegate {
         enabledBorder: InputBorder.none,
       ),
       textTheme: TextTheme(
-        titleLarge: TextStyle(
+        titleLarge: TextStyles.font17BoldIceBlueMontserrat.copyWith(
           color: AppColors.iceBlue,
           fontSize: 18.sp,
           fontWeight: FontWeight.w500,

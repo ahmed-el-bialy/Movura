@@ -16,10 +16,10 @@ import 'package:movura/core/widgets/shared_details/images_list.dart';
 import 'package:movura/core/widgets/shared_details/videos_list.dart';
 import 'package:movura/features/tv_details/logic/about_tv/about_tv_cubit.dart';
 import 'package:movura/features/tv_details/logic/tv_seasons_cubit/tv_seasons_cubit.dart';
-
-import 'episode_card.dart';
-import 'seasons_list.dart';
-import 'tv_networks_list.dart';
+import 'package:movura/features/tv_details/ui/widgets/episode_card.dart';
+import 'package:movura/features/tv_details/ui/widgets/seasons_list.dart';
+import 'package:movura/features/tv_details/ui/widgets/tv_network_card.dart';
+import 'package:movura/features/tv_details/ui/widgets/tv_networks_list.dart';
 
 class AboutTvTabBody extends StatelessWidget {
   const AboutTvTabBody({super.key});
@@ -52,30 +52,28 @@ class AboutTvTabBody extends StatelessWidget {
                       arguments: AllSeasonsArgumentsModel(
                         tvId: state.model.id,
                         tvTitle: state.model.title ?? 'TV Show',
-                        seasons: state.model.seasons!,
+                        seasons: state.model.seasons ?? [],
                       ),
                     );
                   },
                 ),
                 SeasonsList(
-                  seasons: state.model.seasons!,
+                  seasons: state.model.seasons ?? [],
                   tvId: state.model.id,
                   tvTitle: state.model.title ?? 'TV Show',
                 ),
                 verticalSpacing(15),
               ],
-
               if (hasOneSeason) ...[
                 const SectionTitle(sectionName: "Episodes"),
                 verticalSpacing(8),
                 _SingleSeasonEpisodes(
                   tvId: state.model.id,
                   tvTitle: state.model.title ?? 'TV Show',
-                  seasonNumber: state.model.seasons!.first.seasonNumber,
+                  seasonNumber: state.model.seasons?.first.seasonNumber ?? 1,
                 ),
                 verticalSpacing(15),
               ],
-
               (state.model.actors?.tvActors != null &&
                       state.model.actors!.tvActors!.isNotEmpty)
                   ? SectionTitle(
@@ -84,52 +82,45 @@ class AboutTvTabBody extends StatelessWidget {
                       onTap: () {},
                     )
                   : const SizedBox.shrink(),
-
               if (state.model.actors?.tvActors != null)
-                ActorsList(actors: state.model.actors!.tvActors!),
+                ActorsList(actors: state.model.actors?.tvActors ?? []),
               verticalSpacing(15),
-
               (state.model.companies != null &&
                       state.model.companies!.isNotEmpty)
                   ? const SectionTitle(sectionName: "Companies")
                   : const SizedBox.shrink(),
-
               if (state.model.companies != null)
-                CompaniesList(company: state.model.companies!),
+                CompaniesList(company: state.model.companies ?? []),
               verticalSpacing(15),
-
               (state.model.networks != null && state.model.networks!.isNotEmpty)
                   ? const SectionTitle(sectionName: "Networks")
                   : const SizedBox.shrink(),
               if (state.model.networks != null)
-                TvNetworksList(network: state.model.networks!),
+                TvNetworksList(network: state.model.networks ?? []),
               verticalSpacing(15),
-
               state.model.mediaImages?.backdropImages != null &&
                       state.model.mediaImages!.backdropImages!.isNotEmpty
                   ? const SectionTitle(sectionName: "IMAGES")
                   : const SizedBox.shrink(),
               if (state.model.mediaImages?.backdropImages != null)
                 ImagesList(
-                  images: state.model.mediaImages!.backdropImages!,
+                  images: state.model.mediaImages?.backdropImages ?? [],
                   height: 250,
                   imageFit: BoxFit.fill,
                 ),
               verticalSpacing(15),
-
               state.model.mediaImages?.logoImages != null &&
                       state.model.mediaImages!.logoImages!.isNotEmpty
                   ? const SectionTitle(sectionName: "LOGOS")
                   : const SizedBox.shrink(),
               if (state.model.mediaImages?.logoImages != null)
                 ImagesList(
-                  images: state.model.mediaImages!.logoImages!,
+                  images: state.model.mediaImages?.logoImages ?? [],
                   imageFit: BoxFit.contain,
                   herPadding: 8,
                   imageWidth: 120,
                   height: 180,
                 ),
-
               if (allVideos.isNotEmpty) ...[
                 verticalSpacing(15),
                 const SectionTitle(sectionName: "TRAILERS & CLIPS"),

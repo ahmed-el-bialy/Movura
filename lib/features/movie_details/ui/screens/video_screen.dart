@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/widgets/shared_details/back_button.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-
-import '../../../../core/theming/app_colors.dart';
-import '../../../../core/extensions/routing_extension.dart';
 
 class VideoScreen extends StatefulWidget {
   final YoutubePlayerController controller;
@@ -108,19 +107,17 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                         bufferedColor: AppColors.darkNeonCyan.withValues(
                           alpha: 0.7,
                         ),
-                        backgroundColor: Colors.white24,
+                        backgroundColor: AppColors.pureWhite.withValues(alpha: 0.24),
                       ),
                       onEnded: (_) => handleBack(),
                     ),
                   ),
-
                   if (!_isLandscape || _showControls)
                     Positioned(
                       top: _isLandscape ? 28 : 15,
                       left: _isLandscape ? 20 : 16,
                       child: CustomBackButton(onTap: handleBack),
                     ),
-
                   if (_isLandscape && !_showControls)
                     Positioned(
                       top: 28,
@@ -137,7 +134,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                               width: 1.6,
                             ),
                           ),
-                          child: Icon(
+                          child: const Icon(
                             Icons.arrow_back_ios_new_rounded,
                             color: AppColors.neonBlue,
                             size: 22,

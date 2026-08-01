@@ -2,14 +2,13 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../core/constants/app_constants.dart';
-import '../../../../core/networking/di.dart';
-import '../../../../core/theming/app_colors.dart';
-import '../../../../core/theming/text_styles.dart';
-import '../../../../core/widgets/app_icon_button.dart';
-import '../../../search/logic/search/search_cubit.dart';
-import '../../../search/ui/screens/custom_search_delegate.dart';
+import 'package:movura/core/constants/app_constants.dart';
+import 'package:movura/core/networking/di.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/widgets/app_icon_button.dart';
+import 'package:movura/features/search/logic/search/search_cubit.dart';
+import 'package:movura/features/search/ui/screens/custom_search_delegate.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
@@ -24,7 +23,7 @@ class HomeAppBar extends StatelessWidget {
       flexibleSpace: ClipRRect(
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-          child: Container(color: Colors.transparent),
+          child: Container(color: AppColors.transparent),
         ),
       ),
       leading: Builder(

@@ -76,7 +76,7 @@ class EpisodeCard extends StatelessWidget {
                           const Spacer(),
                           if (episode.voteAverage != null &&
                               episode.voteAverage! > 0) ...[
-                            Icon(
+                            const Icon(
                               Icons.star_rounded,
                               color: AppColors.gold,
                               size: 14.sp,
@@ -99,10 +99,10 @@ class EpisodeCard extends StatelessWidget {
                             .copyWith(fontSize: 14.sp),
                       ),
                       if (episode.overview != null &&
-                          episode.overview!.isNotEmpty) ...[
+                          (episode.overview?.isNotEmpty ?? false)) ...[
                         verticalSpacing(6),
                         Text(
-                          episode.overview!,
+                          episode.overview ?? "",
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyles.font12CoolGrayManrope.copyWith(
@@ -115,24 +115,24 @@ class EpisodeCard extends StatelessWidget {
                       Row(
                         children: [
                           if (episode.airDate != null &&
-                              episode.airDate!.isNotEmpty) ...[
-                            Icon(
+                              (episode.airDate?.isNotEmpty ?? false)) ...[
+                            const Icon(
                               Icons.calendar_today_outlined,
                               size: 12.sp,
                               color: AppColors.coolGray,
                             ),
                             horizontalSpacing(4),
                             Text(
-                              episode.airDate!.toTimeAgo().isNotEmpty
+                              (episode.airDate?.toTimeAgo().isNotEmpty ?? false)
                                   ? episode.airDate!.toTimeAgo()
-                                  : episode.airDate!,
+                                  : (episode.airDate ?? ""),
                               style: TextStyles.font12CoolGrayManrope
                                   .copyWith(fontSize: 10.sp),
                             ),
                           ],
                           if (episode.runtime != null) ...[
                             const Spacer(),
-                            Icon(
+                            const Icon(
                               Icons.schedule_rounded,
                               size: 12.sp,
                               color: AppColors.coolGray,

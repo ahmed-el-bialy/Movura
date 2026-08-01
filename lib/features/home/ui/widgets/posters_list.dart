@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../core/models/poster_model.dart';
-import '../../../../core/theming/text_styles.dart';
-import '../../../../core/widgets/poster_card/poster_card.dart';
+import 'package:movura/core/models/poster_model.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/widgets/poster_card/poster_card.dart';
 
 class PostersList extends StatelessWidget {
   const PostersList(
@@ -16,7 +15,6 @@ class PostersList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 260.h,
-
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,

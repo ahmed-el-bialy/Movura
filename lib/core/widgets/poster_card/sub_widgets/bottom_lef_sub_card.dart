@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/models/poster_model.dart';
+import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
 
 class BottomLeftSubCard extends StatelessWidget {
@@ -24,7 +25,7 @@ class BottomLeftSubCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentGeometry.bottomLeft,
+      alignment: Alignment.bottomLeft,
       child: Padding(
         padding: EdgeInsets.all(2.0.r),
         child: Card(
@@ -32,7 +33,7 @@ class BottomLeftSubCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(subCardBorder ?? 10),
           ),
           elevation: subCardElevation ?? 8,
-          color: subCardColor ?? Color(0xFF2C2938).withValues(alpha: .7),
+          color: subCardColor ?? AppColors.darkPurpleGray.withValues(alpha: .7),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 9.w, vertical: 4.w),
             child: Text(

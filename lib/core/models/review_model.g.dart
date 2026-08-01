@@ -17,9 +17,9 @@ Map<String, dynamic> _$ReviewsResponseToJson(ReviewsResponse instance) =>
     <String, dynamic>{'results': instance.reviewsList};
 
 ReviewModel _$ReviewModelFromJson(Map<String, dynamic> json) => ReviewModel(
-  author: json['author'] as String,
-  content: json['content'] as String,
-  createdAt: json['created_at'] as String,
+  author: json['author'] as String?,
+  content: json['content'] as String?,
+  createdAt: json['created_at'] as String?,
   authorDetails: json['author_details'] == null
       ? null
       : AuthorDetails.fromJson(json['author_details'] as Map<String, dynamic>),

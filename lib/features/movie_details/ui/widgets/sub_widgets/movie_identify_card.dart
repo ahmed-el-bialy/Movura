@@ -5,8 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/helpers/spacing.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
-
-import '../../../data/models/about_model.dart';
+import 'package:movura/features/movie_details/data/models/about_model.dart';
 
 class MovieIdentifyCard extends StatelessWidget {
   const MovieIdentifyCard({super.key, required this.model});
@@ -82,12 +81,11 @@ class MovieIdentifyCard extends StatelessWidget {
                               ),
                               child: Text(
                                 (model.adultContent ?? false) ? "18+" : "PG",
-                                style: TextStyle(
+                                style: TextStyles.font10BoldCoolGray.copyWith(
                                   color: (model.adultContent ?? false)
                                       ? AppColors.softRed
                                       : AppColors.platinumGray,
                                   fontSize: 10.sp,
-                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),

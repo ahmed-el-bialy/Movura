@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movura/core/widgets/section_title.dart';
 import 'package:movura/core/widgets/shared_details/review_card.dart';
-
-import '../../../../../core/widgets/section_title.dart';
-import '../../models/review_model.dart';
+import 'package:movura/features/movie_details/data/models/review_model.dart';
 
 class ReviewsList extends StatelessWidget {
   const ReviewsList({super.key, required this.reviews});
@@ -21,7 +20,7 @@ class ReviewsList extends StatelessWidget {
         ListView.builder(
           padding: EdgeInsets.zero,
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           itemCount: reviews.length,
           itemBuilder: (context, index) {
             return ReviewCard(model: reviews[index]);

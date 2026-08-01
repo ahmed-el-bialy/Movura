@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../core/theming/app_colors.dart';
-import '../../../../core/constants/app_constants.dart';
-import '../../../../core/extensions/routing_extension.dart';
+import 'package:movura/core/constants/app_constants.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/text_styles.dart';
 
 class CustomSideDrawer extends StatelessWidget {
   const CustomSideDrawer({super.key});
@@ -42,10 +42,7 @@ class CustomSideDrawer extends StatelessWidget {
                   ),
                   Text(
                     AppConstants.appName,
-                    style: TextStyle(
-                      color: AppColors.neonBlue,
-                      fontSize: 24.sp,
-                      fontWeight: FontWeight.bold,
+                    style: TextStyles.font24SimiBoldNeonBlueManrope.copyWith(
                       letterSpacing: 2,
                     ),
                   ),
@@ -53,7 +50,6 @@ class CustomSideDrawer extends StatelessWidget {
               ),
             ),
           ),
-
           Padding(
             padding: EdgeInsets.symmetric(vertical: 4.h),
             child: ListTile(
@@ -61,14 +57,13 @@ class CustomSideDrawer extends StatelessWidget {
                 Icons.person_outline_rounded,
                 color: AppColors.coolGray,
               ),
-              title: const Text(
+              title: Text(
                 'Profile',
-                style: TextStyle(color: AppColors.pureWhite),
+                style: TextStyles.font14PureWhiteManrope,
               ),
               onTap: () {},
             ),
           ),
-
           Padding(
             padding: EdgeInsets.symmetric(vertical: 4.h),
             child: ListTile(
@@ -76,9 +71,9 @@ class CustomSideDrawer extends StatelessWidget {
                 Icons.star_outline_rounded,
                 color: AppColors.coolGray,
               ),
-              title: const Text(
+              title: Text(
                 'Go Pro',
-                style: TextStyle(color: AppColors.pureWhite),
+                style: TextStyles.font14PureWhiteManrope,
               ),
               trailing: Icon(
                 Icons.auto_awesome,
@@ -88,25 +83,20 @@ class CustomSideDrawer extends StatelessWidget {
               onTap: () {},
             ),
           ),
-
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
-            child: const Divider(color: Colors.white10),
+            child: Divider(color: AppColors.pureWhite.withValues(alpha: 0.1)),
           ),
-
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
             child: Text(
               "DISCOVER",
-              style: TextStyle(
+              style: TextStyles.font10BoldCoolGray.copyWith(
                 color: AppColors.coolGray.withValues(alpha: 0.8),
-                fontSize: 10.sp,
-                fontWeight: FontWeight.bold,
                 letterSpacing: 1.5,
               ),
             ),
           ),
-
           Padding(
             padding: EdgeInsets.symmetric(vertical: 2.h),
             child: ListTile(
@@ -114,13 +104,13 @@ class CustomSideDrawer extends StatelessWidget {
                 Icons.movie_filter_outlined,
                 color: AppColors.coolGray,
               ),
-              title: const Text(
+              title: Text(
                 'Discover Movies',
-                style: TextStyle(color: AppColors.pureWhite),
+                style: TextStyles.font14PureWhiteManrope,
               ),
               subtitle: Text(
                 'Popular, Top Rated, Upcoming',
-                style: TextStyle(
+                style: TextStyles.font10MediumCoolGraySora.copyWith(
                   color: AppColors.coolGray.withValues(alpha: 0.7),
                   fontSize: 11.sp,
                 ),
@@ -133,18 +123,17 @@ class CustomSideDrawer extends StatelessWidget {
               onTap: () {},
             ),
           ),
-
           Padding(
             padding: EdgeInsets.symmetric(vertical: 2.h),
             child: ListTile(
               leading: const Icon(Icons.tv_outlined, color: AppColors.coolGray),
-              title: const Text(
+              title: Text(
                 'TV Series',
-                style: TextStyle(color: AppColors.pureWhite),
+                style: TextStyles.font14PureWhiteManrope,
               ),
               subtitle: Text(
                 'Popular, Top Rated, On The Air',
-                style: TextStyle(
+                style: TextStyles.font10MediumCoolGraySora.copyWith(
                   color: AppColors.coolGray.withValues(alpha: 0.7),
                   fontSize: 11.sp,
                 ),
@@ -157,7 +146,6 @@ class CustomSideDrawer extends StatelessWidget {
               onTap: () {},
             ),
           ),
-
           Padding(
             padding: EdgeInsets.symmetric(vertical: 2.h),
             child: ListTile(
@@ -165,13 +153,13 @@ class CustomSideDrawer extends StatelessWidget {
                 Icons.people_alt_outlined,
                 color: AppColors.coolGray,
               ),
-              title: const Text(
+              title: Text(
                 'Popular People',
-                style: TextStyle(color: AppColors.pureWhite),
+                style: TextStyles.font14PureWhiteManrope,
               ),
               subtitle: Text(
                 'Trending Actors & Creators',
-                style: TextStyle(
+                style: TextStyles.font10MediumCoolGraySora.copyWith(
                   color: AppColors.coolGray.withValues(alpha: 0.7),
                   fontSize: 11.sp,
                 ),
@@ -184,14 +172,11 @@ class CustomSideDrawer extends StatelessWidget {
               onTap: () {},
             ),
           ),
-
           const Spacer(),
-
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
-            child: const Divider(color: Colors.white10),
+            child: Divider(color: AppColors.pureWhite.withValues(alpha: 0.1)),
           ),
-
           Padding(
             padding: EdgeInsets.symmetric(vertical: 6.h),
             child: ListTile(
@@ -199,16 +184,17 @@ class CustomSideDrawer extends StatelessWidget {
                 Icons.logout_rounded,
                 color: AppColors.softRed,
               ),
-              title: const Text(
+              title: Text(
                 'Logout',
-                style: TextStyle(color: AppColors.softRed),
+                style: TextStyles.font14PureWhiteManrope.copyWith(
+                  color: AppColors.softRed,
+                ),
               ),
               onTap: () {
                 context.pop();
               },
             ),
           ),
-
           SizedBox(height: MediaQuery.of(context).padding.bottom + 12.h),
         ],
       ),

@@ -1,13 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/extensions/routing_extension.dart';
-import 'package:movura/core/routing/route_names.dart';
-import 'package:movura/core/models/poster_model.dart';
-import 'package:movura/core/theming/app_colors.dart';
-
-import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/constants/api_constants.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/models/poster_model.dart';
+import 'package:movura/core/routing/route_names.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/text_styles.dart';
 
 class PersonCard extends StatelessWidget {
   const PersonCard({super.key, required this.person});
@@ -44,9 +43,9 @@ class PersonCard extends StatelessWidget {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Colors.transparent,
-                    Colors.black.withValues(alpha: 0.1),
-                    Colors.black.withValues(alpha: 0.8),
+                    AppColors.transparent,
+                    AppColors.trueBlack.withValues(alpha: 0.1),
+                    AppColors.trueBlack.withValues(alpha: 0.8),
                   ],
                 ),
               ),

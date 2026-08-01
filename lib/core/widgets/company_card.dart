@@ -1,12 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:movura/core/constants/api_constants.dart';
+import 'package:movura/core/models/company_model.dart';
 import 'package:movura/core/theming/app_colors.dart';
-
-import '../models/company_model.dart';
-import '../theming/text_styles.dart';
-import '../constants/api_constants.dart';
+import 'package:movura/core/theming/text_styles.dart';
 
 class CompanyCard extends StatelessWidget {
   const CompanyCard({super.key, required this.company});
@@ -22,11 +20,11 @@ class CompanyCard extends StatelessWidget {
           company.logo != null
               ? Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadiusGeometry.circular(20),
+                    borderRadius: BorderRadius.circular(20),
                     color: AppColors.pureWhite,
                   ),
                   child: ClipRRect(
-                    borderRadius: BorderRadiusGeometry.circular(20),
+                    borderRadius: BorderRadius.circular(20),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: CachedNetworkImage(
@@ -43,11 +41,11 @@ class CompanyCard extends StatelessWidget {
                 )
               : Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadiusGeometry.circular(20),
+                    borderRadius: BorderRadius.circular(20),
                     color: AppColors.pureWhite,
                   ),
                   child: ClipRRect(
-                    borderRadius: BorderRadiusGeometry.circular(20),
+                    borderRadius: BorderRadius.circular(20),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: CachedNetworkImage(

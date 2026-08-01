@@ -61,7 +61,7 @@ class AppTextFormField extends StatelessWidget {
             hintStyle ??
             TextStyles.font10BoldCoolGray.copyWith(
               fontSize: 14.sp,
-              color: TextStyles.font10BoldCoolGray.color?.withValues(
+              color: AppColors.coolGray.withValues(
                 alpha: .8,
               ),
             ),

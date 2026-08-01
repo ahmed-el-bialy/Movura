@@ -5,7 +5,7 @@ import 'package:movura/core/constants/api_constants.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/widgets/app_icon_button.dart';
-import 'platform_options_sheet.dart';
+import 'package:movura/core/widgets/shared_details/platform_options_sheet.dart';
 
 class CoreDetailsHeader extends StatelessWidget {
   const CoreDetailsHeader({
@@ -42,11 +42,11 @@ class CoreDetailsHeader extends StatelessWidget {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Colors.transparent,
-                  Colors.black.withValues(alpha: 0.05),
-                  Colors.black.withValues(alpha: 0.1),
-                  Colors.black.withValues(alpha: 0.2),
-                  Colors.black,
+                  AppColors.transparent,
+                  AppColors.trueBlack.withValues(alpha: 0.05),
+                  AppColors.trueBlack.withValues(alpha: 0.1),
+                  AppColors.trueBlack.withValues(alpha: 0.2),
+                  AppColors.trueBlack,
                 ],
               ),
             ),
@@ -62,7 +62,7 @@ class CoreDetailsHeader extends StatelessWidget {
                     onPressed: () {
                       showModalBottomSheet(
                         context: context,
-                        backgroundColor: Colors.transparent,
+                        backgroundColor: AppColors.transparent,
                         builder: (context) => PlatformOptionsSheet(
                           homepageUrl: homepage!,
                           watchProviders: watchProviders,

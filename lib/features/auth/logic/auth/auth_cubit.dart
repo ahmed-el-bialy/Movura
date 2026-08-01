@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../data/repos/auth_repo.dart';
-import 'auth_state.dart';
+import 'package:movura/features/auth/data/repos/auth_repo.dart';
+import 'package:movura/features/auth/logic/auth/auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final AuthRepo authRepo;

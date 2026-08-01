@@ -43,7 +43,7 @@ class AllSeasonsScreen extends StatelessWidget {
         flexibleSpace: ClipRRect(
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-            child: Container(color: Colors.transparent),
+            child: Container(color: AppColors.transparent),
           ),
         ),
         title: Text(

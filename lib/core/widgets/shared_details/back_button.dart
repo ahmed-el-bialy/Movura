@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:movura/core/theming/app_colors.dart';
 
 class CustomBackButton extends StatelessWidget {
@@ -23,13 +22,13 @@ class CustomBackButton extends StatelessWidget {
           ),
           boxShadow: [
             BoxShadow(
-              color: AppColors.neonBlue..withValues(alpha: 0.35),
+              color: AppColors.neonBlue.withValues(alpha: 0.35),
               blurRadius: 12,
               spreadRadius: 2,
             ),
           ],
         ),
-        child: Icon(
+        child: const Icon(
           Icons.arrow_back_ios_new_rounded,
           color: AppColors.neonBlue,
           size: 22,

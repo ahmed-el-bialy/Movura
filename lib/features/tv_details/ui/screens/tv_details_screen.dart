@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/widgets/app_error_widget.dart';
-import '../../logic/about_tv/about_tv_cubit.dart';
-import '../widgets/tv_screen_body.dart';
+import 'package:movura/features/tv_details/logic/about_tv/about_tv_cubit.dart';
+import 'package:movura/features/tv_details/ui/widgets/tv_screen_body.dart';
 
 class TvSeriesDetailsScreen extends StatelessWidget {
   const TvSeriesDetailsScreen({super.key});

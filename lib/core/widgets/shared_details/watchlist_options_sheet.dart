@@ -49,7 +49,6 @@ class WatchlistOptionsSheet extends StatelessWidget {
                 icon: Icons.bookmark_outline_rounded,
                 label: 'Watchlist',
                 onTap: () {
-                  // TODO: Implement Watchlist logic
                   Navigator.pop(context);
                 },
                 color: AppColors.neonBlue,
@@ -58,7 +57,6 @@ class WatchlistOptionsSheet extends StatelessWidget {
                 icon: Icons.check_circle_outline_rounded,
                 label: 'Watched',
                 onTap: () {
-                  // TODO: Implement Watched logic
                   Navigator.pop(context);
                 },
                 color: AppColors.tealCyan,
@@ -67,7 +65,6 @@ class WatchlistOptionsSheet extends StatelessWidget {
                 icon: Icons.favorite_border_rounded,
                 label: 'Favorite',
                 onTap: () {
-                  // TODO: Implement Favorites logic
                   Navigator.pop(context);
                 },
                 color: AppColors.deepCrimson,
@@ -76,7 +73,6 @@ class WatchlistOptionsSheet extends StatelessWidget {
                 icon: Icons.add_box_outlined,
                 label: 'Create List',
                 onTap: () {
-                  // TODO: Implement custom list creation
                   Navigator.pop(context);
                 },
                 color: AppColors.amberGold,
@@ -130,7 +126,7 @@ class _ActionItem extends StatelessWidget {
         Text(
           label,
           style: TextStyles.font10BoldCoolGray.copyWith(
-            color: Colors.white70,
+            color: AppColors.pureWhite.withValues(alpha: 0.7),
             fontSize: 11.sp,
           ),
         ),

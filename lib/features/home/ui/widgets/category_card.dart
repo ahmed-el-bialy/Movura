@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
-
-import '../../data/models/category_card_model.dart';
+import 'package:movura/features/home/data/models/category_card_model.dart';
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard({super.key, required this.model, required this.onTap});
@@ -47,7 +47,7 @@ class CategoryCard extends StatelessWidget {
                 right: -10.w,
                 child: Icon(
                   model.icon,
-                  color: Colors.white.withValues(alpha: 0.1),
+                  color: AppColors.pureWhite.withValues(alpha: 0.1),
                   size: 80.sp,
                 ),
               ),
@@ -59,12 +59,12 @@ class CategoryCard extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.all(8.r),
                       decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.15),
+                        color: AppColors.pureWhite.withValues(alpha: 0.15),
                         shape: BoxShape.circle,
                       ),
                       child: Icon(
                         model.icon,
-                        color: Colors.white,
+                        color: AppColors.pureWhite,
                         size: 20.sp,
                       ),
                     ),
@@ -73,7 +73,7 @@ class CategoryCard extends StatelessWidget {
                       Text(
                         model.hint!.toUpperCase(),
                         style: TextStyles.font10BoldCoolGray.copyWith(
-                          color: Colors.white.withValues(alpha: 0.6),
+                          color: AppColors.pureWhite.withValues(alpha: 0.6),
                           letterSpacing: 1.2,
                           fontSize: 9.sp,
                         ),

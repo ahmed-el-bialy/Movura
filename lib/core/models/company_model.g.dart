@@ -7,8 +7,8 @@ part of 'company_model.dart';
 // **************************************************************************
 
 CompanyModel _$CompanyModelFromJson(Map<String, dynamic> json) => CompanyModel(
-  name: json['name'] as String,
-  originCountry: json['origin_country'] as String,
+  name: json['name'] as String?,
+  originCountry: json['origin_country'] as String?,
   logo: json['logo_path'] as String?,
 );
 

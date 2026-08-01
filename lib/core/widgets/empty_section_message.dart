@@ -32,7 +32,7 @@ class EmptySectionMessage extends StatelessWidget {
           SizedBox(height: 8.h),
           subTitle != null
               ? Text(subTitle!, style: TextStyles.font12MediumPlatinumGray)
-              : SizedBox(),
+              : const SizedBox(),
         ],
       ),
     );

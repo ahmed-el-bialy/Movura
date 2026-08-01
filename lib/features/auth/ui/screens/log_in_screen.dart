@@ -19,8 +19,7 @@ import 'package:movura/features/auth/ui/widgets/auth_divider.dart';
 import 'package:movura/features/auth/ui/widgets/auth_input_field.dart';
 import 'package:movura/features/auth/ui/widgets/auth_prefix_icon.dart';
 import 'package:movura/features/auth/ui/widgets/hero_app_logo.dart';
-
-import '../widgets/social_button_row.dart';
+import 'package:movura/features/auth/ui/widgets/social_button_row.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({super.key});
@@ -68,7 +67,6 @@ class _LogInScreenState extends State<LogInScreen> {
             backgroundColor: AppColors.trueBlack,
             body: Stack(
               children: [
-                // Background Gradient with Blur
                 Positioned.fill(
                   child: Container(
                     decoration: BoxDecoration(
@@ -100,7 +98,7 @@ class _LogInScreenState extends State<LogInScreen> {
                     ),
                     child: BackdropFilter(
                       filter: ImageFilter.blur(sigmaX: 80, sigmaY: 80),
-                      child: Container(color: Colors.transparent),
+                      child: Container(color: AppColors.transparent),
                     ),
                   ),
                 ),
@@ -118,10 +116,9 @@ class _LogInScreenState extends State<LogInScreen> {
                             Align(
                               alignment: Alignment.topRight,
                               child: TextButton(
-                                onPressed: () =>
-                                    context.pushAndRemoveUntil(
-                                      routeName: RouteNames.mainScreen,
-                                    ),
+                                onPressed: () => context.pushAndRemoveUntil(
+                                  routeName: RouteNames.mainScreen,
+                                ),
                                 style: TextButton.styleFrom(
                                   backgroundColor: AppColors.onyxBlack
                                       .withValues(alpha: 0.4),
@@ -131,33 +128,30 @@ class _LogInScreenState extends State<LogInScreen> {
                                 ),
                                 child: Text(
                                   "Skip",
-                                  style: AppTextStyles.font13MediumNeonBlue
+                                  style: TextStyles.font13MediumNeonBlue
                                       .copyWith(fontSize: 12.sp),
                                 ),
                               ),
                             ),
-                            verticalSpacing(10),
                             HeroAppLogo(),
                             verticalSpacing(5),
                             Text(
                               "Welcome Back",
-                              style: AppTextStyles.font40BoldPureWhite.copyWith(
+                              style: TextStyles.font40BoldPureWhite.copyWith(
                                 fontSize: 34.sp,
                                 letterSpacing: -0.5,
                               ),
                             ),
-                            verticalSpacing(5),
                             Text(
                               "Sign in to continue your cinematic journey",
-                              style: AppTextStyles.font12CoolGrayManrope
-                                  .copyWith(
+                              style: TextStyles.font12CoolGrayManrope.copyWith(
                                 fontSize: 14.sp,
                                 color: AppColors.slateGray.withValues(
                                   alpha: 0.6,
                                 ),
                               ),
                             ),
-                            verticalSpacing(15),
+                            verticalSpacing(18),
                             ClipRRect(
                               borderRadius: BorderRadius.circular(24.r),
                               child: BackdropFilter(
@@ -169,7 +163,8 @@ class _LogInScreenState extends State<LogInScreen> {
                                   padding: EdgeInsets.symmetric(
                                     horizontal: 8.w,
                                     vertical: 12.h,
-                                  ), decoration: BoxDecoration(
+                                  ),
+                                  decoration: BoxDecoration(
                                     color: AppColors.onyxBlack.withValues(
                                       alpha: 0.3,
                                     ),
@@ -191,6 +186,7 @@ class _LogInScreenState extends State<LogInScreen> {
                                           prefixIcon: const AuthPrefixIcon(
                                             icon: Icons.alternate_email_rounded,
                                           ),
+                                          textInputAction: TextInputAction.next,
                                           validator: Validators.validateEmail,
                                         ),
                                       ),
@@ -199,35 +195,33 @@ class _LogInScreenState extends State<LogInScreen> {
                                         label: "Password",
                                         action: Text(
                                           "Forgot?",
-                                          style: AppTextStyles
-                                              .font13MediumNeonBlue
+                                          style: TextStyles.font13MediumNeonBlue
                                               .copyWith(fontSize: 11.sp),
                                         ),
                                         child: AppTextFormField(
                                           controller: passwordController,
                                           isObscureText: isObscure,
-                                          hintText: AppConstants
-                                              .passwordExample,
+                                          hintText:
+                                              AppConstants.passwordExample,
                                           prefixIcon: const AuthPrefixIcon(
                                             icon: Icons.lock_outline_rounded,
                                           ),
                                           suffixIcon: IconButton(
-                                            onPressed: () =>
-                                                setState(
-                                                      () =>
-                                                  isObscure = !isObscure,
-                                                ),
+                                            onPressed: () => setState(
+                                              () => isObscure = !isObscure,
+                                            ),
                                             icon: Icon(
                                               isObscure
                                                   ? Icons
-                                                  .visibility_off_outlined
+                                                        .visibility_off_outlined
                                                   : Icons.visibility_outlined,
                                               color: AppColors.coolGray,
                                               size: 18.sp,
                                             ),
                                           ),
+                                          textInputAction: TextInputAction.done,
                                           validator:
-                                          Validators.validatePassword,
+                                              Validators.validatePassword,
                                         ),
                                       ),
                                     ],
@@ -263,14 +257,14 @@ class _LogInScreenState extends State<LogInScreen> {
                                         );
                                       }
                                     },
-                                    buttonWidth: 140.w,
+                                    buttonWidth: 240.w,
                                     borderRadius: 16.r,
-                                    textStyle: AppTextStyles
+                                    textStyle: TextStyles
                                         .font17BoldTrueBlackSora
                                         .copyWith(
-                                      fontSize: 16.sp,
-                                      letterSpacing: 1.2,
-                                    ),
+                                          fontSize: 16.sp,
+                                          letterSpacing: 1.2,
+                                        ),
                                   ),
                                 );
                               },
@@ -285,19 +279,16 @@ class _LogInScreenState extends State<LogInScreen> {
                               children: [
                                 Text(
                                   "New here? ",
-                                  style: AppTextStyles.font12CoolGrayManrope,
+                                  style: TextStyles.font12CoolGrayManrope,
                                 ),
                                 GestureDetector(
-                                  onTap: () =>
-                                      context.pushNamed(
-                                        RouteNames.signUpScreen,
-                                      ),
+                                  onTap: () => context.pushNamed(
+                                    RouteNames.signUpScreen,
+                                  ),
                                   child: Text(
                                     "Create Account",
-                                    style: AppTextStyles.font13BoldNeonBlueSora
-                                        .copyWith(
-                                      fontWeight: FontWeight.w800,
-                                    ),
+                                    style: TextStyles.font13BoldNeonBlueSora
+                                        .copyWith(fontWeight: FontWeight.w800),
                                   ),
                                 ),
                               ],
@@ -317,4 +308,3 @@ class _LogInScreenState extends State<LogInScreen> {
     );
   }
 }
-
