@@ -75,6 +75,7 @@ dependencies:
   url_launcher: ^6.3.2
   # Share content via the platform share UI.
   share_plus: ^10.1.4
+  path_drawing: ^1.0.1
 
   #  firebase
   firebase_core: ^4.12.1

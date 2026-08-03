@@ -7,6 +7,7 @@ import '../../constants/api_constants.dart';
 import '../../extensions/routing_extension.dart';
 import '../../routing/arguments_models.dart';
 import '../../routing/route_names.dart';
+import '../../helpers/spacing.dart';
 import '../../theming/app_colors.dart';
 import '../../theming/text_styles.dart';
 
@@ -60,7 +61,7 @@ class PersonCreditsList extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 8.h),
+                  verticalSpacing(8),
                   Text(
                     title ?? "Unknown",
                     maxLines: 2,

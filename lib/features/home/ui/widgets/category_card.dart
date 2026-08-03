@@ -1,22 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/helpers/spacing.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../../data/models/category_card_model.dart';
 
 class CategoryCard extends StatelessWidget {
-  const CategoryCard({super.key, required this.model, required this.onTap});
+  const CategoryCard({
+    super.key,
+    required this.model,
+    required this.onTap,
+    this.width,
+  });
 
   final CategoryCardModel model;
   final VoidCallback onTap;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 160.w,
+        width: width?.w ?? 160.w,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.r),
           gradient: LinearGradient(
@@ -79,7 +86,7 @@ class CategoryCard extends StatelessWidget {
                           fontSize: 9.sp,
                         ),
                       ),
-                    SizedBox(height: 4.h),
+                    verticalSpacing(4),
                     Text(
                       model.title,
                       style: TextStyles.font14BoldIceBlueMontserrat.copyWith(

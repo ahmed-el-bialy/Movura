@@ -76,6 +76,14 @@ class SeeAllRepo {
         response = await webServices.getTvByGenre(id!, page);
         mediaType = 'tv';
         break;
+      case SeeAllEndpoint.popularPeople:
+        response = await webServices.getPopularPeople(page);
+        mediaType = 'person';
+        break;
+      case SeeAllEndpoint.trendingPeople:
+        response = await webServices.getTrendingPeople("day", page);
+        mediaType = 'person';
+        break;
     }
 
     // Force media type if not provided by the API directly

@@ -14,6 +14,8 @@ enum SeeAllEndpoint {
   similarTv,
   moviesByGenre,
   tvByGenre,
+  popularPeople,
+  trendingPeople,
 }
 
 class SeeAllArguments {

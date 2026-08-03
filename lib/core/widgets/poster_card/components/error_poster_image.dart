@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../helpers/spacing.dart';
 import '../../../theming/app_colors.dart';
 import '../../../theming/text_styles.dart';
 
@@ -21,7 +22,7 @@ class ErrorPosterImage extends StatelessWidget {
             size: 40.sp,
             color: AppColors.coolGray,
           ),
-          SizedBox(height: 8.h),
+          verticalSpacing(8),
           Text(
             "No Poster Available",
             style: titleStyle ?? TextStyles.font16SimiBoldPlatinumGray,
