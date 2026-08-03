@@ -14,13 +14,14 @@ class ActorsList extends StatelessWidget {
     if (actors.isEmpty) return const SizedBox.shrink();
 
     return SizedBox(
-      height: 245.h,
+      height: 250.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
+        physics: const BouncingScrollPhysics(),
         itemCount: actors.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.w),
+            padding: EdgeInsets.symmetric(horizontal: 4.w),
             child: ActorCard(actor: actors[index]),
           );
         },

@@ -1,7 +1,6 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/widgets/app_text_button.dart';
 
 import '../helpers/spacing.dart';
 import '../theming/app_colors.dart';
@@ -21,16 +20,31 @@ class AppErrorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: EdgeInsets.all(20.r),
+        padding: EdgeInsets.all(24.r),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.error_outline_rounded,
-              color: AppColors.softRed,
-              size: 50.sp,
+            Container(
+              padding: EdgeInsets.all(20.r),
+              decoration: BoxDecoration(
+                color: AppColors.softRed.withValues(alpha: 0.1),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                Icons.error_outline_rounded,
+                color: AppColors.softRed,
+                size: 60.sp,
+              ),
             ),
-            verticalSpacing(16),
+            verticalSpacing(24),
+            Text(
+              "Something went wrong",
+              style: TextStyles.font17BoldIceBlueMontserrat.copyWith(
+                fontSize: 20.sp,
+                color: AppColors.pureWhite,
+              ),
+            ),
+            verticalSpacing(8),
             Text(
               errorMessage,
               style: TextStyles.font14PureWhiteManrope.copyWith(
@@ -39,20 +53,16 @@ class AppErrorWidget extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             if (onRetry != null) ...[
-              verticalSpacing(20),
-              ElevatedButton(
-                onPressed: onRetry,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.neonBlue,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.r),
-                  ),
-                ),
-                child: Text(
-                  'RETRY',
-                  style: TextStyles.font17BoldTrueBlackSora.copyWith(
-                    fontSize: 14.sp,
-                  ),
+              verticalSpacing(32),
+              AppTextButton(
+                buttonText: 'RETRY',
+                onPressed: onRetry!,
+                buttonWidth: 160,
+                buttonHeight: 45,
+                borderRadius: 12,
+                textStyle: TextStyles.font17BoldTrueBlackSora.copyWith(
+                  fontSize: 14.sp,
+                  letterSpacing: 1.2,
                 ),
               ),
             ],

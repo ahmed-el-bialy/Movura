@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../../core/widgets/shared_details/details_identify_card.dart';
+
+import '../../../../../core/widgets/shared_details/details_identify_card.dart';
 import '../../../data/models/about_model.dart';
 
 class MovieIdentifyCard extends StatelessWidget {
