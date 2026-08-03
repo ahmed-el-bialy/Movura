@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/extensions/routing_extension.dart';
 import '../../../../core/routing/arguments_models.dart';
 import '../../../../core/routing/route_names.dart';
-import '../../../../core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_colors.dart';
 import '../../../../core/theming/app_spacing.dart';
 import '../../../../core/theming/text_styles.dart';
 import 'package:movura/core/widgets/buttons/app_icon_button.dart';

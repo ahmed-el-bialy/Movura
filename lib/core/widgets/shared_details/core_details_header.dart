@@ -5,7 +5,7 @@ import 'package:movura/core/widgets/shared_details/platform_options_sheet.dart';
 
 import '../../constants/api_constants.dart';
 import '../../extensions/routing_extension.dart';
-import '../../theming/app_colors.dart';
+import 'package:movura/core/theming/app_colors.dart';
 import '../../theming/app_spacing.dart';
 import '../buttons/app_icon_button.dart';
 

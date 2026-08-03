@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../theming/app_colors.dart';
+import 'package:movura/core/theming/app_colors.dart';
 import '../../../theming/app_spacing.dart';
 
 class GlassCard extends StatelessWidget {

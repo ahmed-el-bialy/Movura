@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../../core/extensions/routing_extension.dart';
-import '../../../../core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_colors.dart';
 import '../../../../core/theming/app_spacing.dart';
 import '../../../../core/widgets/shared_details/back_button.dart';
 

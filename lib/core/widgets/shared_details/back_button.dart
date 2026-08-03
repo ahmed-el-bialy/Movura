@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../theming/app_colors.dart';
+import 'package:movura/core/theming/app_colors.dart';
 
 class CustomBackButton extends StatelessWidget {
   final VoidCallback onTap;
