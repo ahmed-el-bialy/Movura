@@ -144,9 +144,9 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _buildSectionHeader(
-                        Icons.auto_awesome_motion_rounded,
-                        'SEARCH IN',
+                      const _SectionHeader(
+                        icon: Icons.auto_awesome_motion_rounded,
+                        title: 'SEARCH IN',
                       ),
                       verticalSpacing(16),
                       GridView.builder(
@@ -178,7 +178,10 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                       if (currentGenres.isNotEmpty &&
                           _tempFilter != SearchFilterType.people) ...[
                         verticalSpacing(32),
-                        _buildSectionHeader(Icons.interests_rounded, 'GENRES'),
+                        const _SectionHeader(
+                          icon: Icons.interests_rounded,
+                          title: 'GENRES',
+                        ),
                         verticalSpacing(16),
                         Wrap(
                           spacing: 10.w,
@@ -198,7 +201,10 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                         ),
                       ],
                       verticalSpacing(32),
-                      _buildSectionHeader(Icons.sort_rounded, 'SORTING'),
+                      const _SectionHeader(
+                        icon: Icons.sort_rounded,
+                        title: 'SORTING',
+                      ),
                       verticalSpacing(16),
                       _SortToggleChip(
                         label: 'Highly Rated Content',
@@ -250,7 +256,24 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
     );
   }
 
-  Widget _buildSectionHeader(IconData icon, String title) {
+  IconData _iconFor(SearchFilterType filter) {
+    return switch (filter) {
+      SearchFilterType.all => Icons.all_inclusive_rounded,
+      SearchFilterType.movies => Icons.movie_filter_rounded,
+      SearchFilterType.tv => Icons.live_tv_rounded,
+      SearchFilterType.people => Icons.people_alt_rounded,
+    };
+  }
+}
+
+class _SectionHeader extends StatelessWidget {
+  const _SectionHeader({required this.icon, required this.title});
+
+  final IconData icon;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       children: [
         Icon(
@@ -276,15 +299,6 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
         ),
       ],
     );
-  }
-
-  IconData _iconFor(SearchFilterType filter) {
-    return switch (filter) {
-      SearchFilterType.all => Icons.all_inclusive_rounded,
-      SearchFilterType.movies => Icons.movie_filter_rounded,
-      SearchFilterType.tv => Icons.live_tv_rounded,
-      SearchFilterType.people => Icons.people_alt_rounded,
-    };
   }
 }
 

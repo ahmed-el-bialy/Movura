@@ -83,7 +83,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             verticalSpacing(20),
                             const AuthHeader(
                               title: "Create Account",
-                              subtitle: "Join the premiere community for cinema lovers",
+                              subtitle:
+                                  "Join the premiere community for cinema lovers",
                             ),
                             verticalSpacing(25),
                             AuthFormContainer(
@@ -147,13 +148,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                             ),
                             verticalSpacing(30),
-                            _buildSignUpButton(),
+                            _SignUpButton(
+                              formKey: formKey,
+                              nameController: nameController,
+                              emailController: emailController,
+                              passwordController: passwordController,
+                            ),
                             verticalSpacing(30),
                             const AuthDivider(),
                             verticalSpacing(20),
                             SocialButtonsRow(),
                             verticalSpacing(25),
-                            _buildLoginToggle(context),
+                            const _LoginToggle(),
                             verticalSpacing(20),
                           ],
                         ),
@@ -168,8 +174,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
     );
   }
+}
 
-  Widget _buildSignUpButton() {
+class _SignUpButton extends StatelessWidget {
+  const _SignUpButton({
+    required this.formKey,
+    required this.nameController,
+    required this.emailController,
+    required this.passwordController,
+  });
+
+  final GlobalKey<FormState> formKey;
+  final TextEditingController nameController;
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
+
+  @override
+  Widget build(BuildContext context) {
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
         return Container(
@@ -184,14 +205,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ],
           ),
           child: AppTextButton(
-            buttonText: state is AuthLoading ? "CREATING ACCOUNT..." : "SIGN UP",
+            buttonText: state is AuthLoading
+                ? "CREATING ACCOUNT..."
+                : "SIGN UP",
             onPressed: () {
               if (formKey.currentState!.validate()) {
                 context.read<AuthCubit>().signUp(
-                      name: nameController.text.trim(),
-                      email: emailController.text.trim(),
-                      password: passwordController.text,
-                    );
+                  name: nameController.text.trim(),
+                  email: emailController.text.trim(),
+                  password: passwordController.text,
+                );
               }
             },
             buttonWidth: 220.w,
@@ -206,21 +229,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
       },
     );
   }
+}
 
-  Widget _buildLoginToggle(BuildContext context) {
+class _LoginToggle extends StatelessWidget {
+  const _LoginToggle();
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          "Already a member? ",
-          style: TextStyles.font12CoolGrayManrope,
-        ),
+        Text("Already a member? ", style: TextStyles.font12CoolGrayManrope),
         GestureDetector(
           onTap: () => context.pop(),
           child: Text(
             "Sign In",
-            style: TextStyles.font13BoldNeonBlueSora
-                .copyWith(fontWeight: FontWeight.w800),
+            style: TextStyles.font13BoldNeonBlueSora.copyWith(
+              fontWeight: FontWeight.w800,
+            ),
           ),
         ),
       ],
