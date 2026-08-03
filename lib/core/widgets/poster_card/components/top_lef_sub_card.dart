@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/models/poster_model.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/core/widgets/poster_card/components/glass_card.dart';
+
+import '../../../models/poster_model.dart';
+import '../../../theming/text_styles.dart';
+import 'glass_card.dart';
 
 class TopLeftSubCard extends StatelessWidget {
   const TopLeftSubCard({
@@ -38,7 +38,12 @@ class TopLeftSubCard extends StatelessWidget {
                 padding: EdgeInsets.all(5.0.r),
                 child: Text(
                   (mediaModel?.mediaType ?? mediaType ?? "N/A").toUpperCase(),
-                  style: subTextStyle ?? TextStyles.font16SimiBoldPlatinumGray.copyWith(fontSize: 13.sp, letterSpacing: 1.2),
+                  style:
+                      subTextStyle ??
+                      TextStyles.font16SimiBoldPlatinumGray.copyWith(
+                        fontSize: 13.sp,
+                        letterSpacing: 1.2,
+                      ),
                 ),
               )
             : const SizedBox.shrink(),

@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/constants/app_constants.dart';
-import 'package:movura/core/theming/app_colors.dart';
+
+import '../../../../core/constants/app_constants.dart';
+import '../../../../core/theming/app_colors.dart';
 
 class HeroAppLogo extends StatelessWidget {
   const HeroAppLogo({

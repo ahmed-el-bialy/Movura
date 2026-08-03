@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/helpers/spacing.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
+
+import '../../helpers/spacing.dart';
+import '../../theming/app_colors.dart';
+import '../../theming/text_styles.dart';
 
 class WatchlistOptionsSheet extends StatefulWidget {
   const WatchlistOptionsSheet({super.key});
@@ -24,28 +25,37 @@ class _WatchlistOptionsSheetState extends State<WatchlistOptionsSheet> {
     });
 
     final isAdded = _states[label]!;
-    
+
     // Close the sheet after a small delay to show the change, or keep it open?
     // The user said "لما أضغط يعمل تمت إضافته ولما أضغط تاني تم حذفه".
-    
+
     ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Row(
           children: [
-            Icon(isAdded ? Icons.check_circle_rounded : Icons.info_outline_rounded, 
-                 color: AppColors.pureWhite, size: 20.sp),
+            Icon(
+              isAdded ? Icons.check_circle_rounded : Icons.info_outline_rounded,
+              color: AppColors.pureWhite,
+              size: 20.sp,
+            ),
             horizontalSpacing(12),
             Text(
               isAdded ? 'Added to $label' : 'Removed from $label',
-              style: TextStyles.font14BoldIceBlueMontserrat.copyWith(color: AppColors.pureWhite),
+              style: TextStyles.font14BoldIceBlueMontserrat.copyWith(
+                color: AppColors.pureWhite,
+              ),
             ),
           ],
         ),
-        backgroundColor: isAdded ? color.withValues(alpha: 0.9) : AppColors.softRed.withValues(alpha: 0.9),
+        backgroundColor: isAdded
+            ? color.withValues(alpha: 0.9)
+            : AppColors.softRed.withValues(alpha: 0.9),
         behavior: SnackBarBehavior.floating,
         duration: const Duration(seconds: 2),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.r),
+        ),
         margin: EdgeInsets.all(16.r),
       ),
     );
@@ -93,7 +103,10 @@ class _WatchlistOptionsSheetState extends State<WatchlistOptionsSheet> {
               const Spacer(),
               IconButton(
                 onPressed: () => Navigator.pop(context),
-                icon: Icon(Icons.close_rounded, color: AppColors.coolGray.withValues(alpha: 0.6)),
+                icon: Icon(
+                  Icons.close_rounded,
+                  color: AppColors.coolGray.withValues(alpha: 0.6),
+                ),
               ),
             ],
           ),
@@ -109,24 +122,42 @@ class _WatchlistOptionsSheetState extends State<WatchlistOptionsSheet> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _ActionItem(
-                icon: _states['Watchlist']! ? Icons.bookmark_rounded : Icons.bookmark_outline_rounded,
+                icon: _states['Watchlist']!
+                    ? Icons.bookmark_rounded
+                    : Icons.bookmark_outline_rounded,
                 label: 'Watchlist',
                 isSelected: _states['Watchlist']!,
-                onTap: () => _toggleState('Watchlist', Icons.bookmark_rounded, AppColors.neonBlue),
+                onTap: () => _toggleState(
+                  'Watchlist',
+                  Icons.bookmark_rounded,
+                  AppColors.neonBlue,
+                ),
                 color: AppColors.neonBlue,
               ),
               _ActionItem(
-                icon: _states['Watched']! ? Icons.check_circle_rounded : Icons.check_circle_outline_rounded,
+                icon: _states['Watched']!
+                    ? Icons.check_circle_rounded
+                    : Icons.check_circle_outline_rounded,
                 label: 'Watched',
                 isSelected: _states['Watched']!,
-                onTap: () => _toggleState('Watched', Icons.check_circle_rounded, AppColors.tealCyan),
+                onTap: () => _toggleState(
+                  'Watched',
+                  Icons.check_circle_rounded,
+                  AppColors.tealCyan,
+                ),
                 color: AppColors.tealCyan,
               ),
               _ActionItem(
-                icon: _states['Favorite']! ? Icons.favorite_rounded : Icons.favorite_border_rounded,
+                icon: _states['Favorite']!
+                    ? Icons.favorite_rounded
+                    : Icons.favorite_border_rounded,
                 label: 'Favorite',
                 isSelected: _states['Favorite']!,
-                onTap: () => _toggleState('Favorite', Icons.favorite_rounded, AppColors.softRed),
+                onTap: () => _toggleState(
+                  'Favorite',
+                  Icons.favorite_rounded,
+                  AppColors.softRed,
+                ),
                 color: AppColors.softRed,
               ),
               _ActionItem(
@@ -134,7 +165,7 @@ class _WatchlistOptionsSheetState extends State<WatchlistOptionsSheet> {
                 label: 'Create',
                 isSelected: false,
                 onTap: () {
-                   // Simulation for create list
+                  // Simulation for create list
                 },
                 color: AppColors.amberGold,
               ),
@@ -168,7 +199,9 @@ class _ActionItem extends StatelessWidget {
       child: Column(
         children: [
           Material(
-            color: isSelected ? color.withValues(alpha: 0.15) : AppColors.onyxBlack,
+            color: isSelected
+                ? color.withValues(alpha: 0.15)
+                : AppColors.onyxBlack,
             shape: const CircleBorder(),
             child: InkWell(
               onTap: onTap,
@@ -182,18 +215,22 @@ class _ActionItem extends StatelessWidget {
                     color: isSelected ? color : color.withValues(alpha: 0.2),
                     width: 2,
                   ),
-                  boxShadow: isSelected ? [
-                    BoxShadow(
-                      color: color.withValues(alpha: 0.3),
-                      blurRadius: 10,
-                      spreadRadius: 1,
-                    )
-                  ] : null,
+                  boxShadow: isSelected
+                      ? [
+                          BoxShadow(
+                            color: color.withValues(alpha: 0.3),
+                            blurRadius: 10,
+                            spreadRadius: 1,
+                          ),
+                        ]
+                      : null,
                 ),
                 child: Icon(
-                  icon, 
-                  color: isSelected ? color : AppColors.coolGray.withValues(alpha: 0.8), 
-                  size: 28.sp
+                  icon,
+                  color: isSelected
+                      ? color
+                      : AppColors.coolGray.withValues(alpha: 0.8),
+                  size: 28.sp,
                 ),
               ),
             ),
@@ -202,7 +239,9 @@ class _ActionItem extends StatelessWidget {
           Text(
             label,
             style: TextStyles.font10BoldCoolGray.copyWith(
-              color: isSelected ? AppColors.pureWhite : AppColors.coolGray.withValues(alpha: 0.7),
+              color: isSelected
+                  ? AppColors.pureWhite
+                  : AppColors.coolGray.withValues(alpha: 0.7),
               fontSize: 12.sp,
               fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
             ),

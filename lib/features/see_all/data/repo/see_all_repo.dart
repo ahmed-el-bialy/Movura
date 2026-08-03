@@ -1,6 +1,6 @@
-import 'package:movura/core/models/poster_model.dart';
-import 'package:movura/features/see_all/data/models/see_all_arguments.dart';
-import 'package:movura/features/see_all/data/web_services/see_all_web_services.dart';
+import '../../../../core/models/poster_model.dart';
+import '../models/see_all_arguments.dart';
+import '../web_services/see_all_web_services.dart';
 
 class SeeAllRepo {
   final SeeAllWebServices webServices;

@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/core/helpers/spacing.dart';
-import 'package:movura/core/networking/di.dart';
-import 'package:movura/core/widgets/shared_details/buttons_row.dart';
-import 'package:movura/core/widgets/shared_details/details_tabs.dart';
-import 'package:movura/features/tv_details/data/about_tv_series_model.dart';
-import 'package:movura/features/tv_details/logic/reviews/reviews_cubit.dart';
-import 'package:movura/features/tv_details/logic/similar_content/similar_content_cubit.dart';
-import 'package:movura/features/tv_details/ui/widgets/about_tv_tab_body.dart';
 import 'package:movura/features/tv_details/ui/widgets/reviews_tab_body.dart';
 import 'package:movura/features/tv_details/ui/widgets/similar_tab_body.dart';
 import 'package:movura/features/tv_details/ui/widgets/tv_info_widgets/tv_additional_data.dart';
 import 'package:movura/features/tv_details/ui/widgets/tv_info_widgets/tv_story_and_genres.dart';
 import 'package:movura/features/tv_details/ui/widgets/tv_main_details.dart';
+
+import '../../../../../core/helpers/spacing.dart';
+import '../../../../core/networking/di.dart';
+import '../../../../core/widgets/shared_details/buttons_row.dart';
+import '../../../../core/widgets/shared_details/details_tabs.dart';
+import '../../data/about_tv_series_model.dart';
+import '../../logic/reviews/reviews_cubit.dart';
+import '../../logic/similar_content/similar_content_cubit.dart';
+import 'about_tv_tab_body.dart';
 
 class TvScreenBody extends StatelessWidget {
   const TvScreenBody({super.key, required this.model});
@@ -40,7 +41,8 @@ class TvScreenBody extends StatelessWidget {
         ),
         BlocProvider<TvSeriesSimilarContentCubit>(
           create: (context) =>
-              sl<TvSeriesSimilarContentCubit>()..getSimilarTvSeries(id: model.id),
+              sl<TvSeriesSimilarContentCubit>()
+                ..getSimilarTvSeries(id: model.id),
         ),
       ],
       child: ListView(

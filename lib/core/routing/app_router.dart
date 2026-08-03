@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/core/networking/di.dart';
-import 'package:movura/core/routing/arguments_models.dart';
 import 'package:movura/core/routing/route_names.dart';
-import 'package:movura/features/auth/ui/screens/log_in_screen.dart';
-import 'package:movura/features/auth/ui/screens/sign_up_screen.dart';
-import 'package:movura/features/home/ui/screens/home_screen.dart';
-import 'package:movura/features/home/ui/screens/trending_screen.dart';
-import 'package:movura/features/library/ui/screens/library_screen.dart';
-import 'package:movura/features/main/ui/main_wrapper_screen.dart';
-import 'package:movura/features/movie_details/logic/main_details/about_cubit.dart';
-import 'package:movura/features/movie_details/ui/screens/movie_details_screen.dart';
-import 'package:movura/features/movie_details/ui/screens/video_screen.dart';
-import 'package:movura/features/person_details/logic/person_details_cubit.dart';
-import 'package:movura/features/person_details/ui/screens/person_details_screen.dart';
-import 'package:movura/features/tv_details/logic/about_tv/about_tv_cubit.dart';
-import 'package:movura/features/tv_details/ui/screens/all_seasons_screen.dart';
-import 'package:movura/features/tv_details/ui/screens/episode_details_screen.dart';
-import 'package:movura/features/tv_details/ui/screens/tv_details_screen.dart';
-import 'package:movura/features/tv_details/ui/screens/tv_seasons_screen.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-import 'package:movura/features/see_all/data/models/see_all_arguments.dart';
-import 'package:movura/features/see_all/ui/screens/see_all_screen.dart';
+
+import '../../features/auth/ui/screens/log_in_screen.dart';
+import '../../features/auth/ui/screens/sign_up_screen.dart';
+import '../../features/home/ui/screens/home_screen.dart';
+import '../../features/home/ui/screens/trending_screen.dart';
+import '../../features/library/ui/screens/library_screen.dart';
+import '../../features/main/ui/main_wrapper_screen.dart';
+import '../../features/movie_details/logic/main_details/about_cubit.dart';
+import '../../features/movie_details/ui/screens/movie_details_screen.dart';
+import '../../features/movie_details/ui/screens/video_screen.dart';
+import '../../features/person_details/logic/person_details_cubit.dart';
+import '../../features/person_details/ui/screens/person_details_screen.dart';
+import '../../features/see_all/data/models/see_all_arguments.dart';
+import '../../features/see_all/ui/screens/see_all_screen.dart';
+import '../../features/tv_details/logic/about_tv/about_tv_cubit.dart';
+import '../../features/tv_details/ui/screens/all_seasons_screen.dart';
+import '../../features/tv_details/ui/screens/episode_details_screen.dart';
+import '../../features/tv_details/ui/screens/tv_details_screen.dart';
+import '../../features/tv_details/ui/screens/tv_seasons_screen.dart';
+import '../networking/di.dart';
+import 'arguments_models.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings setting) {
@@ -56,7 +57,8 @@ class AppRouter {
           return MaterialPageRoute(
             builder: (_) => BlocProvider(
               create: (context) =>
-                  sl<AboutTvCubit>()..getTvSeriesMainDetails(id: arguments.mediaId),
+                  sl<AboutTvCubit>()
+                    ..getTvSeriesMainDetails(id: arguments.mediaId),
               child: const TvSeriesDetailsScreen(),
             ),
           );
@@ -95,16 +97,14 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => VideoScreen(controller: controller),
         );
-        
+
       case RouteNames.seeAllScreen:
         final seeAllArgs = setting.arguments as SeeAllArguments;
         return MaterialPageRoute(
           builder: (_) => SeeAllScreen(arguments: seeAllArgs),
         );
       default:
-        return MaterialPageRoute(
-          builder: (_) => const HomeScreen(),
-        );
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
     }
   }
 }

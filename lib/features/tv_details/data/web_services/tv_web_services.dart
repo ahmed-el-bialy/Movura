@@ -44,7 +44,9 @@ abstract class TvWebServices {
     @Query("language") String language = "en-US",
   });
 
-  @GET("${ApiConstants.tvDetails}/{id}/season/{season_number}/episode/{episode_number}")
+  @GET(
+    "${ApiConstants.tvDetails}/{id}/season/{season_number}/episode/{episode_number}",
+  )
   Future<EpisodeDetailsModel> getTvEpisodeDetails({
     @Path("id") required int id,
     @Path("season_number") required int seasonNumber,

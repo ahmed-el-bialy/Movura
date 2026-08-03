@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/core/widgets/app_error_widget.dart';
-import 'package:movura/core/widgets/empty_section_message.dart';
-import 'package:movura/core/widgets/shared_details/reviews_list.dart';
-import 'package:movura/features/tv_details/logic/reviews/reviews_cubit.dart';
+
+import '../../../../core/widgets/app_error_widget.dart';
+import '../../../../core/widgets/empty_section_message.dart';
+import '../../../../core/widgets/shared_details/reviews_list.dart';
+import '../../logic/reviews/reviews_cubit.dart';
 
 class ReviewsTabBody extends StatelessWidget {
   const ReviewsTabBody({super.key});

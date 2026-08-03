@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/core/models/poster_model.dart';
 
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../core/models/poster_model.dart';
 import '../../data/repo/home_repo.dart';
 
 part 'trending_content_state.dart';

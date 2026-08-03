@@ -1,14 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/constants/api_constants.dart';
-import 'package:movura/core/extensions/date_extension.dart';
-import 'package:movura/core/helpers/spacing.dart';
-import 'package:movura/core/models/review_model.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/core/widgets/read_more_text.dart';
-import 'package:movura/core/widgets/shared_details/custom_rating_bar.dart';
+
+import '../../constants/api_constants.dart';
+import '../../extensions/date_extension.dart';
+import '../../helpers/spacing.dart';
+import '../../models/review_model.dart';
+import '../../theming/app_colors.dart';
+import '../../theming/text_styles.dart';
+import '../read_more_text.dart';
+import 'custom_rating_bar.dart';
 
 class ReviewCard extends StatelessWidget {
   const ReviewCard({super.key, required this.model});
@@ -25,10 +26,7 @@ class ReviewCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: 10.w,
-            vertical: 8.h,
-          ),
+          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

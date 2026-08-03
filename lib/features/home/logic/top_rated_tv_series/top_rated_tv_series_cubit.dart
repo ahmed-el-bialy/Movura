@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/features/home/data/repo/home_repo.dart';
 
 import '../../../../core/models/poster_model.dart';
+import '../../data/repo/home_repo.dart';
 
 part 'top_rated_tv_series_state.dart';
 

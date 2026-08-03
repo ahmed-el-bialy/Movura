@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movura/core/widgets/section_title.dart';
+import 'package:movura/core/constants/app_constants.dart';
 import 'package:movura/core/widgets/shared_details/review_card.dart';
 
 import '../../models/review_model.dart';
+import '../section_title.dart';
 
 class ReviewsList extends StatelessWidget {
   const ReviewsList({super.key, required this.reviews});
@@ -15,7 +16,7 @@ class ReviewsList extends StatelessWidget {
       children: [
         SectionTitle(
           sectionName: "REVIEWS",
-          actionName: "VIEW ALL",
+          actionName: AppConstants.sectionAction,
           onTap: () {},
         ),
         ListView.builder(

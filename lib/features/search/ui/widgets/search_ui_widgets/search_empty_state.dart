@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/helpers/spacing.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/features/search/data/models/search_filter_type.dart';
+
+import '../../../../../core/helpers/spacing.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/text_styles.dart';
+import '../../../data/models/search_filter_type.dart';
 
 class SearchEmptyState extends StatelessWidget {
   const SearchEmptyState({super.key, required this.filter});
@@ -35,9 +36,7 @@ class SearchEmptyState extends StatelessWidget {
               filter == SearchFilterType.all
                   ? 'Find movies, TV shows, and people'
                   : 'Showing ${filter.label.toLowerCase()} only',
-              style: TextStyles.font12CoolGrayManrope.copyWith(
-                fontSize: 13.sp,
-              ),
+              style: TextStyles.font12CoolGrayManrope.copyWith(fontSize: 13.sp),
             ),
           ],
         ),

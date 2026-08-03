@@ -6,5 +6,6 @@ enum SearchSortMode {
   voteCount('Vote Count');
 
   final String label;
+
   const SearchSortMode(this.label);
 }

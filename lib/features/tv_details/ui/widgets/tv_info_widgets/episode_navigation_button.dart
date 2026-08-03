@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/helpers/spacing.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
+
+import '../../../../../core/helpers/spacing.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/text_styles.dart';
 
 class EpisodeNavigationButton extends StatelessWidget {
   const EpisodeNavigationButton({
@@ -36,8 +37,9 @@ class EpisodeNavigationButton extends StatelessWidget {
             ),
           ),
           child: Row(
-            mainAxisAlignment:
-                isLeft ? MainAxisAlignment.start : MainAxisAlignment.end,
+            mainAxisAlignment: isLeft
+                ? MainAxisAlignment.start
+                : MainAxisAlignment.end,
             children: [
               if (isLeft) ...[
                 Icon(icon, color: AppColors.neonBlue, size: 20.sp),

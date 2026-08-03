@@ -1,10 +1,12 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/helpers/spacing.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/features/movie_details/data/models/about_model.dart';
+
+import '../../../../../core/helpers/spacing.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/text_styles.dart';
+import '../../../data/models/about_model.dart';
 
 class MovieIdentifyCard extends StatelessWidget {
   const MovieIdentifyCard({super.key, required this.model});
@@ -16,7 +18,8 @@ class MovieIdentifyCard extends StatelessWidget {
     final bool showOriginalTitle =
         model.originalTitle != null && model.originalTitle != model.title;
 
-    final String releaseYear = (model.releaseDate != null && model.releaseDate!.length >= 4)
+    final String releaseYear =
+        (model.releaseDate != null && model.releaseDate!.length >= 4)
         ? model.releaseDate!.substring(0, 4)
         : (model.status ?? 'Released');
 
@@ -59,11 +62,12 @@ class MovieIdentifyCard extends StatelessWidget {
                           children: [
                             Text(
                               model.title ?? 'Unknown',
-                              style: TextStyles.font17BoldIceBlueMontserrat.copyWith(
-                                fontSize: 22.sp,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.pureWhite,
-                              ),
+                              style: TextStyles.font17BoldIceBlueMontserrat
+                                  .copyWith(
+                                    fontSize: 22.sp,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.pureWhite,
+                                  ),
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -71,10 +75,13 @@ class MovieIdentifyCard extends StatelessWidget {
                               verticalSpacing(2),
                               Text(
                                 model.originalTitle!,
-                                style: TextStyles.font12CoolGrayManrope.copyWith(
-                                  color: AppColors.platinumGray.withValues(alpha: 0.8),
-                                  fontSize: 13.sp,
-                                ),
+                                style: TextStyles.font12CoolGrayManrope
+                                    .copyWith(
+                                      color: AppColors.platinumGray.withValues(
+                                        alpha: 0.8,
+                                      ),
+                                      fontSize: 13.sp,
+                                    ),
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),
@@ -84,7 +91,10 @@ class MovieIdentifyCard extends StatelessWidget {
                       ),
                       horizontalSpacing(10.w),
                       Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 10.w,
+                          vertical: 6.h,
+                        ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20.r),
                           color: AppColors.onyxBlack.withValues(alpha: 0.6),
@@ -96,15 +106,20 @@ class MovieIdentifyCard extends StatelessWidget {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(Icons.star_rounded, size: 16.sp, color: AppColors.neonBlue),
+                            Icon(
+                              Icons.star_rounded,
+                              size: 16.sp,
+                              color: AppColors.neonBlue,
+                            ),
                             SizedBox(width: 4.w),
                             Text(
                               (model.rating ?? 0.0).toStringAsFixed(1),
-                              style: TextStyles.font20SimiBoldNeonBlueManrope.copyWith(
-                                fontSize: 14.sp,
-                                color: AppColors.pureWhite,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: TextStyles.font20SimiBoldNeonBlueManrope
+                                  .copyWith(
+                                    fontSize: 14.sp,
+                                    color: AppColors.pureWhite,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                             ),
                           ],
                         ),
@@ -142,7 +157,10 @@ class MovieIdentifyCard extends StatelessWidget {
                       ),
                       const Spacer(),
                       Container(
-                        padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 8.w,
+                          vertical: 3.h,
+                        ),
                         decoration: BoxDecoration(
                           color: (model.adultContent ?? false)
                               ? AppColors.softRed.withValues(alpha: 0.15)

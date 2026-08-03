@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/core/widgets/app_error_widget.dart';
-import 'package:movura/core/widgets/shared_details/similar_content_tab_body.dart';
-import 'package:movura/features/movie_details/logic/similar_content/similar_content_cubit.dart';
+
+import '../../../../core/widgets/app_error_widget.dart';
+import '../../../../core/widgets/shared_details/similar_content_tab_body.dart';
+import '../../logic/similar_content/similar_content_cubit.dart';
 
 class MovieSimilarTabBody extends StatelessWidget {
   const MovieSimilarTabBody({super.key});

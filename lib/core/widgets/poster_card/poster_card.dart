@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/extensions/routing_extension.dart';
-import 'package:movura/core/models/poster_model.dart';
-import 'package:movura/core/routing/arguments_models.dart';
-import 'package:movura/core/routing/route_names.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/widgets/poster_card/components/bottom_lef_sub_card.dart';
-import 'package:movura/core/widgets/poster_card/components/poster_background_image.dart';
-import 'package:movura/core/widgets/poster_card/components/top_lef_sub_card.dart';
-import 'package:movura/core/widgets/poster_card/components/top_right_sub_card.dart';
+
+import '../../extensions/routing_extension.dart';
+import '../../models/poster_model.dart';
+import '../../routing/arguments_models.dart';
+import '../../routing/route_names.dart';
+import '../../theming/app_colors.dart';
+import 'components/bottom_lef_sub_card.dart';
+import 'components/poster_background_image.dart';
+import 'components/top_lef_sub_card.dart';
+import 'components/top_right_sub_card.dart';
 
 class PosterCard extends StatelessWidget {
   const PosterCard({

@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:movura/core/models/actor_model.dart';
+
+import '../../../core/models/actor_model.dart';
 import 'about_tv_series_model.dart';
 
 part 'episode_details_model.g.dart';

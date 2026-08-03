@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/core/extensions/routing_extension.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/features/see_all/data/models/see_all_arguments.dart';
-import 'package:movura/features/see_all/data/repo/see_all_repo.dart';
-import 'package:movura/features/see_all/logic/see_all_cubit.dart';
-import 'package:movura/features/see_all/ui/widgets/see_all_grid.dart';
-import 'package:movura/core/networking/di.dart';
+
+import '../../../../core/extensions/routing_extension.dart';
+import '../../../../core/networking/di.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/text_styles.dart';
+import '../../data/models/see_all_arguments.dart';
+import '../../data/repo/see_all_repo.dart';
+import '../../logic/see_all_cubit.dart';
+import '../widgets/see_all_grid.dart';
 
 class SeeAllScreen extends StatefulWidget {
-  const SeeAllScreen({Key? key, required this.arguments}) : super(key: key);
+  const SeeAllScreen({super.key, required this.arguments});
 
   final SeeAllArguments arguments;
 
@@ -51,10 +52,7 @@ class _SeeAllScreenState extends State<SeeAllScreen> {
           style: TextStyles.font20SimiBoldPlatinumGray,
         ),
       ),
-      body: BlocProvider.value(
-        value: _cubit,
-        child: const SeeAllGrid(),
-      ),
+      body: BlocProvider.value(value: _cubit, child: const SeeAllGrid()),
     );
   }
 }

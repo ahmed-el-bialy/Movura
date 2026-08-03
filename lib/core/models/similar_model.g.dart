@@ -19,6 +19,7 @@ SimilarContentResponse _$SimilarContentResponseFromJson(
         ),
 );
 
+// ignore: unused_element
 Map<String, dynamic> _$SimilarContentResponseToJson(
   SimilarContentResponse instance,
 ) => <String, dynamic>{

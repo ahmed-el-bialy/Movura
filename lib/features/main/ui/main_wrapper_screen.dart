@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:movura/core/widgets/app_navigation_bar.dart';
-import 'package:movura/features/home/ui/screens/home_screen.dart';
-import 'package:movura/features/library/ui/screens/library_screen.dart';
-import 'package:movura/features/profile/ui/screens/profile_screen.dart';
-import 'package:movura/features/search/ui/screens/search_screen.dart';
+
+import '../../../core/widgets/app_navigation_bar.dart';
+import '../../home/ui/screens/home_screen.dart';
+import '../../library/ui/screens/library_screen.dart';
+import '../../profile/ui/screens/profile_screen.dart';
+import '../../search/ui/screens/search_screen.dart';
 
 class MainWrapperScreen extends StatefulWidget {
   const MainWrapperScreen({super.key});
@@ -32,10 +33,7 @@ class _MainWrapperScreenState extends State<MainWrapperScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      body: IndexedStack(
-        index: _currentIndex,
-        children: _screens,
-      ),
+      body: IndexedStack(index: _currentIndex, children: _screens),
       bottomNavigationBar: AppNavigationBar(
         activeIndex: _currentIndex,
         onTabChanged: _onTabChanged,

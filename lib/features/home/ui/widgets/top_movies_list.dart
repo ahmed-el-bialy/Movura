@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/core/widgets/app_error_widget.dart';
-import 'package:movura/core/widgets/skeleton_posters_list_loading.dart';
-import 'package:movura/features/home/logic/top_rated_movies/top_rated_movies_cubit.dart';
 import 'package:movura/features/home/ui/widgets/posters_list.dart';
+
+import '../../../../core/widgets/app_error_widget.dart';
+import '../../../../core/widgets/skeleton_posters_list_loading.dart';
+import '../../logic/top_rated_movies/top_rated_movies_cubit.dart';
 
 class TopMoviesList extends StatelessWidget {
   const TopMoviesList({super.key});
@@ -19,7 +20,8 @@ class TopMoviesList extends StatelessWidget {
         } else if (state is TopRatedMovieError) {
           return AppErrorWidget(
             errorMessage: state.errorMessage,
-            onRetry: () => context.read<TopRatedMovieCubit>().getTopRatedMovies(),
+            onRetry: () =>
+                context.read<TopRatedMovieCubit>().getTopRatedMovies(),
           );
         }
         return const SizedBox.shrink();

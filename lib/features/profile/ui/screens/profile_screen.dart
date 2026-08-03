@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/helpers/spacing.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
+
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/text_styles.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -29,7 +30,10 @@ class ProfileScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: AppColors.onyxBlack,
-                          border: Border.all(color: AppColors.neonBlue, width: 2),
+                          border: Border.all(
+                            color: AppColors.neonBlue,
+                            width: 2,
+                          ),
                           boxShadow: [
                             BoxShadow(
                               color: AppColors.neonBlue.withValues(alpha: 0.2),
@@ -47,9 +51,8 @@ class ProfileScreen extends StatelessWidget {
                       verticalSpacing(16),
                       Text(
                         'John Doe',
-                        style: TextStyles.font24SimiBoldNeonBlueManrope.copyWith(
-                          color: AppColors.iceBlue,
-                        ),
+                        style: TextStyles.font24SimiBoldNeonBlueManrope
+                            .copyWith(color: AppColors.iceBlue),
                       ),
                       Text(
                         'Cinematic Explorer',
@@ -155,10 +158,7 @@ class _ProfileCollectionTile extends StatelessWidget {
             padding: EdgeInsets.all(16.r),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16.r),
-              border: Border.all(
-                color: color.withValues(alpha: 0.1),
-                width: 1,
-              ),
+              border: Border.all(color: color.withValues(alpha: 0.1), width: 1),
             ),
             child: Row(
               children: [

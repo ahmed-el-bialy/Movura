@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../data/person_details_model.dart';
 import '../data/repos/person_repo.dart';
 

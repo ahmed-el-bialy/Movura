@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/helpers/spacing.dart';
-import 'package:movura/core/theming/app_colors.dart';
 import 'package:shimmer/shimmer.dart';
+
+import '../../helpers/spacing.dart';
+import '../../theming/app_colors.dart';
 
 class EpisodeLoadingSkeleton extends StatelessWidget {
   const EpisodeLoadingSkeleton({super.key});
@@ -63,7 +64,11 @@ class EpisodeLoadingSkeleton extends StatelessWidget {
                     color: AppColors.pureWhite,
                   ),
                   verticalSpacing(8),
-                  Container(width: 180.w, height: 12.h, color: AppColors.pureWhite),
+                  Container(
+                    width: 180.w,
+                    height: 12.h,
+                    color: AppColors.pureWhite,
+                  ),
                 ],
               ),
             ),

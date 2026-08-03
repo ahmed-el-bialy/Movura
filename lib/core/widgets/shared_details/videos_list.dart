@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/constants/api_constants.dart';
-import 'package:movura/core/models/video_model.dart';
 import 'package:movura/core/widgets/shared_details/video_card.dart';
+
+import '../../constants/api_constants.dart';
+import '../../models/video_model.dart';
 
 class VideosList extends StatelessWidget {
   const VideosList({super.key, required this.allVideos});
@@ -23,10 +24,7 @@ class VideosList extends StatelessWidget {
           final video = allVideos[index];
           final youtubeThumbnail =
               "${ApiConstants.videoCoverBaseUrl}${video.key}/0.jpg";
-          return VideoCard(
-            video: video,
-            youtubeThumbnail: youtubeThumbnail,
-          );
+          return VideoCard(video: video, youtubeThumbnail: youtubeThumbnail);
         },
       ),
     );

@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/helpers/video_player.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/widgets/shared_details/watchlist_options_sheet.dart';
+
+import '../../helpers/video_player.dart';
+import '../../theming/app_colors.dart';
+import '../../theming/text_styles.dart';
 
 class ButtonsRow extends StatelessWidget {
   final String? videoKey;
 
-  const ButtonsRow({
-    super.key,
-    required this.videoKey,
-  });
+  const ButtonsRow({super.key, required this.videoKey});
 
   @override
   Widget build(BuildContext context) {
@@ -85,20 +83,13 @@ class _CircularActionButton extends StatelessWidget {
         onPressed: onPressed,
         style: OutlinedButton.styleFrom(
           padding: EdgeInsets.zero,
-          side: BorderSide(
-            width: 1.5.w,
-            color: color.withValues(alpha: 0.4),
-          ),
+          side: BorderSide(width: 1.5.w, color: color.withValues(alpha: 0.4)),
           shape: const CircleBorder(),
           backgroundColor: AppColors.onyxBlack.withValues(alpha: 0.6),
           elevation: 0,
         ),
         child: Center(
-          child: Icon(
-            icon,
-            color: color.withValues(alpha: 0.95),
-            size: 24.sp,
-          ),
+          child: Icon(icon, color: color.withValues(alpha: 0.95), size: 24.sp),
         ),
       ),
     );

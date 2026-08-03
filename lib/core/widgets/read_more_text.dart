@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/core/theming/weights.dart';
+
+import '../theming/app_colors.dart';
+import '../theming/text_styles.dart';
+import '../theming/weights.dart';
 
 class ReadMoreText extends StatefulWidget {
   const ReadMoreText({

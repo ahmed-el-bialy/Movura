@@ -10,7 +10,9 @@ class SectionTitle extends StatelessWidget {
     this.actionName,
     this.titleStyle,
     this.actionStyle,
-    this.onTap, this.verticalPadding, this.horizontalPadding,
+    this.onTap,
+    this.verticalPadding,
+    this.horizontalPadding,
   });
 
   final String sectionName;
@@ -21,12 +23,13 @@ class SectionTitle extends StatelessWidget {
   final double? verticalPadding;
   final double? horizontalPadding;
 
-
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: horizontalPadding?.w ?? 8.w,
-          vertical: verticalPadding?.w ?? 6.h),
+      padding: EdgeInsets.symmetric(
+        horizontal: horizontalPadding?.w ?? 8.w,
+        vertical: verticalPadding?.w ?? 6.h,
+      ),
       child: Row(
         children: [
           Text(

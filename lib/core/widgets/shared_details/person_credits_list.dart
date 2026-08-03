@@ -1,13 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/constants/api_constants.dart';
-import 'package:movura/core/extensions/routing_extension.dart';
-import 'package:movura/core/routing/arguments_models.dart';
-import 'package:movura/core/routing/route_names.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/features/person_details/data/person_details_model.dart';
+
+import '../../../features/person_details/data/person_details_model.dart';
+import '../../constants/api_constants.dart';
+import '../../extensions/routing_extension.dart';
+import '../../routing/arguments_models.dart';
+import '../../routing/route_names.dart';
+import '../../theming/app_colors.dart';
+import '../../theming/text_styles.dart';
 
 class PersonCreditsList extends StatelessWidget {
   const PersonCreditsList({super.key, this.movies, this.tvShows});
@@ -26,7 +27,8 @@ class PersonCreditsList extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         itemCount: itemCount,
         itemBuilder: (context, index) {
-          final posterPath = movies?[index].posterPath ?? tvShows?[index].posterPath;
+          final posterPath =
+              movies?[index].posterPath ?? tvShows?[index].posterPath;
           final title = movies?[index].title ?? tvShows?[index].name;
           final mediaId = movies?[index].id ?? tvShows?[index].id;
           final mediaType = movies != null ? "movie" : "tv";
@@ -35,7 +37,10 @@ class PersonCreditsList extends StatelessWidget {
             onTap: () {
               context.pushNamed(
                 RouteNames.detailsScreen,
-                arguments: DetailsArgumentModel(mediaType: mediaType, mediaId: mediaId!),
+                arguments: DetailsArgumentModel(
+                  mediaType: mediaType,
+                  mediaId: mediaId!,
+                ),
               );
             },
             child: Container(
@@ -50,7 +55,8 @@ class PersonCreditsList extends StatelessWidget {
                       child: CachedNetworkImage(
                         imageUrl: "${ApiConstants.imageBaseUrl}$posterPath",
                         fit: BoxFit.cover,
-                        errorWidget: (context, url, error) => Container(color: AppColors.onyxBlack),
+                        errorWidget: (context, url, error) =>
+                            Container(color: AppColors.onyxBlack),
                       ),
                     ),
                   ),

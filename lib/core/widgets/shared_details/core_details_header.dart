@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/constants/api_constants.dart';
-import 'package:movura/core/extensions/routing_extension.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/widgets/app_icon_button.dart';
 import 'package:movura/core/widgets/shared_details/platform_options_sheet.dart';
+
+import '../../constants/api_constants.dart';
+import '../../extensions/routing_extension.dart';
+import '../../theming/app_colors.dart';
+import '../app_icon_button.dart';
 
 class CoreDetailsHeader extends StatelessWidget {
   const CoreDetailsHeader({
@@ -34,7 +35,8 @@ class CoreDetailsHeader extends StatelessWidget {
                 ? "${ApiConstants.imageBaseUrl}$posterPath"
                 : "",
             fit: BoxFit.cover,
-            errorWidget: (context, url, error) => Container(color: AppColors.onyxBlack),
+            errorWidget: (context, url, error) =>
+                Container(color: AppColors.onyxBlack),
           ),
           Container(
             decoration: BoxDecoration(
@@ -56,7 +58,9 @@ class CoreDetailsHeader extends StatelessWidget {
             right: 16.w,
             child: Row(
               children: [
-                if ((homepage != null && homepage!.isNotEmpty) || (watchProviders?.results != null && watchProviders!.results!.isNotEmpty))
+                if ((homepage != null && homepage!.isNotEmpty) ||
+                    (watchProviders?.results != null &&
+                        watchProviders!.results!.isNotEmpty))
                   AppIconButton(
                     icon: Icons.play_circle_outline_rounded,
                     onPressed: () {

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/widgets/poster_card/poster_card.dart';
 import 'package:movura/core/helpers/spacing.dart';
-import 'package:movura/features/see_all/logic/see_all_cubit.dart';
 
+import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
+import '../../../../core/widgets/poster_card/poster_card.dart';
+import '../../logic/see_all_cubit.dart';
 
 class SeeAllGrid extends StatelessWidget {
   const SeeAllGrid({super.key});
@@ -34,7 +34,10 @@ class SeeAllGrid extends StatelessWidget {
             return Center(
               child: Text(
                 "No items found.",
-                style: TextStyle(color: AppColors.platinumGray, fontSize: 16.sp),
+                style: TextStyle(
+                  color: AppColors.platinumGray,
+                  fontSize: 16.sp,
+                ),
               ),
             );
           }
@@ -61,30 +64,26 @@ class SeeAllGrid extends StatelessWidget {
                       crossAxisSpacing: 8.w,
                       mainAxisSpacing: 12.h,
                     ),
-                    delegate: SliverChildBuilderDelegate(
-                      (context, index) {
-                        final item = state.items[index];
-                        return PosterCard(
-                          mediaModel: item,
-                          mediaType: item.mediaType,
-                          elevation: 6,
-                          width: double.infinity,
-                          height: double.infinity,
-                          border: 12,
-                          titleStyle: TextStyles.font14BoldIceBlueMontserrat.copyWith(
-                            fontSize: 11.sp,
-                            fontWeight: FontWeight.w800,
-                          ),
-                          subTextStyle: TextStyles.font16SimiBoldPlatinumGray.copyWith(
-                            fontSize: 10.sp,
-                            letterSpacing: 0.5,
-                          ),
-                          showMediaType: true,
-                          maxLines: 2,
-                        );
-                      },
-                      childCount: state.items.length,
-                    ),
+                    delegate: SliverChildBuilderDelegate((context, index) {
+                      final item = state.items[index];
+                      return PosterCard(
+                        mediaModel: item,
+                        mediaType: item.mediaType,
+                        elevation: 6,
+                        width: double.infinity,
+                        height: double.infinity,
+                        border: 12,
+                        titleStyle: TextStyles.font14BoldIceBlueMontserrat
+                            .copyWith(
+                              fontSize: 11.sp,
+                              fontWeight: FontWeight.w800,
+                            ),
+                        subTextStyle: TextStyles.font16SimiBoldPlatinumGray
+                            .copyWith(fontSize: 10.sp, letterSpacing: 0.5),
+                        showMediaType: true,
+                        maxLines: 2,
+                      );
+                    }, childCount: state.items.length),
                   ),
                 ),
                 if (state.isFetchingMore)
@@ -98,7 +97,7 @@ class SeeAllGrid extends StatelessWidget {
                       ),
                     ),
                   ),
-                SliverToBoxAdapter(child: verticalSpacing(40)),
+                sliverVerticalSpacing(40),
               ],
             ),
           );

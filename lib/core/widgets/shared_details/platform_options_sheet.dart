@@ -2,13 +2,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/constants/api_constants.dart';
-import 'package:movura/core/helpers/spacing.dart';
-import 'package:movura/core/models/watch_provider_model.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../constants/api_constants.dart';
+import '../../helpers/spacing.dart';
+import '../../models/watch_provider_model.dart';
+import '../../theming/app_colors.dart';
+import '../../theming/text_styles.dart';
 
 class PlatformOptionsSheet extends StatelessWidget {
   const PlatformOptionsSheet({

@@ -2,13 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/features/search/data/models/search_filter_type.dart';
-import 'package:movura/features/search/logic/search/search_cubit.dart';
-import 'package:movura/features/search/ui/widgets/build_search_results.dart';
-import 'package:movura/features/search/ui/widgets/search_filter_sheet.dart';
-import 'package:movura/features/search/ui/widgets/search_ui_widgets/search_empty_state.dart';
+
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/text_styles.dart';
+import '../../data/models/search_filter_type.dart';
+import '../../logic/search/search_cubit.dart';
+import '../widgets/build_search_results.dart';
+import '../widgets/search_filter_sheet.dart';
+import '../widgets/search_ui_widgets/search_empty_state.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
   final SearchCubit searchCubit;
@@ -67,10 +68,7 @@ class CustomSearchDelegate extends SearchDelegate {
           query = '';
           showSuggestions(context);
         },
-        icon: const Icon(
-          Icons.clear,
-          color: AppColors.neonBlue,
-        ),
+        icon: const Icon(Icons.clear, color: AppColors.neonBlue),
       ),
       IconButton(
         onPressed: () => _openFilterSheet(context),

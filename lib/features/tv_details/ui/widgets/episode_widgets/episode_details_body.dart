@@ -1,18 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/constants/api_constants.dart';
-import 'package:movura/core/extensions/routing_extension.dart';
-import 'package:movura/core/helpers/spacing.dart';
-import 'package:movura/core/routing/arguments_models.dart';
-import 'package:movura/core/routing/route_names.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/core/widgets/section_title.dart';
-import 'package:movura/core/widgets/shared_details/actors_list.dart';
-import 'package:movura/core/widgets/shared_details/videos_list.dart';
-import 'package:movura/features/tv_details/data/episode_details_model.dart';
-import 'package:movura/features/tv_details/ui/widgets/tv_info_widgets/episode_navigation_button.dart';
+
+import '../../../../../core/constants/api_constants.dart';
+import '../../../../../core/extensions/routing_extension.dart';
+import '../../../../../core/helpers/spacing.dart';
+import '../../../../../core/routing/arguments_models.dart';
+import '../../../../../core/routing/route_names.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/text_styles.dart';
+import '../../../../../core/widgets/section_title.dart';
+import '../../../../../core/widgets/shared_details/actors_list.dart';
+import '../../../../../core/widgets/shared_details/videos_list.dart';
+import '../../../data/episode_details_model.dart';
+import '../tv_info_widgets/episode_navigation_button.dart';
 
 class EpisodeDetailsBody extends StatelessWidget {
   const EpisodeDetailsBody({
@@ -150,7 +151,8 @@ class EpisodeDetailsBody extends StatelessWidget {
               ),
             ),
           ),
-        if (episode.guestStars != null && (episode.guestStars?.isNotEmpty ?? false))
+        if (episode.guestStars != null &&
+            (episode.guestStars?.isNotEmpty ?? false))
           SliverToBoxAdapter(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

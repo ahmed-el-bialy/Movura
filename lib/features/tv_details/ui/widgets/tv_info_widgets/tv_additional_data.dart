@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/helpers/spacing.dart';
-import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/features/tv_details/data/about_tv_series_model.dart';
+
+import '../../../../../core/helpers/spacing.dart';
+import '../../../../../core/theming/text_styles.dart';
+import '../../../data/about_tv_series_model.dart';
 
 class TvAdditionalData extends StatelessWidget {
   const TvAdditionalData({super.key, required this.model});
