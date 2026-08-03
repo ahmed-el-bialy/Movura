@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/features/home/ui/widgets/posters_list.dart';
+import 'package:movura/core/widgets/media_horizontal_list.dart';
 
 import '../../../../core/widgets/app_error_widget.dart';
 import '../../../../core/widgets/skeleton_posters_list_loading.dart';
@@ -14,7 +14,10 @@ class TopMoviesList extends StatelessWidget {
     return BlocBuilder<TopRatedMovieCubit, TopRatedMovieState>(
       builder: (context, state) {
         if (state is TopRatedMovieLoaded) {
-          return PostersList(mediaType: 'movie', posters: state.posters);
+          return MediaHorizontalList(
+            mediaType: 'movie',
+            items: state.posters,
+          );
         } else if (state is TopRatedMovieLoading) {
           return const SkeletonPostersListLoading(height: 260, width: 170);
         } else if (state is TopRatedMovieError) {

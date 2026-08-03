@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/features/home/ui/widgets/trending_poster_list.dart';
+import 'package:movura/core/widgets/media_horizontal_list.dart';
 
 import '../../../../core/widgets/app_error_widget.dart';
 import '../../../../core/widgets/skeleton_posters_list_loading.dart';
@@ -17,7 +17,11 @@ class TrendingList extends StatelessWidget {
           return const SliverToBoxAdapter(child: SkeletonPostersListLoading());
         } else if (state is TrendingContentLoaded) {
           return SliverToBoxAdapter(
-            child: TrendingPosterList(trendingContent: state.posters),
+            child: MediaHorizontalList(
+              items: state.posters,
+              height: 330,
+              cardWidth: 220,
+            ),
           );
         } else if (state is TrendingContentError) {
           return SliverToBoxAdapter(

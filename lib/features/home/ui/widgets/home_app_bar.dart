@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/constants/app_constants.dart';
+import '../../../../core/helpers/spacing.dart';
 import '../../../../core/networking/di.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
@@ -37,27 +38,17 @@ class HomeAppBar extends StatelessWidget {
         },
       ),
       centerTitle: true,
-      backgroundColor: AppColors.eerieBlack.withValues(alpha: 0.6),
+      backgroundColor: AppColors.richEerieBlack.withValues(alpha: 0.8),
       title: Row(
         mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Padding(
-            padding: EdgeInsets.only(left: 8.w, right: 0.w),
-            child: Image.asset(
-              AppConstants.appLogo,
-              fit: BoxFit.fill,
-              height: 45.h,
-              width: 45.w,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 4.h),
-            child: Text(
-              AppConstants.appName,
-              style: TextStyles.font24SimiBoldNeonBlueManrope.copyWith(
-                fontSize: 22.sp,
-              ),
+          Image.asset(AppConstants.appLogo, height: 40.h),
+          horizontalSpacing(12),
+          Text(
+            AppConstants.appName,
+            style: TextStyles.font24SimiBoldNeonBlueManrope.copyWith(
+              fontSize: 20.sp,
+              letterSpacing: 2,
             ),
           ),
         ],
