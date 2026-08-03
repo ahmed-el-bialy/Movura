@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../helpers/spacing.dart';
 import '../theming/app_colors.dart';
 import '../theming/text_styles.dart';
 
@@ -28,9 +29,9 @@ class EmptySectionMessage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(icon, color: AppColors.neonBlue, size: 50.sp),
-          SizedBox(height: 16.h),
+          verticalSpacing(16),
           Text(title, style: TextStyles.font20SimiBoldNeonBlueManrope),
-          SizedBox(height: 8.h),
+          verticalSpacing(8),
           subTitle != null
               ? Text(subTitle!, style: TextStyles.font12MediumPlatinumGray)
               : const SizedBox(),

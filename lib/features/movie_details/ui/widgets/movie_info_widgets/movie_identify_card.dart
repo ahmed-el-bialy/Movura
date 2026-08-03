@@ -89,7 +89,7 @@ class MovieIdentifyCard extends StatelessWidget {
                           ],
                         ),
                       ),
-                      horizontalSpacing(10.w),
+                      horizontalSpacing(10),
                       Container(
                         padding: EdgeInsets.symmetric(
                           horizontal: 10.w,
@@ -111,7 +111,7 @@ class MovieIdentifyCard extends StatelessWidget {
                               size: 16.sp,
                               color: AppColors.neonBlue,
                             ),
-                            SizedBox(width: 4.w),
+                            horizontalSpacing(4),
                             Text(
                               (model.rating ?? 0.0).toStringAsFixed(1),
                               style: TextStyles.font20SimiBoldNeonBlueManrope

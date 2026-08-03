@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/networking/di.dart';
 import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/app_spacing.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../../logic/search/search_cubit.dart';
 import '../widgets/search_ui_widgets/search_empty_state.dart';
@@ -18,7 +19,7 @@ class SearchScreen extends StatelessWidget {
       backgroundColor: AppColors.richEerieBlack,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          padding: AppSpacing.horizontal16(),
           child: Column(
             children: [
               verticalSpacing(20),
@@ -32,10 +33,7 @@ class SearchScreen extends StatelessWidget {
                   );
                 },
                 child: Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16.w,
-                    vertical: 12.h,
-                  ),
+                  padding: AppSpacing.symmetric(horizontal: 16, vertical: 12),
                   decoration: BoxDecoration(
                     color: AppColors.charcoalBlack,
                     borderRadius: BorderRadius.circular(16.r),

@@ -53,13 +53,21 @@ class PosterCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        context.pushNamed(
-          RouteNames.detailsScreen,
-          arguments: DetailsArgumentModel(
-            mediaType: mediaModel?.mediaType ?? mediaType ?? "movie",
-            mediaId: mediaModel!.id,
-          ),
-        );
+        final mType = mediaModel?.mediaType ?? mediaType ?? "movie";
+        if (mType == "person") {
+          context.pushNamed(
+            RouteNames.personDetailsScreen,
+            arguments: mediaModel!.id,
+          );
+        } else {
+          context.pushNamed(
+            RouteNames.detailsScreen,
+            arguments: DetailsArgumentModel(
+              mediaType: mType,
+              mediaId: mediaModel!.id,
+            ),
+          );
+        }
       },
       child: Card(
         elevation: elevation ?? 11,

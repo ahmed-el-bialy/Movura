@@ -27,7 +27,7 @@ class PostersList extends StatelessWidget {
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 12.h),
             child: PosterCard(
-              width: 170,
+              width: 170.w,
               elevation: 10,
               border: 15,
               titleStyle: TextStyles.font14BoldIceBlueMontserrat,

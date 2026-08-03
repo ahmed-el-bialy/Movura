@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/helpers/spacing.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../../../../core/widgets/app_error_widget.dart';
@@ -36,12 +37,12 @@ class BuildSearchResultsGrid extends StatelessWidget {
                       size: 48.sp,
                       color: AppColors.slateGray.withValues(alpha: 0.5),
                     ),
-                    SizedBox(height: 12.h),
+                    verticalSpacing(12),
                     Text(
                       'No ${state.filter.label.toLowerCase()} found.',
                       style: TextStyles.font14BoldIceBlueMontserrat,
                     ),
-                    SizedBox(height: 6.h),
+                    verticalSpacing(6),
                     Text(
                       'Try a different keyword or filter',
                       style: TextStyles.font12CoolGrayManrope,

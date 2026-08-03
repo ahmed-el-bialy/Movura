@@ -5,6 +5,9 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../features/auth/ui/screens/log_in_screen.dart';
 import '../../features/auth/ui/screens/sign_up_screen.dart';
+import '../../features/discover/ui/screens/discover_movies_screen.dart';
+import '../../features/discover/ui/screens/discover_people_screen.dart';
+import '../../features/discover/ui/screens/discover_tv_screen.dart';
 import '../../features/home/ui/screens/home_screen.dart';
 import '../../features/home/ui/screens/trending_screen.dart';
 import '../../features/library/ui/screens/library_screen.dart';
@@ -103,6 +106,22 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => SeeAllScreen(arguments: seeAllArgs),
         );
+
+      case RouteNames.discoverMoviesScreen:
+        return MaterialPageRoute(
+          builder: (_) => const DiscoverMoviesScreen(),
+        );
+
+      case RouteNames.discoverTvScreen:
+        return MaterialPageRoute(
+          builder: (_) => const DiscoverTvScreen(),
+        );
+
+      case RouteNames.discoverPeopleScreen:
+        return MaterialPageRoute(
+          builder: (_) => const DiscoverPeopleScreen(),
+        );
+
       default:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
     }

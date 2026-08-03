@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/helpers/spacing.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/text_styles.dart';
 import '../../../../core/constants/api_constants.dart';
@@ -40,7 +41,7 @@ class TvNetworkCard extends StatelessWidget {
                     color: AppColors.pureWhite.withValues(alpha: 0.7),
                   ),
           ),
-          SizedBox(height: 8.h),
+          verticalSpacing(8),
           Text(
             network.name ?? 'Network',
             style: TextStyles.font10BoldCoolGray.copyWith(fontSize: 12.sp),

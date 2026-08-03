@@ -4,6 +4,10 @@ import 'package:get_it/get_it.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/data/web_services/auth_services.dart';
 import '../../features/auth/logic/auth/auth_cubit.dart';
+import '../../features/discover/data/repo/discover_repo.dart';
+import '../../features/discover/logic/discover_movies_cubit.dart';
+import '../../features/discover/logic/discover_people_cubit.dart';
+import '../../features/discover/logic/discover_tv_cubit.dart';
 import '../../features/home/data/repo/home_repo.dart';
 import '../../features/home/data/web_services/home_web_services.dart';
 import '../../features/home/logic/top_rated_movies/top_rated_movies_cubit.dart';
@@ -77,6 +81,9 @@ Future<void> initDI() async {
   sl.registerLazySingleton<SeeAllRepo>(
     () => SeeAllRepo(webServices: sl<SeeAllWebServices>()),
   );
+  sl.registerLazySingleton<DiscoverRepo>(
+    () => DiscoverRepo(webServices: sl<SeeAllWebServices>()),
+  );
   sl.registerLazySingleton<AuthRepo>(() => AuthRepo(sl<AuthServices>()));
 
   _initCubits();
@@ -120,4 +127,13 @@ void _initCubits() {
     () => PersonDetailsCubit(repo: sl<PersonRepo>()),
   );
   sl.registerFactory<SeeAllCubit>(() => SeeAllCubit(sl<SeeAllRepo>()));
+  sl.registerFactory<DiscoverMoviesCubit>(
+    () => DiscoverMoviesCubit(sl<DiscoverRepo>()),
+  );
+  sl.registerFactory<DiscoverTvCubit>(
+    () => DiscoverTvCubit(sl<DiscoverRepo>()),
+  );
+  sl.registerFactory<DiscoverPeopleCubit>(
+    () => DiscoverPeopleCubit(sl<DiscoverRepo>()),
+  );
 }

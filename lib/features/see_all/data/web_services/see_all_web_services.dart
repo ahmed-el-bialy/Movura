@@ -52,4 +52,15 @@ abstract class SeeAllWebServices {
     @Query("with_genres") int genreId,
     @Query("page") int page,
   );
+
+  @GET("person/popular")
+  Future<PosterResponse> getPopularPeople(
+    @Query("page") int page,
+  );
+
+  @GET("trending/person/{timeWindow}")
+  Future<PosterResponse> getTrendingPeople(
+    @Path("timeWindow") String timeWindow,
+    @Query("page") int page,
+  );
 }

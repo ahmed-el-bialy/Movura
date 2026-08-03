@@ -4,13 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/extensions/routing_extension.dart';
 import '../../../../core/helpers/spacing.dart';
-import '../../../../core/networking/di.dart';
 import '../../../../core/routing/route_names.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
-import '../../../search/logic/search/search_cubit.dart';
-import '../../../search/ui/screens/custom_search_delegate.dart';
-import '../../../see_all/data/models/see_all_arguments.dart';
 
 class CustomSideDrawer extends StatelessWidget {
   const CustomSideDrawer({super.key});
@@ -27,40 +23,24 @@ class CustomSideDrawer extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                horizontalSpacing(20),
-                Image.asset(AppConstants.appLogo, height: 80.h, ),
+                verticalSpacing(20),
+                Image.asset(AppConstants.appLogo, height: 60.h),
+                verticalSpacing(10),
                 Text(
                   AppConstants.appName,
                   style: TextStyles.font24SimiBoldNeonBlueManrope.copyWith(
                     letterSpacing: 3,
+                    fontSize: 22.sp,
                   ),
                 ),
                 verticalSpacing(20)
               ],
             ),
-            Divider(
-              height: 1,
-            ),
+            const Divider(height: 1),
             Expanded(
               child: ListView(
                 padding: EdgeInsets.symmetric(vertical: 10.h),
                 children: [
-                  _buildDrawerItem(
-                    icon: Icons.person_outline_rounded,
-                    label: 'My Profile',
-                    onTap: () {
-                      context.pop();
-                      context.pushNamed(RouteNames.profileScreen);
-                    },
-                  ),
-                  _buildDrawerItem(
-                    icon: Icons.favorite_border_rounded,
-                    label: 'My Library',
-                    onTap: () {
-                      context.pop();
-                      context.pushNamed(RouteNames.libraryScreen);
-                    },
-                  ),
                   _buildDrawerItem(
                     icon: Icons.workspace_premium_rounded,
                     label: 'Movura Pro',
@@ -71,6 +51,14 @@ class CustomSideDrawer extends StatelessWidget {
                     ),
                     onTap: () {
                       context.pop();
+                    },
+                  ),
+                  _buildDrawerItem(
+                    icon: Icons.favorite_border_rounded,
+                    label: 'My Library',
+                    onTap: () {
+                      context.pop();
+                      context.pushNamed(RouteNames.libraryScreen);
                     },
                   ),
                   Padding(
@@ -85,75 +73,29 @@ class CustomSideDrawer extends StatelessWidget {
                   ),
                   _buildDrawerItem(
                     icon: Icons.movie_filter_outlined,
-                    label: 'Movies',
-                    subtitle: 'Trending, Popular, Top Rated',
+                    label: 'Discover Movies',
+                    subtitle: 'Trending, Upcoming, Top Rated & More',
                     onTap: () {
                       context.pop();
-                      context.pushNamed(
-                        RouteNames.seeAllScreen,
-                        arguments: SeeAllArguments(
-                          title: "Discover Movies",
-                          endpoint: SeeAllEndpoint.popularMovies,
-                        ),
-                      );
+                      context.pushNamed(RouteNames.discoverMoviesScreen);
                     },
                   ),
                   _buildDrawerItem(
                     icon: Icons.tv_outlined,
                     label: 'TV Series',
-                    subtitle: 'Latest & Top Rated Shows',
+                    subtitle: 'Popular, Latest & Top Rated Shows',
                     onTap: () {
                       context.pop();
-                      context.pushNamed(
-                        RouteNames.seeAllScreen,
-                        arguments: SeeAllArguments(
-                          title: "TV Series",
-                          endpoint: SeeAllEndpoint.popularTv,
-                        ),
-                      );
+                      context.pushNamed(RouteNames.discoverTvScreen);
                     },
                   ),
                   _buildDrawerItem(
                     icon: Icons.people_outline_rounded,
-                    label: 'Celebrities',
-                    subtitle: 'Popular actors and directors',
+                    label: 'Popular People',
+                    subtitle: 'Trending actors and directors',
                     onTap: () {
                       context.pop();
-                      showSearch(
-                        context: context,
-                        delegate: CustomSearchDelegate(
-                          searchCubit: sl<SearchCubit>(),
-                        ),
-                      );
-                    },
-                  ),
-                  _buildDrawerItem(
-                    icon: Icons.upcoming_outlined,
-                    label: 'Upcoming',
-                    subtitle: 'Coming soon to theaters',
-                    onTap: () {
-                      context.pop();
-                      context.pushNamed(
-                        RouteNames.seeAllScreen,
-                        arguments: SeeAllArguments(
-                          title: "Upcoming Movies",
-                          endpoint: SeeAllEndpoint.upcomingMovies,
-                        ),
-                      );
-                    },
-                  ),
-                  _buildDrawerItem(
-                    icon: Icons.theaters_outlined,
-                    label: 'Now Playing',
-                    onTap: () {
-                      context.pop();
-                      context.pushNamed(
-                        RouteNames.seeAllScreen,
-                        arguments: SeeAllArguments(
-                          title: "Now Playing",
-                          endpoint: SeeAllEndpoint.nowPlayingMovies,
-                        ),
-                      );
+                      context.pushNamed(RouteNames.discoverPeopleScreen);
                     },
                   ),
                 ],
