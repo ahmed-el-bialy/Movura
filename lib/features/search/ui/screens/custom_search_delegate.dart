@@ -7,7 +7,7 @@ import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../../data/models/search_filter_type.dart';
 import '../../logic/search/search_cubit.dart';
-import '../widgets/build_search_results.dart';
+import '../widgets/search_results_grid.dart';
 import '../widgets/search_filter_sheet.dart';
 import '../widgets/search_ui_widgets/search_empty_state.dart';
 
@@ -125,7 +125,7 @@ class CustomSearchDelegate extends SearchDelegate {
 
     final currentQuery = query.trim();
     if (currentQuery == lastQuery) {
-      return BuildSearchResultsGrid(searchCubit: searchCubit);
+      return SearchResultsGrid(searchCubit: searchCubit);
     }
 
     if (searchTimeResponse?.isActive ?? false) searchTimeResponse!.cancel();
@@ -135,6 +135,6 @@ class CustomSearchDelegate extends SearchDelegate {
       searchCubit.getSearchResults(query: query.trim());
     });
 
-    return BuildSearchResultsGrid(searchCubit: searchCubit);
+    return SearchResultsGrid(searchCubit: searchCubit);
   }
 }
