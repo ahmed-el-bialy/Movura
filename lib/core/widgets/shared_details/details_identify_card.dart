@@ -2,10 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../helpers/spacing.dart';
-import '../../theming/app_colors.dart';
-import '../../theming/text_styles.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/theming/weights.dart';
 
 class DetailsIdentifyCard extends StatelessWidget {
   const DetailsIdentifyCard({
@@ -78,17 +78,17 @@ class DetailsIdentifyCard extends StatelessWidget {
                               style: TextStyles.font17BoldIceBlueMontserrat
                                   .copyWith(
                                     fontSize: 22.sp,
-                                    fontWeight: FontWeight.bold,
+                                    fontWeight: Weights.bold,
                                     color: AppColors.pureWhite,
                                   ),
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                             ),
                             if (showOriginalTitle) ...[
-                              verticalSpacing(2),
+                              AppSpacing.verticalSpacing(2),
                               Text(
                                 originalTitle!,
-                                style: TextStyles.font12CoolGrayManrope
+                                style: TextStyles.font12RegularCoolGrayManrope
                                     .copyWith(
                                       color: AppColors.platinumGray.withValues(
                                         alpha: 0.8,
@@ -102,7 +102,7 @@ class DetailsIdentifyCard extends StatelessWidget {
                           ],
                         ),
                       ),
-                      horizontalSpacing(10),
+                      AppSpacing.horizontalSpacing(10),
                       Container(
                         padding: EdgeInsets.symmetric(
                           horizontal: 10.w,
@@ -124,14 +124,14 @@ class DetailsIdentifyCard extends StatelessWidget {
                               size: 16.sp,
                               color: AppColors.neonBlue,
                             ),
-                            horizontalSpacing(4),
+                            AppSpacing.horizontalSpacing(AppSpacing.xs),
                             Text(
                               rating.toStringAsFixed(1),
-                              style: TextStyles.font20SimiBoldNeonBlueManrope
+                              style: TextStyles.font20SemiBoldNeonBlueManrope
                                   .copyWith(
                                     fontSize: 14.sp,
                                     color: AppColors.pureWhite,
-                                    fontWeight: FontWeight.bold,
+                                    fontWeight: Weights.bold,
                                   ),
                             ),
                           ],
@@ -140,31 +140,31 @@ class DetailsIdentifyCard extends StatelessWidget {
                     ],
                   ),
                   if (tagline != null && tagline!.isNotEmpty) ...[
-                    verticalSpacing(6),
+                    AppSpacing.verticalSpacing(6),
                     Text(
                       '"$tagline"',
-                      style: TextStyles.font12CoolGrayManrope.copyWith(
+                      style: TextStyles.font12RegularCoolGrayManrope.copyWith(
                         fontStyle: FontStyle.italic,
                         color: AppColors.neonBlue,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: Weights.medium,
                         fontSize: 13.sp,
                       ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ],
-                  verticalSpacing(12),
+                  AppSpacing.verticalSpacing(AppSpacing.m),
                   Divider(
                     color: AppColors.pureWhite.withValues(alpha: 0.12),
                     height: 1,
                   ),
-                  verticalSpacing(10),
+                  AppSpacing.verticalSpacing(10),
                   Row(
                     children: [
                       Expanded(
                         child: Text(
                           "$typeLabel  •  $year  •  ${language.toUpperCase()} ${status != null ? ' •  $status' : ''}",
-                          style: TextStyles.font16SimiBoldPlatinumGray.copyWith(
+                          style: TextStyles.font16SemiBoldPlatinumGray.copyWith(
                             fontSize: 12.sp,
                             color: AppColors.platinumGray.withValues(
                               alpha: 0.9,
@@ -174,7 +174,7 @@ class DetailsIdentifyCard extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      horizontalSpacing(10),
+                      AppSpacing.horizontalSpacing(10),
                       Container(
                         padding: EdgeInsets.symmetric(
                           horizontal: 8.w,
@@ -199,7 +199,7 @@ class DetailsIdentifyCard extends StatelessWidget {
                                 ? AppColors.softRed
                                 : AppColors.platinumGray,
                             fontSize: 10.sp,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: Weights.bold,
                           ),
                         ),
                       ),

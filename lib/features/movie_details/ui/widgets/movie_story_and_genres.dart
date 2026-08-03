@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/extensions/routing_extension.dart';
-import '../../../../core/helpers/spacing.dart';
-import '../../../../core/routing/route_names.dart';
-import '../../../../core/theming/app_colors.dart';
-import '../../../../core/theming/text_styles.dart';
-import '../../../../core/widgets/read_more_text.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/routing/route_names.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/theming/weights.dart';
+import 'package:movura/core/widgets/layout/read_more_text.dart';
 import '../../../see_all/data/models/see_all_arguments.dart';
 import '../../data/models/about_model.dart';
 
@@ -27,12 +28,12 @@ class MovieStoryAndGenres extends StatelessWidget {
             "STORYLINE",
             style: TextStyles.font13BoldNeonBlueSora.copyWith(
               letterSpacing: 1.5,
-              fontWeight: FontWeight.w900,
+              fontWeight: Weights.black,
             ),
           ),
-          verticalSpacing(12),
+          AppSpacing.verticalSpacing(AppSpacing.m),
           ReadMoreText(content: model.overview!),
-          verticalSpacing(14),
+          AppSpacing.verticalSpacing(14),
           if (model.genres!.isNotEmpty)
             SizedBox(
               height: 36.h,

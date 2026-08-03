@@ -1,17 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/constants/api_constants.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/routing/arguments_models.dart';
+import 'package:movura/core/routing/route_names.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/widgets/layout/section_title.dart';
+import 'package:movura/core/widgets/shared_details/actors_list.dart';
+import 'package:movura/core/widgets/shared_details/videos_list.dart';
 
-import '../../../../../core/constants/api_constants.dart';
-import '../../../../../core/extensions/routing_extension.dart';
-import '../../../../../core/helpers/spacing.dart';
-import '../../../../../core/routing/arguments_models.dart';
-import '../../../../../core/routing/route_names.dart';
-import '../../../../../core/theming/app_colors.dart';
-import '../../../../../core/theming/text_styles.dart';
-import '../../../../../core/widgets/section_title.dart';
-import '../../../../../core/widgets/shared_details/actors_list.dart';
-import '../../../../../core/widgets/shared_details/videos_list.dart';
+import '../../../../../core/theming/app_spacing.dart';
 import '../../../data/episode_details_model.dart';
 import '../tv_info_widgets/episode_navigation_button.dart';
 
@@ -115,9 +115,9 @@ class EpisodeDetailsBody extends StatelessWidget {
                         children: [
                           Text(
                             tvTitle,
-                            style: TextStyles.font12CoolGrayManrope,
+                            style: TextStyles.font12RegularCoolGrayManrope,
                           ),
-                          verticalSpacing(4),
+                          AppSpacing.verticalSpacing(AppSpacing.xs),
                           Text(
                             episode.name ?? 'Episode',
                             style: TextStyles.font17BoldIceBlueMontserrat
@@ -140,10 +140,10 @@ class EpisodeDetailsBody extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SectionTitle(sectionName: 'STORYLINE'),
-                  verticalSpacing(8),
+                  AppSpacing.verticalSpacing(AppSpacing.s),
                   Text(
                     episode.overview ?? '',
-                    style: TextStyles.font12CoolGrayManrope.copyWith(
+                    style: TextStyles.font12RegularCoolGrayManrope.copyWith(
                       height: 1.6,
                     ),
                   ),
@@ -190,7 +190,8 @@ class EpisodeDetailsBody extends StatelessWidget {
                       isLeft: true,
                     ),
                   ),
-                if (hasPrevious && hasNext) horizontalSpacing(12),
+                if (hasPrevious && hasNext)
+                  AppSpacing.horizontalSpacing(AppSpacing.m),
                 if (hasNext)
                   Expanded(
                     child: EpisodeNavigationButton(
@@ -207,7 +208,7 @@ class EpisodeDetailsBody extends StatelessWidget {
             ),
           ),
         ),
-        sliverVerticalSpacing(90),
+        AppSpacing.sliverVerticalSpacing(90),
       ],
     );
   }

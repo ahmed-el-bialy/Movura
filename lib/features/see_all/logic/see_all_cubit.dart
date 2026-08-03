@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/models/poster_model.dart';
+import 'package:movura/core/models/poster_model.dart';
 import '../data/models/see_all_arguments.dart';
 import '../data/repo/see_all_repo.dart';
 

@@ -22,12 +22,7 @@ class ReviewModel {
   @JsonKey(name: "author_details")
   final AuthorDetails? authorDetails;
 
-  ReviewModel({
-    this.author,
-    this.content,
-    this.createdAt,
-    this.authorDetails,
-  });
+  ReviewModel({this.author, this.content, this.createdAt, this.authorDetails});
 
   factory ReviewModel.fromJson(Map<String, dynamic> json) =>
       _$ReviewModelFromJson(json);
@@ -41,12 +36,7 @@ class AuthorDetails {
   final String? avatarPath;
   final double? rating;
 
-  AuthorDetails({
-    this.name,
-    this.username,
-    this.avatarPath,
-    this.rating,
-  });
+  AuthorDetails({this.name, this.username, this.avatarPath, this.rating});
 
   factory AuthorDetails.fromJson(Map<String, dynamic> json) =>
       _$AuthorDetailsFromJson(json);

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../theming/app_colors.dart';
-import '../theming/text_styles.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/text_styles.dart';
 
 class AppTextFormField extends StatelessWidget {
   const AppTextFormField({
@@ -48,7 +48,7 @@ class AppTextFormField extends StatelessWidget {
       keyboardType: inputType,
       textInputAction: textInputAction,
       controller: controller,
-      style: inputTextStyle ?? TextStyles.font14SimiBoldPlatinumGraySora,
+      style: inputTextStyle ?? TextStyles.font14SemiBoldPlatinumGraySora,
       obscureText: isObscureText ?? false,
       decoration: InputDecoration(
         filled: true,

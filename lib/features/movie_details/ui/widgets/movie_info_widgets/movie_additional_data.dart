@@ -1,11 +1,13 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../core/extensions/money_formatter.dart';
-import '../../../../../core/helpers/spacing.dart';
-import '../../../../../core/theming/app_colors.dart';
-import '../../../../../core/theming/text_styles.dart';
-import '../../../../../core/widgets/shared_details/details_additional_data.dart';
+import 'package:movura/core/extensions/money_formatter.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/widgets/shared_details/details_additional_data.dart';
+
 import '../../../data/models/about_model.dart';
 
 class AdditionalData extends StatelessWidget {
@@ -58,7 +60,7 @@ class AdditionalData extends StatelessWidget {
                   color: isProfit ? Colors.greenAccent : AppColors.softRed,
                   size: 20.sp,
                 ),
-                horizontalSpacing(12),
+                AppSpacing.horizontalSpacing(AppSpacing.m),
                 Text(
                   isProfit ? "ESTIMATED PROFIT: " : "ESTIMATED LOSS: ",
                   style: TextStyles.font10BoldCoolGray.copyWith(

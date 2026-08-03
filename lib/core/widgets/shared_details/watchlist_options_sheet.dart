@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../helpers/spacing.dart';
-import '../../theming/app_colors.dart';
-import '../../theming/text_styles.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/theming/weights.dart';
 
 class WatchlistOptionsSheet extends StatefulWidget {
   const WatchlistOptionsSheet({super.key});
@@ -39,7 +40,7 @@ class _WatchlistOptionsSheetState extends State<WatchlistOptionsSheet> {
               color: AppColors.pureWhite,
               size: 20.sp,
             ),
-            horizontalSpacing(12),
+            AppSpacing.horizontalSpacing(AppSpacing.m),
             Text(
               isAdded ? 'Added to $label' : 'Removed from $label',
               style: TextStyles.font14BoldIceBlueMontserrat.copyWith(
@@ -90,7 +91,7 @@ class _WatchlistOptionsSheetState extends State<WatchlistOptionsSheet> {
               ),
             ),
           ),
-          verticalSpacing(24),
+          AppSpacing.verticalSpacing(AppSpacing.xl),
           Row(
             children: [
               Text(
@@ -110,14 +111,14 @@ class _WatchlistOptionsSheetState extends State<WatchlistOptionsSheet> {
               ),
             ],
           ),
-          verticalSpacing(4),
+          AppSpacing.verticalSpacing(AppSpacing.xs),
           Text(
             'Organize your movies and series into custom collections',
-            style: TextStyles.font12CoolGrayManrope.copyWith(
+            style: TextStyles.font12RegularCoolGrayManrope.copyWith(
               color: AppColors.coolGray.withValues(alpha: 0.8),
             ),
           ),
-          verticalSpacing(36),
+          AppSpacing.verticalSpacing(36),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -235,7 +236,7 @@ class _ActionItem extends StatelessWidget {
               ),
             ),
           ),
-          verticalSpacing(10),
+          AppSpacing.verticalSpacing(10),
           Text(
             label,
             style: TextStyles.font10BoldCoolGray.copyWith(
@@ -243,7 +244,7 @@ class _ActionItem extends StatelessWidget {
                   ? AppColors.pureWhite
                   : AppColors.coolGray.withValues(alpha: 0.7),
               fontSize: 12.sp,
-              fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+              fontWeight: isSelected ? Weights.bold : Weights.medium,
             ),
           ),
         ],

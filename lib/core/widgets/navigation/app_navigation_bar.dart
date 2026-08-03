@@ -3,10 +3,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../features/search/logic/search/search_cubit.dart';
-import '../../features/search/ui/screens/custom_search_delegate.dart';
-import '../networking/di.dart';
-import '../theming/app_colors.dart';
+import 'package:movura/features/search/logic/search/search_cubit.dart';
+import 'package:movura/features/search/ui/screens/custom_search_delegate.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import '../../networking/di.dart';
 import 'navigation_widgets/nav_item.dart';
 
 class AppNavigationBar extends StatelessWidget {

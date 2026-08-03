@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/widgets/shared_details/core_details_header.dart';
+import 'package:movura/core/widgets/shared_details/core_details_header.dart';
 import '../../data/models/about_model.dart';
 import 'movie_info_widgets/movie_identify_card.dart';
 

@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/core/widgets/shared_details/details_tab_state_wrapper.dart';
 
-import '../../../../core/constants/app_constants.dart';
-import '../../../../core/helpers/spacing.dart';
-import '../../../../core/widgets/section_title.dart';
-import '../../../../core/widgets/shared_details/actors_list.dart';
-import '../../../../core/widgets/shared_details/companies_list.dart';
-import '../../../../core/widgets/shared_details/images_list.dart';
-import '../../../../core/widgets/shared_details/videos_list.dart';
+import 'package:movura/core/constants/app_constants.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/widgets/layout/section_title.dart';
+import 'package:movura/core/widgets/shared_details/actors_list.dart';
+import 'package:movura/core/widgets/shared_details/companies_list.dart';
+import 'package:movura/core/widgets/shared_details/images_list.dart';
+import 'package:movura/core/widgets/shared_details/videos_list.dart';
 import '../../logic/about/about_cubit.dart';
 
 class AboutTabBody extends StatelessWidget {
@@ -32,13 +32,13 @@ class AboutTabBody extends StatelessWidget {
                         actionName: AppConstants.sectionAction,
                       ),
                       ActorsList(actors: state.model.actors?.movieActors ?? []),
-                      verticalSpacing(15),
+                      AppSpacing.verticalSpacing(15),
                     ],
                     if (state.model.companies != null &&
                         state.model.companies!.isNotEmpty) ...[
                       const SectionTitle(sectionName: "Companies"),
                       CompaniesList(company: state.model.companies ?? []),
-                      verticalSpacing(15),
+                      AppSpacing.verticalSpacing(15),
                     ],
                     if (state.model.mediaImages?.backdropImages != null &&
                         state
@@ -52,7 +52,7 @@ class AboutTabBody extends StatelessWidget {
                         height: 250,
                         imageFit: BoxFit.fill,
                       ),
-                      verticalSpacing(15),
+                      AppSpacing.verticalSpacing(15),
                     ],
                     if (state.model.mediaImages?.logoImages != null &&
                         state.model.mediaImages!.logoImages!.isNotEmpty) ...[
@@ -67,13 +67,13 @@ class AboutTabBody extends StatelessWidget {
                     ],
                     if (state.model.movieVideos?.videoList != null &&
                         state.model.movieVideos!.videoList!.isNotEmpty) ...[
-                      verticalSpacing(15),
+                      AppSpacing.verticalSpacing(15),
                       const SectionTitle(sectionName: "TRAILERS & CLIPS"),
-                      verticalSpacing(8),
+                      AppSpacing.verticalSpacing(AppSpacing.s),
                       VideosList(
                         allVideos: state.model.movieVideos!.videoList!,
                       ),
-                      verticalSpacing(35),
+                      AppSpacing.verticalSpacing(35),
                     ],
                   ],
                 )

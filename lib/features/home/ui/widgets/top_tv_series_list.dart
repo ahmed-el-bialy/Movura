@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/core/widgets/media_horizontal_list.dart';
-
-import '../../../../core/widgets/app_error_widget.dart';
-import '../../../../core/widgets/skeleton_posters_list_loading.dart';
+import 'package:movura/core/widgets/layout/media_horizontal_list.dart';
+import 'package:movura/core/widgets/app_error_widget.dart';
+import 'package:movura/core/widgets/loading/skeleton_posters_list_loading.dart';
 import '../../logic/top_rated_tv_series/top_rated_tv_series_cubit.dart';
 
 class TopTvSeriesList extends StatelessWidget {

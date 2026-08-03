@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../helpers/spacing.dart';
-import '../../theming/app_colors.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 
 class SeasonLoadingSkeleton extends StatelessWidget {
   const SeasonLoadingSkeleton({
@@ -64,13 +64,13 @@ class SeasonLoadingSkeleton extends StatelessWidget {
                     height: 12.h,
                     color: AppColors.pureWhite,
                   ),
-                  verticalSpacing(8),
+                  AppSpacing.verticalSpacing(AppSpacing.s),
                   Container(
                     width: double.infinity,
                     height: 12.h,
                     color: AppColors.pureWhite,
                   ),
-                  verticalSpacing(8),
+                  AppSpacing.verticalSpacing(AppSpacing.s),
                   Container(
                     width: 200.w,
                     height: 12.h,
@@ -80,7 +80,7 @@ class SeasonLoadingSkeleton extends StatelessWidget {
               ),
             ),
           ),
-          sliverVerticalSpacing(16),
+          AppSpacing.sliverVerticalSpacing(AppSpacing.l),
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) => Padding(

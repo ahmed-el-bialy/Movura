@@ -3,10 +3,10 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:path_drawing/path_drawing.dart';
 
-import '../theming/app_colors.dart';
+import 'package:movura/core/theming/app_colors.dart';
 
 /// MOVURA animated loading indicator widget.
-/// Draws the "M" logo stroke progressively and loops continuously.
+/// Draws the "M" logo forward (Left -> Right) and erases in reverse (Right -> Left).
 class MovuraLoadingIndicator extends StatefulWidget {
   final double size;
   final Color color;
@@ -24,7 +24,8 @@ class MovuraLoadingIndicator extends StatefulWidget {
   });
 
   @override
-  State<MovuraLoadingIndicator> createState() => _MovuraLoadingIndicatorState();
+  State<MovuraLoadingIndicator> createState() =>
+      _MovuraLoadingIndicatorState();
 }
 
 class _MovuraLoadingIndicatorState extends State<MovuraLoadingIndicator>
@@ -39,10 +40,7 @@ class _MovuraLoadingIndicatorState extends State<MovuraLoadingIndicator>
   @override
   void initState() {
     super.initState();
-    // Parse SVG string into a Flutter Path object
     _logoPath = parseSvgPathData(_rawPathData);
-
-    // Setup repeating animation loop
     _controller = AnimationController(vsync: this, duration: widget.duration)
       ..repeat();
   }
@@ -91,7 +89,6 @@ class _MLogoPainter extends CustomPainter {
     required this.showOuterRing,
   });
 
-  // Smooth quadratic ease-in-out easing function
   double _easeInOutQuad(double t) {
     return t < 0.5 ? 2 * t * t : 1 - ((-2 * t + 2) * (-2 * t + 2)) / 2;
   }
@@ -101,9 +98,8 @@ class _MLogoPainter extends CustomPainter {
     final center = Offset(size.width / 2, size.height / 2);
     final radius = (size.width / 2) - 6;
 
-    // ================= 1. Draw Outer Ring & Rotating Arc =================
+    // ================= 1. Outer Ring & Rotating Arc =================
     if (showOuterRing) {
-      // Background static subtle circle (Track)
       final trackPaint = Paint()
         ..color = Colors.white.withValues(alpha: 0.1)
         ..style = PaintingStyle.stroke
@@ -111,16 +107,14 @@ class _MLogoPainter extends CustomPainter {
 
       canvas.drawCircle(center, radius, trackPaint);
 
-      // Rotating arc animation around the logo (Loading Arc)
       final spinnerPaint = Paint()
         ..color = color.withValues(alpha: 0.7)
         ..style = PaintingStyle.stroke
         ..strokeWidth = 3.0
         ..strokeCap = StrokeCap.round;
 
-      // Calculate smooth rotational angle
       final startAngle = progress * 2 * math.pi;
-      const sweepAngle = math.pi / 2.5; // ~70-degree arc length
+      const sweepAngle = math.pi / 2.5;
 
       canvas.drawArc(
         Rect.fromCircle(center: center, radius: radius),
@@ -131,28 +125,33 @@ class _MLogoPainter extends CustomPainter {
       );
     }
 
-    // ================= 2. Draw Center "M" Logo =================
-    // Scale logo to fit nicely inside the container (leave margin if ring is shown)
-    final scale = (size.width / 512) * (showOuterRing ? 0.72 : 1.0);
+    // ================= 2. Centered "M" Logo =================
+    final pathBounds = path.getBounds();
+    final fitSize = showOuterRing ? size.width * 0.55 : size.width * 0.75;
+
+    final scale = math.min(
+      fitSize / pathBounds.width,
+      fitSize / pathBounds.height,
+    );
 
     canvas.save();
-    // Center the scaled logo path
+
+    // Center the actual bounds of the M path dynamically in the Canvas
     canvas.translate(
-      (size.width - 512 * scale) / 2,
-      (size.height - 512 * scale) / 2,
+      (size.width - pathBounds.width * scale) / 2 - pathBounds.left * scale,
+      (size.height - pathBounds.height * scale) / 2 - pathBounds.top * scale,
     );
     canvas.scale(scale, scale);
 
-    // Faint ghost stroke outline (always visible background path)
+    // Subtle Ghost Outline
     final ghostPaint = Paint()
       ..color = color.withValues(alpha: 0.12)
       ..style = PaintingStyle.stroke
       ..strokeWidth = strokeWidth
-      ..strokeCap = StrokeCap.round
-      ..strokeJoin = StrokeJoin.round;
+      ..strokeCap = StrokeCap.round;
     canvas.drawPath(path, ghostPaint);
 
-    // Main drawing stroke paint
+    // Active Draw Paint
     final drawPaint = Paint()
       ..color = color
       ..style = PaintingStyle.stroke
@@ -160,42 +159,47 @@ class _MLogoPainter extends CustomPainter {
       ..strokeCap = StrokeCap.round
       ..strokeJoin = StrokeJoin.round;
 
-    // Animation timeline ratios (matching JS timing out of 2300 ms total):
-    // Draw: 900ms | Hold: 250ms | Erase: 900ms | Pause: 250ms
-    const double drawRatio = 900 / 2300;
-    const double holdRatio = 250 / 2300;
-    const double eraseRatio = 900 / 2300;
+    // Timeline phases:
+    // 0.0 - 0.45 : Forward Draw (0.0 -> 1.0)
+    // 0.45 - 0.55: Hold full path
+    // 0.55 - 0.95: Reverse Rewind/Erase (1.0 -> 0.0) from end back to start
+    // 0.95 - 1.00: Empty Pause
+    const double drawEnd = 0.45;
+    const double holdEnd = 0.55;
+    const double eraseEnd = 0.95;
 
     double startFraction = 0.0;
     double endFraction = 0.0;
 
-    if (progress < drawRatio) {
-      // Phase 1: Draw path from start to end
-      final t = _easeInOutQuad(progress / drawRatio);
+    if (progress < drawEnd) {
+      // Phase 1: Draw forward (0 to 1)
+      final t = _easeInOutQuad(progress / drawEnd);
       startFraction = 0.0;
       endFraction = t;
-    } else if (progress < drawRatio + holdRatio) {
-      // Phase 2: Pause fully drawn
+    } else if (progress < holdEnd) {
+      // Phase 2: Hold fully drawn
       startFraction = 0.0;
       endFraction = 1.0;
-    } else if (progress < drawRatio + holdRatio + eraseRatio) {
-      // Phase 3: Erase path from start point forward
-      final t = _easeInOutQuad((progress - drawRatio - holdRatio) / eraseRatio);
-      startFraction = t;
-      endFraction = 1.0;
+    } else if (progress < eraseEnd) {
+      // Phase 3: Flashback / Reverse Erase back from 1.0 to 0.0
+      final t = _easeInOutQuad((progress - holdEnd) / (eraseEnd - holdEnd));
+      startFraction = 0.0;
+      endFraction = 1.0 - t; // Shrinks back to zero from the right side
     } else {
-      // Phase 4: Pause fully erased
-      startFraction = 1.0;
-      endFraction = 1.0;
+      // Phase 4: Pause empty
+      startFraction = 0.0;
+      endFraction = 0.0;
     }
 
-    // Extract animated path segment and draw
-    for (final metric in path.computeMetrics()) {
-      final extracted = metric.extractPath(
-        metric.length * startFraction,
-        metric.length * endFraction,
-      );
-      canvas.drawPath(extracted, drawPaint);
+    // Extract animated path segment
+    if (startFraction < endFraction) {
+      for (final metric in path.computeMetrics()) {
+        final extracted = metric.extractPath(
+          metric.length * startFraction,
+          metric.length * endFraction,
+        );
+        canvas.drawPath(extracted, drawPaint);
+      }
     }
 
     canvas.restore();

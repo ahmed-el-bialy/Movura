@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/constants/api_constants.dart';
+import 'package:movura/core/extensions/date_extension.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/theming/text_styles.dart';
 
-import '../../../../../core/helpers/spacing.dart';
-import '../../../../../core/theming/app_colors.dart';
-import '../../../../../core/theming/text_styles.dart';
-import '../../../../core/constants/api_constants.dart';
-import '../../../../core/extensions/date_extension.dart';
 import '../../data/season_details_model.dart';
 
 class EpisodeCard extends StatelessWidget {
@@ -83,17 +83,18 @@ class EpisodeCard extends StatelessWidget {
                               color: AppColors.gold,
                               size: 14.sp,
                             ),
-                            horizontalSpacing(4),
+                            AppSpacing.horizontalSpacing(AppSpacing.xs),
                             Text(
                               episode.voteAverage!.toStringAsFixed(1),
-                              style: TextStyles.font12CoolGrayManrope.copyWith(
+                              style: TextStyles.font12RegularCoolGrayManrope
+                                  .copyWith(
                                 color: AppColors.platinumGray,
                               ),
                             ),
                           ],
                         ],
                       ),
-                      verticalSpacing(8),
+                      AppSpacing.verticalSpacing(AppSpacing.s),
                       Text(
                         episode.name ?? "",
                         maxLines: 2,
@@ -104,18 +105,19 @@ class EpisodeCard extends StatelessWidget {
                       ),
                       if (episode.overview != null &&
                           (episode.overview?.isNotEmpty ?? false)) ...[
-                        verticalSpacing(6),
+                        AppSpacing.verticalSpacing(6),
                         Text(
                           episode.overview ?? "",
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyles.font12CoolGrayManrope.copyWith(
+                          style: TextStyles.font12RegularCoolGrayManrope
+                              .copyWith(
                             fontSize: 11.sp,
                             height: 1.4,
                           ),
                         ),
                       ],
-                      verticalSpacing(8),
+                      AppSpacing.verticalSpacing(AppSpacing.s),
                       Row(
                         children: [
                           if (episode.airDate != null &&
@@ -125,12 +127,13 @@ class EpisodeCard extends StatelessWidget {
                               size: 12.sp,
                               color: AppColors.coolGray,
                             ),
-                            horizontalSpacing(4),
+                            AppSpacing.horizontalSpacing(AppSpacing.xs),
                             Text(
                               (episode.airDate?.toTimeAgo().isNotEmpty ?? false)
                                   ? episode.airDate!.toTimeAgo()
                                   : (episode.airDate ?? ""),
-                              style: TextStyles.font12CoolGrayManrope.copyWith(
+                              style: TextStyles.font12RegularCoolGrayManrope
+                                  .copyWith(
                                 fontSize: 10.sp,
                               ),
                             ),
@@ -142,10 +145,11 @@ class EpisodeCard extends StatelessWidget {
                               size: 12.sp,
                               color: AppColors.coolGray,
                             ),
-                            horizontalSpacing(4),
+                            AppSpacing.horizontalSpacing(AppSpacing.xs),
                             Text(
                               '${episode.runtime} min',
-                              style: TextStyles.font12CoolGrayManrope.copyWith(
+                              style: TextStyles.font12RegularCoolGrayManrope
+                                  .copyWith(
                                 fontSize: 10.sp,
                               ),
                             ),
@@ -176,7 +180,7 @@ class _EpisodePlaceholder extends StatelessWidget {
       child: Center(
         child: Text(
           '$episodeNumber',
-          style: TextStyles.font24SimiBoldNeonBlueManrope.copyWith(
+          style: TextStyles.font24SemiBoldNeonBlueManrope.copyWith(
             fontSize: 28.sp,
             color: AppColors.neonBlue.withValues(alpha: 0.5),
           ),

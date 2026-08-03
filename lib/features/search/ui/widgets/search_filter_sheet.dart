@@ -2,12 +2,13 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/models/genre_model.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/theming/weights.dart';
 
-import '../../../../core/extensions/routing_extension.dart';
-import '../../../../core/helpers/spacing.dart';
-import '../../../../core/models/genre_model.dart';
-import '../../../../core/theming/app_colors.dart';
-import '../../../../core/theming/text_styles.dart';
 import '../../data/models/search_filter_type.dart';
 import '../../logic/search/search_cubit.dart';
 
@@ -131,13 +132,13 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                     style: TextStyles.font17BoldIceBlueMontserrat.copyWith(
                       fontSize: 22.sp,
                       letterSpacing: -0.5,
-                      fontWeight: FontWeight.w800,
+                      fontWeight: Weights.extraBold,
                     ),
                   ),
                   _HeaderCloseButton(onPressed: () => context.pop()),
                 ],
               ),
-              verticalSpacing(20),
+              AppSpacing.verticalSpacing(20),
               Flexible(
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
@@ -148,7 +149,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                         icon: Icons.auto_awesome_motion_rounded,
                         title: 'SEARCH IN',
                       ),
-                      verticalSpacing(16),
+                      AppSpacing.verticalSpacing(AppSpacing.l),
                       GridView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
@@ -177,12 +178,12 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                       ),
                       if (currentGenres.isNotEmpty &&
                           _tempFilter != SearchFilterType.people) ...[
-                        verticalSpacing(32),
+                        AppSpacing.verticalSpacing(AppSpacing.xxl),
                         const _SectionHeader(
                           icon: Icons.interests_rounded,
                           title: 'GENRES',
                         ),
-                        verticalSpacing(16),
+                        AppSpacing.verticalSpacing(AppSpacing.l),
                         Wrap(
                           spacing: 10.w,
                           runSpacing: 10.h,
@@ -200,12 +201,12 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                           }).toList(),
                         ),
                       ],
-                      verticalSpacing(32),
+                      AppSpacing.verticalSpacing(AppSpacing.xxl),
                       const _SectionHeader(
                         icon: Icons.sort_rounded,
                         title: 'SORTING',
                       ),
-                      verticalSpacing(16),
+                      AppSpacing.verticalSpacing(AppSpacing.l),
                       _SortToggleChip(
                         label: 'Highly Rated Content',
                         isSelected: _tempSortByRating,
@@ -219,9 +220,9 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                   ),
                 ),
               ),
-              verticalSpacing(20),
+              AppSpacing.verticalSpacing(20),
               _SelectionSummaryBar(summary: selectionSummary),
-              verticalSpacing(20),
+              AppSpacing.verticalSpacing(20),
               Row(
                 children: [
                   Expanded(
@@ -238,7 +239,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                       isSecondary: true,
                     ),
                   ),
-                  horizontalSpacing(16),
+                  AppSpacing.horizontalSpacing(AppSpacing.l),
                   Expanded(
                     flex: 2,
                     child: _SmallActionButton(
@@ -281,16 +282,16 @@ class _SectionHeader extends StatelessWidget {
           color: AppColors.neonBlue.withValues(alpha: 0.8),
           size: 16.sp,
         ),
-        horizontalSpacing(12),
+        AppSpacing.horizontalSpacing(AppSpacing.m),
         Text(
           title,
           style: TextStyles.font10BoldCoolGray.copyWith(
             letterSpacing: 2.0,
             color: AppColors.coolGray.withValues(alpha: 0.6),
-            fontWeight: FontWeight.w900,
+            fontWeight: Weights.black,
           ),
         ),
-        horizontalSpacing(12),
+        AppSpacing.horizontalSpacing(AppSpacing.m),
         Expanded(
           child: Container(
             height: 0.5,
@@ -369,19 +370,19 @@ class _FilterOptionTile extends StatelessWidget {
                   color: isSelected ? AppColors.neonBlue : AppColors.coolGray,
                   size: 18.sp,
                 ),
-                horizontalSpacing(10),
+                AppSpacing.horizontalSpacing(10),
                 Expanded(
                   child: Text(
                     label,
                     style:
                         (isSelected
                                 ? TextStyles.font13BoldNeonBlueSora
-                                : TextStyles.font14PureWhiteManrope)
+                                : TextStyles.font14RegularPureWhiteManrope)
                             .copyWith(
                               fontSize: 12.sp,
                               fontWeight: isSelected
-                                  ? FontWeight.w800
-                                  : FontWeight.w500,
+                                  ? Weights.extraBold
+                                  : Weights.medium,
                             ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -420,7 +421,7 @@ class _RefinedChip extends StatelessWidget {
             ? AppColors.neonBlue
             : AppColors.pureWhite.withValues(alpha: 0.7),
         fontSize: 11.sp,
-        fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+        fontWeight: isSelected ? Weights.bold : Weights.regular,
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12.r),
@@ -475,15 +476,15 @@ class _SortToggleChip extends StatelessWidget {
               size: 16.sp,
               color: isSelected ? AppColors.neonBlue : AppColors.coolGray,
             ),
-            horizontalSpacing(10),
+            AppSpacing.horizontalSpacing(10),
             Text(
               label,
-              style: TextStyles.font14PureWhiteManrope.copyWith(
+              style: TextStyles.font14RegularPureWhiteManrope.copyWith(
                 color: isSelected
                     ? AppColors.neonBlue
                     : AppColors.pureWhite.withValues(alpha: 0.7),
                 fontSize: 12.sp,
-                fontWeight: isSelected ? FontWeight.w800 : FontWeight.w500,
+                fontWeight: isSelected ? Weights.extraBold : Weights.medium,
               ),
             ),
           ],
@@ -511,14 +512,14 @@ class _SelectionSummaryBar extends StatelessWidget {
       child: Row(
         children: [
           const Icon(Icons.flash_on_rounded, color: AppColors.gold, size: 14),
-          horizontalSpacing(12),
+          AppSpacing.horizontalSpacing(AppSpacing.m),
           Expanded(
             child: Text(
               summary,
-              style: TextStyles.font12CoolGrayManrope.copyWith(
+              style: TextStyles.font12RegularCoolGrayManrope.copyWith(
                 fontSize: 11.sp,
                 color: AppColors.iceBlue.withValues(alpha: 0.6),
-                fontWeight: FontWeight.w700,
+                fontWeight: Weights.bold,
                 fontStyle: FontStyle.italic,
               ),
               maxLines: 1,
@@ -558,9 +559,9 @@ class _SmallActionButton extends StatelessWidget {
           ),
           child: Text(
             label,
-            style: TextStyles.font14PureWhiteManrope.copyWith(
+            style: TextStyles.font14RegularPureWhiteManrope.copyWith(
               color: AppColors.softRed,
-              fontWeight: FontWeight.w900,
+              fontWeight: Weights.black,
               fontSize: 12.sp,
             ),
           ),
@@ -600,7 +601,7 @@ class _SmallActionButton extends StatelessWidget {
           style: TextStyles.font17BoldTrueBlackSora.copyWith(
             fontSize: 10.sp,
             letterSpacing: 0.5,
-            fontWeight: FontWeight.w900,
+            fontWeight: Weights.black,
           ),
         ),
       ),

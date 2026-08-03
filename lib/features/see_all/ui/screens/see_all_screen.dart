@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/extensions/routing_extension.dart';
 import '../../../../core/networking/di.dart';
+import '../../../../core/extensions/routing_extension.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../../data/models/see_all_arguments.dart';
@@ -49,7 +49,7 @@ class _SeeAllScreenState extends State<SeeAllScreen> {
         ),
         title: Text(
           widget.arguments.title,
-          style: TextStyles.font20SimiBoldPlatinumGray,
+          style: TextStyles.font20SemiBoldPlatinumGray,
         ),
       ),
       body: BlocProvider.value(value: _cubit, child: const SeeAllGrid()),

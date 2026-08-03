@@ -6,7 +6,8 @@ import '../../helpers/video_player.dart';
 import '../../models/video_model.dart';
 import '../../theming/app_colors.dart';
 import '../../theming/text_styles.dart';
-import '../movura_loading_indicator.dart';
+import '../../theming/weights.dart';
+import '../loading/movura_loading_indicator.dart';
 
 class VideoCard extends StatelessWidget {
   const VideoCard({
@@ -27,7 +28,7 @@ class VideoCard extends StatelessWidget {
           if (video.key != null) playYoutubeVideo(context, video.key!);
         },
         child: Container(
-          width: 200.w,
+          width: 180.w,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16.r),
             boxShadow: [
@@ -45,12 +46,12 @@ class VideoCard extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(16.r),
                 child: CachedNetworkImage(
-                  width: 200.w,
+                  width: 180.w,
                   height: 120.h,
                   fit: BoxFit.cover,
                   imageUrl: youtubeThumbnail,
                   placeholder: (context, url) => Container(
-                    width: 200.w,
+                    width: 180.w,
                     color: AppColors.jetBlack,
                     child: const Center(
                       child: MovuraLoadingIndicator(size: 35),
@@ -66,7 +67,7 @@ class VideoCard extends StatelessWidget {
                 ),
               ),
               Container(
-                width: 200.w,
+                width: 180.w,
                 height: 120.h,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -80,13 +81,26 @@ class VideoCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16.r),
                 ),
               ),
-              CircleAvatar(
-                radius: 18.r,
-                backgroundColor: AppColors.neonBlue.withValues(alpha: 0.9),
-                child: Icon(
-                  Icons.play_arrow_rounded,
-                  color: AppColors.trueBlack,
-                  size: 22.sp,
+              Center(
+                child: Container(
+                  width: 36.r,
+                  height: 36.r,
+                  decoration: BoxDecoration(
+                    color: AppColors.neonBlue.withValues(alpha: 0.85),
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.neonBlue.withValues(alpha: 0.3),
+                        blurRadius: 12,
+                        spreadRadius: 2,
+                      ),
+                    ],
+                  ),
+                  child: Icon(
+                    Icons.play_arrow_rounded,
+                    color: AppColors.trueBlack,
+                    size: 20.sp,
+                  ),
                 ),
               ),
               Positioned(
@@ -97,10 +111,10 @@ class VideoCard extends StatelessWidget {
                   video.name ?? '',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyles.font14PureWhiteManrope.copyWith(
+                  style: TextStyles.font14RegularPureWhiteManrope.copyWith(
                     color: AppColors.pureWhite,
                     fontSize: 10.sp,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: Weights.semiBold,
                   ),
                 ),
               ),

@@ -14,13 +14,7 @@ class ActorModel {
   @JsonKey(name: "profile_path")
   final String? actorImage;
 
-  ActorModel({
-    this.id,
-    this.job,
-    this.name,
-    this.character,
-    this.actorImage,
-  });
+  ActorModel({this.id, this.job, this.name, this.character, this.actorImage});
 
   factory ActorModel.fromJson(Map<String, dynamic> json) =>
       _$ActorModelFromJson(json);

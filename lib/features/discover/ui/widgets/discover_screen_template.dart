@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/core/widgets/app_icon_button.dart';
+import 'package:movura/core/widgets/buttons/app_icon_button.dart';
 import 'package:movura/features/home/data/models/category_card_model.dart';
 import 'discover_category_list.dart';
 
@@ -30,7 +30,7 @@ class DiscoverScreenTemplate extends StatelessWidget {
         ),
         title: Text(
           title,
-          style: TextStyles.font20SimiBoldNeonBlueManrope,
+          style: TextStyles.font20SemiBoldNeonBlueManrope,
         ),
       ),
       body: DiscoverCategoryList(categories: categories),

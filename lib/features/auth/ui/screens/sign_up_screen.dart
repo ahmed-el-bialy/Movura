@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/constants/app_constants.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/helpers/validators.dart';
+import 'package:movura/core/networking/di.dart';
+import 'package:movura/core/routing/route_names.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/theming/weights.dart';
+import 'package:movura/core/widgets/buttons/app_text_button.dart';
+import 'package:movura/core/widgets/fields/app_text_form_field.dart';
 
-import '../../../../core/constants/app_constants.dart';
-import '../../../../core/extensions/routing_extension.dart';
-import '../../../../core/helpers/spacing.dart';
-import '../../../../core/helpers/validators.dart';
-import '../../../../core/networking/di.dart';
-import '../../../../core/routing/route_names.dart';
-import '../../../../core/theming/app_colors.dart';
-import '../../../../core/theming/text_styles.dart';
-import '../../../../core/widgets/app_text_button.dart';
-import '../../../../core/widgets/app_text_form_field.dart';
 import '../../logic/auth/auth_cubit.dart';
 import '../../logic/auth/auth_state.dart';
 import '../widgets/auth_background.dart';
@@ -80,13 +81,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            verticalSpacing(20),
+                            AppSpacing.verticalSpacing(20),
                             const AuthHeader(
                               title: "Create Account",
                               subtitle:
                                   "Join the premiere community for cinema lovers",
                             ),
-                            verticalSpacing(25),
+                            AppSpacing.verticalSpacing(25),
                             AuthFormContainer(
                               child: Column(
                                 children: [
@@ -104,7 +105,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           : null,
                                     ),
                                   ),
-                                  verticalSpacing(16),
+                                  AppSpacing.verticalSpacing(AppSpacing.l),
                                   AuthInputField(
                                     label: "Email Address",
                                     child: AppTextFormField(
@@ -118,7 +119,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       validator: Validators.validateEmail,
                                     ),
                                   ),
-                                  verticalSpacing(16),
+                                  AppSpacing.verticalSpacing(AppSpacing.l),
                                   AuthInputField(
                                     label: "Password",
                                     child: AppTextFormField(
@@ -147,20 +148,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ],
                               ),
                             ),
-                            verticalSpacing(30),
+                            AppSpacing.verticalSpacing(30),
                             _SignUpButton(
                               formKey: formKey,
                               nameController: nameController,
                               emailController: emailController,
                               passwordController: passwordController,
                             ),
-                            verticalSpacing(30),
+                            AppSpacing.verticalSpacing(30),
                             const AuthDivider(),
-                            verticalSpacing(20),
+                            AppSpacing.verticalSpacing(20),
                             SocialButtonsRow(),
-                            verticalSpacing(25),
+                            AppSpacing.verticalSpacing(25),
                             const _LoginToggle(),
-                            verticalSpacing(20),
+                            AppSpacing.verticalSpacing(20),
                           ],
                         ),
                       ),
@@ -239,13 +240,13 @@ class _LoginToggle extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("Already a member? ", style: TextStyles.font12CoolGrayManrope),
+        Text("Already a member? ", style: TextStyles.font12RegularCoolGrayManrope),
         GestureDetector(
           onTap: () => context.pop(),
           child: Text(
             "Sign In",
             style: TextStyles.font13BoldNeonBlueSora.copyWith(
-              fontWeight: FontWeight.w800,
+              fontWeight: Weights.extraBold,
             ),
           ),
         ),

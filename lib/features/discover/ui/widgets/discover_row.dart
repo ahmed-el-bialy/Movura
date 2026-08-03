@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../core/constants/app_constants.dart';
-import '../../../../core/helpers/spacing.dart';
-import '../../../../core/models/poster_model.dart';
-import '../../../../core/theming/text_styles.dart';
-import '../../../../core/widgets/poster_card/poster_card.dart';
-import '../../../../core/widgets/section_title.dart';
+import 'package:movura/core/constants/app_constants.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/models/poster_model.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/widgets/poster_card/poster_card.dart';
+import 'package:movura/core/widgets/layout/section_title.dart';
 
 class DiscoverRow extends StatelessWidget {
   final String title;
@@ -32,7 +32,7 @@ class DiscoverRow extends StatelessWidget {
           actionName: AppConstants.sectionAction,
           onTap: onSeeAll,
         ),
-        verticalSpacing(8),
+        AppSpacing.verticalSpacing(AppSpacing.s),
         SizedBox(
           height: 260.h,
           child: ListView.builder(

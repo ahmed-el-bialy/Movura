@@ -2,26 +2,27 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/constants/api_constants.dart';
+import 'package:movura/core/constants/app_constants.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/networking/di.dart';
+import 'package:movura/core/routing/arguments_models.dart';
+import 'package:movura/core/routing/route_names.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/theming/weights.dart';
+import 'package:movura/core/widgets/app_error_widget.dart';
+import 'package:movura/core/widgets/layout/section_title.dart';
+import 'package:movura/core/widgets/loading/movura_loading_indicator.dart';
+import 'package:movura/core/widgets/shared_details/actors_list.dart';
+import 'package:movura/core/widgets/shared_details/companies_list.dart';
 import 'package:movura/core/widgets/shared_details/details_tab_state_wrapper.dart';
+import 'package:movura/core/widgets/shared_details/images_list.dart';
+import 'package:movura/core/widgets/shared_details/videos_list.dart';
 import 'package:movura/features/tv_details/ui/widgets/seasons_list.dart';
 import 'package:movura/features/tv_details/ui/widgets/tv_networks_list.dart';
 
-import '../../../../../core/helpers/spacing.dart';
-import '../../../../../core/theming/app_colors.dart';
-import '../../../../../core/theming/text_styles.dart';
-import '../../../../../core/widgets/section_title.dart';
-import '../../../../core/constants/api_constants.dart';
-import '../../../../core/constants/app_constants.dart';
-import '../../../../core/extensions/routing_extension.dart';
-import '../../../../core/networking/di.dart';
-import '../../../../core/routing/arguments_models.dart';
-import '../../../../core/routing/route_names.dart';
-import '../../../../core/widgets/app_error_widget.dart';
-import '../../../../core/widgets/movura_loading_indicator.dart';
-import '../../../../core/widgets/shared_details/actors_list.dart';
-import '../../../../core/widgets/shared_details/companies_list.dart';
-import '../../../../core/widgets/shared_details/images_list.dart';
-import '../../../../core/widgets/shared_details/videos_list.dart';
 import '../../data/season_details_model.dart';
 import '../../logic/about/about_tv_cubit.dart';
 import '../../logic/seasons/tv_seasons_cubit.dart';
@@ -61,19 +62,19 @@ class AboutTvTabBody extends StatelessWidget {
                         tvId: state.model.id,
                         tvTitle: state.model.title ?? 'TV Show',
                       ),
-                      verticalSpacing(15),
+                      AppSpacing.verticalSpacing(15),
                     ],
                     if (state.model.seasons != null &&
                         state.model.seasons!.length == 1) ...[
                       const SectionTitle(sectionName: "Episodes"),
-                      verticalSpacing(8),
+                      AppSpacing.verticalSpacing(AppSpacing.s),
                       _SingleSeasonEpisodes(
                         tvId: state.model.id,
                         tvTitle: state.model.title ?? 'TV Show',
                         seasonNumber:
                             state.model.seasons?.first.seasonNumber ?? 1,
                       ),
-                      verticalSpacing(15),
+                      AppSpacing.verticalSpacing(15),
                     ],
                     (state.model.actors?.tvActors != null &&
                             state.model.actors!.tvActors!.isNotEmpty)
@@ -85,21 +86,21 @@ class AboutTvTabBody extends StatelessWidget {
                         : const SizedBox.shrink(),
                     if (state.model.actors?.tvActors != null)
                       ActorsList(actors: state.model.actors?.tvActors ?? []),
-                    verticalSpacing(15),
+                    AppSpacing.verticalSpacing(15),
                     (state.model.companies != null &&
                             state.model.companies!.isNotEmpty)
                         ? const SectionTitle(sectionName: "Companies")
                         : const SizedBox.shrink(),
                     if (state.model.companies != null)
                       CompaniesList(company: state.model.companies ?? []),
-                    verticalSpacing(15),
+                    AppSpacing.verticalSpacing(15),
                     (state.model.networks != null &&
                             state.model.networks!.isNotEmpty)
                         ? const SectionTitle(sectionName: "Networks")
                         : const SizedBox.shrink(),
                     if (state.model.networks != null)
                       TvNetworksList(network: state.model.networks ?? []),
-                    verticalSpacing(15),
+                    AppSpacing.verticalSpacing(15),
                     state.model.mediaImages?.backdropImages != null &&
                             state.model.mediaImages!.backdropImages!.isNotEmpty
                         ? const SectionTitle(sectionName: "IMAGES")
@@ -110,7 +111,7 @@ class AboutTvTabBody extends StatelessWidget {
                         height: 250,
                         imageFit: BoxFit.fill,
                       ),
-                    verticalSpacing(15),
+                    AppSpacing.verticalSpacing(15),
                     state.model.mediaImages?.logoImages != null &&
                             state.model.mediaImages!.logoImages!.isNotEmpty
                         ? const SectionTitle(sectionName: "LOGOS")
@@ -125,11 +126,11 @@ class AboutTvTabBody extends StatelessWidget {
                       ),
                     if (state.model.tvVideos?.videoList != null &&
                         state.model.tvVideos!.videoList!.isNotEmpty) ...[
-                      verticalSpacing(15),
+                      AppSpacing.verticalSpacing(15),
                       const SectionTitle(sectionName: "TRAILERS & CLIPS"),
-                      verticalSpacing(8),
+                      AppSpacing.verticalSpacing(AppSpacing.s),
                       VideosList(allVideos: state.model.tvVideos!.videoList!),
-                      verticalSpacing(35),
+                      AppSpacing.verticalSpacing(35),
                     ],
                   ],
                 )
@@ -281,7 +282,7 @@ class _HorizontalEpisodeCard extends StatelessWidget {
                       style: TextStyle(
                         color: AppColors.trueBlack,
                         fontSize: 10.sp,
-                        fontWeight: FontWeight.w800,
+                        fontWeight: Weights.extraBold,
                       ),
                     ),
                   ),
@@ -307,13 +308,13 @@ class _HorizontalEpisodeCard extends StatelessWidget {
                             color: AppColors.gold,
                             size: 10.sp,
                           ),
-                          horizontalSpacing(2),
+                          AppSpacing.horizontalSpacing(2),
                           Text(
                             episode.voteAverage!.toStringAsFixed(1),
                             style: TextStyle(
                               color: AppColors.pureWhite,
                               fontSize: 9.sp,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: Weights.bold,
                             ),
                           ),
                         ],
@@ -333,9 +334,9 @@ class _HorizontalEpisodeCard extends StatelessWidget {
                       episode.name ?? '',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyles.font12CoolGrayManrope.copyWith(
+                      style: TextStyles.font12RegularCoolGrayManrope.copyWith(
                         color: AppColors.iceBlue,
-                        fontWeight: FontWeight.w700,
+                        fontWeight: Weights.bold,
                         fontSize: 11.sp,
                         height: 1.3,
                       ),
@@ -349,10 +350,10 @@ class _HorizontalEpisodeCard extends StatelessWidget {
                             size: 10.sp,
                             color: AppColors.coolGray,
                           ),
-                          horizontalSpacing(3),
+                          AppSpacing.horizontalSpacing(3),
                           Text(
                             '${episode.runtime} min',
-                            style: TextStyles.font12CoolGrayManrope.copyWith(
+                            style: TextStyles.font12RegularCoolGrayManrope.copyWith(
                               fontSize: 9.sp,
                             ),
                           ),

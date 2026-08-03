@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/constants/api_constants.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/theming/weights.dart';
 
-import '../../../../../core/constants/api_constants.dart';
-import '../../../../../core/helpers/spacing.dart';
-import '../../../../../core/theming/app_colors.dart';
-import '../../../../../core/theming/text_styles.dart';
 import '../../../data/season_details_model.dart';
 import 'episodes_list.dart';
 
@@ -90,9 +91,9 @@ class TvSeasonDetailsBody extends StatelessWidget {
                         children: [
                           Text(
                             tvTitle,
-                            style: TextStyles.font12CoolGrayManrope,
+                            style: TextStyles.font12RegularCoolGrayManrope,
                           ),
-                          verticalSpacing(4),
+                          AppSpacing.verticalSpacing(AppSpacing.xs),
                           Text(
                             seasonDetails.name ?? 'Season',
                             style: TextStyles.font17BoldIceBlueMontserrat
@@ -114,30 +115,30 @@ class TvSeasonDetailsBody extends StatelessWidget {
               padding: EdgeInsets.all(16.r),
               child: Text(
                 seasonDetails.overview ?? '',
-                style: TextStyles.font12CoolGrayManrope.copyWith(height: 1.6),
+                style: TextStyles.font12RegularCoolGrayManrope.copyWith(height: 1.6),
               ),
             ),
           ),
-        sliverVerticalSpacing(16),
+        AppSpacing.sliverVerticalSpacing(AppSpacing.l),
         SliverToBoxAdapter(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: Text(
               'Episodes',
-              style: TextStyles.font14PureWhiteManrope.copyWith(
-                fontWeight: FontWeight.bold,
+              style: TextStyles.font14RegularPureWhiteManrope.copyWith(
+                fontWeight: Weights.bold,
               ),
             ),
           ),
         ),
-        sliverVerticalSpacing(12),
+        AppSpacing.sliverVerticalSpacing(AppSpacing.m),
         EpisodesList(
           episodes: seasonDetails.episodes,
           tvId: tvId,
           tvTitle: tvTitle,
           seasonName: seasonDetails.name ?? 'Season',
         ),
-        sliverVerticalSpacing(40),
+        AppSpacing.sliverVerticalSpacing(40),
       ],
     );
   }

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/networking/di.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/theming/text_styles.dart';
 
-import '../../../../core/helpers/spacing.dart';
-import '../../../../core/networking/di.dart';
-import '../../../../core/theming/app_colors.dart';
-import '../../../../core/theming/app_spacing.dart';
-import '../../../../core/theming/text_styles.dart';
 import '../../logic/search/search_cubit.dart';
 import '../widgets/search_ui_widgets/search_empty_state.dart';
 import 'custom_search_delegate.dart';
@@ -22,7 +21,7 @@ class SearchScreen extends StatelessWidget {
           padding: AppSpacing.horizontal16(),
           child: Column(
             children: [
-              verticalSpacing(20),
+              AppSpacing.verticalSpacing(20),
               GestureDetector(
                 onTap: () {
                   showSearch(
@@ -48,10 +47,10 @@ class SearchScreen extends StatelessWidget {
                         color: AppColors.neonBlue,
                         size: 24.sp,
                       ),
-                      horizontalSpacing(12),
+                      AppSpacing.horizontalSpacing(AppSpacing.m),
                       Text(
                         'Search movies, TV shows...',
-                        style: TextStyles.font12CoolGrayManrope.copyWith(
+                        style: TextStyles.font12RegularCoolGrayManrope.copyWith(
                           fontSize: 14.sp,
                           color: AppColors.slateGray.withValues(alpha: 0.6),
                         ),

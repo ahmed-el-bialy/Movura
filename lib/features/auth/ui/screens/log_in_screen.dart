@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/constants/app_constants.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/helpers/validators.dart';
+import 'package:movura/core/networking/di.dart';
+import 'package:movura/core/routing/route_names.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/theming/weights.dart';
+import 'package:movura/core/widgets/buttons/app_text_button.dart';
+import 'package:movura/core/widgets/fields/app_text_form_field.dart';
 
-import '../../../../core/constants/app_constants.dart';
-import '../../../../core/extensions/routing_extension.dart';
-import '../../../../core/helpers/spacing.dart';
-import '../../../../core/helpers/validators.dart';
-import '../../../../core/networking/di.dart';
-import '../../../../core/routing/route_names.dart';
-import '../../../../core/theming/app_colors.dart';
-import '../../../../core/theming/app_spacing.dart';
-import '../../../../core/theming/text_styles.dart';
-import '../../../../core/widgets/app_text_button.dart';
-import '../../../../core/widgets/app_text_form_field.dart';
 import '../../logic/auth/auth_cubit.dart';
 import '../../logic/auth/auth_state.dart';
 import '../widgets/auth_background.dart';
@@ -80,13 +80,14 @@ class _LogInScreenState extends State<LogInScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            verticalSpacing(10),
+                            AppSpacing.verticalSpacing(10),
                             const _SkipButton(),
                             const AuthHeader(
                               title: "Welcome Back",
-                              subtitle: "Sign in to continue your cinematic journey",
+                              subtitle:
+                                  "Sign in to continue your cinematic journey",
                             ),
-                            verticalSpacing(18),
+                            AppSpacing.verticalSpacing(18),
                             AuthFormContainer(
                               child: Column(
                                 children: [
@@ -103,7 +104,7 @@ class _LogInScreenState extends State<LogInScreen> {
                                       validator: Validators.validateEmail,
                                     ),
                                   ),
-                                  verticalSpacing(20),
+                                  AppSpacing.verticalSpacing(20),
                                   AuthInputField(
                                     label: "Password",
                                     action: Text(
@@ -137,19 +138,19 @@ class _LogInScreenState extends State<LogInScreen> {
                                 ],
                               ),
                             ),
-                            verticalSpacing(25),
+                            AppSpacing.verticalSpacing(25),
                             _LoginButton(
                               formKey: formKey,
                               emailController: emailController,
                               passwordController: passwordController,
                             ),
-                            verticalSpacing(30),
+                            AppSpacing.verticalSpacing(30),
                             const AuthDivider(),
-                            verticalSpacing(16),
+                            AppSpacing.verticalSpacing(AppSpacing.l),
                             SocialButtonsRow(),
-                            verticalSpacing(16),
+                            AppSpacing.verticalSpacing(AppSpacing.l),
                             const _SignUpToggle(),
-                            verticalSpacing(10),
+                            AppSpacing.verticalSpacing(10),
                           ],
                         ),
                       ),
@@ -173,9 +174,8 @@ class _SkipButton extends StatelessWidget {
     return Align(
       alignment: Alignment.topRight,
       child: TextButton(
-        onPressed: () => context.pushAndRemoveUntil(
-          routeName: RouteNames.mainScreen,
-        ),
+        onPressed: () =>
+            context.pushAndRemoveUntil(routeName: RouteNames.mainScreen),
         style: TextButton.styleFrom(
           backgroundColor: AppColors.onyxBlack.withValues(alpha: 0.4),
           shape: RoundedRectangleBorder(
@@ -222,9 +222,9 @@ class _LoginButton extends StatelessWidget {
             onPressed: () {
               if (formKey.currentState!.validate()) {
                 context.read<AuthCubit>().login(
-                      emailController.text.trim(),
-                      passwordController.text,
-                    );
+                  emailController.text.trim(),
+                  passwordController.text,
+                );
               }
             },
             buttonWidth: 220.w,
@@ -249,17 +249,14 @@ class _SignUpToggle extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          "New here? ",
-          style: TextStyles.font12CoolGrayManrope,
-        ),
+        Text("New here? ", style: TextStyles.font12RegularCoolGrayManrope),
         GestureDetector(
           onTap: () => context.pushNamed(RouteNames.signUpScreen),
           child: Text(
             "Create Account",
             style: TextStyles.font13BoldNeonBlueSora.copyWith(
               fontSize: 12.sp,
-              fontWeight: FontWeight.w600,
+              fontWeight: Weights.semiBold,
             ),
           ),
         ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/helpers/spacing.dart';
-import '../../../../../core/theming/app_colors.dart';
-import '../../../../../core/theming/text_styles.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/text_styles.dart';
 
 class EpisodeNavigationButton extends StatelessWidget {
   const EpisodeNavigationButton({
@@ -43,7 +43,7 @@ class EpisodeNavigationButton extends StatelessWidget {
             children: [
               if (isLeft) ...[
                 Icon(icon, color: AppColors.neonBlue, size: 20.sp),
-                horizontalSpacing(8),
+                AppSpacing.horizontalSpacing(AppSpacing.s),
               ],
               Text(
                 label,
@@ -53,7 +53,7 @@ class EpisodeNavigationButton extends StatelessWidget {
                 ),
               ),
               if (!isLeft) ...[
-                horizontalSpacing(8),
+                AppSpacing.horizontalSpacing(AppSpacing.s),
                 Icon(icon, color: AppColors.neonBlue, size: 20.sp),
               ],
             ],

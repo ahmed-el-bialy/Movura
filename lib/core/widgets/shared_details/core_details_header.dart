@@ -6,7 +6,7 @@ import 'package:movura/core/widgets/shared_details/platform_options_sheet.dart';
 import '../../constants/api_constants.dart';
 import '../../extensions/routing_extension.dart';
 import '../../theming/app_colors.dart';
-import '../app_icon_button.dart';
+import '../buttons/app_icon_button.dart';
 
 class CoreDetailsHeader extends StatelessWidget {
   const CoreDetailsHeader({

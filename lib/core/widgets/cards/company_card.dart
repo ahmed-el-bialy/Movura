@@ -2,10 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../constants/api_constants.dart';
-import '../models/company_model.dart';
-import '../theming/app_colors.dart';
-import '../theming/text_styles.dart';
+import 'package:movura/core/constants/api_constants.dart';
+import 'package:movura/core/models/company_model.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/theming/text_styles.dart';
 
 class CompanyCard extends StatelessWidget {
   const CompanyCard({super.key, required this.company});
@@ -27,7 +28,7 @@ class CompanyCard extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: AppSpacing.all(AppSpacing.s),
                       child: CachedNetworkImage(
                         imageUrl:
                             "${ApiConstants.imageBaseUrl}${company.logo!}",
@@ -50,7 +51,7 @@ class CompanyCard extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: AppSpacing.all(AppSpacing.s),
                       child: CachedNetworkImage(
                         imageUrl: ApiConstants.companyImageError,
                         fit: BoxFit.cover,
@@ -88,7 +89,7 @@ class CompanyCard extends StatelessWidget {
               top: 5.h,
               left: 10.w,
               right: 10.w,
-              bottom: 8.w,
+              bottom: AppSpacing.s.w,
             ),
             child: Text(
               company.originCountry ?? '',

@@ -16,4 +16,3 @@ class RouteNames {
   static const String discoverTvScreen = "/discoverTv";
   static const String discoverPeopleScreen = "/discoverPeople";
 }
-

@@ -27,7 +27,7 @@ class AuthFormContainer extends StatelessWidget {
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
           child: Container(
-            padding: AppSpacing.symmetric(horizontal: 16, vertical: 20),
+            padding: AppSpacing.symmetric(horizontal: AppSpacing.l, vertical: 20),
             decoration: BoxDecoration(
               color: AppColors.onyxBlack.withValues(alpha: 0.3),
               borderRadius: BorderRadius.circular(24.r),

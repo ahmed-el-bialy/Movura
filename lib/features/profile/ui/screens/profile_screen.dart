@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../core/helpers/spacing.dart';
-import '../../../../core/theming/app_colors.dart';
-import '../../../../core/theming/text_styles.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/theming/weights.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -20,7 +20,7 @@ class ProfileScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                verticalSpacing(30),
+                AppSpacing.verticalSpacing(30),
                 Center(
                   child: Column(
                     children: [
@@ -48,20 +48,20 @@ class ProfileScreen extends StatelessWidget {
                           color: AppColors.neonBlue,
                         ),
                       ),
-                      verticalSpacing(16),
+                      AppSpacing.verticalSpacing(AppSpacing.l),
                       Text(
                         'John Doe',
-                        style: TextStyles.font24SimiBoldNeonBlueManrope
+                        style: TextStyles.font24SemiBoldNeonBlueManrope
                             .copyWith(color: AppColors.iceBlue),
                       ),
                       Text(
                         'Cinematic Explorer',
-                        style: TextStyles.font12CoolGrayManrope,
+                        style: TextStyles.font12RegularCoolGrayManrope,
                       ),
                     ],
                   ),
                 ),
-                verticalSpacing(40),
+                AppSpacing.verticalSpacing(40),
                 Text(
                   'YOUR COLLECTIONS',
                   style: TextStyles.font10BoldCoolGray.copyWith(
@@ -69,7 +69,7 @@ class ProfileScreen extends StatelessWidget {
                     color: AppColors.neonBlue.withValues(alpha: 0.7),
                   ),
                 ),
-                verticalSpacing(16),
+                AppSpacing.verticalSpacing(AppSpacing.l),
                 _ProfileCollectionTile(
                   title: 'Watchlist',
                   count: 12,
@@ -98,7 +98,7 @@ class ProfileScreen extends StatelessWidget {
                   color: AppColors.amberGold,
                   onTap: () {},
                 ),
-                verticalSpacing(30),
+                AppSpacing.verticalSpacing(30),
                 Text(
                   'SETTINGS',
                   style: TextStyles.font10BoldCoolGray.copyWith(
@@ -106,7 +106,7 @@ class ProfileScreen extends StatelessWidget {
                     color: AppColors.neonBlue.withValues(alpha: 0.7),
                   ),
                 ),
-                verticalSpacing(16),
+                AppSpacing.verticalSpacing(AppSpacing.l),
                 _ProfileCollectionTile(
                   title: 'App Settings',
                   icon: Icons.settings_outlined,
@@ -119,7 +119,7 @@ class ProfileScreen extends StatelessWidget {
                   color: AppColors.softRed,
                   onTap: () {},
                 ),
-                verticalSpacing(100),
+                AppSpacing.verticalSpacing(100),
               ],
             ),
           ),
@@ -170,11 +170,11 @@ class _ProfileCollectionTile extends StatelessWidget {
                   ),
                   child: Icon(icon, color: color, size: 22.sp),
                 ),
-                horizontalSpacing(16),
+                AppSpacing.horizontalSpacing(AppSpacing.l),
                 Text(
                   title,
-                  style: TextStyles.font14PureWhiteManrope.copyWith(
-                    fontWeight: FontWeight.w600,
+                  style: TextStyles.font14RegularPureWhiteManrope.copyWith(
+                    fontWeight: Weights.semiBold,
                   ),
                 ),
                 const Spacer(),
@@ -186,7 +186,7 @@ class _ProfileCollectionTile extends StatelessWidget {
                       color: AppColors.coolGray,
                     ),
                   ),
-                horizontalSpacing(8),
+                AppSpacing.horizontalSpacing(AppSpacing.s),
                 Icon(
                   Icons.arrow_forward_ios_rounded,
                   color: AppColors.coolGray.withValues(alpha: 0.5),

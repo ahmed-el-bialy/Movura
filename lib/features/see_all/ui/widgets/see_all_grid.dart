@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/helpers/spacing.dart';
-import 'package:movura/core/widgets/movura_loading_indicator.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/theming/weights.dart';
+import 'package:movura/core/widgets/loading/movura_loading_indicator.dart';
+import 'package:movura/core/widgets/poster_card/poster_card.dart';
 
-import '../../../../core/theming/app_colors.dart';
-import '../../../../core/theming/text_styles.dart';
-import '../../../../core/widgets/poster_card/poster_card.dart';
 import '../../logic/see_all_cubit.dart';
 
 class SeeAllGrid extends StatelessWidget {
@@ -77,9 +78,9 @@ class SeeAllGrid extends StatelessWidget {
                         titleStyle: TextStyles.font14BoldIceBlueMontserrat
                             .copyWith(
                               fontSize: 11.sp,
-                              fontWeight: FontWeight.w800,
+                              fontWeight: Weights.extraBold,
                             ),
-                        subTextStyle: TextStyles.font16SimiBoldPlatinumGray
+                        subTextStyle: TextStyles.font16SemiBoldPlatinumGray
                             .copyWith(fontSize: 10.sp, letterSpacing: 0.5),
                         showMediaType: true,
                         maxLines: 2,
@@ -96,7 +97,7 @@ class SeeAllGrid extends StatelessWidget {
                       ),
                     ),
                   ),
-                sliverVerticalSpacing(40),
+                AppSpacing.sliverVerticalSpacing(40),
               ],
             ),
           );

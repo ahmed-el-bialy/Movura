@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../../../../core/extensions/routing_extension.dart';
-import '../../../../core/helpers/spacing.dart';
-import '../../../../core/networking/di.dart';
-import '../../../../core/routing/route_names.dart';
-import '../../../../core/theming/app_colors.dart';
+import 'package:movura/core/networking/di.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/routing/route_names.dart';
+import 'package:movura/core/theming/app_colors.dart';
 import '../../../search/logic/search/search_cubit.dart';
 import '../../../search/ui/screens/custom_search_delegate.dart';
 import '../../../see_all/data/models/see_all_arguments.dart';
@@ -113,7 +113,7 @@ class _CategoryListState extends State<CategoryList> {
             },
           ),
         ),
-        verticalSpacing(12),
+        AppSpacing.verticalSpacing(AppSpacing.m),
         SmoothPageIndicator(
           controller: controller,
           count: categories.length,

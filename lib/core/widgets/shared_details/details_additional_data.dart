@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../helpers/spacing.dart';
-import '../../theming/app_colors.dart';
-import '../../theming/text_styles.dart';
+
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/theming/weights.dart';
 
 class DetailsAdditionalData extends StatelessWidget {
   const DetailsAdditionalData({
@@ -24,10 +26,7 @@ class DetailsAdditionalData extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: items.map((item) => _DataItem(item: item)).toList(),
           ),
-          if (bottomWidget != null) ...[
-            verticalSpacing(20),
-            bottomWidget!,
-          ],
+          if (bottomWidget != null) ...[AppSpacing.verticalSpacing(20), bottomWidget!],
         ],
       ),
     );
@@ -58,12 +57,12 @@ class _DataItem extends StatelessWidget {
             color: AppColors.coolGray.withValues(alpha: 0.8),
           ),
         ),
-        verticalSpacing(6),
+        AppSpacing.verticalSpacing(6),
         Text(
           item.value,
           style: TextStyles.font12MediumPlatinumGray.copyWith(
             color: AppColors.iceBlue,
-            fontWeight: FontWeight.bold,
+            fontWeight: Weights.bold,
           ),
         ),
       ],
