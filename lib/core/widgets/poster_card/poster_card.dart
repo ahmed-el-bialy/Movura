@@ -5,7 +5,7 @@ import '../../extensions/routing_extension.dart';
 import '../../models/poster_model.dart';
 import '../../routing/arguments_models.dart';
 import '../../routing/route_names.dart';
-import '../../theming/app_colors.dart';
+import 'package:movura/core/theming/app_colors.dart';
 import 'components/bottom_lef_sub_card.dart';
 import 'components/poster_background_image.dart';
 import 'components/top_lef_sub_card.dart';

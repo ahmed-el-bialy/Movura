@@ -101,7 +101,7 @@ class _MLogoPainter extends CustomPainter {
     // ================= 1. Outer Ring & Rotating Arc =================
     if (showOuterRing) {
       final trackPaint = Paint()
-        ..color = Colors.white.withValues(alpha: 0.1)
+        ..color = AppColors.pureWhite.withValues(alpha: 0.1)
         ..style = PaintingStyle.stroke
         ..strokeWidth = 2.5;
 

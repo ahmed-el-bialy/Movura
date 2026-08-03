@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/networking/di.dart';
 import '../../../../core/extensions/routing_extension.dart';
-import '../../../../core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../../data/models/see_all_arguments.dart';
 import '../../data/repo/see_all_repo.dart';
@@ -44,7 +44,7 @@ class _SeeAllScreenState extends State<SeeAllScreen> {
         centerTitle: false,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_rounded, color: Colors.white),
+          icon: const Icon(Icons.arrow_back_ios_rounded, color: AppColors.pureWhite),
           onPressed: () => context.pop(),
         ),
         title: Text(

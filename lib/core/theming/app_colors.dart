@@ -31,4 +31,5 @@ class AppColors {
   static const Color royalIndigo = Color(0xFF3949AB);
   static const Color amberGold = Color(0xFFFFB300);
   static const Color deepCrimson = Color(0xFFD81B60);
+  static const Color profitGreen = Color(0xFF69F0AE);
 }

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/networking/di.dart';
 import '../../../../core/routing/arguments_models.dart';
-import '../../../../core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/widgets/app_error_widget.dart';
 import 'package:movura/core/widgets/navigation/app_navigation_bar.dart';
 import '../../../../core/widgets/shared_details/season_loading_skeleton.dart';

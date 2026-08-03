@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../constants/api_constants.dart';
 import '../../models/image_model.dart';
-import '../../theming/app_colors.dart';
+import 'package:movura/core/theming/app_colors.dart';
 import '../../theming/app_spacing.dart';
 
 class ImagesList extends StatelessWidget {

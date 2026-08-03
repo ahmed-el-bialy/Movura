@@ -40,12 +40,12 @@ class AdditionalData extends StatelessWidget {
             padding: AppSpacing.symmetric(horizontal: AppSpacing.l, vertical: AppSpacing.m),
             decoration: BoxDecoration(
               color: isProfit
-                  ? Colors.greenAccent.withValues(alpha: 0.08)
+                  ? AppColors.profitGreen.withValues(alpha: 0.08)
                   : AppColors.softRed.withValues(alpha: 0.08),
               borderRadius: BorderRadius.circular(16.r),
               border: Border.all(
                 color: isProfit
-                    ? Colors.greenAccent.withValues(alpha: 0.2)
+                    ? AppColors.profitGreen.withValues(alpha: 0.2)
                     : AppColors.softRed.withValues(alpha: 0.2),
                 width: 1.2,
               ),
@@ -57,14 +57,14 @@ class AdditionalData extends StatelessWidget {
                   isProfit
                       ? Icons.auto_graph_rounded
                       : Icons.trending_down_rounded,
-                  color: isProfit ? Colors.greenAccent : AppColors.softRed,
+                  color: isProfit ? AppColors.profitGreen : AppColors.softRed,
                   size: 20.sp,
                 ),
                 AppSpacing.horizontalSpacing(AppSpacing.m),
                 Text(
                   isProfit ? "ESTIMATED PROFIT: " : "ESTIMATED LOSS: ",
                   style: TextStyles.font10BoldCoolGray.copyWith(
-                    color: isProfit ? Colors.greenAccent : AppColors.softRed,
+                    color: isProfit ? AppColors.profitGreen : AppColors.softRed,
                     letterSpacing: 1.1,
                     fontSize: 11.sp,
                   ),
