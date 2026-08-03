@@ -7,7 +7,7 @@ import '../../../../core/theming/app_colors.dart';
 import '../../../../core/widgets/app_error_widget.dart';
 import '../../../../core/widgets/app_navigation_bar.dart';
 import '../../../../core/widgets/shared_details/episode_loading_skeleton.dart';
-import '../../logic/tv_episode_details_cubit/tv_episode_details_cubit.dart';
+import '../../logic/episodes/tv_episode_details_cubit.dart';
 import '../widgets/episode_widgets/episode_details_body.dart';
 
 class EpisodeDetailsScreen extends StatelessWidget {

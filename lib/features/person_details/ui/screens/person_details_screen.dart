@@ -8,6 +8,7 @@ import '../../../../core/helpers/spacing.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../../../../core/widgets/app_error_widget.dart';
+import '../../../../core/widgets/movura_loading_indicator.dart';
 import '../../../../core/widgets/section_title.dart';
 import '../../../../core/widgets/shared_details/person_credits_list.dart';
 import '../../logic/person_details_cubit.dart';
@@ -22,9 +23,7 @@ class PersonDetailsScreen extends StatelessWidget {
       body: BlocBuilder<PersonDetailsCubit, PersonDetailsState>(
         builder: (context, state) {
           if (state is PersonDetailsLoading) {
-            return const Center(
-              child: CircularProgressIndicator(color: AppColors.neonBlue),
-            );
+            return const Center(child: MovuraLoadingIndicator());
           } else if (state is PersonDetailsLoaded) {
             final person = state.personDetails;
             return CustomScrollView(
@@ -96,6 +95,7 @@ class PersonDetailsScreen extends StatelessWidget {
                               height: 1.6,
                               fontSize: 13.sp,
                             ),
+
                           ),
                         ],
                         verticalSpacing(24),
@@ -147,9 +147,7 @@ class _PersonalInfoGrid extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.onyxBlack.withValues(alpha: 0.3),
         borderRadius: BorderRadius.circular(20.r),
-        border: Border.all(
-          color: AppColors.pureWhite.withValues(alpha: 0.05),
-        ),
+        border: Border.all(color: AppColors.pureWhite.withValues(alpha: 0.05)),
       ),
       child: Column(
         children: [

@@ -4,7 +4,7 @@ import 'package:movura/core/widgets/movura_loading_indicator.dart';
 
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/widgets/app_error_widget.dart';
-import '../../logic/main_details/about_cubit.dart';
+import '../../logic/about/about_cubit.dart';
 import '../widgets/movie_screen_body.dart';
 
 class MovieDetailsScreen extends StatelessWidget {

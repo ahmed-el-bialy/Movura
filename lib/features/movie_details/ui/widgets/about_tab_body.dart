@@ -9,7 +9,7 @@ import '../../../../core/widgets/shared_details/actors_list.dart';
 import '../../../../core/widgets/shared_details/companies_list.dart';
 import '../../../../core/widgets/shared_details/images_list.dart';
 import '../../../../core/widgets/shared_details/videos_list.dart';
-import '../../logic/main_details/about_cubit.dart';
+import '../../logic/about/about_cubit.dart';
 
 class AboutTabBody extends StatelessWidget {
   const AboutTabBody({super.key});
@@ -41,7 +41,11 @@ class AboutTabBody extends StatelessWidget {
                       verticalSpacing(15),
                     ],
                     if (state.model.mediaImages?.backdropImages != null &&
-                        state.model.mediaImages!.backdropImages!.isNotEmpty) ...[
+                        state
+                            .model
+                            .mediaImages!
+                            .backdropImages!
+                            .isNotEmpty) ...[
                       const SectionTitle(sectionName: "IMAGES"),
                       ImagesList(
                         images: state.model.mediaImages?.backdropImages ?? [],
@@ -66,7 +70,9 @@ class AboutTabBody extends StatelessWidget {
                       verticalSpacing(15),
                       const SectionTitle(sectionName: "TRAILERS & CLIPS"),
                       verticalSpacing(8),
-                      VideosList(allVideos: state.model.movieVideos!.videoList!),
+                      VideosList(
+                        allVideos: state.model.movieVideos!.videoList!,
+                      ),
                       verticalSpacing(35),
                     ],
                   ],

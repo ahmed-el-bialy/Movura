@@ -92,9 +92,7 @@ class SeeAllGrid extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.symmetric(vertical: 24.h),
                       child: const Center(
-                        child: CircularProgressIndicator(
-                          color: AppColors.neonBlue,
-                        ),
+                        child: MovuraLoadingIndicator(size: 60),
                       ),
                     ),
                   ),
