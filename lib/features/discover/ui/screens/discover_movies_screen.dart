@@ -112,6 +112,7 @@ class DiscoverMoviesScreen extends StatelessWidget {
               child: CategoryCard(
                 model: categories[index],
                 onTap: categories[index].onTap,
+                width: double.infinity,
               ),
             );
           },
