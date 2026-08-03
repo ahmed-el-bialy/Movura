@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/widgets/shared_details/details_tab_state_wrapper.dart';
 import 'package:movura/features/tv_details/ui/widgets/seasons_list.dart';
 import 'package:movura/features/tv_details/ui/widgets/tv_networks_list.dart';
 
@@ -32,116 +33,108 @@ class AboutTvTabBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AboutTvCubit, AboutTvState>(
       builder: (context, state) {
-        if (state is AboutTvLoading) {
-          return const Center(
-            child: CircularProgressIndicator(color: AppColors.neonBlue),
-          );
-        } else if (state is AboutTvLoaded) {
-          final List<VideoModel> allVideos =
-              state.model.tvVideos?.videoList ?? [];
-          final bool hasMultipleSeasons =
-              state.model.seasons != null && state.model.seasons!.length > 1;
-          final bool hasOneSeason =
-              state.model.seasons != null && state.model.seasons!.length == 1;
-
-          return Column(
-            children: [
-              if (hasMultipleSeasons) ...[
-                SectionTitle(
-                  sectionName: "Seasons",
-                  actionName: AppConstants.sectionAction,
-                  onTap: () {
-                    context.pushNamed(
-                      RouteNames.allSeasonsScreen,
-                      arguments: AllSeasonsArgumentsModel(
+        return DetailsTabStateWrapper(
+          isLoading: state is AboutTvLoading,
+          errorMessage: state is AboutTvError ? state.errorMessage : null,
+          onRetry: () {},
+          child: state is AboutTvLoaded
+              ? Column(
+                  children: [
+                    if (state.model.seasons != null &&
+                        state.model.seasons!.length > 1) ...[
+                      SectionTitle(
+                        sectionName: "Seasons",
+                        actionName: AppConstants.sectionAction,
+                        onTap: () {
+                          context.pushNamed(
+                            RouteNames.allSeasonsScreen,
+                            arguments: AllSeasonsArgumentsModel(
+                              tvId: state.model.id,
+                              tvTitle: state.model.title ?? 'TV Show',
+                              seasons: state.model.seasons ?? [],
+                            ),
+                          );
+                        },
+                      ),
+                      SeasonsList(
+                        seasons: state.model.seasons ?? [],
                         tvId: state.model.id,
                         tvTitle: state.model.title ?? 'TV Show',
-                        seasons: state.model.seasons ?? [],
                       ),
-                    );
-                  },
-                ),
-                SeasonsList(
-                  seasons: state.model.seasons ?? [],
-                  tvId: state.model.id,
-                  tvTitle: state.model.title ?? 'TV Show',
-                ),
-                verticalSpacing(15),
-              ],
-              if (hasOneSeason) ...[
-                const SectionTitle(sectionName: "Episodes"),
-                verticalSpacing(8),
-                _SingleSeasonEpisodes(
-                  tvId: state.model.id,
-                  tvTitle: state.model.title ?? 'TV Show',
-                  seasonNumber: state.model.seasons?.first.seasonNumber ?? 1,
-                ),
-                verticalSpacing(15),
-              ],
-              (state.model.actors?.tvActors != null &&
-                      state.model.actors!.tvActors!.isNotEmpty)
-                  ? SectionTitle(
-                      sectionName: "CAST",
-                      actionName: AppConstants.sectionAction,
-                      onTap: () {},
-                    )
-                  : const SizedBox.shrink(),
-              if (state.model.actors?.tvActors != null)
-                ActorsList(actors: state.model.actors?.tvActors ?? []),
-              verticalSpacing(15),
-              (state.model.companies != null &&
-                      state.model.companies!.isNotEmpty)
-                  ? const SectionTitle(sectionName: "Companies")
-                  : const SizedBox.shrink(),
-              if (state.model.companies != null)
-                CompaniesList(company: state.model.companies ?? []),
-              verticalSpacing(15),
-              (state.model.networks != null && state.model.networks!.isNotEmpty)
-                  ? const SectionTitle(sectionName: "Networks")
-                  : const SizedBox.shrink(),
-              if (state.model.networks != null)
-                TvNetworksList(network: state.model.networks ?? []),
-              verticalSpacing(15),
-              state.model.mediaImages?.backdropImages != null &&
-                      state.model.mediaImages!.backdropImages!.isNotEmpty
-                  ? const SectionTitle(sectionName: "IMAGES")
-                  : const SizedBox.shrink(),
-              if (state.model.mediaImages?.backdropImages != null)
-                ImagesList(
-                  images: state.model.mediaImages?.backdropImages ?? [],
-                  height: 250,
-                  imageFit: BoxFit.fill,
-                ),
-              verticalSpacing(15),
-              state.model.mediaImages?.logoImages != null &&
-                      state.model.mediaImages!.logoImages!.isNotEmpty
-                  ? const SectionTitle(sectionName: "LOGOS")
-                  : const SizedBox.shrink(),
-              if (state.model.mediaImages?.logoImages != null)
-                ImagesList(
-                  images: state.model.mediaImages?.logoImages ?? [],
-                  imageFit: BoxFit.contain,
-                  herPadding: 8,
-                  imageWidth: 120,
-                  height: 180,
-                ),
-              if (allVideos.isNotEmpty) ...[
-                verticalSpacing(15),
-                const SectionTitle(sectionName: "TRAILERS & CLIPS"),
-                verticalSpacing(8),
-                VideosList(allVideos: allVideos),
-                verticalSpacing(35),
-              ],
-            ],
-          );
-        } else if (state is AboutTvError) {
-          return AppErrorWidget(
-            errorMessage: state.errorMessage,
-            onRetry: () {},
-          );
-        } else {
-          return const AppErrorWidget(errorMessage: "There was An Error");
-        }
+                      verticalSpacing(15),
+                    ],
+                    if (state.model.seasons != null &&
+                        state.model.seasons!.length == 1) ...[
+                      const SectionTitle(sectionName: "Episodes"),
+                      verticalSpacing(8),
+                      _SingleSeasonEpisodes(
+                        tvId: state.model.id,
+                        tvTitle: state.model.title ?? 'TV Show',
+                        seasonNumber:
+                            state.model.seasons?.first.seasonNumber ?? 1,
+                      ),
+                      verticalSpacing(15),
+                    ],
+                    (state.model.actors?.tvActors != null &&
+                            state.model.actors!.tvActors!.isNotEmpty)
+                        ? SectionTitle(
+                            sectionName: "CAST",
+                            actionName: AppConstants.sectionAction,
+                            onTap: () {},
+                          )
+                        : const SizedBox.shrink(),
+                    if (state.model.actors?.tvActors != null)
+                      ActorsList(actors: state.model.actors?.tvActors ?? []),
+                    verticalSpacing(15),
+                    (state.model.companies != null &&
+                            state.model.companies!.isNotEmpty)
+                        ? const SectionTitle(sectionName: "Companies")
+                        : const SizedBox.shrink(),
+                    if (state.model.companies != null)
+                      CompaniesList(company: state.model.companies ?? []),
+                    verticalSpacing(15),
+                    (state.model.networks != null &&
+                            state.model.networks!.isNotEmpty)
+                        ? const SectionTitle(sectionName: "Networks")
+                        : const SizedBox.shrink(),
+                    if (state.model.networks != null)
+                      TvNetworksList(network: state.model.networks ?? []),
+                    verticalSpacing(15),
+                    state.model.mediaImages?.backdropImages != null &&
+                            state.model.mediaImages!.backdropImages!.isNotEmpty
+                        ? const SectionTitle(sectionName: "IMAGES")
+                        : const SizedBox.shrink(),
+                    if (state.model.mediaImages?.backdropImages != null)
+                      ImagesList(
+                        images: state.model.mediaImages?.backdropImages ?? [],
+                        height: 250,
+                        imageFit: BoxFit.fill,
+                      ),
+                    verticalSpacing(15),
+                    state.model.mediaImages?.logoImages != null &&
+                            state.model.mediaImages!.logoImages!.isNotEmpty
+                        ? const SectionTitle(sectionName: "LOGOS")
+                        : const SizedBox.shrink(),
+                    if (state.model.mediaImages?.logoImages != null)
+                      ImagesList(
+                        images: state.model.mediaImages?.logoImages ?? [],
+                        imageFit: BoxFit.contain,
+                        herPadding: 8,
+                        imageWidth: 120,
+                        height: 180,
+                      ),
+                    if (state.model.tvVideos?.videoList != null &&
+                        state.model.tvVideos!.videoList!.isNotEmpty) ...[
+                      verticalSpacing(15),
+                      const SectionTitle(sectionName: "TRAILERS & CLIPS"),
+                      verticalSpacing(8),
+                      VideosList(allVideos: state.model.tvVideos!.videoList!),
+                      verticalSpacing(35),
+                    ],
+                  ],
+                )
+              : const SizedBox.shrink(),
+        );
       },
     );
   }

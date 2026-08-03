@@ -1,7 +1,6 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movura/core/widgets/movura_loading_indicator.dart';
 
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/widgets/app_error_widget.dart';
@@ -19,7 +18,7 @@ class MovieDetailsScreen extends StatelessWidget {
       body: BlocBuilder<AboutCubit, AboutState>(
         builder: (context, state) {
           if (state is AboutLoading) {
-            return const Center(child: CircularProgressIndicator(color: AppColors.neonBlue));
+            return const Center(child: MovuraLoadingIndicator());
           } else if (state is AboutLoaded) {
             return MovieScreenBody(model: state.model);
           } else if (state is AboutError) {
