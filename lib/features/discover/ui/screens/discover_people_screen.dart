@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../../core/extensions/routing_extension.dart';
-import '../../../../core/helpers/spacing.dart';
 import '../../../../core/routing/route_names.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
 import '../../../../core/widgets/app_icon_button.dart';
 import '../../../home/data/models/category_card_model.dart';
-import '../../../home/ui/widgets/category_card.dart';
+import '../widgets/discover_category_list.dart';
 import '../../../see_all/data/models/see_all_arguments.dart';
 
 class DiscoverPeopleScreen extends StatelessWidget {
@@ -55,24 +54,7 @@ class DiscoverPeopleScreen extends StatelessWidget {
           style: TextStyles.font20SimiBoldNeonBlueManrope,
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w),
-        child: ListView.separated(
-          padding: EdgeInsets.symmetric(vertical: 20.h),
-          physics: const BouncingScrollPhysics(),
-          itemCount: categories.length,
-          separatorBuilder: (context, index) => verticalSpacing(16),
-          itemBuilder: (context, index) {
-            return SizedBox(
-              height: 120.h,
-              child: CategoryCard(
-                model: categories[index],
-                onTap: categories[index].onTap,
-              ),
-            );
-          },
-        ),
-      ),
+      body: DiscoverCategoryList(categories: categories),
     );
   }
 
