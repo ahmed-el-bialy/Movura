@@ -1,36 +1,37 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:movura/core/constants/api_constants.dart';
-import 'package:movura/core/networking/dio_factory.dart';
-import 'package:movura/features/auth/data/repos/auth_repo.dart';
-import 'package:movura/features/auth/data/web_services/auth_services.dart';
-import 'package:movura/features/auth/logic/auth/auth_cubit.dart';
-import 'package:movura/features/home/data/repo/home_repo.dart';
-import 'package:movura/features/home/data/web_services/home_web_services.dart';
-import 'package:movura/features/home/logic/top_rated_movies/top_rated_movies_cubit.dart';
-import 'package:movura/features/home/logic/top_rated_tv_series/top_rated_tv_series_cubit.dart';
-import 'package:movura/features/home/logic/trending_content/trending_content_cubit.dart';
-import 'package:movura/features/movie_details/data/repos/movies_repo.dart';
-import 'package:movura/features/movie_details/data/web_services/movie_web_services.dart';
-import 'package:movura/features/movie_details/logic/main_details/about_cubit.dart';
-import 'package:movura/features/movie_details/logic/reviews/reviews_cubit.dart';
-import 'package:movura/features/movie_details/logic/similar_content/similar_content_cubit.dart';
-import 'package:movura/features/person_details/data/repos/person_repo.dart';
-import 'package:movura/features/person_details/data/web_services/person_web_services.dart';
-import 'package:movura/features/person_details/logic/person_details_cubit.dart';
-import 'package:movura/features/search/data/repo/search_repo.dart';
-import 'package:movura/features/search/data/web_services/search_web_services.dart';
-import 'package:movura/features/search/logic/search/search_cubit.dart';
-import 'package:movura/features/tv_details/data/repos/tv_series_repo.dart';
-import 'package:movura/features/tv_details/data/web_services/tv_web_services.dart';
-import 'package:movura/features/tv_details/logic/about_tv/about_tv_cubit.dart';
-import 'package:movura/features/tv_details/logic/reviews/reviews_cubit.dart';
-import 'package:movura/features/tv_details/logic/similar_content/similar_content_cubit.dart';
-import 'package:movura/features/tv_details/logic/tv_episode_details_cubit/tv_episode_details_cubit.dart';
-import 'package:movura/features/tv_details/logic/tv_seasons_cubit/tv_seasons_cubit.dart';
-import 'package:movura/features/see_all/data/web_services/see_all_web_services.dart';
-import 'package:movura/features/see_all/data/repo/see_all_repo.dart';
-import 'package:movura/features/see_all/logic/see_all_cubit.dart';
+
+import '../../features/auth/data/repos/auth_repo.dart';
+import '../../features/auth/data/web_services/auth_services.dart';
+import '../../features/auth/logic/auth/auth_cubit.dart';
+import '../../features/home/data/repo/home_repo.dart';
+import '../../features/home/data/web_services/home_web_services.dart';
+import '../../features/home/logic/top_rated_movies/top_rated_movies_cubit.dart';
+import '../../features/home/logic/top_rated_tv_series/top_rated_tv_series_cubit.dart';
+import '../../features/home/logic/trending_content/trending_content_cubit.dart';
+import '../../features/movie_details/data/repos/movies_repo.dart';
+import '../../features/movie_details/data/web_services/movie_web_services.dart';
+import '../../features/movie_details/logic/main_details/about_cubit.dart';
+import '../../features/movie_details/logic/reviews/reviews_cubit.dart';
+import '../../features/movie_details/logic/similar_content/similar_content_cubit.dart';
+import '../../features/person_details/data/repos/person_repo.dart';
+import '../../features/person_details/data/web_services/person_web_services.dart';
+import '../../features/person_details/logic/person_details_cubit.dart';
+import '../../features/search/data/repo/search_repo.dart';
+import '../../features/search/data/web_services/search_web_services.dart';
+import '../../features/search/logic/search/search_cubit.dart';
+import '../../features/see_all/data/repo/see_all_repo.dart';
+import '../../features/see_all/data/web_services/see_all_web_services.dart';
+import '../../features/see_all/logic/see_all_cubit.dart';
+import '../../features/tv_details/data/repos/tv_series_repo.dart';
+import '../../features/tv_details/data/web_services/tv_web_services.dart';
+import '../../features/tv_details/logic/about_tv/about_tv_cubit.dart';
+import '../../features/tv_details/logic/reviews/reviews_cubit.dart';
+import '../../features/tv_details/logic/similar_content/similar_content_cubit.dart';
+import '../../features/tv_details/logic/tv_episode_details_cubit/tv_episode_details_cubit.dart';
+import '../../features/tv_details/logic/tv_seasons_cubit/tv_seasons_cubit.dart';
+import '../constants/api_constants.dart';
+import 'dio_factory.dart';
 
 final sl = GetIt.instance;
 
@@ -118,7 +119,5 @@ void _initCubits() {
   sl.registerFactory<PersonDetailsCubit>(
     () => PersonDetailsCubit(repo: sl<PersonRepo>()),
   );
-  sl.registerFactory<SeeAllCubit>(
-    () => SeeAllCubit(sl<SeeAllRepo>()),
-  );
+  sl.registerFactory<SeeAllCubit>(() => SeeAllCubit(sl<SeeAllRepo>()));
 }

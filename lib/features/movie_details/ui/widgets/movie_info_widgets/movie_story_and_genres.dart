@@ -1,11 +1,14 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/helpers/spacing.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/core/widgets/read_more_text.dart';
-import 'package:movura/core/widgets/section_title.dart';
-import 'package:movura/features/movie_details/data/models/about_model.dart';
+
+import '../../../../../core/helpers/spacing.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/text_styles.dart';
+import '../../../../../core/widgets/read_more_text.dart';
+import '../../../../../core/widgets/section_title.dart';
+import '../../../data/models/about_model.dart';
 
 class MovieStoryAndGenres extends StatelessWidget {
   const MovieStoryAndGenres({super.key, required this.model});

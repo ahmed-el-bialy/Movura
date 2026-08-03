@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movura/core/theming/app_colors.dart';
 import 'package:shimmer/shimmer.dart';
+
+import '../theming/app_colors.dart';
 
 class AppShimmer extends StatelessWidget {
   const AppShimmer({
@@ -18,7 +19,8 @@ class AppShimmer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
       baseColor: baseColor ?? AppColors.onyxBlack,
-      highlightColor: highlightColor ?? AppColors.coolGray.withValues(alpha: 0.1),
+      highlightColor:
+          highlightColor ?? AppColors.coolGray.withValues(alpha: 0.1),
       child: child,
     );
   }

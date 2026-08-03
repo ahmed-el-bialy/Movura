@@ -2,28 +2,28 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/constants/api_constants.dart';
-import 'package:movura/core/constants/app_constants.dart';
-import 'package:movura/core/extensions/routing_extension.dart';
-import 'package:movura/core/helpers/spacing.dart';
-import 'package:movura/core/models/video_model.dart';
-import 'package:movura/core/networking/di.dart';
-import 'package:movura/core/routing/arguments_models.dart';
-import 'package:movura/core/routing/route_names.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/core/widgets/app_error_widget.dart';
-import 'package:movura/core/widgets/section_title.dart';
-import 'package:movura/core/widgets/shared_details/actors_list.dart';
-import 'package:movura/core/widgets/shared_details/companies_list.dart';
-import 'package:movura/core/widgets/shared_details/images_list.dart';
-import 'package:movura/core/widgets/shared_details/videos_list.dart';
-import 'package:movura/features/tv_details/data/season_details_model.dart';
-import 'package:movura/features/tv_details/logic/about_tv/about_tv_cubit.dart';
-import 'package:movura/features/tv_details/logic/tv_seasons_cubit/tv_seasons_cubit.dart';
 import 'package:movura/features/tv_details/ui/widgets/seasons_list.dart';
 import 'package:movura/features/tv_details/ui/widgets/tv_networks_list.dart';
 
+import '../../../../../core/helpers/spacing.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/text_styles.dart';
+import '../../../../../core/widgets/section_title.dart';
+import '../../../../core/constants/api_constants.dart';
+import '../../../../core/constants/app_constants.dart';
+import '../../../../core/extensions/routing_extension.dart';
+import '../../../../core/models/video_model.dart';
+import '../../../../core/networking/di.dart';
+import '../../../../core/routing/arguments_models.dart';
+import '../../../../core/routing/route_names.dart';
+import '../../../../core/widgets/app_error_widget.dart';
+import '../../../../core/widgets/shared_details/actors_list.dart';
+import '../../../../core/widgets/shared_details/companies_list.dart';
+import '../../../../core/widgets/shared_details/images_list.dart';
+import '../../../../core/widgets/shared_details/videos_list.dart';
+import '../../data/season_details_model.dart';
+import '../../logic/about_tv/about_tv_cubit.dart';
+import '../../logic/tv_seasons_cubit/tv_seasons_cubit.dart';
 
 class AboutTvTabBody extends StatelessWidget {
   const AboutTvTabBody({super.key});
@@ -216,10 +216,7 @@ class _SingleSeasonEpisodes extends StatelessWidget {
 }
 
 class _HorizontalEpisodeCard extends StatelessWidget {
-  const _HorizontalEpisodeCard({
-    required this.episode,
-    required this.onTap,
-  });
+  const _HorizontalEpisodeCard({required this.episode, required this.onTap});
 
   final EpisodeModel episode;
   final VoidCallback onTap;

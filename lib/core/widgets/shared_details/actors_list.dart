@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/models/actor_model.dart';
-import 'package:movura/core/widgets/actor_card.dart';
+
+import '../../models/actor_model.dart';
+import '../actor_card.dart';
 
 class ActorsList extends StatelessWidget {
   const ActorsList({super.key, required this.actors});

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/models/poster_model.dart';
-import 'package:movura/core/widgets/poster_card/poster_card.dart';
+
+import '../../../../core/models/poster_model.dart';
+import '../../../../core/widgets/poster_card/poster_card.dart';
 
 class TrendingPosterList extends StatelessWidget {
   const TrendingPosterList({
@@ -16,7 +17,7 @@ class TrendingPosterList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height == null ? 330.h : height!,
+      height: height == null ? 330.h : height!.h,
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,

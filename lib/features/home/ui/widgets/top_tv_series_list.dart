@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/core/widgets/app_error_widget.dart';
-import 'package:movura/core/widgets/skeleton_posters_list_loading.dart';
-import 'package:movura/features/home/logic/top_rated_tv_series/top_rated_tv_series_cubit.dart';
 import 'package:movura/features/home/ui/widgets/posters_list.dart';
+
+import '../../../../core/widgets/app_error_widget.dart';
+import '../../../../core/widgets/skeleton_posters_list_loading.dart';
+import '../../logic/top_rated_tv_series/top_rated_tv_series_cubit.dart';
 
 class TopTvSeriesList extends StatelessWidget {
   const TopTvSeriesList({super.key});
@@ -19,7 +20,8 @@ class TopTvSeriesList extends StatelessWidget {
         } else if (state is TopRatedTvSeriesError) {
           return AppErrorWidget(
             errorMessage: state.errorMessage,
-            onRetry: () => context.read<TopRatedTvSeriesCubit>().getTopRatedTvSeries(),
+            onRetry: () =>
+                context.read<TopRatedTvSeriesCubit>().getTopRatedTvSeries(),
           );
         }
         return const SizedBox.shrink();

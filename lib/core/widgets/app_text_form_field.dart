@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
+
+import '../theming/app_colors.dart';
+import '../theming/text_styles.dart';
 
 class AppTextFormField extends StatelessWidget {
   const AppTextFormField({
@@ -61,9 +62,7 @@ class AppTextFormField extends StatelessWidget {
             hintStyle ??
             TextStyles.font10BoldCoolGray.copyWith(
               fontSize: 14.sp,
-              color: AppColors.coolGray.withValues(
-                alpha: .8,
-              ),
+              color: AppColors.coolGray.withValues(alpha: .8),
             ),
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,

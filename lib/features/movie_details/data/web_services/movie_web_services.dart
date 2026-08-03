@@ -1,10 +1,13 @@
+
+
 import 'package:dio/dio.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
+
 import '../../../../core/constants/api_constants.dart';
-import '../models/about_model.dart';
 import '../../../../core/models/review_model.dart';
 import '../../../../core/models/similar_model.dart';
+import '../models/about_model.dart';
 
 part 'movie_web_services.g.dart';
 

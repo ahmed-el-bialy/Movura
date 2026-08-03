@@ -1,7 +1,6 @@
-import 'package:movura/features/search/data/web_services/search_web_services.dart';
-
 import '../../../../core/models/poster_model.dart';
-import 'package:movura/features/search/data/models/search_filter_type.dart';
+import '../models/search_filter_type.dart';
+import '../web_services/search_web_services.dart';
 
 class SearchRepo {
   final SearchWebServices searchWebServices;

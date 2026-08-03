@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:movura/core/models/poster_model.dart';
+
+import '../../../../core/models/poster_model.dart';
 
 part 'user_model.g.dart';
 

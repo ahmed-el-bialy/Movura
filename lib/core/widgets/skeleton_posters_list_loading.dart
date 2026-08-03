@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/widgets/poster_card_skeleton.dart';
 import 'package:shimmer/shimmer.dart';
+
+import '../theming/app_colors.dart';
 
 class SkeletonPostersListLoading extends StatelessWidget {
   const SkeletonPostersListLoading({super.key, this.height, this.width});

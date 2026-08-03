@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/features/home/data/models/category_card_model.dart';
+
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/text_styles.dart';
+import '../../data/models/category_card_model.dart';
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard({super.key, required this.model, required this.onTap});

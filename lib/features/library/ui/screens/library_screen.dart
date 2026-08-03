@@ -1,9 +1,10 @@
 import 'package:expandable_page_view/expandable_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/helpers/spacing.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
+
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/text_styles.dart';
 
 class LibraryScreen extends StatelessWidget {
   const LibraryScreen({super.key});
@@ -54,7 +55,8 @@ class LibraryScreen extends StatelessWidget {
               );
 
               tabController.addListener(() {
-                if (!tabController.indexIsChanging && pageController.hasClients) {
+                if (!tabController.indexIsChanging &&
+                    pageController.hasClients) {
                   pageController.animateToPage(
                     tabController.index,
                     duration: const Duration(milliseconds: 300),

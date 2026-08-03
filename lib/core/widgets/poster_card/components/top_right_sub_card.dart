@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/models/poster_model.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/core/widgets/poster_card/components/glass_card.dart';
+
+import '../../../models/poster_model.dart';
+import '../../../theming/app_colors.dart';
+import '../../../theming/text_styles.dart';
+import 'glass_card.dart';
 
 class TopRightSubCard extends StatelessWidget {
   const TopRightSubCard({
@@ -41,12 +42,15 @@ class TopRightSubCard extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            mediaModel?.voteAverage != null && mediaModel!.voteAverage! > 0
+                            mediaModel?.voteAverage != null &&
+                                    mediaModel!.voteAverage! > 0
                                 ? "${mediaModel!.voteAverage!.toStringAsFixed(1)} "
                                 : "N/A ",
                             style:
                                 subTextStyle ??
-                                TextStyles.font16SimiBoldPlatinumGray.copyWith(fontSize: 14.sp),
+                                TextStyles.font16SimiBoldPlatinumGray.copyWith(
+                                  fontSize: 14.sp,
+                                ),
                           ),
                           Icon(
                             Icons.star_rounded,
@@ -58,7 +62,10 @@ class TopRightSubCard extends StatelessWidget {
                     : Text(
                         mediaModel?.knownForDepartment ?? "Unknown",
                         style:
-                            subTextStyle ?? TextStyles.font16SimiBoldPlatinumGray.copyWith(fontSize: 14.sp),
+                            subTextStyle ??
+                            TextStyles.font16SimiBoldPlatinumGray.copyWith(
+                              fontSize: 14.sp,
+                            ),
                       ),
               ),
             )

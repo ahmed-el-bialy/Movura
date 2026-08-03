@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/models/poster_model.dart';
-import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/core/widgets/poster_card/poster_card.dart';
+
+import '../../../../core/models/poster_model.dart';
+import '../../../../core/theming/text_styles.dart';
+import '../../../../core/widgets/poster_card/poster_card.dart';
 
 class PostersList extends StatelessWidget {
-  const PostersList(
-      {super.key, required this.mediaType, required this.posters});
+  const PostersList({
+    super.key,
+    required this.mediaType,
+    required this.posters,
+  });
 
   final String mediaType;
   final List<PosterModel> posters;

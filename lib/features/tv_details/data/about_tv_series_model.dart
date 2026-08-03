@@ -1,10 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:movura/core/models/actor_model.dart';
-import 'package:movura/core/models/company_model.dart';
-import 'package:movura/core/models/genre_model.dart';
-import 'package:movura/core/models/image_model.dart';
-import 'package:movura/core/models/video_model.dart';
-import 'package:movura/core/models/watch_provider_model.dart';
+
+import '../../../core/models/actor_model.dart';
+import '../../../core/models/company_model.dart';
+import '../../../core/models/genre_model.dart';
+import '../../../core/models/image_model.dart';
+import '../../../core/models/video_model.dart';
+import '../../../core/models/watch_provider_model.dart';
 
 part 'about_tv_series_model.g.dart';
 
@@ -166,12 +167,7 @@ class TvNetworkModel {
   @JsonKey(name: "origin_country")
   final String? originCountry;
 
-  TvNetworkModel({
-    required this.id,
-    this.name,
-    this.logo,
-    this.originCountry,
-  });
+  TvNetworkModel({required this.id, this.name, this.logo, this.originCountry});
 
   factory TvNetworkModel.fromJson(Map<String, dynamic> json) =>
       _$TvNetworkModelFromJson(json);

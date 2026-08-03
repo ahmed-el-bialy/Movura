@@ -2,13 +2,14 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/extensions/routing_extension.dart';
-import 'package:movura/core/helpers/spacing.dart';
-import 'package:movura/core/models/genre_model.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/features/search/data/models/search_filter_type.dart';
-import 'package:movura/features/search/logic/search/search_cubit.dart';
+
+import '../../../../core/extensions/routing_extension.dart';
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/models/genre_model.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/text_styles.dart';
+import '../../data/models/search_filter_type.dart';
+import '../../logic/search/search_cubit.dart';
 
 class SearchFilterSheet extends StatefulWidget {
   const SearchFilterSheet({
@@ -147,105 +148,105 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                         Icons.auto_awesome_motion_rounded,
                         'SEARCH IN',
                       ),
-                verticalSpacing(16),
-                GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 12.w,
-                    mainAxisSpacing: 12.h,
-                    childAspectRatio: 2.6,
-                  ),
-                  itemCount: SearchFilterType.values.length,
-                  itemBuilder: (context, index) {
-                    final filter = SearchFilterType.values[index];
-                    final isSelected = filter == _tempFilter;
-                    return _FilterOptionTile(
-                      label: filter.label,
-                      icon: _iconFor(filter),
-                      isSelected: isSelected,
-                      onTap: () {
-                        setState(() {
-                          _tempFilter = filter;
-                          _tempGenreId = null;
-                        });
-                      },
-                    );
-                  },
-                ),
-                if (currentGenres.isNotEmpty &&
-                    _tempFilter != SearchFilterType.people) ...[
-                  verticalSpacing(32),
-                  _buildSectionHeader(Icons.interests_rounded, 'GENRES'),
-                  verticalSpacing(16),
-                  Wrap(
-                    spacing: 10.w,
-                    runSpacing: 10.h,
-                    children: currentGenres.map((genre) {
-                      final isSelected = _tempGenreId == genre.id;
-                      return _RefinedChip(
-                        label: genre.name,
-                        isSelected: isSelected,
-                        onTap: (selected) {
+                      verticalSpacing(16),
+                      GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 12.w,
+                          mainAxisSpacing: 12.h,
+                          childAspectRatio: 2.6,
+                        ),
+                        itemCount: SearchFilterType.values.length,
+                        itemBuilder: (context, index) {
+                          final filter = SearchFilterType.values[index];
+                          final isSelected = filter == _tempFilter;
+                          return _FilterOptionTile(
+                            label: filter.label,
+                            icon: _iconFor(filter),
+                            isSelected: isSelected,
+                            onTap: () {
+                              setState(() {
+                                _tempFilter = filter;
+                                _tempGenreId = null;
+                              });
+                            },
+                          );
+                        },
+                      ),
+                      if (currentGenres.isNotEmpty &&
+                          _tempFilter != SearchFilterType.people) ...[
+                        verticalSpacing(32),
+                        _buildSectionHeader(Icons.interests_rounded, 'GENRES'),
+                        verticalSpacing(16),
+                        Wrap(
+                          spacing: 10.w,
+                          runSpacing: 10.h,
+                          children: currentGenres.map((genre) {
+                            final isSelected = _tempGenreId == genre.id;
+                            return _RefinedChip(
+                              label: genre.name,
+                              isSelected: isSelected,
+                              onTap: (selected) {
+                                setState(() {
+                                  _tempGenreId = selected ? genre.id : null;
+                                });
+                              },
+                            );
+                          }).toList(),
+                        ),
+                      ],
+                      verticalSpacing(32),
+                      _buildSectionHeader(Icons.sort_rounded, 'SORTING'),
+                      verticalSpacing(16),
+                      _SortToggleChip(
+                        label: 'Highly Rated Content',
+                        isSelected: _tempSortByRating,
+                        onTap: () {
                           setState(() {
-                            _tempGenreId = selected ? genre.id : null;
+                            _tempSortByRating = !_tempSortByRating;
                           });
                         },
-                      );
-                    }).toList(),
+                      ),
+                    ],
                   ),
-                ],
-                verticalSpacing(32),
-                _buildSectionHeader(Icons.sort_rounded, 'SORTING'),
-                verticalSpacing(16),
-                _SortToggleChip(
-                  label: 'Highly Rated Content',
-                  isSelected: _tempSortByRating,
-                  onTap: () {
-                    setState(() {
-                      _tempSortByRating = !_tempSortByRating;
-                    });
-                    },
+                ),
+              ),
+              verticalSpacing(20),
+              _SelectionSummaryBar(summary: selectionSummary),
+              verticalSpacing(20),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: _SmallActionButton(
+                      label: 'Reset',
+                      onPressed: () {
+                        setState(() {
+                          _tempFilter = SearchFilterType.all;
+                          _tempGenreId = null;
+                          _tempSortByRating = false;
+                        });
+                      },
+                      isSecondary: true,
+                    ),
+                  ),
+                  horizontalSpacing(16),
+                  Expanded(
+                    flex: 2,
+                    child: _SmallActionButton(
+                      label: 'Apply Filters',
+                      onPressed: _applyFilters,
+                      isSecondary: false,
+                    ),
                   ),
                 ],
               ),
-            ),
-          ),
-          verticalSpacing(20),
-          _SelectionSummaryBar(summary: selectionSummary),
-          verticalSpacing(20),
-                Row(
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: _SmallActionButton(
-                        label: 'Reset',
-                        onPressed: () {
-                          setState(() {
-                            _tempFilter = SearchFilterType.all;
-                            _tempGenreId = null;
-                            _tempSortByRating = false;
-                          });
-                        },
-                        isSecondary: true,
-                      ),
-                    ),
-                    horizontalSpacing(16),
-                    Expanded(
-                      flex: 2,
-                      child: _SmallActionButton(
-                        label: 'Apply Filters',
-                        onPressed: _applyFilters,
-                        isSecondary: false,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+            ],
           ),
         ),
+      ),
     );
   }
 
@@ -464,7 +465,9 @@ class _SortToggleChip extends StatelessWidget {
             Text(
               label,
               style: TextStyles.font14PureWhiteManrope.copyWith(
-                color: isSelected ? AppColors.neonBlue : AppColors.pureWhite.withValues(alpha: 0.7),
+                color: isSelected
+                    ? AppColors.neonBlue
+                    : AppColors.pureWhite.withValues(alpha: 0.7),
                 fontSize: 12.sp,
                 fontWeight: isSelected ? FontWeight.w800 : FontWeight.w500,
               ),

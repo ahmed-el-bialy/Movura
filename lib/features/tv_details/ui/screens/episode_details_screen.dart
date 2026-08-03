@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/core/networking/di.dart';
-import 'package:movura/core/routing/arguments_models.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/widgets/app_error_widget.dart';
-import 'package:movura/core/widgets/app_navigation_bar.dart';
-import 'package:movura/core/widgets/shared_details/episode_loading_skeleton.dart';
-import 'package:movura/features/tv_details/logic/tv_episode_details_cubit/tv_episode_details_cubit.dart';
-import 'package:movura/features/tv_details/ui/widgets/episode_widgets/episode_details_body.dart';
+
+import '../../../../core/networking/di.dart';
+import '../../../../core/routing/arguments_models.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/widgets/app_error_widget.dart';
+import '../../../../core/widgets/app_navigation_bar.dart';
+import '../../../../core/widgets/shared_details/episode_loading_skeleton.dart';
+import '../../logic/tv_episode_details_cubit/tv_episode_details_cubit.dart';
+import '../widgets/episode_widgets/episode_details_body.dart';
 
 class EpisodeDetailsScreen extends StatelessWidget {
   const EpisodeDetailsScreen({super.key});
@@ -18,12 +19,12 @@ class EpisodeDetailsScreen extends StatelessWidget {
         ModalRoute.of(context)!.settings.arguments as EpisodeArgumentsModel;
 
     return BlocProvider(
-      create: (context) =>
-          sl<TvEpisodeDetailsCubit>()..getTvEpisodeDetails(
-            tvId: args.tvId,
-            seasonNumber: args.seasonNumber,
-            episodeNumber: args.episodeNumber,
-          ),
+      create: (context) => sl<TvEpisodeDetailsCubit>()
+        ..getTvEpisodeDetails(
+          tvId: args.tvId,
+          seasonNumber: args.seasonNumber,
+          episodeNumber: args.episodeNumber,
+        ),
       child: Scaffold(
         backgroundColor: AppColors.richEerieBlack,
         extendBody: true,

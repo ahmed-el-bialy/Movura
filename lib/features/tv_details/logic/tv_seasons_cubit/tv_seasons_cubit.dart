@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../data/season_details_model.dart';
 import '../../data/repos/tv_series_repo.dart';
+import '../../data/season_details_model.dart';
 
 part 'tv_seasons_state.dart';
 

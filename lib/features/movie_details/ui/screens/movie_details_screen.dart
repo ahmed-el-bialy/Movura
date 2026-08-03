@@ -1,9 +1,12 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/widgets/app_error_widget.dart';
-import 'package:movura/features/movie_details/logic/main_details/about_cubit.dart';
-import 'package:movura/features/movie_details/ui/widgets/movie_screen_body.dart';
+
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/widgets/app_error_widget.dart';
+import '../../logic/main_details/about_cubit.dart';
+import '../widgets/movie_screen_body.dart';
 
 class MovieDetailsScreen extends StatelessWidget {
   const MovieDetailsScreen({super.key});

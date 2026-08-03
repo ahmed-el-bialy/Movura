@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/extensions/routing_extension.dart';
-import 'package:movura/core/routing/arguments_models.dart';
-import 'package:movura/core/routing/route_names.dart';
-import 'package:movura/features/tv_details/data/about_tv_series_model.dart';
 import 'package:movura/features/tv_details/ui/widgets/tv_season_card.dart';
+
+import '../../../../core/extensions/routing_extension.dart';
+import '../../../../core/routing/arguments_models.dart';
+import '../../../../core/routing/route_names.dart';
+import '../../data/about_tv_series_model.dart';
 
 class SeasonsList extends StatelessWidget {
   const SeasonsList({

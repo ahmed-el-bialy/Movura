@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/core/widgets/app_error_widget.dart';
-import 'package:movura/core/widgets/custom_posters_grid_view.dart';
-import 'package:movura/core/widgets/skeleton_poster_grid_loading.dart';
-import 'package:movura/features/search/data/models/search_filter_type.dart';
-import 'package:movura/features/search/logic/search/search_cubit.dart';
+
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/text_styles.dart';
+import '../../../../core/widgets/app_error_widget.dart';
+import '../../../../core/widgets/custom_posters_grid_view.dart';
+import '../../../../core/widgets/skeleton_poster_grid_loading.dart';
+import '../../logic/search/search_cubit.dart';
 
 class BuildSearchResultsGrid extends StatelessWidget {
   const BuildSearchResultsGrid({super.key, required this.searchCubit});
@@ -51,7 +51,6 @@ class BuildSearchResultsGrid extends StatelessWidget {
               ),
             );
           }
-
 
           return Container(
             color: AppColors.jetBlack,

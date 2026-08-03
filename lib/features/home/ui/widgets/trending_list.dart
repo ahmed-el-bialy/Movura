@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/core/widgets/app_error_widget.dart';
-import 'package:movura/core/widgets/skeleton_posters_list_loading.dart';
-import 'package:movura/features/home/logic/trending_content/trending_content_cubit.dart';
 import 'package:movura/features/home/ui/widgets/trending_poster_list.dart';
+
+import '../../../../core/widgets/app_error_widget.dart';
+import '../../../../core/widgets/skeleton_posters_list_loading.dart';
+import '../../logic/trending_content/trending_content_cubit.dart';
 
 class TrendingList extends StatelessWidget {
   const TrendingList({super.key});
@@ -22,7 +23,8 @@ class TrendingList extends StatelessWidget {
           return SliverToBoxAdapter(
             child: AppErrorWidget(
               errorMessage: state.errorMessage,
-              onRetry: () => context.read<TrendingContentCubit>().getTrendingPosters(),
+              onRetry: () =>
+                  context.read<TrendingContentCubit>().getTrendingPosters(),
             ),
           );
         }

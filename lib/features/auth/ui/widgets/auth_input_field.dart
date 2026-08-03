@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/helpers/spacing.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
+
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/text_styles.dart';
 
 class AuthInputField extends StatelessWidget {
   const AuthInputField({
@@ -31,7 +32,7 @@ class AuthInputField extends StatelessWidget {
                 color: AppColors.slateGray,
               ),
             ),
-            if (action != null) action!,
+            ?action,
           ],
         ),
         verticalSpacing(8),

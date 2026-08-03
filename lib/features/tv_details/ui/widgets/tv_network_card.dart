@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/constants/api_constants.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/features/tv_details/data/about_tv_series_model.dart';
+
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/text_styles.dart';
+import '../../../../core/constants/api_constants.dart';
+import '../../data/about_tv_series_model.dart';
 
 class TvNetworkCard extends StatelessWidget {
   const TvNetworkCard({super.key, required this.network});
@@ -29,10 +30,15 @@ class TvNetworkCard extends StatelessWidget {
                 ? CachedNetworkImage(
                     imageUrl: "${ApiConstants.imageBaseUrl}${network.logo}",
                     fit: BoxFit.contain,
-                    errorWidget: (context, url, error) =>
-                        Icon(Icons.tv, color: AppColors.pureWhite.withValues(alpha: 0.7)),
+                    errorWidget: (context, url, error) => Icon(
+                      Icons.tv,
+                      color: AppColors.pureWhite.withValues(alpha: 0.7),
+                    ),
                   )
-                : Icon(Icons.tv, color: AppColors.pureWhite.withValues(alpha: 0.7)),
+                : Icon(
+                    Icons.tv,
+                    color: AppColors.pureWhite.withValues(alpha: 0.7),
+                  ),
           ),
           SizedBox(height: 8.h),
           Text(

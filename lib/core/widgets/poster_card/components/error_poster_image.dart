@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
+
+import '../../../theming/app_colors.dart';
+import '../../../theming/text_styles.dart';
 
 class ErrorPosterImage extends StatelessWidget {
   const ErrorPosterImage({super.key, required this.titleStyle});
@@ -15,7 +16,11 @@ class ErrorPosterImage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.movie_creation_outlined, size: 40.sp, color: AppColors.coolGray),
+          Icon(
+            Icons.movie_creation_outlined,
+            size: 40.sp,
+            color: AppColors.coolGray,
+          ),
           SizedBox(height: 8.h),
           Text(
             "No Poster Available",

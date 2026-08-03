@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/weights.dart';
+
+import 'app_colors.dart';
 
 class TextStyles {
   static TextStyle font24SimiBoldNeonBlueManrope = TextStyle(
@@ -99,9 +100,9 @@ class TextStyles {
     fontSize: 16.sp,
   );
   static TextStyle font12BoldCoolGray = TextStyle(
-      color: AppColors.coolGray,
-      fontSize: 12.sp,
-      fontWeight: FontWeight.bold
+    color: AppColors.coolGray,
+    fontSize: 12.sp,
+    fontWeight: FontWeight.bold,
   );
   static TextStyle font12MediumPlatinumGray = TextStyle(
     fontWeight: Weights.medium,

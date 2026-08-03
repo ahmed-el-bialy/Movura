@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/constants/app_constants.dart';
-import 'package:movura/core/helpers/spacing.dart';
-import 'package:movura/core/models/poster_model.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/features/see_all/data/models/see_all_arguments.dart';
-import 'package:movura/core/routing/route_names.dart';
-import 'package:movura/core/extensions/routing_extension.dart';
-import 'package:movura/core/widgets/poster_card/poster_card.dart';
-import 'package:movura/core/widgets/section_title.dart';
+
+import '../../../features/see_all/data/models/see_all_arguments.dart';
+import '../../constants/app_constants.dart';
+import '../../extensions/routing_extension.dart';
+import '../../helpers/spacing.dart';
+import '../../models/poster_model.dart';
+import '../../routing/route_names.dart';
+import '../../theming/app_colors.dart';
+import '../poster_card/poster_card.dart';
+import '../section_title.dart';
 
 class SimilarContentTabBody extends StatelessWidget {
   const SimilarContentTabBody({
@@ -64,12 +65,16 @@ class SimilarContentTabBody extends StatelessWidget {
                 sectionName: "SIMILAR",
                 actionName: AppConstants.sectionAction,
                 onTap: () {
-                  final endpoint = mediaType == 'movie' 
-                      ? SeeAllEndpoint.similarMovies 
+                  final endpoint = mediaType == 'movie'
+                      ? SeeAllEndpoint.similarMovies
                       : SeeAllEndpoint.similarTv;
                   context.pushNamed(
-                    RouteNames.seeAllScreen, 
-                    arguments: SeeAllArguments(title: "Similar", endpoint: endpoint, id: mediaId)
+                    RouteNames.seeAllScreen,
+                    arguments: SeeAllArguments(
+                      title: "Similar",
+                      endpoint: endpoint,
+                      id: mediaId,
+                    ),
                   );
                 },
               )

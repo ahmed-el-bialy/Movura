@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/features/tv_details/data/episode_details_model.dart';
-import 'package:movura/features/tv_details/data/repos/tv_series_repo.dart';
+
+import '../../data/episode_details_model.dart';
+import '../../data/repos/tv_series_repo.dart';
 
 part 'tv_episode_details_state.dart';
 

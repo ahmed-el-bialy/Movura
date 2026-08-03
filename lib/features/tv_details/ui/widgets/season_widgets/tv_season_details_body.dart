@@ -1,12 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/constants/api_constants.dart';
-import 'package:movura/core/helpers/spacing.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/features/tv_details/data/season_details_model.dart';
-import 'package:movura/features/tv_details/ui/widgets/season_widgets/episodes_list.dart';
+
+import '../../../../../core/constants/api_constants.dart';
+import '../../../../../core/helpers/spacing.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/text_styles.dart';
+import '../../../data/season_details_model.dart';
+import 'episodes_list.dart';
 
 class TvSeasonDetailsBody extends StatelessWidget {
   const TvSeasonDetailsBody({
@@ -113,9 +114,7 @@ class TvSeasonDetailsBody extends StatelessWidget {
               padding: EdgeInsets.all(16.r),
               child: Text(
                 seasonDetails.overview ?? '',
-                style: TextStyles.font12CoolGrayManrope.copyWith(
-                  height: 1.6,
-                ),
+                style: TextStyles.font12CoolGrayManrope.copyWith(height: 1.6),
               ),
             ),
           ),

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/helpers/spacing.dart';
-import 'package:movura/core/networking/di.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/features/search/logic/search/search_cubit.dart';
-import 'package:movura/features/search/ui/screens/custom_search_delegate.dart';
-import 'package:movura/features/search/ui/widgets/search_ui_widgets/search_empty_state.dart';
+
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/networking/di.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/text_styles.dart';
+import '../../logic/search/search_cubit.dart';
+import '../widgets/search_ui_widgets/search_empty_state.dart';
+import 'custom_search_delegate.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -25,11 +26,16 @@ class SearchScreen extends StatelessWidget {
                 onTap: () {
                   showSearch(
                     context: context,
-                    delegate: CustomSearchDelegate(searchCubit: sl<SearchCubit>()),
+                    delegate: CustomSearchDelegate(
+                      searchCubit: sl<SearchCubit>(),
+                    ),
                   );
                 },
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 16.w,
+                    vertical: 12.h,
+                  ),
                   decoration: BoxDecoration(
                     color: AppColors.charcoalBlack,
                     borderRadius: BorderRadius.circular(16.r),
@@ -39,7 +45,11 @@ class SearchScreen extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      Icon(Icons.search_rounded, color: AppColors.neonBlue, size: 24.sp),
+                      Icon(
+                        Icons.search_rounded,
+                        color: AppColors.neonBlue,
+                        size: 24.sp,
+                      ),
                       horizontalSpacing(12),
                       Text(
                         'Search movies, TV shows...',
@@ -53,7 +63,9 @@ class SearchScreen extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: SearchEmptyState(filter: sl<SearchCubit>().currentFilter),
+                child: SearchEmptyState(
+                  filter: sl<SearchCubit>().currentFilter,
+                ),
               ),
             ],
           ),

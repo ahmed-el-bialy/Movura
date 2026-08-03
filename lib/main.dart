@@ -3,21 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/routing/app_router.dart';
-import 'package:movura/core/theming/app_theme.dart';
-import 'package:movura/features/home/logic/top_rated_movies/top_rated_movies_cubit.dart';
-import 'package:movura/features/home/logic/top_rated_tv_series/top_rated_tv_series_cubit.dart';
-import 'package:movura/features/home/logic/trending_content/trending_content_cubit.dart';
-import 'package:movura/firebase_options.dart';
 
 import 'core/networking/di.dart';
+import 'core/routing/app_router.dart';
+import 'core/theming/app_theme.dart';
+import 'features/home/logic/top_rated_movies/top_rated_movies_cubit.dart';
+import 'features/home/logic/top_rated_tv_series/top_rated_tv_series_cubit.dart';
+import 'features/home/logic/trending_content/trending_content_cubit.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   await dotenv.load(fileName: ".env");
   await initDI();
@@ -32,7 +30,8 @@ void main() async {
           create: (context) => sl<TopRatedMovieCubit>()..getTopRatedMovies(),
         ),
         BlocProvider(
-          create: (context) => sl<TopRatedTvSeriesCubit>()..getTopRatedTvSeries(),
+          create: (context) =>
+              sl<TopRatedTvSeriesCubit>()..getTopRatedTvSeries(),
         ),
       ],
       child: Movura(appRouter: AppRouter()),

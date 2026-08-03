@@ -2,14 +2,15 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/extensions/routing_extension.dart';
-import 'package:movura/core/routing/arguments_models.dart';
-import 'package:movura/core/routing/route_names.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/core/widgets/app_icon_button.dart';
-import 'package:movura/core/widgets/app_navigation_bar.dart';
-import 'package:movura/features/tv_details/ui/widgets/tv_season_card.dart';
+
+import '../../../../core/extensions/routing_extension.dart';
+import '../../../../core/routing/arguments_models.dart';
+import '../../../../core/routing/route_names.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/text_styles.dart';
+import '../../../../core/widgets/app_icon_button.dart';
+import '../../../../core/widgets/app_navigation_bar.dart';
+import '../widgets/tv_season_card.dart';
 
 class AllSeasonsScreen extends StatelessWidget {
   const AllSeasonsScreen({super.key, required this.arguments});

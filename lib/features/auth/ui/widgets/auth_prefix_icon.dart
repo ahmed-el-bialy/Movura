@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/theming/app_colors.dart';
+
+import '../../../../core/theming/app_colors.dart';
 
 class AuthPrefixIcon extends StatelessWidget {
   const AuthPrefixIcon({super.key, required this.icon});

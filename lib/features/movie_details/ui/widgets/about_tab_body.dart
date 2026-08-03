@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/core/constants/app_constants.dart';
-import 'package:movura/core/helpers/spacing.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/widgets/app_error_widget.dart';
-import 'package:movura/core/widgets/section_title.dart';
-import 'package:movura/core/widgets/shared_details/actors_list.dart';
-import 'package:movura/core/widgets/shared_details/companies_list.dart';
-import 'package:movura/core/widgets/shared_details/images_list.dart';
-import 'package:movura/core/widgets/shared_details/videos_list.dart';
-import 'package:movura/features/movie_details/logic/main_details/about_cubit.dart';
+
+import '../../../../core/constants/app_constants.dart';
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/widgets/app_error_widget.dart';
+import '../../../../core/widgets/section_title.dart';
+import '../../../../core/widgets/shared_details/actors_list.dart';
+import '../../../../core/widgets/shared_details/companies_list.dart';
+import '../../../../core/widgets/shared_details/images_list.dart';
+import '../../../../core/widgets/shared_details/videos_list.dart';
+import '../../logic/main_details/about_cubit.dart';
 
 class AboutTabBody extends StatelessWidget {
   const AboutTabBody({super.key});

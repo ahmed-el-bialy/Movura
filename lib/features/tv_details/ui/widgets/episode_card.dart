@@ -1,12 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/constants/api_constants.dart';
-import 'package:movura/core/extensions/date_extension.dart';
-import 'package:movura/core/helpers/spacing.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/features/tv_details/data/season_details_model.dart';
+
+import '../../../../../core/helpers/spacing.dart';
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/text_styles.dart';
+import '../../../../core/constants/api_constants.dart';
+import '../../../../core/extensions/date_extension.dart';
+import '../../data/season_details_model.dart';
 
 class EpisodeCard extends StatelessWidget {
   const EpisodeCard({super.key, required this.episode, this.onTap});

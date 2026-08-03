@@ -1,8 +1,11 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/helpers/spacing.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/text_styles.dart';
+
+import '../helpers/spacing.dart';
+import '../theming/app_colors.dart';
+import '../theming/text_styles.dart';
 
 class AppErrorWidget extends StatelessWidget {
   const AppErrorWidget({

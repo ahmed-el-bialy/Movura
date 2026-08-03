@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movura/core/widgets/shared_details/core_details_header.dart';
-import 'package:movura/features/movie_details/data/models/about_model.dart';
-import 'package:movura/features/movie_details/ui/widgets/movie_info_widgets/movie_identify_card.dart';
+
+import '../../../../core/widgets/shared_details/core_details_header.dart';
+import '../../data/models/about_model.dart';
+import 'movie_info_widgets/movie_identify_card.dart';
 
 class MovieMainDetails extends StatelessWidget {
   const MovieMainDetails({super.key, required this.model});

@@ -21,9 +21,5 @@ class SeeAllArguments {
   final SeeAllEndpoint endpoint;
   final int? id;
 
-  SeeAllArguments({
-    required this.title,
-    required this.endpoint,
-    this.id,
-  });
+  SeeAllArguments({required this.title, required this.endpoint, this.id});
 }
