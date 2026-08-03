@@ -100,15 +100,8 @@ class PersonDetailsScreen extends StatelessWidget {
                         ],
                         verticalSpacing(24),
                         const SectionTitle(sectionName: "PERSONAL INFO"),
-                        verticalSpacing(12),
-                        _InfoRow(
-                          label: "Birthday",
-                          value: person.birthday ?? "N/A",
-                        ),
-                        _InfoRow(
-                          label: "Place of Birth",
-                          value: person.placeOfBirth ?? "N/A",
-                        ),
+                        verticalSpacing(16),
+                        _PersonalInfoGrid(person: person),
                         verticalSpacing(30),
                         if (person.movieCredits?.cast != null &&
                             person.movieCredits!.cast!.isNotEmpty) ...[
@@ -142,24 +135,89 @@ class PersonDetailsScreen extends StatelessWidget {
   }
 }
 
-class _InfoRow extends StatelessWidget {
-  const _InfoRow({required this.label, required this.value});
+class _PersonalInfoGrid extends StatelessWidget {
+  const _PersonalInfoGrid({required this.person});
 
+  final dynamic person;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(16.r),
+      decoration: BoxDecoration(
+        color: AppColors.onyxBlack.withValues(alpha: 0.3),
+        borderRadius: BorderRadius.circular(20.r),
+        border: Border.all(
+          color: AppColors.pureWhite.withValues(alpha: 0.05),
+        ),
+      ),
+      child: Column(
+        children: [
+          _InfoItem(
+            icon: Icons.cake_rounded,
+            label: "Birthday",
+            value: person.birthday ?? "N/A",
+          ),
+          Divider(
+            height: 24.h,
+            color: AppColors.pureWhite.withValues(alpha: 0.05),
+          ),
+          _InfoItem(
+            icon: Icons.location_on_rounded,
+            label: "Place of Birth",
+            value: person.placeOfBirth ?? "N/A",
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _InfoItem extends StatelessWidget {
+  const _InfoItem({
+    required this.icon,
+    required this.label,
+    required this.value,
+  });
+
+  final IconData icon;
   final String label;
   final String value;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: 8.h),
-      child: Row(
-        children: [
-          Text("$label: ", style: TextStyles.font12BoldCoolGray),
-          Expanded(
-            child: Text(value, style: TextStyles.font12MediumPlatinumGray),
+    return Row(
+      children: [
+        Container(
+          padding: EdgeInsets.all(8.r),
+          decoration: BoxDecoration(
+            color: AppColors.neonBlue.withValues(alpha: 0.08),
+            borderRadius: BorderRadius.circular(10.r),
           ),
-        ],
-      ),
+          child: Icon(icon, color: AppColors.neonBlue, size: 18.sp),
+        ),
+        horizontalSpacing(16),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              label,
+              style: TextStyles.font10BoldCoolGray.copyWith(
+                color: AppColors.coolGray.withValues(alpha: 0.6),
+                letterSpacing: 1.1,
+              ),
+            ),
+            verticalSpacing(2),
+            Text(
+              value,
+              style: TextStyles.font14PureWhiteManrope.copyWith(
+                fontWeight: FontWeight.w600,
+                fontSize: 13.sp,
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

@@ -11,7 +11,16 @@ class DiscoverPeopleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<CategoryCardModel> categories = [
+    return DiscoverScreenTemplate(
+      title: "Popular People",
+      categories: _PeopleCategories.getCategories(context),
+    );
+  }
+}
+
+class _PeopleCategories {
+  static List<CategoryCardModel> getCategories(BuildContext context) {
+    return [
       CategoryCardModel(
         color: AppColors.vibrantPurple,
         title: 'Popular People',
@@ -35,14 +44,9 @@ class DiscoverPeopleScreen extends StatelessWidget {
         ),
       ),
     ];
-
-    return DiscoverScreenTemplate(
-      title: "Popular People",
-      categories: categories,
-    );
   }
 
-  void _navigateToSeeAll(
+  static void _navigateToSeeAll(
     BuildContext context,
     String title,
     SeeAllEndpoint endpoint,
