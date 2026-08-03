@@ -81,7 +81,7 @@ class _LogInScreenState extends State<LogInScreen> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             verticalSpacing(10),
-                            _buildSkipButton(context),
+                            const _SkipButton(),
                             const AuthHeader(
                               title: "Welcome Back",
                               subtitle: "Sign in to continue your cinematic journey",
@@ -138,13 +138,17 @@ class _LogInScreenState extends State<LogInScreen> {
                               ),
                             ),
                             verticalSpacing(25),
-                            _buildLoginButton(),
+                            _LoginButton(
+                              formKey: formKey,
+                              emailController: emailController,
+                              passwordController: passwordController,
+                            ),
                             verticalSpacing(30),
                             const AuthDivider(),
                             verticalSpacing(16),
                             SocialButtonsRow(),
                             verticalSpacing(16),
-                            _buildSignUpToggle(context),
+                            const _SignUpToggle(),
                             verticalSpacing(10),
                           ],
                         ),
@@ -159,8 +163,13 @@ class _LogInScreenState extends State<LogInScreen> {
       ),
     );
   }
+}
 
-  Widget _buildSkipButton(BuildContext context) {
+class _SkipButton extends StatelessWidget {
+  const _SkipButton();
+
+  @override
+  Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.topRight,
       child: TextButton(
@@ -180,8 +189,21 @@ class _LogInScreenState extends State<LogInScreen> {
       ),
     );
   }
+}
 
-  Widget _buildLoginButton() {
+class _LoginButton extends StatelessWidget {
+  const _LoginButton({
+    required this.formKey,
+    required this.emailController,
+    required this.passwordController,
+  });
+
+  final GlobalKey<FormState> formKey;
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
+
+  @override
+  Widget build(BuildContext context) {
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
         return Container(
@@ -217,8 +239,13 @@ class _LogInScreenState extends State<LogInScreen> {
       },
     );
   }
+}
 
-  Widget _buildSignUpToggle(BuildContext context) {
+class _SignUpToggle extends StatelessWidget {
+  const _SignUpToggle();
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

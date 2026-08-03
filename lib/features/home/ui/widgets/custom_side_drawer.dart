@@ -41,7 +41,7 @@ class CustomSideDrawer extends StatelessWidget {
               child: ListView(
                 padding: EdgeInsets.symmetric(vertical: 10.h),
                 children: [
-                  _buildDrawerItem(
+                  _DrawerItem(
                     icon: Icons.workspace_premium_rounded,
                     label: 'Movura Pro',
                     trailing: Icon(
@@ -53,7 +53,7 @@ class CustomSideDrawer extends StatelessWidget {
                       context.pop();
                     },
                   ),
-                  _buildDrawerItem(
+                  _DrawerItem(
                     icon: Icons.favorite_border_rounded,
                     label: 'My Library',
                     onTap: () {
@@ -71,7 +71,7 @@ class CustomSideDrawer extends StatelessWidget {
                       ),
                     ),
                   ),
-                  _buildDrawerItem(
+                  _DrawerItem(
                     icon: Icons.movie_filter_outlined,
                     label: 'Discover Movies',
                     subtitle: 'Trending, Upcoming, Top Rated & More',
@@ -80,7 +80,7 @@ class CustomSideDrawer extends StatelessWidget {
                       context.pushNamed(RouteNames.discoverMoviesScreen);
                     },
                   ),
-                  _buildDrawerItem(
+                  _DrawerItem(
                     icon: Icons.tv_outlined,
                     label: 'TV Series',
                     subtitle: 'Popular, Latest & Top Rated Shows',
@@ -89,7 +89,7 @@ class CustomSideDrawer extends StatelessWidget {
                       context.pushNamed(RouteNames.discoverTvScreen);
                     },
                   ),
-                  _buildDrawerItem(
+                  _DrawerItem(
                     icon: Icons.people_outline_rounded,
                     label: 'Popular People',
                     subtitle: 'Trending actors and directors',
@@ -106,7 +106,7 @@ class CustomSideDrawer extends StatelessWidget {
               child: Divider(
                   color: AppColors.pureWhite.withValues(alpha: 0.05)),
             ),
-            _buildDrawerItem(
+            _DrawerItem(
               icon: Icons.logout_rounded,
               label: 'Logout',
               iconColor: AppColors.softRed,
@@ -122,16 +122,29 @@ class CustomSideDrawer extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _buildDrawerItem({
-    required IconData icon,
-    required String label,
-    String? subtitle,
-    required VoidCallback onTap,
-    Widget? trailing,
-    Color? iconColor,
-    Color? textColor,
-  }) {
+class _DrawerItem extends StatelessWidget {
+  const _DrawerItem({
+    required this.icon,
+    required this.label,
+    this.subtitle,
+    required this.onTap,
+    this.trailing,
+    this.iconColor,
+    this.textColor,
+  });
+
+  final IconData icon;
+  final String label;
+  final String? subtitle;
+  final VoidCallback onTap;
+  final Widget? trailing;
+  final Color? iconColor;
+  final Color? textColor;
+
+  @override
+  Widget build(BuildContext context) {
     return ListTile(
       contentPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 2.h),
       leading: Icon(icon, color: iconColor ?? AppColors.coolGray, size: 24.sp),
@@ -144,15 +157,14 @@ class CustomSideDrawer extends StatelessWidget {
       ),
       subtitle: subtitle != null
           ? Text(
-              subtitle,
+              subtitle!,
               style: TextStyles.font10MediumCoolGraySora.copyWith(
                 color: AppColors.coolGray.withValues(alpha: 0.5),
                 fontSize: 11.sp,
               ),
             )
           : null,
-      trailing:
-      trailing ??
+      trailing: trailing ??
           Icon(
             Icons.arrow_forward_ios_rounded,
             color: AppColors.coolGray.withValues(alpha: 0.3),
