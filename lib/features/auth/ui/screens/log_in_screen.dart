@@ -12,6 +12,7 @@ import '../../../../core/networking/di.dart';
 import '../../../../core/routing/route_names.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
+import '../../../../core/theming/app_spacing.dart';
 import '../../../../core/widgets/app_text_button.dart';
 import '../../../../core/widgets/app_text_form_field.dart';
 import '../../logic/auth/auth_cubit.dart';
@@ -109,7 +110,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10.w),
+                      padding: AppSpacing.horizontal(10),
                       child: Form(
                         key: formKey,
                         child: Column(
@@ -176,10 +177,7 @@ class _LogInScreenState extends State<LogInScreen> {
                                     sigmaY: 10,
                                   ),
                                   child: Container(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: 16.w,
-                                      vertical: 20.h,
-                                    ),
+                                    padding: AppSpacing.symmetric(horizontal: 16, vertical: 20),
                                     decoration: BoxDecoration(
                                       color: AppColors.onyxBlack.withValues(
                                         alpha: 0.3,
