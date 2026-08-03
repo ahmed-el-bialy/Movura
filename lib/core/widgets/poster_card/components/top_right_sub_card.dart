@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../models/poster_model.dart';
 import '../../../theming/app_colors.dart';
+import '../../../theming/app_spacing.dart';
 import '../../../theming/text_styles.dart';
 import 'glass_card.dart';
 
@@ -30,11 +31,11 @@ class TopRightSubCard extends StatelessWidget {
       alignment: Alignment.topRight,
       child: showRating == true
           ? Padding(
-              padding: EdgeInsets.all(2.0.r),
+              padding: AppSpacing.all(2),
               child: GlassCard(
                 borderRadius: subCardBorder ?? 10,
                 color: subCardColor,
-                padding: EdgeInsets.all(5.0.r),
+                padding: AppSpacing.all(5),
                 child: mediaModel?.mediaType != "person"
                     ? Row(
                         mainAxisAlignment: MainAxisAlignment.center,

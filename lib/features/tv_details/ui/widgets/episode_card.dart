@@ -20,7 +20,7 @@ class EpisodeCard extends StatelessWidget {
     final hasStill = episode.stillPath != null && episode.stillPath!.isNotEmpty;
 
     return Card(
-      margin: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+      margin: AppSpacing.symmetric(horizontal: AppSpacing.m, vertical: 6),
       color: AppColors.darkBackground,
       elevation: 4,
       shadowColor: AppColors.neonBlue.withValues(alpha: 0.15),
@@ -48,16 +48,16 @@ class EpisodeCard extends StatelessWidget {
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.all(12.r),
+                  padding: AppSpacing.all(AppSpacing.m),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         children: [
                           Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 8.w,
-                              vertical: 4.h,
+                            padding: AppSpacing.symmetric(
+                              horizontal: AppSpacing.s,
+                              vertical: AppSpacing.xs,
                             ),
                             decoration: BoxDecoration(
                               color: AppColors.neonBlue.withValues(alpha: 0.15),

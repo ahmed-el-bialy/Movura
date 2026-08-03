@@ -57,7 +57,7 @@ class _WatchlistOptionsSheetState extends State<WatchlistOptionsSheet> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.r),
         ),
-        margin: EdgeInsets.all(16.r),
+        margin: AppSpacing.all(AppSpacing.l),
       ),
     );
   }
@@ -65,7 +65,12 @@ class _WatchlistOptionsSheetState extends State<WatchlistOptionsSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(24.w, 12.h, 24.w, 32.h),
+      padding: AppSpacing.only(
+        left: AppSpacing.xl,
+        top: AppSpacing.m,
+        right: AppSpacing.xl,
+        bottom: AppSpacing.xxl,
+      ),
       decoration: BoxDecoration(
         color: AppColors.charcoalBlack,
         borderRadius: BorderRadius.vertical(top: Radius.circular(28.r)),
@@ -209,7 +214,7 @@ class _ActionItem extends StatelessWidget {
               customBorder: const CircleBorder(),
               splashColor: color.withValues(alpha: 0.3),
               child: Container(
-                padding: EdgeInsets.all(16.r),
+                padding: AppSpacing.all(AppSpacing.l),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(

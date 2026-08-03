@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/widgets/cards/actor_card.dart';
 
 import '../../models/actor_model.dart';
@@ -21,7 +22,7 @@ class ActorsList extends StatelessWidget {
         itemCount: actors.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 4.w),
+            padding: AppSpacing.horizontal(AppSpacing.xs),
             child: ActorCard(actor: actors[index]),
           );
         },

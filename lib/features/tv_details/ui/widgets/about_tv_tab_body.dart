@@ -169,7 +169,7 @@ class _SingleSeasonEpisodes extends StatelessWidget {
               height: 200.h,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                padding: EdgeInsets.symmetric(horizontal: 12.w),
+                padding: AppSpacing.horizontal(12),
                 physics: const BouncingScrollPhysics(),
                 itemCount: episodes.length,
                 itemBuilder: (context, index) {
@@ -223,10 +223,10 @@ class _HorizontalEpisodeCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: 160.w,
-        margin: EdgeInsets.only(right: 12.w),
+        margin: AppSpacing.only(right: AppSpacing.m),
         decoration: BoxDecoration(
           color: AppColors.onyxBlack,
-          borderRadius: BorderRadius.circular(16.r),
+          borderRadius: BorderRadius.circular(AppSpacing.l),
           border: Border.all(
             color: AppColors.neonBlue.withValues(alpha: 0.15),
             width: 1,
@@ -266,12 +266,12 @@ class _HorizontalEpisodeCard extends StatelessWidget {
                         ),
                 ),
                 Positioned(
-                  top: 6.h,
-                  left: 6.w,
+                  top: 6,
+                  left: 6,
                   child: Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 6.w,
-                      vertical: 2.h,
+                    padding: AppSpacing.symmetric(
+                      horizontal: 6,
+                      vertical: 2,
                     ),
                     decoration: BoxDecoration(
                       color: AppColors.neonBlue.withValues(alpha: 0.9),
@@ -279,7 +279,7 @@ class _HorizontalEpisodeCard extends StatelessWidget {
                     ),
                     child: Text(
                       'E${episode.episodeNumber}',
-                      style: TextStyle(
+                      style: TextStyles.font12RegularCoolGrayManrope.copyWith(
                         color: AppColors.trueBlack,
                         fontSize: 10.sp,
                         fontWeight: Weights.extraBold,
@@ -289,12 +289,12 @@ class _HorizontalEpisodeCard extends StatelessWidget {
                 ),
                 if (episode.voteAverage != null && episode.voteAverage! > 0)
                   Positioned(
-                    top: 6.h,
-                    right: 6.w,
+                    top: 6,
+                    right: 6,
                     child: Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 5.w,
-                        vertical: 2.h,
+                      padding: AppSpacing.symmetric(
+                        horizontal: 5,
+                        vertical: 2,
                       ),
                       decoration: BoxDecoration(
                         color: AppColors.trueBlack.withValues(alpha: 0.75),
@@ -311,7 +311,7 @@ class _HorizontalEpisodeCard extends StatelessWidget {
                           AppSpacing.horizontalSpacing(2),
                           Text(
                             episode.voteAverage!.toStringAsFixed(1),
-                            style: TextStyle(
+                            style: TextStyles.font12RegularCoolGrayManrope.copyWith(
                               color: AppColors.pureWhite,
                               fontSize: 9.sp,
                               fontWeight: Weights.bold,
@@ -326,7 +326,7 @@ class _HorizontalEpisodeCard extends StatelessWidget {
             // Info
             Expanded(
               child: Padding(
-                padding: EdgeInsets.all(8.r),
+                padding: AppSpacing.all(AppSpacing.s),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

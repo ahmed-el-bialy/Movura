@@ -60,12 +60,12 @@ class CategoryCard extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(16.r),
+                padding: AppSpacing.all(AppSpacing.l),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      padding: EdgeInsets.all(8.r),
+                      padding: AppSpacing.all(AppSpacing.s),
                       decoration: BoxDecoration(
                         color: AppColors.pureWhite.withValues(alpha: 0.15),
                         shape: BoxShape.circle,

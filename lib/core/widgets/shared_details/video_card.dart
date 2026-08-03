@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../helpers/video_player.dart';
 import '../../models/video_model.dart';
 import '../../theming/app_colors.dart';
+import '../../theming/app_spacing.dart';
 import '../../theming/text_styles.dart';
 import '../../theming/weights.dart';
 import '../loading/movura_loading_indicator.dart';
@@ -22,7 +23,11 @@ class VideoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(right: 16.w, bottom: 8.h, top: 4.h),
+      padding: AppSpacing.only(
+        right: AppSpacing.l,
+        bottom: AppSpacing.s,
+        top: AppSpacing.xs,
+      ),
       child: GestureDetector(
         onTap: () {
           if (video.key != null) playYoutubeVideo(context, video.key!);

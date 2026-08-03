@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/theming/app_spacing.dart';
@@ -23,14 +22,14 @@ class HomeScreen extends StatelessWidget {
       drawer: const CustomSideDrawer(),
       backgroundColor: AppColors.richEerieBlack,
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 6.w),
+        padding: AppSpacing.horizontal(6),
         child: CustomScrollView(
           physics: const BouncingScrollPhysics(),
           slivers: [
             const HomeAppBar(),
             SliverToBoxAdapter(
               child: Padding(
-                padding: EdgeInsets.only(top: 15.h, bottom: 20.h),
+                padding: AppSpacing.only(top: 15, bottom: 20),
                 child: const CategoryList(),
               ),
             ),

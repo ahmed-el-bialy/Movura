@@ -20,7 +20,7 @@ class DetailsStoryAndGenres extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 14.w),
+      padding: AppSpacing.horizontal(14),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -51,9 +51,9 @@ class DetailsStoryAndGenres extends StatelessWidget {
               runSpacing: 8.h,
               children: genres!.map((genre) {
                 return Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 14.w,
-                    vertical: 8.h,
+                  padding: AppSpacing.symmetric(
+                    horizontal: 14,
+                    vertical: AppSpacing.s,
                   ),
                   decoration: BoxDecoration(
                     color: AppColors.onyxBlack.withValues(alpha: 0.6),

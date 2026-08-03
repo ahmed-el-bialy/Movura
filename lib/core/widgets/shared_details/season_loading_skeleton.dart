@@ -36,9 +36,9 @@ class SeasonLoadingSkeleton extends StatelessWidget {
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 20.w,
-                        vertical: 16.h,
+                      padding: AppSpacing.symmetric(
+                        horizontal: 20,
+                        vertical: AppSpacing.l,
                       ),
                       child: Container(
                         height: 90.h,
@@ -55,7 +55,10 @@ class SeasonLoadingSkeleton extends StatelessWidget {
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+              padding: AppSpacing.symmetric(
+                horizontal: AppSpacing.l,
+                vertical: AppSpacing.m,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -84,7 +87,10 @@ class SeasonLoadingSkeleton extends StatelessWidget {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) => Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+                padding: AppSpacing.symmetric(
+                  horizontal: AppSpacing.m,
+                  vertical: 6,
+                ),
                 child: Container(
                   height: 100.h,
                   decoration: BoxDecoration(

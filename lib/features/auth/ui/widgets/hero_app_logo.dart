@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:movura/core/constants/app_constants.dart';
 import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 
 class HeroAppLogo extends StatelessWidget {
   const HeroAppLogo({
@@ -14,7 +15,7 @@ class HeroAppLogo extends StatelessWidget {
     return Hero(
       tag: 'app_logo',
       child: Container(
-        padding: EdgeInsets.all(10.r),
+        padding: AppSpacing.all(10),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: AppColors.neonBlue.withValues(

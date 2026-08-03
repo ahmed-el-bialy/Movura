@@ -16,7 +16,7 @@ class CompanyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(6.0),
+      padding: AppSpacing.all(6),
       child: Column(
         children: [
           company.logo != null
@@ -68,11 +68,11 @@ class CompanyCard extends StatelessWidget {
                 ),
 
           Padding(
-            padding: EdgeInsets.only(
-              top: 10.h,
-              left: 10.w,
-              right: 10.w,
-              bottom: 4.w,
+            padding: AppSpacing.only(
+              top: 10,
+              left: 10,
+              right: 10,
+              bottom: AppSpacing.xs,
             ),
             child: Text(
               company.name ?? '',
@@ -85,11 +85,11 @@ class CompanyCard extends StatelessWidget {
           ),
 
           Padding(
-            padding: EdgeInsets.only(
-              top: 5.h,
-              left: 10.w,
-              right: 10.w,
-              bottom: AppSpacing.s.w,
+            padding: AppSpacing.only(
+              top: 5,
+              left: 10,
+              right: 10,
+              bottom: AppSpacing.s,
             ),
             child: Text(
               company.originCountry ?? '',

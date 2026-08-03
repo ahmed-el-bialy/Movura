@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/features/tv_details/ui/widgets/tv_season_card.dart';
 
 import '../../../../core/extensions/routing_extension.dart';
@@ -42,7 +43,7 @@ class SeasonsList extends StatelessWidget {
     if (displaySeasons.isEmpty) return const SizedBox.shrink();
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 4.w),
+      padding: AppSpacing.horizontal(AppSpacing.xs),
       child: SizedBox(
         height: 280.h,
         child: ListView.builder(
@@ -52,7 +53,7 @@ class SeasonsList extends StatelessWidget {
           itemBuilder: (context, index) {
             final season = displaySeasons[index];
             return Padding(
-              padding: const EdgeInsets.all(8.0).r,
+              padding: AppSpacing.all(AppSpacing.s),
               child: TvSeasonCard(
                 tvSeasonModel: season,
                 onTap: () => _openSeason(context, season),

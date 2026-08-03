@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 
 class AppIconButton extends StatelessWidget {
   const AppIconButton({
@@ -25,13 +26,13 @@ class AppIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: backgroundColor ?? AppColors.transparent,
-      borderRadius: BorderRadius.circular(12.r),
+      borderRadius: BorderRadius.circular(AppSpacing.m),
       child: InkWell(
         onTap: onPressed,
-        borderRadius: BorderRadius.circular(12.r),
+        borderRadius: BorderRadius.circular(AppSpacing.m),
         splashColor: AppColors.neonBlue.withValues(alpha: .2),
         child: Padding(
-          padding: EdgeInsets.all(padding?.r ?? 8.r),
+          padding: AppSpacing.all(padding ?? AppSpacing.s),
           child: Icon(
             icon,
             size: size?.sp ?? 24.sp,

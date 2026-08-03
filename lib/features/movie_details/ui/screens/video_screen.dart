@@ -4,6 +4,7 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../../core/extensions/routing_extension.dart';
 import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/app_spacing.dart';
 import '../../../../core/widgets/shared_details/back_button.dart';
 
 class VideoScreen extends StatefulWidget {
@@ -128,7 +129,7 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
                       child: GestureDetector(
                         onTap: _toggleControls,
                         child: Container(
-                          padding: const EdgeInsets.all(10),
+                          padding: AppSpacing.all(10),
                           decoration: BoxDecoration(
                             color: AppColors.jetBlack.withValues(alpha: 0.85),
                             shape: BoxShape.circle,

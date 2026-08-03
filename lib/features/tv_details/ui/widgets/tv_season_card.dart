@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/app_spacing.dart';
 import '../../../../../core/theming/text_styles.dart';
 import '../../../../core/constants/api_constants.dart';
 import '../../data/about_tv_series_model.dart';
@@ -47,7 +48,7 @@ class TvSeasonCard extends StatelessWidget {
               Align(
                 alignment: AlignmentGeometry.bottomLeft,
                 child: Padding(
-                  padding: EdgeInsets.all(2.0.r),
+                  padding: AppSpacing.all(2),
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -55,9 +56,9 @@ class TvSeasonCard extends StatelessWidget {
                     elevation: 8,
                     color: AppColors.darkPurpleGray.withValues(alpha: .9),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 6.w,
-                        vertical: 4.w,
+                      padding: AppSpacing.symmetric(
+                        horizontal: 6,
+                        vertical: AppSpacing.xs,
                       ),
                       child: Text(
                         tvSeasonModel.name ?? "",
@@ -73,7 +74,7 @@ class TvSeasonCard extends StatelessWidget {
               Align(
                 alignment: AlignmentGeometry.topLeft,
                 child: Padding(
-                  padding: EdgeInsets.all(2.0.r),
+                  padding: AppSpacing.all(2),
                   child: Card(
                     elevation: 8,
                     shape: RoundedRectangleBorder(
@@ -81,7 +82,7 @@ class TvSeasonCard extends StatelessWidget {
                     ),
                     color: AppColors.darkPurpleGray.withValues(alpha: .9),
                     child: Padding(
-                      padding: EdgeInsets.all(5.0.r),
+                      padding: AppSpacing.all(5),
                       child: Text(
                         "${tvSeasonModel.episodeCount ?? 0} Eps",
                         style: TextStyles.font16SemiBoldPlatinumGray.copyWith(
@@ -95,7 +96,7 @@ class TvSeasonCard extends StatelessWidget {
               Align(
                 alignment: AlignmentGeometry.topRight,
                 child: Padding(
-                  padding: const EdgeInsets.all(4.0).r,
+                  padding: AppSpacing.all(AppSpacing.xs),
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -103,7 +104,7 @@ class TvSeasonCard extends StatelessWidget {
                     color: AppColors.darkPurpleGray.withValues(alpha: .9),
                     elevation: 10,
                     child: Padding(
-                      padding: EdgeInsets.all(5.0.r),
+                      padding: AppSpacing.all(5),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,

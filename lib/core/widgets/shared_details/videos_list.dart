@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/widgets/shared_details/video_card.dart';
 
 import '../../constants/api_constants.dart';
@@ -18,7 +19,7 @@ class VideosList extends StatelessWidget {
       height: 120.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        padding: AppSpacing.horizontal(AppSpacing.l),
         itemCount: allVideos.length,
         itemBuilder: (context, index) {
           final video = allVideos[index];

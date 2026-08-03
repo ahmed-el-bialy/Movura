@@ -98,10 +98,10 @@ class EpisodeDetailsBody extends StatelessWidget {
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Padding(
-                    padding: EdgeInsets.all(16.r),
+                    padding: AppSpacing.all(AppSpacing.l),
                     child: Container(
                       width: double.infinity,
-                      padding: EdgeInsets.all(14.r),
+                      padding: AppSpacing.all(14),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20.r),
                         color: AppColors.pureWhite.withValues(alpha: 0.07),
@@ -135,7 +135,7 @@ class EpisodeDetailsBody extends StatelessWidget {
         if (episode.overview != null && (episode.overview?.isNotEmpty ?? false))
           SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.all(16.r),
+              padding: AppSpacing.all(AppSpacing.l),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -175,7 +175,7 @@ class EpisodeDetailsBody extends StatelessWidget {
           ),
         SliverToBoxAdapter(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 30.h),
+            padding: AppSpacing.symmetric(horizontal: AppSpacing.l, vertical: 30),
             child: Row(
               children: [
                 if (hasPrevious)

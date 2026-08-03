@@ -17,7 +17,7 @@ class TvNetworkCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 100.w,
-      padding: EdgeInsets.all(12.r),
+      padding: AppSpacing.all(AppSpacing.m),
       decoration: BoxDecoration(
         color: AppColors.onyxBlack.withValues(alpha: 0.4),
         borderRadius: BorderRadius.circular(16.r),

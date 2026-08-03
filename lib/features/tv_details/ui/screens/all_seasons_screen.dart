@@ -7,6 +7,7 @@ import '../../../../core/extensions/routing_extension.dart';
 import '../../../../core/routing/arguments_models.dart';
 import '../../../../core/routing/route_names.dart';
 import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/app_spacing.dart';
 import '../../../../core/theming/text_styles.dart';
 import 'package:movura/core/widgets/buttons/app_icon_button.dart';
 import 'package:movura/core/widgets/navigation/app_navigation_bar.dart';
@@ -62,7 +63,12 @@ class AllSeasonsScreen extends StatelessWidget {
         ),
       ),
       body: GridView.builder(
-        padding: EdgeInsets.fromLTRB(12.r, 12.r, 12.r, 90.h),
+        padding: AppSpacing.only(
+          left: AppSpacing.m,
+          top: AppSpacing.m,
+          right: AppSpacing.m,
+          bottom: 90,
+        ),
         physics: const BouncingScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,

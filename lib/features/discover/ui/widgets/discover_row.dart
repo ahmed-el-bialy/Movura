@@ -41,11 +41,11 @@ class DiscoverRow extends StatelessWidget {
             itemCount: items.length,
             itemBuilder: (context, index) {
               return Padding(
-                padding: EdgeInsets.only(
-                  left: index == 0 ? 12.w : 0,
-                  right: 12.w,
-                  bottom: 12.h,
-                  top: 4.h,
+                padding: AppSpacing.only(
+                  left: index == 0 ? AppSpacing.m : 0,
+                  right: AppSpacing.m,
+                  bottom: AppSpacing.m,
+                  top: AppSpacing.xs,
                 ),
                 child: PosterCard(
                   width: 170.w,

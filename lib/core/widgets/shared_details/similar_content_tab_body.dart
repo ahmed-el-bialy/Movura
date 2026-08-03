@@ -48,7 +48,7 @@ class SimilarContentTabBody extends StatelessWidget {
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     return Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: AppSpacing.all(10),
                       child: PosterCard(
                         mediaModel: recommendList[index],
                         elevation: 2,
@@ -91,7 +91,7 @@ class SimilarContentTabBody extends StatelessWidget {
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     return Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: AppSpacing.all(AppSpacing.s),
                       child: PosterCard(
                         mediaModel: similarList[index],
                         elevation: 2,

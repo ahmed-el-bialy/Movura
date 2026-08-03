@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/models/poster_model.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/widgets/loading/movura_loading_indicator.dart';
 import 'package:movura/core/widgets/poster_card/poster_card.dart';
 import '../../theming/text_styles.dart';
@@ -48,7 +49,7 @@ class PostersSliverGrid extends StatelessWidget {
         if (isLoadingMore)
           SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 24.h),
+              padding: AppSpacing.vertical(AppSpacing.xl),
               child: const Center(
                 child: MovuraLoadingIndicator(size: 45),
               ),

@@ -75,7 +75,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 24.w),
+                      padding: AppSpacing.horizontal(AppSpacing.xl),
                       child: Form(
                         key: formKey,
                         child: Column(

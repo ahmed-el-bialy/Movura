@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 
 class NavItem extends StatelessWidget {
   const NavItem({
@@ -22,7 +23,7 @@ class NavItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(16.r),
       onTap: onTap,
       child: Padding(
-        padding: EdgeInsets.all(8.0.r),
+        padding: AppSpacing.all(AppSpacing.s),
         child: Icon(
           icon,
           size: 28.sp,

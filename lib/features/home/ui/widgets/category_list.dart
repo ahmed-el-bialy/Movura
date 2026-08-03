@@ -104,7 +104,7 @@ class _CategoryListState extends State<CategoryList> {
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) {
               return Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8.w),
+                padding: AppSpacing.horizontal(AppSpacing.s),
                 child: CategoryCard(
                   model: categories[index],
                   onTap: categories[index].onTap,
