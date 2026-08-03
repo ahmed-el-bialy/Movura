@@ -16,7 +16,7 @@ class ProfileScreen extends StatelessWidget {
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            padding: AppSpacing.horizontal(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -147,23 +147,23 @@ class _ProfileCollectionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 12.h),
+      padding: AppSpacing.only(bottom: 12),
       child: Material(
         color: AppColors.onyxBlack.withValues(alpha: 0.4),
-        borderRadius: BorderRadius.circular(16.r),
+        borderRadius: BorderRadius.circular(AppSpacing.l),
         child: InkWell(
           onTap: onTap,
-          borderRadius: BorderRadius.circular(16.r),
+          borderRadius: BorderRadius.circular(AppSpacing.l),
           child: Container(
-            padding: EdgeInsets.all(16.r),
+            padding: AppSpacing.all(AppSpacing.l),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16.r),
+              borderRadius: BorderRadius.circular(AppSpacing.l),
               border: Border.all(color: color.withValues(alpha: 0.1), width: 1),
             ),
             child: Row(
               children: [
                 Container(
-                  padding: EdgeInsets.all(10.r),
+                  padding: AppSpacing.all(10),
                   decoration: BoxDecoration(
                     color: color.withValues(alpha: 0.1),
                     shape: BoxShape.circle,

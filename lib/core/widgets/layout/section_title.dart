@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/theming/text_styles.dart';
 
 class SectionTitle extends StatelessWidget {
@@ -25,9 +25,9 @@ class SectionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: horizontalPadding?.w ?? 8.w,
-        vertical: verticalPadding?.w ?? 6.h,
+      padding: AppSpacing.symmetric(
+        horizontal: horizontalPadding ?? AppSpacing.s,
+        vertical: verticalPadding ?? 6,
       ),
       child: Row(
         children: [

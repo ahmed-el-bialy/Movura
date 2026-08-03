@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/theming/text_styles.dart';
 
 class AuthDivider extends StatelessWidget {
@@ -15,7 +16,7 @@ class AuthDivider extends StatelessWidget {
           child: Divider(color: AppColors.slateGray.withValues(alpha: 0.2)),
         ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          padding: AppSpacing.horizontal(AppSpacing.l),
           child: Text(
             "OR CONTINUE WITH",
             style: TextStyles.font12BoldCoolGray.copyWith(

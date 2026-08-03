@@ -6,6 +6,7 @@ import 'package:movura/core/widgets/shared_details/platform_options_sheet.dart';
 import '../../constants/api_constants.dart';
 import '../../extensions/routing_extension.dart';
 import '../../theming/app_colors.dart';
+import '../../theming/app_spacing.dart';
 import '../buttons/app_icon_button.dart';
 
 class CoreDetailsHeader extends StatelessWidget {
@@ -55,7 +56,7 @@ class CoreDetailsHeader extends StatelessWidget {
           ),
           Positioned(
             top: 40.h,
-            right: 16.w,
+            right: AppSpacing.l.w,
             child: Row(
               children: [
                 if ((homepage != null && homepage!.isNotEmpty) ||
@@ -81,7 +82,7 @@ class CoreDetailsHeader extends StatelessWidget {
           ),
           Positioned(
             top: 40.h,
-            left: 16.w,
+            left: AppSpacing.l.w,
             child: SizedBox(
               width: 44.r,
               height: 44.r,
@@ -97,7 +98,7 @@ class CoreDetailsHeader extends StatelessWidget {
                   onTap: () => context.pop(),
                   child: Center(
                     child: Padding(
-                      padding: EdgeInsets.only(left: 4.w),
+                      padding: AppSpacing.only(left: AppSpacing.xs),
                       child: Icon(
                         Icons.arrow_back_ios,
                         color: AppColors.neonBlue,

@@ -31,7 +31,7 @@ class EmptySectionMessage extends StatelessWidget {
         children: [
           if (showIcon)
             Container(
-              padding: EdgeInsets.all(20.r),
+              padding: AppSpacing.all(20),
               decoration: BoxDecoration(
                 color: AppColors.neonBlue.withValues(alpha: 0.05),
                 shape: BoxShape.circle,

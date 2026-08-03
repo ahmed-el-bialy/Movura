@@ -37,7 +37,7 @@ class LibraryScreen extends StatelessWidget {
             indicatorSize: TabBarIndicatorSize.tab,
             labelColor: AppColors.neonBlue,
             unselectedLabelColor: AppColors.slateGray,
-            padding: EdgeInsets.symmetric(horizontal: 5.w),
+            padding: AppSpacing.horizontal(5),
             tabs: const [
               Tab(text: "Watch Now"),
               Tab(text: "To Watch"),
@@ -95,7 +95,7 @@ class _LibraryTabContent extends StatelessWidget {
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Padding(
-        padding: EdgeInsets.all(20.r),
+        padding: AppSpacing.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

@@ -39,16 +39,16 @@ class DetailsIdentifyCard extends StatelessWidget {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+        padding: AppSpacing.all(AppSpacing.l),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(24.r),
+          borderRadius: BorderRadius.circular(AppSpacing.xl),
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 18.0, sigmaY: 18.0),
             child: Container(
               width: double.infinity,
-              padding: EdgeInsets.all(18.r),
+              padding: AppSpacing.all(18),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(24.r),
+                borderRadius: BorderRadius.circular(AppSpacing.xl),
                 color: AppColors.pureWhite.withValues(alpha: 0.08),
                 border: Border.all(
                   color: AppColors.pureWhite.withValues(alpha: 0.18),
@@ -104,9 +104,9 @@ class DetailsIdentifyCard extends StatelessWidget {
                       ),
                       AppSpacing.horizontalSpacing(10),
                       Container(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 10.w,
-                          vertical: 6.h,
+                        padding: AppSpacing.symmetric(
+                          horizontal: 10,
+                          vertical: 6,
                         ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20.r),
@@ -176,9 +176,9 @@ class DetailsIdentifyCard extends StatelessWidget {
                       ),
                       AppSpacing.horizontalSpacing(10),
                       Container(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 8.w,
-                          vertical: 3.h,
+                        padding: AppSpacing.symmetric(
+                          horizontal: AppSpacing.s,
+                          vertical: 3,
                         ),
                         decoration: BoxDecoration(
                           color: isAdult
@@ -194,12 +194,11 @@ class DetailsIdentifyCard extends StatelessWidget {
                         ),
                         child: Text(
                           isAdult ? "18+" : "PG",
-                          style: TextStyle(
+                          style: TextStyles.font10BoldCoolGray.copyWith(
                             color: isAdult
                                 ? AppColors.softRed
                                 : AppColors.platinumGray,
                             fontSize: 10.sp,
-                            fontWeight: Weights.bold,
                           ),
                         ),
                       ),

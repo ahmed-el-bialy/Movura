@@ -37,7 +37,12 @@ class PlatformOptionsSheet extends StatelessWidget {
     final streaming = providers?.flatrate ?? [];
 
     return Container(
-      padding: EdgeInsets.fromLTRB(24.w, 12.h, 24.w, 32.h),
+      padding: AppSpacing.only(
+        left: AppSpacing.xl,
+        top: AppSpacing.m,
+        right: AppSpacing.xl,
+        bottom: AppSpacing.xxl,
+      ),
       decoration: BoxDecoration(
         color: AppColors.charcoalBlack,
         borderRadius: BorderRadius.vertical(top: Radius.circular(24.r)),
@@ -187,7 +192,7 @@ class _ActionItem extends StatelessWidget {
             customBorder: const CircleBorder(),
             splashColor: color.withValues(alpha: 0.2),
             child: Container(
-              padding: EdgeInsets.all(16.r),
+              padding: AppSpacing.all(AppSpacing.l),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(

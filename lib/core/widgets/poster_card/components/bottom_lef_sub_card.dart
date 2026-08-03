@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../models/poster_model.dart';
+import '../../../theming/app_spacing.dart';
 import '../../../theming/text_styles.dart';
 import 'glass_card.dart';
 
@@ -28,11 +29,11 @@ class BottomLeftSubCard extends StatelessWidget {
     return Align(
       alignment: Alignment.bottomLeft,
       child: Padding(
-        padding: EdgeInsets.all(2.0.r),
+        padding: AppSpacing.all(2),
         child: GlassCard(
           borderRadius: subCardBorder ?? 10,
           color: subCardColor,
-          padding: EdgeInsets.symmetric(horizontal: 9.w, vertical: 4.w),
+          padding: AppSpacing.symmetric(horizontal: 9, vertical: AppSpacing.xs),
           child: Text(
             mediaModel?.title ?? mediaModel?.name ?? "Unknown Title",
             style:

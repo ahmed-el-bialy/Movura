@@ -61,9 +61,9 @@ class TrendingScreen extends StatelessWidget {
 
               if (state is TrendingContentLoaded) {
                 return SliverPadding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16.w,
-                    vertical: 12.h,
+                  padding: AppSpacing.symmetric(
+                    horizontal: AppSpacing.l,
+                    vertical: AppSpacing.m,
                   ),
                   sliver: PostersSliverGrid(posters: state.posters),
                 );

@@ -4,6 +4,7 @@ import 'package:movura/core/models/poster_model.dart';
 import 'package:movura/core/widgets/loading/movura_loading_indicator.dart';
 import 'package:movura/core/widgets/poster_card/poster_card.dart';
 
+import 'package:movura/core/theming/app_spacing.dart';
 import '../../theming/text_styles.dart';
 
 class CustomPostersGridView extends StatelessWidget {
@@ -29,7 +30,7 @@ class CustomPostersGridView extends StatelessWidget {
       physics: physics ?? const BouncingScrollPhysics(),
       slivers: [
         SliverPadding(
-          padding: padding ?? EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
+          padding: padding ?? AppSpacing.symmetric(vertical: 12, horizontal: AppSpacing.l),
           sliver: SliverGrid(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               childAspectRatio: .57,
@@ -60,7 +61,7 @@ class CustomPostersGridView extends StatelessWidget {
         if (isLoadingMore)
           SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 24.h),
+              padding: AppSpacing.vertical(AppSpacing.xl),
               child: const Center(
                 child: MovuraLoadingIndicator(size: 45),
               ),

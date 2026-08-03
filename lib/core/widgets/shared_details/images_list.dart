@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../constants/api_constants.dart';
 import '../../models/image_model.dart';
 import '../../theming/app_colors.dart';
+import '../../theming/app_spacing.dart';
 
 class ImagesList extends StatelessWidget {
   const ImagesList({
@@ -35,7 +36,7 @@ class ImagesList extends StatelessWidget {
         itemCount: images.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: EdgeInsets.all(8.r),
+            padding: AppSpacing.all(AppSpacing.s),
             child: Card(
               elevation: 5,
               shadowColor: AppColors.slateGray,
@@ -45,9 +46,9 @@ class ImagesList extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(12),
                         child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: herPadding?.w ?? 0.w,
-                            vertical: verPadding?.h ?? 0.h,
+                          padding: AppSpacing.symmetric(
+                            horizontal: herPadding ?? 0,
+                            vertical: verPadding ?? 0,
                           ),
                           child: CachedNetworkImage(
                             imageUrl:
@@ -60,9 +61,9 @@ class ImagesList extends StatelessWidget {
                   : ClipRRect(
                       borderRadius: BorderRadius.circular(12),
                       child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: herPadding?.w ?? 0.w,
-                          vertical: verPadding?.h ?? 0.h,
+                        padding: AppSpacing.symmetric(
+                          horizontal: herPadding ?? 0,
+                          vertical: verPadding ?? 0,
                         ),
                         child: CachedNetworkImage(
                           imageUrl:

@@ -6,6 +6,7 @@ import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/models/actor_model.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/theming/weights.dart';
 
@@ -26,7 +27,7 @@ class ActorCard extends StatelessWidget {
         }
       },
       child: Padding(
-        padding: const EdgeInsets.all(6.0),
+        padding: AppSpacing.all(6),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -57,11 +58,11 @@ class ActorCard extends StatelessWidget {
                     ),
                   ),
             Padding(
-              padding: EdgeInsets.only(
-                top: 12.h,
-                left: 10.w,
-                right: 10.w,
-                bottom: 4.w,
+              padding: AppSpacing.only(
+                top: AppSpacing.m,
+                left: 10,
+                right: 10,
+                bottom: AppSpacing.xs,
               ),
               child: Text(
                 actor.name ?? "Unknown",
@@ -71,11 +72,11 @@ class ActorCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(
-                top: 5.h,
-                left: 10.w,
-                right: 10.w,
-                bottom: 4.w,
+              padding: AppSpacing.only(
+                top: 5,
+                left: 10,
+                right: 10,
+                bottom: AppSpacing.xs,
               ),
               child: Text(
                 actor.character ?? "",
@@ -88,7 +89,7 @@ class ActorCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 5.h),
+              padding: AppSpacing.symmetric(horizontal: AppSpacing.s, vertical: 5),
               child: Text(
                 actor.job ?? "",
                 maxLines: 1,

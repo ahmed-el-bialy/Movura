@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/features/search/logic/search/search_cubit.dart';
 import 'package:movura/features/search/ui/screens/custom_search_delegate.dart';
 import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 import '../../networking/di.dart';
 import 'navigation_widgets/nav_item.dart';
 
@@ -33,7 +34,7 @@ class AppNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 10.h, left: 18.w, right: 18.w),
+      padding: AppSpacing.only(bottom: 10, left: 18, right: 18),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(25.r),
         child: BackdropFilter(

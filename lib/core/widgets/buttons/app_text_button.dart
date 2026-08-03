@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/theming/text_styles.dart';
 
 class AppTextButton extends StatelessWidget {
@@ -33,14 +34,14 @@ class AppTextButton extends StatelessWidget {
     return TextButton(
       style: ButtonStyle(
         padding: WidgetStatePropertyAll(
-          EdgeInsets.symmetric(
-            horizontal: horizontalPadding?.w ?? 12.w,
-            vertical: verticalPadding?.h ?? 12.h,
+          AppSpacing.symmetric(
+            horizontal: horizontalPadding ?? AppSpacing.m,
+            vertical: verticalPadding ?? AppSpacing.m,
           ),
         ),
         shape: WidgetStatePropertyAll(
           RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius?.r ?? 16.r),
+            borderRadius: BorderRadius.circular(borderRadius ?? AppSpacing.l),
           ),
         ),
         backgroundColor: WidgetStatePropertyAll(

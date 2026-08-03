@@ -19,19 +19,25 @@ class ReviewCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
+      padding: AppSpacing.symmetric(
+        vertical: AppSpacing.s,
+        horizontal: AppSpacing.m,
+      ),
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.onyxBlack,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
+          padding: AppSpacing.symmetric(
+            horizontal: 10,
+            vertical: AppSpacing.s,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 8.h),
+                padding: AppSpacing.vertical(AppSpacing.s),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,

@@ -74,10 +74,10 @@ class TvSeasonDetailsBody extends StatelessWidget {
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Padding(
-                    padding: EdgeInsets.all(16.r),
+                    padding: AppSpacing.all(AppSpacing.l),
                     child: Container(
                       width: double.infinity,
-                      padding: EdgeInsets.all(14.r),
+                      padding: AppSpacing.all(14),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20.r),
                         color: AppColors.pureWhite.withValues(alpha: 0.07),
@@ -112,7 +112,7 @@ class TvSeasonDetailsBody extends StatelessWidget {
             (seasonDetails.overview?.isNotEmpty ?? false))
           SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.all(16.r),
+              padding: AppSpacing.all(AppSpacing.l),
               child: Text(
                 seasonDetails.overview ?? '',
                 style: TextStyles.font12RegularCoolGrayManrope.copyWith(height: 1.6),
@@ -122,7 +122,7 @@ class TvSeasonDetailsBody extends StatelessWidget {
         AppSpacing.sliverVerticalSpacing(AppSpacing.l),
         SliverToBoxAdapter(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            padding: AppSpacing.horizontal(AppSpacing.l),
             child: Text(
               'Episodes',
               style: TextStyles.font14RegularPureWhiteManrope.copyWith(

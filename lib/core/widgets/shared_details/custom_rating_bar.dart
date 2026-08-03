@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../extensions/rating_formatter.dart';
 import '../../theming/app_colors.dart';
+import '../../theming/app_spacing.dart';
 
 class CustomRatingBar extends StatelessWidget {
   final double rating;
@@ -17,7 +18,7 @@ class CustomRatingBar extends StatelessWidget {
       itemCount: 5,
       itemSize: 10.r,
       unratedColor: AppColors.darkSlateGray,
-      itemPadding: EdgeInsets.symmetric(horizontal: 1.0.w),
+      itemPadding: AppSpacing.horizontal(1.0),
       itemBuilder: (context, index) =>
           const Icon(Icons.star, color: AppColors.neonBlue),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 
 class AuthSocialButton extends StatelessWidget {
   const AuthSocialButton({
@@ -17,7 +18,7 @@ class AuthSocialButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 8.w),
+      padding: AppSpacing.horizontal(AppSpacing.s),
       child: Material(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(15.r),
@@ -25,7 +26,7 @@ class AuthSocialButton extends StatelessWidget {
           onTap: onTap,
           borderRadius: BorderRadius.circular(15.r),
           child: Ink(
-            padding: EdgeInsets.all(10.r),
+            padding: AppSpacing.all(10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.r),
               border: Border.all(

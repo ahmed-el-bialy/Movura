@@ -22,7 +22,7 @@ class CustomSideDrawer extends StatelessWidget {
           const _DrawerHeader(),
           Expanded(
             child: ListView(
-              padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 12.w),
+              padding: AppSpacing.symmetric(vertical: 10, horizontal: AppSpacing.m),
               physics: const BouncingScrollPhysics(),
               children: [
                 _DrawerItem(
@@ -96,7 +96,12 @@ class _DrawerHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.fromLTRB(24.w, 60.h, 24.w, 30.h),
+      padding: AppSpacing.only(
+        left: AppSpacing.xl,
+        top: 60,
+        right: AppSpacing.xl,
+        bottom: 30,
+      ),
       decoration: BoxDecoration(
         color: AppColors.onyxBlack.withValues(alpha: 0.3),
         border: Border(
@@ -109,7 +114,7 @@ class _DrawerHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.all(8.r),
+            padding: AppSpacing.all(AppSpacing.s),
             decoration: BoxDecoration(
               color: AppColors.neonBlue.withValues(alpha: 0.1),
               shape: BoxShape.circle,
@@ -149,7 +154,12 @@ class _DrawerSectionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(16.w, 24.h, 16.w, 8.h),
+      padding: AppSpacing.only(
+        left: AppSpacing.l,
+        top: AppSpacing.xl,
+        right: AppSpacing.l,
+        bottom: AppSpacing.s,
+      ),
       child: Text(
         title,
         style: TextStyles.font10BoldCoolGray.copyWith(
@@ -182,15 +192,15 @@ class _DrawerItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 4.h),
+      margin: AppSpacing.only(bottom: AppSpacing.xs),
       child: ListTile(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16.r),
         ),
         onTap: onTap,
-        contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 4.h),
+        contentPadding: AppSpacing.symmetric(horizontal: AppSpacing.l, vertical: AppSpacing.xs),
         leading: Container(
-          padding: EdgeInsets.all(10.r),
+          padding: AppSpacing.all(10),
           decoration: BoxDecoration(
             color: (iconColor ?? AppColors.coolGray).withValues(alpha: 0.08),
             borderRadius: BorderRadius.circular(12.r),
@@ -234,7 +244,7 @@ class _LogoutButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(20.r),
+      padding: AppSpacing.all(20),
       child: InkWell(
         onTap: () {
           context.pop();
@@ -242,7 +252,7 @@ class _LogoutButton extends StatelessWidget {
         },
         borderRadius: BorderRadius.circular(16.r),
         child: Container(
-          padding: EdgeInsets.symmetric(vertical: 14.h, horizontal: 20.w),
+          padding: AppSpacing.symmetric(vertical: 14, horizontal: 20),
           decoration: BoxDecoration(
             color: AppColors.softRed.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(16.r),

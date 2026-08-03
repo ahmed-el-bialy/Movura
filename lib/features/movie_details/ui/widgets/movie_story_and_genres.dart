@@ -19,7 +19,7 @@ class MovieStoryAndGenres extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 12.w),
+      padding: AppSpacing.symmetric(vertical: AppSpacing.l, horizontal: AppSpacing.m),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -44,7 +44,7 @@ class MovieStoryAndGenres extends StatelessWidget {
                 itemCount: model.genres!.length,
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: EdgeInsets.only(right: 10.w),
+                    padding: AppSpacing.only(right: 10),
                     child: Container(
                       decoration: BoxDecoration(
                         color: AppColors.onyxBlack.withValues(alpha: 0.5),
@@ -71,7 +71,7 @@ class MovieStoryAndGenres extends StatelessWidget {
                         borderRadius: BorderRadius.circular(16.r),
                         child: Center(
                           child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 14.w),
+                            padding: AppSpacing.horizontal(14),
                             child: Text(
                               model.genres![index].name,
                               style: TextStyles.font12MediumPlatinumGray

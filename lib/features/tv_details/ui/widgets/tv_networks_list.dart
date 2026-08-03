@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/features/tv_details/ui/widgets/tv_network_card.dart';
 
 import '../../data/about_tv_series_model.dart';
@@ -22,7 +23,7 @@ class TvNetworksList extends StatelessWidget {
         itemCount: network.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 4.w),
+            padding: AppSpacing.horizontal(AppSpacing.xs),
             child: TvNetworkCard(network: network[index]),
           );
         },

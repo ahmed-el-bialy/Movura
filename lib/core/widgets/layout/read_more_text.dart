@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/theming/weights.dart';
 
@@ -73,7 +74,7 @@ class _ReadMoreTextState extends State<ReadMoreText> {
                   });
                 },
                 child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 4.h),
+                  padding: AppSpacing.vertical(AppSpacing.xs),
                   child: Text(
                     isExpanded ? "Read Less" : "Read More",
                     style: TextStyles.font13BoldNeonBlueSora.copyWith(

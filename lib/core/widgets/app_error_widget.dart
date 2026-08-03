@@ -21,7 +21,7 @@ class AppErrorWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              padding: EdgeInsets.all(20.r),
+              padding: AppSpacing.all(20),
               decoration: BoxDecoration(
                 color: AppColors.softRed.withValues(alpha: 0.1),
                 shape: BoxShape.circle,

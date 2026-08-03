@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 
 import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 
 class PosterCardSkeleton extends StatelessWidget {
   const PosterCardSkeleton({
@@ -25,9 +26,9 @@ class PosterCardSkeleton extends StatelessWidget {
       highlightColor: AppColors.coolGray,
       period: const Duration(milliseconds: 1200),
       child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: horizontalPadding?.w ?? 10.w,
-          vertical: verticalPadding?.h ?? 12.h,
+        padding: AppSpacing.symmetric(
+          horizontal: horizontalPadding ?? 10,
+          vertical: verticalPadding ?? AppSpacing.m,
         ),
         child: Card(
           elevation: 10,

@@ -29,9 +29,9 @@ class EpisodeLoadingSkeleton extends StatelessWidget {
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 20.w,
-                        vertical: 16.h,
+                      padding: AppSpacing.symmetric(
+                        horizontal: 20,
+                        vertical: AppSpacing.l,
                       ),
                       child: Container(
                         height: 90.h,
@@ -48,7 +48,10 @@ class EpisodeLoadingSkeleton extends StatelessWidget {
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+              padding: AppSpacing.symmetric(
+                horizontal: AppSpacing.l,
+                vertical: AppSpacing.m,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -76,14 +79,14 @@ class EpisodeLoadingSkeleton extends StatelessWidget {
           AppSpacing.sliverVerticalSpacing(20),
           SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              padding: AppSpacing.horizontal(AppSpacing.l),
               child: SizedBox(
                 height: 140.h,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: 4,
                   itemBuilder: (context, index) => Padding(
-                    padding: EdgeInsets.only(right: 12.w),
+                    padding: AppSpacing.only(right: AppSpacing.m),
                     child: Container(
                       width: 100.w,
                       decoration: BoxDecoration(

@@ -16,7 +16,7 @@ class ButtonsRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10.w),
+      padding: AppSpacing.horizontal(10),
       child: Row(
         children: [
           Expanded(

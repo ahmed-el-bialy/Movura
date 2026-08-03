@@ -19,7 +19,7 @@ class DetailsAdditionalData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 14.w),
+      padding: AppSpacing.horizontal(14),
       child: Column(
         children: [
           Row(

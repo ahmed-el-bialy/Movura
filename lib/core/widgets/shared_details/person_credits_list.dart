@@ -46,7 +46,7 @@ class PersonCreditsList extends StatelessWidget {
             },
             child: Container(
               width: 120.w,
-              margin: EdgeInsets.only(right: 12.w),
+              margin: AppSpacing.only(right: AppSpacing.m),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

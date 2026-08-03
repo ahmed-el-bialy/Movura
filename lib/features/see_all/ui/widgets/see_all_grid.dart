@@ -58,7 +58,10 @@ class SeeAllGrid extends StatelessWidget {
             child: CustomScrollView(
               slivers: [
                 SliverPadding(
-                  padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 8.h),
+                  padding: AppSpacing.symmetric(
+                    horizontal: AppSpacing.xs,
+                    vertical: AppSpacing.s,
+                  ),
                   sliver: SliverGrid(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
@@ -91,7 +94,7 @@ class SeeAllGrid extends StatelessWidget {
                 if (state.isFetchingMore)
                   SliverToBoxAdapter(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 24.h),
+                      padding: AppSpacing.vertical(AppSpacing.xl),
                       child: const Center(
                         child: MovuraLoadingIndicator(size: 60),
                       ),

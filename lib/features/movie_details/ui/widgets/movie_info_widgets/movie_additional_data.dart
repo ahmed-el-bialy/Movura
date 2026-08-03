@@ -37,7 +37,7 @@ class AdditionalData extends StatelessWidget {
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+            padding: AppSpacing.symmetric(horizontal: AppSpacing.l, vertical: AppSpacing.m),
             decoration: BoxDecoration(
               color: isProfit
                   ? Colors.greenAccent.withValues(alpha: 0.08)

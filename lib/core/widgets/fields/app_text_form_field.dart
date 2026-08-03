@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/theming/text_styles.dart';
 
 class AppTextFormField extends StatelessWidget {
@@ -56,7 +57,7 @@ class AppTextFormField extends StatelessWidget {
         isDense: true,
         contentPadding:
             contentPadding ??
-            EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+            AppSpacing.symmetric(horizontal: AppSpacing.l, vertical: 14),
         hintText: hintText,
         hintStyle:
             hintStyle ??
@@ -70,7 +71,7 @@ class AppTextFormField extends StatelessWidget {
         enabledBorder:
             enabledBorder ??
             OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16.r),
+              borderRadius: BorderRadius.circular(AppSpacing.l),
               borderSide: BorderSide(
                 color: AppColors.coolGray.withValues(alpha: 0.45),
                 width: 1.3.w,
@@ -80,21 +81,21 @@ class AppTextFormField extends StatelessWidget {
         focusedBorder:
             focusedBorder ??
             OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16.r),
+              borderRadius: BorderRadius.circular(AppSpacing.l),
               borderSide: BorderSide(color: AppColors.neonBlue, width: 1.3.w),
             ),
 
         errorBorder:
             errorBorder ??
             OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16.r),
+              borderRadius: BorderRadius.circular(AppSpacing.l),
               borderSide: BorderSide(color: AppColors.softRed, width: 1.2.w),
             ),
 
         focusedErrorBorder:
             focusedErrorBorder ??
             OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16.r),
+              borderRadius: BorderRadius.circular(AppSpacing.l),
               borderSide: BorderSide(color: AppColors.softRed, width: 1.2.w),
             ),
         errorMaxLines: 2,

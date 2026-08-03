@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:movura/core/models/poster_model.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/widgets/poster_card/poster_card.dart';
 
@@ -36,7 +37,7 @@ class MediaHorizontalList extends StatelessWidget {
         itemCount: items.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 12.h),
+            padding: AppSpacing.symmetric(horizontal: 10, vertical: 12),
             child: PosterCard(
               width: cardWidth.w,
               elevation: 8,

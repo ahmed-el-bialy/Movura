@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 
 class AuthPrefixIcon extends StatelessWidget {
   const AuthPrefixIcon({super.key, required this.icon});
@@ -11,7 +12,7 @@ class AuthPrefixIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 14.w),
+      padding: AppSpacing.horizontal(14),
       child: Icon(
         icon,
         size: 22.sp,

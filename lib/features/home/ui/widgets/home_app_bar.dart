@@ -55,7 +55,7 @@ class HomeAppBar extends StatelessWidget {
       ),
       actions: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.w),
+          padding: AppSpacing.horizontal(10),
           child: AppIconButton(
             icon: Icons.search_outlined,
             onPressed: () {

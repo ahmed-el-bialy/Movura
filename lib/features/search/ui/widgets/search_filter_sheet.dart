@@ -102,9 +102,9 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
       filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
       child: Dialog(
         backgroundColor: AppColors.transparent,
-        insetPadding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 32.h),
+        insetPadding: AppSpacing.symmetric(horizontal: AppSpacing.xl, vertical: AppSpacing.xxl),
         child: Container(
-          padding: EdgeInsets.all(24.r),
+          padding: AppSpacing.all(AppSpacing.xl),
           decoration: BoxDecoration(
             color: AppColors.charcoalBlack.withValues(alpha: 0.96),
             borderRadius: BorderRadius.circular(36.r),
@@ -317,7 +317,7 @@ class _HeaderCloseButton extends StatelessWidget {
       ),
       child: IconButton(
         onPressed: onPressed,
-        padding: EdgeInsets.all(4.r),
+        padding: AppSpacing.all(4),
         constraints: const BoxConstraints(),
         icon: Icon(Icons.close_rounded, color: AppColors.coolGray, size: 20.sp),
       ),
@@ -353,7 +353,7 @@ class _FilterOptionTile extends StatelessWidget {
           onTap: onTap,
           splashColor: AppColors.neonBlue.withValues(alpha: 0.15),
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 14.w),
+            padding: AppSpacing.horizontal(14),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16.r),
               border: Border.all(
@@ -433,7 +433,7 @@ class _RefinedChip extends StatelessWidget {
       ),
       showCheckmark: false,
       elevation: 0,
-      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
+      padding: AppSpacing.symmetric(horizontal: 10, vertical: 6),
     );
   }
 }
@@ -455,7 +455,7 @@ class _SortToggleChip extends StatelessWidget {
       onTap: onTap,
       borderRadius: BorderRadius.circular(14.r),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+        padding: AppSpacing.symmetric(horizontal: 16, vertical: 10),
         decoration: BoxDecoration(
           color: isSelected
               ? AppColors.neonBlue.withValues(alpha: 0.15)
@@ -503,7 +503,7 @@ class _SelectionSummaryBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+      padding: AppSpacing.symmetric(horizontal: AppSpacing.l, vertical: 12),
       decoration: BoxDecoration(
         color: AppColors.onyxBlack.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(18.r),

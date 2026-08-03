@@ -67,7 +67,7 @@ class PersonDetailsScreen extends StatelessWidget {
                 ),
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: EdgeInsets.all(16.r),
+                    padding: AppSpacing.all(AppSpacing.l),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -143,7 +143,7 @@ class _PersonalInfoGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16.r),
+      padding: AppSpacing.all(AppSpacing.l),
       decoration: BoxDecoration(
         color: AppColors.onyxBlack.withValues(alpha: 0.3),
         borderRadius: BorderRadius.circular(20.r),

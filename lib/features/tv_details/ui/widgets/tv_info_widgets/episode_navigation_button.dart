@@ -29,7 +29,7 @@ class EpisodeNavigationButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(16.r),
         splashColor: AppColors.neonBlue.withValues(alpha: 0.1),
         child: Container(
-          padding: EdgeInsets.all(16.r),
+          padding: AppSpacing.all(AppSpacing.l),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16.r),
             border: Border.all(
