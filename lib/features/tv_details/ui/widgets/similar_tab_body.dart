@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movura/core/widgets/shared_details/details_tab_state_wrapper.dart';
+import 'package:movura/core/widgets/shared_details/similar_content_tab_body.dart';
 
-import '../../../../core/widgets/app_error_widget.dart';
-import '../../../../core/widgets/shared_details/similar_content_tab_body.dart';
 import '../../logic/similar_content/similar_content_cubit.dart';
 
 class SimilarTabBody extends StatelessWidget {
@@ -10,29 +10,21 @@ class SimilarTabBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<
-      TvSeriesSimilarContentCubit,
-      TvSeriesSimilarContentState
-    >(
+    return BlocBuilder<TvSeriesSimilarContentCubit, TvSeriesSimilarContentState>(
       builder: (context, state) {
-        if (state is TvSimilarContentLoaded) {
-          return SimilarContentTabBody(
-            mediaType: "tv",
-            recommendList:
-                state.similarContentResponse.recommendations?.results ?? [],
-            similarList: state.similarContentResponse.similar?.results ?? [],
-            mediaId: state.id,
-          );
-        } else if (state is TvSimilarContentLoading) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (state is TvSimilarContentError) {
-          return AppErrorWidget(
-            errorMessage: state.errorMessage,
-            onRetry: () {},
-          );
-        } else {
-          return const AppErrorWidget(errorMessage: "Something went wrong");
-        }
+        return DetailsTabStateWrapper(
+          isLoading: state is TvSimilarContentLoading,
+          errorMessage: state is TvSimilarContentError ? state.errorMessage : null,
+          onRetry: () {},
+          child: state is TvSimilarContentLoaded
+              ? SimilarContentTabBody(
+                  mediaType: "tv",
+                  recommendList: state.similarContentResponse.recommendations?.results ?? [],
+                  similarList: state.similarContentResponse.similar?.results ?? [],
+                  mediaId: state.id,
+                )
+              : const SizedBox.shrink(),
+        );
       },
     );
   }

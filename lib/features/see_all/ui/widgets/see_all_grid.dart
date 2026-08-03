@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/helpers/spacing.dart';
+import 'package:movura/core/widgets/movura_loading_indicator.dart';
 
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/text_styles.dart';
@@ -19,7 +20,7 @@ class SeeAllGrid extends StatelessWidget {
           return const SizedBox();
         } else if (state is SeeAllLoading) {
           return const Center(
-            child: CircularProgressIndicator(color: AppColors.neonBlue),
+            child: MovuraLoadingIndicator(),
           );
         } else if (state is SeeAllError) {
           return Center(
