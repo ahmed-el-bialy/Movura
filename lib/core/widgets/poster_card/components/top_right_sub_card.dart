@@ -48,7 +48,7 @@ class TopRightSubCard extends StatelessWidget {
                                 : "N/A ",
                             style:
                                 subTextStyle ??
-                                TextStyles.font16SimiBoldPlatinumGray.copyWith(
+                                TextStyles.font16SemiBoldPlatinumGray.copyWith(
                                   fontSize: 14.sp,
                                 ),
                           ),
@@ -63,7 +63,7 @@ class TopRightSubCard extends StatelessWidget {
                         mediaModel?.knownForDepartment ?? "Unknown",
                         style:
                             subTextStyle ??
-                            TextStyles.font16SimiBoldPlatinumGray.copyWith(
+                            TextStyles.font16SemiBoldPlatinumGray.copyWith(
                               fontSize: 14.sp,
                             ),
                       ),

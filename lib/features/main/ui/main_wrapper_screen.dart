@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/widgets/app_navigation_bar.dart';
+import 'package:movura/core/widgets/navigation/app_navigation_bar.dart';
 import '../../home/ui/screens/home_screen.dart';
 import '../../library/ui/screens/library_screen.dart';
 import '../../profile/ui/screens/profile_screen.dart';

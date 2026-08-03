@@ -2,13 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/theming/weights.dart';
 
-import '../../../../core/theming/app_colors.dart';
-import '../../../../core/theming/text_styles.dart';
 import '../../data/models/search_filter_type.dart';
 import '../../logic/search/search_cubit.dart';
-import '../widgets/search_results_grid.dart';
 import '../widgets/search_filter_sheet.dart';
+import '../widgets/search_results_grid.dart';
 import '../widgets/search_ui_widgets/search_empty_state.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
@@ -29,7 +30,7 @@ class CustomSearchDelegate extends SearchDelegate {
         elevation: 0,
       ),
       inputDecorationTheme: InputDecorationTheme(
-        hintStyle: TextStyles.font12CoolGrayManrope.copyWith(
+        hintStyle: TextStyles.font12RegularCoolGrayManrope.copyWith(
           color: AppColors.slateGray.withValues(alpha: 0.6),
           fontSize: 16.sp,
         ),
@@ -41,7 +42,7 @@ class CustomSearchDelegate extends SearchDelegate {
         titleLarge: TextStyles.font17BoldIceBlueMontserrat.copyWith(
           color: AppColors.iceBlue,
           fontSize: 18.sp,
-          fontWeight: FontWeight.w500,
+          fontWeight: Weights.medium,
         ),
       ),
     );

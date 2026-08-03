@@ -5,11 +5,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../constants/api_constants.dart';
-import '../../helpers/spacing.dart';
-import '../../models/watch_provider_model.dart';
-import '../../theming/app_colors.dart';
-import '../../theming/text_styles.dart';
+import 'package:movura/core/constants/api_constants.dart';
+import 'package:movura/core/models/watch_provider_model.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/theming/text_styles.dart';
 
 class PlatformOptionsSheet extends StatelessWidget {
   const PlatformOptionsSheet({
@@ -56,19 +56,19 @@ class PlatformOptionsSheet extends StatelessWidget {
               ),
             ),
           ),
-          verticalSpacing(24),
+          AppSpacing.verticalSpacing(AppSpacing.xl),
           Text(
             'Streaming Options',
             style: TextStyles.font17BoldIceBlueMontserrat.copyWith(
               fontSize: 18.sp,
             ),
           ),
-          verticalSpacing(8),
+          AppSpacing.verticalSpacing(AppSpacing.s),
           Text(
             'Visit official sources to watch this content',
-            style: TextStyles.font12CoolGrayManrope,
+            style: TextStyles.font12RegularCoolGrayManrope,
           ),
-          verticalSpacing(24),
+          AppSpacing.verticalSpacing(AppSpacing.xl),
           if (streaming.isNotEmpty) ...[
             Text(
               'AVAILABLE ON',
@@ -77,7 +77,7 @@ class PlatformOptionsSheet extends StatelessWidget {
                 color: AppColors.neonBlue,
               ),
             ),
-            verticalSpacing(16),
+            AppSpacing.verticalSpacing(AppSpacing.l),
             Wrap(
               spacing: 16.w,
               runSpacing: 16.h,
@@ -95,7 +95,7 @@ class PlatformOptionsSheet extends StatelessWidget {
                             const Icon(Icons.broken_image),
                       ),
                     ),
-                    verticalSpacing(4),
+                    AppSpacing.verticalSpacing(AppSpacing.xs),
                     SizedBox(
                       width: 50.w,
                       child: Text(
@@ -113,7 +113,7 @@ class PlatformOptionsSheet extends StatelessWidget {
                 );
               }).toList(),
             ),
-            verticalSpacing(32),
+            AppSpacing.verticalSpacing(AppSpacing.xxl),
           ],
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -199,7 +199,7 @@ class _ActionItem extends StatelessWidget {
             ),
           ),
         ),
-        verticalSpacing(8),
+        AppSpacing.verticalSpacing(AppSpacing.s),
         Text(
           label,
           style: TextStyles.font10BoldCoolGray.copyWith(

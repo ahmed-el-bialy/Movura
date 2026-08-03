@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/models/poster_model.dart';
+import 'package:movura/core/models/poster_model.dart';
 import '../data/repo/discover_repo.dart';
 
 abstract class DiscoverMoviesState {}

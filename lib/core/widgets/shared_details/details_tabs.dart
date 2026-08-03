@@ -2,9 +2,10 @@ import 'package:expandable_page_view/expandable_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../helpers/spacing.dart';
-import '../../theming/app_colors.dart';
-import '../../theming/text_styles.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/theming/weights.dart';
 
 class DetailsTabs extends StatelessWidget {
   const DetailsTabs({super.key, required this.tabs, required this.children});
@@ -38,7 +39,7 @@ class DetailsTabs extends StatelessWidget {
             children: [
               TabBar(
                 unselectedLabelStyle: TextStyles.font10MediumCoolGraySora
-                    .copyWith(fontWeight: FontWeight.bold, fontSize: 13.sp),
+                    .copyWith(fontWeight: Weights.bold, fontSize: 13.sp),
                 labelStyle: TextStyles.font13BoldNeonBlueSora,
                 indicatorColor: AppColors.neonBlue,
                 indicatorWeight: 3.0,
@@ -47,7 +48,7 @@ class DetailsTabs extends StatelessWidget {
                 unselectedLabelColor: AppColors.slateGray,
                 tabs: tabs.map((tab) => Tab(text: tab)).toList(),
               ),
-              verticalSpacing(10),
+              AppSpacing.verticalSpacing(10),
               ExpandablePageView(
                 controller: pageController,
                 onPageChanged: (index) {

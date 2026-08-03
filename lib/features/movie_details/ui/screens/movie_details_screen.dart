@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/core/widgets/movura_loading_indicator.dart';
-
+import 'package:movura/core/widgets/loading/movura_loading_indicator.dart';
+import 'package:movura/core/widgets/app_error_widget.dart';
 import '../../../../core/theming/app_colors.dart';
-import '../../../../core/widgets/app_error_widget.dart';
 import '../../logic/about/about_cubit.dart';
 import '../widgets/movie_screen_body.dart';
 

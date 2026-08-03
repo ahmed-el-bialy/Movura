@@ -40,7 +40,7 @@ class TopLeftSubCard extends StatelessWidget {
                   (mediaModel?.mediaType ?? mediaType ?? "N/A").toUpperCase(),
                   style:
                       subTextStyle ??
-                      TextStyles.font16SimiBoldPlatinumGray.copyWith(
+                      TextStyles.font16SemiBoldPlatinumGray.copyWith(
                         fontSize: 13.sp,
                         letterSpacing: 1.2,
                       ),

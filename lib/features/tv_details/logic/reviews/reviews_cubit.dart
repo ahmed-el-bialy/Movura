@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/repos/tv_series_repo.dart';
-import '../../../../core/models/review_model.dart';
+import 'package:movura/core/models/review_model.dart';
 
 part 'reviews_state.dart';
 

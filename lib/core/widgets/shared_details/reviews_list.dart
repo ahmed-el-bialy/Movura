@@ -3,7 +3,8 @@ import 'package:movura/core/constants/app_constants.dart';
 import 'package:movura/core/widgets/shared_details/review_card.dart';
 
 import '../../models/review_model.dart';
-import '../section_title.dart';
+import '../layout/section_title.dart';
+
 
 class ReviewsList extends StatelessWidget {
   const ReviewsList({super.key, required this.reviews});

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movura/core/widgets/layout/empty_section_message.dart';
+
 import '../app_error_widget.dart';
-import '../empty_section_message.dart';
 import 'details_tab_loading.dart';
 
 class DetailsTabStateWrapper extends StatelessWidget {
@@ -32,10 +33,7 @@ class DetailsTabStateWrapper extends StatelessWidget {
     }
 
     if (errorMessage != null) {
-      return AppErrorWidget(
-        errorMessage: errorMessage!,
-        onRetry: onRetry,
-      );
+      return AppErrorWidget(errorMessage: errorMessage!, onRetry: onRetry);
     }
 
     if (isEmpty) {

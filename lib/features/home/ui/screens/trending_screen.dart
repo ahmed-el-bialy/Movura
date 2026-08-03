@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/widgets/app_error_widget.dart';
+import 'package:movura/core/widgets/buttons/app_icon_button.dart';
+import 'package:movura/core/widgets/loading/skeleton_posters_list_loading.dart';
+import 'package:movura/core/widgets/navigation/app_navigation_bar.dart';
 
-import '../../../../core/extensions/routing_extension.dart';
-import '../../../../core/helpers/spacing.dart';
-import '../../../../core/theming/app_colors.dart';
-import '../../../../core/theming/text_styles.dart';
-import '../../../../core/widgets/app_error_widget.dart';
-import '../../../../core/widgets/app_icon_button.dart';
-import '../../../../core/widgets/app_navigation_bar.dart';
-import '../../../../core/widgets/custom_posters_grid_view.dart';
-import '../../../../core/widgets/skeleton_posters_list_loading.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/widgets/layout/posters_sliver_grid.dart';
 import '../../logic/trending_content/trending_content_cubit.dart';
 
 class TrendingScreen extends StatelessWidget {
@@ -33,7 +33,7 @@ class TrendingScreen extends StatelessWidget {
             ),
             title: Text(
               'Trending Today',
-              style: TextStyles.font20SimiBoldNeonBlueManrope.copyWith(
+              style: TextStyles.font20SemiBoldNeonBlueManrope.copyWith(
                 fontSize: 18.sp,
               ),
             ),
@@ -61,10 +61,11 @@ class TrendingScreen extends StatelessWidget {
 
               if (state is TrendingContentLoaded) {
                 return SliverPadding(
-                  padding: EdgeInsets.symmetric(horizontal: 12.w),
-                  sliver: SliverToBoxAdapter(
-                    child: CustomPostersGridView(poster: state.posters),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 16.w,
+                    vertical: 12.h,
                   ),
+                  sliver: PostersSliverGrid(posters: state.posters),
                 );
               }
 
@@ -73,7 +74,7 @@ class TrendingScreen extends StatelessWidget {
               );
             },
           ),
-          sliverVerticalSpacing(90),
+          AppSpacing.sliverVerticalSpacing(90),
         ],
       ),
       bottomNavigationBar: const AppNavigationBar(activeIndex: 0),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../../../core/widgets/shared_details/details_additional_data.dart';
+import 'package:movura/core/widgets/shared_details/details_additional_data.dart';
 import '../../../data/about_tv_series_model.dart';
 
 class TvAdditionalData extends StatelessWidget {

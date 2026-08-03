@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/extensions/routing_extension.dart';
-import '../../../../core/helpers/spacing.dart';
-import '../../../../core/routing/route_names.dart';
-import '../../../../core/theming/app_colors.dart';
-import '../../../../core/widgets/section_title.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/routing/route_names.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/widgets/layout/section_title.dart';
 import '../../../see_all/data/models/see_all_arguments.dart';
 import '../widgets/category_list.dart';
 import '../widgets/custom_side_drawer.dart';
@@ -48,7 +48,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             const TrendingList(),
-            sliverVerticalSpacing(25),
+            AppSpacing.sliverVerticalSpacing(25),
             SliverToBoxAdapter(
               child: SectionTitle(
                 sectionName: "Top Rated Movies",
@@ -63,7 +63,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             const SliverToBoxAdapter(child: TopMoviesList()),
-            sliverVerticalSpacing(25),
+            AppSpacing.sliverVerticalSpacing(25),
             SliverToBoxAdapter(
               child: SectionTitle(
                 sectionName: "Top Rated TV Series",
@@ -78,7 +78,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             const SliverToBoxAdapter(child: TopTvSeriesList()),
-            sliverVerticalSpacing(100),
+            AppSpacing.sliverVerticalSpacing(100),
           ],
         ),
       ),

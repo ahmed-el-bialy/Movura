@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../features/see_all/data/models/see_all_arguments.dart';
-import '../../constants/app_constants.dart';
-import '../../extensions/routing_extension.dart';
-import '../../helpers/spacing.dart';
-import '../../models/poster_model.dart';
-import '../../routing/route_names.dart';
-import '../../theming/app_colors.dart';
-import '../poster_card/poster_card.dart';
-import '../section_title.dart';
+import 'package:movura/core/constants/app_constants.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/models/poster_model.dart';
+import 'package:movura/core/routing/route_names.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/widgets/layout/section_title.dart';
+import 'package:movura/core/widgets/poster_card/poster_card.dart';
+
 
 class SimilarContentTabBody extends StatelessWidget {
   const SimilarContentTabBody({
@@ -29,14 +30,14 @@ class SimilarContentTabBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        verticalSpacing(10),
+        AppSpacing.verticalSpacing(10),
         recommendList.isNotEmpty
             ? SectionTitle(
                 sectionName: "RECOMMENDATIONS",
                 actionName: AppConstants.sectionAction,
               )
             : const SizedBox.shrink(),
-        verticalSpacing(10),
+        AppSpacing.verticalSpacing(10),
         recommendList.isNotEmpty
             ? SizedBox(
                 height: 250.h,
@@ -59,7 +60,7 @@ class SimilarContentTabBody extends StatelessWidget {
                 ),
               )
             : const SizedBox.shrink(),
-        verticalSpacing(10),
+        AppSpacing.verticalSpacing(10),
         similarList.isNotEmpty
             ? SectionTitle(
                 sectionName: "SIMILAR",
@@ -79,7 +80,7 @@ class SimilarContentTabBody extends StatelessWidget {
                 },
               )
             : const SizedBox.shrink(),
-        verticalSpacing(10),
+        AppSpacing.verticalSpacing(10),
         similarList.isNotEmpty
             ? SizedBox(
                 height: 250.h,
@@ -102,7 +103,7 @@ class SimilarContentTabBody extends StatelessWidget {
                 ),
               )
             : const SizedBox.shrink(),
-        verticalSpacing(20),
+        AppSpacing.verticalSpacing(20),
       ],
     );
   }

@@ -84,7 +84,7 @@ class TvSeasonCard extends StatelessWidget {
                       padding: EdgeInsets.all(5.0.r),
                       child: Text(
                         "${tvSeasonModel.episodeCount ?? 0} Eps",
-                        style: TextStyles.font16SimiBoldPlatinumGray.copyWith(
+                        style: TextStyles.font16SemiBoldPlatinumGray.copyWith(
                           fontSize: 14.sp,
                         ),
                       ),
@@ -113,13 +113,13 @@ class TvSeasonCard extends StatelessWidget {
                             tvSeasonModel.voteAverage != null
                                 ? "${tvSeasonModel.voteAverage!.toStringAsFixed(1)} "
                                 : "0.0",
-                            style: TextStyles.font16SimiBoldPlatinumGray
+                            style: TextStyles.font16SemiBoldPlatinumGray
                                 .copyWith(fontSize: 13.sp),
                           ),
                           Icon(
                             Icons.star_purple500_outlined,
                             size: 15.sp,
-                            color: TextStyles.font16SimiBoldPlatinumGray.color,
+                            color: TextStyles.font16SemiBoldPlatinumGray.color,
                           ),
                         ],
                       ),

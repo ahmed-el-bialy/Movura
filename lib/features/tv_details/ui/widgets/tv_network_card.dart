@@ -2,10 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/helpers/spacing.dart';
-import '../../../../../core/theming/app_colors.dart';
-import '../../../../../core/theming/text_styles.dart';
-import '../../../../core/constants/api_constants.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/constants/api_constants.dart';
 import '../../data/about_tv_series_model.dart';
 
 class TvNetworkCard extends StatelessWidget {
@@ -41,7 +41,7 @@ class TvNetworkCard extends StatelessWidget {
                     color: AppColors.pureWhite.withValues(alpha: 0.7),
                   ),
           ),
-          verticalSpacing(8),
+          AppSpacing.verticalSpacing(AppSpacing.s),
           Text(
             network.name ?? 'Network',
             style: TextStyles.font10BoldCoolGray.copyWith(fontSize: 12.sp),

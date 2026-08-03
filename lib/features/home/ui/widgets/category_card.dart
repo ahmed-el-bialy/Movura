@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/helpers/spacing.dart';
-import '../../../../core/theming/app_colors.dart';
-import '../../../../core/theming/text_styles.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/text_styles.dart';
 import '../../data/models/category_card_model.dart';
 
 class CategoryCard extends StatelessWidget {
@@ -86,7 +86,7 @@ class CategoryCard extends StatelessWidget {
                           fontSize: 9.sp,
                         ),
                       ),
-                    verticalSpacing(4),
+                    AppSpacing.verticalSpacing(AppSpacing.xs),
                     Text(
                       model.title,
                       style: TextStyles.font14BoldIceBlueMontserrat.copyWith(

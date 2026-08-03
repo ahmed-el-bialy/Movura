@@ -108,19 +108,13 @@ class AppRouter {
         );
 
       case RouteNames.discoverMoviesScreen:
-        return MaterialPageRoute(
-          builder: (_) => const DiscoverMoviesScreen(),
-        );
+        return MaterialPageRoute(builder: (_) => const DiscoverMoviesScreen());
 
       case RouteNames.discoverTvScreen:
-        return MaterialPageRoute(
-          builder: (_) => const DiscoverTvScreen(),
-        );
+        return MaterialPageRoute(builder: (_) => const DiscoverTvScreen());
 
       case RouteNames.discoverPeopleScreen:
-        return MaterialPageRoute(
-          builder: (_) => const DiscoverPeopleScreen(),
-        );
+        return MaterialPageRoute(builder: (_) => const DiscoverPeopleScreen());
 
       default:
         return MaterialPageRoute(builder: (_) => const HomeScreen());

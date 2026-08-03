@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movura/features/tv_details/ui/widgets/tv_info_widgets/tv_identify_card.dart';
 
-import '../../../../core/widgets/shared_details/core_details_header.dart';
+import 'package:movura/core/widgets/shared_details/core_details_header.dart';
 import '../../data/about_tv_series_model.dart';
 
 class TvMainDetails extends StatelessWidget {

@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/constants/api_constants.dart';
-import '../../../../core/helpers/spacing.dart';
-import '../../../../core/theming/app_colors.dart';
-import '../../../../core/theming/text_styles.dart';
-import '../../../../core/widgets/app_error_widget.dart';
-import '../../../../core/widgets/movura_loading_indicator.dart';
-import '../../../../core/widgets/section_title.dart';
-import '../../../../core/widgets/shared_details/person_credits_list.dart';
+import 'package:movura/core/constants/api_constants.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/theming/weights.dart';
+import 'package:movura/core/widgets/app_error_widget.dart';
+import 'package:movura/core/widgets/loading/movura_loading_indicator.dart';
+import 'package:movura/core/widgets/layout/section_title.dart';
+import 'package:movura/core/widgets/shared_details/person_credits_list.dart';
 import '../../logic/person_details_cubit.dart';
 
 class PersonDetailsScreen extends StatelessWidget {
@@ -72,53 +73,52 @@ class PersonDetailsScreen extends StatelessWidget {
                       children: [
                         Text(
                           person.name ?? "Unknown",
-                          style: TextStyles.font24SimiBoldNeonBlueManrope
+                          style: TextStyles.font24SemiBoldNeonBlueManrope
                               .copyWith(
                                 fontSize: 28.sp,
                                 color: AppColors.iceBlue,
                               ),
                         ),
-                        verticalSpacing(8),
+                        AppSpacing.verticalSpacing(AppSpacing.s),
                         if (person.knownFor != null)
                           Text(
                             person.knownFor!,
-                            style: TextStyles.font14DarkNeonBlueManrope,
+                            style: TextStyles.font14RegularDarkNeonBlueManrope,
                           ),
-                        verticalSpacing(20),
+                        AppSpacing.verticalSpacing(20),
                         if (person.biography != null &&
                             person.biography!.isNotEmpty) ...[
                           const SectionTitle(sectionName: "BIOGRAPHY"),
-                          verticalSpacing(10),
+                          AppSpacing.verticalSpacing(AppSpacing.s + 2),
                           Text(
                             person.biography!,
-                            style: TextStyles.font12CoolGrayManrope.copyWith(
+                            style: TextStyles.font12RegularCoolGrayManrope.copyWith(
                               height: 1.6,
                               fontSize: 13.sp,
                             ),
-
                           ),
                         ],
-                        verticalSpacing(24),
+                        AppSpacing.verticalSpacing(AppSpacing.xl),
                         const SectionTitle(sectionName: "PERSONAL INFO"),
-                        verticalSpacing(16),
+                        AppSpacing.verticalSpacing(AppSpacing.l),
                         _PersonalInfoGrid(person: person),
-                        verticalSpacing(30),
+                        AppSpacing.verticalSpacing(30),
                         if (person.movieCredits?.cast != null &&
                             person.movieCredits!.cast!.isNotEmpty) ...[
                           const SectionTitle(sectionName: "KNOWN FOR (MOVIES)"),
-                          verticalSpacing(12),
+                          AppSpacing.verticalSpacing(AppSpacing.m),
                           PersonCreditsList(movies: person.movieCredits!.cast!),
                         ],
-                        verticalSpacing(30),
+                        AppSpacing.verticalSpacing(30),
                         if (person.tvCredits?.cast != null &&
                             person.tvCredits!.cast!.isNotEmpty) ...[
                           const SectionTitle(
                             sectionName: "KNOWN FOR (TV SHOWS)",
                           ),
-                          verticalSpacing(12),
+                          AppSpacing.verticalSpacing(AppSpacing.m),
                           PersonCreditsList(tvShows: person.tvCredits!.cast!),
                         ],
-                        verticalSpacing(100),
+                        AppSpacing.verticalSpacing(100),
                       ],
                     ),
                   ),
@@ -185,35 +185,40 @@ class _InfoItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          padding: EdgeInsets.all(8.r),
+          padding: AppSpacing.all(AppSpacing.s),
           decoration: BoxDecoration(
             color: AppColors.neonBlue.withValues(alpha: 0.08),
             borderRadius: BorderRadius.circular(10.r),
           ),
           child: Icon(icon, color: AppColors.neonBlue, size: 18.sp),
         ),
-        horizontalSpacing(16),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              label,
-              style: TextStyles.font10BoldCoolGray.copyWith(
-                color: AppColors.coolGray.withValues(alpha: 0.6),
-                letterSpacing: 1.1,
+        AppSpacing.horizontalSpacing(AppSpacing.l),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                label,
+                style: TextStyles.font10BoldCoolGray.copyWith(
+                  color: AppColors.coolGray.withValues(alpha: 0.6),
+                  letterSpacing: 1.1,
+                ),
               ),
-            ),
-            verticalSpacing(2),
-            Text(
-              value,
-              style: TextStyles.font14PureWhiteManrope.copyWith(
-                fontWeight: FontWeight.w600,
-                fontSize: 13.sp,
+              AppSpacing.verticalSpacing(2),
+              Text(
+                value,
+                style: TextStyles.font14RegularPureWhiteManrope.copyWith(
+                  fontWeight: Weights.semiBold,
+                  fontSize: 13.sp,
+                ),
+                softWrap: true,
+                overflow: TextOverflow.visible,
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ],
     );

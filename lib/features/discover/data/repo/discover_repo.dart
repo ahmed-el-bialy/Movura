@@ -1,4 +1,4 @@
-import '../../../../core/models/poster_model.dart';
+import 'package:movura/core/models/poster_model.dart';
 import '../../../see_all/data/web_services/see_all_web_services.dart';
 
 class DiscoverRepo {

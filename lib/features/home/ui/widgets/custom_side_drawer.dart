@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/constants/app_constants.dart';
-import '../../../../core/extensions/routing_extension.dart';
-import '../../../../core/helpers/spacing.dart';
-import '../../../../core/routing/route_names.dart';
-import '../../../../core/theming/app_colors.dart';
-import '../../../../core/theming/text_styles.dart';
+import 'package:movura/core/constants/app_constants.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/routing/route_names.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/theming/weights.dart';
 
 class CustomSideDrawer extends StatelessWidget {
   const CustomSideDrawer({super.key});
@@ -118,13 +119,13 @@ class _DrawerHeader extends StatelessWidget {
             ),
             child: Image.asset(AppConstants.appLogo, height: 45.h),
           ),
-          verticalSpacing(16),
+          AppSpacing.verticalSpacing(AppSpacing.l),
           Text(
             AppConstants.appName.toUpperCase(),
-            style: TextStyles.font24SimiBoldNeonBlueManrope.copyWith(
+            style: TextStyles.font24SemiBoldNeonBlueManrope.copyWith(
               letterSpacing: 4,
               fontSize: 20.sp,
-              fontWeight: FontWeight.w900,
+              fontWeight: Weights.black,
             ),
           ),
           Text(
@@ -154,7 +155,7 @@ class _DrawerSectionTitle extends StatelessWidget {
         style: TextStyles.font10BoldCoolGray.copyWith(
           color: AppColors.neonBlue.withValues(alpha: 0.5),
           letterSpacing: 2,
-          fontWeight: FontWeight.w900,
+          fontWeight: Weights.black,
         ),
       ),
     );
@@ -202,8 +203,8 @@ class _DrawerItem extends StatelessWidget {
         ),
         title: Text(
           label,
-          style: TextStyles.font14PureWhiteManrope.copyWith(
-            fontWeight: FontWeight.w700,
+          style: TextStyles.font14RegularPureWhiteManrope.copyWith(
+            fontWeight: Weights.bold,
             color: AppColors.pureWhite.withValues(alpha: 0.9),
           ),
         ),
@@ -253,12 +254,12 @@ class _LogoutButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(Icons.logout_rounded, color: AppColors.softRed, size: 20.sp),
-              horizontalSpacing(12),
+              AppSpacing.horizontalSpacing(AppSpacing.m),
               Text(
                 "Sign Out",
-                style: TextStyles.font14PureWhiteManrope.copyWith(
+                style: TextStyles.font14RegularPureWhiteManrope.copyWith(
                   color: AppColors.softRed,
-                  fontWeight: FontWeight.w900,
+                  fontWeight: Weights.black,
                   letterSpacing: 0.5,
                 ),
               ),

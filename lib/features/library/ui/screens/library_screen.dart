@@ -1,10 +1,10 @@
 import 'package:expandable_page_view/expandable_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../core/helpers/spacing.dart';
-import '../../../../core/theming/app_colors.dart';
-import '../../../../core/theming/text_styles.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/theming/weights.dart';
 
 class LibraryScreen extends StatelessWidget {
   const LibraryScreen({super.key});
@@ -20,7 +20,7 @@ class LibraryScreen extends StatelessWidget {
           elevation: 0,
           title: Text(
             'My Library',
-            style: TextStyles.font24SimiBoldNeonBlueManrope.copyWith(
+            style: TextStyles.font24SemiBoldNeonBlueManrope.copyWith(
               fontSize: 22.sp,
             ),
           ),
@@ -28,7 +28,7 @@ class LibraryScreen extends StatelessWidget {
             isScrollable: true,
             tabAlignment: TabAlignment.start,
             unselectedLabelStyle: TextStyles.font10MediumCoolGraySora.copyWith(
-              fontWeight: FontWeight.bold,
+              fontWeight: Weights.bold,
               fontSize: 13.sp,
             ),
             labelStyle: TextStyles.font13BoldNeonBlueSora,
@@ -99,26 +99,26 @@ class _LibraryTabContent extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            verticalSpacing(40),
+            AppSpacing.verticalSpacing(40),
             Icon(
               Icons.movie_filter_rounded,
               size: 80.sp,
               color: AppColors.onyxBlack,
             ),
-            verticalSpacing(20),
+            AppSpacing.verticalSpacing(20),
             Text(
               'No items in $title',
               style: TextStyles.font17BoldIceBlueMontserrat.copyWith(
                 color: AppColors.slateGray,
               ),
             ),
-            verticalSpacing(10),
+            AppSpacing.verticalSpacing(10),
             Text(
               'Start adding your favorite movies and TV shows to see them here.',
               textAlign: TextAlign.center,
-              style: TextStyles.font12CoolGrayManrope,
+              style: TextStyles.font12RegularCoolGrayManrope,
             ),
-            verticalSpacing(100),
+            AppSpacing.verticalSpacing(100),
           ],
         ),
       ),

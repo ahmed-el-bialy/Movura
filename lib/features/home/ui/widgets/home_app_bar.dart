@@ -3,12 +3,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/constants/app_constants.dart';
-import '../../../../core/helpers/spacing.dart';
-import '../../../../core/networking/di.dart';
-import '../../../../core/theming/app_colors.dart';
-import '../../../../core/theming/text_styles.dart';
-import '../../../../core/widgets/app_icon_button.dart';
+import 'package:movura/core/constants/app_constants.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/networking/di.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/widgets/buttons/app_icon_button.dart';
 import '../../../search/logic/search/search_cubit.dart';
 import '../../../search/ui/screens/custom_search_delegate.dart';
 
@@ -43,10 +43,10 @@ class HomeAppBar extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Image.asset(AppConstants.appLogo, height: 40.h),
-          horizontalSpacing(12),
+          AppSpacing.horizontalSpacing(AppSpacing.m),
           Text(
             AppConstants.appName,
-            style: TextStyles.font24SimiBoldNeonBlueManrope.copyWith(
+            style: TextStyles.font24SemiBoldNeonBlueManrope.copyWith(
               fontSize: 20.sp,
               letterSpacing: 2,
             ),

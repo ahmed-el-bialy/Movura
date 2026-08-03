@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/models/review_model.dart';
+import 'package:movura/core/models/review_model.dart';
 import '../../data/repos/movies_repo.dart';
 
 part 'reviews_state.dart';

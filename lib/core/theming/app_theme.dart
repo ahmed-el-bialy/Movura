@@ -23,7 +23,7 @@ class AppTheme {
         elevation: 0,
         centerTitle: true,
         iconTheme: const IconThemeData(color: AppColors.neonBlue),
-        titleTextStyle: TextStyles.font20SimiBoldNeonBlueManrope,
+        titleTextStyle: TextStyles.font20SemiBoldNeonBlueManrope,
         systemOverlayStyle: SystemUiOverlayStyle.light,
       ),
 
@@ -34,7 +34,7 @@ class AppTheme {
       snackBarTheme: SnackBarThemeData(
         behavior: SnackBarBehavior.floating,
         backgroundColor: AppColors.onyxBlack,
-        contentTextStyle: TextStyles.font14PureWhiteManrope,
+        contentTextStyle: TextStyles.font14RegularPureWhiteManrope,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
 

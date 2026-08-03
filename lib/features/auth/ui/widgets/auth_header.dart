@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/helpers/spacing.dart';
 import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/theming/text_styles.dart';
+
 import 'hero_app_logo.dart';
 
 class AuthHeader extends StatelessWidget {
-  const AuthHeader({
-    super.key,
-    required this.title,
-    required this.subtitle,
-  });
+  const AuthHeader({super.key, required this.title, required this.subtitle});
 
   final String title;
   final String subtitle;
@@ -20,7 +17,7 @@ class AuthHeader extends StatelessWidget {
     return Column(
       children: [
         const HeroAppLogo(),
-        verticalSpacing(5),
+        AppSpacing.verticalSpacing(5),
         Text(
           title,
           style: TextStyles.font40BoldPureWhite.copyWith(
@@ -30,7 +27,7 @@ class AuthHeader extends StatelessWidget {
         ),
         Text(
           subtitle,
-          style: TextStyles.font12CoolGrayManrope.copyWith(
+          style: TextStyles.font12RegularCoolGrayManrope.copyWith(
             fontSize: 14.sp,
             color: AppColors.slateGray.withValues(alpha: 0.6),
           ),

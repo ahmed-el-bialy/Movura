@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../../../core/widgets/shared_details/details_story_and_genres.dart';
+import 'package:movura/core/widgets/shared_details/details_story_and_genres.dart';
 import '../../../data/about_tv_series_model.dart';
 
 class TvStoryAndGenres extends StatelessWidget {

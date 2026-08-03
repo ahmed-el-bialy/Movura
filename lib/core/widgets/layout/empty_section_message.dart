@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../helpers/spacing.dart';
-import '../theming/app_colors.dart';
-import '../theming/text_styles.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/theming/text_styles.dart';
 
 class EmptySectionMessage extends StatelessWidget {
   const EmptySectionMessage({
@@ -26,7 +25,7 @@ class EmptySectionMessage extends StatelessWidget {
     return Container(
       height: heightPage?.h,
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 24.w),
+      padding: AppSpacing.horizontal(AppSpacing.xl),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -39,20 +38,20 @@ class EmptySectionMessage extends StatelessWidget {
               ),
               child: Icon(icon, color: AppColors.neonBlue, size: 48.sp),
             ),
-          verticalSpacing(showIcon ? 20 : 0),
+          AppSpacing.verticalSpacing(showIcon ? 20 : 0),
           Text(
             title,
-            style: TextStyles.font20SimiBoldNeonBlueManrope.copyWith(
+            style: TextStyles.font20SemiBoldNeonBlueManrope.copyWith(
               color: AppColors.iceBlue,
               fontSize: 18.sp,
             ),
             textAlign: TextAlign.center,
           ),
           if (subTitle != null) ...[
-            verticalSpacing(8),
+            AppSpacing.verticalSpacing(AppSpacing.s),
             Text(
               subTitle!,
-              style: TextStyles.font12CoolGrayManrope.copyWith(
+              style: TextStyles.font12RegularCoolGrayManrope.copyWith(
                 color: AppColors.coolGray.withValues(alpha: 0.8),
                 fontSize: 13.sp,
               ),

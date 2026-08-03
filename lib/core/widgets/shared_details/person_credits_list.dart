@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../features/person_details/data/person_details_model.dart';
-import '../../constants/api_constants.dart';
-import '../../extensions/routing_extension.dart';
-import '../../routing/arguments_models.dart';
-import '../../routing/route_names.dart';
-import '../../helpers/spacing.dart';
-import '../../theming/app_colors.dart';
-import '../../theming/text_styles.dart';
+import 'package:movura/core/constants/api_constants.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/routing/arguments_models.dart';
+import 'package:movura/core/routing/route_names.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/theming/text_styles.dart';
 
 class PersonCreditsList extends StatelessWidget {
   const PersonCreditsList({super.key, this.movies, this.tvShows});
@@ -61,7 +61,7 @@ class PersonCreditsList extends StatelessWidget {
                       ),
                     ),
                   ),
-                  verticalSpacing(8),
+                  AppSpacing.verticalSpacing(AppSpacing.s),
                   Text(
                     title ?? "Unknown",
                     maxLines: 2,

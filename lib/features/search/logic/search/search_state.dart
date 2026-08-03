@@ -20,10 +20,14 @@ final class SearchLoaded extends SearchState {
     required this.posters,
     required super.filter,
     required this.query,
+    this.hasReachedMax = false,
+    this.isLoadingMore = false,
   });
 
   final List<PosterModel> posters;
   final String query;
+  final bool hasReachedMax;
+  final bool isLoadingMore;
 }
 
 final class SearchError extends SearchState {

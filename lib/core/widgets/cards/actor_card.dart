@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../constants/api_constants.dart';
-import '../extensions/routing_extension.dart';
-import '../models/actor_model.dart';
-import '../routing/route_names.dart';
-import '../theming/app_colors.dart';
-import '../theming/text_styles.dart';
+import 'package:movura/core/constants/api_constants.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/models/actor_model.dart';
+import 'package:movura/core/routing/route_names.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/text_styles.dart';
+import 'package:movura/core/theming/weights.dart';
 
 class ActorCard extends StatelessWidget {
   const ActorCard({super.key, required this.actor});
@@ -82,7 +82,7 @@ class ActorCard extends StatelessWidget {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyles.font11BoldIceBlueMontserrat.copyWith(
-                  fontWeight: FontWeight.normal,
+                  fontWeight: Weights.regular,
                   color: AppColors.platinumGray,
                 ),
               ),

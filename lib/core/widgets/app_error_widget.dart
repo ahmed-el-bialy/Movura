@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/widgets/app_text_button.dart';
+import 'package:movura/core/widgets/buttons/app_text_button.dart';
 
-import '../helpers/spacing.dart';
-import '../theming/app_colors.dart';
-import '../theming/text_styles.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/theming/text_styles.dart';
 
 class AppErrorWidget extends StatelessWidget {
-  const AppErrorWidget({
-    super.key,
-    required this.errorMessage,
-    this.onRetry,
-  });
+  const AppErrorWidget({super.key, required this.errorMessage, this.onRetry});
 
   final String errorMessage;
   final VoidCallback? onRetry;
@@ -20,7 +16,7 @@ class AppErrorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: EdgeInsets.all(24.r),
+        padding: AppSpacing.all(AppSpacing.xl),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -36,7 +32,7 @@ class AppErrorWidget extends StatelessWidget {
                 size: 60.sp,
               ),
             ),
-            verticalSpacing(24),
+            AppSpacing.verticalSpacing(AppSpacing.xl),
             Text(
               "Something went wrong",
               style: TextStyles.font17BoldIceBlueMontserrat.copyWith(
@@ -44,22 +40,22 @@ class AppErrorWidget extends StatelessWidget {
                 color: AppColors.pureWhite,
               ),
             ),
-            verticalSpacing(8),
+            AppSpacing.verticalSpacing(AppSpacing.s),
             Text(
               errorMessage,
-              style: TextStyles.font14PureWhiteManrope.copyWith(
+              style: TextStyles.font14RegularPureWhiteManrope.copyWith(
                 color: AppColors.coolGray,
               ),
               textAlign: TextAlign.center,
             ),
             if (onRetry != null) ...[
-              verticalSpacing(32),
+              AppSpacing.verticalSpacing(AppSpacing.xxl),
               AppTextButton(
                 buttonText: 'RETRY',
                 onPressed: onRetry!,
                 buttonWidth: 160,
                 buttonHeight: 45,
-                borderRadius: 12,
+                borderRadius: AppSpacing.m,
                 textStyle: TextStyles.font17BoldTrueBlackSora.copyWith(
                   fontSize: 14.sp,
                   letterSpacing: 1.2,

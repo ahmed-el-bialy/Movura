@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
 part 'image_model.g.dart';
+
 @JsonSerializable()
 class ImageModel {
   @JsonKey(name: "file_path")

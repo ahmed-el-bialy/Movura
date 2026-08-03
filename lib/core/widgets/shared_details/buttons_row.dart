@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/widgets/shared_details/watchlist_options_sheet.dart';
 
-import '../../helpers/spacing.dart';
 import '../../helpers/video_player.dart';
 import '../../theming/app_colors.dart';
+import '../../theming/app_spacing.dart';
 import '../../theming/text_styles.dart';
+
 
 class ButtonsRow extends StatelessWidget {
   final String? videoKey;
@@ -45,7 +46,7 @@ class ButtonsRow extends StatelessWidget {
               ),
             ),
           ),
-          horizontalSpacing(12),
+          AppSpacing.horizontalSpacing(AppSpacing.m),
           _CircularActionButton(
             icon: Icons.add_rounded,
             onPressed: () {
@@ -57,7 +58,7 @@ class ButtonsRow extends StatelessWidget {
             },
             color: AppColors.neonBlue,
           ),
-          horizontalSpacing(12),
+          AppSpacing.horizontalSpacing(AppSpacing.m),
         ],
       ),
     );
