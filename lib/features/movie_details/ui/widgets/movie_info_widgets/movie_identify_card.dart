@@ -175,12 +175,10 @@ class MovieIdentifyCard extends StatelessWidget {
                         ),
                         child: Text(
                           (model.adultContent ?? false) ? "18+" : "PG",
-                          style: TextStyle(
+                          style: TextStyles.font10BoldCoolGray.copyWith(
                             color: (model.adultContent ?? false)
                                 ? AppColors.softRed
                                 : AppColors.platinumGray,
-                            fontSize: 10.sp,
-                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
