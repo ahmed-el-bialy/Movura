@@ -13,18 +13,18 @@ import '../../../../../core/widgets/section_title.dart';
 import '../../../../core/constants/api_constants.dart';
 import '../../../../core/constants/app_constants.dart';
 import '../../../../core/extensions/routing_extension.dart';
-import '../../../../core/models/video_model.dart';
 import '../../../../core/networking/di.dart';
 import '../../../../core/routing/arguments_models.dart';
 import '../../../../core/routing/route_names.dart';
 import '../../../../core/widgets/app_error_widget.dart';
+import '../../../../core/widgets/movura_loading_indicator.dart';
 import '../../../../core/widgets/shared_details/actors_list.dart';
 import '../../../../core/widgets/shared_details/companies_list.dart';
 import '../../../../core/widgets/shared_details/images_list.dart';
 import '../../../../core/widgets/shared_details/videos_list.dart';
 import '../../data/season_details_model.dart';
-import '../../logic/about_tv/about_tv_cubit.dart';
-import '../../logic/tv_seasons_cubit/tv_seasons_cubit.dart';
+import '../../logic/about/about_tv_cubit.dart';
+import '../../logic/seasons/tv_seasons_cubit.dart';
 
 class AboutTvTabBody extends StatelessWidget {
   const AboutTvTabBody({super.key});
@@ -160,7 +160,7 @@ class _SingleSeasonEpisodes extends StatelessWidget {
       child: BlocBuilder<TvSeasonsCubit, TvSeasonsState>(
         builder: (context, state) {
           if (state is TvSeasonsLoading) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(child: MovuraLoadingIndicator(size: 60));
           } else if (state is TvSeasonsLoaded) {
             final episodes = state.seasonDetails.episodes;
             final seasonName = state.seasonDetails.name ?? 'Season 1';

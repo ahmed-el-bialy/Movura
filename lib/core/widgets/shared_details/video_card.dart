@@ -6,6 +6,7 @@ import '../../helpers/video_player.dart';
 import '../../models/video_model.dart';
 import '../../theming/app_colors.dart';
 import '../../theming/text_styles.dart';
+import '../movura_loading_indicator.dart';
 
 class VideoCard extends StatelessWidget {
   const VideoCard({
@@ -42,7 +43,9 @@ class VideoCard extends StatelessWidget {
                   placeholder: (context, url) => Container(
                     width: 190.w,
                     color: AppColors.jetBlack,
-                    child: const Center(child: CircularProgressIndicator()),
+                    child: const Center(
+                      child: MovuraLoadingIndicator(size: 40),
+                    ),
                   ),
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),

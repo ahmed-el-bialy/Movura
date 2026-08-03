@@ -15,7 +15,7 @@ import '../../features/home/logic/top_rated_tv_series/top_rated_tv_series_cubit.
 import '../../features/home/logic/trending_content/trending_content_cubit.dart';
 import '../../features/movie_details/data/repos/movies_repo.dart';
 import '../../features/movie_details/data/web_services/movie_web_services.dart';
-import '../../features/movie_details/logic/main_details/about_cubit.dart';
+import '../../features/movie_details/logic/about/about_cubit.dart';
 import '../../features/movie_details/logic/reviews/reviews_cubit.dart';
 import '../../features/movie_details/logic/similar_content/similar_content_cubit.dart';
 import '../../features/person_details/data/repos/person_repo.dart';
@@ -29,11 +29,11 @@ import '../../features/see_all/data/web_services/see_all_web_services.dart';
 import '../../features/see_all/logic/see_all_cubit.dart';
 import '../../features/tv_details/data/repos/tv_series_repo.dart';
 import '../../features/tv_details/data/web_services/tv_web_services.dart';
-import '../../features/tv_details/logic/about_tv/about_tv_cubit.dart';
+import '../../features/tv_details/logic/about/about_tv_cubit.dart';
+import '../../features/tv_details/logic/episodes/tv_episode_details_cubit.dart';
 import '../../features/tv_details/logic/reviews/reviews_cubit.dart';
+import '../../features/tv_details/logic/seasons/tv_seasons_cubit.dart';
 import '../../features/tv_details/logic/similar_content/similar_content_cubit.dart';
-import '../../features/tv_details/logic/tv_episode_details_cubit/tv_episode_details_cubit.dart';
-import '../../features/tv_details/logic/tv_seasons_cubit/tv_seasons_cubit.dart';
 import '../constants/api_constants.dart';
 import 'dio_factory.dart';
 

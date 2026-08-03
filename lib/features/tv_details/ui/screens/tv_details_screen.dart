@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/widgets/app_error_widget.dart';
 import '../../../../core/widgets/movura_loading_indicator.dart';
-import '../../logic/about_tv/about_tv_cubit.dart';
+import '../../logic/about/about_tv_cubit.dart';
 import '../widgets/tv_screen_body.dart';
 
 class TvSeriesDetailsScreen extends StatelessWidget {
