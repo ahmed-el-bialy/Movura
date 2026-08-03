@@ -285,7 +285,7 @@ class _HorizontalEpisodeCard extends StatelessWidget {
                     ),
                     child: Text(
                       'E${episode.episodeNumber}',
-                      style: TextStyle(
+                      style: TextStyles.font10BoldCoolGray.copyWith(
                         color: AppColors.trueBlack,
                         fontSize: 10.sp,
                         fontWeight: FontWeight.w800,
@@ -317,10 +317,9 @@ class _HorizontalEpisodeCard extends StatelessWidget {
                           horizontalSpacing(2),
                           Text(
                             episode.voteAverage!.toStringAsFixed(1),
-                            style: TextStyle(
+                            style: TextStyles.font10BoldCoolGray.copyWith(
                               color: AppColors.pureWhite,
                               fontSize: 9.sp,
-                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ],
