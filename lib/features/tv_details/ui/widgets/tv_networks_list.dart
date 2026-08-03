@@ -15,19 +15,17 @@ class TvNetworksList extends StatelessWidget {
 
     return SizedBox(
       height: 200.h,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 6.w),
-        child: ListView.builder(
-          itemExtent: 150.w,
-          scrollDirection: Axis.horizontal,
-          itemCount: network.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.w),
-              child: TvNetworkCard(network: network[index]),
-            );
-          },
-        ),
+      child: ListView.builder(
+        itemExtent: 150.w,
+        scrollDirection: Axis.horizontal,
+        physics: const BouncingScrollPhysics(),
+        itemCount: network.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 4.w),
+            child: TvNetworkCard(network: network[index]),
+          );
+        },
       ),
     );
   }
