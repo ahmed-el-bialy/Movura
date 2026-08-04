@@ -111,7 +111,7 @@ class _DrawerHeader extends StatelessWidget {
         ),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
             padding: AppSpacing.all(AppSpacing.s),
