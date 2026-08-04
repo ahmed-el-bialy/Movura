@@ -8,6 +8,7 @@ import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/theming/weights.dart';
+import 'package:movura/core/widgets/loading/movura_loading_indicator.dart';
 
 import '../../data/models/search_filter_type.dart';
 import '../../data/models/search_sort_type.dart';
@@ -180,30 +181,37 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                           );
                         },
                       ),
-                      if (currentGenres.isNotEmpty &&
-                          _tempFilter != SearchFilterType.people) ...[
+                      if (_tempFilter != SearchFilterType.people) ...[
                         AppSpacing.verticalSpacing(AppSpacing.xxl),
                         const _SectionHeader(
                           icon: Icons.interests_rounded,
                           title: 'GENRES',
                         ),
                         AppSpacing.verticalSpacing(AppSpacing.l),
-                        Wrap(
-                          spacing: 10.w,
-                          runSpacing: 10.h,
-                          children: currentGenres.map((genre) {
-                            final isSelected = _tempGenreId == genre.id;
-                            return _RefinedChip(
-                              label: genre.name,
-                              isSelected: isSelected,
-                              onTap: (selected) {
-                                setState(() {
-                                  _tempGenreId = selected ? genre.id : null;
-                                });
-                              },
-                            );
-                          }).toList(),
-                        ),
+                        if (currentGenres.isEmpty)
+                          SizedBox(
+                            height: 120.h,
+                            child: const Center(
+                              child: MovuraLoadingIndicator(size: 45),
+                            ),
+                          )
+                        else
+                          Wrap(
+                            spacing: 10.w,
+                            runSpacing: 10.h,
+                            children: currentGenres.map((genre) {
+                              final isSelected = _tempGenreId == genre.id;
+                              return _RefinedChip(
+                                label: genre.name,
+                                isSelected: isSelected,
+                                onTap: (selected) {
+                                  setState(() {
+                                    _tempGenreId = selected ? genre.id : null;
+                                  });
+                                },
+                              );
+                            }).toList(),
+                          ),
                       ],
                       AppSpacing.verticalSpacing(AppSpacing.xxl),
                       const _SectionHeader(

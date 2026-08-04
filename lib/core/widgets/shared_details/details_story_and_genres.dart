@@ -12,10 +12,12 @@ class DetailsStoryAndGenres extends StatelessWidget {
     super.key,
     required this.overview,
     required this.genres,
+    this.onGenreTap,
   });
 
   final String overview;
   final List<dynamic>? genres;
+  final void Function(int id, String name)? onGenreTap;
 
   @override
   Widget build(BuildContext context) {
@@ -50,23 +52,31 @@ class DetailsStoryAndGenres extends StatelessWidget {
               spacing: 8.w,
               runSpacing: 8.h,
               children: genres!.map((genre) {
-                return Container(
-                  padding: AppSpacing.symmetric(
-                    horizontal: 14,
-                    vertical: AppSpacing.s,
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColors.onyxBlack.withValues(alpha: 0.6),
-                    borderRadius: BorderRadius.circular(12.r),
-                    border: Border.all(
-                      color: AppColors.neonBlue.withValues(alpha: 0.15),
+                return InkWell(
+                  onTap: () {
+                    if (onGenreTap != null) {
+                      onGenreTap!(genre.id, genre.name);
+                    }
+                  },
+                  borderRadius: BorderRadius.circular(12.r),
+                  child: Container(
+                    padding: AppSpacing.symmetric(
+                      horizontal: 14,
+                      vertical: AppSpacing.s,
                     ),
-                  ),
-                  child: Text(
-                    genre.name,
-                    style: TextStyles.font12MediumPlatinumGray.copyWith(
-                      fontWeight: Weights.semiBold,
-                      color: AppColors.platinumGray.withValues(alpha: 0.9),
+                    decoration: BoxDecoration(
+                      color: AppColors.onyxBlack.withValues(alpha: 0.6),
+                      borderRadius: BorderRadius.circular(12.r),
+                      border: Border.all(
+                        color: AppColors.neonBlue.withValues(alpha: 0.15),
+                      ),
+                    ),
+                    child: Text(
+                      genre.name,
+                      style: TextStyles.font12MediumPlatinumGray.copyWith(
+                        fontWeight: Weights.semiBold,
+                        color: AppColors.platinumGray.withValues(alpha: 0.9),
+                      ),
                     ),
                   ),
                 );

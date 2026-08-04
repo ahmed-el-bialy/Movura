@@ -14,19 +14,20 @@ class DiscoverCategoryList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: AppSpacing.horizontal16(),
-      child: ListView.separated(
+      child: GridView.builder(
         padding: AppSpacing.symmetric(vertical: 20),
         physics: const BouncingScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 15.w,
+          mainAxisSpacing: 15.h,
+          childAspectRatio: 1.1,
+        ),
         itemCount: categories.length,
-        separatorBuilder: (_, _) => AppSpacing.verticalSpacing(AppSpacing.l),
         itemBuilder: (context, index) {
-          return SizedBox(
-            height: 120.h,
-            child: CategoryCard(
-              model: categories[index],
-              onTap: categories[index].onTap,
-              width: double.infinity,
-            ),
+          return CategoryCard(
+            model: categories[index],
+            onTap: categories[index].onTap,
           );
         },
       ),

@@ -78,10 +78,20 @@ class DiscoverMoviesScreen extends StatelessWidget {
           SeeAllEndpoint.topRatedMovies,
         ),
       ),
+      CategoryCardModel(
+        color: AppColors.coolGray,
+        title: 'Discover by Genres',
+        hint: "CATEGORIES",
+        icon: Icons.grid_view_rounded,
+        onTap: () => context.pushNamed(
+          RouteNames.discoverByGenreScreen,
+          arguments: {'isMovie': true},
+        ),
+      ),
     ];
 
     return DiscoverScreenTemplate(
-      title: "Discover Movies",
+      title: "Movies",
       categories: categories,
     );
   }

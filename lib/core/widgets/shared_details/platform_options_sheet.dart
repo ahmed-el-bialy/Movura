@@ -1,15 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:share_plus/share_plus.dart';
-import 'package:url_launcher/url_launcher.dart';
-
 import 'package:movura/core/constants/api_constants.dart';
 import 'package:movura/core/models/watch_provider_model.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/theming/text_styles.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PlatformOptionsSheet extends StatelessWidget {
   const PlatformOptionsSheet({
@@ -21,12 +19,6 @@ class PlatformOptionsSheet extends StatelessWidget {
   final String homepageUrl;
   final WatchProviderResponse? watchProviders;
 
-  Future<void> _launchUrl(String url) async {
-    final Uri uri = Uri.parse(url);
-    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
-      debugPrint('Could not launch $url');
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -326,56 +318,6 @@ class _WebsiteTile extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class _ActionItem extends StatelessWidget {
-  const _ActionItem({
-    required this.icon,
-    required this.label,
-    required this.onTap,
-    required this.color,
-  });
-
-  final IconData icon;
-  final String label;
-  final VoidCallback onTap;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Material(
-          color: AppColors.onyxBlack,
-          shape: const CircleBorder(),
-          child: InkWell(
-            onTap: onTap,
-            customBorder: const CircleBorder(),
-            splashColor: color.withValues(alpha: 0.2),
-            child: Container(
-              padding: AppSpacing.all(AppSpacing.l),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: color.withValues(alpha: 0.3),
-                  width: 1.5,
-                ),
-              ),
-              child: Icon(icon, color: color, size: 28.sp),
-            ),
-          ),
-        ),
-        AppSpacing.verticalSpacing(AppSpacing.s),
-        Text(
-          label,
-          style: TextStyles.font10BoldCoolGray.copyWith(
-            color: AppColors.pureWhite.withValues(alpha: 0.7),
-            fontSize: 11.sp,
-          ),
-        ),
-      ],
     );
   }
 }
