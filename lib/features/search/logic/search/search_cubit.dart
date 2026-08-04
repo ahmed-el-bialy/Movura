@@ -5,6 +5,7 @@ import 'package:movura/core/models/genre_model.dart';
 import 'package:movura/core/models/poster_model.dart';
 import '../../../home/data/repo/home_repo.dart';
 import '../../data/models/search_filter_type.dart';
+import '../../data/models/search_sort_type.dart';
 import '../../data/repo/search_repo.dart';
 
 part 'search_state.dart';
@@ -17,8 +18,10 @@ class SearchCubit extends Cubit<SearchState> {
   final HomeRepo homeRepo;
   List<PosterModel> _allPosters = [];
   SearchFilterType currentFilter = SearchFilterType.all;
+  SearchSortType currentSort = SearchSortType.none;
   int? selectedGenreId;
-  bool sortByRating = false;
+  bool sortByRating =
+      false; // Legacy, keeping for compatibility if needed, but will use currentSort
   String _lastQuery = '';
 
   int _currentPage = 1;
@@ -47,7 +50,7 @@ class SearchCubit extends Cubit<SearchState> {
         filterType: currentFilter,
         page: _currentPage,
       );
-      
+
       if (_allPosters.length < 20) {
         _hasReachedMax = true;
       }
@@ -72,7 +75,11 @@ class SearchCubit extends Cubit<SearchState> {
   }
 
   Future<void> loadMore() async {
-    if (_hasReachedMax || state is! SearchLoaded || (state as SearchLoaded).isLoadingMore) return;
+    if (_hasReachedMax ||
+        state is! SearchLoaded ||
+        (state as SearchLoaded).isLoadingMore) {
+      return;
+    }
 
     final currentState = state as SearchLoaded;
     emit(
@@ -146,8 +153,8 @@ class SearchCubit extends Cubit<SearchState> {
     }
   }
 
-  void setSortByRating(bool sortBy) {
-    sortByRating = sortBy;
+  void setSortType(SearchSortType sortType) {
+    currentSort = sortType;
     if (_allPosters.isNotEmpty) {
       emit(
         SearchLoaded(
@@ -171,10 +178,23 @@ class SearchCubit extends Cubit<SearchState> {
           .toList();
     }
 
-    if (sortByRating) {
-      filtered.sort(
-        (a, b) => (b.voteAverage ?? 0.0).compareTo(a.voteAverage ?? 0.0),
-      );
+    switch (currentSort) {
+      case SearchSortType.rating:
+        filtered.sort(
+          (a, b) => (b.voteAverage ?? 0.0).compareTo(a.voteAverage ?? 0.0),
+        );
+      case SearchSortType.popularity:
+        filtered.sort(
+          (a, b) => (b.popularity ?? 0.0).compareTo(a.popularity ?? 0.0),
+        );
+      case SearchSortType.newest:
+        filtered.sort((a, b) {
+          final dateA = a.releaseDate ?? a.firstAirDate ?? '';
+          final dateB = b.releaseDate ?? b.firstAirDate ?? '';
+          return dateB.compareTo(dateA);
+        });
+      case SearchSortType.none:
+        break;
     }
 
     return filtered;

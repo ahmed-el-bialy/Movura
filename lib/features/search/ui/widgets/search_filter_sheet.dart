@@ -10,6 +10,7 @@ import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/theming/weights.dart';
 
 import '../../data/models/search_filter_type.dart';
+import '../../data/models/search_sort_type.dart';
 import '../../logic/search/search_cubit.dart';
 
 class SearchFilterSheet extends StatefulWidget {
@@ -53,14 +54,14 @@ class SearchFilterSheet extends StatefulWidget {
 class _SearchFilterSheetState extends State<SearchFilterSheet> {
   late SearchFilterType _tempFilter;
   int? _tempGenreId;
-  late bool _tempSortByRating;
+  late SearchSortType _tempSort;
 
   @override
   void initState() {
     super.initState();
     _tempFilter = widget.searchCubit.currentFilter;
     _tempGenreId = widget.searchCubit.selectedGenreId;
-    _tempSortByRating = widget.searchCubit.sortByRating;
+    _tempSort = widget.searchCubit.currentSort;
     widget.searchCubit.fetchGenres().then((_) {
       if (mounted) setState(() {});
     });
@@ -69,7 +70,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
   void _applyFilters() {
     widget.searchCubit.setFilter(_tempFilter);
     widget.searchCubit.setGenreFilter(_tempGenreId);
-    widget.searchCubit.setSortByRating(_tempSortByRating);
+    widget.searchCubit.setSortType(_tempSort);
     widget.onFilterSelected();
   }
 
@@ -94,15 +95,18 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
         selectionSummary += ' • ${genre.name}';
       }
     }
-    if (_tempSortByRating) {
-      selectionSummary += ' • Top Rated';
+    if (_tempSort != SearchSortType.none) {
+      selectionSummary += ' • ${_tempSort.label}';
     }
 
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
       child: Dialog(
         backgroundColor: AppColors.transparent,
-        insetPadding: AppSpacing.symmetric(horizontal: AppSpacing.xl, vertical: AppSpacing.xxl),
+        insetPadding: AppSpacing.symmetric(
+          horizontal: AppSpacing.xl,
+          vertical: AppSpacing.xxl,
+        ),
         child: Container(
           padding: AppSpacing.all(AppSpacing.xl),
           decoration: BoxDecoration(
@@ -207,14 +211,21 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                         title: 'SORTING',
                       ),
                       AppSpacing.verticalSpacing(AppSpacing.l),
-                      _SortToggleChip(
-                        label: 'Highly Rated Content',
-                        isSelected: _tempSortByRating,
-                        onTap: () {
-                          setState(() {
-                            _tempSortByRating = !_tempSortByRating;
-                          });
-                        },
+                      Wrap(
+                        spacing: 10.w,
+                        runSpacing: 10.h,
+                        children: SearchSortType.values.map((sort) {
+                          final isSelected = _tempSort == sort;
+                          return _SortToggleChip(
+                            label: sort.label,
+                            isSelected: isSelected,
+                            onTap: () {
+                              setState(() {
+                                _tempSort = sort;
+                              });
+                            },
+                          );
+                        }).toList(),
                       ),
                     ],
                   ),
@@ -233,7 +244,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                         setState(() {
                           _tempFilter = SearchFilterType.all;
                           _tempGenreId = null;
-                          _tempSortByRating = false;
+                          _tempSort = SearchSortType.none;
                         });
                       },
                       isSecondary: true,
@@ -472,7 +483,7 @@ class _SortToggleChip extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
-              isSelected ? Icons.auto_graph_rounded : Icons.sort_rounded,
+              isSelected ? Icons.check_circle_rounded : Icons.sort_rounded,
               size: 16.sp,
               color: isSelected ? AppColors.neonBlue : AppColors.coolGray,
             ),
