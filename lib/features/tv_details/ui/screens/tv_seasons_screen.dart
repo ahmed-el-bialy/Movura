@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/widgets/app_error_widget.dart';
 
 import '../../../../core/networking/di.dart';
 import '../../../../core/routing/arguments_models.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/widgets/app_error_widget.dart';
-import 'package:movura/core/widgets/navigation/app_navigation_bar.dart';
 import '../../../../core/widgets/shared_details/season_loading_skeleton.dart';
 import '../../logic/seasons/tv_seasons_cubit.dart';
 import '../widgets/season_widgets/tv_season_details_body.dart';
@@ -50,7 +49,6 @@ class TvSeasonDetailsScreen extends StatelessWidget {
             return const AppErrorWidget(errorMessage: "Something went wrong");
           },
         ),
-        bottomNavigationBar: const AppNavigationBar(activeIndex: 0),
       ),
     );
   }
