@@ -56,7 +56,8 @@ class AppNavigationBar extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   NavItem(
-                    icon: Icons.home_rounded,
+                    activeIcon: Icons.home_rounded,
+                    inActiveIcon: Icons.home_outlined,
                     isActive: activeIndex == 0,
                     onTap: () {
                       if (onTabChanged != null) {
@@ -65,12 +66,13 @@ class AppNavigationBar extends StatelessWidget {
                     },
                   ),
                   NavItem(
-                    icon: Icons.search_rounded,
+                    activeIcon: Icons.search_rounded,
                     isActive: activeIndex == 1,
                     onTap: () => _openSearch(context),
                   ),
                   NavItem(
-                    icon: Icons.format_list_bulleted_rounded,
+                    activeIcon: Icons.collections_bookmark_rounded,
+                    inActiveIcon: Icons.collections_bookmark_outlined,
                     isActive: activeIndex == 2,
                     onTap: () {
                       if (onTabChanged != null) {
@@ -79,7 +81,7 @@ class AppNavigationBar extends StatelessWidget {
                     },
                   ),
                   NavItem(
-                    icon: Icons.person_rounded,
+                    activeIcon: Icons.person_rounded,
                     isActive: activeIndex == 3,
                     onTap: () {
                       if (onTabChanged != null) {
