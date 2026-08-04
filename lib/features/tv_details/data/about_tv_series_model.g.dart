@@ -131,10 +131,13 @@ TvActorResponse _$TvActorResponseFromJson(Map<String, dynamic> json) =>
       tvActors: (json['cast'] as List<dynamic>?)
           ?.map((e) => ActorModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      crew: (json['crew'] as List<dynamic>?)
+          ?.map((e) => ActorModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$TvActorResponseToJson(TvActorResponse instance) =>
-    <String, dynamic>{'cast': instance.tvActors};
+    <String, dynamic>{'cast': instance.tvActors, 'crew': instance.crew};
 
 TvVideoResponse _$TvVideoResponseFromJson(Map<String, dynamic> json) =>
     TvVideoResponse(
@@ -157,6 +160,9 @@ TvImagesResponse _$TvImagesResponseFromJson(Map<String, dynamic> json) =>
       stills: (json['stills'] as List<dynamic>?)
           ?.map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      posters: (json['posters'] as List<dynamic>?)
+          ?.map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$TvImagesResponseToJson(TvImagesResponse instance) =>
@@ -164,4 +170,5 @@ Map<String, dynamic> _$TvImagesResponseToJson(TvImagesResponse instance) =>
       'backdrops': instance.backdropImages,
       'logos': instance.logoImages,
       'stills': instance.stills,
+      'posters': instance.posters,
     };

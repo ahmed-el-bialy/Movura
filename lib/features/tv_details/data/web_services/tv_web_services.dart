@@ -3,11 +3,11 @@ import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 
 import '../../../../core/constants/api_constants.dart';
+import '../../../../core/models/review_model.dart';
+import '../../../../core/models/similar_model.dart';
 import '../about_tv_series_model.dart';
 import '../episode_details_model.dart';
 import '../season_details_model.dart';
-import '../../../../core/models/review_model.dart';
-import '../../../../core/models/similar_model.dart';
 
 part 'tv_web_services.g.dart';
 
@@ -41,6 +41,8 @@ abstract class TvWebServices {
   Future<SeasonDetailsModel> getTvSeasonDetails({
     @Path("id") required int id,
     @Path("season_number") required int seasonNumber,
+    @Query("append_to_response")
+    String additionalData = "credits,images,videos",
     @Query("language") String language = "en-US",
   });
 

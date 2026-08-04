@@ -9,6 +9,7 @@ import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/widgets/layout/section_title.dart';
 import 'package:movura/core/widgets/shared_details/actors_list.dart';
+import 'package:movura/core/widgets/shared_details/images_list.dart';
 import 'package:movura/core/widgets/shared_details/videos_list.dart';
 
 import '../../../../../core/theming/app_spacing.dart';
@@ -162,6 +163,16 @@ class EpisodeDetailsBody extends StatelessWidget {
               ],
             ),
           ),
+        if (episode.crew != null && (episode.crew?.isNotEmpty ?? false))
+          SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SectionTitle(sectionName: 'CREW'),
+                ActorsList(actors: episode.crew ?? []),
+              ],
+            ),
+          ),
         if (episode.videos?.videoList != null &&
             (episode.videos?.videoList?.isNotEmpty ?? false))
           SliverToBoxAdapter(
@@ -170,6 +181,17 @@ class EpisodeDetailsBody extends StatelessWidget {
               children: [
                 const SectionTitle(sectionName: 'VIDEOS'),
                 VideosList(allVideos: episode.videos?.videoList ?? []),
+              ],
+            ),
+          ),
+        if (episode.images?.stills != null &&
+            (episode.images?.stills?.isNotEmpty ?? false))
+          SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SectionTitle(sectionName: 'EPISODE STILLS'),
+                ImagesList(images: episode.images?.stills ?? []),
               ],
             ),
           ),

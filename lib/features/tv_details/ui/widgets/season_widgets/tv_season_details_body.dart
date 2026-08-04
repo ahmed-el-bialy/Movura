@@ -7,6 +7,11 @@ import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/theming/weights.dart';
 
+import 'package:movura/core/widgets/layout/section_title.dart';
+import 'package:movura/core/widgets/shared_details/actors_list.dart';
+import 'package:movura/core/widgets/shared_details/images_list.dart';
+import 'package:movura/core/widgets/shared_details/videos_list.dart';
+
 import '../../../data/season_details_model.dart';
 import 'episodes_list.dart';
 
@@ -115,8 +120,42 @@ class TvSeasonDetailsBody extends StatelessWidget {
               padding: AppSpacing.all(AppSpacing.l),
               child: Text(
                 seasonDetails.overview ?? '',
-                style: TextStyles.font12RegularCoolGrayManrope.copyWith(height: 1.6),
+                style:
+                    TextStyles.font12RegularCoolGrayManrope.copyWith(height: 1.6),
               ),
+            ),
+          ),
+        if (seasonDetails.credits?.tvActors != null &&
+            (seasonDetails.credits?.tvActors?.isNotEmpty ?? false))
+          SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SectionTitle(sectionName: 'SEASON CAST'),
+                ActorsList(actors: seasonDetails.credits?.tvActors ?? []),
+              ],
+            ),
+          ),
+        if (seasonDetails.videos?.videoList != null &&
+            (seasonDetails.videos?.videoList?.isNotEmpty ?? false))
+          SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SectionTitle(sectionName: 'SEASON VIDEOS'),
+                VideosList(allVideos: seasonDetails.videos?.videoList ?? []),
+              ],
+            ),
+          ),
+        if (seasonDetails.images?.posters != null &&
+            (seasonDetails.images?.posters?.isNotEmpty ?? false))
+          SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SectionTitle(sectionName: 'SEASON IMAGES'),
+                ImagesList(images: seasonDetails.images?.posters ?? []),
+              ],
             ),
           ),
         AppSpacing.sliverVerticalSpacing(AppSpacing.l),

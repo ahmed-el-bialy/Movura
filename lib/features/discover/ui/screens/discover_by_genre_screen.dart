@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,6 +13,7 @@ import 'package:movura/core/widgets/buttons/app_icon_button.dart';
 import 'package:movura/core/widgets/loading/movura_loading_indicator.dart';
 import 'package:movura/core/widgets/poster_card/components/glass_card.dart';
 import 'package:movura/features/see_all/data/models/see_all_arguments.dart';
+
 import '../../logic/discover_by_genre_cubit.dart';
 
 class DiscoverByGenreScreen extends StatelessWidget {

@@ -180,7 +180,10 @@ class TvActorResponse {
   @JsonKey(name: "cast")
   final List<ActorModel>? tvActors;
 
-  TvActorResponse({this.tvActors});
+  @JsonKey(name: "crew")
+  final List<ActorModel>? crew;
+
+  TvActorResponse({this.tvActors, this.crew});
 
   factory TvActorResponse.fromJson(Map<String, dynamic> json) =>
       _$TvActorResponseFromJson(json);
@@ -209,8 +212,15 @@ class TvImagesResponse {
   final List<ImageModel>? logoImages;
   @JsonKey(name: "stills")
   final List<ImageModel>? stills;
+  @JsonKey(name: "posters")
+  final List<ImageModel>? posters;
 
-  TvImagesResponse({this.backdropImages, this.logoImages, this.stills});
+  TvImagesResponse({
+    this.backdropImages,
+    this.logoImages,
+    this.stills,
+    this.posters,
+  });
 
   factory TvImagesResponse.fromJson(Map<String, dynamic> json) =>
       _$TvImagesResponseFromJson(json);
