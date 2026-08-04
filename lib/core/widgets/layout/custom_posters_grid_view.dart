@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/models/poster_model.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/widgets/loading/movura_loading_indicator.dart';
 import 'package:movura/core/widgets/poster_card/poster_card.dart';
 
-import 'package:movura/core/theming/app_spacing.dart';
+import '../../theming/app_colors.dart';
 import '../../theming/text_styles.dart';
 
 class CustomPostersGridView extends StatelessWidget {
@@ -12,6 +13,7 @@ class CustomPostersGridView extends StatelessWidget {
     super.key,
     required this.posters,
     this.isLoadingMore = false,
+    this.hasReachedMax = false,
     this.shrinkWrap = false,
     this.physics,
     this.padding,
@@ -19,6 +21,7 @@ class CustomPostersGridView extends StatelessWidget {
 
   final List<PosterModel> posters;
   final bool isLoadingMore;
+  final bool hasReachedMax;
   final bool shrinkWrap;
   final ScrollPhysics? physics;
   final EdgeInsetsGeometry? padding;
@@ -64,6 +67,30 @@ class CustomPostersGridView extends StatelessWidget {
               padding: AppSpacing.vertical(AppSpacing.xl),
               child: const Center(
                 child: MovuraLoadingIndicator(size: 45),
+              ),
+            ),
+          ),
+        if (hasReachedMax && posters.isNotEmpty)
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: AppSpacing.vertical(AppSpacing.xxl),
+              child: Column(
+                children: [
+                  Divider(
+                    color: AppColors.pureWhite.withValues(alpha: 0.05),
+                    indent: 100.w,
+                    endIndent: 100.w,
+                  ),
+                  AppSpacing.verticalSpacing(AppSpacing.m),
+                  Text(
+                    'End of Results',
+                    style: TextStyles.font10BoldCoolGray.copyWith(
+                      letterSpacing: 2,
+                      color: AppColors.coolGray.withValues(alpha: 0.4),
+                    ),
+                  ),
+                  AppSpacing.verticalSpacing(100),
+                ],
               ),
             ),
           ),
