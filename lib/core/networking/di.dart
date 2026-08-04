@@ -8,6 +8,7 @@ import '../../features/discover/data/repo/discover_repo.dart';
 import '../../features/discover/logic/discover_movies_cubit.dart';
 import '../../features/discover/logic/discover_people_cubit.dart';
 import '../../features/discover/logic/discover_tv_cubit.dart';
+import '../../features/discover/logic/discover_by_genre_cubit.dart';
 import '../../features/home/data/repo/home_repo.dart';
 import '../../features/home/data/web_services/home_web_services.dart';
 import '../../features/home/logic/top_rated_movies/top_rated_movies_cubit.dart';
@@ -135,5 +136,8 @@ void _initCubits() {
   );
   sl.registerFactory<DiscoverPeopleCubit>(
     () => DiscoverPeopleCubit(sl<DiscoverRepo>()),
+  );
+  sl.registerFactory<DiscoverByGenreCubit>(
+    () => DiscoverByGenreCubit(sl<HomeRepo>()),
   );
 }

@@ -8,6 +8,7 @@ import '../../features/auth/ui/screens/sign_up_screen.dart';
 import '../../features/discover/ui/screens/discover_movies_screen.dart';
 import '../../features/discover/ui/screens/discover_people_screen.dart';
 import '../../features/discover/ui/screens/discover_tv_screen.dart';
+import '../../features/discover/ui/screens/discover_by_genre_screen.dart';
 import '../../features/home/ui/screens/home_screen.dart';
 import '../../features/library/ui/screens/library_screen.dart';
 import '../../features/main/ui/main_wrapper_screen.dart';
@@ -111,6 +112,12 @@ class AppRouter {
 
       case RouteNames.discoverPeopleScreen:
         return MaterialPageRoute(builder: (_) => const DiscoverPeopleScreen());
+
+      case RouteNames.discoverByGenreScreen:
+        final args = setting.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder: (_) => DiscoverByGenreScreen(isMovie: args['isMovie']),
+        );
 
       default:
         return MaterialPageRoute(builder: (_) => const HomeScreen());

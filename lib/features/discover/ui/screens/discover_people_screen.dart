@@ -11,31 +11,11 @@ class DiscoverPeopleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DiscoverScreenTemplate(
-      title: "Popular People",
-      categories: _PeopleCategories.getCategories(context),
-    );
-  }
-}
-
-class _PeopleCategories {
-  static List<CategoryCardModel> getCategories(BuildContext context) {
-    return [
+    final List<CategoryCardModel> categories = [
       CategoryCardModel(
-        color: AppColors.vibrantPurple,
-        title: 'Popular People',
-        hint: "TOP CELEBRITIES",
-        icon: Icons.people_alt_rounded,
-        onTap: () => _navigateToSeeAll(
-          context,
-          "Popular People",
-          SeeAllEndpoint.popularPeople,
-        ),
-      ),
-      CategoryCardModel(
-        color: AppColors.electricBlueAccent,
-        title: 'Trending People',
-        hint: "TRENDING TODAY",
+        color: AppColors.neonBlue,
+        title: 'Trending Today',
+        hint: "DAILY UPDATES",
         icon: Icons.trending_up_rounded,
         onTap: () => _navigateToSeeAll(
           context,
@@ -43,10 +23,26 @@ class _PeopleCategories {
           SeeAllEndpoint.trendingPeople,
         ),
       ),
+      CategoryCardModel(
+        color: AppColors.amberGold,
+        title: 'Popular People',
+        hint: "MOST VIEWED",
+        icon: Icons.star_rounded,
+        onTap: () => _navigateToSeeAll(
+          context,
+          "Popular People",
+          SeeAllEndpoint.popularPeople,
+        ),
+      ),
     ];
+
+    return DiscoverScreenTemplate(
+      title: "Discover People",
+      categories: categories,
+    );
   }
 
-  static void _navigateToSeeAll(
+  void _navigateToSeeAll(
     BuildContext context,
     String title,
     SeeAllEndpoint endpoint,

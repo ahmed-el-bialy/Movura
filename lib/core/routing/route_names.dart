@@ -14,4 +14,5 @@ class RouteNames {
   static const String discoverMoviesScreen = "/discoverMovies";
   static const String discoverTvScreen = "/discoverTv";
   static const String discoverPeopleScreen = "/discoverPeople";
+  static const String discoverByGenreScreen = "/discoverByGenre";
 }

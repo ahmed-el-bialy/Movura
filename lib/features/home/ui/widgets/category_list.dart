@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
-import 'package:movura/core/networking/di.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
-import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
-import '../../../search/logic/search/search_cubit.dart';
-import '../../../search/ui/screens/custom_search_delegate.dart';
+import 'package:movura/core/theming/app_spacing.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
 import '../../../see_all/data/models/see_all_arguments.dart';
 import '../../data/models/category_card_model.dart';
 import 'category_card.dart';
@@ -35,6 +32,21 @@ class _CategoryListState extends State<CategoryList> {
   @override
   Widget build(BuildContext context) {
     final List<CategoryCardModel> categories = [
+      CategoryCardModel(
+        color: AppColors.royalIndigo,
+        title: 'Trending Celebrities',
+        hint: "TRENDING PEOPLE",
+        icon: Icons.people_alt_rounded,
+        onTap: () {
+          context.pushNamed(
+            RouteNames.seeAllScreen,
+            arguments: SeeAllArguments(
+              title: "Trending People",
+              endpoint: SeeAllEndpoint.trendingPeople,
+            ),
+          );
+        },
+      ),
       CategoryCardModel(
         color: AppColors.vibrantPurple,
         title: 'Popular TV Series',
@@ -77,18 +89,6 @@ class _CategoryListState extends State<CategoryList> {
               title: "Trending Today",
               endpoint: SeeAllEndpoint.trendingMoviesDay,
             ),
-          );
-        },
-      ),
-      CategoryCardModel(
-        color: AppColors.royalIndigo,
-        title: 'Celebrities',
-        hint: "PEOPLE",
-        icon: Icons.people_alt_rounded,
-        onTap: () {
-          showSearch(
-            context: context,
-            delegate: CustomSearchDelegate(searchCubit: sl<SearchCubit>()),
           );
         },
       ),

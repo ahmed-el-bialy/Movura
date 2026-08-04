@@ -9,6 +9,8 @@ import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/theming/weights.dart';
 
+import '../../../see_all/data/models/see_all_arguments.dart';
+
 class CustomSideDrawer extends StatelessWidget {
   const CustomSideDrawer({super.key});
 
@@ -65,12 +67,33 @@ class CustomSideDrawer extends StatelessWidget {
                   },
                 ),
                 _DrawerItem(
-                  icon: Icons.people_outline_rounded,
-                  label: 'Popular People',
-                  subtitle: 'Trending actors and directors',
+                  icon: Icons.trending_up_rounded,
+                  label: 'Trending People',
+                  subtitle: 'Daily updates on celebrities',
                   onTap: () {
                     context.pop();
-                    context.pushNamed(RouteNames.discoverPeopleScreen);
+                    context.pushNamed(
+                      RouteNames.seeAllScreen,
+                      arguments: SeeAllArguments(
+                        title: "Trending People",
+                        endpoint: SeeAllEndpoint.trendingPeople,
+                      ),
+                    );
+                  },
+                ),
+                _DrawerItem(
+                  icon: Icons.star_border_rounded,
+                  label: 'Popular People',
+                  subtitle: 'Most viewed actors',
+                  onTap: () {
+                    context.pop();
+                    context.pushNamed(
+                      RouteNames.seeAllScreen,
+                      arguments: SeeAllArguments(
+                        title: "Popular People",
+                        endpoint: SeeAllEndpoint.popularPeople,
+                      ),
+                    );
                   },
                 ),
                 const _DrawerSectionTitle(title: "ACCOUNT"),
@@ -119,25 +142,52 @@ class _DrawerHeader extends StatelessWidget {
               color: AppColors.neonBlue.withValues(alpha: 0.1),
               shape: BoxShape.circle,
               border: Border.all(
-                color: AppColors.neonBlue.withValues(alpha: 0.2),
+                color: AppColors.neonBlue.withValues(alpha: 0.3),
+                width: 1.5,
               ),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.neonBlue.withValues(alpha: 0.15),
+                  blurRadius: 15,
+                  spreadRadius: 2,
+                ),
+              ],
             ),
-            child: Image.asset(AppConstants.appLogo, height: 45.h),
+            child: Image.asset(AppConstants.appLogo, height: 50.h),
           ),
           AppSpacing.verticalSpacing(AppSpacing.l),
           Text(
             AppConstants.appName.toUpperCase(),
             style: TextStyles.font24SemiBoldNeonBlueManrope.copyWith(
-              letterSpacing: 4,
-              fontSize: 20.sp,
+              letterSpacing: 6,
+              fontSize: 22.sp,
               fontWeight: Weights.black,
+              shadows: [
+                Shadow(
+                  color: AppColors.neonBlue.withValues(alpha: 0.5),
+                  blurRadius: 10,
+                ),
+              ],
             ),
           ),
-          Text(
-            "Ultimate Cinema Guide",
-            style: TextStyles.font10MediumCoolGraySora.copyWith(
-              letterSpacing: 1.2,
-              color: AppColors.coolGray.withValues(alpha: 0.6),
+          AppSpacing.verticalSpacing(AppSpacing.xs),
+          Container(
+            padding: AppSpacing.symmetric(horizontal: 12, vertical: 4),
+            decoration: BoxDecoration(
+              color: AppColors.neonBlue.withValues(alpha: 0.05),
+              borderRadius: BorderRadius.circular(20.r),
+              border: Border.all(
+                color: AppColors.neonBlue.withValues(alpha: 0.1),
+              ),
+            ),
+            child: Text(
+              "ULTIMATE CINEMA GUIDE",
+              style: TextStyles.font10MediumCoolGraySora.copyWith(
+                letterSpacing: 1.5,
+                color: AppColors.neonBlue.withValues(alpha: 0.8),
+                fontSize: 8.sp,
+                fontWeight: Weights.bold,
+              ),
             ),
           ),
         ],
@@ -193,17 +243,28 @@ class _DrawerItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: AppSpacing.only(bottom: AppSpacing.xs),
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: AppColors.pureWhite.withValues(alpha: 0.03),
+            width: 0.8,
+          ),
+        ),
+      ),
       child: ListTile(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16.r),
         ),
         onTap: onTap,
-        contentPadding: AppSpacing.symmetric(horizontal: AppSpacing.l, vertical: AppSpacing.xs),
+        contentPadding: AppSpacing.symmetric(horizontal: AppSpacing.l, vertical: AppSpacing.s),
         leading: Container(
           padding: AppSpacing.all(10),
           decoration: BoxDecoration(
-            color: (iconColor ?? AppColors.coolGray).withValues(alpha: 0.08),
-            borderRadius: BorderRadius.circular(12.r),
+            color: (iconColor ?? AppColors.neonBlue).withValues(alpha: 0.06),
+            borderRadius: BorderRadius.circular(14.r),
+            border: Border.all(
+              color: (iconColor ?? AppColors.neonBlue).withValues(alpha: 0.1),
+            ),
           ),
           child: Icon(
             icon,
@@ -215,22 +276,27 @@ class _DrawerItem extends StatelessWidget {
           label,
           style: TextStyles.font14RegularPureWhiteManrope.copyWith(
             fontWeight: Weights.bold,
-            color: AppColors.pureWhite.withValues(alpha: 0.9),
+            color: AppColors.pureWhite.withValues(alpha: 0.95),
+            fontSize: 14.sp,
           ),
         ),
         subtitle: subtitle != null
-            ? Text(
-                subtitle!,
-                style: TextStyles.font10MediumCoolGraySora.copyWith(
-                  color: AppColors.coolGray.withValues(alpha: 0.5),
-                  fontSize: 11.sp,
+            ? Padding(
+                padding: EdgeInsets.only(top: 4.h),
+                child: Text(
+                  subtitle!,
+                  style: TextStyles.font10MediumCoolGraySora.copyWith(
+                    color: AppColors.coolGray.withValues(alpha: 0.6),
+                    fontSize: 10.sp,
+                    letterSpacing: 0.3,
+                  ),
                 ),
               )
             : null,
         trailing: trailing ??
             Icon(
               Icons.arrow_forward_ios_rounded,
-              color: AppColors.coolGray.withValues(alpha: 0.2),
+              color: AppColors.neonBlue.withValues(alpha: 0.2),
               size: 12.sp,
             ),
       ),
