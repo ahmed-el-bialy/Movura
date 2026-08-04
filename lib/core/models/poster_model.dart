@@ -40,6 +40,15 @@ class PosterModel {
   @JsonKey(name: "genre_ids")
   final List<int>? genreIds;
 
+  @JsonKey(name: "popularity")
+  final double? popularity;
+
+  @JsonKey(name: "release_date")
+  final String? releaseDate;
+
+  @JsonKey(name: "first_air_date")
+  final String? firstAirDate;
+
   PosterModel({
     required this.id,
     this.title,
@@ -50,6 +59,9 @@ class PosterModel {
     this.knownForDepartment,
     this.profilePath,
     this.genreIds,
+    this.popularity,
+    this.releaseDate,
+    this.firstAirDate,
   });
 
   factory PosterModel.fromJson(Map<String, dynamic> json) =>
@@ -67,6 +79,9 @@ class PosterModel {
     String? knownForDepartment,
     String? profilePath,
     List<int>? genreIds,
+    double? popularity,
+    String? releaseDate,
+    String? firstAirDate,
   }) {
     return PosterModel(
       id: id ?? this.id,
@@ -78,6 +93,9 @@ class PosterModel {
       knownForDepartment: knownForDepartment ?? this.knownForDepartment,
       profilePath: profilePath ?? this.profilePath,
       genreIds: genreIds ?? this.genreIds,
+      popularity: popularity ?? this.popularity,
+      releaseDate: releaseDate ?? this.releaseDate,
+      firstAirDate: firstAirDate ?? this.firstAirDate,
     );
   }
 }

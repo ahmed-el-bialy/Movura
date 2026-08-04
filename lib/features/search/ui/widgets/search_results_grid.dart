@@ -67,6 +67,7 @@ class SearchResultsGrid extends StatelessWidget {
               child: CustomPostersGridView(
                 posters: state.posters,
                 isLoadingMore: state.isLoadingMore,
+                hasReachedMax: state.hasReachedMax,
               ),
             ),
           );
