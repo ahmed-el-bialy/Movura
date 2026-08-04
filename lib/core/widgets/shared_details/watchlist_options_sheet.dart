@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/theming/text_styles.dart';
@@ -27,9 +26,6 @@ class _WatchlistOptionsSheetState extends State<WatchlistOptionsSheet> {
 
     final isAdded = _states[label]!;
 
-    // Close the sheet after a small delay to show the change, or keep it open?
-    // The user said "لما أضغط يعمل تمت إضافته ولما أضغط تاني تم حذفه".
-
     ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -45,19 +41,21 @@ class _WatchlistOptionsSheetState extends State<WatchlistOptionsSheet> {
               isAdded ? 'Added to $label' : 'Removed from $label',
               style: TextStyles.font14BoldIceBlueMontserrat.copyWith(
                 color: AppColors.pureWhite,
+                fontSize: 13.sp,
               ),
             ),
           ],
         ),
         backgroundColor: isAdded
-            ? color.withValues(alpha: 0.9)
-            : AppColors.softRed.withValues(alpha: 0.9),
+            ? color.withValues(alpha: 0.95)
+            : AppColors.softRed.withValues(alpha: 0.95),
         behavior: SnackBarBehavior.floating,
         duration: const Duration(seconds: 2),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12.r),
+          borderRadius: BorderRadius.circular(16.r),
         ),
         margin: AppSpacing.all(AppSpacing.l),
+        elevation: 10,
       ),
     );
   }
@@ -123,9 +121,8 @@ class _WatchlistOptionsSheetState extends State<WatchlistOptionsSheet> {
               color: AppColors.coolGray.withValues(alpha: 0.8),
             ),
           ),
-          AppSpacing.verticalSpacing(36),
+          AppSpacing.verticalSpacing(AppSpacing.xxl),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _ActionItem(
                 icon: _states['Watchlist']!
@@ -200,59 +197,61 @@ class _ActionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 300),
-      child: Column(
-        children: [
-          Material(
-            color: isSelected
-                ? color.withValues(alpha: 0.15)
-                : AppColors.onyxBlack,
-            shape: const CircleBorder(),
-            child: InkWell(
-              onTap: onTap,
-              customBorder: const CircleBorder(),
-              splashColor: color.withValues(alpha: 0.3),
-              child: Container(
-                padding: AppSpacing.all(AppSpacing.l),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: isSelected ? color : color.withValues(alpha: 0.2),
-                    width: 2,
-                  ),
-                  boxShadow: isSelected
-                      ? [
-                          BoxShadow(
-                            color: color.withValues(alpha: 0.3),
-                            blurRadius: 10,
-                            spreadRadius: 1,
-                          ),
-                        ]
-                      : null,
-                ),
-                child: Icon(
+    return Expanded(
+      child: Padding(
+        padding: AppSpacing.horizontal(AppSpacing.xs),
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(20.r),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            padding: AppSpacing.vertical(AppSpacing.l),
+            decoration: BoxDecoration(
+              color: isSelected
+                  ? color.withValues(alpha: 0.12)
+                  : AppColors.onyxBlack.withValues(alpha: 0.3),
+              borderRadius: BorderRadius.circular(20.r),
+              border: Border.all(
+                color: isSelected
+                    ? color.withValues(alpha: 0.5)
+                    : AppColors.pureWhite.withValues(alpha: 0.05),
+                width: 1.5,
+              ),
+              boxShadow: isSelected
+                  ? [
+                      BoxShadow(
+                        color: color.withValues(alpha: 0.1),
+                        blurRadius: 12,
+                        spreadRadius: 1,
+                      ),
+                    ]
+                  : null,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
                   icon,
                   color: isSelected
                       ? color
                       : AppColors.coolGray.withValues(alpha: 0.8),
-                  size: 28.sp,
+                  size: 24.sp,
                 ),
-              ),
+                AppSpacing.verticalSpacing(AppSpacing.s),
+                Text(
+                  label,
+                  style: TextStyles.font10BoldCoolGray.copyWith(
+                    color: isSelected
+                        ? AppColors.pureWhite
+                        : AppColors.coolGray.withValues(alpha: 0.6),
+                    fontSize: 10.sp,
+                    fontWeight: isSelected ? Weights.bold : Weights.medium,
+                  ),
+                ),
+              ],
             ),
           ),
-          AppSpacing.verticalSpacing(10),
-          Text(
-            label,
-            style: TextStyles.font10BoldCoolGray.copyWith(
-              color: isSelected
-                  ? AppColors.pureWhite
-                  : AppColors.coolGray.withValues(alpha: 0.7),
-              fontSize: 12.sp,
-              fontWeight: isSelected ? Weights.bold : Weights.medium,
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
