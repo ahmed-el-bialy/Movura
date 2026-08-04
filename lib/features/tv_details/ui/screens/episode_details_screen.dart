@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/widgets/app_error_widget.dart';
 
 import '../../../../core/networking/di.dart';
 import '../../../../core/routing/arguments_models.dart';
-import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/widgets/app_error_widget.dart';
-import 'package:movura/core/widgets/navigation/app_navigation_bar.dart';
 import '../../../../core/widgets/shared_details/episode_loading_skeleton.dart';
 import '../../logic/episodes/tv_episode_details_cubit.dart';
 import '../widgets/episode_widgets/episode_details_body.dart';
@@ -59,7 +58,6 @@ class EpisodeDetailsScreen extends StatelessWidget {
             return const SizedBox.shrink();
           },
         ),
-        bottomNavigationBar: const AppNavigationBar(activeIndex: 0),
       ),
     );
   }
