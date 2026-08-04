@@ -9,7 +9,6 @@ import '../../features/discover/ui/screens/discover_movies_screen.dart';
 import '../../features/discover/ui/screens/discover_people_screen.dart';
 import '../../features/discover/ui/screens/discover_tv_screen.dart';
 import '../../features/home/ui/screens/home_screen.dart';
-import '../../features/home/ui/screens/trending_screen.dart';
 import '../../features/library/ui/screens/library_screen.dart';
 import '../../features/main/ui/main_wrapper_screen.dart';
 import '../../features/movie_details/logic/about/about_cubit.dart';
@@ -35,9 +34,6 @@ class AppRouter {
 
       case RouteNames.signUpScreen:
         return MaterialPageRoute(builder: (_) => const SignUpScreen());
-
-      case RouteNames.trendingScreen:
-        return MaterialPageRoute(builder: (_) => const TrendingScreen());
 
       case RouteNames.mainScreen:
         return MaterialPageRoute(builder: (_) => const MainWrapperScreen());
