@@ -18,6 +18,15 @@ SeasonDetailsModel _$SeasonDetailsModelFromJson(Map<String, dynamic> json) =>
       episodes: (json['episodes'] as List<dynamic>)
           .map((e) => EpisodeModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      credits: json['credits'] == null
+          ? null
+          : TvActorResponse.fromJson(json['credits'] as Map<String, dynamic>),
+      videos: json['videos'] == null
+          ? null
+          : TvVideoResponse.fromJson(json['videos'] as Map<String, dynamic>),
+      images: json['images'] == null
+          ? null
+          : TvImagesResponse.fromJson(json['images'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$SeasonDetailsModelToJson(SeasonDetailsModel instance) =>
@@ -30,6 +39,9 @@ Map<String, dynamic> _$SeasonDetailsModelToJson(SeasonDetailsModel instance) =>
       'poster_path': instance.posterPath,
       'season_number': instance.seasonNumber,
       'episodes': instance.episodes,
+      'credits': instance.credits,
+      'videos': instance.videos,
+      'images': instance.images,
     };
 
 EpisodeModel _$EpisodeModelFromJson(Map<String, dynamic> json) => EpisodeModel(

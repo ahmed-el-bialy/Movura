@@ -28,6 +28,9 @@ PosterModel _$PosterModelFromJson(Map<String, dynamic> json) => PosterModel(
   genreIds: (json['genre_ids'] as List<dynamic>?)
       ?.map((e) => (e as num).toInt())
       .toList(),
+  popularity: (json['popularity'] as num?)?.toDouble(),
+  releaseDate: json['release_date'] as String?,
+  firstAirDate: json['first_air_date'] as String?,
 );
 
 Map<String, dynamic> _$PosterModelToJson(PosterModel instance) =>
@@ -41,4 +44,7 @@ Map<String, dynamic> _$PosterModelToJson(PosterModel instance) =>
       'known_for_department': instance.knownForDepartment,
       'profile_path': instance.profilePath,
       'genre_ids': instance.genreIds,
+      'popularity': instance.popularity,
+      'release_date': instance.releaseDate,
+      'first_air_date': instance.firstAirDate,
     };

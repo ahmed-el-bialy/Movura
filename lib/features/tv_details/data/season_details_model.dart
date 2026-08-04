@@ -1,5 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../../core/models/actor_model.dart';
+import 'about_tv_series_model.dart';
+
 part 'season_details_model.g.dart';
 
 @JsonSerializable()
@@ -17,6 +20,15 @@ class SeasonDetailsModel {
   final int seasonNumber;
   final List<EpisodeModel> episodes;
 
+  @JsonKey(name: "credits")
+  final TvActorResponse? credits;
+
+  @JsonKey(name: "videos")
+  final TvVideoResponse? videos;
+
+  @JsonKey(name: "images")
+  final TvImagesResponse? images;
+
   SeasonDetailsModel({
     this.stringId,
     required this.id,
@@ -26,6 +38,9 @@ class SeasonDetailsModel {
     this.posterPath,
     required this.seasonNumber,
     required this.episodes,
+    this.credits,
+    this.videos,
+    this.images,
   });
 
   factory SeasonDetailsModel.fromJson(Map<String, dynamic> json) =>
