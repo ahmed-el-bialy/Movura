@@ -6,21 +6,21 @@ class HomeRepo {
 
   HomeRepo({required this.homeWebServices});
 
-  Future<List<PosterModel>> getTrendingMedia() async {
-    var response = await homeWebServices.getTrendingMedia();
+  Future<List<PosterModel>> getTrendingMedia({int page = 1}) async {
+    var response = await homeWebServices.getTrendingMedia(page: page);
 
-    return response.results ?? [];
+    return response.results?.map((e) => e.copyWith(mediaType: 'movie')).toList() ?? [];
   }
 
-  Future<List<PosterModel>> getTopRatedTvSeries() async {
-    var response = await homeWebServices.getTopRatedTvSeries();
+  Future<List<PosterModel>> getTopRatedTvSeries({int page = 1}) async {
+    var response = await homeWebServices.getTopRatedTvSeries(page: page);
 
-    return response.results ?? [];
+    return response.results?.map((e) => e.copyWith(mediaType: 'tv')).toList() ?? [];
   }
 
-  Future<List<PosterModel>> getTopRatedMovies() async {
-    var response = await homeWebServices.getTopRatedMovies();
+  Future<List<PosterModel>> getTopRatedMovies({int page = 1}) async {
+    var response = await homeWebServices.getTopRatedMovies(page: page);
 
-    return response.results ?? [];
+    return response.results?.map((e) => e.copyWith(mediaType: 'movie')).toList() ?? [];
   }
 }

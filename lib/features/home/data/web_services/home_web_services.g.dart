@@ -34,9 +34,15 @@ class _HomeWebServices implements HomeWebServices {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<PosterResponse> getTrendingMedia({String language = "en-US"}) async {
+  Future<PosterResponse> getTrendingMedia({
+    String language = "en-US",
+    int page = 1,
+  }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'language': language};
+    final queryParameters = <String, dynamic>{
+      r'language': language,
+      r'page': page,
+    };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<PosterResponse>(
@@ -61,9 +67,15 @@ class _HomeWebServices implements HomeWebServices {
   }
 
   @override
-  Future<PosterResponse> getTopRatedMovies({String language = "en-US"}) async {
+  Future<PosterResponse> getTopRatedMovies({
+    String language = "en-US",
+    int page = 1,
+  }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'language': language};
+    final queryParameters = <String, dynamic>{
+      r'language': language,
+      r'page': page,
+    };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<PosterResponse>(
@@ -90,9 +102,13 @@ class _HomeWebServices implements HomeWebServices {
   @override
   Future<PosterResponse> getTopRatedTvSeries({
     String language = "en-US",
+    int page = 1,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'language': language};
+    final queryParameters = <String, dynamic>{
+      r'language': language,
+      r'page': page,
+    };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<PosterResponse>(

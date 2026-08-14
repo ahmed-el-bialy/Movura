@@ -81,6 +81,9 @@ dependencies:
   firebase_core: ^4.12.1
   firebase_auth: ^6.5.6
   cloud_firestore: ^6.7.1
+  
+  # Lazily load and paginate large lists of items.
+  infinite_scroll_pagination: ^5.1.1
 
 
 

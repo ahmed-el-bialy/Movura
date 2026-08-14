@@ -16,16 +16,19 @@ abstract class HomeWebServices {
   @GET(ApiConstants.trendingMedia)
   Future<PosterResponse> getTrendingMedia({
     @Query("language") String language = "en-US",
+    @Query("page") int page = 1,
   });
 
   @GET(ApiConstants.topRatedMovies)
   Future<PosterResponse> getTopRatedMovies({
     @Query("language") String language = "en-US",
+    @Query("page") int page = 1,
   });
 
   @GET(ApiConstants.topRatedTvSeries)
   Future<PosterResponse> getTopRatedTvSeries({
     @Query("language") String language = "en-US",
+    @Query("page") int page = 1,
   });
 
   @GET(ApiConstants.movieGenres)
