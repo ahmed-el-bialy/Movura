@@ -13,13 +13,15 @@ class WatchlistOptionsSheet extends StatefulWidget {
 }
 
 class _WatchlistOptionsSheetState extends State<WatchlistOptionsSheet> {
+  // Four fixed library collections as requested
   final Map<String, bool> _states = {
-    'Watchlist': false,
+    'Favorites': false,
+    'To Watch': false,
     'Watched': false,
-    'Favorite': false,
+    'Watch It Now': false,
   };
 
-  void _toggleState(String label, IconData icon, Color color) {
+  void _toggleState(String label, Color color) {
     setState(() {
       _states[label] = !(_states[label] ?? false);
     });
@@ -98,7 +100,7 @@ class _WatchlistOptionsSheetState extends State<WatchlistOptionsSheet> {
           Row(
             children: [
               Text(
-                'Add to My Lists',
+                'Save to Library',
                 style: TextStyles.font17BoldIceBlueMontserrat.copyWith(
                   fontSize: 20.sp,
                   letterSpacing: 0.5,
@@ -116,7 +118,7 @@ class _WatchlistOptionsSheetState extends State<WatchlistOptionsSheet> {
           ),
           AppSpacing.verticalSpacing(AppSpacing.xs),
           Text(
-            'Organize your movies and series into custom collections',
+            'Quickly organize items into your library collections',
             style: TextStyles.font12RegularCoolGrayManrope.copyWith(
               color: AppColors.coolGray.withValues(alpha: 0.8),
             ),
@@ -125,51 +127,35 @@ class _WatchlistOptionsSheetState extends State<WatchlistOptionsSheet> {
           Row(
             children: [
               _ActionItem(
-                icon: _states['Watchlist']!
-                    ? Icons.bookmark_rounded
-                    : Icons.bookmark_outline_rounded,
-                label: 'Watchlist',
-                isSelected: _states['Watchlist']!,
-                onTap: () => _toggleState(
-                  'Watchlist',
-                  Icons.bookmark_rounded,
-                  AppColors.neonBlue,
-                ),
-                color: AppColors.neonBlue,
-              ),
-              _ActionItem(
-                icon: _states['Watched']!
-                    ? Icons.check_circle_rounded
-                    : Icons.check_circle_outline_rounded,
-                label: 'Watched',
-                isSelected: _states['Watched']!,
-                onTap: () => _toggleState(
-                  'Watched',
-                  Icons.check_circle_rounded,
-                  AppColors.tealCyan,
-                ),
-                color: AppColors.tealCyan,
-              ),
-              _ActionItem(
-                icon: _states['Favorite']!
-                    ? Icons.favorite_rounded
-                    : Icons.favorite_border_rounded,
-                label: 'Favorite',
-                isSelected: _states['Favorite']!,
-                onTap: () => _toggleState(
-                  'Favorite',
-                  Icons.favorite_rounded,
-                  AppColors.softRed,
-                ),
+                activeIcon: Icons.favorite_rounded,
+                inactiveIcon: Icons.favorite_border_rounded,
+                label: 'Favorites',
+                isSelected: _states['Favorites']!,
+                onTap: () => _toggleState('Favorites', AppColors.softRed),
                 color: AppColors.softRed,
               ),
               _ActionItem(
-                icon: Icons.add_box_outlined,
-                label: 'Create',
-                isSelected: false,
-                onTap: () {
-                  // Simulation for create list
-                },
+                activeIcon: Icons.bookmark_rounded,
+                inactiveIcon: Icons.bookmark_outline_rounded,
+                label: 'To Watch',
+                isSelected: _states['To Watch']!,
+                onTap: () => _toggleState('To Watch', AppColors.neonBlue),
+                color: AppColors.neonBlue,
+              ),
+              _ActionItem(
+                activeIcon: Icons.check_circle_rounded,
+                inactiveIcon: Icons.check_circle_outline_rounded,
+                label: 'Watched',
+                isSelected: _states['Watched']!,
+                onTap: () => _toggleState('Watched', AppColors.tealCyan),
+                color: AppColors.tealCyan,
+              ),
+              _ActionItem(
+                activeIcon: Icons.play_circle_fill_rounded,
+                inactiveIcon: Icons.play_circle_outline_rounded,
+                label: 'Watch It Now',
+                isSelected: _states['Watch It Now']!,
+                onTap: () => _toggleState('Watch It Now', AppColors.amberGold),
                 color: AppColors.amberGold,
               ),
             ],
@@ -182,14 +168,16 @@ class _WatchlistOptionsSheetState extends State<WatchlistOptionsSheet> {
 
 class _ActionItem extends StatelessWidget {
   const _ActionItem({
-    required this.icon,
+    required this.activeIcon,
+    required this.inactiveIcon,
     required this.label,
     required this.onTap,
     required this.color,
     required this.isSelected,
   });
 
-  final IconData icon;
+  final IconData activeIcon;
+  final IconData inactiveIcon;
   final String label;
   final VoidCallback onTap;
   final Color color;
@@ -231,7 +219,7 @@ class _ActionItem extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(
-                  icon,
+                  isSelected ? activeIcon : inactiveIcon,
                   color: isSelected
                       ? color
                       : AppColors.coolGray.withValues(alpha: 0.8),
@@ -240,11 +228,14 @@ class _ActionItem extends StatelessWidget {
                 AppSpacing.verticalSpacing(AppSpacing.s),
                 Text(
                   label,
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyles.font10BoldCoolGray.copyWith(
                     color: isSelected
                         ? AppColors.pureWhite
                         : AppColors.coolGray.withValues(alpha: 0.6),
-                    fontSize: 10.sp,
+                    fontSize: 9.sp,
                     fontWeight: isSelected ? Weights.bold : Weights.medium,
                   ),
                 ),
