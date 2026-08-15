@@ -31,6 +31,7 @@ class LogInScreen extends StatefulWidget {
 }
 
 class _LogInScreenState extends State<LogInScreen> {
+  late final AuthCubit _authCubit;
   final formKey = GlobalKey<FormState>();
   final passwordController = TextEditingController();
   final emailController = TextEditingController();
@@ -38,7 +39,14 @@ class _LogInScreenState extends State<LogInScreen> {
   bool isObscure = true;
 
   @override
+  void initState() {
+    super.initState();
+    _authCubit = sl<AuthCubit>();
+  }
+
+  @override
   void dispose() {
+    _authCubit.close();
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
@@ -48,6 +56,7 @@ class _LogInScreenState extends State<LogInScreen> {
     if (state is AuthLoaded) {
       context.pushAndRemoveUntil(routeName: RouteNames.mainScreen);
     } else if (state is AuthError) {
+      ScaffoldMessenger.of(context).clearSnackBars();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(state.message),
@@ -59,8 +68,8 @@ class _LogInScreenState extends State<LogInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => sl<AuthCubit>(),
+    return BlocProvider.value(
+      value: _authCubit,
       child: BlocListener<AuthCubit, AuthState>(
         listener: _listenToAuthState,
         child: GestureDetector(
@@ -147,7 +156,7 @@ class _LogInScreenState extends State<LogInScreen> {
                             AppSpacing.verticalSpacing(30),
                             const AuthDivider(),
                             AppSpacing.verticalSpacing(AppSpacing.l),
-                            SocialButtonsRow(),
+                            const SocialButtonsRow(),
                             AppSpacing.verticalSpacing(AppSpacing.l),
                             const _SignUpToggle(),
                             AppSpacing.verticalSpacing(10),

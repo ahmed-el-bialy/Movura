@@ -28,7 +28,7 @@ class AuthRepo {
     } on FirebaseAuthException catch (e) {
       throw _handleAuthException(e);
     } catch (e) {
-      throw "An unexpected error occurred. Please try again.";
+      throw e.toString();
     }
   }
 
@@ -64,7 +64,7 @@ class AuthRepo {
     } on FirebaseAuthException catch (e) {
       throw _handleAuthException(e);
     } catch (e) {
-      throw "An unexpected error occurred. Please try again.";
+      throw e.toString();
     }
   }
 
@@ -97,7 +97,7 @@ class AuthRepo {
     } on FirebaseAuthException catch (e) {
       throw _handleAuthException(e);
     } catch (e) {
-      throw "Google Sign-In failed. Please try again.";
+      throw e.toString();
     }
   }
 
@@ -130,7 +130,7 @@ class AuthRepo {
     } on FirebaseAuthException catch (e) {
       throw _handleAuthException(e);
     } catch (e) {
-      throw "Apple Sign-In failed. Please try again.";
+      throw e.toString();
     }
   }
 
