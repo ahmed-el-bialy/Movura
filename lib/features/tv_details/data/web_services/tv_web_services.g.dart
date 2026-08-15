@@ -118,6 +118,40 @@ class _TvWebServices implements TvWebServices {
   }
 
   @override
+  Future<PosterResponse> getSimilarTvSeriesPaginated({
+    required int id,
+    required int page,
+    String language = "en-US",
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'page': page,
+      r'language': language,
+    };
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<PosterResponse>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'tv/${id}/similar',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late PosterResponse _value;
+    try {
+      _value = PosterResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
   Future<SeasonDetailsModel> getTvSeasonDetails({
     required int id,
     required int seasonNumber,

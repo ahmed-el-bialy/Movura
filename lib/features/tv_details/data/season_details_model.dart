@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../core/models/actor_model.dart';
 import 'about_tv_series_model.dart';
 
 part 'season_details_model.g.dart';

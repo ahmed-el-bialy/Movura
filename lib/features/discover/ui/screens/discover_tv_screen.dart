@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:movura/core/models/poster_model.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/networking/di.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/features/home/data/models/category_card_model.dart';
 import 'package:movura/features/see_all/data/models/see_all_arguments.dart';
 import '../widgets/discover_screen_template.dart';
 
+import '../../data/repo/discover_repo.dart';
+
 class DiscoverTvScreen extends StatelessWidget {
   const DiscoverTvScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final discoverRepo = sl<DiscoverRepo>();
+
     final List<CategoryCardModel> categories = [
       CategoryCardModel(
         color: AppColors.vibrantPurple,
@@ -20,7 +26,7 @@ class DiscoverTvScreen extends StatelessWidget {
         onTap: () => _navigateToSeeAll(
           context,
           "Trending Today",
-          SeeAllEndpoint.trendingTvDay,
+          (page) => discoverRepo.getTrendingTv("day", page: page),
         ),
       ),
       CategoryCardModel(
@@ -31,7 +37,7 @@ class DiscoverTvScreen extends StatelessWidget {
         onTap: () => _navigateToSeeAll(
           context,
           "Trending This Week",
-          SeeAllEndpoint.trendingTvWeek,
+          (page) => discoverRepo.getTrendingTv("week", page: page),
         ),
       ),
       CategoryCardModel(
@@ -39,8 +45,11 @@ class DiscoverTvScreen extends StatelessWidget {
         title: 'On The Air',
         hint: "CURRENTLY AIRING",
         icon: Icons.live_tv_rounded,
-        onTap: () =>
-            _navigateToSeeAll(context, "On The Air", SeeAllEndpoint.onTheAirTv),
+        onTap: () => _navigateToSeeAll(
+          context,
+          "On The Air",
+          (page) => discoverRepo.getTvByCategory("on_the_air", page: page),
+        ),
       ),
       CategoryCardModel(
         color: AppColors.amberGold,
@@ -50,7 +59,7 @@ class DiscoverTvScreen extends StatelessWidget {
         onTap: () => _navigateToSeeAll(
           context,
           "Popular TV Shows",
-          SeeAllEndpoint.popularTv,
+          (page) => discoverRepo.getTvByCategory("popular", page: page),
         ),
       ),
       CategoryCardModel(
@@ -61,7 +70,7 @@ class DiscoverTvScreen extends StatelessWidget {
         onTap: () => _navigateToSeeAll(
           context,
           "Top Rated TV Shows",
-          SeeAllEndpoint.topRatedTv,
+          (page) => discoverRepo.getTvByCategory("top_rated", page: page),
         ),
       ),
       CategoryCardModel(
@@ -85,11 +94,11 @@ class DiscoverTvScreen extends StatelessWidget {
   void _navigateToSeeAll(
     BuildContext context,
     String title,
-    SeeAllEndpoint endpoint,
+    Future<List<PosterModel>> Function(int page) fetchData,
   ) {
     context.pushNamed(
       RouteNames.seeAllScreen,
-      arguments: SeeAllArguments(title: title, endpoint: endpoint),
+      arguments: SeeAllArguments(title: title, fetchData: fetchData),
     );
   }
 }

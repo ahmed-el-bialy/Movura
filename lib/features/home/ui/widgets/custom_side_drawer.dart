@@ -3,12 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:movura/core/constants/app_constants.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/networking/di.dart';
 import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/theming/weights.dart';
 
+import '../../../discover/data/repo/discover_repo.dart';
 import '../../../see_all/data/models/see_all_arguments.dart';
 
 class CustomSideDrawer extends StatelessWidget {
@@ -76,7 +78,7 @@ class CustomSideDrawer extends StatelessWidget {
                       RouteNames.seeAllScreen,
                       arguments: SeeAllArguments(
                         title: "Trending People",
-                        endpoint: SeeAllEndpoint.trendingPeople,
+                        fetchData: (page) => sl<DiscoverRepo>().getTrendingPeople("day", page: page),
                       ),
                     );
                   },
@@ -91,7 +93,7 @@ class CustomSideDrawer extends StatelessWidget {
                       RouteNames.seeAllScreen,
                       arguments: SeeAllArguments(
                         title: "Popular People",
-                        endpoint: SeeAllEndpoint.popularPeople,
+                        fetchData: (page) => sl<DiscoverRepo>().getPopularPeople(page: page),
                       ),
                     );
                   },

@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../features/see_all/data/models/see_all_arguments.dart';
 import 'package:movura/core/constants/app_constants.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/models/poster_model.dart';
+import 'package:movura/core/networking/di.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/widgets/layout/section_title.dart';
 import 'package:movura/core/widgets/poster_card/poster_card.dart';
-
+import '../../../features/discover/data/repo/discover_repo.dart';
+import '../../../features/see_all/data/models/see_all_arguments.dart';
 
 class SimilarContentTabBody extends StatelessWidget {
   const SimilarContentTabBody({
@@ -28,6 +29,8 @@ class SimilarContentTabBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final discoverRepo = sl<DiscoverRepo>();
+
     return Column(
       children: [
         AppSpacing.verticalSpacing(10),
@@ -66,15 +69,13 @@ class SimilarContentTabBody extends StatelessWidget {
                 sectionName: "SIMILAR",
                 actionName: AppConstants.sectionAction,
                 onTap: () {
-                  final endpoint = mediaType == 'movie'
-                      ? SeeAllEndpoint.similarMovies
-                      : SeeAllEndpoint.similarTv;
                   context.pushNamed(
                     RouteNames.seeAllScreen,
                     arguments: SeeAllArguments(
                       title: "Similar",
-                      endpoint: endpoint,
-                      id: mediaId,
+                      fetchData: mediaType == 'movie'
+                          ? (page) => discoverRepo.getMoviesByCategory("popular", page: page)
+                          : (page) => discoverRepo.getTvByCategory("popular", page: page),
                     ),
                   );
                 },

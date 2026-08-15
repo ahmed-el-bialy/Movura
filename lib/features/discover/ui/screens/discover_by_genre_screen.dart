@@ -14,6 +14,7 @@ import 'package:movura/core/widgets/loading/movura_loading_indicator.dart';
 import 'package:movura/core/widgets/poster_card/components/glass_card.dart';
 import 'package:movura/features/see_all/data/models/see_all_arguments.dart';
 
+import '../../data/repo/discover_repo.dart';
 import '../../logic/discover_by_genre_cubit.dart';
 
 class DiscoverByGenreScreen extends StatelessWidget {
@@ -67,6 +68,8 @@ class _GenresGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final discoverRepo = sl<DiscoverRepo>();
+
     return GridView.builder(
       padding: AppSpacing.all(AppSpacing.l),
       physics: const BouncingScrollPhysics(),
@@ -85,8 +88,9 @@ class _GenresGrid extends StatelessWidget {
               RouteNames.seeAllScreen,
               arguments: SeeAllArguments(
                 title: "${genre.name} ${isMovie ? 'Movies' : 'TV Shows'}",
-                endpoint: isMovie ? SeeAllEndpoint.moviesByGenre : SeeAllEndpoint.tvByGenre,
-                id: genre.id,
+                fetchData: isMovie
+                    ? (page) => discoverRepo.getMoviesByGenre(genre.id, page: page)
+                    : (page) => discoverRepo.getTvByGenre(genre.id, page: page),
               ),
             );
           },

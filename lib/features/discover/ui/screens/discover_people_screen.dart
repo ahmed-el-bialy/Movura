@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:movura/core/models/poster_model.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/networking/di.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/features/home/data/models/category_card_model.dart';
 import 'package:movura/features/see_all/data/models/see_all_arguments.dart';
 import '../widgets/discover_screen_template.dart';
 
+import '../../data/repo/discover_repo.dart';
+
 class DiscoverPeopleScreen extends StatelessWidget {
   const DiscoverPeopleScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final discoverRepo = sl<DiscoverRepo>();
+
     final List<CategoryCardModel> categories = [
       CategoryCardModel(
         color: AppColors.neonBlue,
@@ -20,7 +26,7 @@ class DiscoverPeopleScreen extends StatelessWidget {
         onTap: () => _navigateToSeeAll(
           context,
           "Trending People",
-          SeeAllEndpoint.trendingPeople,
+          (page) => discoverRepo.getTrendingPeople("day", page: page),
         ),
       ),
       CategoryCardModel(
@@ -31,7 +37,7 @@ class DiscoverPeopleScreen extends StatelessWidget {
         onTap: () => _navigateToSeeAll(
           context,
           "Popular People",
-          SeeAllEndpoint.popularPeople,
+          (page) => discoverRepo.getPopularPeople(page: page),
         ),
       ),
     ];
@@ -45,11 +51,11 @@ class DiscoverPeopleScreen extends StatelessWidget {
   void _navigateToSeeAll(
     BuildContext context,
     String title,
-    SeeAllEndpoint endpoint,
+    Future<List<PosterModel>> Function(int page) fetchData,
   ) {
     context.pushNamed(
       RouteNames.seeAllScreen,
-      arguments: SeeAllArguments(title: title, endpoint: endpoint),
+      arguments: SeeAllArguments(title: title, fetchData: fetchData),
     );
   }
 }

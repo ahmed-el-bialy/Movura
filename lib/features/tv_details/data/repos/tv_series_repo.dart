@@ -4,6 +4,7 @@ import '../episode_details_model.dart';
 import '../season_details_model.dart';
 import '../../../../core/models/review_model.dart';
 import '../../../../core/models/similar_model.dart';
+import '../../../../core/models/poster_model.dart';
 
 class TvSeriesRepo {
   final TvWebServices tvWebServices;
@@ -22,6 +23,18 @@ class TvSeriesRepo {
   Future<SimilarContentResponse> getSimilarTvSeries({required int id}) async {
     return await tvWebServices.getSimilarTvSeries(id: id);
   }
+
+  Future<List<PosterModel>> getSimilarTvSeriesPaginated({
+    required int id,
+    required int page,
+  }) async {
+    final response = await tvWebServices.getSimilarTvSeriesPaginated(
+      id: id,
+      page: page,
+    );
+    return response.results?.map((e) => e.copyWith(mediaType: 'tv')).toList() ?? [];
+  }
+
 
   Future<SeasonDetailsModel> getTvSeasonDetails({
     required int id,

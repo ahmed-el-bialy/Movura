@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'see_all_web_services.dart';
+part of 'discover_web_services.dart';
 
 // dart format off
 
@@ -10,8 +10,8 @@ part of 'see_all_web_services.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter,avoid_unused_constructor_parameters,unreachable_from_main,avoid_redundant_argument_values
 
-class _SeeAllWebServices implements SeeAllWebServices {
-  _SeeAllWebServices(this._dio, {this.baseUrl, this.errorLogger});
+class _DiscoverWebServices implements DiscoverWebServices {
+  _DiscoverWebServices(this._dio, {this.baseUrl, this.errorLogger});
 
   final Dio _dio;
 
@@ -20,11 +20,11 @@ class _SeeAllWebServices implements SeeAllWebServices {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<PosterResponse> getTrending(
-    String mediaType,
-    String timeWindow,
-    int page,
-  ) async {
+  Future<PosterResponse> getTrending({
+    required String mediaType,
+    required String timeWindow,
+    required int page,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'page': page};
     final _headers = <String, dynamic>{};
@@ -51,7 +51,10 @@ class _SeeAllWebServices implements SeeAllWebServices {
   }
 
   @override
-  Future<PosterResponse> getMoviesByCategory(String category, int page) async {
+  Future<PosterResponse> getMoviesByCategory({
+    required String category,
+    required int page,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'page': page};
     final _headers = <String, dynamic>{};
@@ -78,7 +81,10 @@ class _SeeAllWebServices implements SeeAllWebServices {
   }
 
   @override
-  Future<PosterResponse> getTvByCategory(String category, int page) async {
+  Future<PosterResponse> getTvByCategory({
+    required String category,
+    required int page,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'page': page};
     final _headers = <String, dynamic>{};
@@ -105,61 +111,10 @@ class _SeeAllWebServices implements SeeAllWebServices {
   }
 
   @override
-  Future<PosterResponse> getSimilarMovies(int id, int page) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'page': page};
-    final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<PosterResponse>(
-      Options(method: 'GET', headers: _headers, extra: _extra)
-          .compose(
-            _dio.options,
-            'movie/${id}/similar',
-            queryParameters: queryParameters,
-            data: _data,
-          )
-          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
-    );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late PosterResponse _value;
-    try {
-      _value = PosterResponse.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options, response: _result);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
-  Future<PosterResponse> getSimilarTv(int id, int page) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'page': page};
-    final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<PosterResponse>(
-      Options(method: 'GET', headers: _headers, extra: _extra)
-          .compose(
-            _dio.options,
-            'tv/${id}/similar',
-            queryParameters: queryParameters,
-            data: _data,
-          )
-          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
-    );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late PosterResponse _value;
-    try {
-      _value = PosterResponse.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options, response: _result);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
-  Future<PosterResponse> getMoviesByGenre(int genreId, int page) async {
+  Future<PosterResponse> getMoviesByGenre({
+    required int genreId,
+    required int page,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'with_genres': genreId,
@@ -189,7 +144,10 @@ class _SeeAllWebServices implements SeeAllWebServices {
   }
 
   @override
-  Future<PosterResponse> getTvByGenre(int genreId, int page) async {
+  Future<PosterResponse> getTvByGenre({
+    required int genreId,
+    required int page,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'with_genres': genreId,
@@ -219,7 +177,7 @@ class _SeeAllWebServices implements SeeAllWebServices {
   }
 
   @override
-  Future<PosterResponse> getPopularPeople(int page) async {
+  Future<PosterResponse> getPopularPeople({required int page}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'page': page};
     final _headers = <String, dynamic>{};
@@ -246,7 +204,10 @@ class _SeeAllWebServices implements SeeAllWebServices {
   }
 
   @override
-  Future<PosterResponse> getTrendingPeople(String timeWindow, int page) async {
+  Future<PosterResponse> getTrendingPeople({
+    required String timeWindow,
+    required int page,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'page': page};
     final _headers = <String, dynamic>{};

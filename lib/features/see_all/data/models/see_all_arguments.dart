@@ -1,27 +1,11 @@
-enum SeeAllEndpoint {
-  trendingMoviesDay,
-  trendingMoviesWeek,
-  popularMovies,
-  topRatedMovies,
-  upcomingMovies,
-  nowPlayingMovies,
-  trendingTvDay,
-  trendingTvWeek,
-  popularTv,
-  topRatedTv,
-  onTheAirTv,
-  similarMovies,
-  similarTv,
-  moviesByGenre,
-  tvByGenre,
-  popularPeople,
-  trendingPeople,
-}
+import '../../../../core/models/poster_model.dart';
 
 class SeeAllArguments {
   final String title;
-  final SeeAllEndpoint endpoint;
-  final int? id;
+  final Future<List<PosterModel>> Function(int page) fetchData;
 
-  SeeAllArguments({required this.title, required this.endpoint, this.id});
+  SeeAllArguments({
+    required this.title,
+    required this.fetchData,
+  });
 }

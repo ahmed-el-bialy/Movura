@@ -7,6 +7,7 @@ import 'package:retrofit/http.dart';
 import '../../../../core/constants/api_constants.dart';
 import '../../../../core/models/review_model.dart';
 import '../../../../core/models/similar_model.dart';
+import '../../../../core/models/poster_model.dart';
 import '../models/about_model.dart';
 
 part 'movie_web_services.g.dart';
@@ -36,4 +37,12 @@ abstract class MovieWebServices {
     String additionalData = "similar,recommendations",
     @Query("language") String language = "en-US",
   });
+
+  @GET("${ApiConstants.movieDetails}/{id}/similar")
+  Future<PosterResponse> getSimilarMoviesPaginated({
+    @Path("id") required int movieId,
+    @Query("page") required int page,
+    @Query("language") String language = "en-US",
+  });
 }
+

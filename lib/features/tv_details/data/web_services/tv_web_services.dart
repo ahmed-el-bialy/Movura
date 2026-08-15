@@ -5,6 +5,7 @@ import 'package:retrofit/http.dart';
 import '../../../../core/constants/api_constants.dart';
 import '../../../../core/models/review_model.dart';
 import '../../../../core/models/similar_model.dart';
+import '../../../../core/models/poster_model.dart';
 import '../about_tv_series_model.dart';
 import '../episode_details_model.dart';
 import '../season_details_model.dart';
@@ -36,6 +37,14 @@ abstract class TvWebServices {
     String additionalData = "similar,recommendations",
     @Query("language") String language = "en-US",
   });
+
+  @GET("${ApiConstants.tvDetails}/{id}/similar")
+  Future<PosterResponse> getSimilarTvSeriesPaginated({
+    @Path("id") required int id,
+    @Query("page") required int page,
+    @Query("language") String language = "en-US",
+  });
+
 
   @GET("${ApiConstants.tvDetails}/{id}/season/{season_number}")
   Future<SeasonDetailsModel> getTvSeasonDetails({
