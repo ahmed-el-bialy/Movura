@@ -58,7 +58,11 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     try {
       final user = await authRepo.signInWithGoogle();
-      emit(AuthLoaded(user));
+      if (user != null) {
+        emit(AuthLoaded(user));
+      } else {
+        emit(AuthInitial());
+      }
     } catch (e) {
       emit(AuthError(e.toString()));
     }
@@ -68,7 +72,11 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     try {
       final user = await authRepo.signInWithFacebook();
-      emit(AuthLoaded(user));
+      if (user != null) {
+        emit(AuthLoaded(user));
+      } else {
+        emit(AuthInitial());
+      }
     } catch (e) {
       emit(AuthError(e.toString()));
     }
@@ -78,7 +86,11 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     try {
       final user = await authRepo.signInWithApple();
-      emit(AuthLoaded(user));
+      if (user != null) {
+        emit(AuthLoaded(user));
+      } else {
+        emit(AuthInitial());
+      }
     } catch (e) {
       emit(AuthError(e.toString()));
     }
