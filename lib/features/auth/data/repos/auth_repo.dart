@@ -68,6 +68,76 @@ class AuthRepo {
     }
   }
 
+  Future<UserModel?> signInWithGoogle() async {
+    try {
+      final credential = await authServices.signInWithGoogle();
+      if (credential == null || credential.user == null) return null;
+
+      final user = credential.user!;
+      final userData = await authServices.getUserData(uid: user.uid);
+
+      if (userData.isEmpty) {
+        final newUser = UserModel(
+          id: user.uid,
+          email: user.email ?? "",
+          name: user.displayName ?? "Google User",
+          favorites: [],
+          watched: [],
+          toWatch: [],
+          watchNow: [],
+        );
+        await authServices.saveUserData(
+          userData: newUser.toJson(),
+          uid: newUser.id,
+        );
+        return newUser;
+      }
+
+      return UserModel.fromJson(userData);
+    } on FirebaseAuthException catch (e) {
+      throw _handleAuthException(e);
+    } catch (e) {
+      throw "Google Sign-In failed. Please try again.";
+    }
+  }
+
+  Future<UserModel?> signInWithApple() async {
+    try {
+      final credential = await authServices.signInWithApple();
+      if (credential == null || credential.user == null) return null;
+
+      final user = credential.user!;
+      final userData = await authServices.getUserData(uid: user.uid);
+
+      if (userData.isEmpty) {
+        final newUser = UserModel(
+          id: user.uid,
+          email: user.email ?? "",
+          name: user.displayName ?? "Apple User",
+          favorites: [],
+          watched: [],
+          toWatch: [],
+          watchNow: [],
+        );
+        await authServices.saveUserData(
+          userData: newUser.toJson(),
+          uid: newUser.id,
+        );
+        return newUser;
+      }
+
+      return UserModel.fromJson(userData);
+    } on FirebaseAuthException catch (e) {
+      throw _handleAuthException(e);
+    } catch (e) {
+      throw "Apple Sign-In failed. Please try again.";
+    }
+  }
+
+  Future<UserModel?> signInWithFacebook() async {
+    throw "Facebook Sign-In requires developer credentials.";
+  }
+
   String _handleAuthException(FirebaseAuthException e) {
     switch (e.code) {
       case 'user-not-found':
@@ -80,6 +150,8 @@ class AuthRepo {
         return 'The email address is poorly formatted.';
       case 'weak-password':
         return 'The password provided is too weak.';
+      case 'account-exists-with-different-credential':
+        return 'An account already exists with the same email address.';
       default:
         return e.message ?? 'Authentication failed.';
     }
@@ -120,17 +192,5 @@ class AuthRepo {
       currentPassword: currentPassword,
       newPassword: newPassword,
     );
-  }
-
-  Future<UserModel> signInWithGoogle() async {
-    throw "Google Sign-In not implemented yet.";
-  }
-
-  Future<UserModel> signInWithFacebook() async {
-    throw "Facebook Sign-In not implemented yet.";
-  }
-
-  Future<UserModel> signInWithApple() async {
-    throw "Apple Sign-In not implemented yet.";
   }
 }
