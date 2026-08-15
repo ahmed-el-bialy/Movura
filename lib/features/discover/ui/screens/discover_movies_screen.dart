@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:movura/core/models/poster_model.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/networking/di.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/features/home/data/models/category_card_model.dart';
 import 'package:movura/features/see_all/data/models/see_all_arguments.dart';
 import '../widgets/discover_screen_template.dart';
 
+import '../../data/repo/discover_repo.dart';
+
 class DiscoverMoviesScreen extends StatelessWidget {
   const DiscoverMoviesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final discoverRepo = sl<DiscoverRepo>();
+
     final List<CategoryCardModel> categories = [
       CategoryCardModel(
         color: AppColors.vibrantPurple,
@@ -20,7 +26,7 @@ class DiscoverMoviesScreen extends StatelessWidget {
         onTap: () => _navigateToSeeAll(
           context,
           "Trending Today",
-          SeeAllEndpoint.trendingMoviesDay,
+          (page) => discoverRepo.getTrendingMovies("day", page: page),
         ),
       ),
       CategoryCardModel(
@@ -31,7 +37,7 @@ class DiscoverMoviesScreen extends StatelessWidget {
         onTap: () => _navigateToSeeAll(
           context,
           "Trending This Week",
-          SeeAllEndpoint.trendingMoviesWeek,
+          (page) => discoverRepo.getTrendingMovies("week", page: page),
         ),
       ),
       CategoryCardModel(
@@ -42,7 +48,7 @@ class DiscoverMoviesScreen extends StatelessWidget {
         onTap: () => _navigateToSeeAll(
           context,
           "Upcoming Movies",
-          SeeAllEndpoint.upcomingMovies,
+          (page) => discoverRepo.getMoviesByCategory("upcoming", page: page),
         ),
       ),
       CategoryCardModel(
@@ -53,7 +59,7 @@ class DiscoverMoviesScreen extends StatelessWidget {
         onTap: () => _navigateToSeeAll(
           context,
           "Now Playing",
-          SeeAllEndpoint.nowPlayingMovies,
+          (page) => discoverRepo.getMoviesByCategory("now_playing", page: page),
         ),
       ),
       CategoryCardModel(
@@ -64,7 +70,7 @@ class DiscoverMoviesScreen extends StatelessWidget {
         onTap: () => _navigateToSeeAll(
           context,
           "Popular Movies",
-          SeeAllEndpoint.popularMovies,
+          (page) => discoverRepo.getMoviesByCategory("popular", page: page),
         ),
       ),
       CategoryCardModel(
@@ -75,7 +81,7 @@ class DiscoverMoviesScreen extends StatelessWidget {
         onTap: () => _navigateToSeeAll(
           context,
           "Top Rated Movies",
-          SeeAllEndpoint.topRatedMovies,
+          (page) => discoverRepo.getMoviesByCategory("top_rated", page: page),
         ),
       ),
       CategoryCardModel(
@@ -99,11 +105,11 @@ class DiscoverMoviesScreen extends StatelessWidget {
   void _navigateToSeeAll(
     BuildContext context,
     String title,
-    SeeAllEndpoint endpoint,
+    Future<List<PosterModel>> Function(int page) fetchData,
   ) {
     context.pushNamed(
       RouteNames.seeAllScreen,
-      arguments: SeeAllArguments(title: title, endpoint: endpoint),
+      arguments: SeeAllArguments(title: title, fetchData: fetchData),
     );
   }
 }

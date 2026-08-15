@@ -1,5 +1,6 @@
 import '../../../../core/models/review_model.dart';
 import '../../../../core/models/similar_model.dart';
+import '../../../../core/models/poster_model.dart';
 import '../models/about_model.dart';
 import '../web_services/movie_web_services.dart';
 
@@ -20,4 +21,16 @@ class MovieRepo {
   Future<SimilarContentResponse> getSimilarMovies({required int id}) async {
     return await movieWebServices.getSimilarMovies(movieId: id);
   }
+
+  Future<List<PosterModel>> getSimilarMoviesPaginated({
+    required int id,
+    required int page,
+  }) async {
+    final response = await movieWebServices.getSimilarMoviesPaginated(
+      movieId: id,
+      page: page,
+    );
+    return response.results?.map((e) => e.copyWith(mediaType: 'movie')).toList() ?? [];
+  }
 }
+

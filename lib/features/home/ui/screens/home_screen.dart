@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/networking/di.dart';
 import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/widgets/layout/section_title.dart';
 import '../../../see_all/data/models/see_all_arguments.dart';
+import '../../data/repo/home_repo.dart';
 import '../widgets/category_list.dart';
 import '../widgets/custom_side_drawer.dart';
 import '../widgets/home_app_bar.dart';
@@ -18,6 +20,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homeRepo = sl<HomeRepo>();
+
     return Scaffold(
       drawer: const CustomSideDrawer(),
       backgroundColor: AppColors.richEerieBlack,
@@ -41,7 +45,7 @@ class HomeScreen extends StatelessWidget {
                   RouteNames.seeAllScreen,
                   arguments: SeeAllArguments(
                     title: "Trending Now",
-                    endpoint: SeeAllEndpoint.trendingMoviesDay,
+                    fetchData: (page) => homeRepo.getTrendingMedia(page: page),
                   ),
                 ),
               ),
@@ -56,7 +60,7 @@ class HomeScreen extends StatelessWidget {
                   RouteNames.seeAllScreen,
                   arguments: SeeAllArguments(
                     title: "Top Rated Movies",
-                    endpoint: SeeAllEndpoint.topRatedMovies,
+                    fetchData: (page) => homeRepo.getTopRatedMovies(page: page),
                   ),
                 ),
               ),
@@ -71,7 +75,7 @@ class HomeScreen extends StatelessWidget {
                   RouteNames.seeAllScreen,
                   arguments: SeeAllArguments(
                     title: "Top Rated TV Series",
-                    endpoint: SeeAllEndpoint.topRatedTv,
+                    fetchData: (page) => homeRepo.getTopRatedTvSeries(page: page),
                   ),
                 ),
               ),

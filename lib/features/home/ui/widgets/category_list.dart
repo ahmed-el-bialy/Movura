@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/networking/di.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/features/see_all/data/models/see_all_arguments.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../../../see_all/data/models/see_all_arguments.dart';
+import '../../../discover/data/repo/discover_repo.dart';
 import '../../data/models/category_card_model.dart';
 import 'category_card.dart';
 
@@ -31,6 +33,8 @@ class _CategoryListState extends State<CategoryList> {
 
   @override
   Widget build(BuildContext context) {
+    final discoverRepo = sl<DiscoverRepo>();
+
     final List<CategoryCardModel> categories = [
       CategoryCardModel(
         color: AppColors.royalIndigo,
@@ -42,7 +46,7 @@ class _CategoryListState extends State<CategoryList> {
             RouteNames.seeAllScreen,
             arguments: SeeAllArguments(
               title: "Trending People",
-              endpoint: SeeAllEndpoint.trendingPeople,
+              fetchData: (page) => discoverRepo.getTrendingPeople("day", page: page),
             ),
           );
         },
@@ -57,7 +61,7 @@ class _CategoryListState extends State<CategoryList> {
             RouteNames.seeAllScreen,
             arguments: SeeAllArguments(
               title: "Popular TV Series",
-              endpoint: SeeAllEndpoint.popularTv,
+              fetchData: (page) => discoverRepo.getTvByCategory("popular", page: page),
             ),
           );
         },
@@ -72,7 +76,7 @@ class _CategoryListState extends State<CategoryList> {
             RouteNames.seeAllScreen,
             arguments: SeeAllArguments(
               title: "Popular Movies",
-              endpoint: SeeAllEndpoint.popularMovies,
+              fetchData: (page) => discoverRepo.getMoviesByCategory("popular", page: page),
             ),
           );
         },
@@ -87,7 +91,7 @@ class _CategoryListState extends State<CategoryList> {
             RouteNames.seeAllScreen,
             arguments: SeeAllArguments(
               title: "Trending Today",
-              endpoint: SeeAllEndpoint.trendingMoviesDay,
+              fetchData: (page) => discoverRepo.getTrendingMovies("day", page: page),
             ),
           );
         },

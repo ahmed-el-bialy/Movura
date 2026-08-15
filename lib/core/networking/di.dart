@@ -5,6 +5,7 @@ import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/data/web_services/auth_services.dart';
 import '../../features/auth/logic/auth/auth_cubit.dart';
 import '../../features/discover/data/repo/discover_repo.dart';
+import '../../features/discover/data/web_services/discover_web_services.dart';
 import '../../features/discover/logic/discover_movies_cubit.dart';
 import '../../features/discover/logic/discover_people_cubit.dart';
 import '../../features/discover/logic/discover_tv_cubit.dart';
@@ -25,9 +26,6 @@ import '../../features/person_details/logic/person_details_cubit.dart';
 import '../../features/search/data/repo/search_repo.dart';
 import '../../features/search/data/web_services/search_web_services.dart';
 import '../../features/search/logic/search/search_cubit.dart';
-import '../../features/see_all/data/repo/see_all_repo.dart';
-import '../../features/see_all/data/web_services/see_all_web_services.dart';
-import '../../features/see_all/logic/see_all_cubit.dart';
 import '../../features/tv_details/data/repos/tv_series_repo.dart';
 import '../../features/tv_details/data/web_services/tv_web_services.dart';
 import '../../features/tv_details/logic/about/about_tv_cubit.dart';
@@ -59,8 +57,8 @@ Future<void> initDI() async {
   sl.registerLazySingleton<PersonWebServices>(
     () => PersonWebServices(sl<Dio>(), baseUrl: ApiConstants.baseUrl),
   );
-  sl.registerLazySingleton<SeeAllWebServices>(
-    () => SeeAllWebServices(sl<Dio>(), baseUrl: ApiConstants.baseUrl),
+  sl.registerLazySingleton<DiscoverWebServices>(
+    () => DiscoverWebServices(sl<Dio>(), baseUrl: ApiConstants.baseUrl),
   );
   sl.registerLazySingleton<AuthServices>(() => AuthServices());
 
@@ -79,11 +77,8 @@ Future<void> initDI() async {
   sl.registerLazySingleton<PersonRepo>(
     () => PersonRepo(personWebServices: sl<PersonWebServices>()),
   );
-  sl.registerLazySingleton<SeeAllRepo>(
-    () => SeeAllRepo(webServices: sl<SeeAllWebServices>()),
-  );
   sl.registerLazySingleton<DiscoverRepo>(
-    () => DiscoverRepo(webServices: sl<SeeAllWebServices>()),
+    () => DiscoverRepo(webServices: sl<DiscoverWebServices>()),
   );
   sl.registerLazySingleton<AuthRepo>(() => AuthRepo(sl<AuthServices>()));
 
@@ -127,7 +122,6 @@ void _initCubits() {
   sl.registerFactory<PersonDetailsCubit>(
     () => PersonDetailsCubit(repo: sl<PersonRepo>()),
   );
-  sl.registerFactory<SeeAllCubit>(() => SeeAllCubit(sl<SeeAllRepo>()));
   sl.registerFactory<DiscoverMoviesCubit>(
     () => DiscoverMoviesCubit(sl<DiscoverRepo>()),
   );
