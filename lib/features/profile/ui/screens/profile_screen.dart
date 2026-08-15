@@ -1,15 +1,27 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/networking/di.dart';
+import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/theming/weights.dart';
+import 'package:movura/features/auth/data/repos/auth_repo.dart';
+import 'package:movura/features/auth/data/web_services/auth_services.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final User? currentUser = sl<AuthServices>().currentUser;
+    final String displayName = currentUser?.displayName?.isNotEmpty == true
+        ? currentUser!.displayName!
+        : 'Cinematic Explorer';
+    final String email = currentUser?.email ?? 'Guest User';
+
     return Scaffold(
       backgroundColor: AppColors.richEerieBlack,
       body: SafeArea(
@@ -50,13 +62,16 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       AppSpacing.verticalSpacing(AppSpacing.l),
                       Text(
-                        'John Doe',
+                        displayName,
                         style: TextStyles.font24SemiBoldNeonBlueManrope
                             .copyWith(color: AppColors.iceBlue),
                       ),
+                      AppSpacing.verticalSpacing(4),
                       Text(
-                        'Cinematic Explorer',
-                        style: TextStyles.font12RegularCoolGrayManrope,
+                        email,
+                        style: TextStyles.font12RegularCoolGrayManrope.copyWith(
+                          color: AppColors.coolGray.withValues(alpha: 0.7),
+                        ),
                       ),
                     ],
                   ),
@@ -71,30 +86,30 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 AppSpacing.verticalSpacing(AppSpacing.l),
                 _ProfileCollectionTile(
-                  title: 'Watchlist',
-                  count: 12,
+                  title: 'Favorites',
+                  count: 0,
+                  icon: Icons.favorite_border_rounded,
+                  color: AppColors.softRed,
+                  onTap: () {},
+                ),
+                _ProfileCollectionTile(
+                  title: 'To Watch',
+                  count: 0,
                   icon: Icons.bookmark_outline_rounded,
                   color: AppColors.neonBlue,
                   onTap: () {},
                 ),
                 _ProfileCollectionTile(
-                  title: 'Favorites',
-                  count: 5,
-                  icon: Icons.favorite_border_rounded,
-                  color: AppColors.deepCrimson,
-                  onTap: () {},
-                ),
-                _ProfileCollectionTile(
                   title: 'Watched History',
-                  count: 48,
+                  count: 0,
                   icon: Icons.check_circle_outline_rounded,
                   color: AppColors.tealCyan,
                   onTap: () {},
                 ),
                 _ProfileCollectionTile(
-                  title: 'Planned for Later',
-                  count: 8,
-                  icon: Icons.schedule_rounded,
+                  title: 'Watch It Now',
+                  count: 0,
+                  icon: Icons.play_circle_outline_rounded,
                   color: AppColors.amberGold,
                   onTap: () {},
                 ),
@@ -117,7 +132,14 @@ class ProfileScreen extends StatelessWidget {
                   title: 'Log Out',
                   icon: Icons.logout_rounded,
                   color: AppColors.softRed,
-                  onTap: () {},
+                  onTap: () async {
+                    await sl<AuthRepo>().logOut();
+                    if (context.mounted) {
+                      context.pushAndRemoveUntil(
+                        routeName: RouteNames.logInScreen,
+                      );
+                    }
+                  },
                 ),
                 AppSpacing.verticalSpacing(100),
               ],
