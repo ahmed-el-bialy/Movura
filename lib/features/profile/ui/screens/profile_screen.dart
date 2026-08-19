@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/networking/di.dart';
@@ -10,6 +11,8 @@ import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/theming/weights.dart';
 import 'package:movura/features/auth/data/repos/auth_repo.dart';
 import 'package:movura/features/auth/data/web_services/auth_services.dart';
+import 'package:movura/features/library/logic/library_cubit.dart';
+import 'package:movura/features/library/logic/library_state.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -22,127 +25,136 @@ class ProfileScreen extends StatelessWidget {
         : 'Cinematic Explorer';
     final String email = currentUser?.email ?? 'Guest User';
 
-    return Scaffold(
-      backgroundColor: AppColors.richEerieBlack,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Padding(
-            padding: AppSpacing.horizontal(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                AppSpacing.verticalSpacing(30),
-                Center(
-                  child: Column(
+    return BlocProvider.value(
+      value: sl<LibraryCubit>(),
+      child: Scaffold(
+        backgroundColor: AppColors.richEerieBlack,
+        body: SafeArea(
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Padding(
+              padding: AppSpacing.horizontal(20),
+              child: BlocBuilder<LibraryCubit, LibraryState>(
+                builder: (context, state) {
+                  final userModel = state is LibraryLoaded ? state.userModel : null;
+
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        width: 100.r,
-                        height: 100.r,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColors.onyxBlack,
-                          border: Border.all(
-                            color: AppColors.neonBlue,
-                            width: 2,
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: AppColors.neonBlue.withValues(alpha: 0.2),
-                              blurRadius: 20,
-                              spreadRadius: 2,
+                      AppSpacing.verticalSpacing(30),
+                      Center(
+                        child: Column(
+                          children: [
+                            Container(
+                              width: 100.r,
+                              height: 100.r,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: AppColors.onyxBlack,
+                                border: Border.all(
+                                  color: AppColors.neonBlue,
+                                  width: 2,
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: AppColors.neonBlue.withValues(alpha: 0.2),
+                                    blurRadius: 20,
+                                    spreadRadius: 2,
+                                  ),
+                                ],
+                              ),
+                              child: Icon(
+                                Icons.person_rounded,
+                                size: 60.sp,
+                                color: AppColors.neonBlue,
+                              ),
+                            ),
+                            AppSpacing.verticalSpacing(AppSpacing.l),
+                            Text(
+                              displayName,
+                              style: TextStyles.font24SemiBoldNeonBlueManrope
+                                  .copyWith(color: AppColors.iceBlue),
+                            ),
+                            AppSpacing.verticalSpacing(4),
+                            Text(
+                              email,
+                              style: TextStyles.font12RegularCoolGrayManrope.copyWith(
+                                color: AppColors.coolGray.withValues(alpha: 0.7),
+                              ),
                             ),
                           ],
                         ),
-                        child: Icon(
-                          Icons.person_rounded,
-                          size: 60.sp,
-                          color: AppColors.neonBlue,
+                      ),
+                      AppSpacing.verticalSpacing(40),
+                      Text(
+                        'YOUR COLLECTIONS',
+                        style: TextStyles.font10BoldCoolGray.copyWith(
+                          letterSpacing: 1.5,
+                          color: AppColors.neonBlue.withValues(alpha: 0.7),
                         ),
                       ),
                       AppSpacing.verticalSpacing(AppSpacing.l),
-                      Text(
-                        displayName,
-                        style: TextStyles.font24SemiBoldNeonBlueManrope
-                            .copyWith(color: AppColors.iceBlue),
+                      _ProfileCollectionTile(
+                        title: 'Favorites',
+                        count: userModel?.favorites?.length ?? 0,
+                        icon: Icons.favorite_border_rounded,
+                        color: AppColors.softRed,
+                        onTap: () {},
                       ),
-                      AppSpacing.verticalSpacing(4),
+                      _ProfileCollectionTile(
+                        title: 'To Watch',
+                        count: userModel?.toWatch?.length ?? 0,
+                        icon: Icons.bookmark_outline_rounded,
+                        color: AppColors.neonBlue,
+                        onTap: () {},
+                      ),
+                      _ProfileCollectionTile(
+                        title: 'Watched History',
+                        count: userModel?.watched?.length ?? 0,
+                        icon: Icons.check_circle_outline_rounded,
+                        color: AppColors.tealCyan,
+                        onTap: () {},
+                      ),
+                      _ProfileCollectionTile(
+                        title: 'Watch It Now',
+                        count: userModel?.watchNow?.length ?? 0,
+                        icon: Icons.play_circle_outline_rounded,
+                        color: AppColors.amberGold,
+                        onTap: () {},
+                      ),
+                      AppSpacing.verticalSpacing(30),
                       Text(
-                        email,
-                        style: TextStyles.font12RegularCoolGrayManrope.copyWith(
-                          color: AppColors.coolGray.withValues(alpha: 0.7),
+                        'SETTINGS',
+                        style: TextStyles.font10BoldCoolGray.copyWith(
+                          letterSpacing: 1.5,
+                          color: AppColors.neonBlue.withValues(alpha: 0.7),
                         ),
                       ),
+                      AppSpacing.verticalSpacing(AppSpacing.l),
+                      _ProfileCollectionTile(
+                        title: 'App Settings',
+                        icon: Icons.settings_outlined,
+                        color: AppColors.slateGray,
+                        onTap: () {},
+                      ),
+                      _ProfileCollectionTile(
+                        title: 'Log Out',
+                        icon: Icons.logout_rounded,
+                        color: AppColors.softRed,
+                        onTap: () async {
+                          await sl<AuthRepo>().logOut();
+                          if (context.mounted) {
+                            context.pushAndRemoveUntil(
+                              routeName: RouteNames.logInScreen,
+                            );
+                          }
+                        },
+                      ),
+                      AppSpacing.verticalSpacing(100),
                     ],
-                  ),
-                ),
-                AppSpacing.verticalSpacing(40),
-                Text(
-                  'YOUR COLLECTIONS',
-                  style: TextStyles.font10BoldCoolGray.copyWith(
-                    letterSpacing: 1.5,
-                    color: AppColors.neonBlue.withValues(alpha: 0.7),
-                  ),
-                ),
-                AppSpacing.verticalSpacing(AppSpacing.l),
-                _ProfileCollectionTile(
-                  title: 'Favorites',
-                  count: 0,
-                  icon: Icons.favorite_border_rounded,
-                  color: AppColors.softRed,
-                  onTap: () {},
-                ),
-                _ProfileCollectionTile(
-                  title: 'To Watch',
-                  count: 0,
-                  icon: Icons.bookmark_outline_rounded,
-                  color: AppColors.neonBlue,
-                  onTap: () {},
-                ),
-                _ProfileCollectionTile(
-                  title: 'Watched History',
-                  count: 0,
-                  icon: Icons.check_circle_outline_rounded,
-                  color: AppColors.tealCyan,
-                  onTap: () {},
-                ),
-                _ProfileCollectionTile(
-                  title: 'Watch It Now',
-                  count: 0,
-                  icon: Icons.play_circle_outline_rounded,
-                  color: AppColors.amberGold,
-                  onTap: () {},
-                ),
-                AppSpacing.verticalSpacing(30),
-                Text(
-                  'SETTINGS',
-                  style: TextStyles.font10BoldCoolGray.copyWith(
-                    letterSpacing: 1.5,
-                    color: AppColors.neonBlue.withValues(alpha: 0.7),
-                  ),
-                ),
-                AppSpacing.verticalSpacing(AppSpacing.l),
-                _ProfileCollectionTile(
-                  title: 'App Settings',
-                  icon: Icons.settings_outlined,
-                  color: AppColors.slateGray,
-                  onTap: () {},
-                ),
-                _ProfileCollectionTile(
-                  title: 'Log Out',
-                  icon: Icons.logout_rounded,
-                  color: AppColors.softRed,
-                  onTap: () async {
-                    await sl<AuthRepo>().logOut();
-                    if (context.mounted) {
-                      context.pushAndRemoveUntil(
-                        routeName: RouteNames.logInScreen,
-                      );
-                    }
-                  },
-                ),
-                AppSpacing.verticalSpacing(100),
-              ],
+                  );
+                },
+              ),
             ),
           ),
         ),
