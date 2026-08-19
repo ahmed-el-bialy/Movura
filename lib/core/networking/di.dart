@@ -4,6 +4,9 @@ import 'package:get_it/get_it.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/data/web_services/auth_services.dart';
 import '../../features/auth/logic/auth/auth_cubit.dart';
+import '../../features/library/data/repos/library_repo.dart';
+import '../../features/library/data/web_services/library_services.dart';
+import '../../features/library/logic/library_cubit.dart';
 import '../../features/discover/data/repo/discover_repo.dart';
 import '../../features/discover/data/web_services/discover_web_services.dart';
 import '../../features/discover/logic/discover_movies_cubit.dart';
@@ -81,11 +84,14 @@ Future<void> initDI() async {
     () => DiscoverRepo(webServices: sl<DiscoverWebServices>()),
   );
   sl.registerLazySingleton<AuthRepo>(() => AuthRepo(sl<AuthServices>()));
+  sl.registerLazySingleton<LibraryServices>(() => LibraryServices());
+  sl.registerLazySingleton<LibraryRepo>(() => LibraryRepo(sl<LibraryServices>()));
 
   _initCubits();
 }
 
 void _initCubits() {
+  sl.registerFactory<LibraryCubit>(() => LibraryCubit(sl<LibraryRepo>()));
   sl.registerFactory<TrendingContentCubit>(
     () => TrendingContentCubit(postersRepo: sl<HomeRepo>()),
   );

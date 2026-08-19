@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movura/core/models/poster_model.dart';
 import 'package:movura/core/widgets/shared_details/watchlist_options_sheet.dart';
 
 import '../../helpers/video_player.dart';
@@ -7,11 +8,15 @@ import 'package:movura/core/theming/app_colors.dart';
 import '../../theming/app_spacing.dart';
 import '../../theming/text_styles.dart';
 
-
 class ButtonsRow extends StatelessWidget {
   final String? videoKey;
+  final PosterModel? posterModel;
 
-  const ButtonsRow({super.key, required this.videoKey});
+  const ButtonsRow({
+    super.key,
+    required this.videoKey,
+    this.posterModel,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +58,7 @@ class ButtonsRow extends StatelessWidget {
               showModalBottomSheet(
                 context: context,
                 backgroundColor: AppColors.transparent,
-                builder: (context) => const WatchlistOptionsSheet(),
+                builder: (context) => WatchlistOptionsSheet(posterModel: posterModel),
               );
             },
             color: AppColors.neonBlue,
