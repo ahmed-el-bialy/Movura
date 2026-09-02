@@ -10,6 +10,7 @@ import 'core/theming/app_theme.dart';
 import 'features/home/logic/top_rated_movies/top_rated_movies_cubit.dart';
 import 'features/home/logic/top_rated_tv_series/top_rated_tv_series_cubit.dart';
 import 'features/home/logic/trending_content/trending_content_cubit.dart';
+import 'features/home/logic/spotlight/spotlight_cubit.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -25,6 +26,9 @@ void main() async {
       providers: [
         BlocProvider(
           create: (context) => sl<TrendingContentCubit>()..getTrendingPosters(),
+        ),
+        BlocProvider(
+          create: (context) => sl<SpotlightCubit>()..loadSpotlight(),
         ),
         BlocProvider(
           create: (context) => sl<TopRatedMovieCubit>()..getTopRatedMovies(),
