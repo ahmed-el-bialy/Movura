@@ -5,6 +5,7 @@ class HomeRepo {
   final HomeWebServices homeWebServices;
 
   final Map<int, List<PosterModel>> _trendingCache = {};
+  final Map<int, List<PosterModel>> _trendingWeeklyCache = {};
   final Map<int, List<PosterModel>> _topMoviesCache = {};
   final Map<int, List<PosterModel>> _topTvCache = {};
 
@@ -16,10 +17,24 @@ class HomeRepo {
     }
     var response = await homeWebServices.getTrendingMedia(page: page);
     final results =
-        response.results?.map((e) => e.copyWith(mediaType: 'movie')).toList() ??
+        response.results?.map((e) => e.copyWith(mediaType: e.mediaType ?? 'movie')).toList() ??
             [];
     if (results.isNotEmpty) {
       _trendingCache[page] = results;
+    }
+    return results;
+  }
+
+  Future<List<PosterModel>> getTrendingWeekly({int page = 1}) async {
+    if (_trendingWeeklyCache.containsKey(page)) {
+      return _trendingWeeklyCache[page]!;
+    }
+    var response = await homeWebServices.getTrendingWeekly(page: page);
+    final results =
+        response.results?.map((e) => e.copyWith(mediaType: e.mediaType ?? 'movie')).toList() ??
+            [];
+    if (results.isNotEmpty) {
+      _trendingWeeklyCache[page] = results;
     }
     return results;
   }
