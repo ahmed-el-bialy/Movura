@@ -16,7 +16,7 @@ class AppTextButton extends StatelessWidget {
     this.buttonWidth,
     this.buttonHeight,
     required this.buttonText,
-    required this.onPressed,
+    this.onPressed,
   });
 
   final TextStyle? textStyle;
@@ -27,7 +27,7 @@ class AppTextButton extends StatelessWidget {
   final double? buttonWidth;
   final double? buttonHeight;
   final String buttonText;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
