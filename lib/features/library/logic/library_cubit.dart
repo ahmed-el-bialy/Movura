@@ -10,8 +10,12 @@ class LibraryCubit extends Cubit<LibraryState> {
   StreamSubscription? _librarySubscription;
   StreamSubscription? _authSubscription;
 
-  LibraryCubit(this.libraryRepo) : super(LibraryInitial()) {
-    _authSubscription = FirebaseAuth.instance.authStateChanges().listen((user) {
+  LibraryCubit(
+    this.libraryRepo, {
+    Stream<User?>? authStateStream,
+  }) : super(LibraryInitial()) {
+    final authStream = authStateStream ?? FirebaseAuth.instance.authStateChanges();
+    _authSubscription = authStream.listen((user) {
       listenToLibrary();
     });
     listenToLibrary();
