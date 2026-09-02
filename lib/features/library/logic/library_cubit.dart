@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/core/models/poster_model.dart';
 import '../data/repos/library_repo.dart';
@@ -6,16 +7,20 @@ import 'library_state.dart';
 
 class LibraryCubit extends Cubit<LibraryState> {
   final LibraryRepo libraryRepo;
-  StreamSubscription? _subscription;
+  StreamSubscription? _librarySubscription;
+  StreamSubscription? _authSubscription;
 
   LibraryCubit(this.libraryRepo) : super(LibraryInitial()) {
+    _authSubscription = FirebaseAuth.instance.authStateChanges().listen((user) {
+      listenToLibrary();
+    });
     listenToLibrary();
   }
 
   void listenToLibrary() {
     emit(LibraryLoading());
-    _subscription?.cancel();
-    _subscription = libraryRepo.getLibraryStream().listen(
+    _librarySubscription?.cancel();
+    _librarySubscription = libraryRepo.getLibraryStream().listen(
       (userModel) {
         emit(LibraryLoaded(userModel));
       },
@@ -67,7 +72,8 @@ class LibraryCubit extends Cubit<LibraryState> {
 
   @override
   Future<void> close() {
-    _subscription?.cancel();
+    _librarySubscription?.cancel();
+    _authSubscription?.cancel();
     return super.close();
   }
 }
