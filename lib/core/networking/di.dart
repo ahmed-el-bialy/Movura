@@ -18,6 +18,7 @@ import '../../features/home/data/web_services/home_web_services.dart';
 import '../../features/home/logic/top_rated_movies/top_rated_movies_cubit.dart';
 import '../../features/home/logic/top_rated_tv_series/top_rated_tv_series_cubit.dart';
 import '../../features/home/logic/trending_content/trending_content_cubit.dart';
+import '../../features/home/logic/spotlight/spotlight_cubit.dart';
 import '../../features/movie_details/data/repos/movies_repo.dart';
 import '../../features/movie_details/data/web_services/movie_web_services.dart';
 import '../../features/movie_details/logic/about/about_cubit.dart';
@@ -94,6 +95,9 @@ void _initCubits() {
   sl.registerLazySingleton<LibraryCubit>(() => LibraryCubit(sl<LibraryRepo>()));
   sl.registerFactory<TrendingContentCubit>(
     () => TrendingContentCubit(postersRepo: sl<HomeRepo>()),
+  );
+  sl.registerFactory<SpotlightCubit>(
+    () => SpotlightCubit(homeRepo: sl<HomeRepo>()),
   );
   sl.registerFactory<TopRatedMovieCubit>(
     () => TopRatedMovieCubit(postersRepo: sl<HomeRepo>()),
