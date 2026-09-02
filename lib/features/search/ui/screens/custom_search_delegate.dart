@@ -131,7 +131,7 @@ class CustomSearchDelegate extends SearchDelegate {
 
     if (searchTimeResponse?.isActive ?? false) searchTimeResponse!.cancel();
 
-    searchTimeResponse = Timer(const Duration(milliseconds: 800), () {
+    searchTimeResponse = Timer(const Duration(milliseconds: 350), () {
       lastQuery = currentQuery;
       searchCubit.getSearchResults(query: query.trim());
     });
