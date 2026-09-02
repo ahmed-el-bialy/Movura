@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:path_drawing/path_drawing.dart';
@@ -20,7 +21,7 @@ class MovuraLoadingIndicator extends StatefulWidget {
     this.color = AppColors.neonBlue,
     this.duration = const Duration(milliseconds: 2300),
     this.strokeWidth = 28,
-    this.showOuterRing = true,
+    this.showOuterRing = false,
   });
 
   @override
@@ -32,6 +33,8 @@ class _MovuraLoadingIndicatorState extends State<MovuraLoadingIndicator>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Path _logoPath;
+  late final List<PathMetric> _metrics;
+  late final Rect _pathBounds;
 
   // SVG Path data representing the centerline stroke of the "M" logo
   static const String _rawPathData =
@@ -41,6 +44,8 @@ class _MovuraLoadingIndicatorState extends State<MovuraLoadingIndicator>
   void initState() {
     super.initState();
     _logoPath = parseSvgPathData(_rawPathData);
+    _metrics = _logoPath.computeMetrics().toList(growable: false);
+    _pathBounds = _logoPath.getBounds();
     _controller = AnimationController(vsync: this, duration: widget.duration)
       ..repeat();
   }
@@ -62,6 +67,8 @@ class _MovuraLoadingIndicatorState extends State<MovuraLoadingIndicator>
           return CustomPaint(
             painter: _MLogoPainter(
               path: _logoPath,
+              metrics: _metrics,
+              pathBounds: _pathBounds,
               progress: _controller.value,
               color: widget.color,
               strokeWidth: widget.strokeWidth,
@@ -76,6 +83,8 @@ class _MovuraLoadingIndicatorState extends State<MovuraLoadingIndicator>
 
 class _MLogoPainter extends CustomPainter {
   final Path path;
+  final List<PathMetric> metrics;
+  final Rect pathBounds;
   final double progress;
   final Color color;
   final double strokeWidth;
@@ -83,6 +92,8 @@ class _MLogoPainter extends CustomPainter {
 
   _MLogoPainter({
     required this.path,
+    required this.metrics,
+    required this.pathBounds,
     required this.progress,
     required this.color,
     required this.strokeWidth,
@@ -126,7 +137,6 @@ class _MLogoPainter extends CustomPainter {
     }
 
     // ================= 2. Centered "M" Logo =================
-    final pathBounds = path.getBounds();
     final fitSize = showOuterRing ? size.width * 0.55 : size.width * 0.75;
 
     final scale = math.min(
@@ -191,9 +201,9 @@ class _MLogoPainter extends CustomPainter {
       endFraction = 0.0;
     }
 
-    // Extract animated path segment
+    // Extract animated path segment using pre-computed metrics
     if (startFraction < endFraction) {
-      for (final metric in path.computeMetrics()) {
+      for (final metric in metrics) {
         final extracted = metric.extractPath(
           metric.length * startFraction,
           metric.length * endFraction,
