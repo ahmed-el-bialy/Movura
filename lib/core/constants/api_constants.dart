@@ -10,6 +10,7 @@ class ApiConstants {
   static const String topRatedMovies = "movie/top_rated";
   static const String topRatedTvSeries = "tv/top_rated";
   static const String trendingMedia = "trending/all/day";
+  static const String trendingMediaWeekly = "trending/all/week";
   static const String movieDetails = "movie";
   static const String tvDetails = "tv";
   static const String multiSearch = "search/multi";
@@ -21,6 +22,7 @@ class ApiConstants {
   static const String personDetails = "person";
 
   static const String imageBaseUrl = "https://image.tmdb.org/t/p/w500";
+  static const String imageBaseUrlW780 = "https://image.tmdb.org/t/p/w780";
   static const String videoCoverBaseUrl = 'https://img.youtube.com/vi/';
 
   static const String companyImageError =
