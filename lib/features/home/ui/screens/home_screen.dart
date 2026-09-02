@@ -48,7 +48,10 @@ class HomeScreen extends StatelessWidget {
                       child: HeroCarousel(posters: state.posters),
                     );
                   }
-                  return const SizedBox.shrink();
+                  if (state is SpotlightError) {
+                    return const SizedBox.shrink();
+                  }
+                  return const HeroCarouselSkeleton();
                 },
               ),
             ),
