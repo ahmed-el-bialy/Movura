@@ -51,17 +51,11 @@ class _SignUpScreenState extends State<SignUpScreen>
       vsync: this,
       duration: const Duration(milliseconds: 700),
     );
-    _fadeAnim = CurvedAnimation(
-      parent: _animController,
-      curve: Curves.easeOut,
-    );
-    _slideAnim = Tween<Offset>(
-      begin: const Offset(0, 0.06),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _animController,
-      curve: Curves.easeOutCubic,
-    ));
+    _fadeAnim = CurvedAnimation(parent: _animController, curve: Curves.easeOut);
+    _slideAnim = Tween<Offset>(begin: const Offset(0, 0.06), end: Offset.zero)
+        .animate(
+          CurvedAnimation(parent: _animController, curve: Curves.easeOutCubic),
+        );
 
     _animController.forward();
   }
@@ -109,102 +103,108 @@ class _SignUpScreenState extends State<SignUpScreen>
                     child: SlideTransition(
                       position: _slideAnim,
                       child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    child: Padding(
-                      padding: AppSpacing.horizontal(AppSpacing.xl),
-                      child: Form(
-                        key: formKey,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            AppSpacing.verticalSpacing(20),
-                            const AuthHeader(
-                              title: "Create Account",
-                              subtitle:
-                                  "Join the premiere community for cinema lovers",
-                            ),
-                            AppSpacing.verticalSpacing(25),
-                            AuthFormContainer(
-                              child: Column(
-                                children: [
-                                  AuthInputField(
-                                    label: "Full Name",
-                                    child: AppTextFormField(
-                                      controller: nameController,
-                                      hintText: "John Doe",
-                                      prefixIcon: const AuthPrefixIcon(
-                                        icon: Icons.person_outline_rounded,
-                                      ),
-                                      textInputAction: TextInputAction.next,
-                                      validator: (v) => v == null || v.isEmpty
-                                          ? "Name is required"
-                                          : null,
-                                    ),
-                                  ),
-                                  AppSpacing.verticalSpacing(AppSpacing.l),
-                                  AuthInputField(
-                                    label: "Email Address",
-                                    child: AppTextFormField(
-                                      controller: emailController,
-                                      inputType: TextInputType.emailAddress,
-                                      hintText: AppConstants.emailExample,
-                                      prefixIcon: const AuthPrefixIcon(
-                                        icon: Icons.alternate_email_rounded,
-                                      ),
-                                      textInputAction: TextInputAction.next,
-                                      validator: Validators.validateEmail,
-                                    ),
-                                  ),
-                                  AppSpacing.verticalSpacing(AppSpacing.l),
-                                  AuthInputField(
-                                    label: "Password",
-                                    child: AppTextFormField(
-                                      controller: passwordController,
-                                      isObscureText: isObscure,
-                                      hintText: AppConstants.passwordExample,
-                                      prefixIcon: const AuthPrefixIcon(
-                                        icon: Icons.lock_outline_rounded,
-                                      ),
-                                      suffixIcon: IconButton(
-                                        onPressed: () => setState(
-                                          () => isObscure = !isObscure,
-                                        ),
-                                        icon: Icon(
-                                          isObscure
-                                              ? Icons.visibility_off_outlined
-                                              : Icons.visibility_outlined,
-                                          color: AppColors.coolGray,
-                                          size: 18.sp,
+                        physics: const BouncingScrollPhysics(),
+                        child: Padding(
+                          padding: AppSpacing.horizontal(AppSpacing.xl),
+                          child: Form(
+                            key: formKey,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                AppSpacing.verticalSpacing(20),
+                                const AuthHeader(
+                                  title: "Create Account",
+                                  subtitle:
+                                      "Join the premiere community for cinema lovers",
+                                ),
+                                AppSpacing.verticalSpacing(25),
+                                AuthFormContainer(
+                                  child: Column(
+                                    children: [
+                                      AuthInputField(
+                                        label: "Full Name",
+                                        child: AppTextFormField(
+                                          controller: nameController,
+                                          hintText: "John Doe",
+                                          prefixIcon: const AuthPrefixIcon(
+                                            icon: Icons.person_outline_rounded,
+                                          ),
+                                          textInputAction: TextInputAction.next,
+                                          validator: (v) =>
+                                              v == null || v.isEmpty
+                                              ? "Name is required"
+                                              : null,
                                         ),
                                       ),
-                                      textInputAction: TextInputAction.done,
-                                      validator: Validators.validatePassword,
-                                    ),
+                                      AppSpacing.verticalSpacing(AppSpacing.l),
+                                      AuthInputField(
+                                        label: "Email Address",
+                                        child: AppTextFormField(
+                                          controller: emailController,
+                                          inputType: TextInputType.emailAddress,
+                                          hintText: AppConstants.emailExample,
+                                          prefixIcon: const AuthPrefixIcon(
+                                            icon: Icons.alternate_email_rounded,
+                                          ),
+                                          textInputAction: TextInputAction.next,
+                                          validator: Validators.validateEmail,
+                                        ),
+                                      ),
+                                      AppSpacing.verticalSpacing(AppSpacing.l),
+                                      AuthInputField(
+                                        label: "Password",
+                                        child: AppTextFormField(
+                                          controller: passwordController,
+                                          isObscureText: isObscure,
+                                          hintText:
+                                              AppConstants.passwordExample,
+                                          prefixIcon: const AuthPrefixIcon(
+                                            icon: Icons.lock_outline_rounded,
+                                          ),
+                                          suffixIcon: IconButton(
+                                            onPressed: () => setState(
+                                              () => isObscure = !isObscure,
+                                            ),
+                                            icon: Icon(
+                                              isObscure
+                                                  ? Icons
+                                                        .visibility_off_outlined
+                                                  : Icons.visibility_outlined,
+                                              color: AppColors.coolGray,
+                                              size: 18.sp,
+                                            ),
+                                          ),
+                                          textInputAction: TextInputAction.done,
+                                          validator:
+                                              Validators.validatePassword,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                                AppSpacing.verticalSpacing(30),
+                                _SignUpButton(
+                                  formKey: formKey,
+                                  nameController: nameController,
+                                  emailController: emailController,
+                                  passwordController: passwordController,
+                                ),
+                                AppSpacing.verticalSpacing(30),
+                                const AuthDivider(),
+                                AppSpacing.verticalSpacing(20),
+                                const SocialButtonsRow(),
+                                AppSpacing.verticalSpacing(25),
+                                const _LoginToggle(),
+                                AppSpacing.verticalSpacing(20),
+                              ],
                             ),
-                            AppSpacing.verticalSpacing(30),
-                            _SignUpButton(
-                              formKey: formKey,
-                              nameController: nameController,
-                              emailController: emailController,
-                              passwordController: passwordController,
-                            ),
-                            AppSpacing.verticalSpacing(30),
-                            const AuthDivider(),
-                            AppSpacing.verticalSpacing(20),
-                            const SocialButtonsRow(),
-                            AppSpacing.verticalSpacing(25),
-                            const _LoginToggle(),
-                            AppSpacing.verticalSpacing(20),
-                          ],
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
+              ],
             ),
           ),
         ),
@@ -278,7 +278,10 @@ class _LoginToggle extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("Already a member? ", style: TextStyles.font12RegularCoolGrayManrope),
+        Text(
+          "Already a member? ",
+          style: TextStyles.font12RegularCoolGrayManrope,
+        ),
         GestureDetector(
           onTap: () => context.pop(),
           child: Text(
