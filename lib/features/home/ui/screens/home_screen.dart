@@ -19,6 +19,8 @@ import '../widgets/top_movies_list.dart';
 import '../widgets/top_tv_series_list.dart';
 import '../widgets/trending_list.dart';
 
+import '../widgets/hero_carousel.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -36,8 +38,21 @@ class HomeScreen extends StatelessWidget {
           slivers: [
             const HomeAppBar(),
             SliverToBoxAdapter(
+              child: BlocBuilder<TrendingContentCubit, TrendingContentState>(
+                builder: (context, state) {
+                  if (state is TrendingContentLoaded && state.posters.isNotEmpty) {
+                    return Padding(
+                      padding: AppSpacing.only(top: 10, bottom: 10),
+                      child: HeroCarousel(posters: state.posters),
+                    );
+                  }
+                  return const SizedBox.shrink();
+                },
+              ),
+            ),
+            SliverToBoxAdapter(
               child: Padding(
-                padding: AppSpacing.only(top: 15, bottom: 20),
+                padding: AppSpacing.only(top: 10, bottom: 20),
                 child: const CategoryList(),
               ),
             ),
