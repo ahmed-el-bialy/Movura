@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:movura/core/widgets/loading/movura_loading_indicator.dart';
+import 'package:movura/core/widgets/loading/app_shimmer.dart';
 
 import '../../../constants/api_constants.dart';
 import '../../../models/poster_model.dart';
@@ -33,7 +33,7 @@ class PosterBackgroundImage extends StatelessWidget {
             : "",
         fit: BoxFit.fill,
         placeholder: (context, url) =>
-            const Center(child: MovuraLoadingIndicator(size: 60)),
+            const ShimmerBox(width: double.infinity, height: double.infinity),
         errorWidget: (context, url, error) => mediaModel?.mediaType == "person"
             ? CachedNetworkImage(
                 imageUrl: ApiConstants.actorImageError,
