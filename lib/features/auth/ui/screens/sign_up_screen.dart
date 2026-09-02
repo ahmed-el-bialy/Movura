@@ -218,15 +218,17 @@ class _SignUpButton extends StatelessWidget {
             buttonText: state is AuthLoading
                 ? "CREATING ACCOUNT..."
                 : "SIGN UP",
-            onPressed: () {
-              if (formKey.currentState!.validate()) {
-                context.read<AuthCubit>().signUp(
-                  name: nameController.text.trim(),
-                  email: emailController.text.trim(),
-                  password: passwordController.text,
-                );
-              }
-            },
+            onPressed: state is AuthLoading
+                ? null
+                : () {
+                    if (formKey.currentState!.validate()) {
+                      context.read<AuthCubit>().signUp(
+                        name: nameController.text.trim(),
+                        email: emailController.text.trim(),
+                        password: passwordController.text,
+                      );
+                    }
+                  },
             buttonWidth: 220.w,
             buttonHeight: 36.h,
             borderRadius: 16.r,

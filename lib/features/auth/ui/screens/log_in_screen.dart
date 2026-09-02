@@ -228,14 +228,16 @@ class _LoginButton extends StatelessWidget {
           ),
           child: AppTextButton(
             buttonText: state is AuthLoading ? "AUTHENTICATING..." : "LOGIN",
-            onPressed: () {
-              if (formKey.currentState!.validate()) {
-                context.read<AuthCubit>().login(
-                  emailController.text.trim(),
-                  passwordController.text,
-                );
-              }
-            },
+            onPressed: state is AuthLoading
+                ? null
+                : () {
+                    if (formKey.currentState!.validate()) {
+                      context.read<AuthCubit>().login(
+                        emailController.text.trim(),
+                        passwordController.text,
+                      );
+                    }
+                  },
             buttonWidth: 220.w,
             buttonHeight: 36.h,
             borderRadius: 16.r,
