@@ -91,7 +91,7 @@ Future<void> initDI() async {
 }
 
 void _initCubits() {
-  sl.registerFactory<LibraryCubit>(() => LibraryCubit(sl<LibraryRepo>()));
+  sl.registerLazySingleton<LibraryCubit>(() => LibraryCubit(sl<LibraryRepo>()));
   sl.registerFactory<TrendingContentCubit>(
     () => TrendingContentCubit(postersRepo: sl<HomeRepo>()),
   );
