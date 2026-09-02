@@ -32,10 +32,20 @@ class _SeeAllScreenState extends State<SeeAllScreen> {
   void initState() {
     super.initState();
 
+    final hasInitial = widget.arguments.initialItems != null &&
+        widget.arguments.initialItems!.isNotEmpty;
+
     _pagingController = PagingController<int, PosterModel>(
+      firstPageKey: 1,
+      value: hasInitial
+          ? PagingState(
+              pages: [widget.arguments.initialItems!],
+              keys: const [1],
+              nextPageKey: 2,
+            )
+          : const PagingState(),
       getNextPageKey: (state) {
         final lastPage = state.pages?.last;
-        // If the last batch came back smaller than a full page, we've reached the end.
         final isLastPage = (lastPage?.length ?? 0) < _pageSize;
         return isLastPage ? null : state.nextIntPageKey;
       },
