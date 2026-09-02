@@ -20,7 +20,6 @@ class SkeletonPostersListLoading extends StatelessWidget {
       child: SizedBox(
         height: height == null ? 340.h : height!.h,
         child: ListView.builder(
-          shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           itemCount: 10,
           itemBuilder: (context, index) {

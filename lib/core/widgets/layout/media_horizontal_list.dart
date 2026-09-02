@@ -31,7 +31,6 @@ class MediaHorizontalList extends StatelessWidget {
     return SizedBox(
       height: height.h,
       child: ListView.builder(
-        shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         physics: const BouncingScrollPhysics(),
         itemCount: items.length,
