@@ -30,8 +30,13 @@ class LogInScreen extends StatefulWidget {
   State<LogInScreen> createState() => _LogInScreenState();
 }
 
-class _LogInScreenState extends State<LogInScreen> {
+class _LogInScreenState extends State<LogInScreen>
+    with SingleTickerProviderStateMixin {
   late final AuthCubit _authCubit;
+  late final AnimationController _animController;
+  late final Animation<double> _fadeAnim;
+  late final Animation<Offset> _slideAnim;
+
   final formKey = GlobalKey<FormState>();
   final passwordController = TextEditingController();
   final emailController = TextEditingController();
@@ -42,10 +47,28 @@ class _LogInScreenState extends State<LogInScreen> {
   void initState() {
     super.initState();
     _authCubit = sl<AuthCubit>();
+    _animController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 700),
+    );
+    _fadeAnim = CurvedAnimation(
+      parent: _animController,
+      curve: Curves.easeOut,
+    );
+    _slideAnim = Tween<Offset>(
+      begin: const Offset(0, 0.06),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(
+      parent: _animController,
+      curve: Curves.easeOutCubic,
+    ));
+
+    _animController.forward();
   }
 
   @override
   void dispose() {
+    _animController.dispose();
     _authCubit.close();
     emailController.dispose();
     passwordController.dispose();
@@ -80,7 +103,11 @@ class _LogInScreenState extends State<LogInScreen> {
               children: [
                 const AuthBackground(),
                 SafeArea(
-                  child: SingleChildScrollView(
+                  child: FadeTransition(
+                    opacity: _fadeAnim,
+                    child: SlideTransition(
+                      position: _slideAnim,
+                      child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
                     child: Padding(
                       padding: AppSpacing.horizontal(10),
@@ -160,12 +187,12 @@ class _LogInScreenState extends State<LogInScreen> {
                             AppSpacing.verticalSpacing(AppSpacing.l),
                             const _SignUpToggle(),
                             AppSpacing.verticalSpacing(10),
-                          ],
-                        ),
                       ),
                     ),
                   ),
                 ),
+              ),
+            ),
               ],
             ),
           ),
