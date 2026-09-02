@@ -8,7 +8,7 @@ void main() {
     await tester.pumpWidget(
       ScreenUtilInit(
         designSize: const Size(360, 690),
-        builder: (_, __) => const MaterialApp(
+        builder: (_, child) => const MaterialApp(
           home: Scaffold(
             body: Center(
               child: MovuraLoadingIndicator(size: 100),

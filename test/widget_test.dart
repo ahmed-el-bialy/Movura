@@ -10,7 +10,7 @@ void main() {
     await tester.pumpWidget(
       ScreenUtilInit(
         designSize: const Size(360, 690),
-        builder: (_, __) => MaterialApp(
+        builder: (_, child) => MaterialApp(
           home: Scaffold(
             body: Center(
               child: AppTextButton(
