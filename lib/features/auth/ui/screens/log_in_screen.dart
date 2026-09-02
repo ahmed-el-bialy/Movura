@@ -51,17 +51,11 @@ class _LogInScreenState extends State<LogInScreen>
       vsync: this,
       duration: const Duration(milliseconds: 700),
     );
-    _fadeAnim = CurvedAnimation(
-      parent: _animController,
-      curve: Curves.easeOut,
-    );
-    _slideAnim = Tween<Offset>(
-      begin: const Offset(0, 0.06),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _animController,
-      curve: Curves.easeOutCubic,
-    ));
+    _fadeAnim = CurvedAnimation(parent: _animController, curve: Curves.easeOut);
+    _slideAnim = Tween<Offset>(begin: const Offset(0, 0.06), end: Offset.zero)
+        .animate(
+          CurvedAnimation(parent: _animController, curve: Curves.easeOutCubic),
+        );
 
     _animController.forward();
   }
@@ -108,91 +102,96 @@ class _LogInScreenState extends State<LogInScreen>
                     child: SlideTransition(
                       position: _slideAnim,
                       child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    child: Padding(
-                      padding: AppSpacing.horizontal(10),
-                      child: Form(
-                        key: formKey,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            AppSpacing.verticalSpacing(10),
-                            const _SkipButton(),
-                            const AuthHeader(
-                              title: "Welcome Back",
-                              subtitle:
-                                  "Sign in to continue your cinematic journey",
-                            ),
-                            AppSpacing.verticalSpacing(18),
-                            AuthFormContainer(
-                              child: Column(
-                                children: [
-                                  AuthInputField(
-                                    label: "Email Address",
-                                    child: AppTextFormField(
-                                      controller: emailController,
-                                      inputType: TextInputType.emailAddress,
-                                      hintText: AppConstants.emailExample,
-                                      prefixIcon: const AuthPrefixIcon(
-                                        icon: Icons.alternate_email_rounded,
-                                      ),
-                                      textInputAction: TextInputAction.next,
-                                      validator: Validators.validateEmail,
-                                    ),
-                                  ),
-                                  AppSpacing.verticalSpacing(20),
-                                  AuthInputField(
-                                    label: "Password",
-                                    action: Text(
-                                      "Forgot?",
-                                      style: TextStyles.font13MediumNeonBlue
-                                          .copyWith(fontSize: 11.sp),
-                                    ),
-                                    child: AppTextFormField(
-                                      controller: passwordController,
-                                      isObscureText: isObscure,
-                                      hintText: AppConstants.passwordExample,
-                                      prefixIcon: const AuthPrefixIcon(
-                                        icon: Icons.lock_outline_rounded,
-                                      ),
-                                      suffixIcon: IconButton(
-                                        onPressed: () => setState(
-                                          () => isObscure = !isObscure,
-                                        ),
-                                        icon: Icon(
-                                          isObscure
-                                              ? Icons.visibility_off_outlined
-                                              : Icons.visibility_outlined,
-                                          color: AppColors.coolGray,
-                                          size: 18.sp,
+                        physics: const BouncingScrollPhysics(),
+                        child: Padding(
+                          padding: AppSpacing.horizontal(10),
+                          child: Form(
+                            key: formKey,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                AppSpacing.verticalSpacing(10),
+                                const _SkipButton(),
+                                const AuthHeader(
+                                  title: "Welcome Back",
+                                  subtitle:
+                                      "Sign in to continue your cinematic journey",
+                                ),
+                                AppSpacing.verticalSpacing(18),
+                                AuthFormContainer(
+                                  child: Column(
+                                    children: [
+                                      AuthInputField(
+                                        label: "Email Address",
+                                        child: AppTextFormField(
+                                          controller: emailController,
+                                          inputType: TextInputType.emailAddress,
+                                          hintText: AppConstants.emailExample,
+                                          prefixIcon: const AuthPrefixIcon(
+                                            icon: Icons.alternate_email_rounded,
+                                          ),
+                                          textInputAction: TextInputAction.next,
+                                          validator: Validators.validateEmail,
                                         ),
                                       ),
-                                      textInputAction: TextInputAction.done,
-                                      validator: Validators.validatePassword,
-                                    ),
+                                      AppSpacing.verticalSpacing(20),
+                                      AuthInputField(
+                                        label: "Password",
+                                        action: Text(
+                                          "Forgot?",
+                                          style: TextStyles.font13MediumNeonBlue
+                                              .copyWith(fontSize: 11.sp),
+                                        ),
+                                        child: AppTextFormField(
+                                          controller: passwordController,
+                                          isObscureText: isObscure,
+                                          hintText:
+                                              AppConstants.passwordExample,
+                                          prefixIcon: const AuthPrefixIcon(
+                                            icon: Icons.lock_outline_rounded,
+                                          ),
+                                          suffixIcon: IconButton(
+                                            onPressed: () => setState(
+                                              () => isObscure = !isObscure,
+                                            ),
+                                            icon: Icon(
+                                              isObscure
+                                                  ? Icons
+                                                        .visibility_off_outlined
+                                                  : Icons.visibility_outlined,
+                                              color: AppColors.coolGray,
+                                              size: 18.sp,
+                                            ),
+                                          ),
+                                          textInputAction: TextInputAction.done,
+                                          validator:
+                                              Validators.validatePassword,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                                AppSpacing.verticalSpacing(25),
+                                _LoginButton(
+                                  formKey: formKey,
+                                  emailController: emailController,
+                                  passwordController: passwordController,
+                                ),
+                                AppSpacing.verticalSpacing(30),
+                                const AuthDivider(),
+                                AppSpacing.verticalSpacing(AppSpacing.l),
+                                const SocialButtonsRow(),
+                                AppSpacing.verticalSpacing(AppSpacing.l),
+                                const _SignUpToggle(),
+                                AppSpacing.verticalSpacing(10),
+                              ],
                             ),
-                            AppSpacing.verticalSpacing(25),
-                            _LoginButton(
-                              formKey: formKey,
-                              emailController: emailController,
-                              passwordController: passwordController,
-                            ),
-                            AppSpacing.verticalSpacing(30),
-                            const AuthDivider(),
-                            AppSpacing.verticalSpacing(AppSpacing.l),
-                            const SocialButtonsRow(),
-                            AppSpacing.verticalSpacing(AppSpacing.l),
-                            const _SignUpToggle(),
-                            AppSpacing.verticalSpacing(10),
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ),
               ],
             ),
           ),
