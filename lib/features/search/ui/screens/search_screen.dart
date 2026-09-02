@@ -74,7 +74,7 @@ class SearchScreen extends StatelessWidget {
                         label: Text(filter.label),
                         selected: isSelected,
                         onSelected: (_) {
-                          sl<SearchCubit>().updateFilter(filter);
+                          sl<SearchCubit>().setFilter(filter);
                           showSearch(
                             context: context,
                             delegate: CustomSearchDelegate(

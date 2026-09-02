@@ -79,17 +79,18 @@ class _HeroCarouselState extends State<HeroCarousel> {
             itemCount: heroItems.length,
             itemBuilder: (context, index) {
               final item = heroItems[index];
-              final imageUrl = (item.backdropPath != null && item.backdropPath!.isNotEmpty)
-                  ? "${ApiConstants.imageBaseUrl}${item.backdropPath}"
-                  : (item.posterPath != null && item.posterPath!.isNotEmpty)
-                      ? "${ApiConstants.imageBaseUrl}${item.posterPath}"
+              final imageUrl = (item.posterPath != null && item.posterPath!.isNotEmpty)
+                  ? "${ApiConstants.imageBaseUrl}${item.posterPath}"
+                  : (item.profilePath != null && item.profilePath!.isNotEmpty)
+                      ? "${ApiConstants.imageBaseUrl}${item.profilePath}"
                       : "";
-
               return Padding(
                 padding: AppSpacing.horizontal(6),
                 child: GestureDetector(
                   onTap: () {
-                    final mType = item.mediaType.isNotEmpty ? item.mediaType : "movie";
+                    final mType = (item.mediaType != null && item.mediaType!.isNotEmpty)
+                        ? item.mediaType!
+                        : "movie";
                     context.pushNamed(
                       RouteNames.detailsScreen,
                       arguments: DetailsArgumentModel(
@@ -118,11 +119,11 @@ class _HeroCarouselState extends State<HeroCarousel> {
                             CachedNetworkImage(
                               imageUrl: imageUrl,
                               fit: BoxFit.cover,
-                              placeholder: (_, __) => const ShimmerBox(
+                              placeholder: (context, url) => const ShimmerBox(
                                 width: double.infinity,
                                 height: double.infinity,
                               ),
-                              errorWidget: (_, __, ___) => Container(
+                              errorWidget: (context, url, error) => Container(
                                 color: AppColors.onyxBlack,
                                 child: Icon(
                                   Icons.movie_rounded,
@@ -174,7 +175,7 @@ class _HeroCarouselState extends State<HeroCarousel> {
                                         ),
                                       ),
                                       child: Text(
-                                        item.mediaType.toUpperCase(),
+                                        (item.mediaType ?? "MOVIE").toUpperCase(),
                                         style: TextStyles.font10BoldCoolGray.copyWith(
                                           color: AppColors.neonBlue,
                                           fontSize: 9.sp,
@@ -203,7 +204,7 @@ class _HeroCarouselState extends State<HeroCarousel> {
                                 ),
                                 AppSpacing.verticalSpacing(6),
                                 Text(
-                                  item.title,
+                                  item.title ?? item.name ?? 'Untitled',
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyles.font17BoldIceBlueMontserrat.copyWith(

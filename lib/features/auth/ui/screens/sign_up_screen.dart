@@ -30,8 +30,13 @@ class SignUpScreen extends StatefulWidget {
   State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _SignUpScreenState extends State<SignUpScreen>
+    with SingleTickerProviderStateMixin {
   late final AuthCubit _authCubit;
+  late final AnimationController _animController;
+  late final Animation<double> _fadeAnim;
+  late final Animation<Offset> _slideAnim;
+
   bool isObscure = true;
   final formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
@@ -42,10 +47,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
   void initState() {
     super.initState();
     _authCubit = sl<AuthCubit>();
+    _animController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 700),
+    );
+    _fadeAnim = CurvedAnimation(
+      parent: _animController,
+      curve: Curves.easeOut,
+    );
+    _slideAnim = Tween<Offset>(
+      begin: const Offset(0, 0.06),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(
+      parent: _animController,
+      curve: Curves.easeOutCubic,
+    ));
+
+    _animController.forward();
   }
 
   @override
   void dispose() {
+    _animController.dispose();
     _authCubit.close();
     nameController.dispose();
     emailController.dispose();
@@ -81,7 +104,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
               children: [
                 const AuthBackground(isSignUp: true),
                 SafeArea(
-                  child: SingleChildScrollView(
+                  child: FadeTransition(
+                    opacity: _fadeAnim,
+                    child: SlideTransition(
+                      position: _slideAnim,
+                      child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
                     child: Padding(
                       padding: AppSpacing.horizontal(AppSpacing.xl),
@@ -177,7 +204,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                 ),
-              ],
+              ),
             ),
           ),
         ),
