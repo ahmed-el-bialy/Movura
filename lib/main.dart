@@ -7,10 +7,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/networking/di.dart';
 import 'core/routing/app_router.dart';
 import 'core/theming/app_theme.dart';
+import 'features/home/logic/spotlight/spotlight_cubit.dart';
 import 'features/home/logic/top_rated_movies/top_rated_movies_cubit.dart';
 import 'features/home/logic/top_rated_tv_series/top_rated_tv_series_cubit.dart';
 import 'features/home/logic/trending_content/trending_content_cubit.dart';
-import 'features/home/logic/spotlight/spotlight_cubit.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -28,7 +28,7 @@ void main() async {
           create: (context) => sl<TrendingContentCubit>()..getTrendingPosters(),
         ),
         BlocProvider(
-          create: (context) => sl<SpotlightCubit>()..loadSpotlight(),
+          create: (context) => sl<SpotlightCubit>()..getSpotlightPosters(),
         ),
         BlocProvider(
           create: (context) => sl<TopRatedMovieCubit>()..getTopRatedMovies(),

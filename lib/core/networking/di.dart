@@ -4,21 +4,21 @@ import 'package:get_it/get_it.dart';
 import '../../features/auth/data/repos/auth_repo.dart';
 import '../../features/auth/data/web_services/auth_services.dart';
 import '../../features/auth/logic/auth/auth_cubit.dart';
-import '../../features/library/data/repos/library_repo.dart';
-import '../../features/library/data/web_services/library_services.dart';
-import '../../features/library/logic/library_cubit.dart';
 import '../../features/discover/data/repo/discover_repo.dart';
 import '../../features/discover/data/web_services/discover_web_services.dart';
+import '../../features/discover/logic/discover_by_genre_cubit.dart';
 import '../../features/discover/logic/discover_movies_cubit.dart';
 import '../../features/discover/logic/discover_people_cubit.dart';
 import '../../features/discover/logic/discover_tv_cubit.dart';
-import '../../features/discover/logic/discover_by_genre_cubit.dart';
 import '../../features/home/data/repo/home_repo.dart';
 import '../../features/home/data/web_services/home_web_services.dart';
+import '../../features/home/logic/spotlight/spotlight_cubit.dart';
 import '../../features/home/logic/top_rated_movies/top_rated_movies_cubit.dart';
 import '../../features/home/logic/top_rated_tv_series/top_rated_tv_series_cubit.dart';
 import '../../features/home/logic/trending_content/trending_content_cubit.dart';
-import '../../features/home/logic/spotlight/spotlight_cubit.dart';
+import '../../features/library/data/repos/library_repo.dart';
+import '../../features/library/data/web_services/library_services.dart';
+import '../../features/library/logic/library_cubit.dart';
 import '../../features/movie_details/data/repos/movies_repo.dart';
 import '../../features/movie_details/data/web_services/movie_web_services.dart';
 import '../../features/movie_details/logic/about/about_cubit.dart';
@@ -97,7 +97,7 @@ void _initCubits() {
     () => TrendingContentCubit(postersRepo: sl<HomeRepo>()),
   );
   sl.registerFactory<SpotlightCubit>(
-    () => SpotlightCubit(homeRepo: sl<HomeRepo>()),
+        () => SpotlightCubit(postersRepo: sl<HomeRepo>()),
   );
   sl.registerFactory<TopRatedMovieCubit>(
     () => TopRatedMovieCubit(postersRepo: sl<HomeRepo>()),

@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/networking/di.dart';
-import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/widgets/layout/section_title.dart';
+
 import '../../../see_all/data/models/see_all_arguments.dart';
 import '../../data/repo/home_repo.dart';
 import '../../logic/spotlight/spotlight_cubit.dart';
 import '../../logic/top_rated_movies/top_rated_movies_cubit.dart';
 import '../../logic/top_rated_tv_series/top_rated_tv_series_cubit.dart';
 import '../../logic/trending_content/trending_content_cubit.dart';
-import '../widgets/category_list.dart';
 import '../widgets/custom_side_drawer.dart';
 import '../widgets/hero_carousel.dart';
 import '../widgets/home_app_bar.dart';
@@ -55,15 +54,7 @@ class HomeScreen extends StatelessWidget {
                 },
               ),
             ),
-
-            // ── Category chips ────────────────────────────────────────────
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: AppSpacing.only(top: 10, bottom: 20),
-                child: const CategoryList(),
-              ),
-            ),
-
+            AppSpacing.sliverVerticalSpacing(15),
             // ── Trending Now (daily) ──────────────────────────────────────
             SliverToBoxAdapter(
               child: Builder(
