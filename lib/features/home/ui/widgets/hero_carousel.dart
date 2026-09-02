@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,10 +29,7 @@ const _kInitialPage = (_kVirtualCount ~/ 2);
 class HeroCarousel extends StatefulWidget {
   final List<PosterModel> posters;
 
-  const HeroCarousel({
-    super.key,
-    required this.posters,
-  });
+  const HeroCarousel({super.key, required this.posters});
 
   @override
   State<HeroCarousel> createState() => _HeroCarouselState();
@@ -97,7 +95,8 @@ class _HeroCarouselState extends State<HeroCarousel> {
                 padding: AppSpacing.horizontal(6),
                 child: GestureDetector(
                   onTap: () {
-                    final mType = (item.mediaType != null && item.mediaType!.isNotEmpty)
+                    final mType =
+                        (item.mediaType != null && item.mediaType!.isNotEmpty)
                         ? item.mediaType!
                         : 'movie';
                     context.pushNamed(
@@ -215,17 +214,23 @@ class _HeroCard extends StatelessWidget {
                   Row(
                     children: [
                       _MediaTypeBadge(mediaType: item.mediaType),
-                      if (item.voteAverage != null && item.voteAverage! > 0) ...[
+                      if (item.voteAverage != null &&
+                          item.voteAverage! > 0) ...[
                         AppSpacing.horizontalSpacing(8),
-                        Icon(Icons.star_rounded, color: AppColors.amberGold, size: 13.sp),
+                        Icon(
+                          Icons.star_rounded,
+                          color: AppColors.amberGold,
+                          size: 13.sp,
+                        ),
                         AppSpacing.horizontalSpacing(3),
                         Text(
                           item.voteAverage!.toStringAsFixed(1),
-                          style: TextStyles.font12RegularCoolGrayManrope.copyWith(
-                            color: AppColors.iceBlue,
-                            fontWeight: Weights.bold,
-                            fontSize: 11.sp,
-                          ),
+                          style: TextStyles.font12RegularCoolGrayManrope
+                              .copyWith(
+                                color: AppColors.iceBlue,
+                                fontWeight: Weights.bold,
+                                fontSize: 11.sp,
+                              ),
                         ),
                       ],
                     ],
@@ -237,7 +242,9 @@ class _HeroCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: TextStyles.font17BoldIceBlueMontserrat.copyWith(
                       fontSize: 15.sp,
-                      shadows: [Shadow(color: AppColors.trueBlack, blurRadius: 8)],
+                      shadows: [
+                        Shadow(color: AppColors.trueBlack, blurRadius: 8),
+                      ],
                     ),
                   ),
                 ],
@@ -252,6 +259,7 @@ class _HeroCard extends StatelessWidget {
 
 class _MediaTypeBadge extends StatelessWidget {
   const _MediaTypeBadge({required this.mediaType});
+
   final String? mediaType;
 
   @override
@@ -281,7 +289,50 @@ class _FallbackPlaceholder extends StatelessWidget {
     return Container(
       color: AppColors.onyxBlack,
       child: Center(
-        child: Icon(Icons.movie_rounded, color: AppColors.neonBlue, size: 40.sp),
+        child: Icon(
+          Icons.movie_rounded,
+          color: AppColors.neonBlue,
+          size: 40.sp,
+        ),
+      ),
+    );
+  }
+}
+
+/// Skeleton placeholder for HeroCarousel during initial data fetch
+class HeroCarouselSkeleton extends StatelessWidget {
+  const HeroCarouselSkeleton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: AppSpacing.only(top: 10, bottom: 10),
+      child: Column(
+        children: [
+          Padding(
+            padding: AppSpacing.horizontal(16),
+            child: ShimmerBox(
+              width: double.infinity,
+              height: 230.h,
+              borderRadius: 20.r,
+            ),
+          ),
+          AppSpacing.verticalSpacing(10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List.generate(
+              5,
+              (index) => Padding(
+                padding: AppSpacing.horizontal(2),
+                child: ShimmerBox(
+                  width: index == 0 ? 18.w : 6.w,
+                  height: 6.h,
+                  borderRadius: 3.r,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
