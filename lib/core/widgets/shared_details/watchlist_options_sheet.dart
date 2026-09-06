@@ -211,7 +211,7 @@ class WatchlistOptionsSheet extends StatelessWidget {
   }
 }
 
-class _ActionItem extends StatelessWidget {
+class _ActionItem extends StatefulWidget {
   const _ActionItem({
     required this.activeIcon,
     required this.inactiveIcon,
@@ -229,62 +229,130 @@ class _ActionItem extends StatelessWidget {
   final bool isSelected;
 
   @override
+  State<_ActionItem> createState() => _ActionItemState();
+}
+
+class _ActionItemState extends State<_ActionItem>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _pulseController;
+  late final Animation<double> _scaleAnim;
+
+  @override
+  void initState() {
+    super.initState();
+    _pulseController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 150),
+      lowerBound: 0.0,
+      upperBound: 0.12,
+    );
+    _scaleAnim = Tween<double>(begin: 1.0, end: 0.88).animate(
+      CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
+    );
+  }
+
+  @override
+  void dispose() {
+    _pulseController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
         padding: AppSpacing.horizontal(AppSpacing.xs),
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(20.r),
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 300),
-            padding: AppSpacing.vertical(AppSpacing.l),
-            decoration: BoxDecoration(
-              color: isSelected
-                  ? color.withValues(alpha: 0.12)
-                  : AppColors.onyxBlack.withValues(alpha: 0.3),
-              borderRadius: BorderRadius.circular(20.r),
-              border: Border.all(
-                color: isSelected
-                    ? color.withValues(alpha: 0.5)
-                    : AppColors.pureWhite.withValues(alpha: 0.05),
-                width: 1.5,
+        child: GestureDetector(
+          onTapDown: (_) => _pulseController.forward(),
+          onTapUp: (_) => _pulseController.reverse(),
+          onTapCancel: () => _pulseController.reverse(),
+          onTap: widget.onTap,
+          child: AnimatedBuilder(
+            animation: _scaleAnim,
+            builder: (context, child) {
+              return Transform.scale(
+                scale: _scaleAnim.value,
+                child: child,
+              );
+            },
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              padding: AppSpacing.vertical(AppSpacing.l),
+              decoration: BoxDecoration(
+                color: widget.isSelected
+                    ? widget.color.withValues(alpha: 0.18)
+                    : AppColors.onyxBlack.withValues(alpha: 0.3),
+                borderRadius: BorderRadius.circular(20.r),
+                border: Border.all(
+                  color: widget.isSelected
+                      ? widget.color
+                      : AppColors.pureWhite.withValues(alpha: 0.05),
+                  width: widget.isSelected ? 2.0 : 1.5,
+                ),
+                boxShadow: widget.isSelected
+                    ? [
+                        BoxShadow(
+                          color: widget.color.withValues(alpha: 0.35),
+                          blurRadius: 16,
+                          spreadRadius: 2,
+                        ),
+                      ]
+                    : null,
               ),
-              boxShadow: isSelected
-                  ? [
-                      BoxShadow(
-                        color: color.withValues(alpha: 0.1),
-                        blurRadius: 12,
-                        spreadRadius: 1,
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        widget.isSelected ? widget.activeIcon : widget.inactiveIcon,
+                        color: widget.isSelected
+                            ? widget.color
+                            : AppColors.coolGray.withValues(alpha: 0.8),
+                        size: 24.sp,
                       ),
-                    ]
-                  : null,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  isSelected ? activeIcon : inactiveIcon,
-                  color: isSelected
-                      ? color
-                      : AppColors.coolGray.withValues(alpha: 0.8),
-                  size: 24.sp,
-                ),
-                AppSpacing.verticalSpacing(AppSpacing.s),
-                Text(
-                  label,
-                  textAlign: TextAlign.center,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyles.font10BoldCoolGray.copyWith(
-                    color: isSelected
-                        ? AppColors.pureWhite
-                        : AppColors.coolGray.withValues(alpha: 0.6),
-                    fontSize: 9.sp,
-                    fontWeight: isSelected ? Weights.bold : Weights.medium,
+                      AppSpacing.verticalSpacing(AppSpacing.s),
+                      Text(
+                        widget.label,
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyles.font10BoldCoolGray.copyWith(
+                          color: widget.isSelected
+                              ? AppColors.pureWhite
+                              : AppColors.coolGray.withValues(alpha: 0.6),
+                          fontSize: 9.sp,
+                          fontWeight: widget.isSelected ? Weights.bold : Weights.medium,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
+                  if (widget.isSelected)
+                    Positioned(
+                      top: -6.r,
+                      right: -4.r,
+                      child: Container(
+                        padding: const EdgeInsets.all(2),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: widget.color,
+                          boxShadow: [
+                            BoxShadow(
+                              color: widget.color.withValues(alpha: 0.5),
+                              blurRadius: 6,
+                            ),
+                          ],
+                        ),
+                        child: Icon(
+                          Icons.check_rounded,
+                          size: 10.sp,
+                          color: AppColors.trueBlack,
+                        ),
+                      ),
+                    ),
+                ],
+              ),
             ),
           ),
         ),
