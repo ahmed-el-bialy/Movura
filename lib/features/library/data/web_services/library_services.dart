@@ -24,13 +24,13 @@ class LibraryServices {
     final docRef = _firestore.collection('users').doc(uid);
 
     if (isAdding) {
-      await docRef.update({
+      await docRef.set({
         collectionName: FieldValue.arrayUnion([posterJson]),
-      });
+      }, SetOptions(merge: true));
     } else {
-      await docRef.update({
+      await docRef.set({
         collectionName: FieldValue.arrayRemove([posterJson]),
-      });
+      }, SetOptions(merge: true));
     }
   }
 }

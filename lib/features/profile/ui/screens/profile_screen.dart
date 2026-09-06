@@ -138,15 +138,23 @@ class ProfileScreen extends StatelessWidget {
                         onTap: () {},
                       ),
                       _ProfileCollectionTile(
-                        title: 'Log Out',
-                        icon: Icons.logout_rounded,
-                        color: AppColors.softRed,
+                        title: currentUser != null ? 'Log Out' : 'Sign In',
+                        icon: currentUser != null
+                            ? Icons.logout_rounded
+                            : Icons.login_rounded,
+                        color: currentUser != null
+                            ? AppColors.softRed
+                            : AppColors.neonBlue,
                         onTap: () async {
-                          await sl<AuthRepo>().logOut();
-                          if (context.mounted) {
-                            context.pushAndRemoveUntil(
-                              routeName: RouteNames.logInScreen,
-                            );
+                          if (currentUser != null) {
+                            await sl<AuthRepo>().logOut();
+                            if (context.mounted) {
+                              context.pushAndRemoveUntil(
+                                routeName: RouteNames.logInScreen,
+                              );
+                            }
+                          } else {
+                            context.pushNamed(RouteNames.logInScreen);
                           }
                         },
                       ),

@@ -17,11 +17,20 @@ class AuthRepo {
 
       final userData = await authServices.getUserData(uid: credential.user!.uid);
       if (userData.isEmpty) {
-        return UserModel(
+        final newUser = UserModel(
           id: credential.user!.uid,
           email: email,
-          name: credential.user!.displayName ?? "User",
+          name: credential.user!.displayName ?? email.split('@').first,
+          favorites: [],
+          watched: [],
+          toWatch: [],
+          watchNow: [],
         );
+        await authServices.saveUserData(
+          userData: newUser.toJson(),
+          uid: newUser.id,
+        );
+        return newUser;
       }
 
       return UserModel.fromJson(userData);
