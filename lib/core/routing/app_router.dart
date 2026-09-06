@@ -5,10 +5,10 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../features/auth/ui/screens/log_in_screen.dart';
 import '../../features/auth/ui/screens/sign_up_screen.dart';
+import '../../features/discover/ui/screens/discover_by_genre_screen.dart';
 import '../../features/discover/ui/screens/discover_movies_screen.dart';
 import '../../features/discover/ui/screens/discover_people_screen.dart';
 import '../../features/discover/ui/screens/discover_tv_screen.dart';
-import '../../features/discover/ui/screens/discover_by_genre_screen.dart';
 import '../../features/home/ui/screens/home_screen.dart';
 import '../../features/library/ui/screens/library_screen.dart';
 import '../../features/main/ui/main_wrapper_screen.dart';
@@ -19,6 +19,7 @@ import '../../features/person_details/logic/person_details_cubit.dart';
 import '../../features/person_details/ui/screens/person_details_screen.dart';
 import '../../features/see_all/data/models/see_all_arguments.dart';
 import '../../features/see_all/ui/screens/see_all_screen.dart';
+import '../../features/splash/ui/screens/splash_screen.dart';
 import '../../features/tv_details/logic/about/about_tv_cubit.dart';
 import '../../features/tv_details/ui/screens/all_seasons_screen.dart';
 import '../../features/tv_details/ui/screens/episode_details_screen.dart';
@@ -30,6 +31,9 @@ import 'arguments_models.dart';
 class AppRouter {
   Route generateRoute(RouteSettings setting) {
     switch (setting.name) {
+      case RouteNames.splashScreen:
+        return MaterialPageRoute(builder: (_) => const SplashScreen());
+
       case RouteNames.logInScreen:
         return MaterialPageRoute(builder: (_) => const LogInScreen());
 

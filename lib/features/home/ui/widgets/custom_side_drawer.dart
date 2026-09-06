@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -311,32 +312,47 @@ class _LogoutButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isLoggedIn = FirebaseAuth.instance.currentUser != null;
+
     return Padding(
       padding: AppSpacing.all(20),
       child: InkWell(
-        onTap: () {
+        onTap: () async {
           context.pop();
-          context.pushReplacementNamed(RouteNames.logInScreen);
+          if (isLoggedIn) {
+            await FirebaseAuth.instance.signOut();
+            if (context.mounted) {
+              context.pushAndRemoveUntil(routeName: RouteNames.logInScreen);
+            }
+          } else {
+            context.pushNamed(RouteNames.logInScreen);
+          }
         },
         borderRadius: BorderRadius.circular(16.r),
         child: Container(
           padding: AppSpacing.symmetric(vertical: 14, horizontal: 20),
           decoration: BoxDecoration(
-            color: AppColors.softRed.withValues(alpha: 0.1),
+            color: (isLoggedIn ? AppColors.softRed : AppColors.neonBlue)
+                .withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(16.r),
             border: Border.all(
-              color: AppColors.softRed.withValues(alpha: 0.25),
+              color: (isLoggedIn ? AppColors.softRed : AppColors.neonBlue)
+                  .withValues(alpha: 0.25),
             ),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.logout_rounded, color: AppColors.softRed, size: 20.sp),
+              Icon(
+                isLoggedIn ? Icons.logout_rounded : Icons.login_rounded,
+                color: isLoggedIn ? AppColors.softRed : AppColors.neonBlue,
+                size: 20.sp,
+              ),
               AppSpacing.horizontalSpacing(AppSpacing.m),
               Text(
-                "Sign Out",
+                isLoggedIn ? "Sign Out" : "Sign In",
                 style: TextStyles.font14RegularPureWhiteManrope.copyWith(
-                  color: AppColors.softRed,
+                  color: isLoggedIn ? AppColors.softRed : AppColors.neonBlue,
                   fontWeight: Weights.black,
                   letterSpacing: 0.5,
                 ),
