@@ -12,7 +12,9 @@ class DiscoverRepo {
       timeWindow: timeWindow,
       page: page,
     );
-    return response.results ?? [];
+    return (response.results ?? [])
+        .map((e) => e.copyWith(mediaType: 'movie'))
+        .toList();
   }
 
   Future<List<PosterModel>> getMoviesByCategory(String category, {int page = 1}) async {
@@ -20,7 +22,9 @@ class DiscoverRepo {
       category: category,
       page: page,
     );
-    return response.results ?? [];
+    return (response.results ?? [])
+        .map((e) => e.copyWith(mediaType: 'movie'))
+        .toList();
   }
 
   Future<List<PosterModel>> getTrendingTv(String timeWindow, {int page = 1}) async {
@@ -29,7 +33,9 @@ class DiscoverRepo {
       timeWindow: timeWindow,
       page: page,
     );
-    return response.results ?? [];
+    return (response.results ?? [])
+        .map((e) => e.copyWith(mediaType: 'tv'))
+        .toList();
   }
 
   Future<List<PosterModel>> getTvByCategory(String category, {int page = 1}) async {
@@ -37,7 +43,9 @@ class DiscoverRepo {
       category: category,
       page: page,
     );
-    return response.results ?? [];
+    return (response.results ?? [])
+        .map((e) => e.copyWith(mediaType: 'tv'))
+        .toList();
   }
 
   Future<List<PosterModel>> getPopularPeople({int page = 1}) async {
@@ -62,7 +70,9 @@ class DiscoverRepo {
       genreId: genreId,
       page: page,
     );
-    return response.results ?? [];
+    return (response.results ?? [])
+        .map((e) => e.copyWith(mediaType: 'movie'))
+        .toList();
   }
 
   Future<List<PosterModel>> getTvByGenre(int genreId, {int page = 1}) async {
@@ -70,6 +80,8 @@ class DiscoverRepo {
       genreId: genreId,
       page: page,
     );
-    return response.results ?? [];
+    return (response.results ?? [])
+        .map((e) => e.copyWith(mediaType: 'tv'))
+        .toList();
   }
 }

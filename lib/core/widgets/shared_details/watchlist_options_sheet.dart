@@ -53,130 +53,136 @@ class _WatchlistOptionsSheetState extends State<WatchlistOptionsSheet> {
                 .isItemInCollection(widget.posterModel!, key);
           }
 
-          return Container(
-            padding: AppSpacing.only(
-              left: AppSpacing.xl,
-              top: AppSpacing.m,
-              right: AppSpacing.xl,
-              bottom: AppSpacing.xxl,
-            ),
-            decoration: BoxDecoration(
-              color: AppColors.charcoalBlack,
-              borderRadius: BorderRadius.vertical(top: Radius.circular(28.r)),
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.trueBlack.withValues(alpha: 0.5),
-                  blurRadius: 24,
-                  offset: const Offset(0, -4),
+          return SafeArea(
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Container(
+                padding: AppSpacing.only(
+                  left: AppSpacing.xl,
+                  top: AppSpacing.m,
+                  right: AppSpacing.xl,
+                  bottom: AppSpacing.xl,
                 ),
-              ],
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Drag handle
-                Center(
-                  child: Container(
-                    width: 40.w,
-                    height: 4.h,
-                    decoration: BoxDecoration(
-                      color: AppColors.slateGray.withValues(alpha: 0.25),
-                      borderRadius: BorderRadius.circular(10.r),
-                    ),
-                  ),
-                ),
-                AppSpacing.verticalSpacing(AppSpacing.xl),
-
-                // Header
-                Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Save to Library',
-                            style: TextStyles.font17BoldIceBlueMontserrat
-                                .copyWith(fontSize: 19.sp, letterSpacing: 0.3),
-                          ),
-                          AppSpacing.verticalSpacing(AppSpacing.xs),
-                          Text(
-                            'Tap a collection to add or remove',
-                            style: TextStyles.font12RegularCoolGrayManrope
-                                .copyWith(
-                                  color: AppColors.coolGray.withValues(
-                                    alpha: 0.7,
-                                  ),
-                                ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () => Navigator.pop(context),
-                      icon: Icon(
-                        Icons.close_rounded,
-                        color: AppColors.coolGray.withValues(alpha: 0.5),
-                        size: 20.sp,
-                      ),
+                decoration: BoxDecoration(
+                  color: AppColors.charcoalBlack,
+                  borderRadius:
+                      BorderRadius.vertical(top: Radius.circular(28.r)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.trueBlack.withValues(alpha: 0.5),
+                      blurRadius: 24,
+                      offset: const Offset(0, -4),
                     ),
                   ],
                 ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Drag handle
+                    Center(
+                      child: Container(
+                        width: 40.w,
+                        height: 4.h,
+                        decoration: BoxDecoration(
+                          color: AppColors.slateGray.withValues(alpha: 0.25),
+                          borderRadius: BorderRadius.circular(10.r),
+                        ),
+                      ),
+                    ),
+                    AppSpacing.verticalSpacing(AppSpacing.xl),
 
-                AppSpacing.verticalSpacing(AppSpacing.xl),
+                    // Header
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Save to Library',
+                                style: TextStyles.font17BoldIceBlueMontserrat
+                                    .copyWith(fontSize: 19.sp, letterSpacing: 0.3),
+                              ),
+                              AppSpacing.verticalSpacing(AppSpacing.xs),
+                              Text(
+                                'Tap a collection to add or remove',
+                                style: TextStyles.font12RegularCoolGrayManrope
+                                    .copyWith(
+                                      color: AppColors.coolGray.withValues(
+                                        alpha: 0.7,
+                                      ),
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () => Navigator.pop(context),
+                          icon: Icon(
+                            Icons.close_rounded,
+                            color: AppColors.coolGray.withValues(alpha: 0.5),
+                            size: 20.sp,
+                          ),
+                        ),
+                      ],
+                    ),
 
-                // Collection rows
-                _CollectionRow(
-                  activeIcon: Icons.favorite_rounded,
-                  inactiveIcon: Icons.favorite_border_rounded,
-                  label: 'Favorites',
-                  subtitle: 'Your all-time favorites',
-                  isSelected: isIn('favorites'),
-                  isLoading: _loadingKeys.contains('favorites'),
-                  color: AppColors.softRed,
-                  onTap: widget.posterModel != null
-                      ? () => _toggle(context, 'favorites')
-                      : null,
+                    AppSpacing.verticalSpacing(AppSpacing.xl),
+
+                    // Collection rows
+                    _CollectionRow(
+                      activeIcon: Icons.favorite_rounded,
+                      inactiveIcon: Icons.favorite_border_rounded,
+                      label: 'Favorites',
+                      subtitle: 'Your all-time favorites',
+                      isSelected: isIn('favorites'),
+                      isLoading: _loadingKeys.contains('favorites'),
+                      color: AppColors.softRed,
+                      onTap: widget.posterModel != null
+                          ? () => _toggle(context, 'favorites')
+                          : null,
+                    ),
+                    _CollectionRow(
+                      activeIcon: Icons.bookmark_rounded,
+                      inactiveIcon: Icons.bookmark_outline_rounded,
+                      label: 'To Watch',
+                      subtitle: 'Films & shows you plan to watch',
+                      isSelected: isIn('toWatch'),
+                      isLoading: _loadingKeys.contains('toWatch'),
+                      color: AppColors.neonBlue,
+                      onTap: widget.posterModel != null
+                          ? () => _toggle(context, 'toWatch')
+                          : null,
+                    ),
+                    _CollectionRow(
+                      activeIcon: Icons.check_circle_rounded,
+                      inactiveIcon: Icons.check_circle_outline_rounded,
+                      label: 'Watched',
+                      subtitle: 'Already seen it',
+                      isSelected: isIn('watched'),
+                      isLoading: _loadingKeys.contains('watched'),
+                      color: AppColors.tealCyan,
+                      onTap: widget.posterModel != null
+                          ? () => _toggle(context, 'watched')
+                          : null,
+                    ),
+                    _CollectionRow(
+                      activeIcon: Icons.play_circle_fill_rounded,
+                      inactiveIcon: Icons.play_circle_outline_rounded,
+                      label: 'Watch It Now',
+                      subtitle: 'Currently watching',
+                      isSelected: isIn('watchNow'),
+                      isLoading: _loadingKeys.contains('watchNow'),
+                      color: AppColors.amberGold,
+                      onTap: widget.posterModel != null
+                          ? () => _toggle(context, 'watchNow')
+                          : null,
+                      isLast: true,
+                    ),
+                  ],
                 ),
-                _CollectionRow(
-                  activeIcon: Icons.bookmark_rounded,
-                  inactiveIcon: Icons.bookmark_outline_rounded,
-                  label: 'To Watch',
-                  subtitle: 'Films & shows you plan to watch',
-                  isSelected: isIn('toWatch'),
-                  isLoading: _loadingKeys.contains('toWatch'),
-                  color: AppColors.neonBlue,
-                  onTap: widget.posterModel != null
-                      ? () => _toggle(context, 'toWatch')
-                      : null,
-                ),
-                _CollectionRow(
-                  activeIcon: Icons.check_circle_rounded,
-                  inactiveIcon: Icons.check_circle_outline_rounded,
-                  label: 'Watched',
-                  subtitle: 'Already seen it',
-                  isSelected: isIn('watched'),
-                  isLoading: _loadingKeys.contains('watched'),
-                  color: AppColors.tealCyan,
-                  onTap: widget.posterModel != null
-                      ? () => _toggle(context, 'watched')
-                      : null,
-                ),
-                _CollectionRow(
-                  activeIcon: Icons.play_circle_fill_rounded,
-                  inactiveIcon: Icons.play_circle_outline_rounded,
-                  label: 'Watch It Now',
-                  subtitle: 'Currently watching',
-                  isSelected: isIn('watchNow'),
-                  isLoading: _loadingKeys.contains('watchNow'),
-                  color: AppColors.amberGold,
-                  onTap: widget.posterModel != null
-                      ? () => _toggle(context, 'watchNow')
-                      : null,
-                  isLast: true,
-                ),
-              ],
+              ),
             ),
           );
         },
