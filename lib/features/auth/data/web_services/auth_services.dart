@@ -41,6 +41,8 @@ class AuthServices {
       );
 
       return await firebaseAuth.signInWithCredential(credential);
+    } on FirebaseAuthException {
+      rethrow;
     } catch (e) {
       throw 'Google Sign-In failed: ${e.toString()}';
     }

@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:movura/core/networking/di.dart';
 import 'package:movura/core/widgets/navigation/app_navigation_bar.dart';
+import 'package:movura/features/library/logic/library_cubit.dart';
 import '../../home/ui/screens/home_screen.dart';
 import '../../library/ui/screens/library_screen.dart';
 import '../../profile/ui/screens/profile_screen.dart';
 import '../../search/ui/screens/search_screen.dart';
 
+/// Root wrapper — provides LibraryCubit at the top level so that
+/// all child screens (WatchlistOptionsSheet, LibraryScreen, ProfileScreen)
+/// share the same singleton stream.
 class MainWrapperScreen extends StatefulWidget {
   const MainWrapperScreen({super.key});
 
@@ -31,15 +37,19 @@ class _MainWrapperScreenState extends State<MainWrapperScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBody: true,
-      body: IndexedStack(
-        index: _currentIndex,
-        children: _screens,
-      ),
-      bottomNavigationBar: AppNavigationBar(
-        activeIndex: _currentIndex,
-        onTabChanged: _onTabChanged,
+    return BlocProvider.value(
+      // Provide the existing singleton — never close it here
+      value: sl<LibraryCubit>(),
+      child: Scaffold(
+        extendBody: true,
+        body: IndexedStack(
+          index: _currentIndex,
+          children: _screens,
+        ),
+        bottomNavigationBar: AppNavigationBar(
+          activeIndex: _currentIndex,
+          onTabChanged: _onTabChanged,
+        ),
       ),
     );
   }
