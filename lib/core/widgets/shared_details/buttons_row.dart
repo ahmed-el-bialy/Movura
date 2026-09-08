@@ -101,20 +101,47 @@ class _CircularActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
       width: 46.r,
       height: 46.r,
-      child: OutlinedButton(
-        onPressed: onPressed,
-        style: OutlinedButton.styleFrom(
-          padding: EdgeInsets.zero,
-          side: BorderSide(width: 1.5.w, color: color.withValues(alpha: 0.5)),
-          shape: const CircleBorder(),
-          backgroundColor: AppColors.onyxBlack.withValues(alpha: 0.6),
-          elevation: 0,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: AppColors.onyxBlack.withValues(alpha: 0.6),
+        border: Border.all(
+          width: 1.5.w,
+          color: color.withValues(alpha: 0.8),
         ),
-        child: Center(
-          child: Icon(icon, color: color, size: 24.sp),
+        boxShadow: [
+          BoxShadow(
+            color: color.withValues(alpha: 0.3),
+            blurRadius: 10,
+            spreadRadius: 1,
+          ),
+        ],
+      ),
+      child: Material(
+        color: Colors.transparent,
+        shape: const CircleBorder(),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: onPressed,
+          child: Center(
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 250),
+              transitionBuilder: (child, animation) => ScaleTransition(
+                scale: animation,
+                child: child,
+              ),
+              child: Icon(
+                icon,
+                key: ValueKey(icon),
+                color: color,
+                size: 24.sp,
+              ),
+            ),
+          ),
         ),
       ),
     );

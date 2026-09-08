@@ -20,14 +20,14 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final User? currentUser = sl<AuthServices>().currentUser;
+    // Prefer the name from Firestore userModel (updated on social sign-in)
+    // Fall back to Firebase Auth displayName, then a friendly default
     final String displayName = currentUser?.displayName?.isNotEmpty == true
         ? currentUser!.displayName!
         : 'Cinematic Explorer';
     final String email = currentUser?.email ?? 'Guest User';
 
-    return BlocProvider.value(
-      value: sl<LibraryCubit>(),
-      child: Scaffold(
+    return Scaffold(
         backgroundColor: AppColors.richEerieBlack,
         body: SafeArea(
           child: SingleChildScrollView(
@@ -166,7 +166,7 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
         ),
-      ),
+
     );
   }
 }

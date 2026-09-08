@@ -34,28 +34,37 @@ class AppNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: AppSpacing.only(bottom: 10, left: 18, right: 18),
+      padding: AppSpacing.only(bottom: 14, left: 16, right: 16),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(25.r),
+        borderRadius: BorderRadius.circular(28.r),
         child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
           child: Container(
-            height: 62.h,
+            height: 64.h,
+            padding: AppSpacing.symmetric(horizontal: 8),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(25.r),
-              color: AppColors.jetBlack.withValues(alpha: .6),
+              borderRadius: BorderRadius.circular(28.r),
+              color: AppColors.jetBlack.withValues(alpha: 0.75),
               border: Border.all(
-                color: AppColors.slateGray.withValues(alpha: 0.2),
+                color: AppColors.slateGray.withValues(alpha: 0.25),
                 width: 1,
               ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.3),
+                  blurRadius: 16,
+                  offset: const Offset(0, 4),
+                ),
+              ],
             ),
             child: Material(
               color: AppColors.transparent,
-              borderRadius: BorderRadius.circular(25.r),
+              borderRadius: BorderRadius.circular(28.r),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   NavItem(
+                    label: 'Home',
                     activeIcon: Icons.home_rounded,
                     inActiveIcon: Icons.home_outlined,
                     isActive: activeIndex == 0,
@@ -66,11 +75,13 @@ class AppNavigationBar extends StatelessWidget {
                     },
                   ),
                   NavItem(
+                    label: 'Search',
                     activeIcon: Icons.search_rounded,
                     isActive: activeIndex == 1,
                     onTap: () => _openSearch(context),
                   ),
                   NavItem(
+                    label: 'Library',
                     activeIcon: Icons.collections_bookmark_rounded,
                     inActiveIcon: Icons.collections_bookmark_outlined,
                     isActive: activeIndex == 2,
@@ -81,7 +92,9 @@ class AppNavigationBar extends StatelessWidget {
                     },
                   ),
                   NavItem(
+                    label: 'Profile',
                     activeIcon: Icons.person_rounded,
+                    inActiveIcon: Icons.person_outline_rounded,
                     isActive: activeIndex == 3,
                     onTap: () {
                       if (onTabChanged != null) {
