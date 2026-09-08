@@ -17,46 +17,59 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   late final AnimationController _mainController;
-  late final AnimationController _bgController;
+  late final AnimationController _pulseController;
 
-  late final Animation<double> _scaleAnim;
-  late final Animation<double> _fadeAnim;
+  late final Animation<double> _logoScale;
+  late final Animation<double> _logoFade;
+  late final Animation<Offset> _logoSlide;
   late final List<Animation<double>> _letterAnims;
-  late final Animation<double> _subTitleFadeAnim;
+  late final Animation<double> _subTitleFade;
 
   @override
   void initState() {
     super.initState();
+
     _mainController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 2200),
+      duration: const Duration(milliseconds: 2400),
     );
 
-    _bgController = AnimationController(
+    _pulseController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 10),
+      duration: const Duration(milliseconds: 3000),
     )..repeat(reverse: true);
 
-    _scaleAnim = Tween<double>(begin: 0.6, end: 1.0).animate(
+    // 1. Logo Scale & Fade
+    _logoScale = Tween<double>(begin: 0.75, end: 1.0).animate(
       CurvedAnimation(
         parent: _mainController,
-        curve: const Interval(0.0, 0.65, curve: Curves.easeOutBack),
+        curve: const Interval(0.0, 0.5, curve: Curves.easeOutCubic),
       ),
     );
 
-    _fadeAnim = Tween<double>(begin: 0.0, end: 1.0).animate(
+    _logoFade = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _mainController,
-        curve: const Interval(0.0, 0.4, curve: Curves.easeIn),
+        curve: const Interval(0.0, 0.35, curve: Curves.easeIn),
       ),
     );
 
-    // Staggered letter animations for "MOVURA"
-    // Using Curves.easeOutCubic so value stays strictly within [0.0, 1.0] for Opacity
+    // Subtle upward float for cinematic effect
+    _logoSlide = Tween<Offset>(
+      begin: const Offset(0, 0.12),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(
+        parent: _mainController,
+        curve: const Interval(0.0, 0.55, curve: Curves.easeOutCubic),
+      ),
+    );
+
+    // 2. Staggered letter animations for "MOVURA"
     const text = "MOVURA";
     _letterAnims = List.generate(text.length, (index) {
-      final start = 0.3 + (index * 0.08);
-      final end = (start + 0.3).clamp(0.0, 1.0);
+      final start = 0.3 + (index * 0.07);
+      final end = (start + 0.25).clamp(0.0, 1.0);
       return Tween<double>(begin: 0.0, end: 1.0).animate(
         CurvedAnimation(
           parent: _mainController,
@@ -65,10 +78,11 @@ class _SplashScreenState extends State<SplashScreen>
       );
     });
 
-    _subTitleFadeAnim = Tween<double>(begin: 0.0, end: 1.0).animate(
+    // 3. Tagline fade in
+    _subTitleFade = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _mainController,
-        curve: const Interval(0.7, 1.0, curve: Curves.easeIn),
+        curve: const Interval(0.65, 0.95, curve: Curves.easeIn),
       ),
     );
 
@@ -77,7 +91,7 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   Future<void> _navigateToNextScreen() async {
-    await Future.delayed(const Duration(milliseconds: 2600));
+    await Future.delayed(const Duration(milliseconds: 2700));
     if (!mounted) return;
 
     try {
@@ -99,7 +113,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void dispose() {
     _mainController.dispose();
-    _bgController.dispose();
+    _pulseController.dispose();
     super.dispose();
   }
 
@@ -110,92 +124,68 @@ class _SplashScreenState extends State<SplashScreen>
       body: Stack(
         alignment: Alignment.center,
         children: [
-          // Ambient light blobs in background
-          ...List.generate(3, (index) {
-            return AnimatedBuilder(
-              animation: _bgController,
-              builder: (context, child) {
-                final offset = index == 0
-                    ? Offset(
-                        -0.4 + (0.2 * _bgController.value),
-                        -0.3 + (0.1 * _bgController.value),
-                      )
-                    : index == 1
-                    ? Offset(
-                        0.3 - (0.2 * _bgController.value),
-                        0.4 - (0.1 * _bgController.value),
-                      )
-                    : Offset(
-                        -0.2 + (0.1 * _bgController.value),
-                        0.5 - (0.2 * _bgController.value),
-                      );
-
-                return Align(
-                  alignment: Alignment(offset.dx, offset.dy),
-                  child: Container(
-                    width: (250 + (index * 50)).r,
-                    height: (250 + (index * 50)).r,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: RadialGradient(
-                        colors: [
-                          (index == 0
-                                  ? AppColors.neonBlue
-                                  : index == 1
-                                  ? AppColors.vibrantPurple
-                                  : AppColors.electricBlueAccent)
-                              .withValues(alpha: 0.12),
-                          Colors.transparent,
-                        ],
-                      ),
-                    ),
+          // Minimal ambient background glow (pulsing gently)
+          AnimatedBuilder(
+            animation: _pulseController,
+            builder: (context, child) {
+              final pulse = 0.15 + (0.08 * _pulseController.value);
+              return Container(
+                decoration: BoxDecoration(
+                  gradient: RadialGradient(
+                    colors: [
+                      AppColors.neonBlue.withValues(alpha: pulse),
+                      AppColors.vibrantPurple.withValues(alpha: pulse * 0.5),
+                      AppColors.richEerieBlack,
+                    ],
+                    center: Alignment.center,
+                    radius: 0.9,
                   ),
-                );
-              },
-            );
-          }),
+                ),
+              );
+            },
+          ),
 
+          // Main cinematic splash content
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              FadeTransition(
-                opacity: _fadeAnim,
-                child: ScaleTransition(
-                  scale: _scaleAnim,
-                  child: Container(
-                    padding: AppSpacing.all(22),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColors.onyxBlack.withValues(alpha: 0.4),
-                      border: Border.all(
-                        color: AppColors.neonBlue.withValues(alpha: 0.4),
-                        width: 1.5,
+              // Clean, frameless floating logo with dynamic glow
+              SlideTransition(
+                position: _logoSlide,
+                child: FadeTransition(
+                  opacity: _logoFade,
+                  child: ScaleTransition(
+                    scale: _logoScale,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.neonBlue.withValues(alpha: 0.35),
+                            blurRadius: 50,
+                            spreadRadius: 5,
+                          ),
+                        ],
                       ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppColors.neonBlue.withValues(alpha: 0.25),
-                          blurRadius: 40,
-                          spreadRadius: 2,
+                      child: Image.asset(
+                        'assets/images/app_icon_1024.png',
+                        width: 110.w,
+                        height: 110.h,
+                        fit: BoxFit.contain,
+                        errorBuilder: (context, error, stackTrace) => Icon(
+                          Icons.play_circle_fill_rounded,
+                          size: 90.sp,
+                          color: AppColors.neonBlue,
                         ),
-                      ],
-                    ),
-                    child: Image.asset(
-                      'assets/images/app_icon_1024.png',
-                      width: 90.w,
-                      height: 90.h,
-                      fit: BoxFit.contain,
-                      errorBuilder: (context, error, stackTrace) => Icon(
-                        Icons.movie_creation_rounded,
-                        size: 60.sp,
-                        color: AppColors.neonBlue,
                       ),
                     ),
                   ),
                 ),
               ),
+
               AppSpacing.verticalSpacing(32),
 
-              // Animated "MOVURA" text
+              // Minimalist letter-by-letter "MOVURA" typography
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
@@ -205,7 +195,7 @@ class _SplashScreenState extends State<SplashScreen>
                     builder: (context, child) {
                       final val = _letterAnims[index].value.clamp(0.0, 1.0);
                       return Transform.translate(
-                        offset: Offset(0, 10 * (1 - val)),
+                        offset: Offset(0, 12 * (1 - val)),
                         child: Opacity(
                           opacity: val,
                           child: Padding(
@@ -214,15 +204,15 @@ class _SplashScreenState extends State<SplashScreen>
                               "MOVURA"[index],
                               style: TextStyles.font24SemiBoldNeonBlueManrope
                                   .copyWith(
-                                    fontSize: 38.sp,
+                                    fontSize: 36.sp,
                                     fontWeight: FontWeight.w900,
-                                    letterSpacing: 0,
+                                    letterSpacing: 1.2,
                                     shadows: [
                                       Shadow(
                                         color: AppColors.neonBlue.withValues(
-                                          alpha: 0.5 * val,
+                                          alpha: 0.6 * val,
                                         ),
-                                        blurRadius: 15,
+                                        blurRadius: 18,
                                       ),
                                     ],
                                   ),
@@ -235,16 +225,18 @@ class _SplashScreenState extends State<SplashScreen>
                 }),
               ),
 
-              AppSpacing.verticalSpacing(12),
+              AppSpacing.verticalSpacing(14),
 
+              // Subtitle Tagline
               FadeTransition(
-                opacity: _subTitleFadeAnim,
+                opacity: _subTitleFade,
                 child: Text(
                   'YOUR CINEMATIC UNIVERSE',
                   style: TextStyles.font10BoldCoolGray.copyWith(
-                    fontSize: 12.sp,
-                    letterSpacing: 4.5,
-                    color: AppColors.slateGray.withValues(alpha: 0.7),
+                    fontSize: 11.sp,
+                    letterSpacing: 5.0,
+                    color: AppColors.slateGray.withValues(alpha: 0.8),
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
               ),
