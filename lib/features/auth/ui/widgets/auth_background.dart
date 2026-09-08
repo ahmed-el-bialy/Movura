@@ -66,7 +66,7 @@ class _AuthBackgroundState extends State<AuthBackground>
 
             final spheres = [
               (x1, y1, AppColors.neonBlue, 340.r, 0.24),
-              (x2, y2, AppColors.vibrantPurple, 380.r, 0.22),
+              (x2, y2, AppColors.darkNeonCyan, 380.r, 0.22),
               (x3, y3, AppColors.electricBlueAccent, 300.r, 0.20),
               (x4, y4, AppColors.tealCyan, 320.r, 0.18),
             ];
