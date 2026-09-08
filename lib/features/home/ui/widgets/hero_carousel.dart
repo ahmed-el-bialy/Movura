@@ -15,15 +15,8 @@ import 'package:movura/core/theming/weights.dart';
 import 'package:movura/core/widgets/loading/app_shimmer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-/// Maximum number of items shown in the Hero spotlight.
 const _kHeroItemCount = 8;
-
-/// A large virtual page count so modulo-wrapping creates an
-/// infinite-loop effect without noticeable jumps.
 const _kVirtualCount = 99999;
-
-/// Midpoint used as the initial page so the user can swipe in both
-/// directions and the modulo maths always lands on a real item.
 const _kInitialPage = (_kVirtualCount ~/ 2);
 
 class HeroCarousel extends StatefulWidget {
@@ -46,7 +39,7 @@ class _HeroCarouselState extends State<HeroCarousel> {
     super.initState();
     _heroItems = widget.posters.take(_kHeroItemCount).toList();
     _pageController = PageController(
-      viewportFraction: 0.92,
+      viewportFraction: 0.90,
       initialPage: _kInitialPage,
     );
     if (_heroItems.length > 1) _startAutoPlay();
@@ -56,8 +49,8 @@ class _HeroCarouselState extends State<HeroCarousel> {
     _autoPlayTimer = Timer.periodic(const Duration(seconds: 5), (_) {
       if (!mounted || _heroItems.isEmpty) return;
       _pageController.nextPage(
-        duration: const Duration(milliseconds: 600),
-        curve: Curves.fastOutSlowIn,
+        duration: const Duration(milliseconds: 650),
+        curve: Curves.easeOutCubic,
       );
     });
   }
@@ -76,10 +69,9 @@ class _HeroCarouselState extends State<HeroCarousel> {
     return Column(
       children: [
         SizedBox(
-          height: 230.h,
+          height: 235.h,
           child: PageView.builder(
             controller: _pageController,
-            // Infinite virtual count — modulo keeps it looping.
             itemCount: _kVirtualCount,
             onPageChanged: (virtualIndex) {
               setState(() {
@@ -91,47 +83,61 @@ class _HeroCarouselState extends State<HeroCarousel> {
               final item = _heroItems[realIndex];
               final imageUrl = _resolveImage(item);
 
-              return Padding(
-                padding: AppSpacing.horizontal(6),
-                child: GestureDetector(
-                  onTap: () {
-                    final mType =
-                        (item.mediaType != null && item.mediaType!.isNotEmpty)
-                        ? item.mediaType!
-                        : 'movie';
-                    context.pushNamed(
-                      RouteNames.detailsScreen,
-                      arguments: DetailsArgumentModel(
-                        mediaType: mType,
-                        mediaId: item.id,
+              return AnimatedBuilder(
+                animation: _pageController,
+                builder: (context, child) {
+                  double value = 0.0;
+                  if (_pageController.position.haveDimensions) {
+                    value = (virtualIndex - (_pageController.page ?? 0));
+                    value = (1 - (value.abs() * 0.12)).clamp(0.88, 1.0);
+                  } else {
+                    value = virtualIndex == _kInitialPage ? 1.0 : 0.88;
+                  }
+
+                  return Transform.scale(
+                    scale: value,
+                    child: Padding(
+                      padding: AppSpacing.horizontal(4),
+                      child: GestureDetector(
+                        onTap: () {
+                          final mType = (item.mediaType != null &&
+                                  item.mediaType!.isNotEmpty)
+                              ? item.mediaType!
+                              : 'movie';
+                          context.pushNamed(
+                            RouteNames.detailsScreen,
+                            arguments: DetailsArgumentModel(
+                              mediaType: mType,
+                              mediaId: item.id,
+                            ),
+                          );
+                        },
+                        child: _HeroCard(item: item, imageUrl: imageUrl),
                       ),
-                    );
-                  },
-                  child: _HeroCard(item: item, imageUrl: imageUrl),
-                ),
+                    ),
+                  );
+                },
               );
             },
           ),
         ),
-        AppSpacing.verticalSpacing(10),
+        AppSpacing.verticalSpacing(12),
         AnimatedSmoothIndicator(
           activeIndex: _currentRealIndex,
           count: _heroItems.length,
           effect: ExpandingDotsEffect(
             activeDotColor: AppColors.neonBlue,
-            dotColor: AppColors.coolGray.withValues(alpha: 0.3),
+            dotColor: AppColors.coolGray.withValues(alpha: 0.25),
             dotHeight: 6.h,
             dotWidth: 6.w,
-            expansionFactor: 3,
-            spacing: 4.w,
+            expansionFactor: 3.5,
+            spacing: 5.w,
           ),
         ),
       ],
     );
   }
 
-  /// Prefers the wide w780 image for a more cinematic crop.
-  /// Falls back to poster then profile path.
   String _resolveImage(PosterModel item) {
     if (item.posterPath != null && item.posterPath!.isNotEmpty) {
       return '${ApiConstants.imageBaseUrlW780}${item.posterPath}';
@@ -143,10 +149,6 @@ class _HeroCarouselState extends State<HeroCarousel> {
   }
 }
 
-// ---------------------------------------------------------------------------
-// Private card widget
-// ---------------------------------------------------------------------------
-
 class _HeroCard extends StatelessWidget {
   const _HeroCard({required this.item, required this.imageUrl});
 
@@ -157,21 +159,20 @@ class _HeroCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20.r),
+        borderRadius: BorderRadius.circular(22.r),
         boxShadow: [
           BoxShadow(
-            color: AppColors.neonBlue.withValues(alpha: 0.12),
-            blurRadius: 18,
-            offset: const Offset(0, 6),
+            color: AppColors.neonBlue.withValues(alpha: 0.15),
+            blurRadius: 20,
+            offset: const Offset(0, 8),
           ),
         ],
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(20.r),
+        borderRadius: BorderRadius.circular(22.r),
         child: Stack(
           fit: StackFit.expand,
           children: [
-            // Background image — topCenter alignment shows faces/titles.
             if (imageUrl.isNotEmpty)
               CachedNetworkImage(
                 imageUrl: imageUrl,
@@ -186,7 +187,6 @@ class _HeroCard extends StatelessWidget {
             else
               _FallbackPlaceholder(),
 
-            // Bottom gradient for readability.
             Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -195,14 +195,13 @@ class _HeroCard extends StatelessWidget {
                   colors: [
                     Colors.transparent,
                     AppColors.richEerieBlack.withValues(alpha: 0.35),
-                    AppColors.richEerieBlack.withValues(alpha: 0.92),
+                    AppColors.richEerieBlack.withValues(alpha: 0.94),
                   ],
-                  stops: const [0.25, 0.58, 1.0],
+                  stops: const [0.25, 0.55, 1.0],
                 ),
               ),
             ),
 
-            // Text content overlay.
             Positioned(
               left: 16.w,
               right: 16.w,
@@ -220,7 +219,7 @@ class _HeroCard extends StatelessWidget {
                         Icon(
                           Icons.star_rounded,
                           color: AppColors.amberGold,
-                          size: 13.sp,
+                          size: 14.sp,
                         ),
                         AppSpacing.horizontalSpacing(3),
                         Text(
@@ -229,21 +228,21 @@ class _HeroCard extends StatelessWidget {
                               .copyWith(
                                 color: AppColors.iceBlue,
                                 fontWeight: Weights.bold,
-                                fontSize: 11.sp,
+                                fontSize: 12.sp,
                               ),
                         ),
                       ],
                     ],
                   ),
-                  AppSpacing.verticalSpacing(5),
+                  AppSpacing.verticalSpacing(6),
                   Text(
                     item.title ?? item.name ?? 'Untitled',
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyles.font17BoldIceBlueMontserrat.copyWith(
-                      fontSize: 15.sp,
+                      fontSize: 16.sp,
                       shadows: [
-                        Shadow(color: AppColors.trueBlack, blurRadius: 8),
+                        Shadow(color: AppColors.trueBlack, blurRadius: 10),
                       ],
                     ),
                   ),
@@ -265,10 +264,10 @@ class _MediaTypeBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: AppSpacing.symmetric(horizontal: 8, vertical: 3),
+      padding: AppSpacing.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
         color: AppColors.neonBlue.withValues(alpha: 0.22),
-        borderRadius: BorderRadius.circular(6.r),
+        borderRadius: BorderRadius.circular(8.r),
         border: Border.all(color: AppColors.neonBlue.withValues(alpha: 0.45)),
       ),
       child: Text(
@@ -277,6 +276,7 @@ class _MediaTypeBadge extends StatelessWidget {
           color: AppColors.neonBlue,
           fontSize: 9.sp,
           fontWeight: Weights.bold,
+          letterSpacing: 0.8,
         ),
       ),
     );
@@ -292,14 +292,13 @@ class _FallbackPlaceholder extends StatelessWidget {
         child: Icon(
           Icons.movie_rounded,
           color: AppColors.neonBlue,
-          size: 40.sp,
+          size: 44.sp,
         ),
       ),
     );
   }
 }
 
-/// Skeleton placeholder for HeroCarousel during initial data fetch
 class HeroCarouselSkeleton extends StatelessWidget {
   const HeroCarouselSkeleton({super.key});
 
@@ -313,11 +312,11 @@ class HeroCarouselSkeleton extends StatelessWidget {
             padding: AppSpacing.horizontal(16),
             child: ShimmerBox(
               width: double.infinity,
-              height: 230.h,
-              borderRadius: 20.r,
+              height: 235.h,
+              borderRadius: 22.r,
             ),
           ),
-          AppSpacing.verticalSpacing(10),
+          AppSpacing.verticalSpacing(12),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(
@@ -325,7 +324,7 @@ class HeroCarouselSkeleton extends StatelessWidget {
               (index) => Padding(
                 padding: AppSpacing.horizontal(2),
                 child: ShimmerBox(
-                  width: index == 0 ? 18.w : 6.w,
+                  width: index == 0 ? 20.w : 6.w,
                   height: 6.h,
                   borderRadius: 3.r,
                 ),
