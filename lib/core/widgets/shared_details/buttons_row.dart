@@ -28,11 +28,12 @@ class ButtonsRow extends StatelessWidget {
       value: sl<LibraryCubit>(),
       child: BlocBuilder<LibraryCubit, LibraryState>(
         builder: (context, state) {
+          final cubit = sl<LibraryCubit>();
           final isSaved = posterModel != null &&
-              (sl<LibraryCubit>().isItemInCollection(posterModel!, 'favorites') ||
-                  sl<LibraryCubit>().isItemInCollection(posterModel!, 'toWatch') ||
-                  sl<LibraryCubit>().isItemInCollection(posterModel!, 'watched') ||
-                  sl<LibraryCubit>().isItemInCollection(posterModel!, 'watchNow'));
+              (cubit.isItemInCollection(posterModel!, 'favorites') ||
+                  cubit.isItemInCollection(posterModel!, 'toWatch') ||
+                  cubit.isItemInCollection(posterModel!, 'watched') ||
+                  cubit.isItemInCollection(posterModel!, 'watchNow'));
 
           return Padding(
             padding: AppSpacing.horizontal(10),
@@ -69,11 +70,14 @@ class ButtonsRow extends StatelessWidget {
                 _CircularActionButton(
                   icon: isSaved ? Icons.check_rounded : Icons.add_rounded,
                   onPressed: () {
+                    final parentCubit = sl<LibraryCubit>();
                     showModalBottomSheet(
                       context: context,
                       backgroundColor: AppColors.transparent,
-                      builder: (context) =>
-                          WatchlistOptionsSheet(posterModel: posterModel),
+                      builder: (sheetContext) => BlocProvider.value(
+                        value: parentCubit,
+                        child: WatchlistOptionsSheet(posterModel: posterModel),
+                      ),
                     );
                   },
                   color: isSaved ? AppColors.profitGreen : AppColors.neonBlue,

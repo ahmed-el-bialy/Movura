@@ -6,6 +6,7 @@ import '../../../../core/models/genre_model.dart';
 import '../../../../core/models/image_model.dart';
 import '../../../../core/models/video_model.dart';
 import '../../../../core/models/watch_provider_model.dart';
+import '../../../../core/models/poster_model.dart';
 
 part 'about_model.g.dart';
 
@@ -93,6 +94,18 @@ class AboutModel {
     this.movieVideos,
     this.watchProviders,
   });
+
+  PosterModel toPosterModel() {
+    return PosterModel(
+      id: id,
+      title: title ?? originalTitle,
+      name: title ?? originalTitle,
+      posterPath: posterPath,
+      voteAverage: rating,
+      mediaType: 'movie',
+      releaseDate: releaseDate,
+    );
+  }
 
   factory AboutModel.fromJson(Map<String, dynamic> json) =>
       _$AboutModelFromJson(json);

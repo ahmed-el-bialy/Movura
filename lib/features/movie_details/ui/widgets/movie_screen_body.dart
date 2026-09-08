@@ -49,7 +49,7 @@ class MovieScreenBody extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           MovieMainDetails(model: model),
-          ButtonsRow(videoKey: trailerKey),
+          ButtonsRow(videoKey: trailerKey, posterModel: model.toPosterModel()),
           AppSpacing.verticalSpacing(30),
           AdditionalData(model: model),
           AppSpacing.verticalSpacing(20),
