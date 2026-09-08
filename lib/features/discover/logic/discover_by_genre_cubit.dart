@@ -17,6 +17,7 @@ class DiscoverByGenreError extends DiscoverByGenreState {
 
 class DiscoverByGenreCubit extends Cubit<DiscoverByGenreState> {
   final HomeRepo _homeRepo;
+  
   DiscoverByGenreCubit(this._homeRepo) : super(DiscoverByGenreInitial());
 
   Future<void> getGenres(bool isMovie) async {
@@ -28,7 +29,7 @@ class DiscoverByGenreCubit extends Cubit<DiscoverByGenreState> {
       
       emit(DiscoverByGenreLoaded(response.genres));
     } catch (e) {
-      emit(DiscoverByGenreError(e.toString()));
+      emit(DiscoverByGenreError("Failed to load genres: ${e.toString()}"));
     }
   }
 }

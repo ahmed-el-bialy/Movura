@@ -103,21 +103,25 @@ class _LogInScreenState extends State<LogInScreen>
                       position: _slideAnim,
                       child: SingleChildScrollView(
                         physics: const BouncingScrollPhysics(),
-                        child: Padding(
-                          padding: AppSpacing.horizontal(10),
+                        padding: AppSpacing.only(
+                          left: AppSpacing.xl,
+                          right: AppSpacing.xl,
+                          bottom: 40,
+                        ),
+                        child: AutofillGroup(
                           child: Form(
                             key: formKey,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                AppSpacing.verticalSpacing(10),
+                                AppSpacing.verticalSpacing(15),
                                 const _SkipButton(),
                                 const AuthHeader(
                                   title: "Welcome Back",
                                   subtitle:
                                       "Sign in to continue your cinematic journey",
                                 ),
-                                AppSpacing.verticalSpacing(18),
+                                AppSpacing.verticalSpacing(25),
                                 AuthFormContainer(
                                   child: Column(
                                     children: [
@@ -127,6 +131,7 @@ class _LogInScreenState extends State<LogInScreen>
                                           controller: emailController,
                                           inputType: TextInputType.emailAddress,
                                           hintText: AppConstants.emailExample,
+                                          autofillHints: const [AutofillHints.email],
                                           prefixIcon: const AuthPrefixIcon(
                                             icon: Icons.alternate_email_rounded,
                                           ),
@@ -137,16 +142,22 @@ class _LogInScreenState extends State<LogInScreen>
                                       AppSpacing.verticalSpacing(20),
                                       AuthInputField(
                                         label: "Password",
-                                        action: Text(
-                                          "Forgot?",
-                                          style: TextStyles.font13MediumNeonBlue
-                                              .copyWith(fontSize: 11.sp),
+                                        action: GestureDetector(
+                                          onTap: () {
+                                            // Handle forgot password
+                                          },
+                                          child: Text(
+                                            "Forgot?",
+                                            style: TextStyles.font13MediumNeonBlue
+                                                .copyWith(fontSize: 12.sp),
+                                          ),
                                         ),
                                         child: AppTextFormField(
                                           controller: passwordController,
                                           isObscureText: isObscure,
                                           hintText:
                                               AppConstants.passwordExample,
+                                          autofillHints: const [AutofillHints.password],
                                           prefixIcon: const AuthPrefixIcon(
                                             icon: Icons.lock_outline_rounded,
                                           ),
@@ -171,19 +182,19 @@ class _LogInScreenState extends State<LogInScreen>
                                     ],
                                   ),
                                 ),
-                                AppSpacing.verticalSpacing(25),
+                                AppSpacing.verticalSpacing(30),
                                 _LoginButton(
                                   formKey: formKey,
                                   emailController: emailController,
                                   passwordController: passwordController,
                                 ),
-                                AppSpacing.verticalSpacing(30),
+                                AppSpacing.verticalSpacing(35),
                                 const AuthDivider(),
-                                AppSpacing.verticalSpacing(AppSpacing.l),
+                                AppSpacing.verticalSpacing(20),
                                 const SocialButtonsRow(),
-                                AppSpacing.verticalSpacing(AppSpacing.l),
+                                AppSpacing.verticalSpacing(25),
                                 const _SignUpToggle(),
-                                AppSpacing.verticalSpacing(10),
+                                AppSpacing.verticalSpacing(20),
                               ],
                             ),
                           ),

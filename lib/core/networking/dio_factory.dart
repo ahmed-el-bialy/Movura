@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 import '../constants/api_constants.dart';
 
@@ -12,21 +13,23 @@ class DioFactory {
     final dio = Dio(
       BaseOptions(
         baseUrl: ApiConstants.baseUrl,
-        connectTimeout: const Duration(seconds: 15),
-        receiveTimeout: const Duration(seconds: 15),
+        connectTimeout: const Duration(seconds: 20),
+        receiveTimeout: const Duration(seconds: 20),
         headers: headers,
         queryParameters: {'api_key': ApiConstants.apiKey},
       ),
     );
 
-    dio.interceptors.add(
-      LogInterceptor(
-        requestHeader: true,
-        requestBody: true,
-        responseHeader: false,
-        responseBody: false,
-      ),
-    );
+    if (kDebugMode) {
+      dio.interceptors.add(
+        LogInterceptor(
+          requestHeader: true,
+          requestBody: true,
+          responseHeader: false,
+          responseBody: false,
+        ),
+      );
+    }
 
     return dio;
   }

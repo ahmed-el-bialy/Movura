@@ -89,7 +89,7 @@ class CustomPostersGridView extends StatelessWidget {
                       color: AppColors.coolGray.withValues(alpha: 0.4),
                     ),
                   ),
-                  AppSpacing.verticalSpacing(100),
+                  AppSpacing.verticalSpacing(110),
                 ],
               ),
             ),

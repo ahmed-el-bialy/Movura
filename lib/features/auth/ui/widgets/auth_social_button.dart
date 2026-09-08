@@ -67,18 +67,24 @@ class _AuthSocialButtonState extends State<AuthSocialButton>
             child: Container(
               padding: AppSpacing.all(12),
               decoration: BoxDecoration(
-                color: widget.backgroundColor.withValues(alpha: 0.45),
+                color: widget.backgroundColor.withValues(alpha: 0.5),
                 borderRadius: BorderRadius.circular(16.r),
                 border: Border.all(
-                  color: AppColors.pureWhite.withValues(alpha: 0.15),
-                  width: 1,
+                  color: AppColors.pureWhite.withValues(alpha: 0.2),
+                  width: 1.2,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.trueBlack.withValues(alpha: 0.3),
-                    blurRadius: 10,
-                    offset: const Offset(0, 4),
+                    color: AppColors.trueBlack.withValues(alpha: 0.5),
+                    blurRadius: 15,
+                    offset: const Offset(0, 6),
                   ),
+                  if (_scaleController.value > 0.04)
+                    BoxShadow(
+                      color: AppColors.neonBlue.withValues(alpha: 0.1),
+                      blurRadius: 10,
+                      spreadRadius: 2,
+                    ),
                 ],
               ),
               child: Image.asset(

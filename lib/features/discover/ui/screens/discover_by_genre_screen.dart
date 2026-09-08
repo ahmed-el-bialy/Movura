@@ -14,6 +14,7 @@ import 'package:movura/core/widgets/loading/movura_loading_indicator.dart';
 import 'package:movura/core/widgets/poster_card/components/glass_card.dart';
 import 'package:movura/features/see_all/data/models/see_all_arguments.dart';
 
+import '../../../../core/widgets/app_error_widget.dart';
 import '../../data/repo/discover_repo.dart';
 import '../../logic/discover_by_genre_cubit.dart';
 
@@ -48,8 +49,10 @@ class DiscoverByGenreScreen extends StatelessWidget {
             } else if (state is DiscoverByGenreLoaded) {
               return _GenresGrid(genres: state.genres, isMovie: isMovie);
             } else if (state is DiscoverByGenreError) {
-              return Center(
-                child: Text(state.message, style: const TextStyle(color: AppColors.softRed)),
+              return AppErrorWidget(
+                errorMessage: state.message,
+                onRetry: () =>
+                    context.read<DiscoverByGenreCubit>().getGenres(isMovie),
               );
             }
             return const SizedBox.shrink();

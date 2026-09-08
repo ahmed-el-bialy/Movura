@@ -104,20 +104,24 @@ class _SignUpScreenState extends State<SignUpScreen>
                       position: _slideAnim,
                       child: SingleChildScrollView(
                         physics: const BouncingScrollPhysics(),
-                        child: Padding(
-                          padding: AppSpacing.horizontal(AppSpacing.xl),
+                        padding: AppSpacing.only(
+                          left: AppSpacing.xl,
+                          right: AppSpacing.xl,
+                          bottom: 40,
+                        ),
+                        child: AutofillGroup(
                           child: Form(
                             key: formKey,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                AppSpacing.verticalSpacing(20),
+                                AppSpacing.verticalSpacing(25),
                                 const AuthHeader(
                                   title: "Create Account",
                                   subtitle:
                                       "Join the premiere community for cinema lovers",
                                 ),
-                                AppSpacing.verticalSpacing(25),
+                                AppSpacing.verticalSpacing(30),
                                 AuthFormContainer(
                                   child: Column(
                                     children: [
@@ -126,6 +130,9 @@ class _SignUpScreenState extends State<SignUpScreen>
                                         child: AppTextFormField(
                                           controller: nameController,
                                           hintText: "John Doe",
+                                          autofillHints: const [
+                                            AutofillHints.name,
+                                          ],
                                           prefixIcon: const AuthPrefixIcon(
                                             icon: Icons.person_outline_rounded,
                                           ),
@@ -143,6 +150,9 @@ class _SignUpScreenState extends State<SignUpScreen>
                                           controller: emailController,
                                           inputType: TextInputType.emailAddress,
                                           hintText: AppConstants.emailExample,
+                                          autofillHints: const [
+                                            AutofillHints.email,
+                                          ],
                                           prefixIcon: const AuthPrefixIcon(
                                             icon: Icons.alternate_email_rounded,
                                           ),
@@ -158,6 +168,9 @@ class _SignUpScreenState extends State<SignUpScreen>
                                           isObscureText: isObscure,
                                           hintText:
                                               AppConstants.passwordExample,
+                                          autofillHints: const [
+                                            AutofillHints.newPassword,
+                                          ],
                                           prefixIcon: const AuthPrefixIcon(
                                             icon: Icons.lock_outline_rounded,
                                           ),
@@ -182,20 +195,20 @@ class _SignUpScreenState extends State<SignUpScreen>
                                     ],
                                   ),
                                 ),
-                                AppSpacing.verticalSpacing(30),
+                                AppSpacing.verticalSpacing(35),
                                 _SignUpButton(
                                   formKey: formKey,
                                   nameController: nameController,
                                   emailController: emailController,
                                   passwordController: passwordController,
                                 ),
-                                AppSpacing.verticalSpacing(30),
+                                AppSpacing.verticalSpacing(35),
                                 const AuthDivider(),
-                                AppSpacing.verticalSpacing(20),
-                                const SocialButtonsRow(),
                                 AppSpacing.verticalSpacing(25),
+                                const SocialButtonsRow(),
+                                AppSpacing.verticalSpacing(30),
                                 const _LoginToggle(),
-                                AppSpacing.verticalSpacing(20),
+                                AppSpacing.verticalSpacing(25),
                               ],
                             ),
                           ),
