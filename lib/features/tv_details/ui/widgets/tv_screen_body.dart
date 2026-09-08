@@ -49,7 +49,7 @@ class TvScreenBody extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           TvMainDetails(model: model),
-          ButtonsRow(videoKey: trailerKey),
+          ButtonsRow(videoKey: trailerKey, posterModel: model.toPosterModel()),
           AppSpacing.verticalSpacing(20),
           TvAdditionalData(model: model),
           TvStoryAndGenres(model: model),

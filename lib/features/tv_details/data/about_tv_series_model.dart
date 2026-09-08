@@ -6,6 +6,7 @@ import '../../../core/models/genre_model.dart';
 import '../../../core/models/image_model.dart';
 import '../../../core/models/video_model.dart';
 import '../../../core/models/watch_provider_model.dart';
+import '../../../core/models/poster_model.dart';
 
 part 'about_tv_series_model.g.dart';
 
@@ -120,6 +121,18 @@ class AboutTvSeriesModel {
     this.endAirDate,
     this.watchProviders,
   });
+
+  PosterModel toPosterModel() {
+    return PosterModel(
+      id: id,
+      title: title ?? originalTitle,
+      name: title ?? originalTitle,
+      posterPath: posterPath,
+      voteAverage: rating,
+      mediaType: 'tv',
+      firstAirDate: startAirDate,
+    );
+  }
 
   factory AboutTvSeriesModel.fromJson(Map<String, dynamic> json) =>
       _$AboutTvSeriesModelFromJson(json);
