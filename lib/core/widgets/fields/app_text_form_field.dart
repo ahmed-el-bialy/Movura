@@ -24,6 +24,7 @@ class AppTextFormField extends StatelessWidget {
     this.textInputAction,
     this.controller,
     this.validator,
+    this.autofillHints,
   });
 
   final EdgeInsetsGeometry? contentPadding;
@@ -42,6 +43,7 @@ class AppTextFormField extends StatelessWidget {
   final TextInputAction? textInputAction;
   final TextEditingController? controller;
   final FormFieldValidator<String>? validator;
+  final Iterable<String>? autofillHints;
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +51,7 @@ class AppTextFormField extends StatelessWidget {
       keyboardType: inputType,
       textInputAction: textInputAction,
       controller: controller,
+      autofillHints: autofillHints,
       style: inputTextStyle ?? TextStyles.font14SemiBoldPlatinumGraySora,
       obscureText: isObscureText ?? false,
       decoration: InputDecoration(

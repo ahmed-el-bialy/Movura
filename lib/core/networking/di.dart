@@ -142,6 +142,6 @@ void _initCubits() {
     () => DiscoverPeopleCubit(sl<DiscoverRepo>()),
   );
   sl.registerFactory<DiscoverByGenreCubit>(
-    () => DiscoverByGenreCubit(sl<HomeRepo>()),
+        () => DiscoverByGenreCubit(sl<HomeRepo>()),
   );
 }

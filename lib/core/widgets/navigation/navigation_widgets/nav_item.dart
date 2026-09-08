@@ -41,9 +41,9 @@ class NavItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(20.r),
           border: isActive
               ? Border.all(
-            color: AppColors.neonBlue.withValues(alpha: 0.3),
-            width: 1,
-          )
+                  color: AppColors.neonBlue.withValues(alpha: 0.3),
+                  width: 1,
+                )
               : null,
         ),
         child: Row(
@@ -54,10 +54,7 @@ class NavItem extends StatelessWidget {
               transitionBuilder: (child, animation) {
                 return ScaleTransition(
                   scale: animation,
-                  child: FadeTransition(
-                    opacity: animation,
-                    child: child,
-                  ),
+                  child: FadeTransition(opacity: animation, child: child),
                 );
               },
               child: Icon(

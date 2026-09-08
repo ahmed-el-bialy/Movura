@@ -27,116 +27,122 @@ class PlatformOptionsSheet extends StatelessWidget {
     final gbProviders = watchProviders?.results?['GB'];
 
     return Container(
-      padding: AppSpacing.only(
-        left: AppSpacing.xl,
-        top: AppSpacing.m,
-        right: AppSpacing.xl,
-        bottom: AppSpacing.xxl,
-      ),
       decoration: BoxDecoration(
         color: AppColors.charcoalBlack,
         borderRadius: BorderRadius.vertical(top: Radius.circular(32.r)),
-        border: Border.all(
-          color: AppColors.pureWhite.withValues(alpha: 0.05),
-          width: 1,
-        ),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Center(
-            child: Container(
-              width: 45.w,
-              height: 5.h,
-              decoration: BoxDecoration(
-                color: AppColors.slateGray.withValues(alpha: 0.2),
-                borderRadius: BorderRadius.circular(10.r),
-              ),
-            ),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.trueBlack.withValues(alpha: 0.6),
+            blurRadius: 30,
+            offset: const Offset(0, -10),
           ),
-          AppSpacing.verticalSpacing(AppSpacing.xl),
-          Row(
+        ],
+      ),
+      child: SafeArea(
+        child: Padding(
+          padding: AppSpacing.only(
+            left: AppSpacing.xl,
+            top: AppSpacing.m,
+            right: AppSpacing.xl,
+            bottom: AppSpacing.xl,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Watch Options',
-                      style: TextStyles.font17BoldIceBlueMontserrat.copyWith(
-                        fontSize: 22.sp,
-                        letterSpacing: 0.5,
-                      ),
-                    ),
-                    AppSpacing.verticalSpacing(AppSpacing.xs),
-                    Text(
-                      'Choose your preferred platform or region',
-                      style: TextStyles.font12RegularCoolGrayManrope.copyWith(
-                        color: AppColors.coolGray.withValues(alpha: 0.8),
-                      ),
-                    ),
-                  ],
+              Center(
+                child: Container(
+                  width: 45.w,
+                  height: 5.h,
+                  decoration: BoxDecoration(
+                    color: AppColors.slateGray.withValues(alpha: 0.2),
+                    borderRadius: BorderRadius.circular(10.r),
+                  ),
                 ),
               ),
-              _TopActionIcon(
-                icon: Icons.share_rounded,
-                onTap: () {
-                  if (homepageUrl.isNotEmpty) Share.share(homepageUrl);
-                },
-                color: AppColors.amberGold,
+              AppSpacing.verticalSpacing(AppSpacing.xl),
+              Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Watch Options',
+                          style: TextStyles.font17BoldIceBlueMontserrat.copyWith(
+                            fontSize: 22.sp,
+                            letterSpacing: 0.5,
+                          ),
+                        ),
+                        AppSpacing.verticalSpacing(AppSpacing.xs),
+                        Text(
+                          'Choose your preferred platform or region',
+                          style: TextStyles.font12RegularCoolGrayManrope.copyWith(
+                            color: AppColors.coolGray.withValues(alpha: 0.8),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  _TopActionIcon(
+                    icon: Icons.share_rounded,
+                    onTap: () {
+                      if (homepageUrl.isNotEmpty) Share.share(homepageUrl);
+                    },
+                    color: AppColors.amberGold,
+                  ),
+                  AppSpacing.horizontalSpacing(AppSpacing.m),
+                  _TopActionIcon(
+                    icon: Icons.close_rounded,
+                    onPressed: () => Navigator.pop(context),
+                    color: AppColors.coolGray,
+                  ),
+                ],
               ),
-              AppSpacing.horizontalSpacing(AppSpacing.m),
-              _TopActionIcon(
-                icon: Icons.close_rounded,
-                onPressed: () => Navigator.pop(context),
-                color: AppColors.coolGray,
+              AppSpacing.verticalSpacing(AppSpacing.xxl),
+              Flexible(
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (egProviders != null)
+                        _ProviderRegionSection(
+                          regionName: 'EGYPT',
+                          providers: egProviders.flatrate ?? [],
+                          link: egProviders.link,
+                        ),
+                      if (usProviders != null)
+                        _ProviderRegionSection(
+                          regionName: 'UNITED STATES',
+                          providers: usProviders.flatrate ?? [],
+                          link: usProviders.link,
+                        ),
+                      if (gbProviders != null)
+                        _ProviderRegionSection(
+                          regionName: 'UNITED KINGDOM',
+                          providers: gbProviders.flatrate ?? [],
+                          link: gbProviders.link,
+                        ),
+                      if (homepageUrl.isNotEmpty) ...[
+                        AppSpacing.verticalSpacing(AppSpacing.xl),
+                        Text(
+                          'OFFICIAL WEBSITE',
+                          style: TextStyles.font10BoldCoolGray.copyWith(
+                            letterSpacing: 1.5,
+                            color: AppColors.neonBlue.withValues(alpha: 0.7),
+                          ),
+                        ),
+                        AppSpacing.verticalSpacing(AppSpacing.m),
+                        _WebsiteTile(url: homepageUrl),
+                      ],
+                    ],
+                  ),
+                ),
               ),
             ],
           ),
-          AppSpacing.verticalSpacing(AppSpacing.xxl),
-          Flexible(
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (egProviders != null)
-                    _ProviderRegionSection(
-                      regionName: 'EGYPT',
-                      providers: egProviders.flatrate ?? [],
-                      link: egProviders.link,
-                    ),
-                  if (usProviders != null)
-                    _ProviderRegionSection(
-                      regionName: 'UNITED STATES',
-                      providers: usProviders.flatrate ?? [],
-                      link: usProviders.link,
-                    ),
-                  if (gbProviders != null)
-                    _ProviderRegionSection(
-                      regionName: 'UNITED KINGDOM',
-                      providers: gbProviders.flatrate ?? [],
-                      link: gbProviders.link,
-                    ),
-                  if (homepageUrl.isNotEmpty) ...[
-                    AppSpacing.verticalSpacing(AppSpacing.xl),
-                    Text(
-                      'OFFICIAL WEBSITE',
-                      style: TextStyles.font10BoldCoolGray.copyWith(
-                        letterSpacing: 1.5,
-                        color: AppColors.neonBlue.withValues(alpha: 0.7),
-                      ),
-                    ),
-                    AppSpacing.verticalSpacing(AppSpacing.m),
-                    _WebsiteTile(url: homepageUrl),
-                  ],
-                ],
-              ),
-            ),
-          ),
-          AppSpacing.verticalSpacing(AppSpacing.xl),
-        ],
+        ),
       ),
     );
   }

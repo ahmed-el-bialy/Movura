@@ -3,14 +3,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/constants/app_constants.dart';
-import 'package:movura/core/networking/di.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/widgets/buttons/app_icon_button.dart';
-
-import '../../../search/logic/search/search_cubit.dart';
-import '../../../search/ui/screens/custom_search_delegate.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
@@ -39,34 +35,18 @@ class HomeAppBar extends StatelessWidget {
       ),
       centerTitle: true,
       backgroundColor: AppColors.richEerieBlack.withValues(alpha: 0.8),
-      title: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Image.asset(AppConstants.appLogo, height: 40.h),
-          Text(
-            AppConstants.appName,
-            style: TextStyles.font24SemiBoldNeonBlueManrope.copyWith(
-              fontSize: 20.sp,
-              letterSpacing: 2,
-            ),
-          ),
-        ],
+      title: Text(
+        AppConstants.appName,
+        style: TextStyles.font24SemiBoldNeonBlueManrope.copyWith(
+          fontSize: 22.sp,
+          letterSpacing: 4,
+          fontWeight: FontWeight.w900,
+        ),
       ),
       actions: [
         Padding(
-          padding: AppSpacing.horizontal(10),
-          child: AppIconButton(
-            icon: Icons.search_outlined,
-            onPressed: () {
-              final searchCubit = sl<SearchCubit>();
-              showSearch(
-                context: context,
-                delegate: CustomSearchDelegate(searchCubit: searchCubit),
-              );
-            },
-            iconColor: AppColors.slateGray,
-            size: 26,
-          ),
+          padding: AppSpacing.only(right: 15),
+          child: Image.asset(AppConstants.appLogo, height: 32.h),
         ),
       ],
     );

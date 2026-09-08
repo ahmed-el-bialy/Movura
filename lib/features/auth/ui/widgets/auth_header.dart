@@ -23,6 +23,12 @@ class AuthHeader extends StatelessWidget {
           style: TextStyles.font40BoldPureWhite.copyWith(
             fontSize: 34.sp,
             letterSpacing: -0.5,
+            shadows: [
+              Shadow(
+                color: AppColors.neonBlue.withValues(alpha: 0.3),
+                blurRadius: 15,
+              ),
+            ],
           ),
         ),
         Text(

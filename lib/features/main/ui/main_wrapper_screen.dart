@@ -40,15 +40,24 @@ class _MainWrapperScreenState extends State<MainWrapperScreen> {
     return BlocProvider.value(
       // Provide the existing singleton — never close it here
       value: sl<LibraryCubit>(),
-      child: Scaffold(
-        extendBody: true,
-        body: IndexedStack(
-          index: _currentIndex,
-          children: _screens,
-        ),
-        bottomNavigationBar: AppNavigationBar(
-          activeIndex: _currentIndex,
-          onTabChanged: _onTabChanged,
+      child: PopScope(
+        canPop: _currentIndex == 0,
+        onPopInvokedWithResult: (didPop, result) {
+          if (didPop) return;
+          if (_currentIndex != 0) {
+            setState(() => _currentIndex = 0);
+          }
+        },
+        child: Scaffold(
+          extendBody: true,
+          body: IndexedStack(
+            index: _currentIndex,
+            children: _screens,
+          ),
+          bottomNavigationBar: AppNavigationBar(
+            activeIndex: _currentIndex,
+            onTabChanged: _onTabChanged,
+          ),
         ),
       ),
     );
