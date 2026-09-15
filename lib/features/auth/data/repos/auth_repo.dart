@@ -95,10 +95,39 @@ class AuthRepo {
     required String email,
     required String name,
   }) async {
-    final userData = await authServices.getUserData(uid: uid);
+    try {
+      final userData = await authServices.getUserData(uid: uid);
 
-    if (userData.isEmpty) {
-      final newUser = UserModel(
+      if (userData.isEmpty) {
+        final newUser = UserModel(
+          id: uid,
+          email: email,
+          name: name,
+          favorites: [],
+          watched: [],
+          toWatch: [],
+          watchNow: [],
+        );
+        await authServices.saveUserData(
+          userData: {
+            'id': uid,
+            'email': email,
+            'name': name,
+            'favorites': {},
+            'watched': {},
+            'toWatch': {},
+            'watchNow': {},
+          },
+          uid: uid,
+        );
+        return newUser;
+      }
+
+      return UserModel.fromJson(userData);
+    } catch (_) {
+      // Fallback: If Firestore database is not created in console yet,
+      // return basic UserModel so user authentication still succeeds.
+      return UserModel(
         id: uid,
         email: email,
         name: name,
@@ -107,22 +136,7 @@ class AuthRepo {
         toWatch: [],
         watchNow: [],
       );
-      await authServices.saveUserData(
-        userData: {
-          'id': uid,
-          'email': email,
-          'name': name,
-          'favorites': {},
-          'watched': {},
-          'toWatch': {},
-          'watchNow': {},
-        },
-        uid: uid,
-      );
-      return newUser;
     }
-
-    return UserModel.fromJson(userData);
   }
 
   Future<UserModel?> signInWithFacebook() async {
