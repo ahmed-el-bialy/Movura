@@ -19,6 +19,7 @@ class AuthInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final act = action;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -32,7 +33,7 @@ class AuthInputField extends StatelessWidget {
                 color: AppColors.slateGray,
               ),
             ),
-            if (action != null) action,
+            if (act != null) act,
           ],
         ),
         AppSpacing.verticalSpacing(AppSpacing.s),
