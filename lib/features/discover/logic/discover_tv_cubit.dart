@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/core/models/poster_model.dart';
+import '../../../core/networking/api_error_handler.dart';
 import '../data/repo/discover_repo.dart';
 
 abstract class DiscoverTvState {}
@@ -31,6 +32,8 @@ class DiscoverTvCubit extends Cubit<DiscoverTvState> {
   DiscoverTvCubit(this._repo) : super(DiscoverTvInitial());
 
   Future<void> getDiscoverTv() async {
+    if (state is DiscoverTvLoaded) return;
+
     emit(DiscoverTvLoading());
     try {
       final results = await Future.wait([
@@ -39,7 +42,7 @@ class DiscoverTvCubit extends Cubit<DiscoverTvState> {
         _repo.getTvByCategory("on_the_air"),
         _repo.getTvByCategory("popular"),
         _repo.getTvByCategory("top_rated"),
-      ]);
+      ]).timeout(const Duration(seconds: 15));
 
       emit(DiscoverTvLoaded(
         trendingToday: results[0],
@@ -49,7 +52,7 @@ class DiscoverTvCubit extends Cubit<DiscoverTvState> {
         topRated: results[4],
       ));
     } catch (e) {
-      emit(DiscoverTvError(e.toString()));
+      emit(DiscoverTvError(ApiErrorHandler.handle(e)));
     }
   }
 }

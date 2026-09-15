@@ -7,9 +7,9 @@ class LibraryServices {
 
   String? get currentUid => _firebaseAuth.currentUser?.uid;
 
-  Stream<DocumentSnapshot<Map<String, dynamic>>>? getUserLibraryStream() {
+  Stream<DocumentSnapshot<Map<String, dynamic>>> getUserLibraryStream() {
     final uid = currentUid;
-    if (uid == null) return null;
+    if (uid == null) return const Stream.empty();
     return _firestore.collection('users').doc(uid).snapshots();
   }
 
@@ -22,15 +22,19 @@ class LibraryServices {
     if (uid == null) return;
 
     final docRef = _firestore.collection('users').doc(uid);
+    final itemId = posterJson['id']?.toString();
+    if (itemId == null || itemId.isEmpty) return;
 
     if (isAdding) {
       await docRef.set({
-        collectionName: FieldValue.arrayUnion([posterJson]),
+        collectionName: {
+          itemId: posterJson,
+        },
       }, SetOptions(merge: true));
     } else {
-      await docRef.set({
-        collectionName: FieldValue.arrayRemove([posterJson]),
-      }, SetOptions(merge: true));
+      await docRef.update({
+        '$collectionName.$itemId': FieldValue.delete(),
+      });
     }
   }
 }

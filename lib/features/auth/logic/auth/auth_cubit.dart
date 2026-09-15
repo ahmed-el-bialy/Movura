@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:movura/core/networking/api_error_handler.dart';
 import '../../data/repos/auth_repo.dart';
 import 'auth_state.dart';
 
@@ -14,7 +15,7 @@ class AuthCubit extends Cubit<AuthState> {
       final user = await authRepo.login(email, password);
       emit(AuthLoaded(user));
     } catch (e) {
-      emit(AuthError(e.toString()));
+      emit(AuthError(ApiErrorHandler.handle(e)));
     }
   }
 
@@ -32,7 +33,7 @@ class AuthCubit extends Cubit<AuthState> {
       );
       emit(AuthLoaded(user));
     } catch (e) {
-      emit(AuthError(e.toString()));
+      emit(AuthError(ApiErrorHandler.handle(e)));
     }
   }
 
@@ -64,7 +65,7 @@ class AuthCubit extends Cubit<AuthState> {
         emit(AuthInitial());
       }
     } catch (e) {
-      emit(AuthError(e.toString()));
+      emit(AuthError(ApiErrorHandler.handle(e)));
     }
   }
 
@@ -78,7 +79,7 @@ class AuthCubit extends Cubit<AuthState> {
         emit(AuthInitial());
       }
     } catch (e) {
-      emit(AuthError(e.toString()));
+      emit(AuthError(ApiErrorHandler.handle(e)));
     }
   }
 
@@ -92,7 +93,7 @@ class AuthCubit extends Cubit<AuthState> {
         emit(AuthInitial());
       }
     } catch (e) {
-      emit(AuthError(e.toString()));
+      emit(AuthError(ApiErrorHandler.handle(e)));
     }
   }
 }

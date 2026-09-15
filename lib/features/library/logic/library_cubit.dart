@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/core/models/poster_model.dart';
+import '../../../core/networking/api_error_handler.dart';
 import '../data/repos/library_repo.dart';
 import 'library_state.dart';
 
@@ -14,11 +15,20 @@ class LibraryCubit extends Cubit<LibraryState> {
     this.libraryRepo, {
     Stream<User?>? authStateStream,
   }) : super(LibraryInitial()) {
-    final authStream = authStateStream ?? FirebaseAuth.instance.authStateChanges();
+    final authStream =
+        authStateStream ?? FirebaseAuth.instance.authStateChanges();
     _authSubscription = authStream.listen((user) {
-      listenToLibrary();
+      if (user != null) {
+        listenToLibrary();
+      } else {
+        _librarySubscription?.cancel();
+        emit(LibraryLoaded(null));
+      }
     });
-    listenToLibrary();
+
+    if (FirebaseAuth.instance.currentUser != null) {
+      listenToLibrary();
+    }
   }
 
   void listenToLibrary() {
@@ -29,7 +39,7 @@ class LibraryCubit extends Cubit<LibraryState> {
         emit(LibraryLoaded(userModel));
       },
       onError: (error) {
-        emit(LibraryError(error.toString()));
+        emit(LibraryError(ApiErrorHandler.handle(error)));
       },
     );
   }
@@ -66,12 +76,23 @@ class LibraryCubit extends Cubit<LibraryState> {
     required PosterModel poster,
     required String collectionName,
   }) async {
-    final currentlyIn = isItemInCollection(poster, collectionName);
-    await libraryRepo.toggleItem(
-      poster: poster,
-      collectionName: collectionName,
-      isAdding: !currentlyIn,
-    );
+    final uid = FirebaseAuth.instance.currentUser?.uid;
+    if (uid == null) {
+      emit(LibraryError("Please sign in to manage your library."));
+      return;
+    }
+
+    try {
+      final currentlyIn = isItemInCollection(poster, collectionName);
+      await libraryRepo.toggleItem(
+        poster: poster,
+        collectionName: collectionName,
+        isAdding: !currentlyIn,
+      );
+      // No need to emit success here, the stream listener handles it.
+    } catch (e) {
+      emit(LibraryError(ApiErrorHandler.handle(e)));
+    }
   }
 
   @override

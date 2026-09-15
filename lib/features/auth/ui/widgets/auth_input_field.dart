@@ -32,7 +32,7 @@ class AuthInputField extends StatelessWidget {
                 color: AppColors.slateGray,
               ),
             ),
-            ?action,
+            if (action != null) action,
           ],
         ),
         AppSpacing.verticalSpacing(AppSpacing.s),

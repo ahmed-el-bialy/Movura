@@ -15,25 +15,11 @@ class AuthRepo {
         password: password,
       );
 
-      final userData = await authServices.getUserData(uid: credential.user!.uid);
-      if (userData.isEmpty) {
-        final newUser = UserModel(
-          id: credential.user!.uid,
-          email: email,
-          name: credential.user!.displayName ?? email.split('@').first,
-          favorites: [],
-          watched: [],
-          toWatch: [],
-          watchNow: [],
-        );
-        await authServices.saveUserData(
-          userData: newUser.toJson(),
-          uid: newUser.id,
-        );
-        return newUser;
-      }
-
-      return UserModel.fromJson(userData);
+      return await _getOrCreateUser(
+        uid: credential.user!.uid,
+        email: email,
+        name: credential.user!.displayName ?? email.split('@').first,
+      );
     } on FirebaseAuthException catch (e) {
       throw _handleAuthException(e);
     } catch (e) {
@@ -54,22 +40,11 @@ class AuthRepo {
 
       await authServices.updateUserName(name: name);
 
-      final newUser = UserModel(
-        id: credential.user!.uid,
+      return await _getOrCreateUser(
+        uid: credential.user!.uid,
         email: email,
         name: name,
-        favorites: [],
-        watched: [],
-        toWatch: [],
-        watchNow: [],
       );
-
-      await authServices.saveUserData(
-        userData: newUser.toJson(),
-        uid: newUser.id,
-      );
-
-      return newUser;
     } on FirebaseAuthException catch (e) {
       throw _handleAuthException(e);
     } catch (e) {
@@ -83,26 +58,11 @@ class AuthRepo {
       if (credential == null || credential.user == null) return null;
 
       final user = credential.user!;
-      final userData = await authServices.getUserData(uid: user.uid);
-
-      if (userData.isEmpty) {
-        final newUser = UserModel(
-          id: user.uid,
-          email: user.email ?? "",
-          name: user.displayName ?? "Google User",
-          favorites: [],
-          watched: [],
-          toWatch: [],
-          watchNow: [],
-        );
-        await authServices.saveUserData(
-          userData: newUser.toJson(),
-          uid: newUser.id,
-        );
-        return newUser;
-      }
-
-      return UserModel.fromJson(userData);
+      return await _getOrCreateUser(
+        uid: user.uid,
+        email: user.email ?? "",
+        name: user.displayName ?? "Google User",
+      );
     } on FirebaseAuthException catch (e) {
       throw _handleAuthException(e);
     } catch (e) {
@@ -116,26 +76,11 @@ class AuthRepo {
       if (credential == null || credential.user == null) return null;
 
       final user = credential.user!;
-      final userData = await authServices.getUserData(uid: user.uid);
-
-      if (userData.isEmpty) {
-        final newUser = UserModel(
-          id: user.uid,
-          email: user.email ?? "",
-          name: user.displayName ?? "Apple User",
-          favorites: [],
-          watched: [],
-          toWatch: [],
-          watchNow: [],
-        );
-        await authServices.saveUserData(
-          userData: newUser.toJson(),
-          uid: newUser.id,
-        );
-        return newUser;
-      }
-
-      return UserModel.fromJson(userData);
+      return await _getOrCreateUser(
+        uid: user.uid,
+        email: user.email ?? "",
+        name: user.displayName ?? "Apple User",
+      );
     } on FirebaseAuthException catch (e) {
       throw _handleAuthException(e);
     } catch (e) {
@@ -143,8 +88,47 @@ class AuthRepo {
     }
   }
 
+  /// Robust helper to ensure user exists in Firestore.
+  /// If missing, it initializes with empty collection arrays.
+  Future<UserModel> _getOrCreateUser({
+    required String uid,
+    required String email,
+    required String name,
+  }) async {
+    final userData = await authServices.getUserData(uid: uid);
+
+    if (userData.isEmpty) {
+      final newUser = UserModel(
+        id: uid,
+        email: email,
+        name: name,
+        favorites: [],
+        watched: [],
+        toWatch: [],
+        watchNow: [],
+      );
+      await authServices.saveUserData(
+        userData: {
+          'id': uid,
+          'email': email,
+          'name': name,
+          'favorites': {},
+          'watched': {},
+          'toWatch': {},
+          'watchNow': {},
+        },
+        uid: uid,
+      );
+      return newUser;
+    }
+
+    return UserModel.fromJson(userData);
+  }
+
   Future<UserModel?> signInWithFacebook() async {
-    throw "Facebook Sign-In requires developer credentials.";
+    // Placeholder: Facebook login integration requires native setup (App ID, Secret)
+    // and the flutter_facebook_auth package. 
+    throw "Facebook Sign-In is currently being optimized. Please use Google or Email for now.";
   }
 
   String _handleAuthException(FirebaseAuthException e) {

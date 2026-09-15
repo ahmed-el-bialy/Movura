@@ -3,6 +3,7 @@ import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 
 import '../../../../core/models/poster_model.dart';
+import '../../../home/data/web_services/home_web_services.dart';
 
 part 'discover_web_services.g.dart';
 
@@ -50,5 +51,15 @@ abstract class DiscoverWebServices {
   Future<PosterResponse> getTrendingPeople({
     @Path("timeWindow") required String timeWindow,
     @Query("page") required int page,
+  });
+
+  @GET("genre/movie/list")
+  Future<GenreResponse> getMovieGenres({
+    @Query("language") String language = "en-US",
+  });
+
+  @GET("genre/tv/list")
+  Future<GenreResponse> getTvGenres({
+    @Query("language") String language = "en-US",
   });
 }

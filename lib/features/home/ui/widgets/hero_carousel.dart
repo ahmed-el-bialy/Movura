@@ -16,8 +16,8 @@ import 'package:movura/core/widgets/loading/app_shimmer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 const _kHeroItemCount = 8;
-const _kVirtualCount = 99999;
-const _kInitialPage = (_kVirtualCount ~/ 2);
+const _kVirtualCount = 1000; // Stable count for infinite loop
+const _kInitialPage = 500;
 
 class HeroCarousel extends StatefulWidget {
   final List<PosterModel> posters;
@@ -38,8 +38,9 @@ class _HeroCarouselState extends State<HeroCarousel> {
   void initState() {
     super.initState();
     _heroItems = widget.posters.take(_kHeroItemCount).toList();
+    // Using viewportFraction 1.0 and handling peeking manually to avoid precision errors in Slivers
     _pageController = PageController(
-      viewportFraction: 0.90,
+      viewportFraction: 1.0,
       initialPage: _kInitialPage,
     );
     if (_heroItems.length > 1) _startAutoPlay();
@@ -83,40 +84,23 @@ class _HeroCarouselState extends State<HeroCarousel> {
               final item = _heroItems[realIndex];
               final imageUrl = _resolveImage(item);
 
-              return AnimatedBuilder(
-                animation: _pageController,
-                builder: (context, child) {
-                  double value = 0.0;
-                  if (_pageController.position.haveDimensions) {
-                    value = (virtualIndex - (_pageController.page ?? 0));
-                    value = (1 - (value.abs() * 0.12)).clamp(0.88, 1.0);
-                  } else {
-                    value = virtualIndex == _kInitialPage ? 1.0 : 0.88;
-                  }
-
-                  return Transform.scale(
-                    scale: value,
-                    child: Padding(
-                      padding: AppSpacing.horizontal(4),
-                      child: GestureDetector(
-                        onTap: () {
-                          final mType = (item.mediaType != null &&
-                                  item.mediaType!.isNotEmpty)
-                              ? item.mediaType!
-                              : 'movie';
-                          context.pushNamed(
-                            RouteNames.detailsScreen,
-                            arguments: DetailsArgumentModel(
-                              mediaType: mType,
-                              mediaId: item.id,
-                            ),
-                          );
-                        },
-                        child: _HeroCard(item: item, imageUrl: imageUrl),
-                      ),
+              return GestureDetector(
+                onTap: () {
+                  final mType = (item.mediaType != null && item.mediaType!.isNotEmpty)
+                      ? item.mediaType!
+                      : 'movie';
+                  context.pushNamed(
+                    RouteNames.detailsScreen,
+                    arguments: DetailsArgumentModel(
+                      mediaType: mType,
+                      mediaId: item.id,
                     ),
                   );
                 },
+                child: Padding(
+                  padding: AppSpacing.horizontal(12),
+                  child: _HeroCard(item: item, imageUrl: imageUrl),
+                ),
               );
             },
           ),
@@ -242,7 +226,7 @@ class _HeroCard extends StatelessWidget {
                     style: TextStyles.font17BoldIceBlueMontserrat.copyWith(
                       fontSize: 16.sp,
                       shadows: [
-                        Shadow(color: AppColors.trueBlack, blurRadius: 10),
+                        Shadow(color: Colors.black, blurRadius: 10),
                       ],
                     ),
                   ),

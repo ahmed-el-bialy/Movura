@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/core/models/poster_model.dart';
+import '../../../core/networking/api_error_handler.dart';
 import '../data/repo/discover_repo.dart';
 
 abstract class DiscoverPeopleState {}
@@ -25,19 +26,21 @@ class DiscoverPeopleCubit extends Cubit<DiscoverPeopleState> {
   DiscoverPeopleCubit(this._repo) : super(DiscoverPeopleInitial());
 
   Future<void> getDiscoverPeople() async {
+    if (state is DiscoverPeopleLoaded) return;
+
     emit(DiscoverPeopleLoading());
     try {
       final results = await Future.wait([
         _repo.getPopularPeople(),
         _repo.getTrendingPeople("day"),
-      ]);
+      ]).timeout(const Duration(seconds: 15));
 
       emit(DiscoverPeopleLoaded(
         popular: results[0],
         trendingDay: results[1],
       ));
     } catch (e) {
-      emit(DiscoverPeopleError(e.toString()));
+      emit(DiscoverPeopleError(ApiErrorHandler.handle(e)));
     }
   }
 }

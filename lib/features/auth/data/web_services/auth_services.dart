@@ -13,61 +13,99 @@ class AuthServices {
     required String email,
     required String password,
   }) async {
-    return await firebaseAuth.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
+    try {
+      return await firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } catch (e) {
+      rethrow;
+    }
   }
 
   Future<UserCredential> signUpWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
-    return await firebaseAuth.createUserWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
+    try {
+      return await firebaseAuth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } catch (e) {
+      rethrow;
+    }
   }
 
   Future<UserCredential?> signInWithGoogle() async {
     try {
+      // Sign in with Google
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-      if (googleUser == null) return null; // User canceled the sign-in flow
+      if (googleUser == null) return null; // User canceled
 
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      // Get auth details from the account
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+
+      // Create a new credential
       final OAuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
 
+      // Once signed in, return the UserCredential
       return await firebaseAuth.signInWithCredential(credential);
-    } on FirebaseAuthException {
-      rethrow;
+    } on FirebaseAuthException catch (e) {
+      throw e.message ?? 'Firebase Auth error occurred.';
     } catch (e) {
-      throw 'Google Sign-In failed: ${e.toString()}';
+      final err = e.toString();
+      if (err.contains('10') || err.contains('DEVELOPER_ERROR')) {
+        throw 'Google Sign-In configuration issue (API Exception 10).\n\nPlease add your Android Debug SHA-1 fingerprint to Firebase Console.';
+      }
+      if (err.contains('network_error')) {
+        throw 'Network error. Please check your connection.';
+      }
+      throw 'Google Sign-In failed: $err';
     }
   }
 
   Future<UserCredential?> signInWithApple() async {
-    final AppleAuthProvider appleProvider = AppleAuthProvider();
-    return await firebaseAuth.signInWithProvider(appleProvider);
+    try {
+      final AppleAuthProvider appleProvider = AppleAuthProvider();
+      return await firebaseAuth.signInWithProvider(appleProvider);
+    } catch (e) {
+      rethrow;
+    }
   }
 
   Future<void> saveUserData({
     required Map<String, dynamic> userData,
     required String uid,
   }) async {
-    await firestore.collection('users').doc(uid).set(userData, SetOptions(merge: true));
+    try {
+      await firestore
+          .collection('users')
+          .doc(uid)
+          .set(userData, SetOptions(merge: true));
+    } catch (e) {
+      throw 'Failed to save user data: ${e.toString()}';
+    }
   }
 
   Future<Map<String, dynamic>> getUserData({required String uid}) async {
-    final doc = await firestore.collection('users').doc(uid).get();
-    return doc.data() ?? {};
+    try {
+      final doc = await firestore.collection('users').doc(uid).get();
+      return doc.data() ?? {};
+    } catch (e) {
+      throw 'Failed to fetch user data: ${e.toString()}';
+    }
   }
 
   Future<void> signOut() async {
-    await _googleSignIn.signOut();
-    await firebaseAuth.signOut();
+    try {
+      await _googleSignIn.signOut();
+      await firebaseAuth.signOut();
+    } catch (_) {}
   }
 
   Future<void> resetPassword({required String email}) async {

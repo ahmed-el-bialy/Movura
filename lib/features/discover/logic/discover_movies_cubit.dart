@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movura/core/models/poster_model.dart';
+import '../../../core/networking/api_error_handler.dart';
 import '../data/repo/discover_repo.dart';
 
 abstract class DiscoverMoviesState {}
@@ -33,6 +34,8 @@ class DiscoverMoviesCubit extends Cubit<DiscoverMoviesState> {
   DiscoverMoviesCubit(this._repo) : super(DiscoverMoviesInitial());
 
   Future<void> getDiscoverMovies() async {
+    if (state is DiscoverMoviesLoaded) return;
+
     emit(DiscoverMoviesLoading());
     try {
       final results = await Future.wait([
@@ -42,7 +45,7 @@ class DiscoverMoviesCubit extends Cubit<DiscoverMoviesState> {
         _repo.getMoviesByCategory("now_playing"),
         _repo.getMoviesByCategory("popular"),
         _repo.getMoviesByCategory("top_rated"),
-      ]);
+      ]).timeout(const Duration(seconds: 15));
 
       emit(DiscoverMoviesLoaded(
         trendingToday: results[0],
@@ -53,7 +56,7 @@ class DiscoverMoviesCubit extends Cubit<DiscoverMoviesState> {
         topRated: results[5],
       ));
     } catch (e) {
-      emit(DiscoverMoviesError(e.toString()));
+      emit(DiscoverMoviesError(ApiErrorHandler.handle(e)));
     }
   }
 }
