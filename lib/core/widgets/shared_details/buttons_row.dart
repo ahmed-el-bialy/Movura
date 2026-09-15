@@ -29,11 +29,38 @@ class ButtonsRow extends StatelessWidget {
       child: BlocBuilder<LibraryCubit, LibraryState>(
         builder: (context, state) {
           final cubit = sl<LibraryCubit>();
-          final isSaved = posterModel != null &&
-              (cubit.isItemInCollection(posterModel!, 'favorites') ||
-                  cubit.isItemInCollection(posterModel!, 'toWatch') ||
-                  cubit.isItemInCollection(posterModel!, 'watched') ||
-                  cubit.isItemInCollection(posterModel!, 'watchNow'));
+          final isFav = posterModel != null &&
+              cubit.isItemInCollection(posterModel!, 'favorites');
+          final isToWatch = posterModel != null &&
+              cubit.isItemInCollection(posterModel!, 'toWatch');
+          final isWatched = posterModel != null &&
+              cubit.isItemInCollection(posterModel!, 'watched');
+          final isWatchNow = posterModel != null &&
+              cubit.isItemInCollection(posterModel!, 'watchNow');
+
+          final savedCollections = [
+            if (isFav) (icon: Icons.favorite_rounded, color: AppColors.softRed),
+            if (isToWatch)
+              (icon: Icons.bookmark_rounded, color: AppColors.neonBlue),
+            if (isWatched)
+              (icon: Icons.check_circle_rounded, color: AppColors.tealCyan),
+            if (isWatchNow)
+              (icon: Icons.play_circle_fill_rounded, color: AppColors.amberGold),
+          ];
+
+          final IconData displayIcon;
+          final Color displayColor;
+
+          if (savedCollections.isEmpty) {
+            displayIcon = Icons.add_rounded;
+            displayColor = AppColors.neonBlue;
+          } else if (savedCollections.length == 1) {
+            displayIcon = savedCollections.first.icon;
+            displayColor = savedCollections.first.color;
+          } else {
+            displayIcon = Icons.check_rounded;
+            displayColor = AppColors.profitGreen;
+          }
 
           return Padding(
             padding: AppSpacing.horizontal(10),
@@ -68,7 +95,7 @@ class ButtonsRow extends StatelessWidget {
                 ),
                 AppSpacing.horizontalSpacing(AppSpacing.m),
                 _CircularActionButton(
-                  icon: isSaved ? Icons.check_rounded : Icons.add_rounded,
+                  icon: displayIcon,
                   onPressed: () {
                     final parentCubit = sl<LibraryCubit>();
                     showModalBottomSheet(
@@ -80,7 +107,7 @@ class ButtonsRow extends StatelessWidget {
                       ),
                     );
                   },
-                  color: isSaved ? AppColors.profitGreen : AppColors.neonBlue,
+                  color: displayColor,
                 ),
                 AppSpacing.horizontalSpacing(AppSpacing.m),
               ],
