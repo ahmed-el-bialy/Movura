@@ -32,9 +32,11 @@ class LibraryServices {
         },
       }, SetOptions(merge: true));
     } else {
-      await docRef.update({
-        '$collectionName.$itemId': FieldValue.delete(),
-      });
+      await docRef.set({
+        collectionName: {
+          itemId: FieldValue.delete(),
+        },
+      }, SetOptions(merge: true));
     }
   }
 }
