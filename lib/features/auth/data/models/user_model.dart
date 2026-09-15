@@ -45,8 +45,17 @@ class UserModel {
     return [];
   }
 
-  factory UserModel.fromJson(Map<String, dynamic> json) =>
-      _$UserModelFromJson(json);
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      id: json['id']?.toString() ?? '',
+      email: json['email']?.toString() ?? '',
+      name: json['name']?.toString() ?? 'Cinematic Explorer',
+      favorites: _parsePosterList(json['favorites']),
+      watched: _parsePosterList(json['watched']),
+      toWatch: _parsePosterList(json['toWatch']),
+      watchNow: _parsePosterList(json['watchNow']),
+    );
+  }
 
   Map<String, dynamic> toJson() => _$UserModelToJson(this);
 }
