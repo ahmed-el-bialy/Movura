@@ -64,8 +64,30 @@ class PosterModel {
     this.firstAirDate,
   });
 
-  factory PosterModel.fromJson(Map<String, dynamic> json) =>
-      _$PosterModelFromJson(json);
+  factory PosterModel.fromJson(Map<String, dynamic> json) {
+    return PosterModel(
+      id: (json['id'] is num)
+          ? (json['id'] as num).toInt()
+          : (int.tryParse(json['id']?.toString() ?? '0') ?? 0),
+      title: json['title']?.toString(),
+      name: json['name']?.toString(),
+      posterPath: json['poster_path']?.toString(),
+      mediaType: json['media_type']?.toString(),
+      voteAverage: (json['vote_average'] is num)
+          ? (json['vote_average'] as num).toDouble()
+          : (double.tryParse(json['vote_average']?.toString() ?? '')),
+      knownForDepartment: json['known_for_department']?.toString(),
+      profilePath: json['profile_path']?.toString(),
+      genreIds: (json['genre_ids'] as List<dynamic>?)
+          ?.map((e) => e is num ? e.toInt() : (int.tryParse(e.toString()) ?? 0))
+          .toList(),
+      popularity: (json['popularity'] is num)
+          ? (json['popularity'] as num).toDouble()
+          : (double.tryParse(json['popularity']?.toString() ?? '')),
+      releaseDate: json['release_date']?.toString(),
+      firstAirDate: json['first_air_date']?.toString(),
+    );
+  }
 
   Map<String, dynamic> toJson() => _$PosterModelToJson(this);
 

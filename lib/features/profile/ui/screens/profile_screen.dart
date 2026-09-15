@@ -143,7 +143,7 @@ class ProfileScreen extends StatelessWidget {
                             ? Icons.logout_rounded
                             : Icons.login_rounded,
                         color: currentUser != null
-                            ? AppColors.softRed
+                            ? AppColors.slateGray
                             : AppColors.neonBlue,
                         onTap: () async {
                           if (currentUser != null) {
@@ -158,6 +158,13 @@ class ProfileScreen extends StatelessWidget {
                           }
                         },
                       ),
+                      if (currentUser != null)
+                        _ProfileCollectionTile(
+                          title: 'Delete Account',
+                          icon: Icons.delete_forever_rounded,
+                          color: AppColors.softRed,
+                          onTap: () => _showDeleteAccountDialog(context),
+                        ),
                       AppSpacing.verticalSpacing(100),
                     ],
                   );
@@ -166,7 +173,93 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
         ),
+    );
+  }
 
+  void _showDeleteAccountDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        backgroundColor: AppColors.charcoalBlack,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.r),
+          side: BorderSide(color: AppColors.softRed.withValues(alpha: 0.4)),
+        ),
+        title: Row(
+          children: [
+            Icon(Icons.warning_amber_rounded, color: AppColors.softRed, size: 24.sp),
+            SizedBox(width: 8.w),
+            Text(
+              "Delete Account?",
+              style: TextStyles.font17BoldIceBlueMontserrat.copyWith(
+                fontSize: 18.sp,
+                color: AppColors.pureWhite,
+              ),
+            ),
+          ],
+        ),
+        content: Text(
+          "Are you sure you want to permanently delete your account and all your saved collections? This action cannot be undone.",
+          style: TextStyles.font12RegularCoolGrayManrope.copyWith(
+            color: AppColors.coolGray,
+            height: 1.5,
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext),
+            child: Text(
+              "Cancel",
+              style: TextStyle(color: AppColors.coolGray, fontSize: 13.sp),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              Navigator.pop(dialogContext);
+              try {
+                final authServices = sl<AuthServices>();
+                final uid = authServices.currentUser?.uid;
+                if (uid != null) {
+                  await authServices.deleteUserData(uid: uid);
+                }
+                await authServices.currentUser?.delete();
+                await authServices.signOut();
+                if (context.mounted) {
+                  context.pushAndRemoveUntil(
+                    routeName: RouteNames.logInScreen,
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text("Your account has been deleted."),
+                      backgroundColor: AppColors.softRed,
+                    ),
+                  );
+                }
+              } catch (e) {
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text("Failed to delete account: ${e.toString()}"),
+                      backgroundColor: AppColors.softRed,
+                    ),
+                  );
+                }
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.softRed,
+              foregroundColor: AppColors.pureWhite,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12.r),
+              ),
+            ),
+            child: Text(
+              "Delete",
+              style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
