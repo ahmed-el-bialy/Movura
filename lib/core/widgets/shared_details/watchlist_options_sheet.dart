@@ -34,12 +34,14 @@ class _WatchlistOptionsSheetState extends State<WatchlistOptionsSheet> {
     setState(() => _loadingKeys.add(key));
 
     try {
-      await libraryCubit.toggleCollectionItem(
-        poster: widget.posterModel!,
-        collectionName: key,
-      );
-    } catch (e) {
-      // Handle error, maybe show a snackbar
+      await Future.any([
+        libraryCubit.toggleCollectionItem(
+          poster: widget.posterModel!,
+          collectionName: key,
+        ),
+        Future.delayed(const Duration(milliseconds: 350)),
+      ]);
+    } catch (_) {
     } finally {
       if (mounted) setState(() => _loadingKeys.remove(key));
     }
@@ -465,6 +467,11 @@ class _ToggleIndicatorState extends State<_ToggleIndicator>
           color: AppColors.slateGray.withValues(alpha: 0.3),
           width: 1.5,
         ),
+      ),
+      child: Icon(
+        Icons.add_rounded,
+        size: 14.sp,
+        color: AppColors.slateGray.withValues(alpha: 0.4),
       ),
     );
   }
