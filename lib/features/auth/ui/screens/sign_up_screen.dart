@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/constants/app_constants.dart';
@@ -30,12 +31,8 @@ class SignUpScreen extends StatefulWidget {
   State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen>
-    with SingleTickerProviderStateMixin {
+class _SignUpScreenState extends State<SignUpScreen> {
   late final AuthCubit _authCubit;
-  late final AnimationController _animController;
-  late final Animation<double> _fadeAnim;
-  late final Animation<Offset> _slideAnim;
 
   bool isObscure = true;
   final formKey = GlobalKey<FormState>();
@@ -47,22 +44,10 @@ class _SignUpScreenState extends State<SignUpScreen>
   void initState() {
     super.initState();
     _authCubit = sl<AuthCubit>();
-    _animController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 700),
-    );
-    _fadeAnim = CurvedAnimation(parent: _animController, curve: Curves.easeOut);
-    _slideAnim = Tween<Offset>(begin: const Offset(0, 0.06), end: Offset.zero)
-        .animate(
-          CurvedAnimation(parent: _animController, curve: Curves.easeOutCubic),
-        );
-
-    _animController.forward();
   }
 
   @override
   void dispose() {
-    _animController.dispose();
     _authCubit.close();
     nameController.dispose();
     emailController.dispose();
@@ -79,6 +64,7 @@ class _SignUpScreenState extends State<SignUpScreen>
         SnackBar(
           content: Text(state.message),
           backgroundColor: AppColors.softRed,
+          behavior: SnackBarBehavior.floating,
         ),
       );
     }
@@ -98,120 +84,122 @@ class _SignUpScreenState extends State<SignUpScreen>
               children: [
                 const AuthBackground(isSignUp: true),
                 SafeArea(
-                  child: FadeTransition(
-                    opacity: _fadeAnim,
-                    child: SlideTransition(
-                      position: _slideAnim,
-                      child: SingleChildScrollView(
-                        physics: const BouncingScrollPhysics(),
-                        padding: AppSpacing.only(
-                          left: AppSpacing.xl,
-                          right: AppSpacing.xl,
-                          bottom: 40,
-                        ),
-                        child: AutofillGroup(
-                          child: Form(
-                            key: formKey,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                AppSpacing.verticalSpacing(25),
-                                const AuthHeader(
-                                  title: "Create Account",
-                                  subtitle:
-                                      "Join the premiere community for cinema lovers",
-                                ),
-                                AppSpacing.verticalSpacing(30),
-                                AuthFormContainer(
-                                  child: Column(
-                                    children: [
-                                      AuthInputField(
-                                        label: "Full Name",
-                                        child: AppTextFormField(
-                                          controller: nameController,
-                                          hintText: "John Doe",
-                                          autofillHints: const [
-                                            AutofillHints.name,
-                                          ],
-                                          prefixIcon: const AuthPrefixIcon(
-                                            icon: Icons.person_outline_rounded,
-                                          ),
-                                          textInputAction: TextInputAction.next,
-                                          validator: (v) =>
-                                              v == null || v.isEmpty
-                                              ? "Name is required"
-                                              : null,
-                                        ),
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    padding: AppSpacing.only(
+                      left: AppSpacing.xl,
+                      right: AppSpacing.xl,
+                      bottom: 40,
+                    ),
+                    child: AutofillGroup(
+                      child: Form(
+                        key: formKey,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            AppSpacing.verticalSpacing(25),
+                            const AuthHeader(
+                              title: "Create Account",
+                              subtitle:
+                                  "Join the premiere community for cinema lovers",
+                            )
+                                .animate()
+                                .fadeIn(duration: 800.ms, delay: 200.ms)
+                                .scale(begin: const Offset(0.9, 0.9)),
+                            AppSpacing.verticalSpacing(30),
+                            AuthFormContainer(
+                              child: Column(
+                                children: [
+                                  AuthInputField(
+                                    label: "Full Name",
+                                    child: AppTextFormField(
+                                      controller: nameController,
+                                      hintText: "John Doe",
+                                      autofillHints: const [
+                                        AutofillHints.name,
+                                      ],
+                                      prefixIcon: const AuthPrefixIcon(
+                                        icon: Icons.person_outline_rounded,
                                       ),
-                                      AppSpacing.verticalSpacing(AppSpacing.l),
-                                      AuthInputField(
-                                        label: "Email Address",
-                                        child: AppTextFormField(
-                                          controller: emailController,
-                                          inputType: TextInputType.emailAddress,
-                                          hintText: AppConstants.emailExample,
-                                          autofillHints: const [
-                                            AutofillHints.email,
-                                          ],
-                                          prefixIcon: const AuthPrefixIcon(
-                                            icon: Icons.alternate_email_rounded,
-                                          ),
-                                          textInputAction: TextInputAction.next,
-                                          validator: Validators.validateEmail,
-                                        ),
-                                      ),
-                                      AppSpacing.verticalSpacing(AppSpacing.l),
-                                      AuthInputField(
-                                        label: "Password",
-                                        child: AppTextFormField(
-                                          controller: passwordController,
-                                          isObscureText: isObscure,
-                                          hintText:
-                                              AppConstants.passwordExample,
-                                          autofillHints: const [
-                                            AutofillHints.newPassword,
-                                          ],
-                                          prefixIcon: const AuthPrefixIcon(
-                                            icon: Icons.lock_outline_rounded,
-                                          ),
-                                          suffixIcon: IconButton(
-                                            onPressed: () => setState(
-                                              () => isObscure = !isObscure,
-                                            ),
-                                            icon: Icon(
-                                              isObscure
-                                                  ? Icons
-                                                        .visibility_off_outlined
-                                                  : Icons.visibility_outlined,
-                                              color: AppColors.coolGray,
-                                              size: 18.sp,
-                                            ),
-                                          ),
-                                          textInputAction: TextInputAction.done,
-                                          validator:
-                                              Validators.validatePassword,
-                                        ),
-                                      ),
-                                    ],
+                                      textInputAction: TextInputAction.next,
+                                      validator: (v) =>
+                                          v == null || v.isEmpty
+                                          ? "Name is required"
+                                          : null,
+                                    ),
                                   ),
-                                ),
-                                AppSpacing.verticalSpacing(35),
-                                _SignUpButton(
-                                  formKey: formKey,
-                                  nameController: nameController,
-                                  emailController: emailController,
-                                  passwordController: passwordController,
-                                ),
-                                AppSpacing.verticalSpacing(35),
-                                const AuthDivider(),
-                                AppSpacing.verticalSpacing(25),
-                                const SocialButtonsRow(),
-                                AppSpacing.verticalSpacing(30),
-                                const _LoginToggle(),
-                                AppSpacing.verticalSpacing(25),
-                              ],
+                                  AppSpacing.verticalSpacing(AppSpacing.l),
+                                  AuthInputField(
+                                    label: "Email Address",
+                                    child: AppTextFormField(
+                                      controller: emailController,
+                                      inputType: TextInputType.emailAddress,
+                                      hintText: AppConstants.emailExample,
+                                      autofillHints: const [
+                                        AutofillHints.email,
+                                      ],
+                                      prefixIcon: const AuthPrefixIcon(
+                                        icon: Icons.alternate_email_rounded,
+                                      ),
+                                      textInputAction: TextInputAction.next,
+                                      validator: Validators.validateEmail,
+                                    ),
+                                  ),
+                                  AppSpacing.verticalSpacing(AppSpacing.l),
+                                  AuthInputField(
+                                    label: "Password",
+                                    child: AppTextFormField(
+                                      controller: passwordController,
+                                      isObscureText: isObscure,
+                                      hintText:
+                                          AppConstants.passwordExample,
+                                      autofillHints: const [
+                                        AutofillHints.newPassword,
+                                      ],
+                                      prefixIcon: const AuthPrefixIcon(
+                                        icon: Icons.lock_outline_rounded,
+                                      ),
+                                      suffixIcon: IconButton(
+                                        onPressed: () => setState(
+                                          () => isObscure = !isObscure,
+                                        ),
+                                        icon: Icon(
+                                          isObscure
+                                              ? Icons
+                                                    .visibility_off_outlined
+                                              : Icons.visibility_outlined,
+                                          color: AppColors.coolGray,
+                                          size: 18.sp,
+                                        ),
+                                      ),
+                                      textInputAction: TextInputAction.done,
+                                      validator:
+                                          Validators.validatePassword,
+                                    ),
+                                  ),
+                                ],
+                              ).animate(delay: 400.ms).fadeIn().slideY(begin: 0.1, end: 0),
                             ),
-                          ),
+                            AppSpacing.verticalSpacing(35),
+                            _SignUpButton(
+                              formKey: formKey,
+                              nameController: nameController,
+                              emailController: emailController,
+                              passwordController: passwordController,
+                            ).animate(delay: 600.ms).fadeIn().scale(),
+                            AppSpacing.verticalSpacing(35),
+                            const AuthDivider().animate(delay: 800.ms).fadeIn(),
+                            AppSpacing.verticalSpacing(25),
+                            const SocialButtonsRow()
+                                .animate(delay: 1000.ms)
+                                .fadeIn()
+                                .slideY(begin: 0.2, end: 0),
+                            AppSpacing.verticalSpacing(30),
+                            const _LoginToggle()
+                                .animate(delay: 1200.ms)
+                                .fadeIn(),
+                            AppSpacing.verticalSpacing(25),
+                          ],
                         ),
                       ),
                     ),

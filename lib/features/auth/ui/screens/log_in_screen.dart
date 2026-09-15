@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/constants/app_constants.dart';
@@ -21,6 +22,7 @@ import '../widgets/auth_form_container.dart';
 import '../widgets/auth_header.dart';
 import '../widgets/auth_input_field.dart';
 import '../widgets/auth_prefix_icon.dart';
+import '../widgets/forgot_password_sheet.dart';
 import '../widgets/social_button_row.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -30,12 +32,8 @@ class LogInScreen extends StatefulWidget {
   State<LogInScreen> createState() => _LogInScreenState();
 }
 
-class _LogInScreenState extends State<LogInScreen>
-    with SingleTickerProviderStateMixin {
+class _LogInScreenState extends State<LogInScreen> {
   late final AuthCubit _authCubit;
-  late final AnimationController _animController;
-  late final Animation<double> _fadeAnim;
-  late final Animation<Offset> _slideAnim;
 
   final formKey = GlobalKey<FormState>();
   final passwordController = TextEditingController();
@@ -47,22 +45,10 @@ class _LogInScreenState extends State<LogInScreen>
   void initState() {
     super.initState();
     _authCubit = sl<AuthCubit>();
-    _animController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 700),
-    );
-    _fadeAnim = CurvedAnimation(parent: _animController, curve: Curves.easeOut);
-    _slideAnim = Tween<Offset>(begin: const Offset(0, 0.06), end: Offset.zero)
-        .animate(
-          CurvedAnimation(parent: _animController, curve: Curves.easeOutCubic),
-        );
-
-    _animController.forward();
   }
 
   @override
   void dispose() {
-    _animController.dispose();
     _authCubit.close();
     emailController.dispose();
     passwordController.dispose();
@@ -78,9 +64,14 @@ class _LogInScreenState extends State<LogInScreen>
         SnackBar(
           content: Text(state.message),
           backgroundColor: AppColors.softRed,
+          behavior: SnackBarBehavior.floating,
         ),
       );
     }
+  }
+
+  void _showForgotPasswordSheet(BuildContext context) {
+    ForgotPasswordSheet.show(context, email: emailController.text);
   }
 
   @override
@@ -97,107 +88,114 @@ class _LogInScreenState extends State<LogInScreen>
               children: [
                 const AuthBackground(),
                 SafeArea(
-                  child: FadeTransition(
-                    opacity: _fadeAnim,
-                    child: SlideTransition(
-                      position: _slideAnim,
-                      child: SingleChildScrollView(
-                        physics: const BouncingScrollPhysics(),
-                        padding: AppSpacing.only(
-                          left: AppSpacing.xl,
-                          right: AppSpacing.xl,
-                          bottom: 40,
-                        ),
-                        child: AutofillGroup(
-                          child: Form(
-                            key: formKey,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                AppSpacing.verticalSpacing(15),
-                                const _SkipButton(),
-                                const AuthHeader(
-                                  title: "Welcome Back",
-                                  subtitle:
-                                      "Sign in to continue your cinematic journey",
-                                ),
-                                AppSpacing.verticalSpacing(25),
-                                AuthFormContainer(
-                                  child: Column(
-                                    children: [
-                                      AuthInputField(
-                                        label: "Email Address",
-                                        child: AppTextFormField(
-                                          controller: emailController,
-                                          inputType: TextInputType.emailAddress,
-                                          hintText: AppConstants.emailExample,
-                                          autofillHints: const [AutofillHints.email],
-                                          prefixIcon: const AuthPrefixIcon(
-                                            icon: Icons.alternate_email_rounded,
-                                          ),
-                                          textInputAction: TextInputAction.next,
-                                          validator: Validators.validateEmail,
-                                        ),
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    padding: AppSpacing.only(
+                      left: AppSpacing.xl,
+                      right: AppSpacing.xl,
+                      bottom: 40,
+                    ),
+                    child: AutofillGroup(
+                      child: Form(
+                        key: formKey,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            AppSpacing.verticalSpacing(15),
+                            const _SkipButton()
+                                .animate()
+                                .fadeIn(duration: 600.ms, delay: 200.ms)
+                                .slideX(begin: 0.2, end: 0),
+                            const AuthHeader(
+                              title: "Welcome Back",
+                              subtitle:
+                              "Sign in to continue your cinematic journey",
+                            )
+                                .animate()
+                                .fadeIn(duration: 800.ms, delay: 300.ms)
+                                .scale(begin: const Offset(0.9, 0.9)),
+                            AppSpacing.verticalSpacing(25),
+                            AuthFormContainer(
+                              child: Column(
+                                children: [
+                                  AuthInputField(
+                                    label: "Email Address",
+                                    child: AppTextFormField(
+                                      controller: emailController,
+                                      inputType: TextInputType.emailAddress,
+                                      hintText: AppConstants.emailExample,
+                                      autofillHints: const [
+                                        AutofillHints.email,
+                                      ],
+                                      prefixIcon: const AuthPrefixIcon(
+                                        icon: Icons.alternate_email_rounded,
                                       ),
-                                      AppSpacing.verticalSpacing(20),
-                                      AuthInputField(
-                                        label: "Password",
-                                        action: GestureDetector(
-                                          onTap: () {
-                                            // Handle forgot password
-                                          },
-                                          child: Text(
-                                            "Forgot?",
-                                            style: TextStyles.font13MediumNeonBlue
-                                                .copyWith(fontSize: 12.sp),
-                                          ),
-                                        ),
-                                        child: AppTextFormField(
-                                          controller: passwordController,
-                                          isObscureText: isObscure,
-                                          hintText:
-                                              AppConstants.passwordExample,
-                                          autofillHints: const [AutofillHints.password],
-                                          prefixIcon: const AuthPrefixIcon(
-                                            icon: Icons.lock_outline_rounded,
-                                          ),
-                                          suffixIcon: IconButton(
-                                            onPressed: () => setState(
-                                              () => isObscure = !isObscure,
-                                            ),
-                                            icon: Icon(
-                                              isObscure
-                                                  ? Icons
-                                                        .visibility_off_outlined
-                                                  : Icons.visibility_outlined,
-                                              color: AppColors.coolGray,
-                                              size: 18.sp,
-                                            ),
-                                          ),
-                                          textInputAction: TextInputAction.done,
-                                          validator:
-                                              Validators.validatePassword,
-                                        ),
-                                      ),
-                                    ],
+                                      textInputAction: TextInputAction.next,
+                                      validator: Validators.validateEmail,
+                                    ),
                                   ),
-                                ),
-                                AppSpacing.verticalSpacing(30),
-                                _LoginButton(
-                                  formKey: formKey,
-                                  emailController: emailController,
-                                  passwordController: passwordController,
-                                ),
-                                AppSpacing.verticalSpacing(35),
-                                const AuthDivider(),
-                                AppSpacing.verticalSpacing(20),
-                                const SocialButtonsRow(),
-                                AppSpacing.verticalSpacing(25),
-                                const _SignUpToggle(),
-                                AppSpacing.verticalSpacing(20),
-                              ],
+                                  AppSpacing.verticalSpacing(20),
+                                  AuthInputField(
+                                    label: "Password",
+                                    action: GestureDetector(
+                                      onTap: () =>
+                                          _showForgotPasswordSheet(context),
+                                      child: Text(
+                                        "Forgot?",
+                                        style: TextStyles.font13MediumNeonBlue
+                                            .copyWith(fontSize: 12.sp),
+                                      ),
+                                    ),
+                                    child: AppTextFormField(
+                                      controller: passwordController,
+                                      isObscureText: isObscure,
+                                      hintText: AppConstants.passwordExample,
+                                      autofillHints: const [
+                                        AutofillHints.password,
+                                      ],
+                                      prefixIcon: const AuthPrefixIcon(
+                                        icon: Icons.lock_outline_rounded,
+                                      ),
+                                      suffixIcon: IconButton(
+                                        onPressed: () =>
+                                            setState(
+                                                  () => isObscure = !isObscure,
+                                        ),
+                                        icon: Icon(
+                                          isObscure
+                                              ? Icons.visibility_off_outlined
+                                              : Icons.visibility_outlined,
+                                          color: AppColors.coolGray,
+                                          size: 18.sp,
+                                        ),
+                                      ),
+                                      textInputAction: TextInputAction.done,
+                                      validator: Validators.validatePassword,
+                                    ),
+                                  ),
+                                ],
+                              ).animate(delay: 500.ms).fadeIn().slideY(
+                                  begin: 0.1, end: 0),
                             ),
-                          ),
+                            AppSpacing.verticalSpacing(30),
+                            _LoginButton(
+                              formKey: formKey,
+                              emailController: emailController,
+                              passwordController: passwordController,
+                            ).animate(delay: 700.ms).fadeIn().scale(),
+                            AppSpacing.verticalSpacing(35),
+                            const AuthDivider().animate(delay: 900.ms).fadeIn(),
+                            AppSpacing.verticalSpacing(20),
+                            const SocialButtonsRow()
+                                .animate(delay: 1100.ms)
+                                .fadeIn()
+                                .slideY(begin: 0.2, end: 0),
+                            AppSpacing.verticalSpacing(25),
+                            const _SignUpToggle()
+                                .animate(delay: 1300.ms)
+                                .fadeIn(),
+                            AppSpacing.verticalSpacing(20),
+                          ],
                         ),
                       ),
                     ),

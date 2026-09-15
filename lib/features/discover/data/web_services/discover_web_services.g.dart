@@ -8,6 +8,7 @@ part of 'discover_web_services.dart';
 // RetrofitGenerator
 // **************************************************************************
 
+// ignore_for_file: type=lint
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter,avoid_unused_constructor_parameters,unreachable_from_main,avoid_redundant_argument_values
 
 class _DiscoverWebServices implements DiscoverWebServices {
@@ -32,11 +33,11 @@ class _DiscoverWebServices implements DiscoverWebServices {
     final _options = _setStreamType<PosterResponse>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
-            _dio.options,
-            'trending/${mediaType}/${timeWindow}',
-            queryParameters: queryParameters,
-            data: _data,
-          )
+        _dio.options,
+        'trending/${mediaType}/${timeWindow}',
+        queryParameters: queryParameters,
+        data: _data,
+      )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
@@ -62,11 +63,11 @@ class _DiscoverWebServices implements DiscoverWebServices {
     final _options = _setStreamType<PosterResponse>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
-            _dio.options,
-            'movie/${category}',
-            queryParameters: queryParameters,
-            data: _data,
-          )
+        _dio.options,
+        'movie/${category}',
+        queryParameters: queryParameters,
+        data: _data,
+      )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
@@ -92,11 +93,11 @@ class _DiscoverWebServices implements DiscoverWebServices {
     final _options = _setStreamType<PosterResponse>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
-            _dio.options,
-            'tv/${category}',
-            queryParameters: queryParameters,
-            data: _data,
-          )
+        _dio.options,
+        'tv/${category}',
+        queryParameters: queryParameters,
+        data: _data,
+      )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
@@ -125,11 +126,11 @@ class _DiscoverWebServices implements DiscoverWebServices {
     final _options = _setStreamType<PosterResponse>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
-            _dio.options,
-            'discover/movie',
-            queryParameters: queryParameters,
-            data: _data,
-          )
+        _dio.options,
+        'discover/movie',
+        queryParameters: queryParameters,
+        data: _data,
+      )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
@@ -158,11 +159,11 @@ class _DiscoverWebServices implements DiscoverWebServices {
     final _options = _setStreamType<PosterResponse>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
-            _dio.options,
-            'discover/tv',
-            queryParameters: queryParameters,
-            data: _data,
-          )
+        _dio.options,
+        'discover/tv',
+        queryParameters: queryParameters,
+        data: _data,
+      )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
@@ -185,11 +186,11 @@ class _DiscoverWebServices implements DiscoverWebServices {
     final _options = _setStreamType<PosterResponse>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
-            _dio.options,
-            'person/popular',
-            queryParameters: queryParameters,
-            data: _data,
-          )
+        _dio.options,
+        'person/popular',
+        queryParameters: queryParameters,
+        data: _data,
+      )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
@@ -215,17 +216,71 @@ class _DiscoverWebServices implements DiscoverWebServices {
     final _options = _setStreamType<PosterResponse>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
-            _dio.options,
-            'trending/person/${timeWindow}',
-            queryParameters: queryParameters,
-            data: _data,
-          )
+        _dio.options,
+        'trending/person/${timeWindow}',
+        queryParameters: queryParameters,
+        data: _data,
+      )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
     late PosterResponse _value;
     try {
       _value = PosterResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<GenreResponse> getMovieGenres({String language = "en-US"}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'language': language};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<GenreResponse>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+        _dio.options,
+        'genre/movie/list',
+        queryParameters: queryParameters,
+        data: _data,
+      )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late GenreResponse _value;
+    try {
+      _value = GenreResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<GenreResponse> getTvGenres({String language = "en-US"}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'language': language};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<GenreResponse>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+        _dio.options,
+        'genre/tv/list',
+        queryParameters: queryParameters,
+        data: _data,
+      )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late GenreResponse _value;
+    try {
+      _value = GenreResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -247,7 +302,9 @@ class _DiscoverWebServices implements DiscoverWebServices {
   }
 
   String _combineBaseUrls(String dioBaseUrl, String? baseUrl) {
-    if (baseUrl == null || baseUrl.trim().isEmpty) {
+    if (baseUrl == null || baseUrl
+        .trim()
+        .isEmpty) {
       return dioBaseUrl;
     }
 

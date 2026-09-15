@@ -25,7 +25,6 @@ class SeeAllScreen extends StatefulWidget {
 }
 
 class _SeeAllScreenState extends State<SeeAllScreen> {
-  // v5 API: we provide the fetch logic and next-key logic in the constructor.
   late final PagingController<int, PosterModel> _pagingController;
 
   @override
@@ -36,7 +35,7 @@ class _SeeAllScreenState extends State<SeeAllScreen> {
       getNextPageKey: (state) {
         final lastPage = state.pages?.last;
         final isLastPage = (lastPage?.length ?? 0) < _pageSize;
-        return isLastPage ? null : state.nextIntPageKey;
+        return isLastPage ? null : (state.pages?.length ?? 0) + 1;
       },
       fetchPage: (pageKey) => widget.arguments.fetchData(pageKey),
     );

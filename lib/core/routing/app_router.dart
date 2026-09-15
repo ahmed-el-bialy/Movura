@@ -29,6 +29,8 @@ import '../networking/di.dart';
 import 'arguments_models.dart';
 
 class AppRouter {
+  const AppRouter();
+
   Route generateRoute(RouteSettings setting) {
     switch (setting.name) {
       case RouteNames.splashScreen:

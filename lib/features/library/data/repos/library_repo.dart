@@ -8,10 +8,7 @@ class LibraryRepo {
   LibraryRepo(this.libraryServices);
 
   Stream<UserModel?> getLibraryStream() {
-    final stream = libraryServices.getUserLibraryStream();
-    if (stream == null) return Stream.value(null);
-
-    return stream.map((doc) {
+    return libraryServices.getUserLibraryStream().map((doc) {
       if (!doc.exists || doc.data() == null) return null;
       return UserModel.fromJson(doc.data()!);
     });
