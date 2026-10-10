@@ -13,6 +13,11 @@ import 'package:movura/core/widgets/loading/movura_loading_indicator.dart';
 import '../../data/models/search_filter_type.dart';
 import '../../data/models/search_sort_type.dart';
 import '../../logic/search/search_cubit.dart';
+import 'filter_sheet_widgets/filter_action_bar.dart';
+import 'filter_sheet_widgets/filter_option_tile.dart';
+import 'filter_sheet_widgets/filter_sheet_header.dart';
+import 'filter_sheet_widgets/genre_chip_group.dart';
+import 'filter_sheet_widgets/sort_toggle_chip.dart';
 
 class SearchFilterSheet extends StatefulWidget {
   const SearchFilterSheet({
@@ -33,10 +38,10 @@ class SearchFilterSheet extends StatefulWidget {
       barrierDismissible: true,
       barrierLabel: '',
       transitionDuration: const Duration(milliseconds: 300),
-      pageBuilder: (context, anim1, anim2) {
+      pageBuilder: (dialogContext, anim1, anim2) {
         return SearchFilterSheet(
           searchCubit: searchCubit,
-          onFilterSelected: () => Navigator.pop(context),
+          onFilterSelected: () => dialogContext.pop(),
         );
       },
       transitionBuilder: (context, anim1, anim2, child) {
@@ -140,7 +145,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                       fontWeight: Weights.extraBold,
                     ),
                   ),
-                  _HeaderCloseButton(onPressed: () => context.pop()),
+                  HeaderCloseButton(onPressed: () => context.pop()),
                 ],
               ),
               AppSpacing.verticalSpacing(20),
@@ -150,7 +155,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const _SectionHeader(
+                      const FilterSectionHeader(
                         icon: Icons.auto_awesome_motion_rounded,
                         title: 'SEARCH IN',
                       ),
@@ -168,7 +173,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                         itemBuilder: (context, index) {
                           final filter = SearchFilterType.values[index];
                           final isSelected = filter == _tempFilter;
-                          return _FilterOptionTile(
+                          return FilterOptionTile(
                             label: filter.label,
                             icon: _iconFor(filter),
                             isSelected: isSelected,
@@ -183,7 +188,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                       ),
                       if (_tempFilter != SearchFilterType.people) ...[
                         AppSpacing.verticalSpacing(AppSpacing.xxl),
-                        const _SectionHeader(
+                        const FilterSectionHeader(
                           icon: Icons.interests_rounded,
                           title: 'GENRES',
                         ),
@@ -201,7 +206,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                             runSpacing: 10.h,
                             children: currentGenres.map((genre) {
                               final isSelected = _tempGenreId == genre.id;
-                              return _RefinedChip(
+                              return RefinedChip(
                                 label: genre.name,
                                 isSelected: isSelected,
                                 onTap: (selected) {
@@ -214,7 +219,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                           ),
                       ],
                       AppSpacing.verticalSpacing(AppSpacing.xxl),
-                      const _SectionHeader(
+                      const FilterSectionHeader(
                         icon: Icons.sort_rounded,
                         title: 'SORTING',
                       ),
@@ -224,7 +229,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                         runSpacing: 10.h,
                         children: SearchSortType.values.map((sort) {
                           final isSelected = _tempSort == sort;
-                          return _SortToggleChip(
+                          return SortToggleChip(
                             label: sort.label,
                             isSelected: isSelected,
                             onTap: () {
@@ -240,13 +245,13 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                 ),
               ),
               AppSpacing.verticalSpacing(20),
-              _SelectionSummaryBar(summary: selectionSummary),
+              SelectionSummaryBar(summary: selectionSummary),
               AppSpacing.verticalSpacing(20),
               Row(
                 children: [
                   Expanded(
                     flex: 1,
-                    child: _SmallActionButton(
+                    child: SmallActionButton(
                       label: 'Reset',
                       onPressed: () {
                         setState(() {
@@ -261,7 +266,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                   AppSpacing.horizontalSpacing(AppSpacing.l),
                   Expanded(
                     flex: 2,
-                    child: _SmallActionButton(
+                    child: SmallActionButton(
                       label: 'Apply Filters',
                       onPressed: _applyFilters,
                       isSecondary: false,
@@ -283,347 +288,5 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
       SearchFilterType.tv => Icons.live_tv_rounded,
       SearchFilterType.people => Icons.people_alt_rounded,
     };
-  }
-}
-
-class _SectionHeader extends StatelessWidget {
-  const _SectionHeader({required this.icon, required this.title});
-
-  final IconData icon;
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(
-          icon,
-          color: AppColors.neonBlue.withValues(alpha: 0.8),
-          size: 16.sp,
-        ),
-        AppSpacing.horizontalSpacing(AppSpacing.m),
-        Text(
-          title,
-          style: TextStyles.font10BoldCoolGray.copyWith(
-            letterSpacing: 2.0,
-            color: AppColors.coolGray.withValues(alpha: 0.6),
-            fontWeight: Weights.black,
-          ),
-        ),
-        AppSpacing.horizontalSpacing(AppSpacing.m),
-        Expanded(
-          child: Container(
-            height: 0.5,
-            color: AppColors.neonBlue.withValues(alpha: 0.15),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _HeaderCloseButton extends StatelessWidget {
-  const _HeaderCloseButton({required this.onPressed});
-
-  final VoidCallback onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.onyxBlack.withValues(alpha: 0.5),
-        shape: BoxShape.circle,
-      ),
-      child: IconButton(
-        onPressed: onPressed,
-        padding: AppSpacing.all(4),
-        constraints: const BoxConstraints(),
-        icon: Icon(Icons.close_rounded, color: AppColors.coolGray, size: 20.sp),
-      ),
-    );
-  }
-}
-
-class _FilterOptionTile extends StatelessWidget {
-  const _FilterOptionTile({
-    required this.label,
-    required this.icon,
-    required this.isSelected,
-    required this.onTap,
-  });
-
-  final String label;
-  final IconData icon;
-  final bool isSelected;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 250),
-      curve: Curves.easeInOut,
-      child: Material(
-        color: isSelected
-            ? AppColors.neonBlue.withValues(alpha: 0.12)
-            : AppColors.onyxBlack.withValues(alpha: 0.3),
-        borderRadius: BorderRadius.circular(16.r),
-        child: InkWell(
-          borderRadius: BorderRadius.circular(16.r),
-          onTap: onTap,
-          splashColor: AppColors.neonBlue.withValues(alpha: 0.15),
-          child: Container(
-            padding: AppSpacing.horizontal(14),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16.r),
-              border: Border.all(
-                color: isSelected
-                    ? AppColors.neonBlue.withValues(alpha: 0.6)
-                    : AppColors.slateGray.withValues(alpha: 0.08),
-                width: isSelected ? 1.5 : 1,
-              ),
-            ),
-            child: Row(
-              children: [
-                Icon(
-                  icon,
-                  color: isSelected ? AppColors.neonBlue : AppColors.coolGray,
-                  size: 18.sp,
-                ),
-                AppSpacing.horizontalSpacing(10),
-                Expanded(
-                  child: Text(
-                    label,
-                    style:
-                        (isSelected
-                                ? TextStyles.font13BoldNeonBlueSora
-                                : TextStyles.font14RegularPureWhiteManrope)
-                            .copyWith(
-                              fontSize: 12.sp,
-                              fontWeight: isSelected
-                                  ? Weights.extraBold
-                                  : Weights.medium,
-                            ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _RefinedChip extends StatelessWidget {
-  const _RefinedChip({
-    required this.label,
-    required this.isSelected,
-    required this.onTap,
-  });
-
-  final String label;
-  final bool isSelected;
-  final Function(bool) onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return ChoiceChip(
-      label: Text(label),
-      selected: isSelected,
-      onSelected: onTap,
-      backgroundColor: AppColors.onyxBlack.withValues(alpha: 0.4),
-      selectedColor: AppColors.neonBlue.withValues(alpha: 0.25),
-      labelStyle: TextStyles.font10MediumCoolGraySora.copyWith(
-        color: isSelected
-            ? AppColors.neonBlue
-            : AppColors.pureWhite.withValues(alpha: 0.7),
-        fontSize: 11.sp,
-        fontWeight: isSelected ? Weights.bold : Weights.regular,
-      ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12.r),
-        side: BorderSide(
-          color: isSelected
-              ? AppColors.neonBlue.withValues(alpha: 0.7)
-              : AppColors.coolGray.withValues(alpha: 0.1),
-        ),
-      ),
-      showCheckmark: false,
-      elevation: 0,
-      padding: AppSpacing.symmetric(horizontal: 10, vertical: 6),
-    );
-  }
-}
-
-class _SortToggleChip extends StatelessWidget {
-  const _SortToggleChip({
-    required this.label,
-    required this.isSelected,
-    required this.onTap,
-  });
-
-  final String label;
-  final bool isSelected;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(14.r),
-      child: Container(
-        padding: AppSpacing.symmetric(horizontal: 16, vertical: 10),
-        decoration: BoxDecoration(
-          color: isSelected
-              ? AppColors.neonBlue.withValues(alpha: 0.15)
-              : AppColors.onyxBlack.withValues(alpha: 0.3),
-          borderRadius: BorderRadius.circular(14.r),
-          border: Border.all(
-            color: isSelected
-                ? AppColors.neonBlue
-                : AppColors.coolGray.withValues(alpha: 0.1),
-            width: isSelected ? 1.5 : 1,
-          ),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              isSelected ? Icons.check_circle_rounded : Icons.sort_rounded,
-              size: 16.sp,
-              color: isSelected ? AppColors.neonBlue : AppColors.coolGray,
-            ),
-            AppSpacing.horizontalSpacing(10),
-            Text(
-              label,
-              style: TextStyles.font14RegularPureWhiteManrope.copyWith(
-                color: isSelected
-                    ? AppColors.neonBlue
-                    : AppColors.pureWhite.withValues(alpha: 0.7),
-                fontSize: 12.sp,
-                fontWeight: isSelected ? Weights.extraBold : Weights.medium,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _SelectionSummaryBar extends StatelessWidget {
-  const _SelectionSummaryBar({required this.summary});
-
-  final String summary;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: AppSpacing.symmetric(horizontal: AppSpacing.l, vertical: 12),
-      decoration: BoxDecoration(
-        color: AppColors.onyxBlack.withValues(alpha: 0.5),
-        borderRadius: BorderRadius.circular(18.r),
-        border: Border.all(color: AppColors.neonBlue.withValues(alpha: 0.1)),
-      ),
-      child: Row(
-        children: [
-          const Icon(Icons.flash_on_rounded, color: AppColors.gold, size: 14),
-          AppSpacing.horizontalSpacing(AppSpacing.m),
-          Expanded(
-            child: Text(
-              summary,
-              style: TextStyles.font12RegularCoolGrayManrope.copyWith(
-                fontSize: 11.sp,
-                color: AppColors.iceBlue.withValues(alpha: 0.6),
-                fontWeight: Weights.bold,
-                fontStyle: FontStyle.italic,
-              ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _SmallActionButton extends StatelessWidget {
-  const _SmallActionButton({
-    required this.label,
-    required this.onPressed,
-    this.isSecondary = false,
-  });
-
-  final String label;
-  final VoidCallback onPressed;
-  final bool isSecondary;
-
-  @override
-  Widget build(BuildContext context) {
-    if (isSecondary) {
-      return SizedBox(
-        height: 30.h,
-        child: TextButton(
-          onPressed: onPressed,
-          style: TextButton.styleFrom(
-            foregroundColor: AppColors.softRed,
-            padding: EdgeInsets.zero,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.r),
-            ),
-          ),
-          child: Text(
-            label,
-            style: TextStyles.font14RegularPureWhiteManrope.copyWith(
-              color: AppColors.softRed,
-              fontWeight: Weights.black,
-              fontSize: 12.sp,
-            ),
-          ),
-        ),
-      );
-    }
-
-    return Container(
-      height: 30.h,
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [AppColors.neonBlue, AppColors.tealCyan],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(10.r),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.neonBlue.withValues(alpha: 0.2),
-            blurRadius: 6,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.transparent,
-          shadowColor: AppColors.transparent,
-          padding: EdgeInsets.zero,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.r),
-          ),
-        ),
-        child: Text(
-          label.toUpperCase(),
-          style: TextStyles.font17BoldTrueBlackSora.copyWith(
-            fontSize: 10.sp,
-            letterSpacing: 0.5,
-            fontWeight: Weights.black,
-          ),
-        ),
-      ),
-    );
   }
 }
