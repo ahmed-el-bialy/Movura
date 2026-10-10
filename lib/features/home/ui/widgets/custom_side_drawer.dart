@@ -1,13 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:movura/core/constants/app_constants.dart';
+import 'package:movura/core/extensions/context_extension.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/networking/di.dart';
-import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/theming/weights.dart';
 
@@ -20,7 +20,7 @@ class CustomSideDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      width: MediaQuery.of(context).size.width * 0.8,
+      width: context.width * 0.8,
       backgroundColor: AppColors.richEerieBlack,
       child: Column(
         children: [
@@ -50,7 +50,7 @@ class CustomSideDrawer extends StatelessWidget {
                     context.pushNamed(RouteNames.libraryScreen);
                   },
                 ),
-                const _DrawerSectionTitle(title: "DISCOVER"),
+                const _DrawerSectionTitle(title: 'DISCOVER'),
                 _DrawerItem(
                   icon: Icons.movie_filter_outlined,
                   label: 'Discover Movies',
@@ -78,8 +78,8 @@ class CustomSideDrawer extends StatelessWidget {
                     context.pushNamed(
                       RouteNames.seeAllScreen,
                       arguments: SeeAllArguments(
-                        title: "Trending People",
-                        fetchData: (page) => sl<DiscoverRepo>().getTrendingPeople("day", page: page),
+                        title: 'Trending People',
+                        fetchData: (page) => sl<DiscoverRepo>().getTrendingPeople('day', page: page),
                       ),
                     );
                   },
@@ -93,13 +93,13 @@ class CustomSideDrawer extends StatelessWidget {
                     context.pushNamed(
                       RouteNames.seeAllScreen,
                       arguments: SeeAllArguments(
-                        title: "Popular People",
+                        title: 'Popular People',
                         fetchData: (page) => sl<DiscoverRepo>().getPopularPeople(page: page),
                       ),
                     );
                   },
                 ),
-                const _DrawerSectionTitle(title: "ACCOUNT"),
+                const _DrawerSectionTitle(title: 'ACCOUNT'),
                 _DrawerItem(
                   icon: Icons.settings_outlined,
                   label: 'Settings',
@@ -184,7 +184,7 @@ class _DrawerHeader extends StatelessWidget {
               ),
             ),
             child: Text(
-              "ULTIMATE CINEMA GUIDE",
+              'ULTIMATE CINEMA GUIDE',
               style: TextStyles.font10MediumCoolGraySora.copyWith(
                 letterSpacing: 1.5,
                 color: AppColors.neonBlue.withValues(alpha: 0.8),
@@ -350,7 +350,7 @@ class _LogoutButton extends StatelessWidget {
               ),
               AppSpacing.horizontalSpacing(AppSpacing.m),
               Text(
-                isLoggedIn ? "Sign Out" : "Sign In",
+                isLoggedIn ? 'Sign Out' : 'Sign In',
                 style: TextStyles.font14RegularPureWhiteManrope.copyWith(
                   color: isLoggedIn ? AppColors.softRed : AppColors.neonBlue,
                   fontWeight: Weights.black,
