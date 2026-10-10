@@ -9,12 +9,12 @@ import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/theming/weights.dart';
+import 'package:movura/core/widgets/app_error_widget.dart';
 import 'package:movura/core/widgets/buttons/app_icon_button.dart';
 import 'package:movura/core/widgets/loading/movura_loading_indicator.dart';
 import 'package:movura/core/widgets/poster_card/components/glass_card.dart';
 import 'package:movura/features/see_all/data/models/see_all_arguments.dart';
 
-import '../../../../core/widgets/app_error_widget.dart';
 import '../../data/repo/discover_repo.dart';
 import '../../logic/discover_by_genre_cubit.dart';
 
@@ -38,7 +38,7 @@ class DiscoverByGenreScreen extends StatelessWidget {
             onPressed: () => context.pop(),
           ),
           title: Text(
-            isMovie ? "Movie Genres" : "TV Genres",
+            isMovie ? 'Movie Genres' : 'TV Genres',
             style: TextStyles.font20SemiBoldNeonBlueManrope,
           ),
         ),
@@ -90,7 +90,7 @@ class _GenresGrid extends StatelessWidget {
             context.pushNamed(
               RouteNames.seeAllScreen,
               arguments: SeeAllArguments(
-                title: "${genre.name} ${isMovie ? 'Movies' : 'TV Shows'}",
+                title: '${genre.name} ${isMovie ? 'Movies' : 'TV Shows'}',
                 fetchData: isMovie
                     ? (page) => discoverRepo.getMoviesByGenre(genre.id, page: page)
                     : (page) => discoverRepo.getTvByGenre(genre.id, page: page),
