@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/constants/app_constants.dart';
+import 'package:movura/core/extensions/context_extension.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/helpers/validators.dart';
 import 'package:movura/core/networking/di.dart';
@@ -10,8 +11,6 @@ import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/core/theming/weights.dart';
-import 'package:movura/core/widgets/buttons/app_text_button.dart';
 import 'package:movura/core/widgets/fields/app_text_form_field.dart';
 
 import '../../logic/auth/auth_cubit.dart';
@@ -23,6 +22,7 @@ import '../widgets/auth_header.dart';
 import '../widgets/auth_input_field.dart';
 import '../widgets/auth_prefix_icon.dart';
 import '../widgets/forgot_password_sheet.dart';
+import '../widgets/log_in_actions.dart';
 import '../widgets/social_button_row.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -59,13 +59,9 @@ class _LogInScreenState extends State<LogInScreen> {
     if (state is AuthLoaded) {
       context.pushAndRemoveUntil(routeName: RouteNames.mainScreen);
     } else if (state is AuthError) {
-      ScaffoldMessenger.of(context).clearSnackBars();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(state.message),
-          backgroundColor: AppColors.softRed,
-          behavior: SnackBarBehavior.floating,
-        ),
+      context.showSnackBar(
+        state.message,
+        backgroundColor: AppColors.softRed,
       );
     }
   }
@@ -102,14 +98,14 @@ class _LogInScreenState extends State<LogInScreen> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             AppSpacing.verticalSpacing(15),
-                            const _SkipButton()
+                            const SkipButton()
                                 .animate()
                                 .fadeIn(duration: 600.ms, delay: 200.ms)
                                 .slideX(begin: 0.2, end: 0),
                             const AuthHeader(
-                              title: "Welcome Back",
+                              title: 'Welcome Back',
                               subtitle:
-                              "Sign in to continue your cinematic journey",
+                                  'Sign in to continue your cinematic journey',
                             )
                                 .animate()
                                 .fadeIn(duration: 800.ms, delay: 300.ms)
@@ -119,7 +115,7 @@ class _LogInScreenState extends State<LogInScreen> {
                               child: Column(
                                 children: [
                                   AuthInputField(
-                                    label: "Email Address",
+                                    label: 'Email Address',
                                     child: AppTextFormField(
                                       controller: emailController,
                                       inputType: TextInputType.emailAddress,
@@ -136,12 +132,12 @@ class _LogInScreenState extends State<LogInScreen> {
                                   ),
                                   AppSpacing.verticalSpacing(20),
                                   AuthInputField(
-                                    label: "Password",
+                                    label: 'Password',
                                     action: GestureDetector(
                                       onTap: () =>
                                           _showForgotPasswordSheet(context),
                                       child: Text(
-                                        "Forgot?",
+                                        'Forgot?',
                                         style: TextStyles.font13MediumNeonBlue
                                             .copyWith(fontSize: 12.sp),
                                       ),
@@ -157,9 +153,8 @@ class _LogInScreenState extends State<LogInScreen> {
                                         icon: Icons.lock_outline_rounded,
                                       ),
                                       suffixIcon: IconButton(
-                                        onPressed: () =>
-                                            setState(
-                                                  () => isObscure = !isObscure,
+                                        onPressed: () => setState(
+                                          () => isObscure = !isObscure,
                                         ),
                                         icon: Icon(
                                           isObscure
@@ -175,10 +170,12 @@ class _LogInScreenState extends State<LogInScreen> {
                                   ),
                                 ],
                               ).animate(delay: 500.ms).fadeIn().slideY(
-                                  begin: 0.1, end: 0),
+                                    begin: 0.1,
+                                    end: 0,
+                                  ),
                             ),
                             AppSpacing.verticalSpacing(30),
-                            _LoginButton(
+                            LoginSubmitButton(
                               formKey: formKey,
                               emailController: emailController,
                               passwordController: passwordController,
@@ -191,7 +188,7 @@ class _LogInScreenState extends State<LogInScreen> {
                                 .fadeIn()
                                 .slideY(begin: 0.2, end: 0),
                             AppSpacing.verticalSpacing(25),
-                            const _SignUpToggle()
+                            const SignUpToggleOption()
                                 .animate(delay: 1300.ms)
                                 .fadeIn(),
                             AppSpacing.verticalSpacing(20),
@@ -206,107 +203,6 @@ class _LogInScreenState extends State<LogInScreen> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _SkipButton extends StatelessWidget {
-  const _SkipButton();
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.topRight,
-      child: TextButton(
-        onPressed: () =>
-            context.pushAndRemoveUntil(routeName: RouteNames.mainScreen),
-        style: TextButton.styleFrom(
-          backgroundColor: AppColors.onyxBlack.withValues(alpha: 0.4),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.r),
-          ),
-        ),
-        child: Text(
-          "Skip",
-          style: TextStyles.font13MediumNeonBlue.copyWith(fontSize: 12.sp),
-        ),
-      ),
-    );
-  }
-}
-
-class _LoginButton extends StatelessWidget {
-  const _LoginButton({
-    required this.formKey,
-    required this.emailController,
-    required this.passwordController,
-  });
-
-  final GlobalKey<FormState> formKey;
-  final TextEditingController emailController;
-  final TextEditingController passwordController;
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<AuthCubit, AuthState>(
-      builder: (context, state) {
-        return Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(18.r),
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.neonBlue.withValues(alpha: 0.3),
-                blurRadius: 15,
-                offset: const Offset(0, 8),
-              ),
-            ],
-          ),
-          child: AppTextButton(
-            buttonText: state is AuthLoading ? "AUTHENTICATING..." : "LOGIN",
-            onPressed: state is AuthLoading
-                ? null
-                : () {
-                    if (formKey.currentState!.validate()) {
-                      context.read<AuthCubit>().login(
-                        emailController.text.trim(),
-                        passwordController.text,
-                      );
-                    }
-                  },
-            buttonWidth: 220.w,
-            buttonHeight: 36.h,
-            borderRadius: 16.r,
-            textStyle: TextStyles.font17BoldTrueBlackSora.copyWith(
-              fontSize: 16.sp,
-              letterSpacing: 1.2,
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
-class _SignUpToggle extends StatelessWidget {
-  const _SignUpToggle();
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text("New here? ", style: TextStyles.font12RegularCoolGrayManrope),
-        GestureDetector(
-          onTap: () => context.pushNamed(RouteNames.signUpScreen),
-          child: Text(
-            "Create Account",
-            style: TextStyles.font13BoldNeonBlueSora.copyWith(
-              fontSize: 12.sp,
-              fontWeight: Weights.semiBold,
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

@@ -3,15 +3,13 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/constants/app_constants.dart';
+import 'package:movura/core/extensions/context_extension.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/helpers/validators.dart';
 import 'package:movura/core/networking/di.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/app_spacing.dart';
-import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/core/theming/weights.dart';
-import 'package:movura/core/widgets/buttons/app_text_button.dart';
 import 'package:movura/core/widgets/fields/app_text_form_field.dart';
 
 import '../../logic/auth/auth_cubit.dart';
@@ -22,6 +20,7 @@ import '../widgets/auth_form_container.dart';
 import '../widgets/auth_header.dart';
 import '../widgets/auth_input_field.dart';
 import '../widgets/auth_prefix_icon.dart';
+import '../widgets/sign_up_actions.dart';
 import '../widgets/social_button_row.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -59,13 +58,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
     if (state is AuthLoaded) {
       context.pushAndRemoveUntil(routeName: RouteNames.mainScreen);
     } else if (state is AuthError) {
-      ScaffoldMessenger.of(context).clearSnackBars();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(state.message),
-          backgroundColor: AppColors.softRed,
-          behavior: SnackBarBehavior.floating,
-        ),
+      context.showSnackBar(
+        state.message,
+        backgroundColor: AppColors.softRed,
       );
     }
   }
@@ -99,9 +94,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           children: [
                             AppSpacing.verticalSpacing(25),
                             const AuthHeader(
-                              title: "Create Account",
+                              title: 'Create Account',
                               subtitle:
-                                  "Join the premiere community for cinema lovers",
+                                  'Join the premiere community for cinema lovers',
                             )
                                 .animate()
                                 .fadeIn(duration: 800.ms, delay: 200.ms)
@@ -111,10 +106,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               child: Column(
                                 children: [
                                   AuthInputField(
-                                    label: "Full Name",
+                                    label: 'Full Name',
                                     child: AppTextFormField(
                                       controller: nameController,
-                                      hintText: "John Doe",
+                                      hintText: 'John Doe',
                                       autofillHints: const [
                                         AutofillHints.name,
                                       ],
@@ -124,13 +119,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       textInputAction: TextInputAction.next,
                                       validator: (v) =>
                                           v == null || v.isEmpty
-                                          ? "Name is required"
-                                          : null,
+                                              ? 'Name is required'
+                                              : null,
                                     ),
                                   ),
                                   AppSpacing.verticalSpacing(AppSpacing.l),
                                   AuthInputField(
-                                    label: "Email Address",
+                                    label: 'Email Address',
                                     child: AppTextFormField(
                                       controller: emailController,
                                       inputType: TextInputType.emailAddress,
@@ -147,7 +142,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   ),
                                   AppSpacing.verticalSpacing(AppSpacing.l),
                                   AuthInputField(
-                                    label: "Password",
+                                    label: 'Password',
                                     child: AppTextFormField(
                                       controller: passwordController,
                                       isObscureText: isObscure,
@@ -166,7 +161,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         icon: Icon(
                                           isObscure
                                               ? Icons
-                                                    .visibility_off_outlined
+                                                  .visibility_off_outlined
                                               : Icons.visibility_outlined,
                                           color: AppColors.coolGray,
                                           size: 18.sp,
@@ -178,10 +173,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     ),
                                   ),
                                 ],
-                              ).animate(delay: 400.ms).fadeIn().slideY(begin: 0.1, end: 0),
+                              ).animate(delay: 400.ms).fadeIn().slideY(
+                                    begin: 0.1,
+                                    end: 0,
+                                  ),
                             ),
                             AppSpacing.verticalSpacing(35),
-                            _SignUpButton(
+                            SignUpSubmitButton(
                               formKey: formKey,
                               nameController: nameController,
                               emailController: emailController,
@@ -195,7 +193,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 .fadeIn()
                                 .slideY(begin: 0.2, end: 0),
                             AppSpacing.verticalSpacing(30),
-                            const _LoginToggle()
+                            const LoginToggleOption()
                                 .animate(delay: 1200.ms)
                                 .fadeIn(),
                             AppSpacing.verticalSpacing(25),
@@ -210,89 +208,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _SignUpButton extends StatelessWidget {
-  const _SignUpButton({
-    required this.formKey,
-    required this.nameController,
-    required this.emailController,
-    required this.passwordController,
-  });
-
-  final GlobalKey<FormState> formKey;
-  final TextEditingController nameController;
-  final TextEditingController emailController;
-  final TextEditingController passwordController;
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<AuthCubit, AuthState>(
-      builder: (context, state) {
-        return Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(18.r),
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.neonBlue.withValues(alpha: 0.3),
-                blurRadius: 15,
-                offset: const Offset(0, 8),
-              ),
-            ],
-          ),
-          child: AppTextButton(
-            buttonText: state is AuthLoading
-                ? "CREATING ACCOUNT..."
-                : "SIGN UP",
-            onPressed: state is AuthLoading
-                ? null
-                : () {
-                    if (formKey.currentState!.validate()) {
-                      context.read<AuthCubit>().signUp(
-                        name: nameController.text.trim(),
-                        email: emailController.text.trim(),
-                        password: passwordController.text,
-                      );
-                    }
-                  },
-            buttonWidth: 220.w,
-            buttonHeight: 36.h,
-            borderRadius: 16.r,
-            textStyle: TextStyles.font17BoldTrueBlackSora.copyWith(
-              fontSize: 16.sp,
-              letterSpacing: 1.2,
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
-class _LoginToggle extends StatelessWidget {
-  const _LoginToggle();
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          "Already a member? ",
-          style: TextStyles.font12RegularCoolGrayManrope,
-        ),
-        GestureDetector(
-          onTap: () => context.pop(),
-          child: Text(
-            "Sign In",
-            style: TextStyles.font13BoldNeonBlueSora.copyWith(
-              fontWeight: Weights.extraBold,
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

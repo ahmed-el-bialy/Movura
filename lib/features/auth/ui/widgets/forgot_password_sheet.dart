@@ -4,6 +4,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movura/core/constants/app_constants.dart';
+import 'package:movura/core/extensions/context_extension.dart';
+import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/helpers/validators.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/app_spacing.dart';
@@ -13,8 +15,6 @@ import 'package:movura/core/widgets/fields/app_text_form_field.dart';
 import '../../logic/auth/auth_cubit.dart';
 import 'auth_prefix_icon.dart';
 
-/// Premium glassmorphic bottom sheet for password recovery.
-/// Features high-end animations and integrated logic.
 class ForgotPasswordSheet extends StatefulWidget {
   final String? initialEmail;
 
@@ -24,8 +24,8 @@ class ForgotPasswordSheet extends StatefulWidget {
     return showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      barrierColor: Colors.black.withValues(alpha: 0.7),
+      backgroundColor: AppColors.transparent,
+      barrierColor: AppColors.trueBlack.withValues(alpha: 0.7),
       builder: (_) => ForgotPasswordSheet(initialEmail: email),
     );
   }
@@ -52,15 +52,15 @@ class _ForgotPasswordSheetState extends State<ForgotPasswordSheet> {
 
   void _handleReset() {
     if (_formKey.currentState!.validate()) {
-      context.read<AuthCubit>().resetPassword(_emailController.text.trim());
-      Navigator.pop(context);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text("Reset link sent to ${_emailController.text}"),
+      final email = _emailController.text.trim();
+      context.read<AuthCubit>().resetPassword(email);
+      context.pop();
+      if (context.mounted) {
+        context.showSnackBar(
+          'Reset link sent to $email',
           backgroundColor: AppColors.profitGreen,
-          behavior: SnackBarBehavior.floating,
-        ),
-      );
+        );
+      }
     }
   }
 
@@ -90,7 +90,6 @@ class _ForgotPasswordSheetState extends State<ForgotPasswordSheet> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // Handle
                   Container(
                     width: 45.w,
                     height: 5.h,
@@ -103,7 +102,7 @@ class _ForgotPasswordSheetState extends State<ForgotPasswordSheet> {
                   AppSpacing.verticalSpacing(AppSpacing.xl),
 
                   Text(
-                    "Recover Password",
+                    'Recover Password',
                     style: TextStyles.font17BoldIceBlueMontserrat.copyWith(
                       fontSize: 22.sp,
                       letterSpacing: 0.5,
@@ -134,7 +133,7 @@ class _ForgotPasswordSheetState extends State<ForgotPasswordSheet> {
                   AppSpacing.verticalSpacing(36),
 
                   AppTextButton(
-                    buttonText: "SEND RECOVERY LINK",
+                    buttonText: 'SEND RECOVERY LINK',
                     onPressed: _handleReset,
                     buttonWidth: double.infinity,
                     buttonHeight: 52.h,
@@ -144,7 +143,7 @@ class _ForgotPasswordSheetState extends State<ForgotPasswordSheet> {
                       letterSpacing: 1.2,
                     ),
                   ).animate().fadeIn(delay: 750.ms).moveY(begin: 20, end: 0),
-                  
+
                   AppSpacing.verticalSpacing(15),
                 ],
               ),
