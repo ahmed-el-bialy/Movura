@@ -89,54 +89,58 @@ class AuthRepo {
   }
 
   /// Robust helper to ensure user exists in Firestore.
-  /// If missing, it initializes with empty collection arrays.
+  /// Everything is online, no fallback to local or empty model on failure.
   Future<UserModel> _getOrCreateUser({
     required String uid,
     required String email,
     required String name,
   }) async {
-    try {
-      final userData = await authServices.getUserData(uid: uid);
+    final userData = await authServices.getUserData(uid: uid);
 
+    if (userData.isEmpty) {
+      final newUserMap = {
+        'id': uid,
+        'email': email,
+        'name': name,
+        'favorites': {},
+        'watched': {},
+        'toWatch': {},
+        'watchNow': {},
+      };
+
+      await authServices.saveUserData(
+        userData: newUserMap,
+        uid: uid,
+      );
+
+      return UserModel.fromJson(newUserMap);
+    }
+
+    return UserModel.fromJson(userData);
+  }
+
+  /// New: Ensures the user document on Firebase is populated if it exists but is empty.
+  Future<void> syncUserRecordIfNeeded() async {
+    final user = authServices.currentUser;
+    if (user == null) return;
+
+    try {
+      final userData = await authServices.getUserData(uid: user.uid);
       if (userData.isEmpty) {
-        final newUser = UserModel(
-          id: uid,
-          email: email,
-          name: name,
-          favorites: [],
-          watched: [],
-          toWatch: [],
-          watchNow: [],
-        );
         await authServices.saveUserData(
+          uid: user.uid,
           userData: {
-            'id': uid,
-            'email': email,
-            'name': name,
+            'id': user.uid,
+            'email': user.email ?? '',
+            'name': user.displayName ?? 'Cinematic Explorer',
             'favorites': {},
             'watched': {},
             'toWatch': {},
             'watchNow': {},
           },
-          uid: uid,
         );
-        return newUser;
       }
-
-      return UserModel.fromJson(userData);
-    } catch (_) {
-      // Fallback: If Firestore database is not created in console yet,
-      // return basic UserModel so user authentication still succeeds.
-      return UserModel(
-        id: uid,
-        email: email,
-        name: name,
-        favorites: [],
-        watched: [],
-        toWatch: [],
-        watchNow: [],
-      );
-    }
+    } catch (_) {}
   }
 
   Future<UserModel?> signInWithFacebook() async {

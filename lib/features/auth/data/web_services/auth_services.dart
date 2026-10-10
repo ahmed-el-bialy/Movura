@@ -83,21 +83,27 @@ class AuthServices {
     required String uid,
   }) async {
     try {
+      // Direct set without merge to ensure fields are created if doc was empty
       await firestore
           .collection('users')
           .doc(uid)
-          .set(userData, SetOptions(merge: true));
+          .set(userData);
     } catch (e) {
-      throw 'Failed to save user data: ${e.toString()}';
+      throw 'Firestore Write Error: ${e.toString()}';
     }
   }
 
   Future<Map<String, dynamic>> getUserData({required String uid}) async {
     try {
-      final doc = await firestore.collection('users').doc(uid).get();
+      // Force fetching from server to avoid any local state issues
+      final doc = await firestore
+          .collection('users')
+          .doc(uid)
+          .get(const GetOptions(source: Source.server));
       return doc.data() ?? {};
     } catch (e) {
-      throw 'Failed to fetch user data: ${e.toString()}';
+      // If server is unreachable, we don't want to fall back to cache
+      throw 'Failed to fetch user data from server: ${e.toString()}';
     }
   }
 
