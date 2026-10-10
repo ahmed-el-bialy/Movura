@@ -1,31 +1,21 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/constants/api_constants.dart';
 import 'package:movura/core/constants/app_constants.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
-import 'package:movura/core/networking/di.dart';
 import 'package:movura/core/routing/arguments_models.dart';
 import 'package:movura/core/routing/route_names.dart';
-import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/app_spacing.dart';
-import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/core/theming/weights.dart';
-import 'package:movura/core/widgets/app_error_widget.dart';
 import 'package:movura/core/widgets/layout/section_title.dart';
-import 'package:movura/core/widgets/loading/movura_loading_indicator.dart';
 import 'package:movura/core/widgets/shared_details/actors_list.dart';
 import 'package:movura/core/widgets/shared_details/companies_list.dart';
 import 'package:movura/core/widgets/shared_details/details_tab_state_wrapper.dart';
 import 'package:movura/core/widgets/shared_details/images_list.dart';
 import 'package:movura/core/widgets/shared_details/videos_list.dart';
 import 'package:movura/features/tv_details/ui/widgets/seasons_list.dart';
+import 'package:movura/features/tv_details/ui/widgets/single_season_episodes.dart';
 import 'package:movura/features/tv_details/ui/widgets/tv_networks_list.dart';
 
-import '../../data/season_details_model.dart';
 import '../../logic/about/about_tv_cubit.dart';
-import '../../logic/seasons/tv_seasons_cubit.dart';
 
 class AboutTvTabBody extends StatelessWidget {
   const AboutTvTabBody({super.key});
@@ -44,7 +34,7 @@ class AboutTvTabBody extends StatelessWidget {
                     if (state.model.seasons != null &&
                         state.model.seasons!.length > 1) ...[
                       SectionTitle(
-                        sectionName: "Seasons",
+                        sectionName: 'Seasons',
                         actionName: AppConstants.sectionAction,
                         onTap: () {
                           context.pushNamed(
@@ -66,9 +56,9 @@ class AboutTvTabBody extends StatelessWidget {
                     ],
                     if (state.model.seasons != null &&
                         state.model.seasons!.length == 1) ...[
-                      const SectionTitle(sectionName: "Episodes"),
+                      const SectionTitle(sectionName: 'Episodes'),
                       AppSpacing.verticalSpacing(AppSpacing.s),
-                      _SingleSeasonEpisodes(
+                      SingleSeasonEpisodes(
                         tvId: state.model.id,
                         tvTitle: state.model.title ?? 'TV Show',
                         seasonNumber:
@@ -79,7 +69,7 @@ class AboutTvTabBody extends StatelessWidget {
                     (state.model.actors?.tvActors != null &&
                             state.model.actors!.tvActors!.isNotEmpty)
                         ? SectionTitle(
-                            sectionName: "CAST",
+                            sectionName: 'CAST',
                             actionName: AppConstants.sectionAction,
                             onTap: () {},
                           )
@@ -89,21 +79,21 @@ class AboutTvTabBody extends StatelessWidget {
                     AppSpacing.verticalSpacing(15),
                     (state.model.companies != null &&
                             state.model.companies!.isNotEmpty)
-                        ? const SectionTitle(sectionName: "Companies")
+                        ? const SectionTitle(sectionName: 'Companies')
                         : const SizedBox.shrink(),
                     if (state.model.companies != null)
                       CompaniesList(company: state.model.companies ?? []),
                     AppSpacing.verticalSpacing(15),
                     (state.model.networks != null &&
                             state.model.networks!.isNotEmpty)
-                        ? const SectionTitle(sectionName: "Networks")
+                        ? const SectionTitle(sectionName: 'Networks')
                         : const SizedBox.shrink(),
                     if (state.model.networks != null)
                       TvNetworksList(network: state.model.networks ?? []),
                     AppSpacing.verticalSpacing(15),
                     state.model.mediaImages?.backdropImages != null &&
                             state.model.mediaImages!.backdropImages!.isNotEmpty
-                        ? const SectionTitle(sectionName: "IMAGES")
+                        ? const SectionTitle(sectionName: 'IMAGES')
                         : const SizedBox.shrink(),
                     if (state.model.mediaImages?.backdropImages != null)
                       ImagesList(
@@ -114,7 +104,7 @@ class AboutTvTabBody extends StatelessWidget {
                     AppSpacing.verticalSpacing(15),
                     state.model.mediaImages?.logoImages != null &&
                             state.model.mediaImages!.logoImages!.isNotEmpty
-                        ? const SectionTitle(sectionName: "LOGOS")
+                        ? const SectionTitle(sectionName: 'LOGOS')
                         : const SizedBox.shrink(),
                     if (state.model.mediaImages?.logoImages != null)
                       ImagesList(
@@ -127,7 +117,7 @@ class AboutTvTabBody extends StatelessWidget {
                     if (state.model.tvVideos?.videoList != null &&
                         state.model.tvVideos!.videoList!.isNotEmpty) ...[
                       AppSpacing.verticalSpacing(15),
-                      const SectionTitle(sectionName: "TRAILERS & CLIPS"),
+                      const SectionTitle(sectionName: 'TRAILERS & CLIPS'),
                       AppSpacing.verticalSpacing(AppSpacing.s),
                       VideosList(allVideos: state.model.tvVideos!.videoList!),
                       AppSpacing.verticalSpacing(35),
@@ -137,236 +127,6 @@ class AboutTvTabBody extends StatelessWidget {
               : const SizedBox.shrink(),
         );
       },
-    );
-  }
-}
-
-class _SingleSeasonEpisodes extends StatelessWidget {
-  const _SingleSeasonEpisodes({
-    required this.tvId,
-    required this.tvTitle,
-    required this.seasonNumber,
-  });
-
-  final int tvId;
-  final String tvTitle;
-  final int seasonNumber;
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          sl<TvSeasonsCubit>()
-            ..getTvSeasonDetails(tvId: tvId, seasonNumber: seasonNumber),
-      child: BlocBuilder<TvSeasonsCubit, TvSeasonsState>(
-        builder: (context, state) {
-          if (state is TvSeasonsLoading) {
-            return const Center(child: MovuraLoadingIndicator(size: 60));
-          } else if (state is TvSeasonsLoaded) {
-            final episodes = state.seasonDetails.episodes;
-            final seasonName = state.seasonDetails.name ?? 'Season 1';
-            return SizedBox(
-              height: 200.h,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                padding: AppSpacing.horizontal(12),
-                physics: const BouncingScrollPhysics(),
-                itemCount: episodes.length,
-                itemBuilder: (context, index) {
-                  final episode = episodes[index];
-                  return _HorizontalEpisodeCard(
-                    episode: episode,
-                    onTap: () {
-                      context.pushNamed(
-                        RouteNames.episodeDetailsScreen,
-                        arguments: EpisodeArgumentsModel(
-                          tvId: tvId,
-                          seasonNumber: seasonNumber,
-                          episodeNumber: episode.episodeNumber,
-                          tvTitle: tvTitle,
-                          seasonName: seasonName,
-                          totalEpisodes: episodes.length,
-                        ),
-                      );
-                    },
-                  );
-                },
-              ),
-            );
-          } else if (state is TvSeasonsError) {
-            return AppErrorWidget(
-              errorMessage: state.errorMessage,
-              onRetry: () => context.read<TvSeasonsCubit>().getTvSeasonDetails(
-                tvId: tvId,
-                seasonNumber: seasonNumber,
-              ),
-            );
-          }
-          return const AppErrorWidget(errorMessage: "Something went wrong");
-        },
-      ),
-    );
-  }
-}
-
-class _HorizontalEpisodeCard extends StatelessWidget {
-  const _HorizontalEpisodeCard({required this.episode, required this.onTap});
-
-  final EpisodeModel episode;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final hasStill = episode.stillPath != null && episode.stillPath!.isNotEmpty;
-
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: 160.w,
-        margin: AppSpacing.only(right: AppSpacing.m),
-        decoration: BoxDecoration(
-          color: AppColors.onyxBlack,
-          borderRadius: BorderRadius.circular(AppSpacing.l),
-          border: Border.all(
-            color: AppColors.neonBlue.withValues(alpha: 0.15),
-            width: 1,
-          ),
-        ),
-        clipBehavior: Clip.antiAlias,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Thumbnail
-            Stack(
-              children: [
-                SizedBox(
-                  height: 100.h,
-                  width: double.infinity,
-                  child: hasStill
-                      ? CachedNetworkImage(
-                          imageUrl:
-                              '${ApiConstants.imageBaseUrl}${episode.stillPath}',
-                          fit: BoxFit.cover,
-                          errorWidget: (context, url, error) => Container(
-                            color: AppColors.darkBackground,
-                            child: Icon(
-                              Icons.tv_rounded,
-                              color: AppColors.neonBlue.withValues(alpha: 0.4),
-                              size: 32.sp,
-                            ),
-                          ),
-                        )
-                      : Container(
-                          color: AppColors.darkBackground,
-                          child: Icon(
-                            Icons.tv_rounded,
-                            color: AppColors.neonBlue.withValues(alpha: 0.4),
-                            size: 32.sp,
-                          ),
-                        ),
-                ),
-                Positioned(
-                  top: 6,
-                  left: 6,
-                  child: Container(
-                    padding: AppSpacing.symmetric(
-                      horizontal: 6,
-                      vertical: 2,
-                    ),
-                    decoration: BoxDecoration(
-                      color: AppColors.neonBlue.withValues(alpha: 0.9),
-                      borderRadius: BorderRadius.circular(6.r),
-                    ),
-                    child: Text(
-                      'E${episode.episodeNumber}',
-                      style: TextStyles.font12RegularCoolGrayManrope.copyWith(
-                        color: AppColors.trueBlack,
-                        fontSize: 10.sp,
-                        fontWeight: Weights.extraBold,
-                      ),
-                    ),
-                  ),
-                ),
-                if (episode.voteAverage != null && episode.voteAverage! > 0)
-                  Positioned(
-                    top: 6,
-                    right: 6,
-                    child: Container(
-                      padding: AppSpacing.symmetric(
-                        horizontal: 5,
-                        vertical: 2,
-                      ),
-                      decoration: BoxDecoration(
-                        color: AppColors.trueBlack.withValues(alpha: 0.75),
-                        borderRadius: BorderRadius.circular(6.r),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            Icons.star_rounded,
-                            color: AppColors.gold,
-                            size: 10.sp,
-                          ),
-                          AppSpacing.horizontalSpacing(2),
-                          Text(
-                            episode.voteAverage!.toStringAsFixed(1),
-                            style: TextStyles.font12RegularCoolGrayManrope.copyWith(
-                              color: AppColors.pureWhite,
-                              fontSize: 9.sp,
-                              fontWeight: Weights.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-              ],
-            ),
-            // Info
-            Expanded(
-              child: Padding(
-                padding: AppSpacing.all(AppSpacing.s),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      episode.name ?? '',
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyles.font12RegularCoolGrayManrope.copyWith(
-                        color: AppColors.iceBlue,
-                        fontWeight: Weights.bold,
-                        fontSize: 11.sp,
-                        height: 1.3,
-                      ),
-                    ),
-                    if (episode.runtime != null) ...[
-                      const Spacer(),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.schedule_rounded,
-                            size: 10.sp,
-                            color: AppColors.coolGray,
-                          ),
-                          AppSpacing.horizontalSpacing(3),
-                          Text(
-                            '${episode.runtime} min',
-                            style: TextStyles.font12RegularCoolGrayManrope.copyWith(
-                              fontSize: 9.sp,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
