@@ -32,11 +32,16 @@ class LibraryServices {
         },
       }, SetOptions(merge: true));
     } else {
-      await docRef.set({
-        collectionName: {
-          itemId: FieldValue.delete(),
-        },
-      }, SetOptions(merge: true));
+      try {
+        await docRef.update({
+          '$collectionName.$itemId': FieldValue.delete(),
+        });
+      } catch (e) {
+        if (e is FirebaseException && e.code == 'not-found') {
+          return;
+        }
+        rethrow;
+      }
     }
   }
 }
