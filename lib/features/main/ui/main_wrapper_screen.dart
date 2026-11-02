@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:movura/core/networking/di.dart';
 import 'package:movura/core/widgets/navigation/app_navigation_bar.dart';
 import 'package:movura/features/library/logic/library_cubit.dart';
+
+import '../../auth/data/repos/auth_repo.dart';
 import '../../home/ui/screens/home_screen.dart';
 import '../../library/ui/screens/library_screen.dart';
 import '../../profile/ui/screens/profile_screen.dart';
@@ -21,6 +22,13 @@ class MainWrapperScreen extends StatefulWidget {
 
 class _MainWrapperScreenState extends State<MainWrapperScreen> {
   int _currentIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    // Repair/Sync the user document on Firebase immediately if it's empty
+    sl<AuthRepo>().syncUserRecordIfNeeded();
+  }
 
   final List<Widget> _screens = [
     const HomeScreen(),
@@ -50,10 +58,7 @@ class _MainWrapperScreenState extends State<MainWrapperScreen> {
         },
         child: Scaffold(
           extendBody: true,
-          body: IndexedStack(
-            index: _currentIndex,
-            children: _screens,
-          ),
+          body: IndexedStack(index: _currentIndex, children: _screens),
           bottomNavigationBar: AppNavigationBar(
             activeIndex: _currentIndex,
             onTabChanged: _onTabChanged,

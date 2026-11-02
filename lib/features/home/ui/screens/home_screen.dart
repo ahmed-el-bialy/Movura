@@ -64,8 +64,9 @@ class HomeScreen extends StatelessWidget {
                     actionName: 'See All ',
                     onTap: () {
                       final state = context.read<TrendingContentCubit>().state;
-                      final initial =
-                          state is TrendingContentLoaded ? state.posters : null;
+                      final initial = state is TrendingContentLoaded
+                          ? state.posters
+                          : null;
                       context.pushNamed(
                         RouteNames.seeAllScreen,
                         arguments: SeeAllArguments(
@@ -92,8 +93,9 @@ class HomeScreen extends StatelessWidget {
                     actionName: 'See All ',
                     onTap: () {
                       final state = context.read<TopRatedMovieCubit>().state;
-                      final initial =
-                          state is TopRatedMovieLoaded ? state.posters : null;
+                      final initial = state is TopRatedMovieLoaded
+                          ? state.posters
+                          : null;
                       context.pushNamed(
                         RouteNames.seeAllScreen,
                         arguments: SeeAllArguments(
