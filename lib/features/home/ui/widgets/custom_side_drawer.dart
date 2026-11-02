@@ -1,18 +1,18 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/constants/app_constants.dart';
 import 'package:movura/core/extensions/context_extension.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/networking/di.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/app_spacing.dart';
-import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/core/theming/weights.dart';
 
 import '../../../discover/data/repo/discover_repo.dart';
 import '../../../see_all/data/models/see_all_arguments.dart';
+import 'drawer_widgets/drawer_header.dart';
+import 'drawer_widgets/drawer_item.dart';
+import 'drawer_widgets/drawer_logout_button.dart';
+import 'drawer_widgets/drawer_section_title.dart';
 
 class CustomSideDrawer extends StatelessWidget {
   const CustomSideDrawer({super.key});
@@ -24,13 +24,16 @@ class CustomSideDrawer extends StatelessWidget {
       backgroundColor: AppColors.richEerieBlack,
       child: Column(
         children: [
-          const _DrawerHeader(),
+          const CustomDrawerHeader(),
           Expanded(
             child: ListView(
-              padding: AppSpacing.symmetric(vertical: 10, horizontal: AppSpacing.m),
+              padding: AppSpacing.symmetric(
+                vertical: 10,
+                horizontal: AppSpacing.m,
+              ),
               physics: const BouncingScrollPhysics(),
               children: [
-                _DrawerItem(
+                DrawerItem(
                   icon: Icons.workspace_premium_rounded,
                   label: 'Movura Pro',
                   iconColor: AppColors.amberGold,
@@ -41,7 +44,7 @@ class CustomSideDrawer extends StatelessWidget {
                   ),
                   onTap: () => context.pop(),
                 ),
-                _DrawerItem(
+                DrawerItem(
                   icon: Icons.favorite_border_rounded,
                   label: 'My Library',
                   iconColor: AppColors.neonBlue,
@@ -50,316 +53,92 @@ class CustomSideDrawer extends StatelessWidget {
                     context.pushNamed(RouteNames.libraryScreen);
                   },
                 ),
-                const _DrawerSectionTitle(title: 'DISCOVER'),
-                _DrawerItem(
-                  icon: Icons.movie_filter_outlined,
-                  label: 'Discover Movies',
-                  subtitle: 'Trending, Upcoming & More',
+                DrawerItem(
+                  icon: Icons.search_rounded,
+                  label: 'Quick Search',
+                  iconColor: AppColors.tealCyan,
                   onTap: () {
                     context.pop();
-                    context.pushNamed(RouteNames.discoverMoviesScreen);
+                    context.pushNamed(RouteNames.searchScreen);
                   },
                 ),
-                _DrawerItem(
-                  icon: Icons.tv_outlined,
-                  label: 'TV Series',
-                  subtitle: 'Popular & Latest Shows',
+                const DrawerSectionTitle(title: 'DISCOVER'),
+                DrawerItem(
+                  icon: Icons.category_outlined,
+                  label: 'Browse Genres',
+                  subtitle: 'Explore cinematic themes',
+                  iconColor: AppColors.neonBlue,
                   onTap: () {
                     context.pop();
-                    context.pushNamed(RouteNames.discoverTvScreen);
+                    context.pushNamed(RouteNames.discoverByGenreScreen);
                   },
                 ),
-                _DrawerItem(
-                  icon: Icons.trending_up_rounded,
-                  label: 'Trending People',
-                  subtitle: 'Daily updates on celebrities',
-                  onTap: () {
-                    context.pop();
-                    context.pushNamed(
-                      RouteNames.seeAllScreen,
-                      arguments: SeeAllArguments(
-                        title: 'Trending People',
-                        fetchData: (page) => sl<DiscoverRepo>().getTrendingPeople('day', page: page),
-                      ),
-                    );
-                  },
-                ),
-                _DrawerItem(
-                  icon: Icons.star_border_rounded,
-                  label: 'Popular People',
-                  subtitle: 'Most viewed actors',
+                DrawerItem(
+                  icon: Icons.movie_outlined,
+                  label: 'Popular Movies',
+                  subtitle: 'Global box office hits',
+                  iconColor: AppColors.tealCyan,
                   onTap: () {
                     context.pop();
                     context.pushNamed(
                       RouteNames.seeAllScreen,
                       arguments: SeeAllArguments(
-                        title: 'Popular People',
-                        fetchData: (page) => sl<DiscoverRepo>().getPopularPeople(page: page),
+                        title: 'Popular Movies',
+                        futureMethod: sl<DiscoverRepo>().getPopularMovies,
                       ),
                     );
                   },
                 ),
-                const _DrawerSectionTitle(title: 'ACCOUNT'),
-                _DrawerItem(
+                DrawerItem(
+                  icon: Icons.tv_rounded,
+                  label: 'Popular TV Shows',
+                  subtitle: 'Binge-worthy series',
+                  iconColor: AppColors.electricBlueAccent,
+                  onTap: () {
+                    context.pop();
+                    context.pushNamed(
+                      RouteNames.seeAllScreen,
+                      arguments: SeeAllArguments(
+                        title: 'Popular TV Shows',
+                        futureMethod: sl<DiscoverRepo>().getPopularTvShows,
+                      ),
+                    );
+                  },
+                ),
+                DrawerItem(
+                  icon: Icons.person_outline_rounded,
+                  label: 'Trending Actors',
+                  subtitle: 'Stars of the screen',
+                  iconColor: AppColors.amberGold,
+                  onTap: () {
+                    context.pop();
+                    context.pushNamed(RouteNames.discoverPeopleScreen);
+                  },
+                ),
+                const DrawerSectionTitle(title: 'APP & SUPPORT'),
+                DrawerItem(
                   icon: Icons.settings_outlined,
                   label: 'Settings',
+                  iconColor: AppColors.slateGray,
+                  onTap: () => context.pop(),
+                ),
+                DrawerItem(
+                  icon: Icons.help_outline_rounded,
+                  label: 'Help & Feedback',
+                  iconColor: AppColors.slateGray,
+                  onTap: () => context.pop(),
+                ),
+                DrawerItem(
+                  icon: Icons.info_outline_rounded,
+                  label: 'About Movura',
+                  iconColor: AppColors.slateGray,
                   onTap: () => context.pop(),
                 ),
               ],
             ),
           ),
-          const _LogoutButton(),
+          const DrawerLogoutButton(),
         ],
-      ),
-    );
-  }
-}
-
-class _DrawerHeader extends StatelessWidget {
-  const _DrawerHeader();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: AppSpacing.only(
-        left: AppSpacing.xl,
-        top: 60,
-        right: AppSpacing.xl,
-        bottom: 30,
-      ),
-      decoration: BoxDecoration(
-        color: AppColors.onyxBlack.withValues(alpha: 0.3),
-        border: Border(
-          bottom: BorderSide(
-            color: AppColors.pureWhite.withValues(alpha: 0.05),
-          ),
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            padding: AppSpacing.all(AppSpacing.s),
-            decoration: BoxDecoration(
-              color: AppColors.neonBlue.withValues(alpha: 0.1),
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: AppColors.neonBlue.withValues(alpha: 0.3),
-                width: 1.5,
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.neonBlue.withValues(alpha: 0.15),
-                  blurRadius: 15,
-                  spreadRadius: 2,
-                ),
-              ],
-            ),
-            child: Image.asset(AppConstants.appLogo, height: 50.h),
-          ),
-          AppSpacing.verticalSpacing(AppSpacing.l),
-          Text(
-            AppConstants.appName.toUpperCase(),
-            style: TextStyles.font24SemiBoldNeonBlueManrope.copyWith(
-              letterSpacing: 6,
-              fontSize: 22.sp,
-              fontWeight: Weights.black,
-              shadows: [
-                Shadow(
-                  color: AppColors.neonBlue.withValues(alpha: 0.5),
-                  blurRadius: 10,
-                ),
-              ],
-            ),
-          ),
-          AppSpacing.verticalSpacing(AppSpacing.xs),
-          Container(
-            padding: AppSpacing.symmetric(horizontal: 12, vertical: 4),
-            decoration: BoxDecoration(
-              color: AppColors.neonBlue.withValues(alpha: 0.05),
-              borderRadius: BorderRadius.circular(20.r),
-              border: Border.all(
-                color: AppColors.neonBlue.withValues(alpha: 0.1),
-              ),
-            ),
-            child: Text(
-              'ULTIMATE CINEMA GUIDE',
-              style: TextStyles.font10MediumCoolGraySora.copyWith(
-                letterSpacing: 1.5,
-                color: AppColors.neonBlue.withValues(alpha: 0.8),
-                fontSize: 8.sp,
-                fontWeight: Weights.bold,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _DrawerSectionTitle extends StatelessWidget {
-  const _DrawerSectionTitle({required this.title});
-
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: AppSpacing.only(
-        left: AppSpacing.l,
-        top: AppSpacing.xl,
-        right: AppSpacing.l,
-        bottom: AppSpacing.s,
-      ),
-      child: Text(
-        title,
-        style: TextStyles.font10BoldCoolGray.copyWith(
-          color: AppColors.neonBlue.withValues(alpha: 0.5),
-          letterSpacing: 2,
-          fontWeight: Weights.black,
-        ),
-      ),
-    );
-  }
-}
-
-class _DrawerItem extends StatelessWidget {
-  const _DrawerItem({
-    required this.icon,
-    required this.label,
-    this.subtitle,
-    required this.onTap,
-    this.trailing,
-    this.iconColor,
-  });
-
-  final IconData icon;
-  final String label;
-  final String? subtitle;
-  final VoidCallback onTap;
-  final Widget? trailing;
-  final Color? iconColor;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: AppSpacing.only(bottom: AppSpacing.xs),
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-            color: AppColors.pureWhite.withValues(alpha: 0.03),
-            width: 0.8,
-          ),
-        ),
-      ),
-      child: ListTile(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.r),
-        ),
-        onTap: onTap,
-        contentPadding: AppSpacing.symmetric(horizontal: AppSpacing.l, vertical: AppSpacing.s),
-        leading: Container(
-          padding: AppSpacing.all(10),
-          decoration: BoxDecoration(
-            color: (iconColor ?? AppColors.neonBlue).withValues(alpha: 0.06),
-            borderRadius: BorderRadius.circular(14.r),
-            border: Border.all(
-              color: (iconColor ?? AppColors.neonBlue).withValues(alpha: 0.1),
-            ),
-          ),
-          child: Icon(
-            icon,
-            color: iconColor ?? AppColors.platinumGray.withValues(alpha: 0.8),
-            size: 22.sp,
-          ),
-        ),
-        title: Text(
-          label,
-          style: TextStyles.font14RegularPureWhiteManrope.copyWith(
-            fontWeight: Weights.bold,
-            color: AppColors.pureWhite.withValues(alpha: 0.95),
-            fontSize: 14.sp,
-          ),
-        ),
-        subtitle: subtitle != null
-            ? Padding(
-                padding: EdgeInsets.only(top: 4.h),
-                child: Text(
-                  subtitle!,
-                  style: TextStyles.font10MediumCoolGraySora.copyWith(
-                    color: AppColors.coolGray.withValues(alpha: 0.6),
-                    fontSize: 10.sp,
-                    letterSpacing: 0.3,
-                  ),
-                ),
-              )
-            : null,
-        trailing: trailing ??
-            Icon(
-              Icons.arrow_forward_ios_rounded,
-              color: AppColors.neonBlue.withValues(alpha: 0.2),
-              size: 12.sp,
-            ),
-      ),
-    );
-  }
-}
-
-class _LogoutButton extends StatelessWidget {
-  const _LogoutButton();
-
-  @override
-  Widget build(BuildContext context) {
-    final isLoggedIn = FirebaseAuth.instance.currentUser != null;
-
-    return Padding(
-      padding: AppSpacing.all(20),
-      child: InkWell(
-        onTap: () async {
-          context.pop();
-          if (isLoggedIn) {
-            await FirebaseAuth.instance.signOut();
-            if (context.mounted) {
-              context.pushAndRemoveUntil(routeName: RouteNames.logInScreen);
-            }
-          } else {
-            context.pushNamed(RouteNames.logInScreen);
-          }
-        },
-        borderRadius: BorderRadius.circular(16.r),
-        child: Container(
-          padding: AppSpacing.symmetric(vertical: 14, horizontal: 20),
-          decoration: BoxDecoration(
-            color: (isLoggedIn ? AppColors.softRed : AppColors.neonBlue)
-                .withValues(alpha: 0.1),
-            borderRadius: BorderRadius.circular(16.r),
-            border: Border.all(
-              color: (isLoggedIn ? AppColors.softRed : AppColors.neonBlue)
-                  .withValues(alpha: 0.25),
-            ),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                isLoggedIn ? Icons.logout_rounded : Icons.login_rounded,
-                color: isLoggedIn ? AppColors.softRed : AppColors.neonBlue,
-                size: 20.sp,
-              ),
-              AppSpacing.horizontalSpacing(AppSpacing.m),
-              Text(
-                isLoggedIn ? 'Sign Out' : 'Sign In',
-                style: TextStyles.font14RegularPureWhiteManrope.copyWith(
-                  color: isLoggedIn ? AppColors.softRed : AppColors.neonBlue,
-                  fontWeight: Weights.black,
-                  letterSpacing: 0.5,
-                ),
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }

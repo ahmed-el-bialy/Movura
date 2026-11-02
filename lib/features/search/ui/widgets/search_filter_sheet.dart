@@ -8,16 +8,15 @@ import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/theming/weights.dart';
-import 'package:movura/core/widgets/loading/movura_loading_indicator.dart';
 
 import '../../data/models/search_filter_type.dart';
 import '../../data/models/search_sort_type.dart';
 import '../../logic/search/search_cubit.dart';
 import 'filter_sheet_widgets/filter_action_bar.dart';
-import 'filter_sheet_widgets/filter_option_tile.dart';
+import 'filter_sheet_widgets/filter_genres_section.dart';
+import 'filter_sheet_widgets/filter_search_in_grid.dart';
 import 'filter_sheet_widgets/filter_sheet_header.dart';
-import 'filter_sheet_widgets/genre_chip_group.dart';
-import 'filter_sheet_widgets/sort_toggle_chip.dart';
+import 'filter_sheet_widgets/filter_sorting_section.dart';
 
 class SearchFilterSheet extends StatefulWidget {
   const SearchFilterSheet({
@@ -160,30 +159,13 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                         title: 'SEARCH IN',
                       ),
                       AppSpacing.verticalSpacing(AppSpacing.l),
-                      GridView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 12.w,
-                          mainAxisSpacing: 12.h,
-                          childAspectRatio: 2.6,
-                        ),
-                        itemCount: SearchFilterType.values.length,
-                        itemBuilder: (context, index) {
-                          final filter = SearchFilterType.values[index];
-                          final isSelected = filter == _tempFilter;
-                          return FilterOptionTile(
-                            label: filter.label,
-                            icon: _iconFor(filter),
-                            isSelected: isSelected,
-                            onTap: () {
-                              setState(() {
-                                _tempFilter = filter;
-                                _tempGenreId = null;
-                              });
-                            },
-                          );
+                      FilterSearchInGrid(
+                        selectedFilter: _tempFilter,
+                        onFilterSelected: (filter) {
+                          setState(() {
+                            _tempFilter = filter;
+                            _tempGenreId = null;
+                          });
                         },
                       ),
                       if (_tempFilter != SearchFilterType.people) ...[
@@ -193,30 +175,13 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                           title: 'GENRES',
                         ),
                         AppSpacing.verticalSpacing(AppSpacing.l),
-                        if (currentGenres.isEmpty)
-                          SizedBox(
-                            height: 120.h,
-                            child: const Center(
-                              child: MovuraLoadingIndicator(size: 45),
-                            ),
-                          )
-                        else
-                          Wrap(
-                            spacing: 10.w,
-                            runSpacing: 10.h,
-                            children: currentGenres.map((genre) {
-                              final isSelected = _tempGenreId == genre.id;
-                              return RefinedChip(
-                                label: genre.name,
-                                isSelected: isSelected,
-                                onTap: (selected) {
-                                  setState(() {
-                                    _tempGenreId = selected ? genre.id : null;
-                                  });
-                                },
-                              );
-                            }).toList(),
-                          ),
+                        FilterGenresSection(
+                          genres: currentGenres,
+                          selectedGenreId: _tempGenreId,
+                          onGenreSelected: (id) {
+                            setState(() => _tempGenreId = id);
+                          },
+                        ),
                       ],
                       AppSpacing.verticalSpacing(AppSpacing.xxl),
                       const FilterSectionHeader(
@@ -224,21 +189,11 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                         title: 'SORTING',
                       ),
                       AppSpacing.verticalSpacing(AppSpacing.l),
-                      Wrap(
-                        spacing: 10.w,
-                        runSpacing: 10.h,
-                        children: SearchSortType.values.map((sort) {
-                          final isSelected = _tempSort == sort;
-                          return SortToggleChip(
-                            label: sort.label,
-                            isSelected: isSelected,
-                            onTap: () {
-                              setState(() {
-                                _tempSort = sort;
-                              });
-                            },
-                          );
-                        }).toList(),
+                      FilterSortingSection(
+                        selectedSort: _tempSort,
+                        onSortSelected: (sort) {
+                          setState(() => _tempSort = sort);
+                        },
                       ),
                     ],
                   ),
@@ -279,14 +234,5 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
         ),
       ),
     );
-  }
-
-  IconData _iconFor(SearchFilterType filter) {
-    return switch (filter) {
-      SearchFilterType.all => Icons.all_inclusive_rounded,
-      SearchFilterType.movies => Icons.movie_filter_rounded,
-      SearchFilterType.tv => Icons.live_tv_rounded,
-      SearchFilterType.people => Icons.people_alt_rounded,
-    };
   }
 }
