@@ -46,8 +46,9 @@ class _SplashScreenState extends State<SplashScreen>
     if (!mounted) return;
     try {
       final user = FirebaseAuth.instance.currentUser;
-      final route =
-          user != null ? RouteNames.mainScreen : RouteNames.logInScreen;
+      final route = user != null
+          ? RouteNames.mainScreen
+          : RouteNames.logInScreen;
       if (mounted) context.pushAndRemoveUntil(routeName: route);
     } catch (_) {
       if (mounted) {
@@ -122,29 +123,32 @@ class _SplashScreenState extends State<SplashScreen>
                     .asMap()
                     .entries
                     .map(
-                      (e) => Text(
-                        e.value,
-                        style: TextStyles.font24SemiBoldNeonBlueManrope
-                            .copyWith(
-                          fontSize: 36.sp,
-                          fontWeight: FontWeight.w900,
-                          letterSpacing: 2.0,
-                          shadows: [
-                            Shadow(
-                              color: AppColors.neonBlue.withValues(alpha: 0.75),
-                              blurRadius: 22,
-                            ),
-                          ],
-                        ),
-                      )
-                          .animate(delay: (350 + e.key * 90).ms)
-                          .fadeIn(duration: 500.ms)
-                          .moveY(
-                            begin: 14,
-                            end: 0,
-                            duration: 500.ms,
-                            curve: Curves.easeOutCubic,
-                          ),
+                      (e) =>
+                          Text(
+                                e.value,
+                                style: TextStyles.font24SemiBoldNeonBlueManrope
+                                    .copyWith(
+                                      fontSize: 36.sp,
+                                      fontWeight: FontWeight.w900,
+                                      letterSpacing: 2.0,
+                                      shadows: [
+                                        Shadow(
+                                          color: AppColors.neonBlue.withValues(
+                                            alpha: 0.75,
+                                          ),
+                                          blurRadius: 22,
+                                        ),
+                                      ],
+                                    ),
+                              )
+                              .animate(delay: (350 + e.key * 90).ms)
+                              .fadeIn(duration: 500.ms)
+                              .moveY(
+                                begin: 14,
+                                end: 0,
+                                duration: 500.ms,
+                                curve: Curves.easeOutCubic,
+                              ),
                     )
                     .toList(),
               ),
@@ -153,13 +157,13 @@ class _SplashScreenState extends State<SplashScreen>
 
               // Tagline
               Text(
-                'YOUR CINEMATIC UNIVERSE',
-                style: TextStyles.font10BoldCoolGray.copyWith(
-                  fontSize: 10.sp,
-                  letterSpacing: 5.0,
-                  color: AppColors.slateGray.withValues(alpha: 0.75),
-                ),
-              )
+                    'YOUR CINEMATIC UNIVERSE',
+                    style: TextStyles.font10BoldCoolGray.copyWith(
+                      fontSize: 10.sp,
+                      letterSpacing: 5.0,
+                      color: AppColors.slateGray.withValues(alpha: 0.75),
+                    ),
+                  )
                   .animate(delay: 1800.ms)
                   .fadeIn(duration: 700.ms)
                   .blur(begin: const Offset(5, 0), end: Offset.zero),
@@ -245,8 +249,14 @@ class _AmbientSpheres extends StatelessWidget {
     return switch (i) {
       0 => Alignment(-0.7 + 0.3 * math.sin(t), -0.6 + 0.2 * math.cos(t)),
       1 => Alignment(0.7 + 0.25 * math.cos(t * 1.1), 0.6 + 0.3 * math.sin(t)),
-      2 => Alignment(0.3 + 0.35 * math.sin(t * 0.8 + 1), -0.2 + 0.25 * math.cos(t * 1.2)),
-      _ => Alignment(-0.4 + 0.3 * math.cos(t * 0.9 + 2), 0.65 + 0.2 * math.sin(t * 1.3)),
+      2 => Alignment(
+        0.3 + 0.35 * math.sin(t * 0.8 + 1),
+        -0.2 + 0.25 * math.cos(t * 1.2),
+      ),
+      _ => Alignment(
+        -0.4 + 0.3 * math.cos(t * 0.9 + 2),
+        0.65 + 0.2 * math.sin(t * 1.3),
+      ),
     };
   }
 }
@@ -449,17 +459,15 @@ class _AnimatedLoadingBar extends StatelessWidget {
                   ),
                 ],
               ),
-            )
-                .animate()
-                .custom(
-                  duration: 2800.ms,
-                  curve: Curves.easeInOut,
-                  builder: (_, value, child) => FractionallySizedBox(
-                    alignment: Alignment.centerLeft,
-                    widthFactor: value.clamp(0.0, 1.0),
-                    child: child,
-                  ),
-                ),
+            ).animate().custom(
+              duration: 2800.ms,
+              curve: Curves.easeInOut,
+              builder: (_, value, child) => FractionallySizedBox(
+                alignment: Alignment.centerLeft,
+                widthFactor: value.clamp(0.0, 1.0),
+                child: child,
+              ),
+            ),
           ],
         ),
       ),
