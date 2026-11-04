@@ -86,7 +86,9 @@ Future<void> initDI() async {
   );
   sl.registerLazySingleton<AuthRepo>(() => AuthRepo(sl<AuthServices>()));
   sl.registerLazySingleton<LibraryServices>(() => LibraryServices());
-  sl.registerLazySingleton<LibraryRepo>(() => LibraryRepo(sl<LibraryServices>()));
+  sl.registerLazySingleton<LibraryRepo>(
+    () => LibraryRepo(sl<LibraryServices>()),
+  );
 
   _initCubits();
 }
@@ -97,7 +99,7 @@ void _initCubits() {
     () => TrendingContentCubit(postersRepo: sl<HomeRepo>()),
   );
   sl.registerFactory<SpotlightCubit>(
-        () => SpotlightCubit(postersRepo: sl<HomeRepo>()),
+    () => SpotlightCubit(postersRepo: sl<HomeRepo>()),
   );
   sl.registerFactory<TopRatedMovieCubit>(
     () => TopRatedMovieCubit(postersRepo: sl<HomeRepo>()),
@@ -142,6 +144,6 @@ void _initCubits() {
     () => DiscoverPeopleCubit(sl<DiscoverRepo>()),
   );
   sl.registerFactory<DiscoverByGenreCubit>(
-        () => DiscoverByGenreCubit(sl<DiscoverRepo>()),
+    () => DiscoverByGenreCubit(sl<DiscoverRepo>()),
   );
 }

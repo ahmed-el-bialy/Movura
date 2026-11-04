@@ -19,9 +19,20 @@ class LibraryRepo {
     required String collectionName,
     required bool isAdding,
   }) async {
+    final mediaType = switch (poster.mediaType) {
+      'movie' => 'movies',
+      'tv' => 'tvSeries',
+      _ => throw ArgumentError.value(
+        poster.mediaType,
+        'poster.mediaType',
+        'Only movies and TV series can be added to the library.',
+      ),
+    };
+
     await libraryServices.toggleLibraryItem(
       posterJson: poster.toJson(),
       collectionName: collectionName,
+      mediaType: mediaType,
       isAdding: isAdding,
     );
   }

@@ -84,7 +84,8 @@ class CustomSideDrawer extends StatelessWidget {
                       RouteNames.seeAllScreen,
                       arguments: SeeAllArguments(
                         title: 'Popular Movies',
-                        futureMethod: sl<DiscoverRepo>().getPopularMovies,
+                        fetchData: (page) => sl<DiscoverRepo>()
+                            .getMoviesByCategory('popular', page: page),
                       ),
                     );
                   },
@@ -100,7 +101,10 @@ class CustomSideDrawer extends StatelessWidget {
                       RouteNames.seeAllScreen,
                       arguments: SeeAllArguments(
                         title: 'Popular TV Shows',
-                        futureMethod: sl<DiscoverRepo>().getPopularTvShows,
+                        fetchData: (page) => sl<DiscoverRepo>().getTvByCategory(
+                          'popular',
+                          page: page,
+                        ),
                       ),
                     );
                   },

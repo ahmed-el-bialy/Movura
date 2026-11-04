@@ -11,10 +11,8 @@ class LibraryCubit extends Cubit<LibraryState> {
   StreamSubscription? _librarySubscription;
   StreamSubscription? _authSubscription;
 
-  LibraryCubit(
-    this.libraryRepo, {
-    Stream<User?>? authStateStream,
-  }) : super(LibraryInitial()) {
+  LibraryCubit(this.libraryRepo, {Stream<User?>? authStateStream})
+    : super(LibraryInitial()) {
     final authStream =
         authStateStream ?? FirebaseAuth.instance.authStateChanges();
     _authSubscription = authStream.listen((user) {
@@ -26,7 +24,10 @@ class LibraryCubit extends Cubit<LibraryState> {
       }
     });
 
-    if (FirebaseAuth.instance.currentUser != null) {
+    // A supplied stream makes the cubit independent from the Firebase
+    // singleton (for example, in tests). The default auth stream emits the
+    // current user immediately, so it still starts the library listener.
+    if (authStateStream == null && FirebaseAuth.instance.currentUser != null) {
       listenToLibrary();
     }
   }

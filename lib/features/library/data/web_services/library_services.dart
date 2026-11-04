@@ -16,26 +16,42 @@ class LibraryServices {
   Future<void> toggleLibraryItem({
     required Map<String, dynamic> posterJson,
     required String collectionName,
+    required String mediaType,
     required bool isAdding,
   }) async {
     final uid = currentUid;
     if (uid == null) return;
 
+    if (!const {
+      'favorites',
+      'toWatch',
+      'watched',
+      'watchNow',
+    }.contains(collectionName)) {
+      throw ArgumentError.value(collectionName, 'collectionName');
+    }
+    if (!const {'movies', 'tvSeries'}.contains(mediaType)) {
+      throw ArgumentError.value(mediaType, 'mediaType');
+    }
+
     final docRef = _firestore.collection('users').doc(uid);
     final itemId = posterJson['id']?.toString();
     if (itemId == null || itemId.isEmpty) return;
 
+    final fieldPath = FieldPath(['library', collectionName, mediaType, itemId]);
+
     if (isAdding) {
       await docRef.set({
-        collectionName: {
-          itemId: posterJson,
+        'schemaVersion': 2,
+        'library': {
+          collectionName: {
+            mediaType: {itemId: posterJson},
+          },
         },
       }, SetOptions(merge: true));
     } else {
       try {
-        await docRef.update({
-          '$collectionName.$itemId': FieldValue.delete(),
-        });
+        await docRef.update({fieldPath: FieldValue.delete()});
       } catch (e) {
         if (e is FirebaseException && e.code == 'not-found') {
           return;

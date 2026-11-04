@@ -19,6 +19,7 @@ import '../../features/person_details/logic/person_details_cubit.dart';
 import '../../features/person_details/ui/screens/person_details_screen.dart';
 import '../../features/see_all/data/models/see_all_arguments.dart';
 import '../../features/see_all/ui/screens/see_all_screen.dart';
+import '../../features/search/ui/screens/search_screen.dart';
 import '../../features/splash/ui/screens/splash_screen.dart';
 import '../../features/tv_details/logic/about/about_tv_cubit.dart';
 import '../../features/tv_details/ui/screens/all_seasons_screen.dart';
@@ -47,6 +48,9 @@ class AppRouter {
 
       case RouteNames.libraryScreen:
         return MaterialPageRoute(builder: (_) => const LibraryScreen());
+
+      case RouteNames.searchScreen:
+        return MaterialPageRoute(builder: (_) => const SearchScreen());
 
       case RouteNames.detailsScreen:
         final arguments = setting.arguments as DetailsArgumentModel;
@@ -120,9 +124,10 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const DiscoverPeopleScreen());
 
       case RouteNames.discoverByGenreScreen:
-        final args = setting.arguments as Map<String, dynamic>;
+        final args = setting.arguments as Map<String, dynamic>?;
+        final isMovie = args?['isMovie'] as bool? ?? true;
         return MaterialPageRoute(
-          builder: (_) => DiscoverByGenreScreen(isMovie: args['isMovie']),
+          builder: (_) => DiscoverByGenreScreen(isMovie: isMovie),
         );
 
       default:
