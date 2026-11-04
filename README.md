@@ -21,7 +21,11 @@ Flutter codebase with Cubit state management.**
 
 <div align="center">
 
-[![Watch Demo](https://img.shields.io/badge/▶-Watch%20Demo-00D1FF?style=for-the-badge&logoColor=white)](https://youtube.com/@ahmedel-bialy)
+[![Main Demo](https://img.shields.io/badge/▶-Main%20Demo-00D1FF?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/playlist?list=PLGHDB4nGr8K0&si=Bro9Uai9p9glcGuQ)
+[![Latest Update](https://img.shields.io/badge/🆕-Latest%20Update-FFB869?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/shorts/9LCJqMSuZno?si=b-7WUOXY8B0IUahe)
+
+<sub>**Main Demo** — the full app walkthrough, start to finish &nbsp;•&nbsp; **Latest Update** —
+only the newest changes</sub>
 
 </div>
 
