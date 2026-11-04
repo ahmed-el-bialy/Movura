@@ -29,34 +29,50 @@ class UserModel {
   });
 
   static List<PosterModel> _parsePosterList(dynamic jsonVal) {
-    if (jsonVal == null) return [];
-    if (jsonVal is Map) {
-      return jsonVal.values
-          .where((v) => v != null)
-          .map((v) => PosterModel.fromJson(Map<String, dynamic>.from(v as Map)))
-          .toList();
+    final posters = <int, PosterModel>{};
+
+    void visit(dynamic value) {
+      if (value is List) {
+        for (final item in value) {
+          visit(item);
+        }
+        return;
+      }
+      if (value is! Map) return;
+
+      final map = Map<String, dynamic>.from(value);
+      if (map.containsKey('id')) {
+        final poster = PosterModel.fromJson(map);
+        if (poster.id != 0) posters[poster.id] = poster;
+        return;
+      }
+      for (final item in map.values) {
+        visit(item);
+      }
     }
-    if (jsonVal is List) {
-      return jsonVal
-          .where((v) => v != null)
-          .map((v) => PosterModel.fromJson(Map<String, dynamic>.from(v as Map)))
-          .toList();
-    }
-    return [];
+
+    visit(jsonVal);
+    return posters.values.toList();
   }
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
+    final profile = json['profile'] is Map
+        ? Map<String, dynamic>.from(json['profile'] as Map)
+        : json;
+    final library = json['library'] is Map
+        ? Map<String, dynamic>.from(json['library'] as Map)
+        : null;
+
     return UserModel(
-      id: json['id']?.toString() ?? '',
-      email: json['email']?.toString() ?? '',
-      name: json['name']?.toString() ?? 'Cinematic Explorer',
-      favorites: _parsePosterList(json['favorites']),
-      watched: _parsePosterList(json['watched']),
-      toWatch: _parsePosterList(json['toWatch']),
-      watchNow: _parsePosterList(json['watchNow']),
+      id: profile['id']?.toString() ?? '',
+      email: profile['email']?.toString() ?? '',
+      name: profile['name']?.toString() ?? 'Cinematic Explorer',
+      favorites: _parsePosterList(library?['favorites'] ?? json['favorites']),
+      watched: _parsePosterList(library?['watched'] ?? json['watched']),
+      toWatch: _parsePosterList(library?['toWatch'] ?? json['toWatch']),
+      watchNow: _parsePosterList(library?['watchNow'] ?? json['watchNow']),
     );
   }
 
   Map<String, dynamic> toJson() => _$UserModelToJson(this);
 }
-

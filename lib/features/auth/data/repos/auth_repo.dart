@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../models/user_model.dart';
@@ -101,26 +102,17 @@ class AuthRepo {
     }
 
     if (userData.isEmpty) {
-      final newUserMap = {
-        'id': uid,
-        'email': email,
-        'name': name,
-        'favorites': {},
-        'watched': {},
-        'toWatch': {},
-        'watchNow': {},
-      };
-
-      try {
-        await authServices.saveUserData(
-          userData: newUserMap,
-          uid: uid,
-        );
-      } catch (_) {}
-
+      final newUserMap = _newUserDocument(uid: uid, email: email, name: name);
+      await authServices.saveUserData(userData: newUserMap, uid: uid);
       return UserModel.fromJson(newUserMap);
     }
 
+    await _migrateLegacyUserDocument(
+      uid: uid,
+      email: email,
+      name: name,
+      userData: userData,
+    );
     return UserModel.fromJson(userData);
   }
 
@@ -134,23 +126,109 @@ class AuthRepo {
       if (userData.isEmpty) {
         await authServices.saveUserData(
           uid: user.uid,
-          userData: {
-            'id': user.uid,
-            'email': user.email ?? '',
-            'name': user.displayName ?? 'Cinematic Explorer',
-            'favorites': {},
-            'watched': {},
-            'toWatch': {},
-            'watchNow': {},
-          },
+          userData: _newUserDocument(
+            uid: user.uid,
+            email: user.email ?? '',
+            name: user.displayName ?? 'Cinematic Explorer',
+          ),
+        );
+      } else {
+        await _migrateLegacyUserDocument(
+          uid: user.uid,
+          email: user.email ?? '',
+          name: user.displayName ?? 'Cinematic Explorer',
+          userData: userData,
         );
       }
     } catch (_) {}
   }
 
+  Map<String, dynamic> _newUserDocument({
+    required String uid,
+    required String email,
+    required String name,
+  }) {
+    return {
+      'schemaVersion': 2,
+      'profile': {
+        'id': uid,
+        'email': email,
+        'name': name,
+        'createdAt': FieldValue.serverTimestamp(),
+        'updatedAt': FieldValue.serverTimestamp(),
+      },
+      'library': _emptyLibrary(),
+    };
+  }
+
+  Map<String, dynamic> _emptyLibrary() => {
+    'favorites': {'movies': {}, 'tvSeries': {}},
+    'toWatch': {'movies': {}, 'tvSeries': {}},
+    'watched': {'movies': {}, 'tvSeries': {}},
+    'watchNow': {'movies': {}, 'tvSeries': {}},
+  };
+
+  Future<void> _migrateLegacyUserDocument({
+    required String uid,
+    required String email,
+    required String name,
+    required Map<String, dynamic> userData,
+  }) async {
+    if (userData['schemaVersion'] == 2 && userData['library'] is Map) return;
+
+    final legacyCollections = <String, dynamic>{};
+    for (final collection in ['favorites', 'toWatch', 'watched', 'watchNow']) {
+      legacyCollections[collection] = _splitLegacyCollection(
+        userData[collection],
+      );
+    }
+
+    await authServices.saveUserData(
+      uid: uid,
+      userData: {
+        'schemaVersion': 2,
+        'profile': {
+          'id': uid,
+          'email': email,
+          'name': name,
+          'updatedAt': FieldValue.serverTimestamp(),
+        },
+        'library': legacyCollections,
+        'favorites': FieldValue.delete(),
+        'toWatch': FieldValue.delete(),
+        'watched': FieldValue.delete(),
+        'watchNow': FieldValue.delete(),
+      },
+    );
+  }
+
+  Map<String, dynamic> _splitLegacyCollection(dynamic value) {
+    final movies = <String, dynamic>{};
+    final tvSeries = <String, dynamic>{};
+
+    void addPoster(Object? key, dynamic rawPoster) {
+      if (rawPoster is! Map) return;
+      final poster = Map<String, dynamic>.from(rawPoster);
+      final bucket = poster['media_type'] == 'tv' ? tvSeries : movies;
+      final itemId = poster['id']?.toString() ?? key.toString();
+      bucket[itemId] = poster;
+    }
+
+    if (value is Map) {
+      for (final entry in value.entries) {
+        addPoster(entry.key, entry.value);
+      }
+    } else if (value is List) {
+      for (final entry in value.indexed) {
+        addPoster(entry.$1, entry.$2);
+      }
+    }
+    return {'movies': movies, 'tvSeries': tvSeries};
+  }
+
   Future<UserModel?> signInWithFacebook() async {
     // Placeholder: Facebook login integration requires native setup (App ID, Secret)
-    // and the flutter_facebook_auth package. 
+    // and the flutter_facebook_auth package.
     throw "Facebook Sign-In is currently being optimized. Please use Google or Email for now.";
   }
 

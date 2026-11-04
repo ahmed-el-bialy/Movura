@@ -57,12 +57,13 @@ class _LogInScreenState extends State<LogInScreen> {
 
   void _listenToAuthState(BuildContext context, AuthState state) {
     if (state is AuthLoaded) {
+      context.showSnackBar(
+        'Welcome back, ${state.user.name}!',
+        backgroundColor: AppColors.profitGreen,
+      );
       context.pushAndRemoveUntil(routeName: RouteNames.mainScreen);
     } else if (state is AuthError) {
-      context.showSnackBar(
-        state.message,
-        backgroundColor: AppColors.softRed,
-      );
+      context.showSnackBar(state.message, backgroundColor: AppColors.softRed);
     }
   }
 
@@ -97,82 +98,93 @@ class _LogInScreenState extends State<LogInScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            AppSpacing.verticalSpacing(15),
-                            const SkipButton()
-                                .animate()
-                                .fadeIn(duration: 600.ms, delay: 200.ms)
-                                .slideX(begin: 0.2, end: 0),
+                            AppSpacing.verticalSpacing(35),
                             const AuthHeader(
-                              title: 'Welcome Back',
-                              subtitle:
-                                  'Sign in to continue your cinematic journey',
-                            )
+                                  title: 'Welcome Back',
+                                  subtitle:
+                                      'Sign in to continue your cinematic journey',
+                                )
                                 .animate()
-                                .fadeIn(duration: 800.ms, delay: 300.ms)
+                                .fadeIn(duration: 800.ms, delay: 200.ms)
                                 .scale(begin: const Offset(0.9, 0.9)),
-                            AppSpacing.verticalSpacing(25),
+                            AppSpacing.verticalSpacing(30),
                             AuthFormContainer(
-                              child: Column(
-                                children: [
-                                  AuthInputField(
-                                    label: 'Email Address',
-                                    child: AppTextFormField(
-                                      controller: emailController,
-                                      inputType: TextInputType.emailAddress,
-                                      hintText: AppConstants.emailExample,
-                                      autofillHints: const [
-                                        AutofillHints.email,
-                                      ],
-                                      prefixIcon: const AuthPrefixIcon(
-                                        icon: Icons.alternate_email_rounded,
-                                      ),
-                                      textInputAction: TextInputAction.next,
-                                      validator: Validators.validateEmail,
-                                    ),
-                                  ),
-                                  AppSpacing.verticalSpacing(20),
-                                  AuthInputField(
-                                    label: 'Password',
-                                    action: GestureDetector(
-                                      onTap: () =>
-                                          _showForgotPasswordSheet(context),
-                                      child: Text(
-                                        'Forgot?',
-                                        style: TextStyles.font13MediumNeonBlue
-                                            .copyWith(fontSize: 12.sp),
-                                      ),
-                                    ),
-                                    child: AppTextFormField(
-                                      controller: passwordController,
-                                      isObscureText: isObscure,
-                                      hintText: AppConstants.passwordExample,
-                                      autofillHints: const [
-                                        AutofillHints.password,
-                                      ],
-                                      prefixIcon: const AuthPrefixIcon(
-                                        icon: Icons.lock_outline_rounded,
-                                      ),
-                                      suffixIcon: IconButton(
-                                        onPressed: () => setState(
-                                          () => isObscure = !isObscure,
-                                        ),
-                                        icon: Icon(
-                                          isObscure
-                                              ? Icons.visibility_off_outlined
-                                              : Icons.visibility_outlined,
-                                          color: AppColors.coolGray,
-                                          size: 18.sp,
-                                        ),
-                                      ),
-                                      textInputAction: TextInputAction.done,
-                                      validator: Validators.validatePassword,
-                                    ),
-                                  ),
-                                ],
-                              ).animate(delay: 500.ms).fadeIn().slideY(
-                                    begin: 0.1,
-                                    end: 0,
-                                  ),
+                              child:
+                                  Column(
+                                        children: [
+                                          AuthInputField(
+                                            label: 'Email Address',
+                                            child: AppTextFormField(
+                                              controller: emailController,
+                                              inputType:
+                                                  TextInputType.emailAddress,
+                                              hintText:
+                                                  AppConstants.emailExample,
+                                              autofillHints: const [
+                                                AutofillHints.email,
+                                              ],
+                                              prefixIcon: const AuthPrefixIcon(
+                                                icon: Icons
+                                                    .alternate_email_rounded,
+                                              ),
+                                              textInputAction:
+                                                  TextInputAction.next,
+                                              validator:
+                                                  Validators.validateEmail,
+                                            ),
+                                          ),
+                                          AppSpacing.verticalSpacing(20),
+                                          AuthInputField(
+                                            label: 'Password',
+                                            action: GestureDetector(
+                                              onTap: () =>
+                                                  _showForgotPasswordSheet(
+                                                    context,
+                                                  ),
+                                              child: Text(
+                                                'Forgot?',
+                                                style: TextStyles
+                                                    .font13MediumNeonBlue
+                                                    .copyWith(fontSize: 12.sp),
+                                              ),
+                                            ),
+                                            child: AppTextFormField(
+                                              controller: passwordController,
+                                              isObscureText: isObscure,
+                                              hintText:
+                                                  AppConstants.passwordExample,
+                                              autofillHints: const [
+                                                AutofillHints.password,
+                                              ],
+                                              prefixIcon: const AuthPrefixIcon(
+                                                icon:
+                                                    Icons.lock_outline_rounded,
+                                              ),
+                                              suffixIcon: IconButton(
+                                                onPressed: () => setState(
+                                                  () => isObscure = !isObscure,
+                                                ),
+                                                icon: Icon(
+                                                  isObscure
+                                                      ? Icons
+                                                            .visibility_off_outlined
+                                                      : Icons
+                                                            .visibility_outlined,
+                                                  color: AppColors.coolGray,
+                                                  size: 18.sp,
+                                                ),
+                                              ),
+                                              textInputAction:
+                                                  TextInputAction.done,
+                                              validator:
+                                                  Validators.validatePassword,
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                      .animate(delay: 500.ms)
+                                      .fadeIn()
+                                      .slideY(begin: 0.1, end: 0),
                             ),
                             AppSpacing.verticalSpacing(30),
                             LoginSubmitButton(

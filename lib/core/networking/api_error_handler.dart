@@ -4,7 +4,8 @@ import 'package:firebase_core/firebase_core.dart';
 class ApiErrorHandler {
   static String handle(dynamic error) {
     if (error is FirebaseException) {
-      if (error.code == 'not-found' || (error.message?.contains('does not exist') ?? false)) {
+      if (error.code == 'not-found' ||
+          (error.message?.contains('does not exist') ?? false)) {
         return "Cloud Firestore database not created yet in Firebase Console. Please create database in Firebase Console.";
       }
       return error.message ?? "Firebase error occurred.";
