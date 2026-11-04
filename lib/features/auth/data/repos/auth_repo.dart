@@ -88,14 +88,17 @@ class AuthRepo {
     }
   }
 
-  /// Robust helper to ensure user exists in Firestore.
-  /// Everything is online, no fallback to local or empty model on failure.
   Future<UserModel> _getOrCreateUser({
     required String uid,
     required String email,
     required String name,
   }) async {
-    final userData = await authServices.getUserData(uid: uid);
+    Map<String, dynamic> userData = {};
+    try {
+      userData = await authServices.getUserData(uid: uid);
+    } catch (_) {
+      userData = {};
+    }
 
     if (userData.isEmpty) {
       final newUserMap = {
@@ -108,10 +111,12 @@ class AuthRepo {
         'watchNow': {},
       };
 
-      await authServices.saveUserData(
-        userData: newUserMap,
-        uid: uid,
-      );
+      try {
+        await authServices.saveUserData(
+          userData: newUserMap,
+          uid: uid,
+        );
+      } catch (_) {}
 
       return UserModel.fromJson(newUserMap);
     }
