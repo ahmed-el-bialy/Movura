@@ -1,13 +1,13 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'package:movura/core/theming/app_spacing.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/widgets/app_error_widget.dart';
 import 'package:movura/core/widgets/layout/custom_posters_grid_view.dart';
 import 'package:movura/core/widgets/loading/skeleton_poster_grid_loading.dart';
+
 import '../../logic/search/search_cubit.dart';
 
 class SearchResultsGrid extends StatelessWidget {

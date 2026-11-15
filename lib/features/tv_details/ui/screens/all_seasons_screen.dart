@@ -1,16 +1,16 @@
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:material_ui/material_ui.dart';
+import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/widgets/buttons/app_icon_button.dart';
+import 'package:movura/core/widgets/navigation/app_navigation_bar.dart';
 
 import '../../../../core/extensions/routing_extension.dart';
 import '../../../../core/routing/arguments_models.dart';
 import '../../../../core/routing/route_names.dart';
-import 'package:movura/core/theming/app_colors.dart';
 import '../../../../core/theming/app_spacing.dart';
 import '../../../../core/theming/text_styles.dart';
-import 'package:movura/core/widgets/buttons/app_icon_button.dart';
-import 'package:movura/core/widgets/navigation/app_navigation_bar.dart';
 import '../widgets/tv_season_card.dart';
 
 class AllSeasonsScreen extends StatelessWidget {

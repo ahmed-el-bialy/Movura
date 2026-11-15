@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:material_ui/material_ui.dart';
 import 'package:movura/core/theming/app_colors.dart';
+
 import 'text_styles.dart';
 
 class AppTheme {

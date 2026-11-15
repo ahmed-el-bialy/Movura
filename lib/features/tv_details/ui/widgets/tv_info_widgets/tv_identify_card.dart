@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
+
 import '../../../../../../core/extensions/status_display_extension.dart';
 import '../../../../../../core/widgets/shared_details/details_identify_card.dart';
 import '../../../data/about_tv_series_model.dart';

@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:movura/core/routing/route_names.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../features/auth/ui/screens/log_in_screen.dart';
 import '../../features/auth/ui/screens/sign_up_screen.dart';
@@ -17,9 +16,9 @@ import '../../features/movie_details/ui/screens/movie_details_screen.dart';
 import '../../features/movie_details/ui/screens/video_screen.dart';
 import '../../features/person_details/logic/person_details_cubit.dart';
 import '../../features/person_details/ui/screens/person_details_screen.dart';
+import '../../features/search/ui/screens/search_screen.dart';
 import '../../features/see_all/data/models/see_all_arguments.dart';
 import '../../features/see_all/ui/screens/see_all_screen.dart';
-import '../../features/search/ui/screens/search_screen.dart';
 import '../../features/splash/ui/screens/splash_screen.dart';
 import '../../features/tv_details/logic/about/about_tv_cubit.dart';
 import '../../features/tv_details/ui/screens/all_seasons_screen.dart';
@@ -103,9 +102,9 @@ class AppRouter {
         );
 
       case RouteNames.videoPlayScreen:
-        final controller = setting.arguments as YoutubePlayerController;
+        final videoKey = setting.arguments as String;
         return MaterialPageRoute(
-          builder: (_) => VideoScreen(controller: controller),
+          builder: (_) => VideoScreen(videoKey: videoKey),
         );
 
       case RouteNames.seeAllScreen:

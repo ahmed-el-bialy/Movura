@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:movura/core/widgets/loading/movura_loading_indicator.dart';
-
+import 'package:material_ui/material_ui.dart';
 import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/widgets/loading/movura_loading_indicator.dart';
 
 class DetailsTabLoading extends StatelessWidget {
   const DetailsTabLoading({super.key});

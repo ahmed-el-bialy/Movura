@@ -1,12 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:movura/core/constants/api_constants.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/theming/weights.dart';
-
 import 'package:movura/core/widgets/layout/section_title.dart';
 import 'package:movura/core/widgets/shared_details/actors_list.dart';
 import 'package:movura/core/widgets/shared_details/images_list.dart';

@@ -1,8 +1,9 @@
 import 'dart:math' as math;
 import 'dart:ui';
-import 'package:flutter/material.dart';
+
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:movura/core/theming/app_colors.dart';
 
 /// Ultra-modern cinematic background with orbiting glowing light spheres,

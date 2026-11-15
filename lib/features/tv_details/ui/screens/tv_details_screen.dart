@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:material_ui/material_ui.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/widgets/app_error_widget.dart';
 import 'package:movura/core/widgets/loading/movura_loading_indicator.dart';
+
 import '../../logic/about/about_tv_cubit.dart';
 import '../widgets/tv_screen_body.dart';
 

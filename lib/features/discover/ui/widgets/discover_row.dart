@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:movura/core/constants/app_constants.dart';
-import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/models/poster_model.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/theming/text_styles.dart';
-import 'package:movura/core/widgets/poster_card/poster_card.dart';
 import 'package:movura/core/widgets/layout/section_title.dart';
+import 'package:movura/core/widgets/poster_card/poster_card.dart';
 
 class DiscoverRow extends StatelessWidget {
   final String title;

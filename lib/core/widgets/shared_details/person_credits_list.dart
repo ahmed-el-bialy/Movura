@@ -1,8 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../features/person_details/data/person_details_model.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:movura/core/constants/api_constants.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/routing/arguments_models.dart';
@@ -10,6 +8,8 @@ import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/theming/text_styles.dart';
+
+import '../../../features/person_details/data/person_details_model.dart';
 
 class PersonCreditsList extends StatelessWidget {
   const PersonCreditsList({super.key, this.movies, this.tvShows});

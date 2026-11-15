@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/features/tv_details/ui/widgets/tv_network_card.dart';
 

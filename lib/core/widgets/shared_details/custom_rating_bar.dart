@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:material_ui/material_ui.dart';
+import 'package:movura/core/theming/app_colors.dart';
 
 import '../../extensions/rating_formatter.dart';
-import 'package:movura/core/theming/app_colors.dart';
 import '../../theming/app_spacing.dart';
 
 class CustomRatingBar extends StatelessWidget {

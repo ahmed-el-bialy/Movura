@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../data/repos/movies_repo.dart';
 import 'package:movura/core/models/similar_model.dart';
+
+import '../../data/repos/movies_repo.dart';
 
 part 'similar_content_state.dart';
 

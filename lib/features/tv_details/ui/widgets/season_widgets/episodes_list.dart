@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../../../../core/extensions/routing_extension.dart';
 import '../../../../../core/routing/arguments_models.dart';

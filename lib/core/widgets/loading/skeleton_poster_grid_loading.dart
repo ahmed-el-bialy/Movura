@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movura/core/widgets/loading/poster_card_skeleton.dart';
-
+import 'package:material_ui/material_ui.dart';
 import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/widgets/loading/poster_card_skeleton.dart';
 
 class SkeletonPosterGridLoading extends StatelessWidget {
   const SkeletonPosterGridLoading({super.key});

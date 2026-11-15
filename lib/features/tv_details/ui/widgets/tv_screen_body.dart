@@ -1,15 +1,15 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
+import 'package:movura/core/networking/di.dart';
 import 'package:movura/core/theming/app_spacing.dart';
+import 'package:movura/core/widgets/shared_details/buttons_row.dart';
+import 'package:movura/core/widgets/shared_details/details_tabs.dart';
 import 'package:movura/features/tv_details/ui/widgets/reviews_tab_body.dart';
 import 'package:movura/features/tv_details/ui/widgets/similar_tab_body.dart';
 import 'package:movura/features/tv_details/ui/widgets/tv_info_widgets/tv_additional_data.dart';
 import 'package:movura/features/tv_details/ui/widgets/tv_info_widgets/tv_story_and_genres.dart';
 import 'package:movura/features/tv_details/ui/widgets/tv_main_details.dart';
 
-import 'package:movura/core/networking/di.dart';
-import 'package:movura/core/widgets/shared_details/buttons_row.dart';
-import 'package:movura/core/widgets/shared_details/details_tabs.dart';
 import '../../data/about_tv_series_model.dart';
 import '../../logic/reviews/reviews_cubit.dart';
 import '../../logic/similar_content/similar_content_cubit.dart';

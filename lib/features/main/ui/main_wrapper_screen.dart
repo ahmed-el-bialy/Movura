@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:movura/core/networking/di.dart';
 import 'package:movura/core/widgets/navigation/app_navigation_bar.dart';
 import 'package:movura/features/library/logic/library_cubit.dart';

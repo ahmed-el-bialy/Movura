@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:movura/core/networking/di.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/theming/app_spacing.dart';
@@ -12,7 +12,6 @@ import 'package:movura/core/widgets/loading/movura_loading_indicator.dart';
 import '../../data/models/search_filter_type.dart';
 import '../../data/models/search_sort_type.dart';
 import '../../logic/search/search_cubit.dart';
-
 import '../widgets/search_filter_sheet.dart';
 import '../widgets/search_results_grid.dart';
 import '../widgets/search_ui_widgets/search_empty_state.dart';

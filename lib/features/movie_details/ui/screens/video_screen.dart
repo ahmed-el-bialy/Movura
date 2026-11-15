@@ -1,28 +1,46 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
+
 import 'package:flutter/services.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
 import 'package:movura/core/theming/app_colors.dart';
-import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/widgets/shared_details/back_button.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoScreen extends StatefulWidget {
-  final YoutubePlayerController controller;
+  final String videoKey;
 
-  const VideoScreen({super.key, required this.controller});
+  const VideoScreen({super.key, required this.videoKey});
 
   @override
   State<VideoScreen> createState() => _VideoScreenState();
 }
 
 class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
+  late final YoutubePlayerController _controller;
+  StreamSubscription<YoutubePlayerValue>? _subscription;
   bool _isLandscape = false;
-  bool _showControls = true;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+
+    _controller = YoutubePlayerController.fromVideoId(
+      videoId: widget.videoKey,
+      autoPlay: true,
+      params: const YoutubePlayerParams(
+        showControls: true,
+        showFullscreenButton: true,
+        enableCaption: true,
+      ),
+    );
+
+    _subscription = _controller.listen((event) {
+      if (event.playerState == PlayerState.ended) {
+        handleBack();
+      }
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _enterVideoMode();
@@ -32,15 +50,16 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    _subscription?.cancel();
+    _controller.close();
     _exitVideoMode();
-    widget.controller.dispose();
     super.dispose();
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.paused) {
-      widget.controller.pause();
+      _controller.pauseVideo();
     }
   }
 
@@ -62,21 +81,10 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
   }
 
   void handleBack() {
-    widget.controller.pause();
+    _controller.pauseVideo();
     _exitVideoMode();
-    context.pop();
-  }
-
-  void _toggleControls() {
-    if (!_isLandscape) return;
-    setState(() => _showControls = !_showControls);
-
-    if (_showControls) {
-      Future.delayed(const Duration(seconds: 3), () {
-        if (mounted && _isLandscape) {
-          setState(() => _showControls = false);
-        }
-      });
+    if (mounted) {
+      context.pop();
     }
   }
 
@@ -93,60 +101,22 @@ class _VideoScreenState extends State<VideoScreen> with WidgetsBindingObserver {
           },
           child: Scaffold(
             backgroundColor: AppColors.trueBlack,
-            body: GestureDetector(
-              onTap: _isLandscape ? _toggleControls : null,
-              child: Stack(
-                children: [
-                  Positioned.fill(
-                    child: YoutubePlayer(
-                      controller: widget.controller,
-                      showVideoProgressIndicator: true,
-                      progressIndicatorColor: AppColors.neonBlue,
-                      progressColors: ProgressBarColors(
-                        playedColor: AppColors.neonBlue,
-                        handleColor: AppColors.neonBlue,
-                        bufferedColor: AppColors.darkNeonCyan.withValues(
-                          alpha: 0.7,
-                        ),
-                        backgroundColor: AppColors.pureWhite.withValues(
-                          alpha: 0.24,
-                        ),
-                      ),
-                      onEnded: (_) => handleBack(),
-                    ),
+            body: Stack(
+              children: [
+                Center(
+                  child: YoutubePlayer(
+                    controller: _controller,
+                    aspectRatio: 16 / 9,
                   ),
-                  if (!_isLandscape || _showControls)
-                    Positioned(
-                      top: _isLandscape ? 28 : 15,
-                      left: _isLandscape ? 20 : 16,
-                      child: CustomBackButton(onTap: handleBack),
-                    ),
-                  if (_isLandscape && !_showControls)
-                    Positioned(
-                      top: 28,
-                      left: 20,
-                      child: GestureDetector(
-                        onTap: _toggleControls,
-                        child: Container(
-                          padding: AppSpacing.all(10),
-                          decoration: BoxDecoration(
-                            color: AppColors.jetBlack.withValues(alpha: 0.85),
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: AppColors.neonBlue.withValues(alpha: 0.7),
-                              width: 1.6,
-                            ),
-                          ),
-                          child: const Icon(
-                            Icons.arrow_back_ios_new_rounded,
-                            color: AppColors.neonBlue,
-                            size: 22,
-                          ),
-                        ),
-                      ),
-                    ),
-                ],
-              ),
+                ),
+                Positioned(
+                  top: _isLandscape ? 20 : 16,
+                  left: 16,
+                  child: SafeArea(
+                    child: CustomBackButton(onTap: handleBack),
+                  ),
+                ),
+              ],
             ),
           ),
         );

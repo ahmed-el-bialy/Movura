@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:movura/core/constants/app_constants.dart';
 import 'package:movura/core/widgets/shared_details/review_card.dart';
 

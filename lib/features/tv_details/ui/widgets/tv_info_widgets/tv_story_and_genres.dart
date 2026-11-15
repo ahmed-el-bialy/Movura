@@ -1,10 +1,11 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/widgets/shared_details/details_story_and_genres.dart';
-import '../../../../../features/see_all/data/models/see_all_arguments.dart';
-import '../../../data/about_tv_series_model.dart';
+
 import '../../../../../core/networking/di.dart';
+import '../../../../../features/see_all/data/models/see_all_arguments.dart';
 import '../../../../discover/data/repo/discover_repo.dart';
+import '../../../data/about_tv_series_model.dart';
 
 class TvStoryAndGenres extends StatelessWidget {
   const TvStoryAndGenres({super.key, required this.model});

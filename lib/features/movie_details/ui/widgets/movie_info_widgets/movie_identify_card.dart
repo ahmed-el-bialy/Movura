@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../../../../core/widgets/shared_details/details_identify_card.dart';
 import '../../../data/models/about_model.dart';

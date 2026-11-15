@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:movura/core/widgets/shared_details/details_additional_data.dart';
 import '../../../data/about_tv_series_model.dart';
 

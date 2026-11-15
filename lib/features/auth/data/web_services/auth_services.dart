@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthServices {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   User? get currentUser => firebaseAuth.currentUser;
 
@@ -39,33 +37,11 @@ class AuthServices {
 
   Future<UserCredential?> signInWithGoogle() async {
     try {
-      // Sign in with Google
-      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-      if (googleUser == null) return null; // User canceled
-
-      // Get auth details from the account
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
-
-      // Create a new credential
-      final OAuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-
-      // Once signed in, return the UserCredential
-      return await firebaseAuth.signInWithCredential(credential);
+      return await firebaseAuth.signInWithProvider(GoogleAuthProvider());
     } on FirebaseAuthException catch (e) {
       throw e.message ?? 'Firebase Auth error occurred.';
     } catch (e) {
-      final err = e.toString();
-      if (err.contains('10') || err.contains('DEVELOPER_ERROR')) {
-        throw 'Google Sign-In configuration issue (API Exception 10).\n\nPlease add your Android Debug SHA-1 fingerprint to Firebase Console.';
-      }
-      if (err.contains('network_error')) {
-        throw 'Network error. Please check your connection.';
-      }
-      throw 'Google Sign-In failed: $err';
+      throw 'Google Sign-In failed: ${e.toString()}';
     }
   }
 
@@ -105,7 +81,6 @@ class AuthServices {
 
   Future<void> signOut() async {
     try {
-      await _googleSignIn.signOut();
       await firebaseAuth.signOut();
     } catch (_) {}
   }

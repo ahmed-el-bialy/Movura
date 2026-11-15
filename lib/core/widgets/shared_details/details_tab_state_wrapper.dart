@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:movura/core/widgets/layout/empty_section_message.dart';
 
 import '../app_error_widget.dart';

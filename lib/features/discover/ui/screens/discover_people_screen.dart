@@ -1,17 +1,17 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/core/models/poster_model.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:movura/core/extensions/routing_extension.dart';
+import 'package:movura/core/models/poster_model.dart';
 import 'package:movura/core/networking/di.dart';
 import 'package:movura/core/routing/route_names.dart';
 import 'package:movura/core/theming/app_colors.dart';
 import 'package:movura/core/widgets/app_error_widget.dart';
 import 'package:movura/core/widgets/loading/movura_loading_indicator.dart';
 import 'package:movura/features/see_all/data/models/see_all_arguments.dart';
-import '../../logic/discover_people_cubit.dart';
-import '../widgets/discover_screen_template.dart';
 
 import '../../data/repo/discover_repo.dart';
+import '../../logic/discover_people_cubit.dart';
+import '../widgets/discover_screen_template.dart';
 
 class DiscoverPeopleScreen extends StatelessWidget {
   const DiscoverPeopleScreen({super.key});

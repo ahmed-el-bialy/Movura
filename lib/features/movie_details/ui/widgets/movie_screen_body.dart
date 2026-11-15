@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movura/features/movie_details/ui/widgets/similar_tab_body.dart';
-
-import 'package:movura/core/theming/app_spacing.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:movura/core/networking/di.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/widgets/shared_details/buttons_row.dart';
 import 'package:movura/core/widgets/shared_details/details_tabs.dart';
+import 'package:movura/features/movie_details/ui/widgets/similar_tab_body.dart';
+
 import '../../data/models/about_model.dart';
 import '../../logic/reviews/reviews_cubit.dart';
 import '../../logic/similar_content/similar_content_cubit.dart';

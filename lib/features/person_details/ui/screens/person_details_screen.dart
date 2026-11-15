@@ -1,17 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:material_ui/material_ui.dart';
 import 'package:movura/core/constants/api_constants.dart';
-import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/theming/app_colors.dart';
+import 'package:movura/core/theming/app_spacing.dart';
 import 'package:movura/core/theming/text_styles.dart';
 import 'package:movura/core/theming/weights.dart';
 import 'package:movura/core/widgets/app_error_widget.dart';
-import 'package:movura/core/widgets/loading/movura_loading_indicator.dart';
 import 'package:movura/core/widgets/layout/section_title.dart';
+import 'package:movura/core/widgets/loading/movura_loading_indicator.dart';
 import 'package:movura/core/widgets/shared_details/person_credits_list.dart';
+
 import '../../logic/person_details_cubit.dart';
 
 class PersonDetailsScreen extends StatelessWidget {

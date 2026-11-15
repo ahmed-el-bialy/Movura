@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:material_ui/material_ui.dart';
 import 'package:movura/core/theming/app_colors.dart';
+
 import '../../../../../core/theming/app_spacing.dart';
 import '../../../../../core/theming/text_styles.dart';
 import '../../../../core/constants/api_constants.dart';

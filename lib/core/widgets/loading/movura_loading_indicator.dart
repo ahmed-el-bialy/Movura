@@ -1,10 +1,9 @@
 import 'dart:math' as math;
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
-import 'package:path_drawing/path_drawing.dart';
-
+import 'package:material_ui/material_ui.dart';
 import 'package:movura/core/theming/app_colors.dart';
+import 'package:path_drawing/path_drawing.dart';
 
 /// MOVURA animated loading indicator widget.
 /// Draws the "M" logo forward (Left -> Right) and erases in reverse (Right -> Left).

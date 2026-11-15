@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:movura/core/models/genre_model.dart';
 import 'package:movura/core/models/poster_model.dart';
+
 import '../../../home/data/repo/home_repo.dart';
 import '../../data/models/search_filter_type.dart';
 import '../../data/models/search_sort_type.dart';
